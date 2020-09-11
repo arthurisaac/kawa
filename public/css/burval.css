@@ -1,0 +1,112 @@
+.burval-container {
+    margin: 40px 20px 40px 40px;
+}
+
+form {
+    border: 0 solid #CCCCCC;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.heading {
+    color: #000000;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.editbox {
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    color: #000000;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 16px;
+    margin: 0;
+    padding: 4px 4px 4px 4px;
+    text-align: left;
+    border: 1px solid #CCCCCC;
+}
+
+.editbox:focus {
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    outline: 0;
+    border-color: #66AFE9;
+}
+
+label {
+    background-color: transparent;
+    background-image: none;
+    border-radius: 4px;
+    color: #000000;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+    padding: 4px 4px 4px 4px;
+    text-align: left;
+    vertical-align: top;
+    border: 0 solid #CCCCCC;
+}
+
+.button {
+    /*-webkit-appearance: none;
+    background-color: #3370B7;
+    background-image: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+    border: 1px solid #2E6DA4;*/
+    min-width: 150px;
+}
+
+
+.Combobox {
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #000000;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+    padding: 4px 4px 4px 4px;
+    border: 1px solid #CCCCCC;
+}
+
+.Combobox:focus {
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.60);
+    outline: 0;
+    border-color: #66AFE9;
+}
+
+.checkbox > input {
+    position: relative;
+    top: 4px;
+}
+
+.two-columns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.two-columns-center {
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.vertical_separator {
+    width: 1px;
+    background-color: rgba(0, 0, 0, .1);
+    margin: 10px;
+}
+
+.title-separator {
+    margin-top: -27px;
+}
