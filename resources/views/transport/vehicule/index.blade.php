@@ -142,4 +142,26 @@
         <button type="submit" class="btn btn-primary btn-sm">Valider</button>
     </form>
 </div>
+<script>
+    let centres =  {!! json_encode($centres) !!};
+    let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
+    $(document).ready( function () {
+        $("#centre").on("change", function () {
+            $("#centre_regional option").remove();
+            $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
+
+            const centre = centres.find(c => c.centre === this.value);
+            const regions = centres_regionaux.filter( region => {
+                return region.id_centre === centre.id;
+            });
+            regions.map( ({centre_regional}) => {
+                $('#centre_regional').append($('<option>', {
+                    value: centre_regional,
+                    text: centre_regional
+                }));
+            })
+        });
+    });
+</script>
 @endsection

@@ -1,104 +1,300 @@
 @extends('base')
 
 @section('main')
-<div class="row">
-    <div class="col">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <br/>
-        @endif
+<div class="burval-container">
+    <div><h2 class="heading">Vidange générale</h2></div>
+    <br/>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
+    <br/>
+    @endif
 
     <form method="post" action="{{ route('vidange-generale.store') }}">
         @csrf
-        <div class="form-group">
-            <label>date</label>
-            <input type="date" class="form-control" name="date"/>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group row">
+                    <label class="col-md-4">Date</label>
+                    <input type="date" class="form-control col-md-8" name="date"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4">Véhicule</label>
+                    <select class="form-control form-control-sm col-md-8" name="idVehicule">
+                        <option>Selectionnez véhicule</option>
+                        @foreach($vehicules as $vehicule)
+                        <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4">Centre</label>
+                    <select class="form-control form-control-sm col-md-8" name="centre" id="centre" required>
+                        <option>Choisir centre</option>
+                        @foreach ($centres as $centre)
+                        <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4">Centre régional</label>
+                    <select class="form-control form-control-sm col-md-8" name="centreRegional" id="centre_regional"
+                            required></select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4">Km actuel</label>
+                    <input type="number" class="form-control form-control-sm col-md-8" name="kmActuel"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4">Prochain km</label>
+                    <input type="number" class="form-control form-control-sm col-md-8" name="prochainKm"/>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary btn-block btn-sm">Valider</button>
+                <br/>
+                <button type="reset" class="btn btn-danger btn-block btn-sm">Annuler</button>
+                <br/>
+            </div>
+            <div class="col-6">
+                <table class="table table-bordered" id="liste">
+                    <thead>
+                    <tr>
+                        <th>Véhicule</th>
+                        <th>Total vidange</th>
+                        <th>Prochaine vidange</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($vidanges as $vidange)
+                    <td>{{$vidange->idVehicule}}</td>
+                    <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant + $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}</td>
+                    <!--<td>{{date('Y-m-d H:i:s'), strtotime($vidange->date. ' + 5 days')}}</td>-->
+                    <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="form-group">
-            <label>idVehicule</label>
-            <select class="form-control" name="idVehicule">
-                <option>Selectionnez véhicule</option>
-                @foreach($vehicules as $vehicule)
-                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                @endforeach
-            </select>
+        <br/>
+
+        <div class="row">
+            <div class="col">
+                <label>Huile de moteur</label>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Oui</label><br/>
+                                    <input type="radio" class="form-check-input col-md-10" value="1"
+                                           name="huileMoteur"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Non</label><br/>
+                                    <input type="radio" class="form-check-input col-md-10" value="0"
+                                           name="huileMoteur"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Marque</label>
+                    <input type="text" class="form-control form-control-sm" name="huileMoteurMarque"/>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Nombre de km</label>
+                    <input type="text" class="form-control form-control-sm" name="huileMoteurKm"/>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Fournisseur</label>
+                    <input type="text" class="form-control form-control-sm" name="huileMoteurFournisseur"/>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="text" min="0" class="form-control form-control-sm" name="huileMoteurmontant"/>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label>centre</label>
-            <input type="text" class="form-control" name="centre"/>
+        <div class="row">
+            <div class="col">
+                <label>Filtre à huile</label>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Oui</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="1"
+                                       name="filtreHuile"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Non</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="0"
+                                       name="filtreHuile"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="number" min="0" class="form-control form-control-sm"
+                           name="filtreHuileMontant"/>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
-        <div class="form-group">
-            <label>centreRegional</label>
-            <input type="text" class="form-control" name="centreRegional"/>
+        <div class="row">
+            <div class="col">
+                <label>Filtre à gazoil</label>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Oui</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="1" name="filtreGazoil"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Non</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="0" name="filtreGazoil"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="number" min="0" class="form-control form-control-sm" name="filtreGazoilMontant"/>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
-        <div class="form-group">
-            <label>kmActuel</label>
-            <input type="number" class="form-control" name="kmActuel"/>
-        </div>
-        <div class="form-group">
-            <label>prochainKm</label>
-            <input type="time" class="form-control" name="prochainKm"/>
-        </div>
-        <div class="form-group">
-            <label>prochainKm</label>
-            <input type="number" class="form-control" name="prochainKm"/>
-        </div>
-        <div class="form-group">
-            <label>huileMoteur</label>
-            <input type="radio" class="form-control" value="1" name="huileMoteur"/>
-        </div>
-        <div class="form-group">
-            <label>huileMoteurMarque</label>
-            <input type="text" class="form-control" name="huileMoteurMarque"/>
-        </div>
-        <div class="form-group">
-            <label>huileMoteurKm</label>
-            <input type="text" class="form-control" name="huileMoteurKm"/>
-        </div>
-        <div class="form-group">
-            <label>huileMoteurmontant</label>
-            <input type="text" min="0" class="form-control" name="huileMoteurmontant"/>
-        </div>
-        <div class="form-group">
-            <label>filtreHuile</label>
-            <input type="radio" class="form-control" value="1" name="filtreHuile"/>
-        </div>
-        <div class="form-group">
-            <label>filtreHuileMontant</label>
-            <input type="number" min="0" class="form-control" value="1" name="filtreHuileMontant"/>
-        </div>
-        <div class="form-group">
-            <label>filtreGazoil</label>
-            <input type="radio" class="form-control" value="1" name="filtreGazoil"/>
-        </div>
-        <div class="form-group">
-            <label>filtreGazoilMontant</label>
-            <input type="number" min="0" class="form-control" value="1" name="filtreGazoilMontant"/>
-        </div>
-        <div class="form-group">
-            <label>filtreAir</label>
-            <input type="radio" class="form-control" value="1" name="filtreAir"/>
-        </div>
-        <div class="form-group">
-            <label>filtreAirMontant</label>
-            <input type="number" min="0" class="form-control" value="1" name="filtreAirMontant"/>
-        </div>
-        <div class="form-group">
-            <label>autresConsommables</label>
-            <input type="radio" class="form-control" value="1" name="autresConsommables"/>
-        </div>
-        <div class="form-group">
-            <label>autresConsommablesMontant</label>
-            <input type="number" min="0" class="form-control" value="1" name="autresConsommablesMontant"/>
+        <div class="row">
+            <div class="col">
+                <label>Filtre à air</label>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Oui</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="1" name="filtreAir"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Non</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="0" name="filtreAir"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="number" min="0" class="form-control form-control-sm" name="filtreAirMontant"/>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary-outline">Valider</button>
+        <div class="row">
+            <div class="col">
+                <label>Autres consommables</label>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Oui</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="1" name="autresConsommables"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Non</label><br/>
+                                <input type="radio" class="form-check-input col-md-10" value="0" name="autresConsommables"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Montant</label>
+                    <input type="number" min="0" class="form-control form-control-sm"
+                           name="autresConsommablesMontant"/>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
     </form>
 </div>
+<script>
+    let centres = {!!json_encode($centres)!!};
+    let centres_regionaux = {!!json_encode($centres_regionaux)!!};
+
+    $(document).ready(function () {
+        $("#centre").on("change", function () {
+            $("#centre_regional option").remove();
+            $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+
+            const centre = centres.find(c => c.centre === this.value);
+            const regions = centres_regionaux.filter(region => {
+                return region.id_centre === centre.id;
+            });
+            regions.map(({centre_regional}) => {
+                $('#centre_regional').append($('<option>', {
+                    value: centre_regional,
+                    text: centre_regional
+                }));
+            })
+        });
+
+        $('#liste').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+    });
+</script>
+@endsection

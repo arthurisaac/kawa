@@ -34,7 +34,10 @@ Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, '
 Route::resource('depart-tournee', 'DepartTourneeController');
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::resource('entretien-vehicule', 'EntretienVehiculeController');
+
 Route::resource('vidange-generale', 'VidangeGeneraleController');
+Route::resource('vidange-pont', 'VidangePontController');
+Route::resource('vidange-courroie', 'VidangeCourroieController');
 
 /*
  * Commercial

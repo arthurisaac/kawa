@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Centre;
+use App\Centre_regional;
 use App\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,7 +19,11 @@ class VidangeGeneraleController extends Controller
     public function index()
     {
         $vehicules = Vehicule::all();
-        return view('/transport/entretien-vehicule/vidange-generale.index', compact('vehicules'));
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $vidanges = VidangeGenerale::all();
+        return view('/transport/entretien-vehicule/vidange-generale.index',
+            compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
 
     /**
