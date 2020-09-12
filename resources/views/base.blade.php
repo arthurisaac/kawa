@@ -11,7 +11,7 @@
     <script src="{{ asset('js/jquery-1.12.4.min.js') }}"></script>
 </head>
 <body>
-<div class="container">
+<div>
     @yield('main')
 </div>
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>

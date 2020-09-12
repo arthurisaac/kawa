@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <label>Date d'aquisition</label>
-                    <input type="text" class="form-control" name="dateAcquisition"/>
+                    <input type="date" class="form-control" name="dateAcquisition"/>
                 </div>
                 <div class="form-group">
                     <label>Centre régional</label>

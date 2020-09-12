@@ -55,7 +55,7 @@ class VehiculeController extends Controller
     {
         $vehicule = new Vehicule([
             'immatriculation' => $request->get('immatriculation'),
-            'photo' => $request->get('photo'),
+            'photo' => base64_encode($request->get('photo')), // TODO
             'marque' => $request->get('marque'),
             'type' => $request->get('type'),
             'code' => $request->get('code'),

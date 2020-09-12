@@ -1,3 +1,13 @@
+.table tr {
+    padding: 5px;
+    font-size: 11px;
+}
+.odd {
+    font-size: 10px;
+}
+.form-control {
+    font-size: 11px;
+}
 .burval-container {
     margin: 40px 20px 40px 40px;
 }
@@ -44,7 +54,7 @@ label {
     background-image: none;
     border-radius: 4px;
     color: #000000;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin: 0;
     padding: 4px 4px 4px 4px;

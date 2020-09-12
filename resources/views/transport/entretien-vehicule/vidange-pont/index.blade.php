@@ -72,10 +72,13 @@
                     </thead>
                     <tbody>
                     @foreach ($vidanges as $vidange)
-                    <td>{{$vidange->idVehicule}}</td>
-                    <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant + $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}</td>
-                    <!--<td>{{date('Y-m-d H:i:s'), strtotime($vidange->date. ' + 5 days')}}</td>-->
-                    <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
+                    <tr>
+                        <td>{{$vidange->idVehicule}}</td>
+                        <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant + $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}</td>
+                        <!--<td>{{date('Y-m-d H:i:s'), strtotime($vidange->date. ' + 5 days')}}</td>-->
+                        <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
+                    </tr>
+
                     @endforeach
                     </tbody>
                 </table>

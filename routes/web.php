@@ -38,6 +38,16 @@ Route::resource('entretien-vehicule', 'EntretienVehiculeController');
 Route::resource('vidange-generale', 'VidangeGeneraleController');
 Route::resource('vidange-pont', 'VidangePontController');
 Route::resource('vidange-courroie', 'VidangeCourroieController');
+Route::resource('vidange-vignette', 'VidangeVignetteController');
+Route::resource('vidange-transport', 'VidangeTransportController');
+Route::resource('vidange-assurance', 'VidangeAssuranceController');
+Route::resource('vidange-patente', 'VidangePatenteController');
+Route::resource('vidange-visite', 'VidangeVisiteController');
+Route::resource('vidange-stationnement', 'VidangeStationnementController');
+
+Route::resource('ticket-carburant', 'CarburantTicketController');
+Route::resource('carburant-comptant', 'CarburantComptantController');
+Route::resource('carburant-prevision', 'CarburantPrevisionController');
 
 /*
  * Commercial
@@ -46,3 +56,10 @@ Route::resource('commercial-client', 'CommercialClientController');
 Route::get('commercial-client', [\App\Http\Controllers\CommercialClientController::class, 'liste']);
 
 Route::resource('commercial-site', 'CommercialSiteController');
+
+/*
+ * LOGISTIQUE
+ */
+
+Route::resource('carte-carburant', 'CarburantCarteController');
+Route::resource('carb-chargement-ticket', 'CarburantChargementTicketController');
