@@ -18,11 +18,11 @@ class CreateDepartTourneesTable extends Migration
             $table->timestamps();
             $table->integer('numeroTournee');
             $table->date('date');
-            $table->integer('idVehicule');
-            $table->integer('chauffeur');
-            $table->integer('agentDeGarde');
-            $table->integer('chefDeBord');
-            $table->integer('coutTournee');
+            $table->foreignId('idVehicule')->references('id')->on('vehicules');
+            $table->integer('chauffeur')->nullable();
+            $table->integer('agentDeGarde')->nullable();
+            $table->integer('chefDeBord')->nullable();
+            $table->integer('coutTournee')->nullable();
         });
     }
 

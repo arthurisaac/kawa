@@ -16,24 +16,24 @@ class CreateCommercialSitesTable extends Migration
         Schema::create('commercial_sites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('client');
-            $table->string('site');
-            $table->string('nom_contact_site');
-            $table->string('fonction_contact');
+            $table->foreignId('client')->references('id')->on('commercial_clients');
+            $table->string('site')->nullable();
+            $table->string('nom_contact_site')->nullable();
+            $table->string('fonction_contact')->nullable();
             $table->string('centre');
             $table->string('centre_regional');
-            $table->string('telephone');
-            $table->string('no_carte');
-            $table->string('objet_operation');
-            $table->string('forfait_mensuel_ctv');
-            $table->string('forfait_mensuel_gdf');
-            $table->string('forfait_mensuel_mad');
-            $table->string('regime');
-            $table->string('tarif_bitume');
-            $table->string('tarif_km_piste');
-            $table->string('tarif_tdf_vb');
-            $table->string('tarif_tdf_vl');
-            $table->string('tarif_collecte_caissiere');
+            $table->string('telephone')->nullable();
+            $table->string('no_carte')->nullable();
+            $table->string('objet_operation')->nullable();
+            $table->string('forfait_mensuel_ctv')->nullable();
+            $table->string('forfait_mensuel_gdf')->nullable();
+            $table->string('forfait_mensuel_mad')->nullable();
+            $table->string('regime')->nullable();
+            $table->string('tarif_bitume')->nullable();
+            $table->string('tarif_km_piste')->nullable();
+            $table->string('tarif_tdf_vb')->nullable();
+            $table->string('tarif_tdf_vl')->nullable();
+            $table->string('tarif_collecte_caissiere')->nullable();
         });
     }
 

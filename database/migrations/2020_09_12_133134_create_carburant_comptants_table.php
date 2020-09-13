@@ -16,7 +16,7 @@ class CreateCarburantComptantsTable extends Migration
         Schema::create('carburant_comptants', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('idVehicule');
+            $table->foreignId('idVehicule')->references('id')->on('vehicules');
             $table->date('date');
             $table->integer('montant');
             $table->integer('qteServie');

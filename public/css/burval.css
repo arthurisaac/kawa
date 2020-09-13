@@ -8,6 +8,9 @@
 .form-control {
     font-size: 11px;
 }
+.form-control-file {
+    font-size: 11px;
+}
 .burval-container {
     margin: 40px 20px 40px 40px;
 }

@@ -16,6 +16,21 @@ class CreateConteneursTable extends Migration
         Schema::create('conteneurs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('conteneur');
+            $table->string('typeConteneur');
+            $table->date('dateMiseVie');
+            $table->integer('dureeVie');
+            $table->string('etat');
+            $table->date('dateDegradation');
+            $table->string('cause');
+            $table->string('remplacePar');
+            $table->date('remplaceLe');
+            $table->date('dateMaintenanceEffectuee');
+            $table->date('dateImputation');
+            $table->date('dateRenouvellement');
+            $table->string('imputationRaport');
+            $table->string('centre');
+            $table->string('centreRegional');
         });
     }
 

@@ -25,8 +25,11 @@ Route::get('/', function () {
 Route::resource('securite-service', 'SecuriteServiceController');
 Route::get('securite-service-liste', [\App\Http\Controllers\SecuriteServiceController::class, 'liste']);
 
+Route::resource('saisie', 'SaisieHSController');
+Route::get('saisie-liste', [\App\Http\Controllers\SaisieHSController::class, 'liste']);
+
 /*
- * Route Transport
+ * TRANSPORT
  */
 Route::resource('vehicule', 'VehiculeController');
 Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, 'liste']);
@@ -46,14 +49,33 @@ Route::resource('vidange-visite', 'VidangeVisiteController');
 Route::resource('vidange-stationnement', 'VidangeStationnementController');
 
 Route::resource('ticket-carburant', 'CarburantTicketController');
+Route::get('ticket-carburant-liste', [\App\Http\Controllers\CarburantTicketController::class, 'liste']);
 Route::resource('carburant-comptant', 'CarburantComptantController');
+Route::get('carburant-comptant-liste', [\App\Http\Controllers\CarburantComptantController::class, 'liste']);
 Route::resource('carburant-prevision', 'CarburantPrevisionController');
 
+Route::resource('etat-bordereau', 'EtatBordereauController');
+Route::get('etat-bordereau-tournee-sur-periode', [\App\Http\Controllers\EtatBordereauController::class, 'tourneeSurPeriode']);
+Route::get('etat-bordereau-sur-periode', [\App\Http\Controllers\EtatBordereauController::class, 'surPeriode']);
+Route::get('etat-bordereau-rentabilite-tournee', [\App\Http\Controllers\EtatBordereauController::class, 'rentabiliteTournee']);
+Route::get('etat-bordereau-par-site', [\App\Http\Controllers\EtatBordereauController::class, 'parSite']);
+Route::get('etat-bordereau-par-client', [\App\Http\Controllers\EtatBordereauController::class, 'parClient']);
+Route::get('etat-bordereau-par-vehicule', [\App\Http\Controllers\EtatBordereauController::class, 'parVehicule']);
+Route::get('etat-bordereau-par-convoyeur', [\App\Http\Controllers\EtatBordereauController::class, 'parConvoyeur']);
+Route::get('etat-bordereau-fond-transporte', [\App\Http\Controllers\EtatBordereauController::class, 'fondTransport']);
+
+Route::get('heure-supp-recap', [\App\Http\Controllers\HeureSuppController::class, 'recap']);
+Route::get('heure-supp-detaille', [\App\Http\Controllers\HeureSuppController::class, 'detaille']);
+
+Route::resource('conteneur', 'ConteneurController');
+Route::get('conteneur-liste', [\App\Http\Controllers\ConteneurController::class, 'liste']);
+
+
 /*
- * Commercial
+ * COMMERCIAL
  */
 Route::resource('commercial-client', 'CommercialClientController');
-Route::get('commercial-client', [\App\Http\Controllers\CommercialClientController::class, 'liste']);
+Route::get('commercial-client-liste', [\App\Http\Controllers\CommercialClientController::class, 'liste']);
 
 Route::resource('commercial-site', 'CommercialSiteController');
 
@@ -63,3 +85,12 @@ Route::resource('commercial-site', 'CommercialSiteController');
 
 Route::resource('carte-carburant', 'CarburantCarteController');
 Route::resource('carb-chargement-ticket', 'CarburantChargementTicketController');
+
+/*
+ * RH
+ */
+
+Route::resource('personnel', 'PersonnelController');
+Route::get('personnel-liste', [\App\Http\Controllers\PersonnelController::class, 'liste']);
+Route::resource('convoyeur', 'ConvoyeurController');
+Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class, 'liste']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ArriveeTournee;
+use App\Convoyeur;
 use App\DepartTournee;
 use App\SiteArriveeTournee;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class ArriveeTourneeController extends Controller
     public function index()
     {
         $departTournees = DepartTournee::all();
-        return view('transport/arrivee-tournee.index', compact('departTournees'));
+        $convoyeurs = Convoyeur::all();
+        return view('transport/arrivee-tournee.index', compact('departTournees', 'convoyeurs'));
     }
 
     /**
@@ -43,6 +45,8 @@ class ArriveeTourneeController extends Controller
             'convoyeur1' => $request->get('convoyeur1'),
             'convoyeur2' => $request->get('convoyeur2'),
             'convoyeur3' => $request->get('convoyeur3'),
+            'kmDepart' => $request->get('kmDepart'),
+            'heureDepart' => $request->get('heureDepart'),
             'kmArrivee' => $request->get('kmArrivee'),
             'heureArrivee' => $request->get('heureArrivee'),
             'vidangeGenerale' => $request->get('vidangeGenerale'),
@@ -59,13 +63,15 @@ class ArriveeTourneeController extends Controller
         $montants = $request->get('montant');
 
         for ($i = 0; $i < count($sites); $i++) {
-            $siteArriveeTournee = new SiteArriveeTournee([
-                'idTourneeArrivee' => $arriveeTournee->id,
-                'site' => $sites[$i],
-                'bord' => $bords[$i],
-                'montant' => $montants[$i],
-            ]);
-            $siteArriveeTournee->save();
+            if (!empty($sites[$i])) {
+                $siteArriveeTournee = new SiteArriveeTournee([
+                    'idTourneeArrivee' => $arriveeTournee->id,
+                    'site' => $sites[$i],
+                    'bord' => $bords[$i],
+                    'montant' => $montants[$i],
+                ]);
+                $siteArriveeTournee->save();
+            }
         }
         return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');
     }

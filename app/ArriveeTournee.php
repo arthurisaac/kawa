@@ -13,6 +13,8 @@ class ArriveeTournee extends Model
         'convoyeur3',
         'kmArrivee',
         'heureArrivee',
+        'kmDepart',
+        'heureDepart',
         'vidangeGenerale',
         'visiteTechnique',
         'vidangeCourroie',

@@ -24,6 +24,18 @@ class CarburantTicketController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function liste()
+    {
+        $carburants = CarburantTicket::all();
+        return view('/transport/ticket-carburant.liste',
+            compact('carburants'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response

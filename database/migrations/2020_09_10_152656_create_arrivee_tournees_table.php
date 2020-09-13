@@ -17,17 +17,19 @@ class CreateArriveeTourneesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('numeroTournee');
-            $table->integer('convoyeur1');
-            $table->integer('convoyeur2');
-            $table->integer('convoyeur3');
-            $table->integer('kmArrivee');
-            $table->integer('heureArrivee');
-            $table->integer('vidangeGenerale');
-            $table->integer('visiteTechnique');
-            $table->integer('vidangeCourroie');
-            $table->integer('patente');
-            $table->integer('assuranceFin');
-            $table->integer('assuranceHeurePont');
+            $table->foreignId('convoyeur1')->references('id')->on('personnels');;
+            $table->foreignId('convoyeur2')->references('id')->on('personnels');;
+            $table->foreignId('convoyeur3')->references('id')->on('personnels');
+            $table->integer('kmDepart')->nullable();
+            $table->time('heureDepart')->nullable();
+            $table->integer('kmArrivee')->nullable();
+            $table->time('heureArrivee')->nullable();
+            $table->integer('vidangeGenerale')->nullable();
+            $table->integer('visiteTechnique')->nullable();
+            $table->integer('vidangeCourroie')->nullable();
+            $table->integer('patente')->nullable();
+            $table->integer('assuranceFin')->nullable();
+            $table->integer('assuranceHeurePont')->nullable();
         });
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantComptant;
-use App\Vehicule;
+use App\HeureSupp;
+use App\Personnel;
 use Illuminate\Http\Request;
 
-class CarburantComptantController extends Controller
+class SaisieHSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,21 +15,14 @@ class CarburantComptantController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        return view('/transport/carburant-comptant.index',
-            compact('vehicules'));
+        $personnels = Personnel::all();
+        return view('service/saisie.index', compact('personnels'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function liste()
     {
-        $carburants = CarburantComptant::with('vehicules')->get();
-        return view('/transport/carburant-comptant.liste',
-            compact('carburants'));
+        $saisies = HeureSupp::with('personnels')->get();
+        return view('service/saisie.liste', compact('saisies'));
     }
 
     /**
@@ -50,16 +43,21 @@ class CarburantComptantController extends Controller
      */
     public function store(Request $request)
     {
-        $carburant = new CarburantComptant([
-            'idVehicule' => $request->get('idVehicule'),
+        $saisie = new HeureSupp([
             'date' => $request->get('date'),
-            'montant' => $request->get('montant'),
-            'qteServie' => $request->get('qteServie'),
-            'lieu' => $request->get('lieu'),
-            'utilisation' => $request->get('utilisation')
+            'typeDate' => $request->get('typeDate'),
+            'idPersonnel' => $request->get('idPersonnel'),
+            'heureArrivee' => $request->get('heureArrivee'),
+            'heureArrivee1' => $request->get('heureArrivee1'),
+            'heureArrivee2' => $request->get('heureArrivee2'),
+            'heureArrivee3' => $request->get('heureArrivee3'),
+            'heureDepart' => $request->get('heureDepart'),
+            'heureDepart1' => $request->get('heureDepart1'),
+            'heureDepart2' => $request->get('heureDepart2'),
+            'heureDepart3' => $request->get('heureDepart3'),
         ]);
-        $carburant->save();
-        return redirect('/carburant-comptant')->with('success', 'Carburant comptant enregistré!');
+        $saisie->save();
+        return redirect('/saisie')->with('success', 'Saisie enregistrée!');
     }
 
     /**

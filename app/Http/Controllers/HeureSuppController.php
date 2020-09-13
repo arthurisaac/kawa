@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantComptant;
-use App\Vehicule;
 use Illuminate\Http\Request;
 
-class CarburantComptantController extends Controller
+class HeureSuppController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class CarburantComptantController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        return view('/transport/carburant-comptant.index',
-            compact('vehicules'));
+        //
     }
 
     /**
@@ -25,11 +21,20 @@ class CarburantComptantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function liste()
+    public function recap()
     {
-        $carburants = CarburantComptant::with('vehicules')->get();
-        return view('/transport/carburant-comptant.liste',
-            compact('carburants'));
+        return view('/transport/heure-supp/recap.recap');
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detaille()
+    {
+        return view('/transport/heure-supp/detaille.detaille');
     }
 
     /**
@@ -50,16 +55,7 @@ class CarburantComptantController extends Controller
      */
     public function store(Request $request)
     {
-        $carburant = new CarburantComptant([
-            'idVehicule' => $request->get('idVehicule'),
-            'date' => $request->get('date'),
-            'montant' => $request->get('montant'),
-            'qteServie' => $request->get('qteServie'),
-            'lieu' => $request->get('lieu'),
-            'utilisation' => $request->get('utilisation')
-        ]);
-        $carburant->save();
-        return redirect('/carburant-comptant')->with('success', 'Carburant comptant enregistré!');
+        //
     }
 
     /**

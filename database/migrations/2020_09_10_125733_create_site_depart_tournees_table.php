@@ -17,9 +17,9 @@ class CreateSiteDepartTourneesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('site');
-            $table->time('heure');
-            $table->string('type');
-            $table->integer('idTourneeDepart');
+            $table->time('heure')->nullable();
+            $table->string('type')->nullable();
+            $table->foreignId('idTourneeDepart')->references('id')->on('depart_tournees');;
         });
     }
 

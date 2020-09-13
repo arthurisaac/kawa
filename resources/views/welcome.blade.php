@@ -114,7 +114,7 @@
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./commercial/liste-client.php','no','no','no','yes','yes','no','','','1000','400')"
+                                                                href="javascript:popupwnd('commercial-client-liste','no','no','no','yes','yes','no','','','1000','400')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -222,11 +222,11 @@
                                                 <li><span></span><span>Saisie</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./heuresupp/heuresuppnouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('saisie','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./heuresupp/heuresuppliste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('saisie-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -454,38 +454,38 @@
                                                 <li><span></span><span>Etat&nbsp;tourn&#233;e</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/tournee-periode.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-tournee-sur-periode','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Tourn&#233;e sur p&#233;riode">Tourn&#233;e&nbsp;sur&nbsp;p&#233;riode</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/sur-periode.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-sur-periode','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self"
                                                                 title="Sur p&#233;riode">Sur&nbsp;p&#233;riode</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/rentabilite-tournee.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-rentabilite-tournee','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Rentabilit&#233; de tourn&#233;e">Rentabilit&#233;&nbsp;de&nbsp;tourn&#233;e</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/par-site.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-par-site','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Par site">Par&nbsp;site</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/par-client.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-par-client','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Par client">Par&nbsp;client</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etattournee/par-vehicule.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau-par-vehicule','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self"
                                                                 title="Par v&#233;hicule">Par&nbsp;v&#233;hicule</a>
                                                         </li>
-                                                        <li><span></span><span>V&#233;hicule/Site</span></li>
+                                                        <!--<li><span></span><span>V&#233;hicule/Site</span></li>-->
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/etattournee/par-convoyeur.html',{})"
+                                                                href="javascript:popupwnd('etat-bordereau-par-convoyeur','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self">Par&nbsp;convoyeur</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/etattournee/fond-transport-periode.html',{})"
+                                                                href="javascript:popupwnd('etat-bordereau-fond-transporte','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self">Fond&nbsp;transport&#233;/p&#233;riode</a>
                                                         </li>
                                                     </ul>
@@ -497,7 +497,7 @@
                                                                 target="_self">Ticket&nbsp;carburant</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/carburanttournee/liste-ticket-carburant.html',{})"
+                                                                href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
                                                         </li>
                                                         <li><span></span><a
@@ -505,7 +505,7 @@
                                                                 target="_self">carburant&nbsp;comptant</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/carburanttournee/liste-ticket-comptant.html',{})"
+                                                                href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
                                                         </li>
                                                         <li><span></span><a
@@ -517,11 +517,11 @@
                                                 <li><span></span><span>Conteneur</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/conteneur-nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/conteneur-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                         <li><span></span><span>Recherche</span>
@@ -546,7 +546,7 @@
                                                 <li><span></span><span>Bordereau</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/etat-bordereau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('etat-bordereau','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Etat bordereau">Etat&nbsp;bordereau</a>
                                                         </li>
                                                     </ul>
@@ -554,11 +554,11 @@
                                                 <li><span></span><span>Etat</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./heuresupp/heuresupprecap.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('heure-supp-recap','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Heure supp r&#233;cap">Heure&nbsp;supp&nbsp;r&#233;cap</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./heuresupp/heuresuppdetaillee.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('heure-supp-detaille','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Heure supp d&#233;taill&#233;e">Heure&nbsp;supp&nbsp;d&#233;taill&#233;e</a>
                                                         </li>
                                                     </ul>
@@ -1597,11 +1597,11 @@
                                                 <li><span></span><span>Convoyeur</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./commercial/convoyeurnouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('convoyeur','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./commercial/convoyeurliste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('convoyeur-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -1609,11 +1609,11 @@
                                                 <li><span></span><span>Personnel</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./rh/nouveau.html','no','no','no','yes','yes','no','','','1000','1000')"
+                                                                href="javascript:popupwnd('personnel','no','no','no','yes','yes','no','','','1000','1000')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./rh/liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('personnel-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>

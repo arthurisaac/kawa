@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantComptant;
-use App\Vehicule;
+use App\Centre;
+use App\Centre_regional;
+use App\Conteneur;
 use Illuminate\Http\Request;
 
-class CarburantComptantController extends Controller
+class ConteneurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,10 @@ class CarburantComptantController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        return view('/transport/carburant-comptant.index',
-            compact('vehicules'));
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('transport/conteneur.index',
+            compact('centres', 'centres_regionaux'));
     }
 
     /**
@@ -27,9 +29,9 @@ class CarburantComptantController extends Controller
      */
     public function liste()
     {
-        $carburants = CarburantComptant::with('vehicules')->get();
-        return view('/transport/carburant-comptant.liste',
-            compact('carburants'));
+        $conteneurs = Conteneur::all();
+        return view('transport/conteneur.liste',
+            compact('conteneurs'));
     }
 
     /**
@@ -50,16 +52,25 @@ class CarburantComptantController extends Controller
      */
     public function store(Request $request)
     {
-        $carburant = new CarburantComptant([
-            'idVehicule' => $request->get('idVehicule'),
-            'date' => $request->get('date'),
-            'montant' => $request->get('montant'),
-            'qteServie' => $request->get('qteServie'),
-            'lieu' => $request->get('lieu'),
-            'utilisation' => $request->get('utilisation')
+        $conteneur = new Conteneur([
+            'conteneur' => $request->get('conteneur'),
+            'typeConteneur' => $request->get('typeConteneur'),
+            'dateMiseVie' => $request->get('dateMiseVie'),
+            'dureeVie' => $request->get('dureeVie'),
+            'etat' => $request->get('etat'),
+            'dateDegradation' => $request->get('dateDegradation'),
+            'cause' => $request->get('cause'),
+            'remplacePar' => $request->get('remplacePar'),
+            'remplaceLe' => $request->get('remplaceLe'),
+            'dateMaintenanceEffectuee' => $request->get('dateMaintenanceEffectuee'),
+            'dateImputation' => $request->get('dateImputation'),
+            'dateRenouvellement' => $request->get('dateRenouvellement'),
+            'imputationRaport' => $request->get('imputationRaport'),
+            'centre' => $request->get('centre'),
+            'centreRegional' => $request->get('centreRegional'),
         ]);
-        $carburant->save();
-        return redirect('/carburant-comptant')->with('success', 'Carburant comptant enregistré!');
+        $conteneur->save();
+        return redirect('/conteneur')->with('success', 'Conteneur enregistré!');
     }
 
     /**

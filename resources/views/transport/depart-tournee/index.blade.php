@@ -47,19 +47,34 @@
             <div class="col">
                 <div class="form-group">
                     <label>Chauffeur</label>
-                    <input type="text" class="form-control" name="chauffeur"/>
+                    <select class="form-control" name="chauffeur">
+                        <option></option>
+                        @foreach($chauffeurs as $chauffeur)
+                        <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Agent de garde</label>
-                    <input type="text" class="form-control" name="agentDeGarde"/>
+                    <select class="form-control" name="agentDeGarde">
+                        <option></option>
+                        @foreach($agents as $agent)
+                        <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Chef de bord</label>
-                    <input type="text" class="form-control" name="chefDeBord"/>
+                    <select class="form-control" name="chefDeBord">
+                        <option></option>
+                        @foreach($chefBords as $chef)
+                        <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col">
@@ -72,515 +87,680 @@
 
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label>Site 1</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 1</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
+
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 8</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 8</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
+
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 15</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 2</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 9</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 16</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 15</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label>Site 3</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 2</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 9</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 10</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 17</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 4</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 11</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 18</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 16</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col"><div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label>Site 5</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 12</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 3</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 19</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 10</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 17</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option value="C">C</option>
-                        <option></option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 4</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 11</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 18</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label>Site 6</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label>Site 13</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 5</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 20</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 12</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 19</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option value="C">C</option>
+                                <option></option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label>Site 6</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
-                </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 6</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label>Site 13</label>
-                    <select class="form-control" name="site[]">
-                        <option></option>
-                        @foreach ($sites as $site)
-                        <option value="{{$site->id}}">{{$site->site}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 13</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>heure</label>
-                    <input type="time" class="form-control" name="heure[]"/>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 20</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>type</label>
-                    <select class="form-control" name="type[]">
-                        <option></option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="CC">CC</option>
-                        <option value="DD">DD</option>
-                    </select>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 6</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Site 13</label>
+                            <select class="form-control" name="site[]">
+                                <option></option>
+                                @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>heure</label>
+                            <input type="time" class="form-control" name="heure[]"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>type</label>
+                            <select class="form-control" name="type[]">
+                                <option></option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="CC">CC</option>
+                                <option value="DD">DD</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">

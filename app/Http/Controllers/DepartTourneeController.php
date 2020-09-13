@@ -9,6 +9,7 @@ use App\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\DepartTournee;
+use Illuminate\Support\Facades\DB;
 
 class DepartTourneeController extends Controller
 {
@@ -22,8 +23,11 @@ class DepartTourneeController extends Controller
         $departTournee = DepartTournee::all();
         $vehicules = Vehicule::all();
         $sites = Commercial_site::all();
+        $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
+        $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
         return view('transport/depart-tournee.index',
-            compact('departTournee', 'vehicules', 'sites'));
+            compact('departTournee', 'vehicules', 'sites', 'agents', 'chefBords', 'chauffeurs'));
     }
 
     /**
@@ -44,7 +48,7 @@ class DepartTourneeController extends Controller
      */
     public function store(Request $request)
     {
-        $numeroTournee = $request->get('numeroTournee');
+        // $numeroTournee = $request->get('numeroTournee');
         $departTournee = new DepartTournee([
             'coutTournee' => $request->get('coutTournee'),
             'numeroTournee' => $request->get('numeroTournee'),
@@ -62,13 +66,15 @@ class DepartTourneeController extends Controller
         $types = $request->get('type');
 
         for ($i = 0; $i < count($sites); $i++) {
-            $siteDepartTournee = new SiteDepartTournee([
-                'idTourneeDepart' => $departTournee->id,
-                'site' => $sites[$i],
-                'heure' => $heures[$i],
-                'type' => $types[$i],
-            ]);
-            $siteDepartTournee->save();
+            if (!empty($sites[$i])) {
+                $siteDepartTournee = new SiteDepartTournee([
+                    'idTourneeDepart' => $departTournee->id,
+                    'site' => $sites[$i],
+                    'heure' => $heures[$i],
+                    'type' => $types[$i],
+                ]);
+                $siteDepartTournee->save();
+            }
         }
 
 

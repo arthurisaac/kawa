@@ -19,7 +19,7 @@ class CreateSiteArriveeTourneesTable extends Migration
             $table->string('site');
             $table->string('bord');
             $table->integer('montant');
-            $table->integer('idTourneeArrivee');
+            $table->foreignId('idTourneeArrivee')->references('id')->on('arrivee_tournees');
         });
     }
 

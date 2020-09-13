@@ -21,7 +21,7 @@
             <div class="col">
                 <div class="form-group">
                     <label>N°Tournée</label>
-                    <select class="form-control" name="numeroTournee">
+                    <select class="form-control" name="numeroTournee" id="numeroTournee">
                         <option>Selectionnez tournée</option>
                         @foreach($departTournees as $departTournee)
                         <option value="{{$departTournee->id}}">{{$departTournee->numeroTournee}}</option>
@@ -32,13 +32,13 @@
             <div class="col">
                 <div class="form-group">
                     <label>Date</label>
-                    <input type="text" class="form-control" name="date"/>
+                    <input type="text" class="form-control" name="date" id="date"/>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Véhicule</label>
-                    <input type="text" class="form-control" name="vehicule"/>
+                    <input type="text" class="form-control" name="vehicule" id="vehicule"/>
                 </div>
             </div>
             <div class="col">
@@ -50,31 +50,47 @@
             <div class="col">
                 <div class="form-group">
                     <label>Heure départ</label>
-                    <input type="text" class="form-control" name="heureDepart"/>
+                    <input type="time" class="form-control" name="heureDepart"/>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <div class="form-group">
                     <label>Convoyeur1</label>
-                    <input type="text" class="form-control" name="convoyeur1"/>
+                    <select class="form-control" name="convoyeur1" >
+                        <option>Selectionnez convoyeur</option>
+                        @foreach($convoyeurs as $convoyeur)
+                        <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Convoyeur 2</label>
-                    <input type="text" class="form-control" name="convoyeur2"/>
+                    <select class="form-control" name="convoyeur2" >
+                        <option>Selectionnez convoyeur</option>
+                        @foreach($convoyeurs as $convoyeur)
+                        <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Convoyeur 3</label>
-                    <input type="text" class="form-control" name="convoyeur3"/>
+                    <select class="form-control" name="convoyeur3" >
+                        <option>Selectionnez convoyeur</option>
+                        @foreach($convoyeurs as $convoyeur)
+                        <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-        </div>
-        <br/>
+        </div><br/>
 
         <div class="row">
             <div class="col">
@@ -548,7 +564,7 @@
             <div class="col">
                 <div class="form-group">
                     <label>heureArrivee</label>
-                    <input type="text" class="form-control" name="heureArrivee"/>
+                    <input type="time" class="form-control" name="heureArrivee"/>
                 </div>
             </div>
 
@@ -597,3 +613,18 @@
         <button type="submit" class="btn btn-primary">Valider</button>
     </form>
 </div>
+<script>
+    let tournees = {!!json_encode($departTournees)!!};
+
+    $(document).ready(function () {
+        $("#numeroTournee").on("change", function () {
+            const tournee = tournees.find(c => c.id === +this.value);
+            if (tournee) {
+                console.log(tournee);
+                $("#date").val(tournee.date);
+                $("#vehicule").val(tournee.idVehicule);
+            }
+        });
+    });
+</script>
+@endsection
