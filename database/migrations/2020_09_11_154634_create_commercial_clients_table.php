@@ -28,7 +28,7 @@ class CreateCommercialClientsTable extends Migration
             $table->string('contact_email')->nullable();
             $table->string('contact_portefeuille')->nullable();
             $table->string('contact_fonction')->nullable();
-            $table->string('contact_portable')->nullable();
+            $table->string('cphp artisan make:model Contact --migrationontact_portable')->nullable();
             $table->string('contact_secteur_activite')->nullable();
             $table->string('contrat_numero')->nullable();
             $table->date('contrat_date_effet')->nullable();
