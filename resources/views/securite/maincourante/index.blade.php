@@ -422,7 +422,7 @@
                             </div>
 
                             <div class="col-2">
-                                <button class="btn btn-primary btn-sm" type="button" id="nouveau-colis">+</button>
+                                <button class="btn btn-primary" type="button" id="nouveau-colis">+</button>
                             </div>
                         </div>
                         <div class="row">
@@ -444,152 +444,37 @@
                                     <input type="text" class="col-sm-6">
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-primary">Enregistrer</button>
+                                    <button class="btn btn-primary btn-sm">Enregistrer</button>
                                 </div>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
-                        </div>
-                        <table class="table table-bordered">
-                            <tr>
-                                <td>SITE 1</td>
-                                <td>Date</td>
-                                <td>Heure de départ</td>
-                                <td>N° Tournée</td>
-                                <td>Type colis</td>
-                                <td>Nombre de colis</td>
-                                <td>N° Sécuripack</td>
-                                <td>Destination</td>
-                                <td>Observation</td>
+                        </div><br />
+                        <table class="table table-bordered" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>SITE 1</th>
+                                    <th>Date</th>
+                                    <th>Heure de départ</th>
+                                    <th>N° Tournée</th>
+                                    <th>Type colis</th>
+                                    <th>Nombre de colis</th>
+                                    <th>N° Sécuripack</th>
+                                    <th>Destination</th>
+                                    <th>Observation</th>
+                                    <th>Nombre de colis</th>
+                                    <th>Numéro sécuripack</th>
+                                    <th>Destination</th>
+                                    <th>Observation</th>
+                                    <th>Numéro bordereau</th>
+                                    <th>Destination</th>
+                                    <th>Kilométrage départ</th>
+                                    <th>Fin Op</th>
+                                    <th>Nombre total cols</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
 
-
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:65px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                        <div>Nombr</div>
-                                        <div>e de</div>
-                                        <div>colis</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:65px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                        <div>Num&eacute;r</div>
-                                        <div>o</div>
-                                        <div>s&eacute;cup</div>
-                                        <div>ack</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:65px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                        <div>Destin</div>
-                                        <div>ation</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:65px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                        <div>Obser</div>
-                                        <div>vation</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:86px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div> Num&eacute;ro</div>
-                                        <div>borderea</div>
-                                        <div>u</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:86px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div style="text-align:left">Destination</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:86px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div style="text-align:left"> Kilom&eacute;trage d&eacute;part</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;width:86px;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div style="text-align:left"> Fin Op</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:center;vertical-align:middle;height:74px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div style="text-align:left"> Nombre total colis</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:65px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:86px;height:50px;">
-                                    <div style="font-family:Arial;font-size:13px;color:#000000;">
-                                        <div>&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:86px;height:50px;">
-                                    <div style="font-family:'Segoe UI';font-size:12px;color:#000000;">
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:86px;height:50px;">
-                                    <div style="font-family:'Segoe UI';font-size:12px;color:#000000;">
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;width:86px;height:50px;">
-                                    <div style="font-family:'Segoe UI';font-size:12px;color:#000000;">
-                                    </div>
-                                </td>
-                                <td style="background-color:transparent;background-image:none;border:1px solid #C0C0C0;text-align:left;vertical-align:top;height:50px;">
-                                    <div style="font-family:'Segoe UI';font-size:12px;color:#000000;">
-                                    </div>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </form>
