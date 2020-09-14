@@ -224,9 +224,8 @@
                         <td>Clés véhicule</td>
                         <td><input type="radio" name="remettantCleVehicule" value="1"></td>
                         <td><input type="radio" name="remettantCleVehicule" value="0"></td>
-                        <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control"
-                                  ></td>
-                        <td><input type="time" name="remettantPieceVehiculeHeureRetour" class="form-control">
+                        <td><input type="number" min="0" name="remettantCleVehiculeQuantite" class="form-control"></td>
+                        <td><input type="time" name="remettantCleVehiculeHeureRetour" class="form-control">
                         </td>
                         <td><select name="remettantCleVehiculeConvoyeur" class="form-control">
                                 <option value="CB">CB</option>
@@ -340,8 +339,8 @@
         </div>
 
 
-        <!-- beneficiaireS -->
-        <p>beneficiaireS</p>
+        <!-- BENEFICIAIRES -->
+        <p>BENEFICIAIRES</p>
         <hr class="title-separator"/>
         <br/>
 

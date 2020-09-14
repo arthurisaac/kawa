@@ -5,30 +5,31 @@ namespace App\Http\Controllers;
 use App\HeureSupp;
 use App\Personnel;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SaisieHSController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         $personnels = Personnel::all();
-        return view('service/saisie.index', compact('personnels'));
+        return view('securite/saisie.index', compact('personnels'));
     }
 
     public function liste()
     {
         $saisies = HeureSupp::with('personnels')->get();
-        return view('service/saisie.liste', compact('saisies'));
+        return view('securite/saisie.liste', compact('saisies'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,8 +39,8 @@ class SaisieHSController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -64,7 +65,7 @@ class SaisieHSController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -75,7 +76,7 @@ class SaisieHSController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -85,9 +86,9 @@ class SaisieHSController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -98,7 +99,7 @@ class SaisieHSController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

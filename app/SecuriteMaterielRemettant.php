@@ -49,4 +49,9 @@ class SecuriteMaterielRemettant extends Model
         'remettantTAGHeureRetour',
         'remettantTAGConvoyeur',
     ];
+
+    public function materiels()
+    {
+        return $this->belongsTo('App\SecuriteMateriel', 'idMateriel', 'id');
+    }
 }

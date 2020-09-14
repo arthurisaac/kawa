@@ -6,34 +6,37 @@ use App\SecuriteMateriel;
 use App\SecuriteMaterielBeneficiaire;
 use App\SecuriteMaterielRemettant;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SecuriteMaterielController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        return view('service/materiel.index');
+        return view('securite/materiel.index');
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function liste()
     {
         $materiels = SecuriteMateriel::all();
-        return view('service/materiel.liste', compact('materiels'));
+        $remettants = SecuriteMaterielRemettant::with('materiels')->get();
+        $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
+        return view('securite/materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -43,8 +46,8 @@ class SecuriteMaterielController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -171,7 +174,7 @@ class SecuriteMaterielController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -182,7 +185,7 @@ class SecuriteMaterielController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -192,9 +195,9 @@ class SecuriteMaterielController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -205,7 +208,7 @@ class SecuriteMaterielController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

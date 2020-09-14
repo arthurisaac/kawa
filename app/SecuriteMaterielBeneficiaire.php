@@ -49,4 +49,9 @@ class SecuriteMaterielBeneficiaire extends Model
         'beneficiaireTAGHeureRetour',
         'beneficiaireTAGConvoyeur',
         ];
+
+    public function materiels()
+    {
+        return $this->belongsTo('App\SecuriteMateriel', 'idMateriel', 'id');
+    }
 }
