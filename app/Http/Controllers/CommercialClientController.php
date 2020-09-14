@@ -34,14 +34,7 @@ class CommercialClientController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function saveClient(Request $request) {
         $client = new Commercial_client([
             'client_nom' => $request->get('client_nom'),
             'client_situation_geographique' => $request->get('client_situation_geographique'),
@@ -82,6 +75,61 @@ class CommercialClientController extends Controller
             'base_consommable_atm' => $request->get('base_consommable_atm'),
         ]);
         $client->save();
+    }
+
+
+    public function updateClient(Request $request) {
+        $client = new Commercial_client([
+            'id' => $request->get('id_client'),
+            'client_nom' => $request->get('client_nom'),
+            'client_situation_geographique' => $request->get('client_situation_geographique'),
+            'client_tel' => $request->get('client_tel'),
+            'client_regime_impot' => $request->get('client_regime_impot'),
+            'client_boite_postale' => $request->get('client_boite_postale'),
+            'client_ville' => $request->get('client_ville'),
+            'client_rc' => $request->get('client_rc'),
+            'client_ncc' => $request->get('client_ncc'),
+            'contact_nom' => $request->get('contact_nom'),
+            'contact_email' => $request->get('contact_email'),
+            'contact_portefeuille' => $request->get('contact_portefeuille'),
+            'contact_fonction' => $request->get('contact_fonction'),
+            'contact_portable' => $request->get('contact_portable'),
+            'contact_secteur_activite' => $request->get('contact_secteur_activite'),
+            'contrat_numero' => $request->get('contrat_numero'),
+            'contrat_date_effet' => $request->get('contrat_date_effet'),
+            'contrat_duree' => $request->get('contrat_duree'),
+            'contrat_objet' => implode(",",$request->get('contrat_objet')),
+            'contrat_desserte' => implode(",", $request->get('contrat_desserte')),
+            'contrat_frequence_op' => implode(",", $request->get('contrat_frequence_op')),
+            'contrat_regime' => implode(",", $request->get('contrat_regime')),
+            'base_tdf_vb' => $request->get('base_tdf_vb'),
+            'base_tdf_vl' => $request->get('base_tdf_vl'),
+            'base_mad_caisse' => $request->get('base_mad_caisse'),
+            'base_collecte' => $request->get('base_collecte'),
+            'base_petit_materiel_securipack' => $request->get('base_petit_materiel_securipack'),
+            'base_petit_materiel_sacjute' => $request->get('base_petit_materiel_sacjute'),
+            'base_petit_materiel_scelle' => $request->get('base_petit_materiel_scelle'),
+            'base_garde_de_fonds_cout_unitaire' => $request->get('base_garde_de_fonds_cout_unitaire'),
+            'base_garde_de_fonds_montant_garde_cu' => $request->get('base_garde_de_fonds_montant_garde_cu'),
+            'base_garde_de_fonds_cout_forfetaire' => $request->get('base_garde_de_fonds_cout_forfetaire'),
+            'base_garde_de_fonds_montant_garde_cf' => $request->get('base_garde_de_fonds_montant_garde_cf'),
+            'base_comptage_tri_cout_unitaire' => $request->get('base_comptage_tri_cout_unitaire'),
+            'base_comptage_tri_montant_ctv' => $request->get('base_comptage_tri_montant_ctv'),
+            'base_gestion_atm' => $request->get('base_gestion_atm'),
+            'base_maintenance_atm' => $request->get('base_maintenance_atm'),
+            'base_consommable_atm' => $request->get('base_consommable_atm'),
+        ]);
+        $client->update();
+    }
+
+    public function store(Request $request)
+    {
+        $id  = $request->get('id_client');
+        if (empty($id)) {
+            $this->saveClient($request);
+        } else {
+            $this->updateClient($request);
+        }
 
         return redirect('/commercial-client')->with('success', 'Client enregistré!');
     }
