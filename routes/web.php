@@ -28,6 +28,9 @@ Route::get('securite-service-liste', [\App\Http\Controllers\SecuriteServiceContr
 Route::resource('saisie', 'SaisieHSController');
 Route::get('saisie-liste', [\App\Http\Controllers\SaisieHSController::class, 'liste']);
 
+Route::resource('materiel', 'SecuriteMaterielController');
+Route::get('saisie-liste', [\App\Http\Controllers\SecuriteMaterielController::class, 'liste']);
+
 /*
  * TRANSPORT
  */

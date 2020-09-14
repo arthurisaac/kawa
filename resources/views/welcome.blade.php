@@ -194,7 +194,7 @@
                                                                 target="_self" title="Main courante">Main&nbsp;courante</a>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./securite/maincourante.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('maincourante','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
@@ -204,15 +204,15 @@
                                                             </ul>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./securite/nouveau-materiel.html','no','no','no','yes','yes','no','','','1100','500')"
+                                                                href="javascript:popupwnd('materiel','no','no','no','yes','yes','no','','','1100','500')"
                                                                 target="_self" title="Mat&#233;riel">Mat&#233;riel</a>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./securite/nouveau-materiel.html','no','no','no','yes','yes','no','','','1100','600')"
+                                                                        href="javascript:popupwnd('materiel','no','no','no','yes','yes','no','','','1100','600')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./securite/liste-materiel.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('materiel-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
