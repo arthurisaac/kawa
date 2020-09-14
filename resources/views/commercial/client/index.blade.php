@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     </div>
-    <br/>
+    <br/>contrat_objet
     @endif
 
     <form method="post" action="{{ route('commercial-client.store') }}">

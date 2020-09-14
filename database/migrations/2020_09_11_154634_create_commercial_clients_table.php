@@ -17,7 +17,7 @@ class CreateCommercialClientsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('client_nom');
-            $table->string('client_situation_geographique');
+            $table->string('client_situation_geographique')->nullable();;
             $table->string('client_tel')->nullable();
             $table->string('client_regime_impot')->nullable();
             $table->string('client_boite_postale')->nullable();
