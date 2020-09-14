@@ -233,7 +233,7 @@
                 <tbody>
                     @foreach ($beneficiaires as $beneficiaire)
                     <tr>
-                        <td>{{$beneficiaire}}</td>
+                        <td>{{$beneficiaire->materiels->operateurRadio}}</td>
                         <td>{{$beneficiaire->materiels->operateurRadioNom}}</td>
                         <td>{{$beneficiaire->materiels->operateurRadioPrenom}}</td>
                         <td>{{$beneficiaire->materiels->operateurRadioFonction}}</td>
