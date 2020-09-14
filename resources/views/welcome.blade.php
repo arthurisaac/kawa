@@ -128,7 +128,7 @@
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('commercial/liste-site.php','no','no','no','yes','yes','no','','','1000','600')"
+                                                                href="javascript:popupwnd('commercial-site-liste','no','no','no','yes','yes','no','','','1000','600')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -190,7 +190,7 @@
                                                             </ul>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./securite/maincourante.html','no','no','no','yes','yes','no','','','1000','600')"
+                                                                href="javascript:popupwnd('.maincourante','no','no','no','yes','yes','no','','','1000','600')"
                                                                 target="_self" title="Main courante">Main&nbsp;courante</a>
                                                             <ul>
                                                                 <li><span></span><a
@@ -198,7 +198,7 @@
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./securite/liste-maincourante.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('maincourante-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>

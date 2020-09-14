@@ -21,7 +21,7 @@ Route::get('/', function () {
  *  SECURITE
  */
 
-// Service
+
 Route::resource('securite-service', 'SecuriteServiceController');
 Route::get('securite-service-liste', [\App\Http\Controllers\SecuriteServiceController::class, 'liste']);
 
@@ -31,9 +31,13 @@ Route::get('saisie-liste', [\App\Http\Controllers\SaisieHSController::class, 'li
 Route::resource('materiel', 'SecuriteMaterielController');
 Route::get('materiel-liste', [\App\Http\Controllers\SecuriteMaterielController::class, 'liste']);
 
+Route::resource('maincourante', 'SecuriteMaincouranteController');
+Route::get('maincourante-liste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'liste']);
+
 /*
  * TRANSPORT
  */
+
 Route::resource('vehicule', 'VehiculeController');
 Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, 'liste']);
 
@@ -77,10 +81,12 @@ Route::get('conteneur-liste', [\App\Http\Controllers\ConteneurController::class,
 /*
  * COMMERCIAL
  */
+
 Route::resource('commercial-client', 'CommercialClientController');
 Route::get('commercial-client-liste', [\App\Http\Controllers\CommercialClientController::class, 'liste']);
 
 Route::resource('commercial-site', 'CommercialSiteController');
+Route::get('commercial-site-liste', [\App\Http\Controllers\CommercialSiteController::class, 'liste']);
 
 /*
  * LOGISTIQUE

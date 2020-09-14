@@ -18,6 +18,12 @@ class CommercialClientController extends Controller
         return view('commercial/client.index', compact('clients'));
     }
 
+    public function liste()
+    {
+        $clients = Commercial_client::all();
+        return view('commercial/client.liste', compact('clients'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

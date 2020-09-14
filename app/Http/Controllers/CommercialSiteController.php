@@ -26,6 +26,16 @@ class CommercialSiteController extends Controller
             compact('clients','centres', 'centres_regionaux'));
     }
 
+    public function liste()
+    {
+        // $clients = Commercial_client::all();
+        // $centres = Centre::all();
+        // $centres_regionaux = Centre_regional::all();
+        $sites = Commercial_site::all();
+        return view('commercial/site.liste',
+            compact('sites'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
