@@ -22,6 +22,7 @@
         <hr class="title-separator"/>
         <br/>
 
+        <input type="hidden" name="id_client" id="id_client"/>
         <div class="row">
             <div class="col">
                 <div class="form-group row">
@@ -42,7 +43,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="client_regime" class="col-sm-5">Régime impot</label>
-                    <input type="text" name="client_regime_impot" id="client_regime" class="editbox col-sm-7"/>
+                    <input type="text" name="client_regime_impot" id="client_regime_impot" class="editbox col-sm-7"/>
                 </div>
             </div>
             <div class="col">
@@ -370,3 +371,137 @@
 
     </form>
 </div>
+<script>
+    let clients =  {!! json_encode($clients) !!};
+    // console.log(clients);
+
+    $(document).ready( function () {
+        $("input[name='client_nom']").on("keyup", function () {
+            const current_word = this.value;
+            clearData();
+            for (let i = 0; i < clients.length; i++) {
+                if (clients[i].client_nom === current_word) populateData(clients[i]);
+            }
+        });
+    });
+
+    function populateData(client) {
+        const contrat_objet = client.contrat_objet + "";
+        const contrat_objet_array = contrat_objet.split(',');
+        const contrat_desserte = client.contrat_desserte + "";
+        const contrat_desserte_array = contrat_desserte.split(',');
+        const contrat_frequence_op = client.contrat_frequence_op + "";
+        const contrat_frequence_op_array = contrat_frequence_op.split(',');
+        const contrat_regime = client.contrat_regime + "";
+        const contrat_regime_array = contrat_regime.split(',');
+
+        $("input[name='contrat_objet[]']").map( function(){
+            const value =  $(this).val();
+            if (contrat_objet_array.includes(value)) $(this).prop("checked", true);
+        });
+        $("input[name='contrat_desserte[]']").map( function(){
+            const value =  $(this).val();
+            if (contrat_desserte_array.includes(value)) $(this).prop("checked", true);
+        });
+        $("input[name='contrat_frequence_op[]']").map( function(){
+            const value =  $(this).val();
+            if (contrat_frequence_op_array.includes(value)) $(this).prop("checked", true);
+        });
+        $("input[name='contrat_regime[]']").map( function(){
+            const value =  $(this).val();
+            if (contrat_regime_array.includes(value)) $(this).prop("checked", true);
+        });
+
+        $("#id_client").val(client.id);
+        $("#client_nom").val(client.client_nom);
+        $("#client_situation_geographique").val(client.client_situation_geographique);
+        $("#client_tel").val(client.client_tel);
+        $("#client_regime_impot").val(client.client_regime_impot);
+        $("#client_boite_postale").val(client.client_boite_postale);
+        $("#client_ville").val(client.client_ville);
+        $("#client_rc").val(client.client_rc);
+        $("#client_ncc").val(client.client_ncc);
+        $("#contact_nom").val(client.contact_nom);
+        $("#contact_email").val(client.contact_email);
+        $("#contact_portefeuille").val(client.contact_portefeuille);
+        $("#contact_fonction").val(client.contact_fonction);
+        $("#contact_portable").val(client.contact_portable);
+        $("#contact_secteur_activite").val(client.contact_secteur_activite);
+        $("#contrat_numero").val(client.contrat_numero);
+        $("#contrat_date_effet").val(client.contrat_date_effet);
+        $("#contrat_duree").val(client.contrat_duree);
+        // $("#contrat_objet").val(contrat_objet_array);
+        // $("#contrat_desserte").val(client.contrat_desserte);
+        // $("#contrat_frequence_op").val(client.contrat_frequence_op);
+        // $("#contrat_regime").val(client.contrat_regime);
+        $("#bt_tdf_vb").val(client.base_tdf_vb);
+        $("#bt_tdf_vl").val(client.base_tdf_vl);
+        $("#bt_mad_caisse").val(client.base_mad_caisse);
+        $("#bt_collecte").val(client.base_collecte);
+        $("#bt_petit_materiel_securipack").val(client.base_petit_materiel_securipack);
+        $("#bt_petit_materiel_sacjute").val(client.base_petit_materiel_sacjute);
+        $("#bt_petit_materiel_scelle").val(client.base_petit_materiel_scelle);
+        $("#bt_garde_fonds_cout_unitaire").val(client.base_garde_de_fonds_cout_unitaire);
+        $("#bt_garde_fonds_montant_garde_cu").val(client.base_garde_de_fonds_montant_garde_cu);
+        $("#bt_garde_fonds_cout_forfaitaire").val(client.base_garde_de_fonds_cout_forfetaire);
+        $("#bt_garde_fonds_montant_garde_cf").val(client.base_garde_de_fonds_montant_garde_cf);
+        $("#bt_comptage_cout_unitaire").val(client.base_comptage_tri_cout_unitaire);
+        $("#bt_comptage_montant_ctv").val(client.base_comptage_tri_montant_ctv);
+        $("#bt_gestion_atm").val(client.base_gestion_atm);
+        $("#bt_maintenance_atm").val(client.base_maintenance_atm);
+        $("#bt_consommable_atm").val(client.base_consommable_atm);
+    }
+    function clearData() {
+        $("input[name='contrat_objet[]']").map( function(){
+            $(this).prop("checked", false);
+        });
+        $("input[name='contrat_desserte[]']").map( function(){
+            $(this).prop("checked", false);
+        });
+        $("input[name='contrat_frequence_op[]']").map( function(){
+            $(this).prop("checked", false);
+        });
+        $("input[name='contrat_regime[]']").map( function(){
+            $(this).prop("checked", false);
+        });
+
+        $("#id_client").val("");
+        $("#client_situation_geographique").val("");
+        $("#client_tel").val("");
+        $("#client_regime").val("");
+        $("#client_boite_postale").val("");
+        $("#client_ville").val("");
+        $("#client_rc").val("");
+        $("#client_ncc").val("");
+        $("#contact_nom").val("");
+        $("#contact_email").val("");
+        $("#contact_portefeuille").val("");
+        $("#contact_fonction").val("");
+        $("#contact_portable").val("");
+        $("#contact_secteur_activite").val("");
+        $("#contrat_numero").val("");
+        $("#contrat_date_effet").val("");
+        $("#contrat_duree").val("");
+        $("#contrat_objet").val("");
+        $("#contrat_desserte").val("");
+        $("#contrat_frequence_op").val("");
+        $("#contrat_regime").val("");
+        $("#bt_tdf_vb").val("");
+        $("#bt_tdf_vl").val("");
+        $("#bt_mad_caisse").val("");
+        $("#bt_collecte").val("");
+        $("#bt_petit_materiel_securipack").val("");
+        $("#bt_petit_materiel_sacjute").val("");
+        $("#bt_petit_materiel_scelle").val("");
+        $("#bt_garde_fonds_cout_unitaire").val("");
+        $("#bt_garde_fonds_montant_garde_cu").val("");
+        $("#bt_garde_fonds_cout_forfaitaire").val("");
+        $("#bt_garde_fonds_montant_garde_cf").val("");
+        $("#bt_comptage_cout_unitaire").val("");
+        $("#bt_comptage_montant_ctv").val("");
+        $("#bt_gestion_atm").val("");
+        $("#bt_maintenance_atm").val("");
+        $("#bt_consommable_atm").val("");
+    }
+</script>
+@endsection
