@@ -17,9 +17,9 @@ class CreatePersonnelSanctionsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('personnel')->references('id')->on('personnels');
-            $table->string('licenciement');
-            $table->string('miseAPied');
-            $table->string('avertissement');
+            $table->string('licenciement')->nullable();
+            $table->string('miseAPied')->nullable();
+            $table->string('avertissement')->nullable();
         });
     }
 

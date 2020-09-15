@@ -82,13 +82,16 @@ class PersonnelController extends Controller
             'personneContacter' => $request->get('personneContacter'),
         ]);
         $personnel->save();
-        $conges = new PersonnelConge([
-            'personnel' => $personnel->id,
-            'dateDernierDepartConge' => $request->get('dateDernierDepartConge'),
-            'dateProchainDepartConge' => $request->get('dateProchainDepartConge'),
-            'nombreJourPris' => $request->get('nombreJourPris'),
-            'nombreJourRestant' => $request->get('nombreJourRestant'),
-        ]);
+        if (!empty($request->get('nombreJourPris'))) {
+            $conges = new PersonnelConge([
+                'personnel' => $personnel->id,
+                'dateDernierDepartConge' => $request->get('dateDernierDepartConge'),
+                'dateProchainDepartConge' => $request->get('dateProchainDepartConge'),
+                'nombreJourPris' => $request->get('nombreJourPris'),
+                'nombreJourRestant' => $request->get('nombreJourRestant'),
+            ]);
+        }
+        if (!empty($request->get('avertissement') || !empty($request->get('miseAPied')) || !empty($request->get('licenciement'))))
         $sanctions = new PersonnelSanction([
             'personnel' => $personnel->id,
             'avertissement' => $request->get('avertissement'),
@@ -143,6 +146,8 @@ class PersonnelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $personnels = Personnel::find($id);
+        $personnels->delete();
+        return redirect('/personnel.liste')->with('success', 'Personnel enregistré!');
     }
 }

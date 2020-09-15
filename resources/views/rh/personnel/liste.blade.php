@@ -43,6 +43,7 @@
                     <td>Nom de la mère</td>
                     <td>Nom de conjoint</td>
                     <td>Personnes à contacter</td>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -73,6 +74,13 @@
                     <td>{{$personnel->nomMere}}</td>
                     <td>{{$personnel->nomConjoint}}</td>
                     <td>{{$personnel->personneContacter}}</td>
+                    <td>
+                        <form action="{{ route('personnel.destroy', $personnel->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

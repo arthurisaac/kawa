@@ -362,6 +362,9 @@
     </form>
 </div>
 <script>
+    let clients =  {!! json_encode($clients) !!};
+    // console.log(clients);
+
     let centres =  {!! json_encode($centres) !!};
     let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 

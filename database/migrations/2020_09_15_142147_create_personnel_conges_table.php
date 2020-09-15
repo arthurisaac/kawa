@@ -17,10 +17,10 @@ class CreatePersonnelCongesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('personnel')->references('id')->on('personnels');
-            $table->date('dateDernierDepartConge');
-            $table->date('dateProchainDepartConge');
-            $table->integer('nombreJourPris');
-            $table->integer('nombreJourRestant');
+            $table->date('dateDernierDepartConge')->nullable();
+            $table->date('dateProchainDepartConge')->nullable();
+            $table->integer('nombreJourPris')->nullable();
+            $table->integer('nombreJourRestant')->nullable();
         });
     }
 
