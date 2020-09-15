@@ -56,7 +56,7 @@ class CommercialSiteController extends Controller
     {
         $objet_operation = null;
         if (!empty($request->get('objet_operation'))) {
-            $contrat_regime = implode(",", $request->get('objet_operation'));
+            $objet_operation = implode(",", $request->get('objet_operation'));
         }
         $site = new Commercial_site([
             'client' => $request->get('client'),
@@ -67,7 +67,7 @@ class CommercialSiteController extends Controller
             'centre_regional' => $request->get('centre_regional'),
             'telephone' => $request->get('telephone'),
             'no_carte' => $request->get('no_carte'),
-            'objet_operation' => $contrat_regime,
+            'objet_operation' => $objet_operation,
             'forfait_mensuel_ctv' => $request->get('forfait_mensuel_ctv'),
             'forfait_mensuel_gdf' => $request->get('forfait_mensuel_gdf'),
             'forfait_mensuel_mad' => $request->get('forfait_mensuel_mad'),
