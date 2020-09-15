@@ -12,6 +12,13 @@
         </ul>
     </div><br />
     @endif
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('personnel.store') }}">
         @csrf
         <div class="row">
@@ -254,6 +261,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4">Type de sortie</label>
                     <select name="typeSortie" class="form-control col-sm-6">
+                        <option></option>
                         <option value="Fin contrat">Fin contrat</option>
                         <option value="Fin contrat">Licenciement</option>
                         <option value="Fin contrat">Abandon de poste</option>

@@ -13,6 +13,12 @@
     </div><br />
     @endif
 
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -30,6 +36,33 @@
                     <td>Numéro CNPS</td>
                     <td>Situation matrimoniale</td>
                     <td>Nombre d'enfants</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($personnels as $personnel)
+                <tr>
+                    <td>{{$personnel->id}}</td>
+                    <td>{{$personnel->nomPrenoms}}</td>
+                    <td>{{$personnel->dateNaissance}}</td>
+                    <td>{{$personnel->dateEntreeSociete}}</td>
+                    <td>{{$personnel->dateSortie}}</td>
+                    <td>{{$personnel->typeSortie}}</td>
+                    <td>{{$personnel->fonction}}</td>
+                    <td>{{$personnel->service}}</td>
+                    <td>{{$personnel->natureContrat}}</td>
+                    <td>{{$personnel->numeroCNPS}}</td>
+                    <td>{{$personnel->situationMatrimoniale}}</td>
+                    <td>{{$personnel->nombreEnfants}}</td>
+                </tr>
+                @endforeach
+                </tbody>
+            </table><br /><br />
+
+            <table class="table table-bordered" id="liste2">
+                <thead>
+                <tr>
+                    <td>N°</td>
                     <td>Date dernier départ congés</td>
                     <td>Date prochain départ congés</td>
                     <td>Nombre jours pris</td>
@@ -50,17 +83,6 @@
                 @foreach ($personnels as $personnel)
                 <tr>
                     <td>{{$personnel->id}}</td>
-                    <td>{{$personnel->nomPrenoms}}</td>
-                    <td>{{$personnel->dateNaissance}}</td>
-                    <td>{{$personnel->dateEntreeSociete}}</td>
-                    <td>{{$personnel->dateSortie}}</td>
-                    <td>{{$personnel->typeSortie}}</td>
-                    <td>{{$personnel->fonction}}</td>
-                    <td>{{$personnel->service}}</td>
-                    <td>{{$personnel->natureContrat}}</td>
-                    <td>{{$personnel->numeroCNPS}}</td>
-                    <td>{{$personnel->situationMatrimoniale}}</td>
-                    <td>{{$personnel->nombreEnfants}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -75,14 +97,15 @@
                     <td>{{$personnel->nomConjoint}}</td>
                     <td>{{$personnel->personneContacter}}</td>
                     <td>
+                        <a href="{{ route('personnel.edit',$personnel->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                         <form action="{{ route('personnel.destroy', $personnel->id)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
                         </form>
                     </td>
+                    @endforeach
                 </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
@@ -91,6 +114,13 @@
 <script>
     $(document).ready( function () {
         $('#liste').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+    });
+    $(document).ready( function () {
+        $('#liste2').DataTable({
             "language": {
                 "url": "French.json"
             }

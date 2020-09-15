@@ -10,7 +10,15 @@
             <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div><br />
+    </div>
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+
+    <br />
+
     @endif
     <form method="post" action="{{ route('convoyeur.store') }}" enctype="multipart/form-data">
         @csrf

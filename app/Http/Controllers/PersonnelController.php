@@ -90,16 +90,17 @@ class PersonnelController extends Controller
                 'nombreJourPris' => $request->get('nombreJourPris'),
                 'nombreJourRestant' => $request->get('nombreJourRestant'),
             ]);
+            $conges->save();
         }
-        if (!empty($request->get('avertissement') || !empty($request->get('miseAPied')) || !empty($request->get('licenciement'))))
-        $sanctions = new PersonnelSanction([
-            'personnel' => $personnel->id,
-            'avertissement' => $request->get('avertissement'),
-            'miseAPied' => $request->get('miseAPied'),
-            'licenciement' => $request->get('licenciement')
-        ]);
-        $sanctions->save();
-        $conges->save();
+        if (!empty($request->get('avertissement') || !empty($request->get('miseAPied')) || !empty($request->get('licenciement')))) {
+            $sanctions = new PersonnelSanction([
+                'personnel' => $personnel->id,
+                'avertissement' => $request->get('avertissement'),
+                'miseAPied' => $request->get('miseAPied'),
+                'licenciement' => $request->get('licenciement')
+            ]);
+            $sanctions->save();
+        }
 
         return redirect('/personnel')->with('success', 'Personnel enregistré!');
     }
@@ -107,7 +108,7 @@ class PersonnelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -118,36 +119,70 @@ class PersonnelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
     {
-        //
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $personnel = Personnel::find($id);
+        return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $photo = null;// TODO
+
+        $personnel = Personnel::find($id);
+        $personnel->centre = $request->get('centre');
+        $personnel->centreRegional = $request->get('centreRegional');
+        $personnel->securite = $request->get('securite');
+        $personnel->transport = $request->get('transport');
+        $personnel->caisse = $request->get('caisse');
+        $personnel->regulation = $request->get('regulation');
+        $personnel->siegeService = $request->get('siegeService');
+        $personnel->siegeDirection = $request->get('siegeDirection');
+        $personnel->siegeDirectionGenerale = $request->get('siegeDirectionGenerale');
+        $personnel->nomPrenoms = $request->get('nomPrenoms');
+        $personnel->dateNaissance = $request->get('dateNaissance');
+        $personnel->dateEntreeSociete = $request->get('dateEntreeSociete');
+        $personnel->dateSortie = $request->get('dateSortie');
+        $personnel->typeSortie = $request->get('typeSortie');
+        $personnel->fonction = $request->get('fonction');
+        $personnel->service = $request->get('service');
+        $personnel->natureContrat = $request->get('natureContrat');
+        $personnel->numeroCNPS = $request->get('numeroCNPS');
+        $personnel->situationMatrimoniale = $request->get('situationMatrimoniale');
+        $personnel->nombreEnfants = $request->get('nombreEnfants');
+        $personnel->photo = $photo;
+        $personnel->adresseGeographique = $request->get('adresseGeographique');
+        $personnel->contactPersonnel = $request->get('contactPersonnel');
+        $personnel->nomPere = $request->get('nomPere');
+        $personnel->nomMere = $request->get('nomMere');
+        $personnel->nomConjoint = $request->get('nomConjoint');
+        $personnel->personneContacter = $request->get('personneContacter');
+        $personnel->save();
+        return redirect('/personnel-liste')->with('success', 'Personnel enregistré!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
-        $personnels = Personnel::find($id);
-        $personnels->delete();
-        return redirect('/personnel.liste')->with('success', 'Personnel enregistré!');
+        $personnel = Personnel::find($id);
+        $personnel->delete();
+        return redirect('/personnel-liste')->with('success', 'Personnel supprimé!');
     }
 }
