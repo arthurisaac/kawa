@@ -38,27 +38,27 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-md-3">Nom </label>
-                    <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite"/>
+                    <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Prénom</label>
-                    <input type="text" class="editbox col-md-4" name="prenomChargeDeSecurite"/>
+                    <input type="text" class="editbox col-md-4" name="prenomChargeDeSecurite" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Fonction</label>
-                    <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite"/>
+                    <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Matricule</label>
-                    <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite"/>
+                    <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Heure de prise de service</label>
-                    <input type="time" class="editbox col-md-4" name="heureDePriseServiceCs"/>
+                    <input type="time" class="editbox col-md-4" name="heureDePriseServiceCs" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Heure de fin de service</label>
-                    <input type="time" class="editbox col-md-4" name="csHeureDeFinDeService"/>
+                    <input type="time" class="editbox col-md-4" name="csHeureDeFinDeService" required/>
                 </div>
             </div>
         </div><br />
