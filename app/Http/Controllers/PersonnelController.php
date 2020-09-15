@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Centre;
 use App\Centre_regional;
 use App\Personnel;
+use App\PersonnelConge;
+use App\PersonnelSanction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -19,8 +21,9 @@ class PersonnelController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
+        $personnels = Personnel::all();
         return view('/rh/personnel.index',
-            compact('centres', 'centres_regionaux'));
+            compact('centres', 'centres_regionaux', 'personnels'));
     }
 
     public function liste()
@@ -48,6 +51,7 @@ class PersonnelController extends Controller
      */
     public function store(Request $request)
     {
+
         $personnel = new Personnel([
             'centre' => $request->get('centre'),
             'centreRegional' => $request->get('centreRegional'),
@@ -78,6 +82,22 @@ class PersonnelController extends Controller
             'personneContacter' => $request->get('personneContacter'),
         ]);
         $personnel->save();
+        $conges = new PersonnelConge([
+            'personnel' => $personnel->id,
+            'dateDernierDepartConge' => $request->get('dateDernierDepartConge'),
+            'dateProchainDepartConge' => $request->get('dateProchainDepartConge'),
+            'nombreJourPris' => $request->get('nombreJourPris'),
+            'nombreJourRestant' => $request->get('nombreJourRestant'),
+        ]);
+        $sanctions = new PersonnelSanction([
+            'personnel' => $personnel->id,
+            'avertissement' => $request->get('avertissement'),
+            'miseAPied' => $request->get('miseAPied'),
+            'licenciement' => $request->get('licenciement')
+        ]);
+        $sanctions->save();
+        $conges->save();
+
         return redirect('/personnel')->with('success', 'Personnel enregistré!');
     }
 

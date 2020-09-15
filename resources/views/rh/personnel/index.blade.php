@@ -294,6 +294,38 @@
                     <input type="file" name="photo" class="form-control-file col-sm-6">
                 </div><br />
 
+                <h5>GESTION DES CONGES</h5><br />
+                <div class="form-group row">
+                    <label class="col-sm-4">Date du dernier départ en congé</label>
+                    <input type="date" name="dateDernierDepartConge" class="form-control col-sm-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Date du prochain départ en congé</label>
+                    <input type="date" name="dateProchainDepartConge" class="form-control col-sm-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Nombre de jours pris</label>
+                    <input type="number" min="0" name="nombreJourPris" class="form-control col-sm-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Nombre de jours pris</label>
+                    <input type="number" min="0" name="nombreJourRestant" class="form-control col-sm-6">
+                </div>
+
+                <h5>GESTION DES SANCTIONS</h5><br />
+                <div class="form-group row">
+                    <label class="col-sm-4">Avertissement</label>
+                    <input type="date" name="avertissement" class="form-control col-sm-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Mise à pied</label>
+                    <input type="date" name="miseAPied" class="form-control col-sm-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4">Licenciement</label>
+                    <input type="number" min="0" name="licenciement" class="form-control col-sm-6">
+                </div>
+
                 <h5>INFORMATIONS COMPLEMENTAIRES</h5><br />
 
                 <div class="form-group row">
@@ -330,6 +362,9 @@
     </form>
 </div>
 <script>
+    let clients =  {!! json_encode($clients) !!};
+    // console.log(clients);
+
     let centres =  {!! json_encode($centres) !!};
     let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
