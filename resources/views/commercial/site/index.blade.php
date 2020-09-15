@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="client" class="col-sm-5">Client</label>
                     <!--<input id="client" type="text" name="client" class="editbox col-sm-7"/>-->
-                    <select name="client" id="client" class="Combobox col-sm-7" require>
+                    <select name="client" id="client" class="Combobox col-sm-7" required>
                         <option></option>
                         @foreach ($clients as $client)
                         <option value="{{$client->id}}"> {{$client->client_nom}}</option>
