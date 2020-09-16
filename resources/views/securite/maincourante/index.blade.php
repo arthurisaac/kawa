@@ -1,6 +1,85 @@
 @extends('base')
 
 @section('main')
+<style>
+        .nav-tabs {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            border-radius: 0;
+            transition: color .2s ease-out;
+        }
+
+        .tabs-dark .nav-link {
+            color: #fff;
+        }
+
+        .tabs-light .nav-link {
+            color: rgba(0, 0, 0, .5);
+        }
+
+        .tabs-dark .nav-link:not(.active):hover {
+            color: #aeb0b3;
+        }
+
+        .tabs-light .nav-link:not(.active):hover {
+            color: #495057;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 2px;
+            color: #495057;
+            transition: color .2s ease-out, box-shadow .2s;
+        }
+
+        .nav-pills .nav-link:hover {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+        }
+
+        .nav-pills .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-pills.pills-dark .nav-link.active {
+            background-color: #343a40 !important;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-pills.pills-dark .nav-link:not(.active):hover {
+            color: #1d1e22;
+        }
+
+        .tabs-marker .nav-link {
+            position: relative;
+        }
+
+        .tabs-marker .nav-link.active .marker {
+            height: 30px;
+            width: 30px;
+            left: 50%;
+            bottom: -30px;
+            transform: translatex(-50%);
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .tabs-marker .nav-link.active .marker:after {
+            content: "";
+            height: 15px;
+            width: 15px;
+            top: -8px;
+            left: 50%;
+            transform: rotate(45deg) translatex(-50%);
+            transform-origin: left;
+            background-color: #fff;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            position: absolute;
+        }
+    </style>
 <div class="burval-container">
     <div><h2 class="heading">Maincourante</h2></div>
     <br/>
@@ -13,6 +92,12 @@
         </ul>
     </div>
     <br/>
+    @endif
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
     @endif
 
     <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
@@ -286,37 +371,78 @@
         <div class="tab-pane fade" id="depart-site" role="tabpanel" aria-labelledby="depart-site-tab">
             <div class="container">
                 <form method="post" action="{{ route('maincourante.store') }}">
+                    @csrf
+
+                    <input type="hidden" name="maincourante" value="departSite" />
                     <div class="row">
                         <div class="col">
                             <div class="form-group row">
                                 <label for="date" class="col-sm-4">Date</label>
-                                <input type="date" name="date" class="form-control col-sm-8"/>
+                                <input type="date" name="date[]" class="form-control col-sm-8" required/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group row">
                                 <label for="vehicule" class="col-sm-4">Véhicule</label>
-                                <input type="text" name="vehicule" id="vehicule" class="form-control col-sm-8"/>
+                                <select class="form-control col-sm-8" name="vehicule[]">
+                                    <option></option>
+                                    @foreach($vehicules as $vehicule)
+                                        <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group row">
-                                <label class="col-sm-4">Chef_de_bord</label>
-                                <input type="text" name="chef_de_bord" class="form-control col-sm-8"/>
+                                <label class="col-sm-4">Chef de bord</label>
+                                <select class="form-control col-sm-8" name="chefDeBord[]">
+                                    <option></option>
+                                    @foreach($chefBords as $chef)
+                                        <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group row">
-                                <label class="col-sm-4">SITE 1</label>
-                                <input type="text" name="chef_de_bord" class="form-control col-sm-8"/>
+                                <label class="col-sm-4">SITE
+                                    <select name="numeroSite[]">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </label>
+                                <input type="text" name="site[]" class="form-control col-sm-8"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group row">
                                 <label class="col-sm-4">Chauffeur</label>
-                                <input type="text" name="chauffeur" class="form-control col-sm-8"/>
+                                <select class="form-control col-sm-8" name="chauffeur[]">
+                                    <option></option>
+                                    @foreach($chauffeurs as $chauffeur)
+                                        <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -325,15 +451,15 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label class="col-sm-6">Fin Op</label>
-                                <input type="text" name="chauffeur" class="form-control col-sm-6"/>
+                                <input type="date" name="finOp" class="form-control col-sm-6"/>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-6">Heure de départ</label>
-                                <input type="text" name="heure_de_depart" id="heure_de_depart" class="form-control col-sm-6"/>
+                                <input type="time" name="heureDepart" class="form-control col-sm-6"/>
                             </div>
                             <div class="form-group row">
                                 <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
-                                <input type="text" name="km_depart" id="km_depart" class="form-control col-sm-6"/>
+                                <input type="number" name="km_depart" id="kmDepart" class="form-control col-sm-6"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -347,9 +473,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label id="nombre_total_colis">Nombre total de colis</label>
-                                                <select name="nombre_total_colis" id="nombre_total_colis"
-                                                        class="Combobox col-sm-6">
+                                                <label>Nombre total de colis</label>
+                                                <select name="totalColis[]"
+                                                        class="form-control">
                                                     <option>1</option>
                                                     <option>2</option>
                                                 </select>
@@ -358,58 +484,63 @@
                                         <div class="col">
                                             <label>Type de colis</label>
                                             <div class="form-group row">
-                                                <label id="nombre_total_colis">Sécuripack</label>
-                                                <select name="nombre_total_colis" id="nombre_total_colis"
-                                                        class="Combobox col-sm-6">
-                                                    <option>1</option>
-                                                    <option>2</option>
+                                                <label class="col-sm-6">Sécuripack</label>
+                                                <select name="typeColisSecuripack[]"
+                                                        class="form-control col-sm-6">
+                                                    <option value="extra grand">Extra grand</option>
+                                                    <option>Grand</option>
+                                                    <option value="Moyen">Moyen</option>
+                                                    <option value="Petit">Petit</option>
                                                 </select>
                                             </div>
                                             <div class="form-group row">
-                                                <label id="sac_jute">Sac jute</label>
-                                                <select name="sac_jute" id="sac_jute" class="Combobox col-sm-6">
-                                                    <option>1</option>
-                                                    <option>2</option>
+                                                <label class="col-sm-6">Sac jute</label>
+                                                <select name="typeColisSacjute[]" class="form-control col-sm-6">
+                                                    <option value="extra grand">Extra grand</option>
+                                                    <option>Grand</option>
+                                                    <option value="Moyen">Moyen</option>
+                                                    <option value="Petit">Petit</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-2">
                                             <label for="nombre_colis">Nombre de colis</label>
-                                            <div class="form-group row">
-                                                <input type="number" name="nombre_colis_securipack" id="nombre_colis"
-                                                       class="form-control col-sm-6"/>
+                                            <div class="form-group">
+                                                <input type="number" name="nombreColisSecuripack[]" id="nombre_colis"
+                                                       class="form-control"/>
                                             </div>
-                                            <div class="form-group row">
-                                                <input type="number" min="0" name="nombre_colis_securipack"
-                                                       id="nombre_colis_securipack" class="form-control col-sm-6"/>
+                                            <div class="form-group">
+                                                <input type="number" min="0" name="nombreColisSacjute[]"
+                                                       class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <label for="no_scelle">Nombre de colis</label>
+                                            <label>N° de scellé</label>
                                             <div class="form-group row">
-                                                <select name="sac_jute" id="no_scelle" class="Combobox col-sm-6">
+                                                <select name="numeroScelleSecuripack[]" class="form-control">
                                                     <option>1</option>
                                                     <option>2</option>
                                                 </select>
                                             </div>
                                             <div class="form-group row">
-                                                <select name="sac_jute" class="Combobox col-sm-6">
+                                                <select name="numeroScelleSacjute[]" class="form-control">
                                                     <option>1</option>
                                                     <option>2</option>
+                                                    <option>3</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <label>Montant annoncé</label>
-                                            <div class="form-group row">
-                                                <inupt type="number" min="0" name="montant_annonce_securipack"/>
+                                            <div class="form-group">
+                                                <input type="number" min="0" name="montantAnnonceSecuripack[]" class="form-control">
                                             </div>
-                                            <div class="form-group row">
-                                                <inupt type="number" min="0" name="montant_annonce_sac_jute"/>
+                                            <div class="form-group">
+                                                <input type="number" min="0" name="montantAnnonceSacjute[]" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{--<div class="row">
                                         <div class="col"></div>
                                         <div class="col"></div>
                                         <div class="col"></div>
@@ -417,31 +548,28 @@
                                         <div class="col">
                                             <button class="btn btn-primary btn-sm">Valider</button>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
 
                             <div class="col-2">
+                                <br />
                                 <button class="btn btn-primary" type="button" id="nouveau-colis">+</button>
                             </div>
-                        </div>
+                        </div><br /><br />
                         <div class="row">
                             <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-6">N° de bordereau</label>
-                                    <input type="text" class="col-sm-6">
+                                    <input type="text" class="form-control col-sm-6" name="bordereau[]">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-6">Destination</label>
-                                    <input type="text" class="col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-6">Kilométrage départ</label>
-                                    <input type="text" class="col-sm-6">
+                                    <input type="text" class="form-control col-sm-6" name="destination[]">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-6">Observation</label>
-                                    <input type="text" class="col-sm-6">
+                                    <textarea class="form-control col-sm-6" name="observation[]"></textarea>
                                 </div>
                                 <div class="row">
                                     <button class="btn btn-primary btn-sm">Enregistrer</button>
@@ -450,34 +578,60 @@
                             <div class="col"></div>
                             <div class="col"></div>
                         </div><br />
-                        <table class="table table-bordered" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>SITE 1</th>
-                                    <th>Date</th>
-                                    <th>Heure de départ</th>
-                                    <th>N° Tournée</th>
-                                    <th>Type colis</th>
-                                    <th>Nombre de colis</th>
-                                    <th>N° Sécuripack</th>
-                                    <th>Destination</th>
-                                    <th>Observation</th>
-                                    <th>Nombre de colis</th>
-                                    <th>Numéro sécuripack</th>
-                                    <th>Destination</th>
-                                    <th>Observation</th>
-                                    <th>Numéro bordereau</th>
-                                    <th>Destination</th>
-                                    <th>Kilométrage départ</th>
-                                    <th>Fin Op</th>
-                                    <th>Nombre total cols</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-
-                        </table>
                     </div>
                 </form>
+
+                <div style="width: 100%; overflow-x: scroll;">
+                    <table class="table table-bordered" style="width: 100%;" id="listeDepartSite1">
+                        <thead>
+                        <tr>
+                            <th>SITE 1</th>
+                            <th>Date</th>
+                            <th>Heure de départ</th>
+                            <th>Type colis</th>
+                            <th>Nombre de colis</th>
+                            <th>N° Sécuripack</th>
+                            <th>Destination</th>
+                            <th>Observation</th>
+                            <th>Nombre de colis</th>
+                            <th>Numéro sécuripack</th>
+                            <th>Numéro bordereau</th>
+                            <th>Kilométrage départ</th>
+                            <th>Fin Op</th>
+                            <th>Nombre total colis</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($departSites1 as $depart)
+                            <tr>
+                                <td>{{$depart->site}}</td>
+                                <td>{{$depart->date}}</td>
+                                <td>{{$depart->heureDepart}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{$depart->destination}}</td>
+                                <td>{{$depart->observation}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{$depart->bordereau}}</td>
+                                <td>{{$depart->kmDepart}}</td>
+                                <td>{{$depart->finOp}}</td>
+                                <td></td>
+                                <td>
+                                    <form action="{{ route('maincourante.destroy', $depart->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -631,85 +785,25 @@
             });
     });
 </script>
-<style>
-    .nav-tabs {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        border: none;
-    }
-
-    .nav-tabs .nav-link {
-        border: none;
-        border-radius: 0;
-        transition: color .2s ease-out;
-    }
-
-    .tabs-dark .nav-link {
-        color: #fff;
-    }
-
-    .tabs-light .nav-link {
-        color: rgba(0, 0, 0, .5);
-    }
-
-    .tabs-dark .nav-link:not(.active):hover {
-        color: #aeb0b3;
-    }
-
-    .tabs-light .nav-link:not(.active):hover {
-        color: #495057;
-    }
-
-    .nav-pills .nav-link {
-        border-radius: 2px;
-        color: #495057;
-        transition: color .2s ease-out, box-shadow .2s;
-    }
-
-    .nav-pills .nav-link:hover {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-
-    }
-
-    .nav-pills .nav-item {
-        margin: 0 5px;
-    }
-
-    .nav-pills.pills-dark .nav-link.active {
-        background-color: #343a40 !important;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-pills.pills-dark .nav-link:not(.active):hover {
-        color: #1d1e22;
-    }
-
-    .tabs-marker .nav-link {
-        position: relative;
-    }
-
-    .tabs-marker .nav-link.active .marker {
-        height: 30px;
-        width: 30px;
-        left: 50%;
-        bottom: -30px;
-        transform: translatex(-50%);
-        position: absolute;
-        overflow: hidden;
-    }
-
-    .tabs-marker .nav-link.active .marker:after {
-        content: "";
-        height: 15px;
-        width: 15px;
-        top: -8px;
-        left: 50%;
-        transform: rotate(45deg) translatex(-50%);
-        transform-origin: left;
-        background-color: #fff;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        position: absolute;
-    }
-</style>
+<script>
+    $(document).ready(function () {
+        $('#listeArriveeSite').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+        $('#listeDepartCentre').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+        $('#listeDepartSite1').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+    })
+</script>
 <script>
     let centres =  {!! json_encode($centres) !!};
     let centres_regionaux = {!! json_encode($centres_regionaux) !!};
@@ -731,16 +825,81 @@
             })
         });
 
-        $('#listeArriveeSite').DataTable({
-            "language": {
-                "url": "French.json"
-            }
-        });
-        $('#listeDepartCentre').DataTable({
-            "language": {
-                "url": "French.json"
-            }
-        });
+
+        //
+        const colisHTML = '<div class="row">\n' +
+            '                                        <div class="col">\n' +
+            '                                            <div class="form-group">\n' +
+            '                                                <label>Nombre total de colis</label>\n' +
+            '                                                <select name="totalColis[]"\n' +
+            '                                                        class="form-control">\n' +
+            '                                                    <option>1</option>\n' +
+            '                                                    <option>2</option>\n' +
+            '                                                </select>\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="col">\n' +
+            '                                            <label>Type de colis</label>\n' +
+            '                                            <div class="form-group row">\n' +
+            '                                                <label class="col-sm-6">Sécuripack</label>\n' +
+            '                                                <select name="typeColisSecuripack[]"\n' +
+            '                                                        class="form-control col-sm-6">\n' +
+            '                                                    <option value="extra grand">Extra grand</option>\n' +
+            '                                                    <option>Grand</option>\n' +
+            '                                                    <option value="Moyen">Moyen</option>\n' +
+            '                                                    <option value="Petit">Petit</option>\n' +
+            '                                                </select>\n' +
+            '                                            </div>\n' +
+            '                                            <div class="form-group row">\n' +
+            '                                                <label class="col-sm-6">Sac jute</label>\n' +
+            '                                                <select name="typeColisSacjute[]" class="form-control col-sm-6">\n' +
+            '                                                    <option value="extra grand">Extra grand</option>\n' +
+            '                                                    <option>Grand</option>\n' +
+            '                                                    <option value="Moyen">Moyen</option>\n' +
+            '                                                    <option value="Petit">Petit</option>\n' +
+            '                                                </select>\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="col-2">\n' +
+            '                                            <label for="nombre_colis">Nombre de colis</label>\n' +
+            '                                            <div class="form-group">\n' +
+            '                                                <input type="number" name="nombreColisSecuripack[]" id="nombre_colis"\n' +
+            '                                                       class="form-control"/>\n' +
+            '                                            </div>\n' +
+            '                                            <div class="form-group">\n' +
+            '                                                <input type="number" min="0" name="nombreColisSacjute[]"\n' +
+            '                                                       class="form-control"/>\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="col">\n' +
+            '                                            <label>N° de scellé</label>\n' +
+            '                                            <div class="form-group row">\n' +
+            '                                                <select name="numeroScelleSecuripack[]" class="form-control">\n' +
+            '                                                    <option>1</option>\n' +
+            '                                                    <option>2</option>\n' +
+            '                                                </select>\n' +
+            '                                            </div>\n' +
+            '                                            <div class="form-group row">\n' +
+            '                                                <select name="numeroScelleSacjute[]" class="form-control">\n' +
+            '                                                    <option>1</option>\n' +
+            '                                                    <option>2</option>\n' +
+            '                                                    <option>3</option>\n' +
+            '                                                </select>\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="col">\n' +
+            '                                            <label>Montant annoncé</label>\n' +
+            '                                            <div class="form-group">\n' +
+            '                                                <input type="number" min="0" name="montantAnnonceSecuripack[]" class="form-control">\n' +
+            '                                            </div>\n' +
+            '                                            <div class="form-group">\n' +
+            '                                                <input type="number" min="0" name="montantAnnonceSacjute[]" class="form-control">\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                    </div>';
+        $("#nouveau-colis").on("click", function () {
+            $(".colis").append(colisHTML);
+        })
     });
 </script>
 @endsection

@@ -15,6 +15,12 @@
     <br/>contrat_objet
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('commercial-client.store') }}">
         @csrf
         <!-- INFORMATIONS GENERALE -->

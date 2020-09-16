@@ -1,21 +1,27 @@
 @extends('base')
 
 @section('main')
-<div class="burval-container">
-    <div><h2 class="heading">Départ tournée</h2></div>
-    <br/>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    <br/>
-    @endif
+    <div class="burval-container">
+        <div><h2 class="heading">Départ tournée</h2></div>
+        <br/>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <br/>
+        @endif
 
-    <form method="post" action="{{ route('depart-tournee.store') }}">
+        @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
+        <form method="post" action="{{ route('depart-tournee.store') }}">
         @csrf
         <div class="row">
             <div class="col">
@@ -770,5 +776,5 @@
             </div>
         </div>
     </form>
-</div>
+    </div>
 @endsection

@@ -16,15 +16,15 @@ class CreateArriveeSitesTable extends Migration
         Schema::create('arrivee_sites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('numeroSite');
+            $table->integer('numeroSite')->default('1')->nullable();
             $table->string('site');
             $table->date('date');
             $table->foreignId('vehicule')->references('id')->on('vehicules');
             $table->foreignId('chefDeBord')->references('id')->on('personnels');
             $table->foreignId('chauffeur')->references('id')->on('personnels');
-            $table->string('heureDepart');
-            $table->string('kmDepart');
-            $table->string('observation');
+            $table->string('heureDepart')->nullable();
+            $table->string('kmDepart')->nullable();
+            $table->string('observation')->nullable();
         });
     }
 

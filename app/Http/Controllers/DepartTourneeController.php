@@ -60,7 +60,6 @@ class DepartTourneeController extends Controller
         ]);
         $departTournee->save();
 
-
         $sites = $request->get('site');
         $heures = $request->get('heure');
         $types = $request->get('type');

@@ -13,6 +13,13 @@
     </div><br />
     @endif
 
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('vehicule.store') }}">
         @csrf
         <div class="row">

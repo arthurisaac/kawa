@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="burval-container">
-    <div><h2 class="heading">Site</h2></div>
+    <div><h2 class="heading">Maincourante</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
