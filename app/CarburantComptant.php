@@ -17,7 +17,6 @@ class CarburantComptant extends Model
 
     public function vehicules()
     {
-        // return $this->hasOne('App\Vehicule', 'id');
         return $this->belongsTo('App\Vehicule', 'idVehicule', 'id');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ArriveeCentre;
 use App\ArriveeSite;
 use App\Centre;
 use App\Centre_regional;
@@ -9,6 +10,7 @@ use App\DepartCentre;
 use App\DepartSite;
 use App\DepartSiteColis;
 use App\DepartTournee;
+use App\TourneeCentre;
 use App\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,22 +34,30 @@ class SecuriteMaincouranteController extends Controller
         $tournees = DepartTournee::all();
         $departCentres = DepartCentre::all();
         $arriveeSites = ArriveeSite::all();
-        $departSites1 = DepartSite::all();
-
+        $departSites = DepartSite::all();
+        $arriveeCentres = ArriveeCentre::all();
+        // $tourneeCentres = TourneeCentre::all();
+        $tourneeCentres = TourneeCentre::
+            with('personnesChef')
+            ->with('personnesChauffeur')
+            ->with('personnesDeGarde')
+            ->with('vehicules')
+            ->get();
         return view('/securite/maincourante.index',
             compact('centres', 'centres_regionaux', 'agents', 'chefBords', 'chauffeurs',
                 'vehicules', 'tournees', 'departCentres', 'arriveeSites',
-                'departSites1'));
+                'departSites', 'arriveeCentres', 'tourneeCentres'));
     }
 
     public function liste()
     {
         $departCentres = DepartCentre::all();
-        $arriveeCentres = ArriveeSite::all();
+        $arriveeSites = ArriveeSite::all();
         $departSites = DepartSite::all();
+        $arriveeCentres = ArriveeCentre::all();
 
         return view('/securite/maincourante.liste',
-            compact('departCentres', 'arriveeCentres', 'departSites'));
+            compact('departCentres', 'arriveeSites', 'arriveeCentres', 'departSites'));
     }
 
     /**
@@ -80,7 +90,6 @@ class SecuriteMaincouranteController extends Controller
             'observation' => $request->get('observation'),
         ]);
         $departCentre->save();
-        // return redirect('/maincourante')->with('success', 'Depart centre enregistré!');
     }
 
     public function storeArriveeSite(Request $request)
@@ -111,7 +120,6 @@ class SecuriteMaincouranteController extends Controller
                 $arriveeCentre->save();
             }
         }
-        // return redirect('/maincourante')->with('success', 'Arrivée centre enregistré!');
     }
 
     public function storeDepartSite(Request $request)
@@ -183,6 +191,57 @@ class SecuriteMaincouranteController extends Controller
         }
     }
 
+    public function storeArriveeCentre(Request $request)
+    {
+        $request->validate([
+            'date'=>'required',
+            'tournee'=>'required',
+            'vehicule'=>'required',
+            'chefDeBord'=>'required',
+            'agentDeGarde'=>'required',
+            'chauffeur'=>'required',
+        ]);
+
+        $arriveeCentre = new ArriveeCentre([
+            'date' => $request->get('date'),
+            'tournee' => $request->get('tournee'),
+            'vehicule' => $request->get('vehicule'),
+            'chefDeBord' => $request->get('chefDeBord'),
+            'agentDeGarde' => $request->get('agentDeGarde'),
+            'chauffeur' => $request->get('chauffeur'),
+            'heureArrivee' => $request->get('heureArrivee'),
+            'kmArrive' => $request->get('kmArrive'),
+            'observation' => $request->get('observation'),
+        ]);
+        $arriveeCentre->save();
+    }
+
+    public function storeTourneeCentre(Request $request)
+    {
+        $request->validate([
+            'date'=>'required',
+            'tournee'=>'required',
+            'vehicule'=>'required',
+            'chefDeBord'=>'required',
+            'agentDeGarde'=>'required',
+            'chauffeur'=>'required',
+        ]);
+
+        $arriveeCentre = new TourneeCentre([
+            'date' => $request->get('date'),
+            'tournee' => $request->get('tournee'),
+            'vehicule' => $request->get('vehicule'),
+            'chefDeBord' => $request->get('chefDeBord'),
+            'agentDeGarde' => $request->get('agentDeGarde'),
+            'chauffeur' => $request->get('chauffeur'),
+            'centre' => $request->get('centre'),
+            'centreRegional' => $request->get('centreRegional'),
+            'dateDebut' => $request->get('dateDebut'),
+            'dateFin' => $request->get('dateFin'),
+        ]);
+        $arriveeCentre->save();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -201,6 +260,12 @@ class SecuriteMaincouranteController extends Controller
                 break;
             case 'departSite':
                 $this->storeDepartSite($request);
+                break;
+            case 'arriveeCentre':
+                $this->storeArriveeCentre($request);
+                break;
+            case 'tourneeCentre':
+                $this->storeTourneeCentre($request);
                 break;
         }
         return redirect('/maincourante')->with('success', 'Enregistrement effectué!');

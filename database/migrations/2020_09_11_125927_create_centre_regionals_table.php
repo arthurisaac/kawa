@@ -20,8 +20,8 @@ class CreateCentreRegionalsTable extends Migration
             $table->integer('id_centre');
         });
 \Illuminate\Support\Facades\DB::table('centre_regionals')->insert( array(
-    ['centre_regional' => 'Abdijan Nord', 'id_centre' => 1],
-    ['centre_regional' => 'Abdijan Sud', 'id_centre' => 1],
+    ['centre_regional' => 'Abidjan Nord', 'id_centre' => 1],
+    ['centre_regional' => 'Abidjan Sud', 'id_centre' => 1],
     ['centre_regional' => 'Abengourou', 'id_centre' => 1],
     ['centre_regional' => 'Bouaké', 'id_centre' => 2],
     ['centre_regional' => 'Yamoussokro', 'id_centre' => 2],

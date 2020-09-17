@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/commercial/client', function () {
+    return view('welcome');
+});
+
 /*
  *  SECURITE
  */

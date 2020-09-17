@@ -131,8 +131,8 @@
         <div class="tab-pane fade show active" id="depart-centre" role="tabpanel" aria-labelledby="depart-centre-tab">
             <div class="container">
                 <form method="post" action="{{ route('maincourante.store') }}">
-                    @csrf
-                    <input type="hidden" name="maincourante" value="departCentre" />
+                        @csrf
+                        <input type="hidden" name="maincourante" value="departCentre" />
                     <div class="row">
                         <div class="col">
                             <div class="form-group row">
@@ -282,7 +282,6 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label class="col-sm-4">Chef de bord</label>
-                                <!--<input type="text" name="chefDeBord[]" class="form-control col-sm-8"/>-->
                                 <select class="form-control col-sm-8" name="chefDeBord[]">
                                     <option></option>
                                     @foreach($chefBords as $chef)
@@ -603,7 +602,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($departSites1 as $depart)
+                        @foreach ($departSites as $depart)
                             <tr>
                                 <td>{{$depart->numeroSite}}</td>
                                 <td>{{$depart->site}}</td>
@@ -681,139 +680,270 @@
 
         </div>
         <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
-            <form>
-                <div >
-                    <form name="departcentre" method="post" action="" enctype="multipart/form-data" id="Form13">
-                        <label>Heure arrivée:</label>
-                        <input type="text">
-                        <label>Km arrivé:</label>
-                        <input type="text" >
-                        <label>Observation:</label>
-                        <textarea name="TextArea1"></textarea>
-                        <input type="submit" name="save" >
-                    </form>
-                </div>
-                <form name="Form1" method="post" action="" enctype="multipart/form-data">
-                    <label>Véhicule:</label>
-                    <label>Chef de bord:</label>
-                    <input type="text">
-                    <label>Agent garde:</label>
-                    <input type="text">
-                    <label>Chauffeur:</label>
-                    <label>Date:</label>
-                    <input type="date">
-                    <input type="text">
-                    <input type="text">
-                    <label>N°Tournée:</label>
-                    <select name="Combobox1" size="1">
-                    </select>
+            <div class="container">
+                <form method="post" action="{{ route('maincourante.store') }}">
+                    @csrf
+                    <input type="hidden" name="maincourante" value="arriveeCentre" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Date</label>
+                                <input type="date" name="date" class="form-control col-sm-8" required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">N°Tournée</label>
+                                <select class="form-control col-sm-8" name="tournee" required>
+                                    <option></option>
+                                    @foreach($tournees as $tournee)
+                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Véhicule</label>
+                                <select class="form-control col-sm-8" name="vehicule">
+                                    <option>Selectionnez véhicule</option>
+                                    @foreach($vehicules as $vehicule)
+                                        <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Chef de bord</label>
+                                <select class="form-control col-sm-8" name="chefDeBord" required>
+                                    <option></option>
+                                    @foreach($chefBords as $chef)
+                                        <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Agent de garde</label>
+                                <select class="form-control col-sm-8" name="agentDeGarde" required>
+                                    <option></option>
+                                    @foreach($agents as $agent)
+                                        <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Chauffeur</label>
+                                <select class="form-control col-sm-8" name="chauffeur" required>
+                                    <option></option>
+                                    @foreach($chauffeurs as $chauffeur)
+                                        <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group row">
+                                <label class="col-sm-5">Heure arrivée</label>
+                                <input type="time" name="heureArrivee" class="form-control col-sm-7" />
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5">Km arrivé</label>
+                                <input type="number" name="kmArrive" class="form-control col-sm-7" />
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-5">Observation</label>
+                                <textarea name="observation" class="form-control col-sm-7"></textarea>
+                            </div>
+                            <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                        </div>
+                        <div class="col">
+                            <table class="table table-bordered" style="width: 100%;" id="listeArriveeCentre">
+                                <thead>
+                                <tr>
+                                    <th>N°Tournée</th>
+                                    <th>Date</th>
+                                    <th>Heure arrivée</th>
+                                    <th>Km arrivé</th>
+                                    <th>Observation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($arriveeCentres as $centre)
+                                    <tr>
+                                        <td>{{$centre->tournee}}</td>
+                                        <td>{{$centre->date}}</td>
+                                        <td>{{$centre->heureArrivee}}</td>
+                                        <td>{{$centre->kmArrive}}</td>
+                                        <td>{{$centre->observation}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </form>
-                <table>
-                    <tr>
-                        <td>N&deg;Tourn&eacute;e</td>
-                        <td>Date</td>
-                        <td>Heure arriv&eacute;e</td>
-                        <td>km arriv&eacute;</td>
-                        <td>Observation</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
-            </form>
+            </div>
         </div>
+
+
         <div class="tab-pane fade" id="tournee-centre" role="tabpanel" aria-labelledby="tournee-centre-tab">
-            <form>
-                <div>
-                    <form name="departcentre" method="post" action="" enctype="multipart/form-data" id="Form13">
-                        <label>Heure arrivée:</label>
-                        <input type="text">
-                        <label>Km arrivé:</label>
-                        <input type="text">
-                        <label>Observation:</label>
-                        <textarea name="TextArea1"
-                                  rows="5" cols="46" autocomplete="off" spellcheck="false"></textarea>
-                        <input type="submit">
-                    </form>
+            <div class="container">
+                <form method="post" action="{{ route('maincourante.store') }}">
+                    @csrf
+                    <input type="hidden" name="maincourante" value="tourneeCentre" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Date</label>
+                                <input type="date" name="date" class="form-control col-sm-8" required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">N°Tournée</label>
+                                <select class="form-control col-sm-8" name="tournee" required>
+                                    <option></option>
+                                    @foreach($tournees as $tournee)
+                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Véhicule</label>
+                                <select class="form-control col-sm-8" name="vehicule">
+                                    <option>Selectionnez véhicule</option>
+                                    @foreach($vehicules as $vehicule)
+                                        <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Chef de bord</label>
+                                <select class="form-control col-sm-8" name="chefDeBord" required>
+                                    <option></option>
+                                    @foreach($chefBords as $chef)
+                                        <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Agent de garde</label>
+                                <select class="form-control col-sm-8" name="agentDeGarde" required>
+                                    <option></option>
+                                    @foreach($agents as $agent)
+                                        <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4">Chauffeur</label>
+                                <select class="form-control col-sm-8" name="chauffeur" required>
+                                    <option></option>
+                                    @foreach($chauffeurs as $chauffeur)
+                                        <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group row">
+                                <label class="col-sm-5">Centre</label>
+                                <select name="centre" id="centre" class="form-control col-sm-7">
+                                    <option>Choisir centre</option>
+                                    @foreach ($centres as $centre)
+                                        <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="centre_regional" class="col-sm-5">Centre régional</label>
+                                <select id="centre_regional" name="centreRegional" class="form-control col-sm-7">
+                                    <option>Choisir centre régional</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group row">
+                                <label class="col-sm-5">Date début</label>
+                                <input type="date" name="dateDebut" class="form-control col-sm-7">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group row">
+                                <label class="col-sm-5">Date fin</label>
+                                <input type="date" name="dateFin"  class="form-control col-sm-7">
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                        <button class="btn btn-danger btn-sm" type="annuler">Annuler</button>
+                    </div>
+                </form>
+                <div style="width: 100%; overflow-x: scroll;">
+                    <br/>
+                    <br/>
+                    <table style="width: 100%;" class="table table-bordered" id="listeTourneeCentre">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>N° Tournee</th>
+                            <th>Véhicule</th>
+                            <th>Chauffeur</th>
+                            <th>Chef de bord</th>
+                            <th>Agent de garde</th>
+                            <th>Centre</th>
+                            <th>Centre régional</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($tourneeCentres as $tournee)
+                            <tr>
+                                <td>{{$tournee->date}}</td>
+                                <td>{{$tournee->tournee}}</td>
+                                <td>{{$tournee->vehicules->immatriculation}}</td>
+                                <td>{{$tournee->personnesChauffeur->nomPrenoms}}</td>
+                                <td>{{$tournee->personnesChef->nomPrenoms}}</td>
+                                <td>{{$tournee->personnesDeGarde->nomPrenoms}}</td>
+                                <td>{{$tournee->centre}}</td>
+                                <td>{{$tournee->centreRegional}}</td>
+                                <td>{{$tournee->dateDebut}}</td>
+                                <td>{{$tournee->dateFin}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <div >
-                    <form name="Form1" method="post" action="" enctype="multipart/form-data">
-                        <label>Véhicule:</label>
-                        <label>Chef de bord:</label>
-                        <input type="text">
-                        <label>Agent garde:</label>
-                        <input type="text">
-                        <label>Chauffeur:</label>
-                        <label>Date:</label>
-                        <input type="date">
-                        <input type="text">
-                        <input type="text">
-                        <label>N°Tournée:</label>
-                        <select name="Combobox1" size="1">
-                        </select>
-                    </form>
-                </div>
-                <table>
-                    <tr>
-                        <td>N&deg;Tourn&eacute;e</td>
-                        <td>Date</td>
-                        <td>Heure arriv&eacute;e</td>
-                        <td>km arriv&eacute;</td>
-                        <td>Observation</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </form>
+            </div>
         </div>
         <div class="tab-pane fade" id="info-site" role="tabpanel" aria-labelledby="info-site-tab">
-            <form>
-                <select>
-                </select>
-                <select>
-                    <option value="Centre Abidjan Nord">Centre Abidjan Nord</option>
-                    <option value="Centre Abidjan Sud">Centre Abidjan Sud</option>
-                    <option value="Centre Abengourou">Centre Abengourou</option>
-                    <option value="Centre de Yamoussokro">Centre de Yamoussokro</option>
-                    <option value="Centre de Bouak&#233;">Centre de Bouak&#233;</option>
-                    <option value="Centre de Korogo">Centre de Korogo</option>
-                    <option value="Centre de Man">Centre de Man</option>
-                    <option value="Centre de Daloa">Centre de Daloa</option>
-                    <option value="Centre de San Pedro">Centre de San Pedro</option>
-                </select>
-                <label>Centre régional</label>
-                <label>Centre:</label>
-                <label>N° Tournée</label>
-                <input type="date">
-                <label>Date fin:</label>
-                <input type="date">
-                <label>Date début:</label>
-                <input type="text">
-                <table>
-                    <tr>
-                        <td>Date</td>
-                        <td>N&deg; Tourn&eacute;e</td>
-                        <td>Site</td>
-                        <td>Heure arriv&eacute;e</td>
-                        <td>Heure dep</td>
-                        <td>Dur&eacute;e</td>
-                        <td>Observation</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </form>
+
         </div>
     </div>
 
@@ -852,9 +982,22 @@
                 "url": "French.json"
             }
         });
+        $('#listeTourneeCentre').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
+        $('#listeArriveeCentre').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
     })
 </script>
 <script>
+    let tourneeCentres =  {!! json_encode($tourneeCentres) !!};
+    console.log(tourneeCentres);
+
     let centres =  {!! json_encode($centres) !!};
     let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 

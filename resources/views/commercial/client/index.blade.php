@@ -1,6 +1,6 @@
-@extends('base')
+{{--@extends('base')--}}
 
-@section('main')
+{{--@section('main')--}}
 <div class="burval-container">
     <div><h2 class="heading">Client</h2></div>
     <br/>
@@ -510,4 +510,3 @@
         $("#bt_consommable_atm").val("");
     }
 </script>
-@endsection
