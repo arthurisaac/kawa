@@ -245,21 +245,28 @@ class SecuriteMaincouranteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @param $maincourante
      * @return Response
      */
     public function destroy($id)
     {
-        /*switch ($arr[1]) {
-            case 'departSite' : $this->destroyDepartSite($arr[0]);
-            break;
-        }*/
-        $this->destroyDepartSite($id);
         return redirect('/maincourante')->with('success', 'Enregistrement supprimé!');
     }
 
-    public function destroyDepartSite($id) {
-        $departSite = DepartSite::find($id);
-        $departSite->delete();
+    public function search(Request $request) {
+
+        if ($request->ajax()) {
+            return DepartSite::where('numeroSite', $request->numeroSite)->get();
+        }
+
+    }
+
+    public function deleteDepartSite(Request $request) {
+
+        if ($request->ajax()) {
+            $departSite = DepartSite::find($request->id);
+            $departSite->delete();
+            return $departSite;
+        }
+
     }
 }

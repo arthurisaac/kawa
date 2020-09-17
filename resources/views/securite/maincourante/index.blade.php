@@ -451,15 +451,15 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label class="col-sm-6">Fin Op</label>
-                                <input type="date" name="finOp" class="form-control col-sm-6"/>
+                                <input type="date" name="finOp[]" class="form-control col-sm-6"/>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-6">Heure de départ</label>
-                                <input type="time" name="heureDepart" class="form-control col-sm-6"/>
+                                <input type="time" name="heureDepart[]" class="form-control col-sm-6"/>
                             </div>
                             <div class="form-group row">
                                 <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
-                                <input type="number" name="km_depart" id="kmDepart" class="form-control col-sm-6"/>
+                                <input type="number" name="kmDepart[]" id="kmDepart" class="form-control col-sm-6"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -471,7 +471,7 @@
                             <div class="col-10">
                                 <div class="colis">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-2">
                                             <div class="form-group">
                                                 <label>Nombre total de colis</label>
                                                 <select name="totalColis[]"
@@ -585,16 +585,86 @@
                     <table class="table table-bordered" style="width: 100%;" id="listeDepartSite1">
                         <thead>
                         <tr>
-                            <th>SITE 1</th>
+                            <th>No site</th>
+                            <th>SITE</th>
                             <th>Date</th>
                             <th>Heure de départ</th>
-                            <th>Type colis</th>
+                            {{--<th>Type colis</th>
                             <th>Nombre de colis</th>
-                            <th>N° Sécuripack</th>
+                            <th>N° Sécuripack</th>--}}
                             <th>Destination</th>
                             <th>Observation</th>
-                            <th>Nombre de colis</th>
-                            <th>Numéro sécuripack</th>
+                           {{-- <th>Nombre de colis</th>
+                            <th>Numéro sécuripack</th>--}}
+                            <th>Numéro bordereau</th>
+                            <th>Kilométrage départ</th>
+                            <th>Fin Op</th>
+                            <th>Nombre total colis</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($departSites1 as $depart)
+                            <tr>
+                                <td>{{$depart->numeroSite}}</td>
+                                <td>{{$depart->site}}</td>
+                                <td>{{date('d-m-Y', strtotime($depart->date))}}</td>
+                                <td>{{$depart->heureDepart}}</td>
+                                {{--<td></td>
+                                <td></td>
+                                <td></td>--}}
+                                <td>{{$depart->destination}}</td>
+                                <td>{{$depart->observation}}</td>
+                                {{--<td></td>
+                                <td></td>--}}
+                                <td>{{$depart->bordereau}}</td>
+                                <td>{{$depart->kmDepart}}</td>
+                                <td>{{ date('d-m-Y', strtotime($depart->finOp)) }}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <br />
+                <br />
+                <div  class="form-group row">
+                    <label class="col-sm-2">Numéro du site</label>
+                    <select name="numeroSite" id="numeroSite" class="form-control col-sm-2">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+                <div style="width: 100%; overflow-x: scroll;">
+                    <table class="table table-bordered" style="width: 100%;" id="listeDepartParSite">
+                        <thead>
+                        <tr>
+                            <th>No site</th>
+                            <th>SITE</th>
+                            <th>Date</th>
+                            <th>Heure de départ</th>
+                            <th>Destination</th>
+                            <th>Observation</th>
                             <th>Numéro bordereau</th>
                             <th>Kilométrage départ</th>
                             <th>Fin Op</th>
@@ -603,31 +673,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($departSites1 as $depart)
-                            <tr>
-                                <td>{{$depart->site}}</td>
-                                <td>{{$depart->date}}</td>
-                                <td>{{$depart->heureDepart}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>{{$depart->destination}}</td>
-                                <td>{{$depart->observation}}</td>
-                                <td></td>
-                                <td></td>
-                                <td>{{$depart->bordereau}}</td>
-                                <td>{{$depart->kmDepart}}</td>
-                                <td>{{$depart->finOp}}</td>
-                                <td></td>
-                                <td>
-                                    <form action="{{ route('maincourante.destroy', $depart->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
                         </tbody>
 
                     </table>
@@ -648,7 +693,7 @@
                         <input type="submit" name="save" >
                     </form>
                 </div>
-                <form name="Form1" method="post" action="" enctype="multipart/form-data" id="Form14">
+                <form name="Form1" method="post" action="" enctype="multipart/form-data">
                     <label>Véhicule:</label>
                     <label>Chef de bord:</label>
                     <input type="text">
@@ -692,7 +737,7 @@
                     </form>
                 </div>
                 <div >
-                    <form name="Form1" method="post" action="" enctype="multipart/form-data" id="Form14">
+                    <form name="Form1" method="post" action="" enctype="multipart/form-data">
                         <label>Véhicule:</label>
                         <label>Chef de bord:</label>
                         <input type="text">
@@ -802,6 +847,11 @@
                 "url": "French.json"
             }
         });
+        $('#listeDepartParSite').DataTable({
+            "language": {
+                "url": "French.json"
+            }
+        });
     })
 </script>
 <script>
@@ -828,7 +878,7 @@
 
         //
         const colisHTML = '<div class="row">\n' +
-            '                                        <div class="col">\n' +
+            '                                        <div class="col-2">\n' +
             '                                            <div class="form-group">\n' +
             '                                                <label>Nombre total de colis</label>\n' +
             '                                                <select name="totalColis[]"\n' +
@@ -902,4 +952,57 @@
         })
     });
 </script>
+
+    <script>
+        function deleteDepartSite(id) {
+            $.ajax({
+                url: "{{ route('deleteDepartSite') }}",
+                type: "GET",
+                data: {'id': id},
+                success: function (data) {
+                    alert('Enregistrement supprimé');
+                    window.location.reload();
+                    //console.log(data);
+                }
+            })
+        }
+
+        $(document).ready( function () {
+            $("#numeroSite").on("change", function () {
+                const numero = $(this).val();
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    type: "GET",
+                    data: {'numeroSite': numero},
+                    success: function (data) {
+                        $("#listeDepartParSite tbody tr").remove();
+                        // console.log(data);
+                        populateData(data);
+                    }
+                })
+            });
+
+            function populateData(data) {
+                $.each(data, function (i, item) {
+                    const tr = $('<tr>').append(
+                        $('<td>').text(item.numeroSite),
+                        $('<td>').text(item.site),
+                        $('<td>').text(item.date),
+                        $('<td>').text(item.heureDepart),
+                        $('<td>').text(item.destination),
+                        $('<td>').text(item.observation),
+                        $('<td>').text(item.bordereau),
+                        $('<td>').text(item.kmDepart),
+                        $('<td>').text(item.finOp),
+                        $('<td>').text(''),
+                        $('<td>').append(
+                            $("<input />", {class: "btn btn-danger btn btn-delete-departSite", type: "submit", value: "Supprimer", onClick: 'deleteDepartSite('+item.id+')'})
+                        )
+                    );
+                    $("#listeDepartParSite tbody").append(tr);
+                });
+            }
+        })
+    </script>
+
 @endsection

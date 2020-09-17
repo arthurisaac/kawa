@@ -33,6 +33,9 @@ Route::get('materiel-liste', [\App\Http\Controllers\SecuriteMaterielController::
 
 Route::resource('maincourante', 'SecuriteMaincouranteController');
 Route::get('maincourante-liste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'liste']);
+Route::get('search', 'SecuriteMaincouranteController@search')->name('search');
+Route::get('deleteDepartSite', 'SecuriteMaincouranteController@deleteDepartSite')->name('deleteDepartSite');
+
 
 /*
  * TRANSPORT
