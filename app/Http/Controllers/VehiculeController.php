@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Centre;
 use App\Centre_regional;
+use App\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Vehicule;
@@ -20,8 +21,9 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
+        $personnels = Personnel::all();
         return view('transport/vehicule.index',
-            compact('vehicule','centres', 'centres_regionaux'));
+            compact('vehicule','centres', 'centres_regionaux', 'personnels'));
     }
 
     /**
@@ -53,9 +55,16 @@ class VehiculeController extends Controller
      */
     public function store(Request $request)
     {
+        $photo = 'user.png';
+        if($request->file()) {
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $request->file('photo')->storeAs('uploads', $fileName, 'public');
+            $photo = $fileName;
+        }
+
         $vehicule = new Vehicule([
             'immatriculation' => $request->get('immatriculation'),
-            'photo' => base64_encode($request->get('photo')), // TODO
+            'photo' => $photo, // TODO
             'marque' => $request->get('marque'),
             'type' => $request->get('type'),
             'code' => $request->get('code'),
@@ -64,16 +73,8 @@ class VehiculeController extends Controller
             'dateAcquisition' => $request->get('dateAcquisition'),
             'centre' => $request->get('centre'),
             'centreRegional' => $request->get('centreRegional'),
-            'chauffeurTitulaireNom' => $request->get('chauffeurTitulaireNom'),
-            'chauffeurTitulairePrenom' => $request->get('chauffeurTitulairePrenom'),
-            'chauffeurTitulaireDateAffection' => $request->get('chauffeurTitulaireDateAffection'),
-            'chauffeurTitulaireFonction' => $request->get('chauffeurTitulaireFonction'),
-            'chauffeurTitulaireMatricule' => $request->get('chauffeurTitulaireMatricule'),
-            'chauffeurSuppleantNom' => $request->get('chauffeurSuppleantNom'),
-            'chauffeurSuppleantPrenom' => $request->get('chauffeurSuppleantPrenom'),
-            'chauffeurSuppleantFonction' => $request->get('chauffeurSuppleantFonction'),
-            'chauffeurSuppleantMatricule' => $request->get('chauffeurSuppleantMatricule'),
-            'chauffeurSuppleantDateAffection' => $request->get('chauffeurSuppleantDateAffection'),
+            'chauffeurTitulaire' => $request->get('chauffeurTitulaire'),
+            'chauffeurSuppleant' => $request->get('chauffeurSuppleant'),
         ]);
         $vehicule->save();
         return redirect('/vehicule')->with('success', 'Véhicule enregistré!');

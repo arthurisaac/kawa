@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div><br />
+    @endif
+
     <form method="post" action="{{ route('vidange-assurance.store') }}">
         @csrf
         <div class="row">
@@ -25,8 +31,8 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Véhicule</label>
-                    <select class="form-control form-control-sm col-md-8" name="idVehicule">
-                        <option>Selectionnez véhicule</option>
+                    <select class="form-control form-control-sm col-md-8" name="idVehicule" id="vehicule" required>
+                        <option></option>
                         @foreach($vehicules as $vehicule)
                         <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                         @endforeach
@@ -34,29 +40,24 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre</label>
-                    <select class="form-control form-control-sm col-md-8" name="centre" id="centre" required>
-                        <option>Choisir centre</option>
-                        @foreach ($centres as $centre)
-                        <option value="{{$centre->centre}}">{{$centre->centre}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centre" id="centre" required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre régional</label>
-                    <select class="form-control form-control-sm col-md-8" name="centreRegional" id="centre_regional"
-                            required></select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centreRegional" id="centreRegional"
+                            required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Date de renouvellement</label>
-                    <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement"/>
+                    <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Prochain renouvellement</label>
-                    <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement"/>
+                    <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Montant</label>
-                    <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant"/>
+                    <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant" required/>
                 </div>
             </div>
             <div class="col-2">
@@ -71,14 +72,16 @@
                     <tr>
                         <th>Véhicule</th>
                         <th>Date</th>
-                        <th>Prochaine vignette</th>
+                        <th>Prochaine assurance</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($vidanges as $vidange)
-                    <td>{{$vidange->idVehicule}}</td>
-                    <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
-                    <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                        <tr>
+                            <td>{{$vidange->idVehicule}}</td>
+                            <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
+                            <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>
@@ -91,21 +94,15 @@
     let centres = {!!json_encode($centres)!!};
     let centres_regionaux = {!!json_encode($centres_regionaux)!!};
 
-    $(document).ready(function () {
-        $("#centre").on("change", function () {
-            $("#centre_regional option").remove();
-            $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+    let vehicules =  {!! json_encode($vehicules) !!};
 
-            const centre = centres.find(c => c.centre === this.value);
-            const regions = centres_regionaux.filter(region => {
-                return region.id_centre === centre.id;
-            });
-            regions.map(({centre_regional}) => {
-                $('#centre_regional').append($('<option>', {
-                    value: centre_regional,
-                    text: centre_regional
-                }));
-            })
+    $(document).ready(function () {
+        $("#vehicule").on("change", function () {
+            const vehicule = vehicules.find(v => v.id === parseInt(this.value));
+            if (vehicule) {
+                $("#centre").val(vehicule.centre);
+                $("#centreRegional").val(vehicule.centreRegional);
+            }
         });
 
         $('#liste').DataTable({

@@ -123,6 +123,8 @@ class VidangeGeneraleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vidange = VidangeGenerale::find($id);
+        $vidange->delete();
+        return redirect('/vidange-generale')->with('success', 'Enregistrement supprimé!');
     }
 }

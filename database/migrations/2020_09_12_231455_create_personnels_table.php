@@ -16,6 +16,7 @@ class CreatePersonnelsTable extends Migration
         Schema::create('personnels', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('matricule')->nullable();
             $table->string('centre');
             $table->string('centreRegional');
             $table->string('securite')->nullable();

@@ -21,13 +21,13 @@ class DepartTourneeController extends Controller
     public function index()
     {
         $departTournee = DepartTournee::all();
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::with('chauffeurSuppleant')->with('chauffeurTitulaire')->get();
         $sites = Commercial_site::all();
         $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
-        $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
+        // $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
         return view('transport/depart-tournee.index',
-            compact('departTournee', 'vehicules', 'sites', 'agents', 'chefBords', 'chauffeurs'));
+            compact('departTournee', 'vehicules', 'sites', 'agents', 'chefBords'));
     }
 
     /**

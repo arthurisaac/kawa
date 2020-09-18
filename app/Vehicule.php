@@ -17,15 +17,16 @@ class Vehicule extends Model
         'dateAcquisition',
         'centre',
         'centreRegional',
-        'chauffeurTitulaireNom',
-        'chauffeurTitulairePrenom',
-        'chauffeurTitulaireDateAffection',
-        'chauffeurTitulaireFonction',
-        'chauffeurTitulaireMatricule',
-        'chauffeurSuppleantNom',
-        'chauffeurSuppleantPrenom',
-        'chauffeurSuppleantFonction',
-        'chauffeurSuppleantMatricule',
-        'chauffeurSuppleantDateAffection'
+        'chauffeurTitulaire',
+        'chauffeurSuppleant',
     ];
+
+    public function chauffeurTitulaire()
+    {
+        return $this->belongsTo('App\Personnel', 'chauffeurTitulaire', 'id');
+    }
+    public function chauffeurSuppleant()
+    {
+        return $this->belongsTo('App\Personnel', 'chauffeurSuppleant', 'id');
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Personnel extends Model
 {
     protected $fillable = [
+        'matricule',
         'centre',
         'centreRegional',
         'securite',

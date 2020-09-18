@@ -15,18 +15,24 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div><br />
+    @endif
+
     <form method="post" action="{{ route('vidange-patente.store') }}">
         @csrf
         <div class="row">
             <div class="col-4">
                 <div class="form-group row">
                     <label class="col-md-4">Date</label>
-                    <input type="date" class="form-control col-md-8" name="date"/>
+                    <input type="date" class="form-control col-md-8" name="date" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Véhicule</label>
-                    <select class="form-control form-control-sm col-md-8" name="idVehicule">
-                        <option>Selectionnez véhicule</option>
+                    <select class="form-control form-control-sm col-md-8" name="idVehicule" id="vehicule" required>
+                        <option></option>
                         @foreach($vehicules as $vehicule)
                         <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                         @endforeach
@@ -34,17 +40,12 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre</label>
-                    <select class="form-control form-control-sm col-md-8" name="centre" id="centre" required>
-                        <option>Choisir centre</option>
-                        @foreach ($centres as $centre)
-                        <option value="{{$centre->centre}}">{{$centre->centre}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centre" id="centre" required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre régional</label>
-                    <select class="form-control form-control-sm col-md-8" name="centreRegional" id="centre_regional"
-                            required></select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centreRegional" id="centreRegional"
+                           required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Date de renouvellement</label>
@@ -71,7 +72,7 @@
                     <tr>
                         <th>Véhicule</th>
                         <th>Date</th>
-                        <th>Prochaine vignette</th>
+                        <th>Prochain changement de patente</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -90,6 +91,18 @@
 <script>
     let centres = {!!json_encode($centres)!!};
     let centres_regionaux = {!!json_encode($centres_regionaux)!!};
+
+    let vehicules = {!! json_encode($vehicules) !!};
+
+    $(document).ready(function () {
+        $("#vehicule").on("change", function () {
+            const vehicule = vehicules.find(v => v.id === parseInt(this.value));
+            if (vehicule) {
+                $("#centre").val(vehicule.centre);
+                $("#centreRegional").val(vehicule.centreRegional);
+            }
+        });
+    });
 
     $(document).ready(function () {
         $("#centre").on("change", function () {

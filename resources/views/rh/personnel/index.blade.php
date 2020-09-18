@@ -24,6 +24,11 @@
         <div class="row">
             <div class="col">
                 <div class="form-group row">
+                    <label class="col-md-2">Matricule</label>
+                    <input type="text" class="form-control col-md-4" name="matricule" required />
+                </div>
+
+                <div class="form-group row">
                     <label class="col-md-2">Centre</label>
                     <select class="Combobox col-md-4" name="centre" id="centre" required>
                         <option>Choisir centre</option>

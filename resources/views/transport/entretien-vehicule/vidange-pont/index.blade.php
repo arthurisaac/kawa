@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div><br />
+    @endif
+
     <form method="post" action="{{ route('vidange-pont.store') }}">
         @csrf
         <div class="row">
@@ -25,8 +31,8 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Véhicule</label>
-                    <select class="form-control form-control-sm col-md-8" name="idVehicule">
-                        <option>Selectionnez véhicule</option>
+                    <select class="form-control form-control-sm col-md-8" name="idVehicule" id="vehicule" required>
+                        <option></option>
                         @foreach($vehicules as $vehicule)
                         <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                         @endforeach
@@ -34,25 +40,20 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre</label>
-                    <select class="form-control form-control-sm col-md-8" name="centre" id="centre" required>
-                        <option>Choisir centre</option>
-                        @foreach ($centres as $centre)
-                        <option value="{{$centre->centre}}">{{$centre->centre}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centre" id="centre" required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Centre régional</label>
-                    <select class="form-control form-control-sm col-md-8" name="centreRegional" id="centre_regional"
-                            required></select>
+                    <input type="text" class="form-control form-control-sm col-md-8" name="centreRegional" id="centreRegional"
+                           required readonly />
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Km actuel</label>
-                    <input type="number" class="form-control form-control-sm col-md-8" name="kmActuel"/>
+                    <input type="number" class="form-control form-control-sm col-md-8" name="kmActuel" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Prochain km</label>
-                    <input type="number" class="form-control form-control-sm col-md-8" name="prochainKm"/>
+                    <input type="number" class="form-control form-control-sm col-md-8" name="prochainKm" required/>
                 </div>
             </div>
             <div class="col-2">
@@ -143,21 +144,16 @@
     let centres = {!!json_encode($centres)!!};
     let centres_regionaux = {!!json_encode($centres_regionaux)!!};
 
-    $(document).ready(function () {
-        $("#centre").on("change", function () {
-            $("#centre_regional option").remove();
-            $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
-            const centre = centres.find(c => c.centre === this.value);
-            const regions = centres_regionaux.filter(region => {
-                return region.id_centre === centre.id;
-            });
-            regions.map(({centre_regional}) => {
-                $('#centre_regional').append($('<option>', {
-                    value: centre_regional,
-                    text: centre_regional
-                }));
-            })
+    let vehicules = {!! json_encode($vehicules) !!};
+
+    $(document).ready(function () {
+        $("#vehicule").on("change", function () {
+            const vehicule = vehicules.find(v => v.id === parseInt(this.value));
+            if (vehicule) {
+                $("#centre").val(vehicule.centre);
+                $("#centreRegional").val(vehicule.centreRegional);
+            }
         });
 
         $('#liste').DataTable({

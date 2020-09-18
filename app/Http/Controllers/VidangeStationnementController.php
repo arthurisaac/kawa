@@ -53,7 +53,7 @@ class VidangeStationnementController extends Controller
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-stationnement')->with('success', 'Carte de transport enregistrée!');
+        return redirect('/vidange-stationnement')->with('success', 'Carte de stationnement enregistrée!');
     }
 
     /**

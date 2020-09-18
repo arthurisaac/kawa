@@ -1594,7 +1594,7 @@
                                     <ul style="display:none;">
                                         <li><span></span><span>RH</span>
                                             <ul>
-                                                <li><span></span><span>Convoyeur</span>
+                                                {{--<li><span></span><span>Convoyeur</span>
                                                     <ul>
                                                         <li><span></span><a
                                                                 href="javascript:popupwnd('convoyeur','no','no','no','yes','yes','no','','','1000','500')"
@@ -1605,7 +1605,7 @@
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
-                                                </li>
+                                                </li>--}}
                                                 <li><span></span><span>Personnel</span>
                                                     <ul>
                                                         <li><span></span><a

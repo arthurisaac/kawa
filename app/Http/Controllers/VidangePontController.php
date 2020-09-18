@@ -58,7 +58,7 @@ class VidangePontController extends Controller
             'huilePontmontant' => $request->get('huilePontmontant'),
         ]);
         $vidanges->save();
-        return redirect('/vidange-pont')->with('success', 'Vidange pont enregistré!');
+        return redirect('/vidange-pont')->with('success', 'Vidange pont enregistrée!');
     }
 
     /**

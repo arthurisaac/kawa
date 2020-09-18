@@ -7,13 +7,14 @@ use App\Centre_regional;
 use App\Vehicule;
 use App\VidangeAssurance;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class VidangeAssuranceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -28,7 +29,7 @@ class VidangeAssuranceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -38,8 +39,8 @@ class VidangeAssuranceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -53,14 +54,14 @@ class VidangeAssuranceController extends Controller
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-transport')->with('success', 'Carte de transport enregistré!');
+        return redirect('/vidange-assurance')->with('success', 'Assurance enregistrée!');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -71,7 +72,7 @@ class VidangeAssuranceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -81,9 +82,9 @@ class VidangeAssuranceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -94,7 +95,7 @@ class VidangeAssuranceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

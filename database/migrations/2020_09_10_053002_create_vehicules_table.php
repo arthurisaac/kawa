@@ -26,8 +26,9 @@ class CreateVehiculesTable extends Migration
             $table->string('centre')->nullable();
             $table->string('centreRegional')->nullable();
             $table->string('photo')->nullable();
-            $table->string('chauffeurTitulaireNom')->nullable();
-            $table->string('chauffeurTitulairePrenom')->nullable();
+            $table->string('chauffeurTitulaire')->nullable();
+            $table->string('chauffeurSuppleant')->nullable();
+            /*$table->string('chauffeurTitulairePrenom')->nullable();
             $table->string('chauffeurTitulaireDateAffection')->nullable();
             $table->string('chauffeurTitulaireFonction')->nullable();
             $table->string('chauffeurTitulaireMatricule')->nullable();
@@ -35,7 +36,7 @@ class CreateVehiculesTable extends Migration
             $table->string('chauffeurSuppleantPrenom')->nullable();
             $table->string('chauffeurSuppleantFonction')->nullable();
             $table->string('chauffeurSuppleantMatricule')->nullable();
-            $table->string('chauffeurSuppleantDateAffection')->nullable();
+            $table->string('chauffeurSuppleantDateAffection')->nullable();*/
         });
     }
 
