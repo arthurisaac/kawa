@@ -1,6 +1,6 @@
-{{--@extends('base')--}}
+@extends('base')
 
-{{--@section('main')--}}
+@section('main')
 <div class="burval-container">
     <div><h2 class="heading">Client</h2></div>
     <br/>
@@ -249,6 +249,7 @@
                 <div class="form-group row">
                     <label for="bt_tdf_vb" class="col-sm-3">TDF VB</label>
                     <select name="base_tdf_vb" id="bt_tdf_vb" class="Combobox col-sm-9">
+                        <option></option>
                         <option value="km bitume">km bitume</option>
                         <option value="km piste">km piste</option>
                         <option value="intra muros">intra muros</option>
@@ -258,6 +259,7 @@
                 <div class="form-group row">
                     <label for="bt_tdf_vl" class="col-sm-3">TDF VL</label>
                     <select name="base_tdf_vl" id="bt_tdf_vl" class="Combobox col-sm-9">
+                        <option></option>
                         <option value="km bitume">km bitume</option>
                         <option value="km piste">km piste</option>
                         <option value="intra muros">intra muros</option>
@@ -283,8 +285,9 @@
                             <label for="bt_petit_materiel_securipack" class="col-sm-5">Sécuripack</label>
                             <select name="base_petit_materiel_securipack" id="bt_petit_materiel_securipack"
                                     class="Combobox col-sm-7">
-                                <option value="extra grand">Extra grand</option>
-                                <option>Grand</option>
+                                <option></option>
+                                <option value="Extra grand">Extra grand</option>
+                                <option value="Grand">Grand</option>
                                 <option value="Moyen">Moyen</option>
                                 <option value="Petit">Petit</option>
                             </select>
@@ -293,8 +296,9 @@
                             <label for="bt_petit_materiel_sacjute" class="col-sm-5">Sac jute</label>
                             <select name="base_petit_materiel_sacjute" id="bt_petit_materiel_sacjute"
                                     class="Combobox col-sm-7">
-                                <option value="extra grand">Extra grand</option>
-                                <option>Grand</option>
+                                <option></option>
+                                <option value="Extra grand">Extra grand</option>
+                                <option value="Grand">Grand</option>
                                 <option value="Moyen">Moyen</option>
                                 <option value="Petit">Petit</option>
                             </select>

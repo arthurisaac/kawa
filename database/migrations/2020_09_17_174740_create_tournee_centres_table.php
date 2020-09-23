@@ -17,7 +17,7 @@ class CreateTourneeCentresTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('date');
-            $table->foreignId('tournee')->references('id')->on('depart_tournees');;
+            $table->foreignId('tournee')->references('id')->on('depart_tournees');
             $table->foreignId('vehicule')->references('id')->on('vehicules');
             $table->foreignId('chefDeBord')->references('id')->on('personnels');
             $table->foreignId('agentDeGarde')->references('id')->on('personnels');

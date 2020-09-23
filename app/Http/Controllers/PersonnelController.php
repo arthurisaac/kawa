@@ -9,6 +9,7 @@ use App\PersonnelConge;
 use App\PersonnelSanction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class PersonnelController extends Controller
 {
@@ -22,8 +23,9 @@ class PersonnelController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $personnels = Personnel::all();
+        $nextId = DB::table('personnels')->max('id') + 1;
         return view('/rh/personnel.index',
-            compact('centres', 'centres_regionaux', 'personnels'));
+            compact('centres', 'centres_regionaux', 'personnels', 'nextId'));
     }
 
     public function liste()
@@ -53,6 +55,7 @@ class PersonnelController extends Controller
     {
 
         $personnel = new Personnel([
+            'matricule' => $request->get('matricule'),
             'centre' => $request->get('centre'),
             'centreRegional' => $request->get('centreRegional'),
             'securite' => $request->get('securite'),

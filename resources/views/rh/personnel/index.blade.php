@@ -25,7 +25,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-md-2">Matricule</label>
-                    <input type="text" class="form-control col-md-4" name="matricule" required />
+                    <input type="text" class="form-control col-md-4" name="matricule" value={{$nextId}} required />
                 </div>
 
                 <div class="form-group row">

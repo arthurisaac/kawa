@@ -106,3 +106,18 @@ Route::resource('personnel', 'PersonnelController');
 Route::get('personnel-liste', [\App\Http\Controllers\PersonnelController::class, 'liste']);
 Route::resource('convoyeur', 'ConvoyeurController');
 Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class, 'liste']);
+
+/*
+ * CAISSE CENTRALE
+ */
+
+Route::resource('caisse-service', 'CaisseServiceController');
+Route::get('caisse-service-liste', [\App\Http\Controllers\CaisseServiceController::class, 'liste']);
+Route::resource('ctv', 'CaisseCtvController');
+Route::get('ctv-liste', [\App\Http\Controllers\CaisseCtvController::class, 'liste']);
+Route::resource('caisse-entree-colis', 'CaisseEntreeColisController');
+Route::get('caisse-entree-colis-liste', [\App\Http\Controllers\CaisseEntreeColisController::class, 'liste']);
+Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
+Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
+Route::resource('caisse-video-surveillance', 'CaisseVideoSurveillanceController');
+Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideoSurveillanceController::class, 'liste']);

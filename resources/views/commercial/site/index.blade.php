@@ -22,7 +22,6 @@
             <div class="col">
                 <div class="form-group row">
                     <label for="client" class="col-sm-5">Client</label>
-                    <!--<input id="client" type="text" name="client" class="editbox col-sm-7"/>-->
                     <select name="client" id="client" class="Combobox col-sm-7" required>
                         <option></option>
                         @foreach ($clients as $client)
@@ -32,7 +31,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="site" class="col-sm-5">Site</label>
-                    <input id="site" type="text" name="site" class="editbox col-sm-7"/>
+                    <input id="site" type="text" name="site" class="editbox col-sm-7" required/>
                 </div>
                 <div class="form-group row">
                     <label for="nom_contact" class="col-sm-5">Nom contact du site</label>
@@ -47,25 +46,16 @@
             <div class="col">
                 <div class="form-group row">
                     <label for="centre" class="col-sm-5">Centre</label>
-                    <select name="centre" id="centre" class="Combobox col-sm-7">
+                    <select name="centre" id="centre" class="form-control col-sm-7" required>
                         <option>Choisir centre</option>
                         @foreach ($centres as $centre)
                         <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                         @endforeach
-                        <!--<option value="Centre Abidjan Nord">Centre Abidjan Nord</option>
-                        <option value="Centre Abidjan Sud">Centre Abidjan Sud</option>
-                        <option value="Centre Abengourou">Centre Abengourou</option>
-                        <option value="Centre de Yamoussokro">Centre de Yamoussokro</option>
-                        <option value="Centre de Bouak&#233;">Centre de Bouak&#233;</option>
-                        <option value="Centre de Korogo">Centre de Korogo</option>
-                        <option value="Centre de Man">Centre de Man</option>
-                        <option value="Centre de Daloa">Centre de Daloa</option>
-                        <option value="Centre de San Pedro">Centre de San Pedro</option>-->
                     </select>
                 </div>
                 <div class="form-group row">
                     <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                    <select id="centre_regional" name="centre_regional" class="Combobox col-sm-7">
+                    <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
                         <option>Choisir centre régional</option>
                     </select>
                 </div>
@@ -149,11 +139,11 @@
                 <br/>
                 <div class="form-group">
                     <label for="forfait_mensuel_ctv">Forfait mensuel CTV</label>
-                    <input id="forfait_mensuel_ctv" name="forfait_mensuel_ctv" type="text" class="editbox"/>
+                    <input id="forfait_mensuel_ctv" name="forfait_mensuel_ctv" type="number" min="0" class="editbox"/>
                 </div>
                 <div class="form-group">
                     <label for="forfait_mensuel_gdf">Forfait mensuel GDF</label>
-                    <input id="forfait_mensuel_gdf" name="forfait_mensuel_gdf" type="text" class="editbox"/>
+                    <input id="forfait_mensuel_gdf" name="forfait_mensuel_gdf" type="number" min="0" class="editbox"/>
                 </div>
                 <div class="form-group">
                     <label for="forfait_mensuel_mad">Forfait mensuel MAD</label>

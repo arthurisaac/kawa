@@ -1,0 +1,251 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\CaisseBilletage;
+use App\CaisseCtv;
+use App\CaisseServiceOperatrice;
+use App\Centre;
+use App\Centre_regional;
+use App\Commercial_client;
+use App\Commercial_site;
+use App\DepartTournee;
+use App\Personnel;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+
+class CaisseCtvController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $personnels = Personnel::all();
+        $clients = Commercial_client::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $tournees = DepartTournee::all();
+        $sites = Commercial_site::all();
+        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        return view('/caisse/ctv.index',
+            compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'gardes'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $ctv = new CaisseCtv([
+           'date' => $request->get('date'),
+           'operatriceCaisse' => $request->get('operatriceCaisse'),
+           'numeroBox' => $request->get('numeroBox'),
+           'heurePriseBox' => $request->get('heurePriseBox'),
+           'heureFinBox' => $request->get('heureFinBox'),
+           'tournee' => $request->get('tournee'),
+           'bordereau' => $request->get('bordereau'),
+           'convoyeurGarde' => $request->get('convoyeurGarde'),
+           'regulatrice' => $request->get('regulatrice'),
+           'securipack' => $request->get('securipack'),
+           'sacjute' => $request->get('sacjute'),
+           'nombreColis' => $request->get('nombreColis'),
+           'numeroScelleColis' => $request->get('numeroScelleColis'),
+           'montantAnnonce' => $request->get('montantAnnonce'),
+           'client' => $request->get('client'),
+           'site' => $request->get('site'),
+           'expediteur' => $request->get('expediteur'),
+           'destinataire' => $request->get('destinataire'),
+           'montantReconnu' => $request->get('montantReconnu'),
+           'ecartConstate' => $request->get('ecartConstate'),
+           'montantFinal' => $request->get('montantFinal'),
+           'billetsCalcules' => $request->get('billetsCalcules'),
+           'billetsCalculesMontant' => $request->get('billetsCalculesMontant'),
+           'billetsSansValeurs' => $request->get('billetsSansValeurs'),
+           'billetsSansValeursMontant' => $request->get('billetsSansValeursMontant'),
+           'billetsUsages' => $request->get('billetsUsages'),
+           'billetsUsagesMontant' => $request->get('billetsUsagesMontant'),
+           'fauxBillets' => $request->get('fauxBillets'),
+           'fauxBilletsMontant' => $request->get('fauxBilletsMontant'),
+           'billetsDeparailles' => $request->get('billetsDeparailles'),
+           'billetsDeparaillesMontant' => $request->get('billetsDeparaillesMontant'),
+        ]);
+        $ctv->save();
+
+        $billetage = new CaisseBilletage([
+            'ctv' => $ctv->id,
+            'ba_nb10000' => $request->get('ba_nb10000'),
+            'ba_nb5000' => $request->get('ba_nb5000'),
+            'ba_nb2000' => $request->get('ba_nb2000'),
+            'ba_nb1000' => $request->get('ba_nb1000'),
+            'ba_nb500' => $request->get('ba_nb500'),
+            'ba_nb250' => $request->get('ba_nb250'),
+            'ba_nb200' => $request->get('ba_nb200'),
+            'ba_nb100' => $request->get('ba_nb100'),
+            'ba_nb50' => $request->get('ba_nb50'),
+            'ba_nb25' => $request->get('ba_nb25'),
+            'ba_nb10' => $request->get('ba_nb10'),
+            'ba_nb5' => $request->get('ba_nb5'),
+            'ba_nb1' => $request->get('ba_nb1'),
+            'br_nb10000' => $request->get('br_nb10000'),
+            'br_nb5000' => $request->get('br_nb5000'),
+            'br_nb2000' => $request->get('br_nb2000'),
+            'br_nb1000' => $request->get('br_nb1000'),
+            'br_nb500' => $request->get('br_nb500'),
+            'br_nb250' => $request->get('br_nb250'),
+            'br_nb200' => $request->get('br_nb200'),
+            'br_nb100' => $request->get('br_nb100'),
+            'br_nb50' => $request->get('br_nb50'),
+            'br_nb25' => $request->get('br_nb25'),
+            'br_nb10' => $request->get('br_nb10'),
+            'br_nb5' => $request->get('br_nb5'),
+            'br_nb1' => $request->get('br_nb1'),
+        ]);
+        $billetage->save();
+
+        return redirect('/ctv')->with('success', 'CTV enregistré!');
+    }
+
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function liste()
+    {
+        $ctvs = CaisseCtv::all();
+        return view('/caisse/ctv.liste',
+            compact('ctvs'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $personnels = Personnel::all();
+        $clients = Commercial_client::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $tournees = DepartTournee::all();
+        $sites = Commercial_site::all();
+        // $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
+        $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        $ctv = CaisseCtv::find($id);
+        //$billetage = DB::table('caisse_billetages')->where('ctv', $id)->get();
+        $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
+        $billetage = $billetages[0];
+        return view('/caisse/ctv.edit',
+            compact('ctv','personnels', 'centres', 'centres_regionaux',
+                'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'billetage'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $ctv = CaisseCtv::find($id);
+        $ctv->date = $request->get('date');
+        $ctv->operatriceCaisse = $request->get('operatriceCaisse');
+        $ctv->numeroBox = $request->get('numeroBox');
+        $ctv->heurePriseBox = $request->get('heurePriseBox');
+        $ctv->heureFinBox = $request->get('heureFinBox');
+        $ctv->tournee = $request->get('tournee');
+        $ctv->bordereau = $request->get('bordereau');
+        $ctv->convoyeurGarde = $request->get('convoyeurGarde');
+        $ctv->regulatrice = $request->get('regulatrice');
+        $ctv->securipack = $request->get('securipack');
+        $ctv->sacjute = $request->get('sacjute');
+        $ctv->nombreColis = $request->get('nombreColis');
+        $ctv->numeroScelleColis = $request->get('numeroScelleColis');
+        $ctv->montantAnnonce = $request->get('montantAnnonce');
+        $ctv->client = $request->get('client');
+        $ctv->site = $request->get('site');
+        $ctv->expediteur = $request->get('expediteur');
+        $ctv->destinataire = $request->get('destinataire');
+        $ctv->montantReconnu = $request->get('montantReconnu');
+        $ctv->ecartConstate = $request->get('ecartConstate');
+        $ctv->montantFinal = $request->get('montantFinal');
+        $ctv->billetsCalcules = $request->get('billetsCalcules');
+        $ctv->billetsCalculesMontant = $request->get('billetsCalculesMontant');
+        $ctv->billetsSansValeurs = $request->get('billetsSansValeurs');
+        $ctv->billetsSansValeursMontant = $request->get('billetsSansValeursMontant');
+        $ctv->billetsUsages = $request->get('billetsUsages');
+        $ctv->billetsUsagesMontant = $request->get('billetsUsagesMontant');
+        $ctv->fauxBillets = $request->get('fauxBillets');
+        $ctv->fauxBilletsMontant = $request->get('fauxBilletsMontant');
+        $ctv->billetsDeparailles = $request->get('billetsDeparailles');
+        $ctv->billetsDeparaillesMontant = $request->get('billetsDeparaillesMontant');
+        $ctv->save();
+
+        $billetageId = $request->get('billetageId');
+        $billetage = CaisseBilletage::find($billetageId);
+
+        $billetage->ba_nb10000 = $request->get('ba_nb10000');
+        $billetage->ba_nb5000 = $request->get('ba_nb5000');
+        $billetage->ba_nb2000 = $request->get('ba_nb2000');
+        $billetage->ba_nb1000 = $request->get('ba_nb1000');
+        $billetage->ba_nb500 = $request->get('ba_nb500');
+        $billetage->ba_nb250 = $request->get('ba_nb250');
+        $billetage->ba_nb200 = $request->get('ba_nb200');
+        $billetage->ba_nb100 = $request->get('ba_nb100');
+        $billetage->ba_nb50 = $request->get('ba_nb50');
+        $billetage->ba_nb25 = $request->get('ba_nb25');
+        $billetage->ba_nb10 = $request->get('ba_nb10');
+        $billetage->ba_nb5 = $request->get('ba_nb5');
+        $billetage->ba_nb1 = $request->get('ba_nb1');
+        $billetage->br_nb10000 = $request->get('br_nb10000');
+        $billetage->br_nb5000 = $request->get('br_nb5000');
+        $billetage->br_nb2000 = $request->get('br_nb2000');
+        $billetage->br_nb1000 = $request->get('br_nb1000');
+        $billetage->br_nb500 = $request->get('br_nb500');
+        $billetage->br_nb250 = $request->get('br_nb250');
+        $billetage->br_nb200 = $request->get('br_nb200');
+        $billetage->br_nb100 = $request->get('br_nb100');
+        $billetage->br_nb50 = $request->get('br_nb50');
+        $billetage->br_nb25 = $request->get('br_nb25');
+        $billetage->br_nb10 = $request->get('br_nb10');
+        $billetage->br_nb5 = $request->get('br_nb5');
+        $billetage->br_nb1 = $request->get('br_nb1');
+        $billetage->save();
+
+        return redirect('/ctv-liste')->with('success', 'CTV mis à jour!');
+    }
+
+    public function destroy($id)
+    {
+        $ctv = CaisseCtv::find($id);
+        $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
+        $billetages[0]->delete();
+        $ctv->delete();
+        return redirect('/ctv-liste')->with('success', 'Enregistrement supprimé avec succès!');
+    }
+}

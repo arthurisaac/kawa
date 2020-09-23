@@ -8,6 +8,12 @@
 .form-control {
     font-size: 11px;
 }
+.form-control-bordeless {
+    border: none;
+}
+.form-control-small {
+    height: calc(1em + .5rem);
+}
 .form-control-file {
     font-size: 11px;
 }
@@ -122,4 +128,11 @@ label {
 
 .title-separator {
     margin-top: -27px;
+}
+
+.burval-separator {
+    border:none;
+    border-left:2px solid hsla(200, 10%, 50%,100);
+    height:20vh;
+    width:1px;
 }

@@ -274,11 +274,11 @@
                                                 <li><span></span><span>Service</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./caissecentrale/service-nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('caisse-service','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./caissecentrale/service-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('caisse-service-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -288,11 +288,11 @@
                                                         <li><span></span><span>Entr&#233;e&nbsp;de&nbsp;colis</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./caissecentrale/colis/entree-colis.html','no','no','no','yes','yes','no','','','1700','500')"
+                                                                        href="javascript:popupwnd('caisse-entree-colis','no','no','no','yes','yes','no','','','1700','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/liste-entree-colis.html',{})"
+                                                                        href="javascript:popupwnd('caisse-entree-colis-liste','no','no','no','yes','yes','no','','','1700','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
@@ -300,11 +300,11 @@
                                                         <li><span></span><span>Sortie&nbsp;de&nbsp;colis</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./caissecentrale/colis/sortie-colis.html','no','no','no','yes','no','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('caisse-sortie-colis','no','no','no','yes','no','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./caissecentrale/colis/liste-sortie-colis.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('caisse-sortie-colis-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
@@ -314,26 +314,27 @@
                                                 <li><span></span><span>CTV</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./caissecentrale/Nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('ctv','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./caissecentrale/ctv-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('ctv-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                         <li><span></span><span>Vid&#233;o&nbsp;surveillance</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./caissecentrale/video-surveillance-nouveau.html','no','no','no','yes','yes','no','','','1200','600')"
+                                                                        href="javascript:popupwnd('caisse-video-surveillance','no','no','no','yes','yes','no','','','1200','600')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./caissecentrale/video-surveillance-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('caisse-video-surveillance-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li><span></span><span>Caisse</span>
+                                                        {{--TODO--}}
+                                                        {{--<li><span></span><span>Caisse</span>
                                                             <ul>
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
@@ -383,7 +384,7 @@
                                                                     </ul>
                                                                 </li>
                                                             </ul>
-                                                        </li>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                             </ul>
