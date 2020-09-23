@@ -51,7 +51,7 @@
                             <option>8</option>
                             <option>9</option>
                             <option>10</option>
-                        </select @endforeach>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -67,20 +67,24 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label class="col-sm-5">Nom</label>
-                                <select type="text" name="operatrice" id="operatrice" class="form-control col-sm-7" required>
+                                <select type="text" name="operatrice" id="operatrice" class="form-control col-sm-7"
+                                        required>
                                     <option></option>
                                     @foreach ($operatrices as $operatrice)
-                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
+                                        <option
+                                            value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Nom et Prenom(s)</label>
-                                <input type="text" name="nomOperatrice" id="nomOperatrice" class="form-control col-sm-7"/>
+                                <input type="text" name="nomOperatrice" id="nomOperatrice"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Matricule</label>
-                                <input type="text" name="matriculeOperatrice" id="matriculeOperatrice" class="form-control col-sm-7"/>
+                                <input type="text" name="matriculeOperatrice" id="matriculeOperatrice"
+                                       class="form-control col-sm-7"/>
                             </div>
                         </div>
                     </div>
@@ -146,7 +150,8 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Montant annooncé" name="ecart">
+                                        <input class="form-check-input" type="checkbox" value="Montant annooncé"
+                                               name="ecart">
                                         <label class="form-check-label">
                                             Montant annoncé
                                         </label>
@@ -162,13 +167,15 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Montant annoncé" name="erreur">
+                                        <input class="form-check-input" type="radio" value="Montant annoncé"
+                                               name="erreur">
                                         <label class="form-check-label">
                                             Billetage
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Numéro de scellé" name="erreur">
+                                        <input class="form-check-input" type="radio" value="Numéro de scellé"
+                                               name="erreur">
                                         <label class="form-check-label">
                                             Numéro de scellé
                                         </label>
@@ -184,7 +191,8 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Billetage" name="absence">
+                                        <input class="form-check-input" type="checkbox" value="Billetage"
+                                               name="absence">
                                         <label class="form-check-label" for="defaultCheck1">
                                             Billetage
                                         </label>
@@ -196,15 +204,15 @@
                     </div>
                 </div>
             </div>
-            <br />
+            <br/>
             <div class="row">
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-4">Commentaire</label>
                         <textarea name="commentaire" rows="5" class="form-control col-sm-8"></textarea>
                     </div>
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <div class="form-group">
                         <button class="btn btn-primary btn-sm" type="submit">Valider</button>
                         <button class="btn btn-danger btn-sm" type="submit">Annuler</button>
@@ -215,7 +223,7 @@
 
         <script>
             let operatrices = {!! json_encode($operatrices) !!};
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $("#operatrice").on("change", function () {
                     const operatrice = operatrices.find(p => p.id === parseInt(this.value));
                     if (operatrice) {
@@ -227,4 +235,3 @@
         </script>
     </div>
 @endsection
-
