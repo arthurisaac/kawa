@@ -98,7 +98,21 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $caisse = CaisseVideoSurveillance::find($id);
+        $caisse->date = $request->get('date');
+        $caisse->heureDebut = $request->get('heureDebut');
+        $caisse->heureFin = $request->get('heureFin');
+        $caisse->numeroBox = $request->get('numeroBox');
+        $caisse->operatrice = $request->get('operatrice');
+        $caisse->securipack = $request->get('securipack');
+        $caisse->sacjute = $request->get('sacjute');
+        $caisse->numeroScelle = $request->get('numeroScelle');
+        $caisse->ecart = $request->get('ecart');
+        $caisse->erreur = $request->get('erreur');
+        $caisse->absence = $request->get('absence');
+        $caisse->commentaire = $request->get('commentaire');
+        $caisse->save();
+        return redirect('/caisse-video-surveillance-liste')->with('success', 'Enregistrement effectué!');
     }
 
     /**
