@@ -13,7 +13,7 @@
                     @endforeach
                 </ul>
             </div>
-            <br/>contrat_objet
+            <br/>
         @endif
 
         @if(session()->get('success'))

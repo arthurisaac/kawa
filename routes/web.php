@@ -121,3 +121,18 @@ Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
 Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
 Route::resource('caisse-video-surveillance', 'CaisseVideoSurveillanceController');
 Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideoSurveillanceController::class, 'liste']);
+
+
+/*
+ * LOGISTIQUE
+ */
+
+Route::resource('logistique-fournisseur', 'LogistiqueFournisseurController');
+Route::get('logistique-fournisseur-liste', [\App\Http\Controllers\LogistiqueFournisseurController::class, 'liste']);
+Route::resource('logistique-produit', 'LogistiqueProduitController');
+Route::get('logistique-produit-liste', [\App\Http\Controllers\LogistiqueProduitController::class, 'liste']);
+Route::resource('logistique-entree-stock', 'LogistiqueEntreeStockController');
+Route::get('logistique-entree-stock-liste', [\App\Http\Controllers\LogistiqueEntreeStockController::class, 'liste']);
+Route::resource('logistique-sortie-stock', 'LogistiqueSortieStockController');
+Route::get('logistique-sortie-stock-liste', [\App\Http\Controllers\LogistiqueSortieStockController::class, 'liste']);
+Route::get('logistique-etat-stock', [\App\Http\Controllers\LogistiqueEtatStockController::class, 'index']);

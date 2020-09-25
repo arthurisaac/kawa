@@ -1054,7 +1054,7 @@
                                     <ul style="display:none;">
                                         <li><span></span><span>LOGISTIQUE</span>
                                             <ul>
-                                                <li><span></span><span>V&#233;hicules</span>
+                                                {{--<li><span></span><span>V&#233;hicules</span>
                                                     <ul>
                                                         <li><span></span><span>Parc&nbsp;auto</span>
                                                             <ul>
@@ -1071,7 +1071,7 @@
                                                         <li><span></span><span>Etat&nbsp;d'entretien</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretienvehicule/index.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('entretien-vehicule','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Entretien/v&#233;hicule">Entretien/v&#233;hicule</a>
                                                                 </li>
                                                                 <li><span></span><span>Rechercher</span>
@@ -1129,17 +1129,17 @@
                                                             </ul>
                                                         </li>
                                                     </ul>
-                                                </li>
+                                                </li>--}}
                                                 <li><span></span><span>Achat</span>
                                                     <ul>
                                                         <li><span></span><span>Fournisseur</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/fournisseur-nouveau.html','no','no','no','no','no','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-fournisseur','no','no','no','no','no','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/fournisseur-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-fournisseur-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
@@ -1147,11 +1147,11 @@
                                                         <li><span></span><span>Produit</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/produit-nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-produit','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/produit-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-produit-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
@@ -1159,11 +1159,11 @@
                                                         <li><span></span><span>Entr&#233;e&nbsp;de&nbsp;stock</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/entree-stock-nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-entree-stock','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/entree-stock-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-entree-stock-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
@@ -1171,17 +1171,17 @@
                                                         <li><span></span><span>Sortie&nbsp;de&nbsp;stock</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/sortie-nouveau.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-sortie-stock','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./moyengenerau/achat/sortie-stock-liste.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        href="javascript:popupwnd('logistique-sortie-stock-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./moyengenerau/achat/etat-stock.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                href="javascript:popupwnd('logistique-etat-stock','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Etat de stock">Etat&nbsp;de&nbsp;stock</a>
                                                         </li>
                                                     </ul>
