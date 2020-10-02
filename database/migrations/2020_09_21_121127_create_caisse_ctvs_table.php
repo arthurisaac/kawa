@@ -22,7 +22,7 @@ class CreateCaisseCtvsTable extends Migration
             $table->time('heurePriseBox')->nullable();
             $table->time('heureFinBox')->nullable();
             $table->foreignId('tournee')->references('id')->on('personnels');
-            $table->foreignId('bordereau')->references('id')->on('bordereaux');
+            $table->string('bordereau')->nullable();
             $table->foreignId('convoyeurGarde')->references('id')->on('personnels');
             $table->foreignId('regulatrice')->references('id')->on('personnels');
 
@@ -33,7 +33,7 @@ class CreateCaisseCtvsTable extends Migration
             $table->integer('montantAnnonce')->nullable();
 
             $table->foreignId('client')->references('id')->on('commercial_clients');
-            $table->foreignId('site')->references('id')->on('sites');
+            $table->foreignId('site')->references('id')->on('commercial_sites');
             $table->string('expediteur')->nullable();
             $table->string('destinataire')->nullable();
             $table->integer('montantReconnu')->nullable();

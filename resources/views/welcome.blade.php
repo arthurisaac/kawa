@@ -392,7 +392,7 @@
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar4 =
+                                    const cmMenuBar4 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -408,11 +408,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar4HSplit = [_cmNoClick, '<td class="MenuBar4MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar4HSplit = [_cmNoClick, '<td class="MenuBar4MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar4MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar4MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar4MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar4HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar4MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar4MainSplitText"><div></div></td>'];
+                                    const cmMenuBar4MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar4HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar4MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar4MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar4', 'hbr', cmMenuBar4, 'MenuBar4');
                                     });
@@ -731,7 +731,7 @@
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar6 =
+                                    const cmMenuBar6 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -747,11 +747,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar6HSplit = [_cmNoClick, '<td class="MenuBar6MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar6HSplit = [_cmNoClick, '<td class="MenuBar6MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar6MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar6MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar6MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar6HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar6MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar6MainSplitText"><div></div></td>'];
+                                    const cmMenuBar6MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar6HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar6MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar6MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar6', 'hbr', cmMenuBar6, 'MenuBar6');
                                     });
@@ -776,7 +776,7 @@
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar7 =
+                                    const cmMenuBar7 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -792,11 +792,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar7HSplit = [_cmNoClick, '<td class="MenuBar7MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar7HSplit = [_cmNoClick, '<td class="MenuBar7MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar7MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar7MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar7MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar7HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar7MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar7MainSplitText"><div></div></td>'];
+                                    const cmMenuBar7MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar7HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar7MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar7MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar7', 'hbr', cmMenuBar7, 'MenuBar7');
                                     });
@@ -813,29 +813,27 @@
                                             <ul>
                                                 <li><span></span><span>Param&#232;trage</span>
                                                     <ul>
-                                                        <li><span></span><span>Tarification</span></li>
+                                                        {{--<li><span></span><span>Tarification</span></li>--}}
                                                         <li><span></span><span>Carte&nbsp;carburant</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/parametrage/creation-carte-carburant.html',{})"
+                                                                        href="javascript:popupwnd('carte-carburant','no','no','no','yes','yes','no','','','1300','700')"
                                                                         target="_self">Creation&nbsp;carte</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/parametrage/liste-carte-carburant.html',{})"
+                                                                        href="javascript:popupwnd('carte-carburant-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                                         target="_self">Liste&nbsp;des&nbsp;cartes</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li><span></span><a
-                                                                href="./comptabilite/parametrage/liste-carte-carburant.html"
-                                                                target="_self">Carburant</a>
+                                                        <li><span></span><a>Carburant</a>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/parametrage/creation-chargement-carte.html',{})"
+                                                                        href="javascript:popupwnd('carb-chargement-ticket-create','no','no','no','yes','yes','no','','','1300','700')"
                                                                         target="_self">Chargement&nbsp;carte</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/parametrage/liste-chargement-carte.html',{})"
+                                                                        href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1300','700')"
                                                                         target="_self">Liste&nbsp;chargement</a>
                                                                 </li>
                                                             </ul>
@@ -945,15 +943,15 @@
                                                 <li><span></span><span>Factures</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/facture/fiche-facture.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-fature','no','no','no','yes','yes','no','','','1300','700')"
                                                                 target="_self">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/facture/liste-facture.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-fature-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                                 target="_self">Liste</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/facture/recherche.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-fature-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                                 target="_self">Recherche</a>
                                                         </li>
                                                     </ul>
@@ -961,14 +959,15 @@
                                                 <li><span></span><span>R&#232;glement&nbsp;facture</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/reglementfacture/nouveau.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-reglement-fature','no','no','no','yes','yes','no','','','1300','700')"
                                                                 target="_self">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/reglementfacture/liste.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-reglement-fature-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                                 target="_self">Liste</a>
                                                         </li>
-                                                        <li><span></span><span>Recherche</span>
+                                                        {{-- TODO --}}
+                                                        {{--<li><span></span><span>Recherche</span>
                                                             <ul>
                                                                 <li><span></span><a href="javascript:displaylightbox('',{})"
                                                                                     target="_self">Par&nbsp;date</a>
@@ -977,40 +976,40 @@
                                                                                     target="_self">Par&nbsp;client</a>
                                                                 </li>
                                                             </ul>
-                                                        </li>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Entr&#233;e&nbsp;de&nbsp;caisse</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/entreecaisse/entree-caisse-nouveau.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-entree-caisse','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self">Nouveau</a>
                                                         </li>
-                                                        <li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Liste</a>
+                                                        <li><span></span><a href="javascript:popupwnd('comptabilite-entree-caisse-liste','no','no','no','yes','yes','no','','','1200','500')" target="_self">Liste</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Sortie&nbsp;de&nbsp;caisse</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/sortiecaisse/sortiecaisse.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-sortie-caisse','no','no','no','yes','yes','no','','','1200','500')"
                                                                 target="_self">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/sortiecaisse/liste-sortie.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-sortie-caisse-liste','no','no','no','yes','yes','no','','','1200','500')"
                                                                 target="_self">Liste</a>
                                                         </li>
-                                                        <li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Validation</a>
-                                                        </li>
+                                                        {{--<li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Validation</a>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Incident</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/degradation/degradation-nouveau.html',{})"
+                                                                href="javascript:popupwnd('comptabilite-degradation','no','no','no','yes','yes','no','','','1200','500')"
                                                                 target="_self">D&#233;gradation</a>
                                                         </li>
-                                                        <li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Liste&nbsp;d&#233;gradation</a>
+                                                        <li><span></span><a href="javascript:popupwnd('comptabilite-degradation-liste','no','no','no','yes','yes','no','','','1200','500')" target="_self">Liste&nbsp;d&#233;gradation</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1019,7 +1018,7 @@
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar8 =
+                                    const cmMenuBar8 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -1035,11 +1034,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar8HSplit = [_cmNoClick, '<td class="MenuBar8MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar8HSplit = [_cmNoClick, '<td class="MenuBar8MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar8MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar8MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar8MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar8HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar8MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar8MainSplitText"><div></div></td>'];
+                                    const cmMenuBar8MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar8HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar8MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar8MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar8', 'hbr', cmMenuBar8, 'MenuBar8');
                                     });
@@ -1191,37 +1190,37 @@
                                                         <li><span></span><span>Bordereau&nbsp;PCT</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/etat-borderau-utilise.html',{})"
+                                                                        href="javascript:popupwnd('./moyengenerau/fournitures/bordereaux/etat-borderau-utilise.html',{})"
                                                                         target="_self">Etat&nbsp;bordereau&nbsp;utilis&#233;</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/entree-bordereau.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-bordereau','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;bordereau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/entree-liste-bordereau.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-bordereau-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;des&nbsp;entr&#233;es&nbsp;de&nbsp;bordereau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/sortie-bordereau.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-bordereau','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;bordereau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/sortie-liste-bordereau.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-bordereau-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;des&nbsp;sorties&nbsp;de&nbsp;bordereau</a>
                                                                 </li>
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li><span></span><a
-                                                                                href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/recherche-bordereau-entree.html',{})"
+                                                                                href="javascript:popupwnd('logistique-entree-securipack','no','no','no','yes','yes','no','','','1000','500')"
                                                                                 target="_self">Bordereau&nbsp;entr&#233;e</a>
                                                                         </li>
                                                                         <li><span></span><a
-                                                                                href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/recherche-borderreau-sortie.html',{})"
+                                                                                href="javascript:displaylightbox('','no','no','no','yes','yes','no','','','1000','500')"
                                                                                 target="_self">Bordereau&nbsp;sortie</a>
                                                                         </li>
                                                                         <li><span></span><a
-                                                                                href="javascript:displaylightbox('./moyengenerau/fournitures/bordereaux/recherche-solde.html',{})"
+                                                                                href="javascript:popupwnd('logistique-entree-securipack-recherche','no','no','no','yes','yes','no','','','1000','500')"
                                                                                 target="_self">Solde</a>
                                                                         </li>
                                                                     </ul>
@@ -1231,21 +1230,22 @@
                                                         <li><span></span><span>S&#233;curipack</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/securipack/entree-securipack.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-securipack','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;s&#233;curipack</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/securipack/liste-entree-securipack.html',{})"
-                                                                        target="_self">Liste&nbsp;des&nbsp;sorties&nbsp;s&#233;curipack</a>
+                                                                        href="javascript:popupwnd('logistique-entree-securipack-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                                        target="_self">Liste&nbsp;des&nbsp;entrees&nbsp;s&#233;curipack</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/securipack/sortie-securipack.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-securipack','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;s&#233;curipack</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/securipack/liste-sortie-securipack.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-securipack-liste', 'no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;des&nbsp;sorties&nbsp;s&#233;curipack</a>
                                                                 </li>
+                                                                {{--TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li><span></span><a
@@ -1261,27 +1261,28 @@
                                                                                 target="_self">Solde</a>
                                                                         </li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                         <li><span></span><span>Achat</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/carnet-caisse/entree-caisse.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-carnet','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;carnet&nbsp;de&nbsp;caisse</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/carnet-caisse/liste-entree-caisse.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-carnet-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;entr&#233;e&nbsp;carnet&nbsp;de&nbsp;caisse</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/carnet-caisse/sortie-caisse.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-carnet','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;carnet&nbsp;de&nbsp;caisse</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/carnet-caisse/liste-caisse.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-carnet-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;carnet&nbsp;de&nbsp;caisse</a>
                                                                 </li>
+                                                                {{-- TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li><span></span><a
@@ -1297,28 +1298,29 @@
                                                                                 target="_self">Solde</a>
                                                                         </li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                         <li><span></span><span>Fiche&nbsp;de&nbsp;maintenance&nbsp;DAB</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/maintenance-dab/entree-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-maintenance','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;fiche&nbsp;de&nbsp;maintenance&nbsp;DAB</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/maintenance-dab/liste-entree-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-maintenance-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;entr&#233;e&nbsp;fiche&nbsp;de&nbsp;maintenance&nbsp;DAB</a>
                                                                 </li>
                                                                 <li></li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/maintenance-dab/sortie-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-maintenance','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;fiche&nbsp;de&nbsp;maintenance&nbsp;DAB</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/maintenance-dab/liste-sortie-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-maintenance-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;sortie&nbsp;fiche&nbsp;de&nbsp;maintenance&nbsp;DAB</a>
                                                                 </li>
+                                                                {{-- TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li>
@@ -1329,28 +1331,29 @@
                                                                         </li>
                                                                         <li><span></span><span>Solde</span></li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                         <li><span></span><span>Fiche&nbsp;d'approvisionnement&nbsp;DAB</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/approvisionnement-dab/entree-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-approvision','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;fiche&nbsp;d'approvionnement&nbsp;DAB</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/approvisionnement-dab/liste-entree-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-approvision-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;entr&#233;e&nbsp;fiche&nbsp;d'approvisionnement&nbsp;DAB</a>
                                                                 </li>
                                                                 <li></li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/approvisionnement-dab/sortie-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-approvision','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;fiche&nbsp;d'approvisionnement&nbsp;DAB</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/approvisionnement-dab/liste-sortie-maintenance.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-approvision-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;sortie&nbsp;d'approvisionnement&nbsp;DAB</a>
                                                                 </li>
+                                                                {{-- TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li><span></span><span>Entr&#233;e&nbsp;fiche&nbsp;approvisionnement</span>
@@ -1360,28 +1363,30 @@
                                                                         </li>
                                                                         <li><span></span><span>Solde</span></li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                         <li><span></span><span>Bon&nbsp;de&nbsp;commande</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bon-de-commande/entree-bon-commande.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-bon-commande','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;bon&nbsp;de&nbsp;commande</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bon-de-commande/liste-entree-bon-commande.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-bon-commande-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;entr&#233;e&nbsp;bon&nbsp;de&nbsp;commande</a>
                                                                 </li>
                                                                 <li></li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bon-de-commande/sortie-bon-de-commande.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-bon-commande','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;bon&nbsp;de&nbsp;commande</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/bon-de-commande/liste-sortie-bon-de-commande.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-bon-commande-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;sortie&nbsp;bon&nbsp;de&nbsp;commande</a>
                                                                 </li>
+                                                                {{--
+                                                                TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li><span></span><span>Entr&#233;e&nbsp;fiche&nbsp;bon&nbsp;de&nbsp;commande</span>
@@ -1390,27 +1395,28 @@
                                                                         </li>
                                                                         <li><span></span><span>Solde</span></li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                         <li><span></span><span>Ticket&nbsp;visiteur</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/ticket-visiteur/entree-ticket.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-ticket','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Entr&#233;e&nbsp;ticket&nbsp;visiteur</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/ticket-visiteur/liste-entree-ticket.html',{})"
+                                                                        href="javascript:popupwnd('logistique-entree-ticket-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;entr&#233;e&nbsp;ticket&nbsp;visiteur</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/ticket-visiteur/sortie-ticket.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-ticket','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Sortie&nbsp;ticket&nbsp;visiteur</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./moyengenerau/fournitures/ticket-visiteur/liste-sortie-ticket.html',{})"
+                                                                        href="javascript:popupwnd('logistique-sortie-ticket-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                         target="_self">Liste&nbsp;ticket&nbsp;sortie&nbsp;visiteur</a>
                                                                 </li>
+                                                                {{-- TODO
                                                                 <li><span></span><span>Recherche</span>
                                                                     <ul>
                                                                         <li>
@@ -1421,7 +1427,7 @@
                                                                         </li>
                                                                         <li><span></span><span>Solde</span></li>
                                                                     </ul>
-                                                                </li>
+                                                                </li>--}}
                                                             </ul>
                                                         </li>
                                                     </ul>
@@ -1429,14 +1435,14 @@
                                                 <li><span></span><span>Conteneur</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/conteneur/conteneur-nouveau.html',{})"
-                                                                target="_self">Nouveau</a>
+                                                                href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./tournee/conteneur/conteneur-liste.html',{})"
-                                                                target="_self">Liste</a>
+                                                                href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Liste">Liste</a>
                                                         </li>
-                                                        <li><span></span><span>Recherche</span>
+                                                        {{--<li><span></span><span>Recherche</span>
                                                             <ul>
                                                                 <li><span></span><a
                                                                         href="javascript:displaylightbox('./tournee/conteneur/rechercher-etat.html',{})"
@@ -1451,9 +1457,10 @@
                                                                         target="_self">D&#233;taill&#233;e</a>
                                                                 </li>
                                                             </ul>
-                                                        </li>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
+                                                {{-- TODO
                                                 <li><span></span><span>Intervention&nbsp;v&#233;hicules</span>
                                                     <ul>
                                                         <li><span></span><span>Panne</span>
@@ -1494,7 +1501,7 @@
                                                             </ul>
                                                         </li>
                                                     </ul>
-                                                </li>
+                                                </li>--}}
                                                 <li><span></span><span>Carburant</span>
                                                     <ul>
                                                         <li><span></span><a
@@ -1502,33 +1509,33 @@
                                                                 target="_self">Carte&nbsp;carb/Chargement/ticket</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/etat/carb-chargement.html',{})"
+                                                                href="javascript:popupwnd('carb-chargement','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Carte&nbsp;carb/Chargement</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/etat/carb-ticket.html',{})"
+                                                                href="javascript:popupwnd('carb-ticket','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Carte&nbsp;carb/ticket</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/etat/etat-carburant-vehicule.html',{})"
+                                                                href="javascript:popupwnd('carb-vehicule','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/etat/etat-carburant.html',{})"
+                                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Etat&nbsp;carburant</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:displaylightbox('./comptabilite/etat/etat-carburant-vehicule.html',{})"
+                                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
                                                         </li>
                                                         <li><span></span><span>Etat&nbsp;g&#233;n&#233;ral</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/etat/carte-carburant.html',{})"
+                                                                        href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                         target="_self">Carte&nbsp;carburant</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:displaylightbox('./comptabilite/etat/vehicule.html',{})"
+                                                                        href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                         target="_self">V&#233;hicule</a>
                                                                 </li>
                                                             </ul>
@@ -1751,11 +1758,11 @@
                                                 <li><span></span><span>Fournisseur</span>
                                                     <ul>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('./achat/fournisseur-nouveau.html','no','no','no','yes','yes','no','','','1100','600')"
+                                                                href="javascript:popupwnd('achat-fournisseur','no','no','no','yes','yes','no','','','1100','600')"
                                                                 target="_self" title="Nouveau">Nouveau</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('','no','no','no','no','no','no','','','1000','400')"
+                                                                href="javascript:popupwnd('achat-fournisseur-liste','no','no','no','no','no','no','','','1000','400')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>
@@ -1765,11 +1772,11 @@
                                                         <li><span></span><span>Entr&#233;e</span>
                                                             <ul>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./achat/entree-produit-nouveau.html','no','no','no','yes','no','no','','','1000','800')"
+                                                                        href="javascript:popupwnd('achat-produit','no','no','no','yes','no','no','','','1000','800')"
                                                                         target="_self" title="Nouveau">Nouveau</a>
                                                                 </li>
                                                                 <li><span></span><a
-                                                                        href="javascript:popupwnd('./achat/entree-produit-liste.html','no','no','no','no','yes','no','','','1000','800')"
+                                                                        href="javascript:popupwnd('achat-produit-liste','no','no','no','no','yes','no','','','1000','800')"
                                                                         target="_self" title="Liste">Liste</a>
                                                                 </li>
                                                             </ul>

@@ -21,15 +21,15 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-5">Numéro carte</label>
-                    <input type="number" class="form-control col-sm-7" name="numeroCarte"/>
+                    <input type="number" class="form-control col-sm-7" name="numeroCarte" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Societe</label>
-                    <input type="text" class="form-control col-sm-7" name="societe"/>
+                    <input type="text" class="form-control col-sm-7" name="societe" required/>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Num véhicule</label>
-                    <select class="form-control form-control-sm col-md-7" name="idVehicule">
+                    <select class="form-control form-control-sm col-md-7" name="idVehicule" required>
                         <option>Selectionnez véhicule</option>
                         @foreach($vehicules as $vehicule)
                         <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Date acquisition</label>
-                    <input type="date" class="form-control col-sm-7" name="dateAquisition"/>
+                    <input type="date" class="form-control col-sm-7" name="dateAquisition" required/>
                 </div>
             </div>
             <div class="col-2">

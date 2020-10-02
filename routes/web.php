@@ -92,13 +92,6 @@ Route::resource('commercial-site', 'CommercialSiteController');
 Route::get('commercial-site-liste', [\App\Http\Controllers\CommercialSiteController::class, 'liste']);
 
 /*
- * LOGISTIQUE
- */
-
-Route::resource('carte-carburant', 'CarburantCarteController');
-Route::resource('carb-chargement-ticket', 'CarburantChargementTicketController');
-
-/*
  * RH
  */
 
@@ -127,12 +120,99 @@ Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideo
  * LOGISTIQUE
  */
 
+Route::resource('carte-carburant', 'CarburantCarteController');
+Route::get('carte-carburant-liste', [\App\Http\Controllers\CarburantCarteController::class, 'liste']);
+
+Route::resource('carb-chargement-ticket', 'CarburantChargementTicketController');
+Route::get('carb-chargement-ticket-create', [\App\Http\Controllers\CarburantChargementTicketController::class, 'create']);
+
+Route::get('carb-chargement', [\App\Http\Controllers\CarburantChargementTicketController::class, 'carbCharg']);
+Route::get('carb-ticket', [\App\Http\Controllers\CarburantChargementTicketController::class, 'carbTicket']);
+Route::get('carb-vehicule', [\App\Http\Controllers\CarburantChargementTicketController::class, 'carbVehicule']);
+Route::get('etat-carburant', [\App\Http\Controllers\CarburantChargementTicketController::class, 'etatCarburant']);
+
 Route::resource('logistique-fournisseur', 'LogistiqueFournisseurController');
 Route::get('logistique-fournisseur-liste', [\App\Http\Controllers\LogistiqueFournisseurController::class, 'liste']);
+
 Route::resource('logistique-produit', 'LogistiqueProduitController');
 Route::get('logistique-produit-liste', [\App\Http\Controllers\LogistiqueProduitController::class, 'liste']);
+
 Route::resource('logistique-entree-stock', 'LogistiqueEntreeStockController');
 Route::get('logistique-entree-stock-liste', [\App\Http\Controllers\LogistiqueEntreeStockController::class, 'liste']);
+
 Route::resource('logistique-sortie-stock', 'LogistiqueSortieStockController');
 Route::get('logistique-sortie-stock-liste', [\App\Http\Controllers\LogistiqueSortieStockController::class, 'liste']);
 Route::get('logistique-etat-stock', [\App\Http\Controllers\LogistiqueEtatStockController::class, 'index']);
+
+Route::resource('logistique-entree-bordereau', 'LogistiqueEntreeBordereauController');
+Route::get('logistique-entree-bordereau-liste', [\App\Http\Controllers\LogistiqueEntreeBordereauController::class, 'liste']);
+
+Route::resource('logistique-sortie-bordereau', 'LogistiqueSortieBordereauController');
+Route::get('logistique-sortie-bordereau-liste', [\App\Http\Controllers\LogistiqueSortieBordereauController::class, 'liste']);
+
+Route::resource('logistique-entree-securipack', 'LogistiqueEntreeSecuripackController');
+Route::get('logistique-entree-securipack-liste', [\App\Http\Controllers\LogistiqueEntreeSecuripackController::class, 'liste']);
+Route::get('logistique-entree-securipack-recherche', [\App\Http\Controllers\LogistiqueEntreeSecuripackController::class, 'rechercher']);
+
+Route::resource('logistique-sortie-securipack', 'LogistiqueSortieSecuripackController');
+Route::get('logistique-sortie-securipack-liste', [\App\Http\Controllers\LogistiqueSortieSecuripackController::class, 'liste']);
+
+Route::resource('logistique-entree-carnet', 'LogistiqueEntreeCarnetController');
+Route::get('logistique-entree-carnet-liste', [\App\Http\Controllers\LogistiqueEntreeCarnetController::class, 'liste']);
+
+Route::resource('logistique-sortie-carnet', 'LogistiqueSortieCarnetController');
+Route::get('logistique-sortie-carnet-liste', [\App\Http\Controllers\LogistiqueSortieCarnetController::class, 'liste']);
+
+Route::resource('logistique-entree-maintenance', 'LogistiqueEntreeMaintenanceController');
+Route::get('logistique-entree-maintenance-liste', [\App\Http\Controllers\LogistiqueEntreeMaintenanceController::class, 'liste']);
+
+Route::resource('logistique-sortie-maintenance', 'LogistiqueSortieMaintenanceController');
+Route::get('logistique-sortie-maintenance-liste', [\App\Http\Controllers\LogistiqueSortieMaintenanceController::class, 'liste']);
+
+Route::resource('logistique-entree-approvision', 'LogistiqueEntreeApprovisionController');
+Route::get('logistique-entree-approvision-liste', [\App\Http\Controllers\LogistiqueEntreeApprovisionController::class, 'liste']);
+
+Route::resource('logistique-sortie-approvision', 'LogistiqueSortieApprovisionController');
+Route::get('logistique-sortie-approvision-liste', [\App\Http\Controllers\LogistiqueSortieApprovisionController::class, 'liste']);
+
+Route::resource('logistique-entree-bon-commande', 'LogistiqueEntreeBonController');
+Route::get('logistique-entree-bon-commande-liste', [\App\Http\Controllers\LogistiqueEntreeBonController::class, 'liste']);
+
+Route::resource('logistique-sortie-bon-commande', 'LogistiqueSortieBonController');
+Route::get('logistique-sortie-bon-commande-liste', [\App\Http\Controllers\LogistiqueSortieBonController::class, 'liste']);
+
+Route::resource('logistique-entree-ticket', 'LogistiqueEntreeTicketController');
+Route::get('logistique-entree-ticket-liste', [\App\Http\Controllers\LogistiqueEntreeTicketController::class, 'liste']);
+
+Route::resource('logistique-sortie-ticket', 'LogistiqueSortieTicketController');
+Route::get('logistique-sortie-ticket-liste', [\App\Http\Controllers\LogistiqueSortieTicketController::class, 'liste']);
+
+
+/*
+ * ACHAT
+ */
+
+Route::resource('achat-fournisseur', 'AchatFournisseurController');
+Route::get('achat-fournisseur-liste', [\App\Http\Controllers\AchatFournisseurController::class, 'liste']);
+
+Route::resource('achat-produit', 'AchatProduitController');
+Route::get('achat-produit-liste', [\App\Http\Controllers\AchatProduitController::class, 'liste']);
+
+/*
+ * COMPTABILITE
+ */
+
+Route::resource('comptabilite-fature', 'ComptabiliteFactureController');
+Route::get('comptabilite-fature-liste', [\App\Http\Controllers\ComptabiliteFactureController::class, 'liste']);
+
+Route::resource('comptabilite-reglement-fature', 'ComptabiliteReglementFactureController');
+Route::get('comptabilite-reglement-fature-liste', [\App\Http\Controllers\ComptabiliteReglementFactureController::class, 'liste']);
+
+Route::resource('comptabilite-entree-caisse', 'ComptabiliteEntreeCaisseController');
+Route::get('comptabilite-entree-caisse-liste', [\App\Http\Controllers\ComptabiliteEntreeCaisseController::class, 'liste']);
+
+Route::resource('comptabilite-sortie-caisse', 'ComptabiliteSortieCaisseController');
+Route::get('comptabilite-sortie-caisse-liste', [\App\Http\Controllers\ComptabiliteSortieCaisseController::class, 'liste']);
+
+Route::resource('comptabilite-degradation', 'ComptabiliteDegradationController');
+Route::get('comptabilite-degradation-liste', [\App\Http\Controllers\ComptabiliteDegradationController::class, 'liste']);
