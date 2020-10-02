@@ -569,7 +569,7 @@
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar5 =
+                                    const cmMenuBar5 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -585,11 +585,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar5HSplit = [_cmNoClick, '<td class="MenuBar5MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar5HSplit = [_cmNoClick, '<td class="MenuBar5MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar5MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar5MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar5MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar5HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar5MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar5MainSplitText"><div></div></td>'];
+                                    const cmMenuBar5MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar5HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar5MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar5MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar5', 'hbr', cmMenuBar5, 'MenuBar5');
                                     });
@@ -1545,6 +1545,30 @@
                                                 <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
                                                     <ul>
                                                         <li><span></span><a
+                                                                href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self">Ticket&nbsp;carburant</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self">carburant&nbsp;comptant</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self">Pr&#233;vision&nbsp;carburant</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                {{--<li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
+                                                    <ul>
+                                                        <li><span></span><a
                                                                 href="javascript:displaylightbox('./tournee/carburanttournee/ticket-carburant.html',{})"
                                                                 target="_self">Ticket&nbsp;carburant</a>
                                                         </li>
@@ -1561,13 +1585,13 @@
                                                                 target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
                                                         </li>
                                                     </ul>
-                                                </li>
+                                                </li>--}}
                                             </ul>
                                         </li>
                                     </ul>
                                 </div>
                                 <script>
-                                    var cmMenuBar12 =
+                                    const cmMenuBar12 =
                                         {
                                             mainFolderLeft: '',
                                             mainFolderRight: '',
@@ -1583,11 +1607,11 @@
                                             offsetHMainAdjust: [0, 0],
                                             offsetSubAdjust: [0, 0]
                                         };
-                                    var cmMenuBar12HSplit = [_cmNoClick, '<td class="MenuBar12MenuSplitLeft"><div></div></td>' +
+                                    const cmMenuBar12HSplit = [_cmNoClick, '<td class="MenuBar12MenuSplitLeft"><div></div></td>' +
                                     '<td class="MenuBar12MenuSplitText"><div></div></td>' +
                                     '<td class="MenuBar12MenuSplitRight"><div></div></td>'];
-                                    var cmMenuBar12MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar12HorizontalSplit">|</td></tr></table></div>'];
-                                    var cmMenuBar12MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar12MainSplitText"><div></div></td>'];
+                                    const cmMenuBar12MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar12HorizontalSplit">|</td></tr></table></div>'];
+                                    const cmMenuBar12MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar12MainSplitText"><div></div></td>'];
                                     document.addEventListener('DOMContentLoaded', function (event) {
                                         cmDrawFromText('MenuBar12', 'hbr', cmMenuBar12, 'MenuBar12');
                                     });
