@@ -21,16 +21,12 @@ class CommercialSiteController extends Controller
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::all();
         return view('commercial/site.index',
             compact('clients','centres', 'centres_regionaux'));
     }
 
     public function liste()
     {
-        // $clients = Commercial_client::all();
-        // $centres = Centre::all();
-        // $centres_regionaux = Centre_regional::all();
         $sites = Commercial_site::all();
         return view('commercial/site.liste',
             compact('sites'));
@@ -101,7 +97,12 @@ class CommercialSiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $site = Commercial_site::find($id);
+        $clients = Commercial_client::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('commercial.site.edit',
+            compact('site', 'clients','centres', 'centres_regionaux'));
     }
 
     /**
@@ -113,7 +114,33 @@ class CommercialSiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $site = Commercial_site::find($id);
+        $objet_operation = null;
+        if (!empty($request->get('objet_operation'))) {
+            $objet_operation = implode(",", $request->get('objet_operation'));
+        }
+
+        $site->client = $request->get('client');
+        $site->site = $request->get('site');
+        $site->nom_contact_site = $request->get('nom_contact_site');
+        $site->fonction_contact = $request->get('fonction_contact');
+        $site->centre = $request->get('centre');
+        $site->centre_regional = $request->get('centre_regional');
+        $site->telephone = $request->get('telephone');
+        $site->no_carte = $request->get('no_carte');
+        $site->objet_operation = $objet_operation;
+        $site->forfait_mensuel_ctv = $request->get('forfait_mensuel_ctv');
+        $site->forfait_mensuel_gdf = $request->get('forfait_mensuel_gdf');
+        $site->forfait_mensuel_mad = $request->get('forfait_mensuel_mad');
+        $site->regime = $request->get('regime');
+        $site->tarif_bitume = $request->get('tarif_bitume');
+        $site->tarif_km_piste = $request->get('tarif_km_piste');
+        $site->tarif_tdf_vb = $request->get('tarif_tdf_vb');
+        $site->tarif_tdf_vl = $request->get('tarif_tdf_vl');
+        $site->tarif_collecte_caissiere = $request->get('tarif_collecte_caissiere');
+        $site->save();
+        return redirect('/commercial-site-liste')->with('success', 'Site enregistré!');
+
     }
 
     /**

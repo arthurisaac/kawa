@@ -96,15 +96,11 @@ class CommercialClientController extends Controller
     }
 
 
-    public function updateClient(Request $request)
+    public function updateClient(Request $request, $id)
     {
         $contrat_objet = null;
         if (!empty($request->get('contrat_objet'))) {
             $contrat_objet = implode(",", $request->get('contrat_objet'));
-        }
-        $contrat_desserte = null;
-        if (!empty($request->get('contrat_desserte'))) {
-            $contrat_desserte = implode(",", $request->get('contrat_desserte'));
         }
         $contrat_desserte = null;
         if (!empty($request->get('contrat_desserte'))) {
@@ -118,7 +114,7 @@ class CommercialClientController extends Controller
         if (!empty($request->get('contrat_regime'))) {
             $contrat_regime = implode(",", $request->get('contrat_regime'));
         }
-        $id = $request->get('id_client');
+        // $id = $request->get('id_client');
         $client = Commercial_client::find($id);
         $client->client_nom = $request->get('client_nom');
         $client->client_situation_geographique = $request->get('client_situation_geographique');
@@ -194,7 +190,8 @@ class CommercialClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Commercial_client::find($id);
+        return view('commercial.client.edit', compact('client'));
     }
 
     /**
@@ -206,7 +203,8 @@ class CommercialClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->updateClient($request, $id);
+        return redirect('/commercial-client-liste')->with('success', 'Client enregistré!');
     }
 
     /**

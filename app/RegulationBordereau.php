@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,24 +28,6 @@ class RegulationBordereau extends Model
         'numeroFinAffection',
         'quantiteAffectee',
         'stockActuel',
-    
-    ];
-    
-    
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'date',
-        'dateAffection',
-    
-    ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/regulation-bordereaus/'.$this->getKey());
-    }
+    ];
 }

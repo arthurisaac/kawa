@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,18 +41,18 @@ class SsbCommercial extends Model
         'coutUnitaire',
         'coutForfaitaire',
         'montant',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'dateEffet',
         'dureeContrat',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */

@@ -28,9 +28,10 @@
             <!--<td>Forfait mensuel</td>-->
             <td>CTV</td>
             <td>GDF</td>
-            <td>MAT</td>
+            <td>MAD</td>
             <td>Objet op&eacute;ration</td>
             <td>TDF VB</td>
+            <td>Actions</td>
         </tr>
         </thead>
         <tbody>
@@ -44,16 +45,24 @@
             <td>{{$site->no_carte}}</td>
             <td>{{$site->forfait_mensuel_ctv}}</td>
             <td>{{$site->forfait_mensuel_gdf}}</td>
-            <td></td>
+            <td>{{$site->forfait_mensuel_mad}}</td>
             <td>{{$site->objet_operation}}</td>
             <td>{{$site->tarif_tdf_vb}}</td>
+            <td>
+                <a href="{{ route('commercial-site.edit', $site->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                <form action="{{ route('commercial-site.destroy', $site->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>
     </table>
 
     <br/>
-    <table class="table table-bordered table-hover">
+    {{--<table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <td>TDF VL</td>
@@ -88,10 +97,10 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
+    </table>--}}
 
     <br/>
-    <table class="table table-bordered table-hover">
+    {{--<table class="table table-bordered table-hover">
         <thead>
         <tr>
             <td>Centre Abidjan Nord</td>
@@ -108,7 +117,7 @@
         </thead>
         <tbody>
         </tbody>
-    </table>
+    </table>--}}
 </div>
 <script>
     $(document).ready(function () {

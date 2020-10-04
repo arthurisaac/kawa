@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Virgilometrie extends Model
 {
-    protected $table = 'virgilometrie';
+    protected $table = 'virgilometries';
 
     protected $fillable = [
         'date',
@@ -18,17 +18,17 @@ class Virgilometrie extends Model
         'heureDepart',
         'observation',
         'photo',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */

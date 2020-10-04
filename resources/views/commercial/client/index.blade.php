@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     </div>
-    <br/>contrat_objet
+    <br/>
     @endif
 
     @if(session()->get('success'))
@@ -72,17 +72,17 @@
             </div>
             <div class="col">
                 <div>
-                    <button class="btn btn-primary button" type="submit">Valider</button>
+                    <button class="btn btn-primary btn-sm button" type="submit">Valider</button>
                 </div>
                 <br/>
                 <div>
-                    <button class="btn btn-danger button" type="reset">Annuler</button>
+                    <button class="btn btn-danger btn-sm button" type="reset">Annuler</button>
                 </div>
                 <br/>
                 <br/>
                 <div>
                     <a href="javascript:popupwnd('commercial-site','no','no','no','no','no','no','','','1200','600')"
-                       target="_self" class="btn btn-primary" type="button" style="min-width: 150px">Site</a>
+                       target="_self" class="btn btn-sm btn-outline-info" type="button" style="min-width: 150px">Site</a>
                 </div>
             </div>
         </div>
@@ -248,7 +248,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label for="bt_tdf_vb" class="col-sm-3">TDF VB</label>
-                    <select name="base_tdf_vb" id="bt_tdf_vb" class="Combobox col-sm-9">
+                    <select name="base_tdf_vb" id="bt_tdf_vb" class="form-control col-sm-9">
                         <option></option>
                         <option value="km bitume">km bitume</option>
                         <option value="km piste">km piste</option>
@@ -258,7 +258,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="bt_tdf_vl" class="col-sm-3">TDF VL</label>
-                    <select name="base_tdf_vl" id="bt_tdf_vl" class="Combobox col-sm-9">
+                    <select name="base_tdf_vl" id="bt_tdf_vl" class="form-control col-sm-9">
                         <option></option>
                         <option value="km bitume">km bitume</option>
                         <option value="km piste">km piste</option>
@@ -284,7 +284,7 @@
                         <div class="form-group row">
                             <label for="bt_petit_materiel_securipack" class="col-sm-5">Sécuripack</label>
                             <select name="base_petit_materiel_securipack" id="bt_petit_materiel_securipack"
-                                    class="Combobox col-sm-7">
+                                    class="editbox col-sm-7">
                                 <option></option>
                                 <option value="Extra grand">Extra grand</option>
                                 <option value="Grand">Grand</option>
@@ -295,7 +295,7 @@
                         <div class="form-group row">
                             <label for="bt_petit_materiel_sacjute" class="col-sm-5">Sac jute</label>
                             <select name="base_petit_materiel_sacjute" id="bt_petit_materiel_sacjute"
-                                    class="Combobox col-sm-7">
+                                    class="editbox col-sm-7">
                                 <option></option>
                                 <option value="Extra grand">Extra grand</option>
                                 <option value="Grand">Grand</option>

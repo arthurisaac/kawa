@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,23 +17,15 @@ class InformatiqueMateriel extends Model
         'prixUnitaire',
         'montant',
         'factureJointe',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/informatique-materiels/'.$this->getKey());
-    }
 }

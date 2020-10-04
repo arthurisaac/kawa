@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class RegulationConfirmationClient extends Model
 {
-    protected $table = 'regulation_confirmation_client';
+    protected $table = 'regulation_confirmation_clients';
 
     protected $fillable = [
         'bordereau',
@@ -18,23 +18,15 @@ class RegulationConfirmationClient extends Model
         'destinataire',
         'dateReception',
         'lieu',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'dateReception',
-    
+
     ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/regulation-confirmation-clients/'.$this->getKey());
-    }
 }

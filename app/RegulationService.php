@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class RegulationService extends Model
 {
-    protected $table = 'regulation_service';
 
     protected $fillable = [
+        'date',
         'centre',
         'centreRegional',
         'chargeeRegulation',
@@ -17,22 +17,16 @@ class RegulationService extends Model
         'chargeeRegulationAdjointe',
         'chargeeRegulationAdjointeHPS',
         'chargeeRegulationAdjointeHFS',
-    
-    ];
-    
-    
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    
-    ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
+    ];
 
-    public function getResourceUrlAttribute()
+    public function chargeRegulations()
     {
-        return url('/admin/regulation-services/'.$this->getKey());
+        return $this->belongsTo('App\Personnel', 'chargeeRegulation', 'id');
+    }
+
+    public function chargeRegulationAdjointes()
+    {
+        return $this->belongsTo('App\Personnel', 'chargeeRegulationAdjointe', 'id');
     }
 }

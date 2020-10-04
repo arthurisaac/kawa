@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,23 +24,7 @@ class Ssb extends Model
         'debutIntervention',
         'finIntervention',
         'dateCloture',
-    
-    ];
-    
-    
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'dateCloture',
-    
-    ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
+    ];
 
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/ssbs/'.$this->getKey());
-    }
 }

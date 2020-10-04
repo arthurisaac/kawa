@@ -216,3 +216,63 @@ Route::get('comptabilite-sortie-caisse-liste', [\App\Http\Controllers\Comptabili
 
 Route::resource('comptabilite-degradation', 'ComptabiliteDegradationController');
 Route::get('comptabilite-degradation-liste', [\App\Http\Controllers\ComptabiliteDegradationController::class, 'liste']);
+
+/*
+ * REGULATION
+ */
+
+Route::resource('regulation-service', 'RegulationServiceController');
+Route::get('regulation-service-liste', [\App\Http\Controllers\RegulationServiceController::class, 'liste']);
+
+Route::resource('regulation-bordereau', 'RegulationBordereauController');
+Route::get('regulation-bordereau-liste', [\App\Http\Controllers\RegulationBordereauController::class, 'liste']);
+
+Route::resource('regulation-securipack', 'RegulationSecuripackController');
+Route::get('regulation-securipack-liste', [\App\Http\Controllers\RegulationSecuripackController::class, 'liste']);
+
+Route::resource('regulation-scelle', 'RegulationScelleController');
+Route::get('regulation-scelle-liste', [\App\Http\Controllers\RegulationScelleController::class, 'liste']);
+
+Route::resource('regulation-confirmation', 'RegulationConfirmationController');
+Route::get('regulation-confirmation-liste', [\App\Http\Controllers\RegulationConfirmationController::class, 'liste']);
+
+Route::resource('regulation-facturation', 'RegulationFacturationController');
+Route::get('regulation-facturation-liste', [\App\Http\Controllers\RegulationFacturationController::class, 'liste']);
+
+Route::get('regulation-etat-securipack-utilise', [\App\Http\Controllers\RegulationEtatController::class, 'securipackUtilise']);
+Route::get('regulation-etat-securipack-vendu', [\App\Http\Controllers\RegulationEtatController::class, 'securipackVendu']);
+
+Route::get('regulation-etat-scelle-utilise', [\App\Http\Controllers\RegulationEtatController::class, 'scelleUtilise']);
+Route::get('regulation-etat-scelle-vendu', [\App\Http\Controllers\RegulationEtatController::class, 'scelleVendu']);
+
+/*
+ * VIRGILOMETREIE
+ */
+
+Route::resource('virgilometrie', 'VirgilometrieController');
+Route::get('virgilometrie-liste', [\App\Http\Controllers\VirgilometrieController::class, 'liste']);
+
+/*
+ * INFORMATIQUE
+ */
+
+Route::resource('informatique-achat-materiel', 'InformatiqueMaterielController');
+Route::get('informatique-achat-materiel-liste', [\App\Http\Controllers\InformatiqueMaterielController::class, 'liste']);
+
+Route::resource('informatique-mission', 'InformatiqueMissionController');
+Route::get('informatique-mission-liste', [\App\Http\Controllers\InformatiqueMissionController::class, 'liste']);
+
+Route::resource('informatique-maintenance', 'InformatiqueOperationMaintenanceController');
+Route::get('informatique-maintenance-liste', [\App\Http\Controllers\InformatiqueOperationMaintenanceController::class, 'liste']);
+
+Route::resource('informatique-fournisseur', 'InformatiqueFournisseurController');
+Route::get('informatique-fournisseur-liste', [\App\Http\Controllers\InformatiqueFournisseurController::class, 'liste']);
+
+Route::resource('ssb', 'SSBController');
+Route::get('ssb-liste', [\App\Http\Controllers\SSBController::class, 'liste']);
+
+Route::resource('ssb-commercial', 'SsbCommercialController');
+Route::get('ssb-commercial-liste', [\App\Http\Controllers\SsbCommercialController::class, 'liste']);
+
+Route::resource('ssb-site', 'SsbSiteController');
+Route::get('ssb-site-liste', [\App\Http\Controllers\SsbSiteController::class, 'liste']);

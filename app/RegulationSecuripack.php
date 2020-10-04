@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class RegulationSecuripack extends Model
 {
-    protected $table = 'regulation_securipack';
+    protected $table = 'regulation_securipacks';
 
     protected $fillable = [
         'date',
@@ -18,17 +18,17 @@ class RegulationSecuripack extends Model
         'prixUnitaire',
         'quantite',
         'prixTotal',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */

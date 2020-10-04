@@ -34,6 +34,7 @@
             <th scope="col">Nbre operation</th>
             <th scope="col">Contrat</th>
             <th scope="col">Portefeuille</th>
+            <td>Actions</td>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +55,14 @@
                 <td></td>
                 <td>{{$client->contrat_numero}}</td>
                 <td>{{$client->contact_portefeuille}}</td>
+                <td>
+                    <a href="{{ route('commercial-client.edit', $client->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                    <form action="{{ route('commercial-client.destroy', $client->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

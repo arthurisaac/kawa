@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,25 +16,6 @@ class InformatiqueOperation extends Model
         'dateDebut',
         'dateFin',
         'opérationEffectuee',
-    
-    ];
-    
-    
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'date',
-        'dateDebut',
-        'dateFin',
-    
-    ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/informatique-operations/'.$this->getKey());
-    }
+    ];
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class RegulationFacturation extends Model
 {
-    protected $table = 'regulation_facturation';
+    protected $table = 'regulation_facturations';
 
     protected $fillable = [
         'date',
@@ -18,23 +18,14 @@ class RegulationFacturation extends Model
         'prixUnitaire',
         'quantite',
         'prixTotal',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
-    protected $appends = ['resource_url'];
-
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/regulation-facturations/'.$this->getKey());
-    }
 }

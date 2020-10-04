@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,27 +12,12 @@ class InformatiqueMission extends Model
         'service',
         'debut',
         'fin',
+        'nombreDeJours',
         'objetMission',
         'interventionEffectuee',
         'rapportMission',
-    
-    ];
-    
-    
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'debut',
-        'fin',
-    
-    ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
+    ];
 
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/informatique-missions/'.$this->getKey());
-    }
+
 }

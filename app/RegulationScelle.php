@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class RegulationScelle extends Model
 {
-    protected $table = 'regulation_scelle';
+    protected $table = 'regulation_scelles';
 
     protected $fillable = [
         'date',
@@ -17,17 +17,17 @@ class RegulationScelle extends Model
         'prixUnitaire',
         'quantite',
         'prixTotal',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
