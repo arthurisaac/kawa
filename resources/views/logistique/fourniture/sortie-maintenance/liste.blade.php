@@ -15,6 +15,13 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -38,14 +45,13 @@
                         <td>{{$sortie->date}}</td>
                         <td>{{$sortie->service}}</td>
                         <td>{{$sortie->prixUnitaire}}</td>
-                        <td>{{$sortie->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
                                     <a href="{{ route('logistique-sortie-maintenance.edit', $sortie->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-sortie-securipack.destroy', $sortie->id)}}" method="post">
+                                    <form action="{{ route('logistique-sortie-maintenance.destroy', $sortie->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

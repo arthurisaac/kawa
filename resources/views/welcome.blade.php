@@ -855,25 +855,25 @@
                                     <li><span></span><span>Etat</span>
                                         <ul>
                                             <li><span></span><a
-                                                    href="javascript:displaylightbox('./comptabilite/etat/tableau-client-periode.html',{})"
+                                                    href="javascript:popupwnd('comptabilite-etat-client-periode','no','no','no','yes','yes','no','','','1300','700')"
                                                     target="_self">Tableau&nbsp;client/p&#233;riode</a>
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:displaylightbox('./comptabilite/etat/facturation-client.html',{})"
+                                                    href="javascript:popupwnd('comptabilite-etat-facturation-client','no','no','no','yes','yes','no','','','1300','700')"
                                                     target="_self">Facturation&nbsp;client</a>
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:displaylightbox('./comptabilite/etat/facturation-globale.html',{})"
+                                                    href="javascript:popupwnd('comptabilite-etat-facturation-globale','no','no','no','yes','yes','no','','','1300','700')"
                                                     target="_self">Facturation&nbsp;globale</a>
                                             </li>
                                             <li><span></span><span>fond</span>
                                                 <ul>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/fond-transporte-par-client.html',{})"
+                                                            href="javascript:popupwnd('comptabilite-etat-fond-par-client','no','no','no','yes','yes','no','','','1300','700')"
                                                             target="_self">Fond&nbsp;transport&#233;&nbsp;par&nbsp;client</a>
                                                     </li>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/facturation-tournee-par-date.html',{})"
+                                                            href="javascript:popupwnd('comptabilite-etat-fond-facturation','no','no','no','yes','yes','no','','','1300','700')"
                                                             target="_self">Facturation&nbsp;tourn&#233;e&nbsp;par&nbsp;date</a>
                                                     </li>
                                                 </ul>
@@ -881,7 +881,7 @@
                                             <li><span></span><span>Caisse</span>
                                                 <ul>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/solde-de-caisse.html',{})"
+                                                            href="javascript:popupwnd('comptabilite-etat-solde-caisse','no','no','no','yes','yes','no','','','1300','700')"
                                                             target="_self">Solde&nbsp;de&nbsp;la&nbsp;caisse</a>
                                                     </li>
                                                 </ul>
@@ -890,64 +890,59 @@
                                                 <ul>
                                                     <li><span></span><a
                                                             href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1200','600')"
-                                                            target="_self">Carte&nbsp;carb/chargement/ticket</a>
+                                                            target="_self">Carte&nbsp;carb/Chargement/ticket</a>
                                                     </li>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/carb-chargement.html',{})"
-                                                            target="_self">carte&nbsp;carb/chargement</a>
+                                                            href="javascript:popupwnd('carb-chargement','no','no','no','yes','yes','no','','','1200','600')"
+                                                            target="_self">Carte&nbsp;carb/Chargement</a>
                                                     </li>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/carb-ticket.html',{})"
-                                                            target="_self">Carte&nbsp;cab/ticket</a>
+                                                            href="javascript:popupwnd('carb-ticket','no','no','no','yes','yes','no','','','1200','600')"
+                                                            target="_self">Carte&nbsp;carb/ticket</a>
                                                     </li>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/etat-carburant-periode.html',{})"
-                                                            target="_self">Etat&nbsp;carburant&nbsp;p&#233;riode</a>
-                                                    </li>
-                                                    <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/etat-carburant-vehicule.html',{})"
+                                                            href="javascript:popupwnd('carb-vehicule','no','no','no','yes','yes','no','','','1200','600')"
                                                             target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
                                                     </li>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/etat-chargement.html',{})"
-                                                            target="_self">Etat&nbsp;chargement</a>
+                                                            href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                            target="_self">Etat&nbsp;carburant</a>
+                                                    </li>
+                                                    <li><span></span><a
+                                                            href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                            target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
                                                     </li>
                                                     <li><span></span><span>Etat&nbsp;g&#233;n&#233;ral</span>
                                                         <ul>
                                                             <li><span></span><a
-                                                                    href="javascript:displaylightbox('./comptabilite/etat/carte-carburant.html',{})"
+                                                                    href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                     target="_self">Carte&nbsp;carburant</a>
                                                             </li>
                                                             <li><span></span><a
-                                                                    href="javascript:displaylightbox('./comptabilite/etat/global-detaille-par-centre.html',{})"
-                                                                    target="_self">Global&nbsp;d&#233;taill&#233;&nbsp;par&nbsp;centre</a>
-                                                            </li>
-                                                            <li><span></span><a
-                                                                    href="javascript:displaylightbox('./comptabilite/etat/carte-carburant-periode.html',{})"
-                                                                    target="_self">Carte&nbsp;carburant&nbsp;p&#233;riode</a>
-                                                            </li>
-                                                            <li><span></span><a
-                                                                    href="javascript:displaylightbox('./comptabilite/etat/vehicule.html',{})"
+                                                                    href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                                     target="_self">V&#233;hicule</a>
                                                             </li>
                                                         </ul>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><span></span><span>Etat&nbsp;s&#233;cuit&#233;&nbsp;tourn&#233;e</span>
-                                                <ul>
+                                            <li><span></span><a
+                                                    href="javascript:popupwnd('comptabilite-etat-securite-tournee','no','no','no','yes','yes','no','','','1300','700')"
+                                                    target="_self">
+                                                    Etat&nbsp;s&#233;cuit&#233;&nbsp;tourn&#233;e</a>
+                                                {{--<ul>
                                                     <li><span></span><a
-                                                            href="javascript:displaylightbox('./comptabilite/etat/etat-securite-bordereau.html',{})"
+                                                            href="javascript:popupwnd('./comptabilite/etat/etat-securite-bordereau.html',{})"
                                                             target="_self">Date&nbsp;n&#176;&nbsp;bordereau</a>
                                                     </li>
                                                     <li><span></span><a
                                                             href="javascript:displaylightbox('./comptabilite/etat/etat-securite-client.html',{})"
                                                             target="_self">Date&nbsp;/&nbsp;client</a>
                                                     </li>
-                                                </ul>
+                                                </ul>--}}
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:displaylightbox('./comptabilite/etat/tracabilite.html',{})"
+                                                    href="javascript:popupwnd('comptabilite-etat-tracabilite','no','no','no','yes','yes','no','','','1300','700')"
                                                     target="_self">Tra&#231;abilit&#233;</a>
                                             </li>
                                         </ul>

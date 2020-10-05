@@ -219,6 +219,15 @@ Route::get('comptabilite-sortie-caisse-liste', [\App\Http\Controllers\Comptabili
 Route::resource('comptabilite-degradation', 'ComptabiliteDegradationController');
 Route::get('comptabilite-degradation-liste', [\App\Http\Controllers\ComptabiliteDegradationController::class, 'liste']);
 
+Route::get('comptabilite-etat-client-periode', [\App\Http\Controllers\ComptabiliteEtatController::class, 'clientPeriode']);
+Route::get('comptabilite-etat-facturation-client', [\App\Http\Controllers\ComptabiliteEtatController::class, 'facturationClient']);
+Route::get('comptabilite-etat-facturation-globale', [\App\Http\Controllers\ComptabiliteEtatController::class, 'facturationGlobale']);
+Route::get('comptabilite-etat-fond-facturation', [\App\Http\Controllers\ComptabiliteEtatController::class, 'fondFacturation']);
+Route::get('comptabilite-etat-fond-par-client', [\App\Http\Controllers\ComptabiliteEtatController::class, 'fondParClient']);
+Route::get('comptabilite-etat-solde-caisse', [\App\Http\Controllers\ComptabiliteEtatController::class, 'soldeCaisse']);
+Route::get('comptabilite-etat-securite-tournee', [\App\Http\Controllers\ComptabiliteEtatController::class, 'securiteTournee']);
+Route::get('comptabilite-etat-tracabilite', [\App\Http\Controllers\ComptabiliteEtatController::class, 'tracabilite']);
+
 /*
  * REGULATION
  */

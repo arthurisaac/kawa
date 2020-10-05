@@ -26,7 +26,6 @@
                     <td>Date</td>
                     <td>Fournisseur</td>
                     <td>Prix unitaire</td>
-                    <td>Référence</td>
                     <td>Action</td>
                 </tr>
                 </thead>
@@ -39,14 +38,13 @@
                         <td>{{$entree->date}}</td>
                         <td>{{$entree->fournisseur}}</td>
                         <td>{{$entree->prixUnitaire}}</td>
-                        <td>{{$entree->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-entree-maintenance.edit', $entree->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-entree-approvision.edit', $entree->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-entree-maintenance.destroy', $entree->id)}}" method="post">
+                                    <form action="{{ route('logistique-entree-approvision.destroy', $entree->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

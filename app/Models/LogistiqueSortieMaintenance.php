@@ -12,7 +12,7 @@ class LogistiqueSortieMaintenance extends Model
         'debutSerie',
         'finSerie',
         'date',
-        'centre',
+        'service',
         'prixUnitaire',
 
     ];

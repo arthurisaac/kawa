@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="burval-container">
-    <div><h2 class="heading">Entrée bordereau</h2></div>
+    <div><h2 class="heading">Entrée carnet de caisse</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -26,7 +26,6 @@
                     <td>Date</td>
                     <td>Fournisseur</td>
                     <td>Prix unitaire</td>
-                    <td>Référence</td>
                     <td>Action</td>
                 </tr>
                 </thead>
@@ -39,14 +38,13 @@
                         <td>{{$entree->date}}</td>
                         <td>{{$entree->fournisseur}}</td>
                         <td>{{$entree->prixUnitaire}}</td>
-                        <td>{{$entree->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-entree-securipack.edit', $entree->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-entree-carnet.edit', $entree->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-entree-securipack.destroy', $entree->id)}}" method="post">
+                                    <form action="{{ route('logistique-entree-carnet.destroy', $entree->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

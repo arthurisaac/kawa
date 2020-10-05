@@ -22,23 +22,23 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-5">Debut série</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="text" class="form-control col-sm-7" name="debutSerie" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Fin série</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="text" class="form-control col-sm-7" name="finSerie" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Date</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="date" class="form-control col-sm-7" name="date" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Service</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="text" class="form-control col-sm-7" name="service" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Prix</label>
-                    <input type="number" class="form-control col-sm-7" required />
+                    <input type="number" class="form-control col-sm-7" name="prixUnitaire" required />
                 </div>
             </div>
             <div class="col-2">

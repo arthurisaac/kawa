@@ -37,13 +37,21 @@ class LogistiqueSortieCarnetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sortie = new LogistiqueSortieCarnetCaisse([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'service' => $request->get('service'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+        ]);
+        $sortie->save();
+        return redirect('/logistique-sortie-carnet')->with('success', 'Sortie carnet de caisse enregitrée');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -54,34 +62,44 @@ class LogistiqueSortieCarnetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
     {
-        //
+        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        return view('/logistique/fourniture/sortie-carnet.edit', compact('sortie'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        $sortie->debutSerie = $request->get('debutSerie');
+        $sortie->finSerie = $request->get('finSerie');
+        $sortie->date = $request->get('date');
+        $sortie->service = $request->get('service');
+        $sortie->prixUnitaire = $request->get('prixUnitaire');
+        $sortie->save();
+        return redirect('/logistique-sortie-carnet')->with('success', 'Sortie carnet de caisse enregitrée');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
-        //
+        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        $sortie->delete();
+        return redirect('/logistique-sortie-carnet')->with('success', 'Sortie carnet de caisse supprimée');
     }
 }

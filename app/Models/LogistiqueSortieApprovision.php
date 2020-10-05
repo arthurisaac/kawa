@@ -12,7 +12,7 @@ class LogistiqueSortieApprovision extends Model
         'debutSerie',
         'finSerie',
         'date',
-        'centre',
+        'service',
         'prixUnitaire',
 
     ];

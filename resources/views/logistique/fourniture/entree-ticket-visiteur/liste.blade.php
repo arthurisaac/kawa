@@ -33,7 +33,6 @@
                     <td>Date</td>
                     <td>Fournisseur</td>
                     <td>Prix unitaire</td>
-                    <td>Référence</td>
                     <td>Action</td>
                 </tr>
                 </thead>
@@ -46,7 +45,6 @@
                         <td>{{$entree->date}}</td>
                         <td>{{$entree->fournisseur}}</td>
                         <td>{{$entree->prixUnitaire}}</td>
-                        <td>{{$entree->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>

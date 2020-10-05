@@ -17,7 +17,7 @@ class LogistiqueEntreeTicketController extends Controller
     public function index()
     {
         $fournisseurs = LogistiqueFournisseur::all();
-        return view('/logistique/fourniture/entree-ticket-visiteur.index', compact('fournisseurs'));
+        return view('/logistique.fourniture.entree-ticket-visiteur.index', compact('fournisseurs'));
     }
 
     /**
@@ -28,7 +28,7 @@ class LogistiqueEntreeTicketController extends Controller
     public function liste()
     {
         $entrees = LogistiqueEntreeTicketVisite::all();
-        return view('/logistique/fourniture/entree-ticket-visiteur.liste', compact('entrees'));
+        return view('/logistique.fourniture.entree-ticket-visiteur.liste', compact('entrees'));
     }
 
     /**
@@ -39,7 +39,15 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entree = new LogistiqueEntreeTicketVisite([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'fournisseur' => $request->get('fournisseur'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+        ]);
+        $entree->save();
+        return redirect('/logistique-entree-ticket')->with('success', 'Entrée ticket visiteur enregistrée');
     }
 
     /**
@@ -61,7 +69,9 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $entree = LogistiqueEntreeTicketVisite::find($id);
+        $fournisseurs = LogistiqueFournisseur::all();
+        return view('/logistique.fourniture.entree-ticket-visiteur.edit', compact('fournisseurs', 'entree'));
     }
 
     /**
@@ -73,7 +83,14 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $entree = LogistiqueEntreeTicketVisite::find($id);
+        $entree->debutSerie = $request->get('debutSerie');
+        $entree->finSerie = $request->get('finSerie');
+        $entree->date = $request->get('date');
+        $entree->fournisseur = $request->get('fournisseur');
+        $entree->prixUnitaire = $request->get('prixUnitaire');
+        $entree->save();
+        return redirect('/logistique-entree-ticket-liste')->with('success', 'Entrée ticket visiteur enregistrée');
     }
 
     /**
@@ -84,6 +101,8 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $entree = LogistiqueEntreeTicketVisite::find($id);
+        $entree->delete();
+        return redirect('/logistique-entree-ticket-liste')->with('success', 'Entrée ticket visiteur supprimée');
     }
 }

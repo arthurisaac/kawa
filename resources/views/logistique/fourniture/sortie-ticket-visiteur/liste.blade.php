@@ -15,6 +15,13 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -24,7 +31,7 @@
                     <td>Début série</td>
                     <td>Fin série</td>
                     <td>Date</td>
-                    <td>Service</td>
+                    <td>Centre/Service</td>
                     <td>Prix</td>
                     <td>Action</td>
                 </tr>
@@ -36,16 +43,15 @@
                         <td>{{$sortie->debutSerie}}</td>
                         <td>{{$sortie->finSerie}}</td>
                         <td>{{$sortie->date}}</td>
-                        <td>{{$sortie->service}}</td>
+                        <td>{{$sortie->centre}}</td>
                         <td>{{$sortie->prixUnitaire}}</td>
-                        <td>{{$sortie->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-sortie-maintenance.edit', $sortie->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-sortie-ticket.edit', $sortie->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-sortie-securipack.destroy', $sortie->id)}}" method="post">
+                                    <form action="{{ route('logistique-sortie-ticket.destroy', $sortie->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarburantCarte;
+use App\Models\LogistiqueChargementCarte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -15,7 +16,7 @@ class CarburantChargementTicketController extends Controller
      */
     public function index()
     {
-        $chargements = \App\LogistiqueChargementCarte::all();
+        $chargements = LogistiqueChargementCarte::all();
         $cartes = CarburantCarte::all();
         return view('/logistique/carburant/carb-chargement-ticket.index',
             compact('chargements', 'cartes'));
@@ -23,7 +24,7 @@ class CarburantChargementTicketController extends Controller
 
     public function carbCharg()
     {
-        $chargements = \App\LogistiqueChargementCarte::all();
+        $chargements = LogistiqueChargementCarte::all();
         $cartes = CarburantCarte::all();
         return view('/logistique/carburant/carb-chargement.index',
             compact('chargements', 'cartes'));

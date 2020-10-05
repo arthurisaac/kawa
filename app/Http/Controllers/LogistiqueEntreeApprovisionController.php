@@ -34,12 +34,20 @@ class LogistiqueEntreeApprovisionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $entree = new LogistiqueEntreeApprovision([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'fournisseur' => $request->get('fournisseur'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+        ]);
+        $entree->save();
+        return redirect('/logistique-entree-approvision')->with('success', 'Entrée approvisionnement enregistrée');
     }
 
     /**
@@ -61,19 +69,28 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $entree = LogistiqueEntreeApprovision::find($id);
+        $fournisseurs = LogistiqueFournisseur::all();
+        return view('/logistique/fourniture/entree-approvision.edit', compact('fournisseurs', 'entree'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $entree = LogistiqueEntreeApprovision::find($id);
+        $entree->debutSerie = $request->get('debutSerie');
+        $entree->finSerie = $request->get('finSerie');
+        $entree->date = $request->get('date');
+        $entree->fournisseur = $request->get('fournisseur');
+        $entree->prixUnitaire = $request->get('prixUnitaire');
+        $entree->save();
+        return redirect('/logistique-entree-approvision-liste')->with('success', 'Entrée approvisionnement enregistrée');
     }
 
     /**
@@ -84,6 +101,8 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $entree = LogistiqueEntreeApprovision::find($id);
+        $entree->delete();
+        return redirect('/logistique-entree-approvision-liste')->with('success', 'Entrée approvisionnement supprimée');
     }
 }

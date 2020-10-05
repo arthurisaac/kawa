@@ -37,7 +37,15 @@ class LogistiqueSortieMaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sortie = new LogistiqueSortieMaintenance([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'service' => $request->get('service'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+        ]);
+        $sortie->save();
+        return redirect('/logistique-sortie-maintenance')->with('success', 'Sortie fiche de maintenance enregitrée');
     }
 
     /**
@@ -59,7 +67,8 @@ class LogistiqueSortieMaintenanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sortie = LogistiqueSortieMaintenance::find($id);
+        return view('/logistique/fourniture/sortie-maintenance.edit', compact('sortie'));
     }
 
     /**
@@ -71,7 +80,14 @@ class LogistiqueSortieMaintenanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sortie = LogistiqueSortieMaintenance::find($id);
+        $sortie->debutSerie = $request->get('debutSerie');
+        $sortie->finSerie = $request->get('finSerie');
+        $sortie->date = $request->get('date');
+        $sortie->service = $request->get('service');
+        $sortie->prixUnitaire = $request->get('prixUnitaire');
+        $sortie->save();
+        return redirect('/logistique-sortie-maintenance-liste')->with('success', 'Sortie fiche de maintenance DAB enregitrée');
     }
 
     /**
@@ -82,6 +98,8 @@ class LogistiqueSortieMaintenanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sortie = LogistiqueSortieMaintenance::find($id);
+        $sortie->delete();
+        return redirect('/logistique-sortie-maintenance-liste')->with('success', 'Sortie fiche de maintenance DAB supprimée');
     }
 }

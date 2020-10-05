@@ -38,7 +38,15 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entree = new LogistiqueEntreeMaintenance([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'fournisseur' => $request->get('fournisseur'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+        ]);
+        $entree->save();
+        return redirect('/logistique-entree-maintenance')->with('success', 'Entrée fiche de maintenance DAB enregistrée');
     }
 
     /**
@@ -60,7 +68,9 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $entree = LogistiqueEntreeMaintenance::find($id);
+        $fournisseurs = LogistiqueFournisseur::all();
+        return view('/logistique/fourniture/entree-maintenance.edit', compact('fournisseurs', 'entree'));
     }
 
     /**
@@ -72,7 +82,14 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $entree = LogistiqueEntreeMaintenance::find($id);
+        $entree->debutSerie = $request->get('debutSerie');
+        $entree->finSerie = $request->get('finSerie');
+        $entree->date = $request->get('date');
+        $entree->fournisseur = $request->get('fournisseur');
+        $entree->prixUnitaire = $request->get('prixUnitaire');
+        $entree->save();
+        return redirect('/logistique-entree-maintenance-liste')->with('success', 'Entrée fiche de maintenance DAB enregistrée');
     }
 
     /**
@@ -83,6 +100,8 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $entree = LogistiqueEntreeMaintenance::find($id);
+        $entree->delete();
+        return redirect('/logistique-entree-maintenance-liste')->with('success', 'Entrée fiche de maintenance DAB supprimée');
     }
 }
