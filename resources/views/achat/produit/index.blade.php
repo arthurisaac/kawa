@@ -22,19 +22,21 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('ctv.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('achat-produit.store') }}">
             @csrf
             <div class="row">
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7">
+                        <input type="date" name="date" class="form-control col-sm-7" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Produit</label>
-                        <select name="produit" class="form-control col-sm-7">
+                        <select name="produit" class="form-control col-sm-7" required>
                             <option></option>
-                            <option>1</option>
+                            @foreach($produits as $produit)
+                                <option value="{{$produit->id}}">{{$produit->libelle}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -49,37 +51,37 @@
                                 <div class="col-3"><label>Service</label></div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="RESSOURCES HUMAINES">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="RESSOURCES HUMAINES">
                                         <label class="form-check-label">
                                             RESSOURCES HUMAINES
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="INFORMATIQUE">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="INFORMATIQUE">
                                         <label class="form-check-label">
                                             INFORMATIQUE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="LOGISTIQUE">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="LOGISTIQUE">
                                         <label class="form-check-label">
                                             LOGISTIQUE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="MONETIQUE">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="MONETIQUE">
                                         <label class="form-check-label">
                                             MONETIQUE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="GARAGE">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="GARAGE">
                                         <label class="form-check-label">
                                             GARAGE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeService" value="SSB">
+                                        <input class="form-check-input" type="radio" name="affectationService" value="SSB">
                                         <label class="form-check-label">
                                             SSB
                                         </label>
@@ -90,19 +92,19 @@
                                 <div class="col-3"><label>Direction</label></div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeDirection" value="DIRECTION FINANCIERE ET COMPTABLE">
+                                        <input class="form-check-input" type="radio" name="affectationDirection" value="DIRECTION FINANCIERE ET COMPTABLE">
                                         <label class="form-check-label">
                                             DIRECTION FINANCIERE ET COMPTABLE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeDirection" value="DIRECTION COMMERCIALE ET MARKETING">
+                                        <input class="form-check-input" type="radio" name="affectationDirection" value="DIRECTION COMMERCIALE ET MARKETING">
                                         <label class="form-check-label">
                                             DIRECTION COMMERCIALE ET MARKETING
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeDirection" value="DIRECTION DES OPERATIONS">
+                                        <input class="form-check-input" type="radio" name="affectationDirection" value="DIRECTION DES OPERATIONS">
                                         <label class="form-check-label">
                                             DIRECTION DES OPERATIONS
                                         </label>
@@ -113,13 +115,13 @@
                                 <div class="col-3"><label>Direction générale</label></div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeDirectionGenerale" value="DIRECTION GENERALE ADJOINTE">
+                                        <input class="form-check-input" type="radio" name="affectationDirectionGenerale" value="DIRECTION GENERALE ADJOINTE">
                                         <label class="form-check-label">
                                             DIRECTION GENERALE ADJOINTE
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="siegeDirectionGenerale" value="ASISTANTE EXECUTIVE">
+                                        <input class="form-check-input" type="radio" name="affectationDirectionGenerale" value="ASISTANTE EXECUTIVE">
                                         <label class="form-check-label">
                                             ASISTANTE EXECUTIVE
                                         </label>
@@ -156,23 +158,23 @@
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-5">Quantité</label>
-                        <input type="number" class="form-control col-sm-7" name="quantite">
+                        <input type="number" class="form-control col-sm-7" min="0" name="quantite" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Montant</label>
-                        <input type="number" class="form-control col-sm-7" name="montant">
+                        <input type="number" class="form-control col-sm-7" min="0" name="montant" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Montant TTC</label>
-                        <input type="number" class="form-control col-sm-7" name="montantTTC">
+                        <input type="number" class="form-control col-sm-7" min="0" name="montantTTC" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Montant HT</label>
-                        <input type="number" class="form-control col-sm-7" name="montantTTC">
+                        <input type="number" class="form-control col-sm-7" min="0" name="montantHT" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Suivi budgétaire</label>
-                        <input type="number" class="form-control col-sm-7" name="suiviBudgetaire">
+                        <input type="number" class="form-control col-sm-7" min="0" name="suiviBudgetaire" required>
                     </div>
                 </div>
             </div>
@@ -193,7 +195,7 @@
         $(document).ready( function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
+                // $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter( region => {

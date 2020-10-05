@@ -200,6 +200,12 @@ Route::get('achat-fournisseur-liste', [\App\Http\Controllers\AchatFournisseurCon
 Route::resource('achat-produit', 'AchatProduitController');
 Route::get('achat-produit-liste', [\App\Http\Controllers\AchatProduitController::class, 'liste']);
 
+
+Route::get('achat-recherche-par-produit', [\App\Http\Controllers\AchatProduitController::class, 'rechercheParProduit']);
+Route::get('achat-recherche-par-budget', [\App\Http\Controllers\AchatProduitController::class, 'rechercheParBudget']);
+Route::get('achat-recherche-par-centre', [\App\Http\Controllers\AchatProduitController::class, 'rechercheParCentre']);
+Route::get('achat-recherche-par-service', [\App\Http\Controllers\AchatProduitController::class, 'rechercheParService']);
+
 /*
  * COMPTABILITE
  */

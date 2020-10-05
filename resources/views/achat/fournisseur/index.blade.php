@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('ctv.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('achat-fournisseur.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
@@ -47,10 +47,6 @@
                         <input type="text" name="prenom" class="form-control col-sm-7" required>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Prénom</label>
-                        <input type="text" name="prenom" class="form-control col-sm-7" required>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-5">Adresse</label>
                         <input type="text" name="adresse" class="form-control col-sm-7">
                     </div>
@@ -60,7 +56,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Téléphone</label>
-                        <input type="tel" name="telepgone" class="form-control col-sm-7" required>
+                        <input type="tel" name="telephone" class="form-control col-sm-7" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Fax</label>

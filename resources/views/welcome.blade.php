@@ -1829,19 +1829,19 @@
                                     <li><span></span><span>Rechercher</span>
                                         <ul>
                                             <li><span></span><a
-                                                    href="javascript:popupwnd('./achat/recherche-par-service.html','no','no','no','yes','yes','no','','','800','500')"
+                                                    href="javascript:popupwnd('achat-recherche-par-service','no','no','no','yes','yes','no','','','800','500')"
                                                     target="_self" title="Par service">Par&nbsp;service</a>
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:popupwnd('./achat/recherche-par-centre.html','no','no','no','yes','yes','no','','','800','500')"
+                                                    href="javascript:popupwnd('achat-recherche-par-centre','no','no','no','yes','yes','no','','','800','500')"
                                                     target="_self" title="Par centre">Par&nbsp;centre</a>
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:popupwnd('./achat/recherche-par-budget.html','no','no','no','yes','yes','no','','','800','500')"
+                                                    href="javascript:popupwnd('achat-recherche-par-budget','no','no','no','yes','yes','no','','','800','500')"
                                                     target="_self" title="Par budget">Par&nbsp;budget</a>
                                             </li>
                                             <li><span></span><a
-                                                    href="javascript:popupwnd('./achat/rechercher-par-produit.html','no','no','no','yes','yes','no','','','800','500')"
+                                                    href="javascript:popupwnd('achat-recherche-par-produit','no','no','no','yes','yes','no','','','800','500')"
                                                     target="_self" title="Par produit">Par&nbsp;produit</a>
                                             </li>
                                         </ul>
