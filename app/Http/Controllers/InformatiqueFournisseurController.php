@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\InformatiqueFournisseur;
+use App\Models\InformatiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -32,12 +32,21 @@ class InformatiqueFournisseurController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $fournisseur = new InformatiqueFournisseur([
+            'libelleFournisseur' => $request->get('libelleFournisseur'),
+            'specialite' => $request->get('specialite'),
+            'localisation' => $request->get('localisation'),
+            'nationalite' => $request->get('nationalite'),
+            'email' => $request->get('email'),
+            'contact' => $request->get('contact'),
+        ]);
+        $fournisseur->save();
+        return redirect('/informatique-fournisseur')->with('success','Enregistrement effectué!');
     }
 
     /**
@@ -59,19 +68,28 @@ class InformatiqueFournisseurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fournisseur = InformatiqueFournisseur::find($id);
+        return view('informatique.fournisseur.edit', compact('fournisseur'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $personnel = InformatiqueFournisseur::find($id);
+        $personnel->libelleFournisseur = $request->get('libelleFournisseur');
+        $personnel->specialite = $request->get('specialite');
+        $personnel->localisation = $request->get('localisation');
+        $personnel->nationalite = $request->get('nationalite');
+        $personnel->email = $request->get('email');
+        $personnel->contact = $request->get('contact');
+        $personnel->save();
+        return redirect('/informatique-fournisseur-liste')->with('success','Enregistrement effectué!');
     }
 
     /**
@@ -82,6 +100,8 @@ class InformatiqueFournisseurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fournisseur = InformatiqueFournisseur::find($id);
+        $fournisseur->delete();
+        return redirect('/informatique-fournisseur-liste')->with('success','Enregistrement supprimé!');
     }
 }

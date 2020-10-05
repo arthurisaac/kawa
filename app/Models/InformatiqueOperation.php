@@ -15,7 +15,7 @@ class InformatiqueOperation extends Model
         'rapportMateriel',
         'dateDebut',
         'dateFin',
-        'opérationEffectuee',
+        'operationEffectuee',
 
     ];
 }

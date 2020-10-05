@@ -22,25 +22,29 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('informatique-mission.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('informatique-fournisseur.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-md-5">Libelle fournisseur</label>
-                        <input class="form-control col-md-7" type="text" required/>
+                        <input class="form-control col-md-7" type="text" name="libelleFournisseur" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Spécialité</label>
-                        <input class="form-control col-md-7" type="text" required/>
+                        <input class="form-control col-md-7" type="text" name="specialite" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Localisation</label>
                         <input class="form-control col-md-7" type="text" name="localisation" required/>
                     </div>
                     <div class="form-group row">
+                        <label class="col-md-5">Nationalité</label>
+                        <input class="form-control col-md-7" type="text" name="nationalite" required/>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-md-5">Email</label>
-                        <input class="form-control col-md-7" type="email" name="mail" required/>
+                        <input class="form-control col-md-7" type="email" name="email" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Contact</label>

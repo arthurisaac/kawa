@@ -24,7 +24,7 @@ class CreateInformatiqueOperations extends Migration
             $table->text('rapportMateriel')->nullable();
             $table->date('dateDebut')->nullable();
             $table->date('dateFin')->nullable();
-            $table->string('opérationEffectuee')->nullable();
+            $table->string('operationEffectuee')->nullable();
         });
     }
 

@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('informatique-mission.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('informatique-maintenance.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
@@ -42,42 +42,42 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Service</label>
-                        <input class="form-control col-md-7" type="text" required/>
+                        <input class="form-control col-md-7" type="text" name="service" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Date</label>
-                        <input class="form-control col-md-7" type="date" required/>
+                        <input class="form-control col-md-7" type="date" name="date" required/>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-5">Matériel défecteux</label>
-                        <input class="form-control col-md-7" type="text" required/>
+                        <label class="col-md-5">Matériels défectueux</label>
+                        <input class="form-control col-md-7" type="text" name="materielDefectueux" required/>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-5">Rapport sur le matériel</label>
-                        <textarea class="form-control col-md-7" required></textarea>
+                        <textarea class="form-control col-md-7" name="rapportMateriel" required></textarea>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Date début intervention</label>
-                        <input class="form-control col-md-7" type="date" required>
+                        <input class="form-control col-md-7" type="date" name="dateDebut" required>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-5">Date fin intervention</label>
-                        <input class="form-control col-md-7" type="date" required>
+                        <input class="form-control col-md-7" type="date" name="dateFin" required>
                     </div>
 
                     <div lass="form-group">
                         <label>Opération effectuée après rapport</label>
 
                         <div class="form-check offset-5">
-                            <input class="form-check-input" type="radio" value="Maintenance effectuée et réparée">
+                            <input class="form-check-input" type="radio" name="operationEffectuee" value="Maintenance effectuée et réparée">
                             <label class="form-check-label">
                                 Maintenance effectuée et réparée
                             </label>
                         </div>
                         <div class="form-check offset-5">
-                            <input class="form-check-input" type="radio"value="Nouveau matériel">
+                            <input class="form-check-input" name="operationEffectuee" type="radio" value="Nouveau matériel">
                             <label class="form-check-label">
                                 Nouveau matériel
                             </label>
@@ -101,7 +101,7 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                // $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {

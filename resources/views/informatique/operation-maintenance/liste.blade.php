@@ -31,28 +31,31 @@
                     <td>Cenntre</td>
                     <td>Centre régional</td>
                     <td>Service</td>
-                    <td>Nombre de jours</td>
-                    <td>Objet de la mission</td>
-                    <td>Intervention effectuée</td>
-                    <td>Rapport sur la mission</td>
+                    <td>Date</td>
+                    <td>Matériel défectueux</td>
+                    <td>Rapport matériel</td>
+                    <td>Date début</td>
+                    <td>Date fin</td>
+                    <td>Opération effectuée</td>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($maintenances as $maintenance)
+                @foreach ($informatiques as $informatique)
                     <tr>
-                        <td>{{$maintenance->id}}</td>
-                        <td>{{$maintenance->centre}}</td>
-                        <td>{{$maintenance->centreRegional}}</td>
-                        <td>{{$maintenance->service}}</td>
-                        <td>{{$maintenance->date}}</td>
-                        <td>{{$maintenance->materielDefectueux}}</td>
-                        <td>{{$maintenance->rapportMateriel}}</td>
-                        <td>{{$maintenance->dateDebut}}</td>
-                        <td>{{$maintenance->dateFin}}</td>
-                        <td>{{$maintenance->opérationEffectuee}}</td>
+                        <td>{{$informatique->id}}</td>
+                        <td>{{$informatique->centre}}</td>
+                        <td>{{$informatique->centreRegional}}</td>
+                        <td>{{$informatique->service}}</td>
+                        <td>{{$informatique->date}}</td>
+                        <td>{{$informatique->materielDefectueux}}</td>
+                        <td>{{$informatique->rapportMateriel}}</td>
+                        <td>{{$informatique->dateDebut}}</td>
+                        <td>{{$informatique->dateFin}}</td>
+                        <td>{{$informatique->operationEffectuee}}</td>
                         <td>
-                            <a href="{{ route('informatique-maintenance.edit',$maintenance->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                            <form action="{{ route('informatique-maintenance.destroy', $maintenance->id)}}" method="post">
+                            <a href="{{ route('informatique-maintenance.edit',$informatique->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                            <form action="{{ route('informatique-maintenance.destroy', $informatique->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
