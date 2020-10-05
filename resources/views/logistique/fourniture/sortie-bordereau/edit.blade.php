@@ -15,10 +15,39 @@
     <br/>
     @endif
 
-    <form method="post" action="{{ route('carte-carburant.update', $carte->id) }}">
+    <form method="post" action="{{ route('logistique-sortie-bordereau.update', $sortie->id) }}">
         @method('PATCH')
         @csrf
 
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label class="col-sm-5">Debut série</label>
+                    <input type="text" class="form-control col-sm-7" name="debutSerie"  value="{{$sortie->debutSerie}}" required />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5">Fin série</label>
+                    <input type="text" class="form-control col-sm-7" name="finSerie" value="{{$sortie->finSerie}}"  required />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5">Date</label>
+                    <input type="date" class="form-control col-sm-7" name="date"  value="{{$sortie->date}}" required />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5">Service</label>
+                    <input type="text" name="service" class="form-control col-sm-7" value="{{$sortie->service}}"  name="service" required />
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5">Prix</label>
+                    <input type="number" class="form-control col-sm-7" name="prix" value="{{$sortie->prix}}"  required />
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
+            </div>
+            <div class="col"></div>
+        </div>
     </form>
 </div>
 @endsection

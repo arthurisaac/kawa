@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RegulationConfirmationClient;
+use App\Models\RegulationConfirmationClient;
 use Illuminate\Http\Request;
 
 class RegulationConfirmationController extends Controller

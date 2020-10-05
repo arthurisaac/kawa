@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SsbCommercial;
+use App\Models\SsbCommercial;
 use Illuminate\Http\Request;
 
 class SsbCommercialController extends Controller

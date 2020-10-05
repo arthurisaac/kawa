@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ArriveeTournee;
-use App\Convoyeur;
-use App\DepartTournee;
-use App\SiteArriveeTournee;
+use App\Models\ArriveeTournee;
+use App\Models\Convoyeur;
+use App\Models\DepartTournee;
+use App\Models\SiteArriveeTournee;
 use Illuminate\Http\Request;
 
 class ArriveeTourneeController extends Controller

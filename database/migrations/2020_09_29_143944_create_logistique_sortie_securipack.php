@@ -16,12 +16,12 @@ class CreateLogistiqueSortieSecuripack extends Migration
         Schema::create('logistique_sortie_securipack', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('debutSerie');
-            $table->string('finSerie');
-            $table->date('date');
-            $table->string('centre');
-            $table->integer('prixUnitaire');
-            $table->string('reference');
+            $table->string('debutSerie')->nullable();
+            $table->string('finSerie')->nullable();
+            $table->date('date')->nullable();
+            $table->string('centre')->nullable();
+            $table->integer('prixUnitaire')->nullable();
+            $table->string('reference')->nullable();
         });
     }
 

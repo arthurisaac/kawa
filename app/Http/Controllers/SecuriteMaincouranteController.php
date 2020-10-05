@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\ArriveeCentre;
-use App\ArriveeSite;
-use App\Centre;
-use App\Centre_regional;
-use App\DepartCentre;
-use App\DepartSite;
-use App\DepartSiteColis;
-use App\DepartTournee;
-use App\TourneeCentre;
-use App\Vehicule;
+use App\Models\ArriveeCentre;
+use App\Models\ArriveeSite;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\DepartCentre;
+use App\Models\DepartSite;
+use App\Models\DepartSiteColis;
+use App\Models\DepartTournee;
+use App\Models\TourneeCentre;
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;

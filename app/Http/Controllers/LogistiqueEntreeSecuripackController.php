@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueEntreeBordereaux;
-use App\LogistiqueFournisseur;
-use App\LogistiqueEntreeSecuripack;
+use App\Models\LogistiqueFournisseur;
+use App\Models\LogistiqueEntreeSecuripack;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -18,7 +17,7 @@ class LogistiqueEntreeSecuripackController extends Controller
     public function index()
     {
         $fournisseurs = LogistiqueFournisseur::all();
-        return view('/logistique/fourniture/entree-securipack.index', compact('fournisseurs'));
+        return view('logistique.fourniture.entree-securipack.index', compact('fournisseurs'));
     }
 
     /**
@@ -28,13 +27,13 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function liste()
     {
-        $entreeBordereaux =  LogistiqueEntreeSecuripack::all();
-        return view('/logistique/fourniture/entree-securipack.liste', compact('entreeBordereaux'));
+        $entrees =  LogistiqueEntreeSecuripack::all();
+        return view('/logistique/fourniture/entree-securipack.liste', compact('entrees'));
     }
 
     public function rechercher()
     {
-        $entreeBordereaux =  LogistiqueEntreeBordereaux::all();
+        $entreeBordereaux =  LogistiqueEntreeSecuripack::all();
         return view('/logistique/fourniture/entree-securipack.liste', compact('entreeBordereaux'));
     }
 
@@ -46,7 +45,16 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entree = new LogistiqueEntreeSecuripack([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'fournisseur' => $request->get('fournisseur'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+            'reference' => $request->get('reference'),
+        ]);
+        $entree->save();
+        return redirect('/logistique-entree-securipack')->with('success', 'Entrée enregistrée!');
     }
 
     /**
@@ -68,7 +76,9 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function edit($id)
     {
-        //
+        $entree = LogistiqueEntreeSecuripack::find($id);
+        $fournisseurs = LogistiqueFournisseur::all();
+        return view('/logistique/fourniture/entree-securipack.edit', compact('fournisseurs', 'entree'));
     }
 
     /**
@@ -80,7 +90,15 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $entree = LogistiqueEntreeSecuripack::find($id);
+        $entree->debutSerie = $request->get('debutSerie');;
+        $entree->finSerie = $request->get('finSerie');
+        $entree->date = $request->get('date');
+        $entree->fournisseur = $request->get('fournisseur');
+        $entree->prixUnitaire = $request->get('prixUnitaire');
+        $entree->reference = $request->get('reference');
+        $entree->save();
+        return redirect('/logistique-entree-securipack-liste')->with('success', 'Entrée enregistrée!');
     }
 
     /**
@@ -91,6 +109,8 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $entree = LogistiqueEntreeSecuripack::find($id);
+        $entree->delete();
+        return redirect('/logistique-entree-securipack-liste')->with('success', 'Entrée supprimée!');
     }
 }

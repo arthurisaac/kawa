@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\Vehicule;
-use App\VidangePatente;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Vehicule;
+use App\Models\VidangePatente;
 use Illuminate\Http\Request;
 
 class VidangePatenteController extends Controller

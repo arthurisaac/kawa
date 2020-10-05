@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueFournisseur;
-use App\LogistiqueEntreeApprovision;
+use App\Models\LogistiqueFournisseur;
+use App\Models\LogistiqueEntreeApprovision;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

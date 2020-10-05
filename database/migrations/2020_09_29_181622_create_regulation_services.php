@@ -16,9 +16,9 @@ class CreateRegulationServices extends Migration
         Schema::create('regulation_services', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
-            $table->string('centre');
-            $table->string('centreRegional');
+            $table->date('date')->nullable();
+            $table->string('centre')->nullable();
+            $table->string('centreRegional')->nullable();
             $table->foreignId('chargeeRegulation')->references('id')->on('personnels')->onDelete('cascade');
             $table->time('chargeeRegulationHPS')->nullable();
             $table->time('chargeeRegulationHFS')->nullable();

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\CaisseSortieColis;
-use App\CaisseSortieColisItem;
-use App\Centre;
-use App\Centre_regional;
-use App\Personnel;
+use App\Models\CaisseSortieColis;
+use App\Models\CaisseSortieColisItem;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;

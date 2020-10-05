@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\Vehicule;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\VidangeGenerale;
+use App\Models\VidangeGenerale;
 
 class VidangeGeneraleController extends Controller
 {

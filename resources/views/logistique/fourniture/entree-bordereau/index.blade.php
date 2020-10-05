@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('logistique-entree-bordereau.store') }}">
         @csrf
 
@@ -22,19 +28,19 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-5">Debut série</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="text" class="form-control col-sm-7" name="debutSerie" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Fin série</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="text" class="form-control col-sm-7" name="finSerie" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Date</label>
-                    <input type="text" class="form-control col-sm-7" required />
+                    <input type="date" class="form-control col-sm-7" name="date" required />
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Fournisseurs</label>
-                    <select class="form-control col-sm-7" required>
+                    <select class="form-control col-sm-7" name="fournisseur" required>
                         <option></option>
                         @foreach($fournisseurs as $fournisseur)
                             <option value="{{$fournisseur->id}}">{{$fournisseur->nom}} {{$fournisseur->prenom}}</option>
@@ -43,7 +49,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Prix unitaire</label>
-                    <input type="number" class="form-control col-sm-7" required />
+                    <input type="number" class="form-control col-sm-7" name="prixUnitaire" required />
                 </div>
             </div>
             <div class="col-2">

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\ComptabiliteFacture;
-use App\ComptabiliteReglementFacture;
+use App\Models\ComptabiliteFacture;
+use App\Models\ComptabiliteReglementFacture;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueSortieMaintenance;
+use App\Models\LogistiqueSortieMaintenance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

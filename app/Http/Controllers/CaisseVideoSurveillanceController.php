@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CaisseServiceOperatrice;
-use App\CaisseVideoSurveillance;
+use App\Models\CaisseServiceOperatrice;
+use App\Models\CaisseVideoSurveillance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

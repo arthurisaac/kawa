@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Virgilometrie;
+use App\Models\Virgilometrie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

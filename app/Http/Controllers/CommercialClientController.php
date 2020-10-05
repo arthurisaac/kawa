@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Commercial_client;
+use App\Models\Commercial_client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

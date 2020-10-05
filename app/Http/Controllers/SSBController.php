@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Ssb;
+use App\Models\Centre;
+use App\Models\Ssb;
 use Illuminate\Http\Request;
 
 class SSBController extends Controller

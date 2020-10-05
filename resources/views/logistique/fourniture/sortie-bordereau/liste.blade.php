@@ -39,7 +39,7 @@
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-sortie-bordereau.store.edit', $sortieBordereau->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-sortie-bordereau.edit', $sortieBordereau->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
                                     <form action="{{ route('logistique-sortie-bordereau.destroy', $sortieBordereau->id)}}" method="post">

@@ -15,6 +15,13 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="liste">

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueEntreeStock;
-use App\LogistiqueFournisseur;
-use App\LogistiqueProduit;
+use App\Models\LogistiqueEntreeStock;
+use App\Models\LogistiqueFournisseur;
+use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantCarte;
-use App\Models\LogistiqueChargementCarte;
+use App\Models\CarburantCarte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

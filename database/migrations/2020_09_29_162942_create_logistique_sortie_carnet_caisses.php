@@ -16,11 +16,11 @@ class CreateLogistiqueSortieCarnetCaisses extends Migration
         Schema::create('logistique_sortie_carnet_caisses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('debutSerie');
-            $table->string('finSerie');
-            $table->date('date');
-            $table->string('service');
-            $table->integer('prixUnitaire');
+            $table->string('debutSerie')->nullable();
+            $table->string('finSerie')->nullable();
+            $table->date('date')->nullable();
+            $table->string('service')->nullable();
+            $table->integer('prixUnitaire')->nullable();
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Commercial_client;
-use App\Commercial_site;
-use App\Conteneur;
-use App\ComptabiliteDegradation;
+use App\Models\Commercial_client;
+use App\Models\Commercial_site;
+use App\Models\Conteneur;
+use App\Models\ComptabiliteDegradation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\RegulationScelle;
-use App\RegulationSecuripack;
+use App\Models\RegulationScelle;
+use App\Models\RegulationSecuripack;
 use Illuminate\Http\Request;
 
 class RegulationEtatController extends Controller

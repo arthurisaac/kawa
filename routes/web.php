@@ -140,6 +140,8 @@ Route::get('logistique-produit-liste', [\App\Http\Controllers\LogistiqueProduitC
 Route::resource('logistique-entree-stock', 'LogistiqueEntreeStockController');
 Route::get('logistique-entree-stock-liste', [\App\Http\Controllers\LogistiqueEntreeStockController::class, 'liste']);
 
+Route::get('logistique-etat-bordereau-utilise', [\App\Http\Controllers\LogistiqueEtatBordereauController::class, 'index']);
+
 Route::resource('logistique-sortie-stock', 'LogistiqueSortieStockController');
 Route::get('logistique-sortie-stock-liste', [\App\Http\Controllers\LogistiqueSortieStockController::class, 'liste']);
 Route::get('logistique-etat-stock', [\App\Http\Controllers\LogistiqueEtatStockController::class, 'index']);

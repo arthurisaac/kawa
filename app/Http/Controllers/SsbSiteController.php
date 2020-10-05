@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\Commercial_client;
-use App\Commercial_site;
-use App\SsbSite;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Commercial_client;
+use App\Models\Commercial_site;
+use App\Models\SsbSite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\CaisseBilletage;
-use App\CaisseCtv;
-use App\CaisseServiceOperatrice;
-use App\Centre;
-use App\Centre_regional;
-use App\Commercial_client;
-use App\Commercial_site;
-use App\DepartTournee;
-use App\Personnel;
+use App\Models\CaisseBilletage;
+use App\Models\CaisseCtv;
+use App\Models\CaisseServiceOperatrice;
+use App\CModels\entre;
+use App\Models\Centre_regional;
+use App\Models\Commercial_client;
+use App\Models\Commercial_site;
+use App\Models\DepartTournee;
+use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;

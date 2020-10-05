@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\RegulationScelle;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\RegulationScelle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

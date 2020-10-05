@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueSortieCommande;
+use App\Models\LogistiqueSortieCommande;
 use Illuminate\Http\Request;
 
 class LogistiqueSortieBonController extends Controller

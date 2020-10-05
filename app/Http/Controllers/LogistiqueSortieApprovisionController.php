@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueSortieApprovision;
+use App\Models\LogistiqueSortieApprovision;
 use Illuminate\Http\Request;
 
 class LogistiqueSortieApprovisionController extends Controller

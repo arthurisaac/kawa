@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ComptabiliteEntreeCaisse;
+use App\Models\ComptabiliteEntreeCaisse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

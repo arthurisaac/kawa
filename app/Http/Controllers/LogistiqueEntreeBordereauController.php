@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueEntreeBordereaux;
-use App\LogistiqueFournisseur;
+use App\Models\LogistiqueEntreeBordereaux;
+use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -27,19 +27,28 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function liste()
     {
-        $entreeBordereaux = LogistiqueEntreeBordereaux::all();
-        return view('/logistique/fourniture/entree-bordereau.liste', compact('entreeBordereaux'));
+        $entrees = LogistiqueEntreeBordereaux::all();
+        return view('/logistique/fourniture/entree-bordereau.liste', compact('entrees'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $data = new LogistiqueEntreeBordereaux([
+            'debutSerie' => $request->get('debutSerie'),
+            'finSerie' => $request->get('finSerie'),
+            'date' => $request->get('date'),
+            'fournisseur' => $request->get('fournisseur'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+            'reference' => $request->get('reference'),
+        ]);
+        $data->save();
+        return redirect('/logistique-entree-bordereau')->with('success', 'Entrée bordereau enregistré!');
     }
 
     /**
@@ -61,19 +70,31 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fournisseurs = LogistiqueFournisseur::all();
+        $entree = LogistiqueEntreeBordereaux::find($id);
+        return view('/logistique/fourniture/entree-bordereau.edit',
+            compact('fournisseurs', 'entree'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = LogistiqueEntreeBordereaux::find($id);
+        $data->debutSerie = $request->get('debutSerie');
+        $data->finSerie = $request->get('finSerie');
+        $data->date = $request->get('date');
+        $data->fournisseur = $request->get('fournisseur');
+        $data->prixUnitaire = $request->get('prixUnitaire');
+        $data->reference = $request->get('reference');
+
+        $data->save();
+        return redirect('/logistique-entree-bordereau-liste')->with('success', 'Entrée bordereau enregistrée!');
     }
 
     /**
@@ -84,6 +105,9 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LogistiqueEntreeBordereaux::find($id);
+        $data->delete();
+        return redirect('/logistique-entree-bordereau-liste')->with('success', 'Entrée bordereau supprimée!');
+
     }
 }

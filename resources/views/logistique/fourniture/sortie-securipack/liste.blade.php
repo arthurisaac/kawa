@@ -24,28 +24,29 @@
                     <td>Début série</td>
                     <td>Fin série</td>
                     <td>Date</td>
-                    <td>Service</td>
+                    <td>Centre</td>
                     <td>Prix</td>
+                    <td>Référence</td>
                     <td>Action</td>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($sortieSecuripacks as $sortieSecuripack)
+                @foreach ($sorties as $sortie)
                     <tr>
-                        <td>{{$sortieSecuripack->id}}</td>
-                        <td>{{$sortieSecuripack->debutSerie}}</td>
-                        <td>{{$sortieSecuripack->finSerie}}</td>
-                        <td>{{$sortieSecuripack->date}}</td>
-                        <td>{{$sortieSecuripack->service}}</td>
-                        <td>{{$sortieSecuripack->prixUnitaire}}</td>
-                        <td>{{$sortieSecuripack->reference}}</td>
+                        <td>{{$sortie->id}}</td>
+                        <td>{{$sortie->debutSerie}}</td>
+                        <td>{{$sortie->finSerie}}</td>
+                        <td>{{$sortie->date}}</td>
+                        <td>{{$sortie->centre}}</td>
+                        <td>{{$sortie->prixUnitaire}}</td>
+                        <td>{{$sortie->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-sortie-securipack.edit', $sortieSecuripack->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-sortie-securipack.edit', $sortie->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-sortie-securipack.destroy', $sortieSecuripack->id)}}" method="post">
+                                    <form action="{{ route('logistique-sortie-securipack.destroy', $sortie->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

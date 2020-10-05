@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\SecuriteMateriel;
-use App\SecuriteMaterielBeneficiaire;
-use App\SecuriteMaterielRemettant;
+use App\Models\SecuriteMateriel;
+use App\Models\SecuriteMaterielBeneficiaire;
+use App\Models\SecuriteMaterielRemettant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

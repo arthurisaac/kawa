@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RegulationFacturation;
+use App\Models\RegulationFacturation;
 use Illuminate\Http\Request;
 
 class RegulationFacturationController extends Controller

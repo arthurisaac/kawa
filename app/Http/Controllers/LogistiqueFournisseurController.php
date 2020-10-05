@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\LogistiqueFournisseur;
-use App\LogistiqueProduit;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\LogistiqueFournisseur;
+use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;

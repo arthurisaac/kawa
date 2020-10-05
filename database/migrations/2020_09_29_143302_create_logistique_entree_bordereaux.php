@@ -16,12 +16,12 @@ class CreateLogistiqueEntreeBordereaux extends Migration
         Schema::create('logistique_entree_bordereaux', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('debutSerie');
-            $table->string('finSerie');
-            $table->date('date');
+            $table->string('debutSerie')->nullable();
+            $table->string('finSerie')->nullable();
+            $table->date('date')->nullable();
             $table->foreignId('fournisseur')->references('id')->on('logistique_fournisseurs')->onDelete('cascade');
-            $table->double('prixUnitaire');
-            $table->string('reference');
+            $table->double('prixUnitaire')->nullable();
+            $table->string('reference')->nullable();
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\Vehicule;
-use App\VidangeTransport;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Vehicule;
+use App\Models\VidangeTransport;
 use Illuminate\Http\Request;
 
 class VidangeTransportController extends Controller

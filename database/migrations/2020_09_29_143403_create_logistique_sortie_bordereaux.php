@@ -16,11 +16,11 @@ class CreateLogistiqueSortieBordereaux extends Migration
         Schema::create('logistique_sortie_bordereaux', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('debutSerie');
-            $table->string('finSerie');
-            $table->date('date');
-            $table->string('service');
-            $table->double('prix');
+            $table->string('debutSerie')->nullable();
+            $table->string('finSerie')->nullable();
+            $table->date('date')->nullable();
+            $table->string('service')->nullable();
+            $table->double('prix')->nullable();
         });
     }
 

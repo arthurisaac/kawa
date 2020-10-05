@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueSortieTicketVisite;
+use App\Models\LogistiqueSortieTicketVisite;
 use Illuminate\Http\Request;
 
 class LogistiqueSortieTicketController extends Controller

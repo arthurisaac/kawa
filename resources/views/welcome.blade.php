@@ -1206,7 +1206,7 @@
                                             <li><span></span><span>Bordereau&nbsp;PCT</span>
                                                 <ul>
                                                     <li><span></span><a
-                                                            href="javascript:popupwnd('./moyengenerau/fournitures/bordereaux/etat-borderau-utilise.html',{})"
+                                                            href="javascript:popupwnd('logistique-etat-bordereau-utilise',{})"
                                                             target="_self">Etat&nbsp;bordereau&nbsp;utilis&#233;</a>
                                                     </li>
                                                     <li><span></span><a
@@ -1671,7 +1671,7 @@
                         </ul>
                     </div>
                     <script>
-                        var cmMenuBar10 =
+                        const cmMenuBar10 =
                             {
                                 mainFolderLeft: '',
                                 mainFolderRight: '',
@@ -1687,11 +1687,11 @@
                                 offsetHMainAdjust: [0, 0],
                                 offsetSubAdjust: [0, 0]
                             };
-                        var cmMenuBar10HSplit = [_cmNoClick, '<td class="MenuBar10MenuSplitLeft"><div></div></td>' +
+                        const cmMenuBar10HSplit = [_cmNoClick, '<td class="MenuBar10MenuSplitLeft"><div></div></td>' +
                         '<td class="MenuBar10MenuSplitText"><div></div></td>' +
                         '<td class="MenuBar10MenuSplitRight"><div></div></td>'];
-                        var cmMenuBar10MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar10HorizontalSplit">|</td></tr></table></div>'];
-                        var cmMenuBar10MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar10MainSplitText"><div></div></td>'];
+                        const cmMenuBar10MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar10HorizontalSplit">|</td></tr></table></div>'];
+                        const cmMenuBar10MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar10MainSplitText"><div></div></td>'];
                         document.addEventListener('DOMContentLoaded', function (event) {
                             cmDrawFromText('MenuBar10', 'hbr', cmMenuBar10, 'MenuBar10');
                         });
@@ -1856,7 +1856,7 @@
                         </ul>
                     </div>
                     <script>
-                        var cmMenuBar9 =
+                        const cmMenuBar9 =
                             {
                                 mainFolderLeft: '',
                                 mainFolderRight: '',
@@ -1872,11 +1872,11 @@
                                 offsetHMainAdjust: [0, 0],
                                 offsetSubAdjust: [0, 0]
                             };
-                        var cmMenuBar9HSplit = [_cmNoClick, '<td class="MenuBar9MenuSplitLeft"><div></div></td>' +
+                        const cmMenuBar9HSplit = [_cmNoClick, '<td class="MenuBar9MenuSplitLeft"><div></div></td>' +
                         '<td class="MenuBar9MenuSplitText"><div></div></td>' +
                         '<td class="MenuBar9MenuSplitRight"><div></div></td>'];
-                        var cmMenuBar9MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar9HorizontalSplit">|</td></tr></table></div>'];
-                        var cmMenuBar9MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar9MainSplitText"><div></div></td>'];
+                        const cmMenuBar9MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar9HorizontalSplit">|</td></tr></table></div>'];
+                        const cmMenuBar9MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar9MainSplitText"><div></div></td>'];
                         document.addEventListener('DOMContentLoaded', function (event) {
                             cmDrawFromText('MenuBar9', 'hbr', cmMenuBar9, 'MenuBar9');
                         });

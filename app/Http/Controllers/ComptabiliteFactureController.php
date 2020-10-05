@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Commercial_client;
-use App\ComptabiliteFacture;
+use App\Models\Commercial_client;
+use App\Models\ComptabiliteFacture;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;

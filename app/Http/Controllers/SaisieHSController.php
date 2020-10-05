@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\HeureSupp;
-use App\Personnel;
+use App\Models\HeureSupp;
+use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

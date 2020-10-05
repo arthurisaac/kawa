@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantCarte;
-use App\Vehicule;
+use App\Models\CarburantCarte;
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -23,7 +23,6 @@ class CarburantCarteController extends Controller
 
     public function liste()
     {
-        $vehicules = Vehicule::all();
         $cartes = CarburantCarte::all();
         return view('/logistique/carburant/carte-carburant.liste',
             compact('cartes'));

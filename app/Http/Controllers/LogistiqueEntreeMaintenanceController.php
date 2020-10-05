@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\LogistiqueEntreeMaintenance;
-use App\LogistiqueFournisseur;
+use App\Models\LogistiqueEntreeMaintenance;
+use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 
 class LogistiqueEntreeMaintenanceController extends Controller

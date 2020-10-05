@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ComptabiliteSortieCaisse;
+use App\Models\ComptabiliteSortieCaisse;
 use Illuminate\Http\Request;
 
 class ComptabiliteSortieCaisseController extends Controller

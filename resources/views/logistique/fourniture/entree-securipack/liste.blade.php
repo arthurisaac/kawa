@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="burval-container">
-    <div><h2 class="heading">Entrée bordereau</h2></div>
+    <div><h2 class="heading">Entrée sécurpack</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -13,6 +13,12 @@
         </ul>
     </div>
     <br/>
+    @endif
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
     @endif
 
     <div class="row">
@@ -31,22 +37,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($entreeBordereaux as $entreeBordereau)
+                @foreach ($entrees as $entree)
                     <tr>
-                        <td>{{$entreeBordereau->id}}</td>
-                        <td>{{$entreeBordereau->debutSerie}}</td>
-                        <td>{{$entreeBordereau->finSerie}}</td>
-                        <td>{{$entreeBordereau->date}}</td>
-                        <td>{{$entreeBordereau->fournisseur}}</td>
-                        <td>{{$entreeBordereau->prixUnitaire}}</td>
-                        <td>{{$entreeBordereau->reference}}</td>
+                        <td>{{$entree->id}}</td>
+                        <td>{{$entree->debutSerie}}</td>
+                        <td>{{$entree->finSerie}}</td>
+                        <td>{{$entree->date}}</td>
+                        <td>{{$entree->fournisseur}}</td>
+                        <td>{{$entree->prixUnitaire}}</td>
+                        <td>{{$entree->reference}}</td>
                         <td>
                             <div class="two-columns">
                                 <div>
-                                    <a href="{{ route('logistique-entree-securipack.edit', $entreeBordereau->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ route('logistique-entree-securipack.edit', $entree->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('logistique-entree-securipack.destroy', $entreeBordereau->id)}}" method="post">
+                                    <form action="{{ route('logistique-entree-securipack.destroy', $entree->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

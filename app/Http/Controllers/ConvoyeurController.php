@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Convoyeur;
+use App\Models\Convoyeur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

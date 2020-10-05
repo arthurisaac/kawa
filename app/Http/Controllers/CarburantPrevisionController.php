@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantPrevision;
+use App\Models\CarburantPrevision;
 use Illuminate\Http\Request;
 
 class CarburantPrevisionController extends Controller

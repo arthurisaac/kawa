@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Centre;
-use App\Centre_regional;
-use App\InformatiqueOperation;
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\InformatiqueOperation;
 use Illuminate\Http\Request;
 
 class InformatiqueOperationMaintenanceController extends Controller

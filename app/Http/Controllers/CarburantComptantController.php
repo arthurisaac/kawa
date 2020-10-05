@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CarburantComptant;
-use App\Vehicule;
+use App\Models\CarburantComptant;
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
