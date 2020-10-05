@@ -30,18 +30,18 @@
                         <td>ID</td>
                         <td>N°Incident</td>
                         <td>Numéro bordereau</td>
-                        <td>Date</td>
                         <td>Site</td>
                         <td>Banque</td>
                         <td>Centre</td>
                         <td>Centre régional</td>
                         <td>Intervention</td>
-                        <td>Observation</td>
                         <td>Dabiste1</td>
                         <td>Dabiste2</td>
                         <td>Heure declaration</td>
                         <td>Heure réponse</td>
                         <td>Heure arrivée</td>
+                        <td>Début intervention</td>
+                        <td>Fin intervention</td>
                         <td>Date clôture</td>
                         <td>Actions</td>
                     </tr>
@@ -49,6 +49,7 @@
                     <tbody>
                     @foreach ($ssb as $item)
                         <tr>
+                            <td>{{$item->id}}</td>
                             <td>{{$item->numeroIncident}}</td>
                             <td>{{$item->numeroBordereau}}</td>
                             <td>{{$item->site}}</td>
@@ -65,8 +66,8 @@
                             <td>{{$item->finIntervention}}</td>
                             <td>{{$item->dateCloture}}</td>
                             <td>
-                                <a href="{{ route('virgilometrie.edit.edit',$virgil->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                <form action="{{ route('virgilometrie.destroy', $virgil->id)}}" method="post">
+                                <a href="{{ route('ssb.edit',$item->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <form action="{{ route('ssb.destroy', $item->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

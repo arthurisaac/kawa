@@ -285,6 +285,9 @@ Route::get('informatique-maintenance-liste', [\App\Http\Controllers\Informatique
 Route::resource('informatique-fournisseur', 'InformatiqueFournisseurController');
 Route::get('informatique-fournisseur-liste', [\App\Http\Controllers\InformatiqueFournisseurController::class, 'liste']);
 
+/*
+ * SSB
+ */
 Route::resource('ssb', 'SSBController');
 Route::get('ssb-liste', [\App\Http\Controllers\SSBController::class, 'liste']);
 

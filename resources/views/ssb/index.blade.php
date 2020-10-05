@@ -28,21 +28,25 @@
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-5">Numéro incident</label>
-                        <input type="number" class="form-control col-sm-7" required />
+                        <input type="number" class="form-control col-sm-7" name="numeroIncident" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Numéro bordereau</label>
-                        <input type="number" class="form-control col-sm-7" required/>
+                        <input type="number" class="form-control col-sm-7" name="numeroBordereau" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Site</label>
-                        <select class="form-control col-sm-7" required>
+                        <select class="form-control col-sm-7" name="site" required>
                             <option></option>
+                            <option>1</option>
+                            @foreach($sites as $site)
+                                <option value="{{$site->id}}">{{$site->libelle}}</option>
+                                @endforeach
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Banque</label>
-                        <input type="text" class="form-control col-sm-7" required />
+                        <input type="text" class="form-control col-sm-7" name="banque" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Centre</label>
@@ -59,35 +63,39 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Intervention</label>
-                        <input class="form-control col-md-7" required />
+                        <input class="form-control col-md-7" name="intervention" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Dabiste1</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="dabiste1" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Dabiste2</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="dabiste2" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Heure de réponse</label>
-                        <input type="time" class="form-control col-md-7" required />
+                        <input type="time" class="form-control col-md-7" name="heureReponse" required />
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-5">Heure déclaration</label>
+                        <input type="time" class="form-control col-md-7" name="heureDeclaration" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Heure d'arrivée</label>
-                        <input type="time" class="form-control col-md-7" required />
+                        <input type="time" class="form-control col-md-7" name="heureArrivee" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Début d’intervention</label>
-                        <input type="time" class="form-control col-md-7" required />
+                        <input type="time" class="form-control col-md-7" name="debutIntervention" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Fin d’intervention</label>
-                        <input type="time" class="form-control col-md-7" required />
+                        <input type="time" class="form-control col-md-7" name="finIntervention" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Date clôture</label>
-                        <input type="date" class="form-control col-md-7" required />
+                        <input type="date" class="form-control col-md-7" name="dateCloture" required />
                     </div>
                 </div>
                 <div class="col"></div>
@@ -107,7 +115,7 @@
         $(document).ready( function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
+                // $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter( region => {
