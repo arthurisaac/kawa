@@ -30,6 +30,7 @@
                     <td>ID</td>
                     <td>Cenntre</td>
                     <td>Centre régional</td>
+                    <td>Service</td>
                     <td>Date</td>
                     <td>Référence</td>
                     <td>Libellé</td>
@@ -43,17 +44,18 @@
                 @foreach ($achats as $achat)
                     <tr>
                         <td>{{$achat->id}}</td>
+                        <td>{{$achat->centre}}</td>
+                        <td>{{$achat->centreRegional}}</td>
+                        <td>{{$achat->service}}</td>
                         <td>{{$achat->date}}</td>
-                        <td>{{$achat->nomPrenoms}}</td>
-                        <td>{{$achat->heureArrivee}}</td>
-                        <td>{{$achat->typePiece}}</td>
-                        <td>{{$achat->personneVisitee}}</td>
-                        <td>{{$achat->motif}}</td>
-                        <td>{{$achat->heureDepart}}</td>
-                        <td>{{$virgil->observation}}</td>
+                        <td>{{$achat->reference}}</td>
+                        <td>{{$achat->libelle}}</td>
+                        <td>{{$achat->quantite}}</td>
+                        <td>{{$achat->prixUnitaire}}</td>
+                        <td>{{$achat->montant}}</td>
                         <td>
-                            <a href="{{ route('virgilometrie.edit.edit',$virgil->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                            <form action="{{ route('virgilometrie.destroy', $virgil->id)}}" method="post">
+                            <a href="{{ route('informatique-achat-materiel.edit',$achat->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                            <form action="{{ route('informatique-achat-materiel.destroy', $achat->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>

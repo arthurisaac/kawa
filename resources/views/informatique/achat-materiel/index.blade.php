@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('informatique-achat-materiel.store') }}">
+        <form enctype="multipart/form-data" method="post" action="{{ route('informatique-achat-materiel.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
@@ -42,27 +42,35 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Service</label>
-                        <input class="form-control col-md-7" required />
+                        <input class="form-control col-md-7" name="service" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Date</label>
-                        <input type="date" class="form-control col-md-7"  required />
+                        <input type="date" class="form-control col-md-7" name="date" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Référence</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="reference" required />
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-5">Libellé</label>
+                        <input type="text" class="form-control col-md-7" name="libelle" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Prix unitaire</label>
-                        <input type="number" class="form-control col-md-7" required />
+                        <input type="number" class="form-control col-md-7" name="prixUnitaire" id="prixUnitaire" required />
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-5">Quanité</label>
+                        <input type="number" class="form-control col-md-7" name="quantite" id="quantite" min="0" value="0" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Montant</label>
-                        <input type="number" class="form-control col-md-7" required />
+                        <input type="number" class="form-control col-md-7" name="montant" id="montant" readonly required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Facture</label>
-                        <input type="file" class="form-control-file col-md-7" required />
+                        <input type="file" class="form-control-file col-md-7" name="factureJointe" />
                     </div>
                 </div>
                 <div class="col"></div>
@@ -95,6 +103,17 @@
                     }));
                 })
             });
+
+            $("#prixUnitaire").on("change", function() {
+                const prixUnitaire = parseInt(this.value);
+                const quantite = parseInt($("#quantite").val());
+                $("#montant").val(prixUnitaire*quantite);
+            });
+            $("#quantite").on("change", function() {
+                const quantite = parseInt(this.value);
+                const prixUnitaire = parseInt($("#prixUnitaire").val());
+                $("#montant").val(prixUnitaire*quantite);
+            })
         });
     </script>
 @endsection

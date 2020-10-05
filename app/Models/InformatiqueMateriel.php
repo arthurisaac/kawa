@@ -17,15 +17,6 @@ class InformatiqueMateriel extends Model
         'prixUnitaire',
         'montant',
         'factureJointe',
-
-    ];
-
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'date',
-
     ];
 
 }

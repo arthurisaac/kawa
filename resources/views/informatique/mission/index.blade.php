@@ -40,44 +40,40 @@
                         <select class="form-control col-md-7" name="centreRegional" id="centre_regional"
                                 required></select>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Période</label>
-                        <input class="form-control col-md-7" required/>
-                    </div>
                     <div class="row">
                         <label class="col-md-4">Service</label>
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <label class="col-sm-5">Du</label>
-                                <input type="date" class="form-control col-sm-7"/>
+                                <input type="date" class="form-control col-sm-7" name="debut" id="debut" required/>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <label class="col-sm-5">Au</label>
-                                <input type="date" class="form-control col-sm-7"/>
+                                <input type="date" class="form-control col-sm-7" name="fin" id="fin" required/>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Service</label>
-                        <input type="text" class="form-control col-md-7" required/>
+                        <input type="text" class="form-control col-md-7" name="service" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Nbre de jours</label>
-                        <input type="number" class="form-control col-md-7" required/>
+                        <input type="number" class="form-control col-md-7" name="nombreDeJours" id="nombreDeJours" readonly required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Objet de la mission</label>
-                        <input type="text" class="form-control col-md-7" required/>
+                        <input type="text" class="form-control col-md-7" name="objetMission" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Intervention effectuée</label>
-                        <textarea class="form-control col-md-7" required></textarea>
+                        <textarea class="form-control col-md-7" name="interventionEffectuee" required></textarea>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Rapport sur la mission</label>
-                        <textarea class="form-control col-md-7" required></textarea>
+                        <textarea class="form-control col-md-7" name="rapportMission" required></textarea>
                     </div>
                 </div>
                 <div class="col"></div>
@@ -97,7 +93,7 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -108,8 +104,17 @@
                         value: centre_regional,
                         text: centre_regional
                     }));
-                })
+                });
             });
+
+            $("#fin").on("change", function() {
+                const debut = $('#debut').val();
+                const fin = $('#fin').val();
+                const dateDebut = new Date(debut);
+                const dateFin = new Date(fin);
+                const Difference_In_Days = ( dateFin.getTime() - dateDebut.getTime() ) / (1000 * 3600 * 24);
+                $("#nombreDeJours").val(Difference_In_Days);
+            })
         });
     </script>
 @endsection

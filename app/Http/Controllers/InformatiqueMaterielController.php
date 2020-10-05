@@ -41,7 +41,27 @@ class InformatiqueMaterielController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $factureJointe = null;
+        if($request->file()) {
+            $fileName = time().'_'.$request->factureJointe->getClientOriginalName();
+            $request->file('factureJointe')->storeAs('uploads', $fileName, 'public');
+            $factureJointe = $fileName;
+        }
+
+        $informatique = new InformatiqueMateriel([
+            'centre' => $request->get('centre'),
+            'centreRegional' => $request->get('centreRegional'),
+            'service' => $request->get('service'),
+            'date' => $request->get('date'),
+            'reference' => $request->get('reference'),
+            'libelle' => $request->get('libelle'),
+            'quantite' => $request->get('quantite'),
+            'prixUnitaire' => $request->get('prixUnitaire'),
+            'montant' => $request->get('montant'),
+            'factureJointe' => $factureJointe,
+        ]);
+        $informatique->save();
+        return redirect('/informatique-achat-materiel')->with('success', 'Enregistrement effectué!');
     }
 
     /**
@@ -63,7 +83,10 @@ class InformatiqueMaterielController extends Controller
      */
     public function edit($id)
     {
-        //
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $achat = InformatiqueMateriel::find($id);
+        return view('informatique.achat-materiel.edit', compact('centres', 'centres_regionaux', 'achat'));
     }
 
     /**
@@ -75,7 +98,27 @@ class InformatiqueMaterielController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $factureJointe = null;
+        if($request->file()) {
+            $fileName = time().'_'.$request->factureJointe->getClientOriginalName();
+            $request->file('factureJointe')->storeAs('uploads', $fileName, 'public');
+            $factureJointe = $fileName;
+        }
+
+        $achat = InformatiqueMateriel::find($id);
+        $achat->centre = $request->get('centre');
+        $achat->centreRegional = $request->get('centreRegional');
+        $achat->service = $request->get('service');
+        $achat->date = $request->get('date');
+        $achat->reference = $request->get('reference');
+        $achat->libelle = $request->get('libelle');
+        $achat->quantite = $request->get('quantite');
+        $achat->prixUnitaire = $request->get('prixUnitaire');
+        $achat->montant = $request->get('montant');
+        $achat->factureJointe = $factureJointe;
+        $achat->save();
+        return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement effectué!');
+
     }
 
     /**
@@ -86,6 +129,8 @@ class InformatiqueMaterielController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $achat = InformatiqueMateriel::find($id);
+        $achat->delete();
+        return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement supprimé!');
     }
 }

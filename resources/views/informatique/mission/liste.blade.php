@@ -46,7 +46,6 @@
                         <td>{{$mission->centreRegional}}</td>
                         <td>{{$mission->service}}</td>
                         <td>{{$mission->nombreDeJours}}</td>
-                        <td>{{$mission->personneVisitee}}</td>
                         <td>{{$mission->objetMission}}</td>
                         <td>{{$mission->interventionEffectuee}}</td>
                         <td>{{$mission->rapportMission}}</td>
