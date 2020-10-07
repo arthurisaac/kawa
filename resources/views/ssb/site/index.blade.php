@@ -22,13 +22,13 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('ssb.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('ssb-site.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Libelle Site</label>
-                        <input type="text" class="form-control col-sm-7" required />
+                        <input type="text" name="libelle" class="form-control col-sm-7" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Centre</label>
@@ -45,19 +45,19 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Etrags</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="etrags" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Banque</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="banque" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Filiale</label>
-                        <input type="text" class="form-control col-md-7" required />
+                        <input type="text" class="form-control col-md-7" name="filiale" />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Client</label>
-                        <select class="form-control col-md-7" name="centre" id="centre" required>
+                        <select class="form-control col-md-7" name="client" required>
                             <option></option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}">{{$client->client_nom}}</option>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Site</label>
-                        <select class="form-control col-md-7" name="centre" id="centre" required>
+                        <select class="form-control col-md-7" name="site" required>
                             <option></option>
                             @foreach ($sites as $site)
                                 <option value="{{$site->id}}">{{$site->site}}</option>
@@ -80,20 +80,20 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Nom contact du site</label>
-                        <input class="col-sm-7 form-control" type="text" required />
+                        <input class="col-sm-7 form-control" name="nomContact" type="text" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Fonction du contact</label>
-                        <input class="col-sm-7 form-control" type="text" required />
+                        <input class="col-sm-7 form-control" name="fonctionContact" type="text" required />
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="Intra-muros">
+                        <input class="form-check-input" type="radio" value="Intra-muros" name="muros">
                         <label class="form-check-label">
                             Intra-muros
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="Extra-muros">
+                        <input class="form-check-input" type="radio" value="Extra-muros" name="muros">
                         <label class="form-check-label">
                             Extra-muros
                         </label>
@@ -102,11 +102,11 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Tel</label>
-                        <input class="col-sm-7 form-control" type="tel" required />
+                        <input class="col-sm-7 form-control" type="tel" name="tel" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Nombre de GAB</label>
-                        <input class="col-sm-7 form-control" type="number" required />
+                        <input class="col-sm-7 form-control" type="number" value="0" name="nombreGab" required />
                     </div>
                 </div>
             </div>

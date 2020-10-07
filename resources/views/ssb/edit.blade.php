@@ -40,7 +40,6 @@
                         <label class="col-sm-5">Site</label>
                         <select class="form-control col-sm-7" name="site" required>
                             <option>{{$ssb->site}}</option>
-                            <option>1</option>
                             @foreach($sites as $site)
                                 <option value="{{$site->id}}">{{$site->libelle}}</option>
                             @endforeach

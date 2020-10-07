@@ -40,12 +40,28 @@ class SsbSiteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $ssbSites = new SsbSite([
+            'libelle' => $request->get('libelle'),
+            'centre' => $request->get('centre'),
+            'centreRegional' => $request->get('centreRegional'),
+            'etrags' => $request->get('etrags'),
+            'banque' => $request->get('banque'),
+            'filiale' => $request->get('filiale'),
+            'client' => $request->get('client'),
+            'site' => $request->get('site'),
+            'nomContact' => $request->get('nomContact'),
+            'fonctionContact' => $request->get('fonctionContact'),
+            'tel' => $request->get('tel'),
+            'nombreGab' => $request->get('nombreGab'),
+            'muros' => $request->get('muros'),
+        ]);
+        $ssbSites->save();
+        return redirect('/ssb-site')->with('success', 'Enregistrement effectué');
     }
 
     /**
@@ -73,7 +89,7 @@ class SsbSiteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */
@@ -90,6 +106,8 @@ class SsbSiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $site = SsbSite::find($id);
+        $site->delete();
+        return redirect('/ssb-site-liste')->with('success', 'Enregistrement effectué');
     }
 }
