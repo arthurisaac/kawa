@@ -22,6 +22,6 @@ class HeureSupp extends Model
 
     public function personnels()
     {
-        return $this->belongsTo('App\Personnel', 'idPersonnel', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'idPersonnel', 'id');
     }
 }

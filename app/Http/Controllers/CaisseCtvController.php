@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CModels\entre;
 use App\Models\CaisseBilletage;
 use App\Models\CaisseCtv;
 use App\Models\CaisseServiceOperatrice;
-use App\CModels\entre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_client;
 use App\Models\Commercial_site;

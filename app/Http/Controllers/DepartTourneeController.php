@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commercial_site;
+use App\Models\DepartTournee;
 use App\Models\SiteDepartTournee;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\DepartTournee;
 use Illuminate\Support\Facades\DB;
 
 class DepartTourneeController extends Controller

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
-use App\Models\RegulationService;
 use App\Models\Personnel;
+use App\Models\RegulationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

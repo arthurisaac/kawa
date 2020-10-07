@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Personnel;
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Vehicule;
 
 class VehiculeController extends Controller
 {

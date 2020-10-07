@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\LogistiqueSortieBordereaux;
-use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

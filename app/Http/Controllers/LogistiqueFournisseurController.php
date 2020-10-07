@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Centre;
-use App\Models\Centre_regional;
 use App\Models\LogistiqueFournisseur;
 use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;

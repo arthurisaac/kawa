@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('saisie.store') }}">
         @csrf
 
@@ -22,16 +28,16 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-4">Date de tournée</label>
-                    <input type="date" class="form-control col-sm-8" name="date">
+                    <input type="date" class="form-control col-sm-8" name="date" required>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Type de date</label>
-                    <input type="text" class="form-control col-sm-8" name="typeDate">
+                    <input type="text" class="form-control col-sm-8" name="typeDate" required>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Nom et prénoms</label>
-                    <select class="form-control col-sm-8" name="idPersonnel">
-                        <option>Selectionnez</option>
+                    <select class="form-control col-sm-8" name="idPersonnel" required>
+                        <option></option>
                         @foreach($personnels as $personnel)
                         <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
                         @endforeach
@@ -48,7 +54,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-4">Heure arrivée</label>
-                    <input type="time" class="form-control col-sm-8" name="heureArrivee">
+                    <input type="time" class="form-control col-sm-8" name="heureArrivee" required>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Heure arrivée 1</label>
@@ -66,7 +72,7 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-4">Heure départ</label>
-                    <input type="time" class="form-control col-sm-8" name="heureDepart">
+                    <input type="time" class="form-control col-sm-8" name="heureDepart" required>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Heure départ 1</label>

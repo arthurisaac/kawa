@@ -277,7 +277,7 @@
         $(document).ready( function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
+                //$('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter( region => {

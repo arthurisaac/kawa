@@ -58,7 +58,7 @@ class SaisieHSController extends Controller
             'heureDepart3' => $request->get('heureDepart3'),
         ]);
         $saisie->save();
-        return redirect('/saisie')->with('success', 'Saisie enregistrée!');
+        return redirect('/saisie')->with('success', 'Saisie enregistré!');
     }
 
     /**
@@ -80,7 +80,9 @@ class SaisieHSController extends Controller
      */
     public function edit($id)
     {
-        //
+        $saisie = HeureSupp::find($id);
+        $personnels = Personnel::all();
+        return view('securite.saisie.edit', compact('personnels', 'saisie'));
     }
 
     /**
@@ -92,7 +94,21 @@ class SaisieHSController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $saisie = HeureSupp::find($id);
+        $saisie->date = $request->get('date');
+        $saisie->typeDate = $request->get('typeDate');
+        $saisie->idPersonnel = $request->get('idPersonnel');
+        $saisie->heureArrivee = $request->get('heureArrivee');
+        $saisie->heureArrivee1 = $request->get('heureArrivee1');
+        $saisie->heureArrivee2 = $request->get('heureArrivee2');
+        $saisie->heureArrivee3 = $request->get('heureArrivee3');
+        $saisie->heureDepart = $request->get('heureDepart');
+        $saisie->heureDepart1 = $request->get('heureDepart1');
+        $saisie->heureDepart2 = $request->get('heureDepart2');
+        $saisie->heureDepart3 = $request->get('heureDepart3');
+
+        $saisie->save();
+        return redirect('/saisie-liste')->with('success', 'Enregistrement modifiée!');
     }
 
     /**
@@ -103,6 +119,8 @@ class SaisieHSController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $saisie = HeureSupp::find($id);
+        $saisie->delete();
+        return redirect('/saisie-liste')->with('success', 'Enregistrement modifiée!');
     }
 }

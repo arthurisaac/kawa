@@ -15,6 +15,13 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -31,6 +38,7 @@
                         <th>Heure départ 2</th>
                         <th>Heure arrivée 3</th>
                         <th>Heure départ 3</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +55,14 @@
                             <td>{{$saisie->heureDepart2}}</td>
                             <td>{{$saisie->heureArrivee3}}</td>
                             <td>{{$saisie->heureDepart3}}</td>
+                            <td>
+                                <a href="{{ route('saisie.edit',$saisie->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <form action="{{ route('saisie.destroy', $saisie->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

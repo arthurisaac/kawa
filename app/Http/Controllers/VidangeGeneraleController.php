@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
+use App\Models\VidangeGenerale;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\VidangeGenerale;
 
 class VidangeGeneraleController extends Controller
 {
