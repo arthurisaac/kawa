@@ -32,7 +32,7 @@ class CreateSsbCommercials extends Migration
             $table->string('secteurActivite')->nullable();
             $table->integer('numeroContrat')->nullable();
             $table->date('dateEffet')->nullable();
-            $table->date('dureeContrat')->nullable();
+            $table->integer('dureeContrat')->nullable();
             $table->string('objetArretePhysique')->nullable();
             $table->string('objetArreteComptable')->nullable();
             $table->string('objetApprovisionnement')->nullable();
@@ -47,8 +47,8 @@ class CreateSsbCommercials extends Migration
             $table->string('baseNiveau2')->nullable();
             $table->string('baseNiveau3')->nullable();
             $table->string('baseAccompagnement')->nullable();
-            $table->double('coutUnitaire')->nullable();
-            $table->double('coutForfaitaire')->nullable();
+            $table->string('coutUnitaire')->nullable();
+            $table->string('coutForfaitaire')->nullable();
             $table->double('montant')->nullable();
         });
     }

@@ -60,6 +60,7 @@
                             <td>{{$item->nomContact}}</td>
                             <td>{{$item->emailContact}}</td>
                             <td>{{$item->fonction}}</td>
+                            <td>{{$item->telephoneContact}}</td>
                             <td>{{$item->secteurActivite}}</td>
                             <td>{{$item->numeroContrat}}</td>
                             <td>

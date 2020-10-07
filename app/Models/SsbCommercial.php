@@ -43,22 +43,4 @@ class SsbCommercial extends Model
         'montant',
 
     ];
-
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'dateEffet',
-        'dureeContrat',
-
-    ];
-
-    protected $appends = ['resource_url'];
-
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/ssb-commercials/'.$this->getKey());
-    }
 }
