@@ -15,6 +15,6 @@ class CaisseServiceOperatrice extends Model
 
     public function operatrice()
     {
-        return $this->belongsTo('App\Personnel', 'operatriceCaisse', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'operatriceCaisse', 'id');
     }
 }

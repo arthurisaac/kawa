@@ -15,6 +15,6 @@ class CaisseSortieColis extends Model
 
     public function agentRegulations()
     {
-        return $this->belongsTo('App\Personnel', 'agentRegulation', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'agentRegulation', 'id');
     }
 }

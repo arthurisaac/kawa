@@ -21,20 +21,4 @@ class RegulationSecuripack extends Model
 
     ];
 
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'date',
-
-    ];
-
-    protected $appends = ['resource_url'];
-
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/regulation-securipacks/'.$this->getKey());
-    }
 }

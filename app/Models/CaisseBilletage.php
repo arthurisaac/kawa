@@ -38,6 +38,6 @@ class CaisseBilletage extends Model
 
     public function ctv()
     {
-        return $this->belongsTo('App\CaisseCtv', 'ctv', 'id');
+        return $this->belongsTo('App\Models\CaisseCtv', 'ctv', 'id');
     }
 }

@@ -19,6 +19,6 @@ class LogistiqueProduit extends Model
 
     public function fournisseurs()
     {
-        return $this->belongsTo('App\LogistiqueFournisseur', 'fournisseur', 'id');
+        return $this->belongsTo('App\Models\LogistiqueFournisseur', 'fournisseur', 'id');
     }
 }

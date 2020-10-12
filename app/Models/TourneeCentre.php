@@ -21,19 +21,19 @@ class TourneeCentre extends Model
 
     public function personnesChef()
     {
-        return $this->belongsTo('App\Personnel', 'chefDeBord', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'chefDeBord', 'id');
     }
     public function personnesChauffeur()
     {
-        return $this->belongsTo('App\Personnel', 'chauffeur', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'chauffeur', 'id');
     }
     public function personnesDeGarde()
     {
-        return $this->belongsTo('App\Personnel', 'agentDeGarde', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'agentDeGarde', 'id');
     }
 
     public function vehicules()
     {
-        return $this->belongsTo('App\Vehicule', 'vehicule', 'id');
+        return $this->belongsTo('App\Models\Vehicule', 'vehicule', 'id');
     }
 }

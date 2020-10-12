@@ -28,12 +28,4 @@ class LogistiqueSortieCommande extends Model
 
     ];
 
-    protected $appends = ['resource_url'];
-
-    /* ************************ ACCESSOR ************************* */
-
-    public function getResourceUrlAttribute()
-    {
-        return url('/admin/logistique-sortie-commandes/'.$this->getKey());
-    }
 }

@@ -22,11 +22,11 @@ class RegulationService extends Model
 
     public function chargeRegulations()
     {
-        return $this->belongsTo('App\Personnel', 'chargeeRegulation', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'chargeeRegulation', 'id');
     }
 
     public function chargeRegulationAdjointes()
     {
-        return $this->belongsTo('App\Personnel', 'chargeeRegulationAdjointe', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'chargeeRegulationAdjointe', 'id');
     }
 }

@@ -52,6 +52,6 @@ class SecuriteMaterielBeneficiaire extends Model
 
     public function materiels()
     {
-        return $this->belongsTo('App\SecuriteMateriel', 'idMateriel', 'id');
+        return $this->belongsTo('App\Models\SecuriteMateriel', 'idMateriel', 'id');
     }
 }

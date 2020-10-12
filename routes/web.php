@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'WelcomeController');
+Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);
+
+/*
+ *  USER
+ */
+
+Route::resource('user', 'UserController');
+
+Route::get('login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::post('auth', [\App\Http\Controllers\UserController::class, 'auth']);
+Route::get('users', [\App\Http\Controllers\UserController::class, 'liste']);
+Route::get('users', [\App\Http\Controllers\UserController::class, 'liste']);
 
 /*
  *  SECURITE
