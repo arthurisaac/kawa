@@ -214,13 +214,15 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="checkbox">
-                        <input type="checkbox" name="coutUnitaire" value="Coût unitaire">
-                        <label>Coût unitaire</label>
+                    <div class="form-group row">
+                        {{--<input type="checkbox" name="coutUnitaire" value="Coût unitaire">--}}
+                        <label class="col-sm-5">Coût unitaire</label>
+                        <input type="number" name="coutUnitaire" class="form-control col-sm-7" value="Coût unitaire">
                     </div>
-                    <div class="checkbox">
-                        <input type="checkbox" id="cb_fo_permanent" name="coutForfaitaire" value="Coût forfetaire">
-                        <label for="cb_fo_permanent">Coût forfetaire</label>
+                    <div class="form-group row">
+                        {{--<input type="checkbox" id="cb_fo_permanent" name="coutForfaitaire" value="Coût forfetaire">--}}
+                        <label class="col-sm-5" for="cb_fo_permanent">Coût forfetaire</label>
+                        <input type="number" id="cb_fo_permanent" name="coutForfaitaire" value="Coût forfetaire" class="form-control col-sm-7">
                     </div>
                     <br />
                     <div class="form-group row">

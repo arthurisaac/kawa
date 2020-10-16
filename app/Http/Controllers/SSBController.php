@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\ComptabiliteDegradation;
+use App\Models\Personnel;
 use App\Models\Ssb;
 use App\Models\SsbSite;
 use Illuminate\Http\Request;
@@ -21,7 +23,9 @@ class SSBController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $sites = SsbSite::all();
-        return view('ssb.index', compact('centres', 'centres_regionaux', 'sites'));
+        $personnels = Personnel::all();
+        $incidents = ComptabiliteDegradation::all();
+        return view('ssb.index', compact('centres', 'centres_regionaux', 'sites', 'personnels', 'incidents'));
     }
 
     /**
