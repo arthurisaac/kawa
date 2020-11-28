@@ -55,7 +55,8 @@ class DepartTourneeController extends Controller
             'idVehicule' => $request->get('idVehicule'),
             'chauffeur' => $request->get('chauffeur'),
             'agentDeGarde' => $request->get('agentDeGarde'),
-            'chefDeBord' => $request->get('chefDeBord')
+            'chefDeBord' => $request->get('chefDeBord'),
+            'kmDepart' => $request->get('kmDepart')
         ]);
         $departTournee->save();
 

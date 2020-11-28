@@ -50,10 +50,10 @@ class CommercialSiteController extends Controller
      */
     public function store(Request $request)
     {
-        $objet_operation = null;
+        /*$objet_operation = null;
         if (!empty($request->get('objet_operation'))) {
             $objet_operation = implode(",", $request->get('objet_operation'));
-        }
+        }*/
         $site = new Commercial_site([
             'client' => $request->get('client'),
             'site' => $request->get('site'),
@@ -63,7 +63,19 @@ class CommercialSiteController extends Controller
             'centre_regional' => $request->get('centre_regional'),
             'telephone' => $request->get('telephone'),
             'no_carte' => $request->get('no_carte'),
-            'objet_operation' => $objet_operation,
+            'oo_tdf_vb' => $request->get('oo_tdf_vb'),
+            'oo_tdf_vl' => $request->get('oo_tdf_vl'),
+            'oo_mad_caisse' => $request->get('oo_mad_caisse'),
+            'oo_collecte' => $request->get('oo_collecte'),
+            'oo_collecte_caisse' => $request->get('oo_collecte_caisse'),
+            'oo_garde_fond' => $request->get('oo_garde_fond'),
+            'oo_comptage_tri' => $request->get('oo_comptage_tri'),
+            'oo_gestion_atm' => $request->get('oo_gestion_atm'),
+            'oo_maintenance_atm' => $request->get('oo_maintenance_atm'),
+            'oo_consommable_atm' => $request->get('oo_consommable_atm'),
+            'oo_petit_materiel' => $request->get('oo_petit_materiel'),
+            'oo_total' => $request->get('oo_total'),
+            //'objet_operation' => $objet_operation,
             'forfait_mensuel_ctv' => $request->get('forfait_mensuel_ctv'),
             'forfait_mensuel_gdf' => $request->get('forfait_mensuel_gdf'),
             'forfait_mensuel_mad' => $request->get('forfait_mensuel_mad'),
@@ -151,6 +163,8 @@ class CommercialSiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $site = Commercial_site::find($id);
+        $site->delete();
+        return redirect('/commercial-site-liste')->with('success', 'Site supprimé!');
     }
 }

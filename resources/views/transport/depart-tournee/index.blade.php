@@ -47,7 +47,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Kilométrage départ</label>
+                        <input type="number" class="form-control" name="kmDepart" min="0" value="0" />
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -84,7 +89,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Coût tournée</label>
-                        <input type="number" class="form-control" min="0" name="coutTournee"/>
+                        <input type="number" class="form-control" min="0" value="0" name="coutTournee" id="coutTournee"/>
                     </div>
                 </div>
             </div>
@@ -96,7 +101,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 1</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site1">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -130,7 +135,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 8</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site8">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -164,7 +169,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 15</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site15">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -199,7 +204,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 2</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site2">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -233,7 +238,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 9</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site9">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -266,7 +271,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 16</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site16">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -301,7 +306,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 3</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site3">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -334,7 +339,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 10</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site10">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -367,7 +372,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 17</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site17">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -403,7 +408,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 4</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site4">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -436,7 +441,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 11</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site11">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -469,7 +474,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 18</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site18">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -504,7 +509,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 5</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site5">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -537,7 +542,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 12</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site12">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -570,7 +575,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 19</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site19">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -605,7 +610,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 6</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site6">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -638,7 +643,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 13</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site13">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -671,7 +676,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 20</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site20">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -708,7 +713,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 6</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site6">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -741,7 +746,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Site 13</label>
-                                <select class="form-control" name="site[]">
+                                <select class="form-control" name="site[]" id="site13">
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
@@ -778,7 +783,10 @@
         </form>
     </div>
     <script>
-        let vehicules =  {!! json_encode($vehicules) !!};
+        let vehicules = {!! json_encode($vehicules) !!};
+        let sites = {!! json_encode($sites) !!};
+        let cout = 0;
+
         $("#vehicule").on("change", function () {
             $("#chauffeur option").remove();
             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
@@ -792,7 +800,17 @@
                     text: vehicule.chauffeur_suppleant.nomPrenoms
                 }));
             }
+        });
+
+        $("select[name='site[]']").on("change", function() {
+            const site = sites.find(s => s.id === parseInt(this.value));
+            console.log(site);
+            if (site) {
+                cout += parseInt(site.oo_total);
+                $("#coutTournee").val(cout);
+            }
         })
+
 
     </script>
 @endsection

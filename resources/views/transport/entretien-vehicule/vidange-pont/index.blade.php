@@ -27,7 +27,7 @@
             <div class="col-4">
                 <div class="form-group row">
                     <label class="col-md-4">Date</label>
-                    <input type="date" class="form-control col-md-8" name="date"/>
+                    <input type="date" class="form-control form-control-sm col-md-8" name="date"/>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4">Véhicule</label>
@@ -87,7 +87,7 @@
         </div>
         <br/>
 
-        <div class="row">
+        {{--<div class="row">
             <div class="col">
                 <label>Huile de pont</label>
             </div>
@@ -137,7 +137,7 @@
                     <input type="text" min="0" class="form-control form-control-sm" name="huilePontmontant"/>
                 </div>
             </div>
-        </div>
+        </div>--}}
     </form>
 </div>
 <script>

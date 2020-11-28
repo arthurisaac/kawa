@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <form method="post" action="{{ route('commercial-site.store') }}">
         @csrf
 
@@ -81,12 +87,33 @@
         <br/>
         <br/>
         <div class="row">
-            <div class="col">
+            <div class="col-7">
                 <div>Objet-opération</div>
                 <br/>
-                <div style="display: flex; justify-content: space-around;">
-                    <div>
-                        <div class="checkbox">
+                <div class="row">
+                    <div class="col">
+                        <h6>Transport</h6>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">TDF VB (C)</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vb" id="oo_tdf_vb">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">TDF VL (D)</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vl" id="oo_tdf_vl">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">MAD CAISSE</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad_caisse" id="oo_mad_caisse">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_collecte" id="oo_collecte">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Collecte + caisse</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_collecte_caisse" id="oo_collecte_caisse">
+                        </div>
+                        {{--<div class="checkbox">
                             <input type="checkbox" id="cb_tdf_vb" name="objet_operation[]" value="TDF VB">
                             <label for="cb_tdf_vb">TDF VB</label>
                         </div>
@@ -101,19 +128,47 @@
                         <div class="checkbox">
                             <input type="checkbox" id="cb_collecte" name="objet_operation[]" value="Collecte">
                             <label for="cb_collecte">Collecte</label>
+                        </div>--}}
+                    </div>
+                    <div class="col">
+                        <h6>Caisse</h6>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Garde de fonds</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond" id="oo_garde_fond">
                         </div>
-                        <div class="checkbox">
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Comptage + tri</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_comptage_tri" id="oo_comptage_tri">
+                        </div>
+                        {{--<div class="checkbox">
                             <input type="checkbox" id="cb_garde_de_fond" name="objet_operation[]"
                                    value="Garde de fonds">
                             <label for="cb_garde_de_fond">Garde de fonds</label>
                         </div>
-                    </div>
-                    <div>
                         <div class="checkbox">
                             <input type="checkbox" id="cb_comptage_tri" name="objet_operation[]" value="Comptage + tri">
                             <label for="cb_comptage_tri">Comptage + tri</label>
+                        </div>--}}
+                    </div>
+                    <div class="col">
+                        <h6>Opération dabiste</h6>
+                        <div class="form-group row">
+                            <label class="col-sm-6">Gestion ATM</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_gestion_atm" id="oo_gestion_atm">
                         </div>
-                        <div class="checkbox">
+                        <div class="form-group row">
+                            <label class="col-sm-6">Maintenance ATM</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_maintenance_atm" id="oo_maintenance_atm">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6">Consommable ATM</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_consommable_atm" id="oo_consommable_atm">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6">Petit matériel</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_petit_materiel" id="oo_petit_materiel">
+                        </div>
+                        {{--<div class="checkbox">
                             <input type="checkbox" id="cb_gestion_atm" name="objet_operation[]" value="Gestion ATM">
                             <label for="cb_gestion_atm">Gestion ATM</label>
                         </div>
@@ -129,7 +184,7 @@
                             <input type="checkbox" id="cb_petit_materiel" name="objet_operation[]"
                                    value="Petit matériel">
                             <label for="cb_petit_materiel">Petit matériel</label>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -137,17 +192,17 @@
             <div class="col">
                 <br/>
                 <br/>
-                <div class="form-group">
-                    <label for="forfait_mensuel_ctv">Forfait mensuel CTV</label>
-                    <input id="forfait_mensuel_ctv" name="forfait_mensuel_ctv" type="number" min="0" class="editbox"/>
+                <div class="form-group row">
+                    <label for="forfait_mensuel_ctv" class="col-sm-6">Forfait mensuel CTV</label>
+                    <input id="forfait_mensuel_ctv" name="forfait_mensuel_ctv" type="number" min="0" class="form-control col-sm-6"/>
                 </div>
-                <div class="form-group">
-                    <label for="forfait_mensuel_gdf">Forfait mensuel GDF</label>
-                    <input id="forfait_mensuel_gdf" name="forfait_mensuel_gdf" type="number" min="0" class="editbox"/>
+                <div class="form-group row">
+                    <label for="forfait_mensuel_gdf" class="col-sm-6">Forfait mensuel GDF</label>
+                    <input id="forfait_mensuel_gdf" name="forfait_mensuel_gdf" type="number" min="0" class="form-control col-sm-6"/>
                 </div>
-                <div class="form-group">
-                    <label for="forfait_mensuel_mad">Forfait mensuel MAD</label>
-                    <input id="forfait_mensuel_mad" name="forfait_mensuel_mad" type="text" class="editbox"/>
+                <div class="form-group row">
+                    <label for="forfait_mensuel_mad" class="col-sm-6">Forfait mensuel MAD</label>
+                    <input id="forfait_mensuel_mad" name="forfait_mensuel_mad" type="text" class="form-control col-sm-6"/>
                 </div>
             </div>
 
@@ -192,13 +247,22 @@
                 </div>
             </div>
         </div>
+        <br />
+        <div class="row">
+            <div class="form-group row col-3">
+                <label class="col-sm-4">Coût</label>
+                <input type="number" class="form-control col-sm-8" id="oo_total" name="oo_total" readonly />
+            </div>
+        </div>
     </form>
 </div>
 <script>
-    let centres =  {!! json_encode($centres) !!};
+    let centres = {!! json_encode($centres) !!};
     let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+    let total = 0;
 
     $(document).ready( function () {
+        $("#oo_total").val(total);
         $("#centre").on("change", function () {
             $("#centre_regional option").remove();
             $('#centre_regional').append($('<option>', { text: "Choisir centre régional" }));
@@ -213,6 +277,23 @@
                     text: centre_regional
                 }));
             })
+        });
+
+        $("#oo_tdf_vb").on("change", function() {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_tdf_vl").on("change", function() {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_mad_caisse").on("change", function() {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_collecte").on("change", function() {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
         });
     });
 </script>

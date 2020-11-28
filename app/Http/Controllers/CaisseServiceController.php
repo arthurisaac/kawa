@@ -10,6 +10,7 @@ use App\Models\Commercial_client;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class CaisseServiceController extends Controller
 {
@@ -20,7 +21,7 @@ class CaisseServiceController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::all();
+        $personnels = DB::table('personnels')->where('caisse', '!=', null)->get();
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();

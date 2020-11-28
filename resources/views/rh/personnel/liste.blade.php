@@ -29,14 +29,14 @@
                     <td>Date de naissance</td>
                     <td>Date d'entrée société</td>
                     <td>Date de sortie</td>
-                    <td>Motif</td>
+                    <td>Transport</td>
                     <td>Fonction</td>
                     <td>Service</td>
                     <td>Nature contrat</td>
                     <td>Numéro CNPS</td>
                     <td>Situation matrimoniale</td>
                     <td>Nombre d'enfants</td>
-
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,19 +47,27 @@
                     <td>{{$personnel->dateNaissance}}</td>
                     <td>{{$personnel->dateEntreeSociete}}</td>
                     <td>{{$personnel->dateSortie}}</td>
-                    <td>{{$personnel->typeSortie}}</td>
+                    <td>{{$personnel->transport}}</td>
                     <td>{{$personnel->fonction}}</td>
                     <td>{{$personnel->service}}</td>
                     <td>{{$personnel->natureContrat}}</td>
                     <td>{{$personnel->numeroCNPS}}</td>
                     <td>{{$personnel->situationMatrimoniale}}</td>
                     <td>{{$personnel->nombreEnfants}}</td>
+                    <td>
+                        <a href="{{ route('personnel.edit',$personnel->id)}}" class="btn btn-primary btn-sm"></a>
+                        <form action="{{ route('personnel.destroy', $personnel->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit"></button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table><br /><br />
 
-            <table class="table table-bordered" id="liste2">
+            {{--<table class="table table-bordered" id="liste2">
                 <thead>
                 <tr>
                     <td>N°</td>
@@ -107,7 +115,7 @@
                     @endforeach
                 </tr>
                 </tbody>
-            </table>
+            </table>--}}
         </div>
     </div>
 </div>

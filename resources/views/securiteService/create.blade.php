@@ -44,28 +44,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" required/>
+                        <label for="matriculeChargeDeSecurite" class="col-sm-3">Matricule</label>
+                        <select type="text" name="matriculeChargeDeSecurite" id="matriculeChargeDeSecurite" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite" required/>
+                    </div>
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Prénom</label>
                         <input type="text" class="editbox col-md-4" name="prenomChargeDeSecurite" required/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite" required/>
+                        <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite" id="fonctionChargeDeSecurite"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite" required/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="heureDePriseServiceCs" required/>
+                        <input type="time" class="editbox col-md-4" name="hps_cs" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="csHeureDeFinDeService" required/>
+                        <input type="time" class="editbox col-md-4" name="hfs_cs" required/>
                     </div>
                 </div>
             </div><br />
@@ -78,28 +87,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop11Nom"/>
+                        <label for="eop11Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop11Matricule" id="eop11Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop11Prenom"/>
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="eop11Nom" id="eop11Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop11Prenom" id="eop11Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop11Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop11Fonction" id="eop11Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="eop11Matricule"/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop11HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop11" id="hps_eop11"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop11HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop11" id="hfs_eop11"/>
                     </div>
                 </div>
             </div><br />
@@ -110,28 +128,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop112Nom"/>
+                        <label for="eop12Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop12Matricule" id="eop12Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop12Prenom"/>
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="eop112Nom" id="eop112Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop12Prenom" id="eop12Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop12Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop12Fonction" id="eop12Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="eop12Matricule"/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop12HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop12" id="hps_eop12"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop12HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop12" id="hfs_eop12"/>
                     </div>
                 </div>
             </div><br />
@@ -143,28 +170,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop21Nom"/>
+                        <label for="eop21Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop21Matricule" id="eop21Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop21Prenom"/>
+                        <label class="col-md-3">Nom</label>
+                        <input type="text" class="editbox col-md-4" name="eop21Nom" id="eop21Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop21Prenom" id="eop21Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop21Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop21Fonction" id="eop21Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="eop21Matricule"/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop21HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop21" id="hps_eop21"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop21HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop21" id="hfs_eop21"/>
                     </div>
                 </div>
             </div><br />
@@ -175,28 +211,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop22Nom"/>
+                        <label for="eop22Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop22Matricule" id="eop22Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop22Prenom"/>
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="eop22Nom" id="eop22Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop22Prenom" id="eop22Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop22Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop22Fonction" id="eop22Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
-                        <input type="text" class="editbox col-md-4" name="eop22Matricule"/>
-                    </div>
+                        <input type="text" class="editbox col-md-4" name="eop22Matricule" id="eop22Matricule"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop22HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop22" id="hps_eop22"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop22HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop22" id="hfs_eop22"/>
                     </div>
                 </div>
             </div><br />
@@ -209,28 +254,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop31Nom"/>
+                        <label for="eop31Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop31Matricule" id="eop31Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop31Prenom"/>
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="eop31Nom" id="eop31Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop31Prenom" id="eop31Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop31Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop31Fonction" id="eop31Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="eop31Matricule"/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop31HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop31" id="hps_eop31"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop31HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop31" id="hfs_eop31"/>
                     </div>
                 </div>
             </div><br />
@@ -241,28 +295,37 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="eop32Nom"/>
+                        <label for="eop32Matricule" class="col-sm-3">Matricule</label>
+                        <select type="text" name="eop32Matricule" id="eop32Matricule" class="form-control col-sm-4">
+                            <option></option>
+                            @foreach($personnels as $personnel)
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="eop32Prenom"/>
+                        <label class="col-md-3">Nom </label>
+                        <input type="text" class="editbox col-md-4" name="eop32Nom" id="eop32Nom"/>
                     </div>
+                    {{--<div class="form-group row">
+                        <label class="col-md-3">Prénom</label>
+                        <input type="text" class="editbox col-md-4" name="eop32Prenom" id="eop32Prenom"/>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="eop32Fonction"/>
+                        <input type="text" class="editbox col-md-4" name="eop32Fonction" id="eop32Fonction"/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="eop32Matricule"/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop32HeurePriseServ"/>
+                        <input type="time" class="editbox col-md-4" name="hps_eop32" id="hps_eop32"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="eop32HeureFinService"/>
+                        <input type="time" class="editbox col-md-4" name="hfs_eop32" id="hfs_eop32"/>
                     </div>
                 </div>
             </div><br />
@@ -273,6 +336,7 @@
     <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let personnels =  {!! json_encode($personnels) !!};
 
         $(document).ready( function () {
             $("#centre").on("change", function () {
@@ -289,6 +353,64 @@
                         text: centre_regional
                     }));
                 })
+            });
+
+            $("#matriculeChargeDeSecurite").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#nomChargeDeSecurite").val(personnel.nomPrenoms);
+                    $("#fonctionChargeDeSecurite").val(personnel.fonction);
+                }
+            });
+
+            $("#matriculeChargeDeSecurite").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#nomChargeDeSecurite").val(personnel.nomPrenoms);
+                    $("#fonctionChargeDeSecurite").val(personnel.fonction);
+                }
+            });
+            $("#eop11Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop11Nom").val(personnel.nomPrenoms);
+                    $("#eop11Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop12Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop112Nom").val(personnel.nomPrenoms);
+                    $("#eop12Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop21Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop21Nom").val(personnel.nomPrenoms);
+                    $("#eop21Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop22Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop22Nom").val(personnel.nomPrenoms);
+                    $("#eop22Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop31Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop31Nom").val(personnel.nomPrenoms);
+                    $("#eop31Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop32Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop32Nom").val(personnel.nomPrenoms);
+                    $("#eop32Fonction").val(personnel.fonction);
+                }
             });
         });
     </script>

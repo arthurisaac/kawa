@@ -14,5 +14,6 @@ class DepartTournee extends Model
         'agentDeGarde',
         'chefDeBord',
         'coutTournee',
+        'kmDepart'
     ];
 }

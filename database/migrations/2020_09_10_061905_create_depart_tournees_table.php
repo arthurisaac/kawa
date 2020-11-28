@@ -23,6 +23,7 @@ class CreateDepartTourneesTable extends Migration
             $table->integer('agentDeGarde')->nullable();
             $table->integer('chefDeBord')->nullable();
             $table->integer('coutTournee')->nullable();
+            $table->integer('kmDepart')->nullable();
         });
     }
 

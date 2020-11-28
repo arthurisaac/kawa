@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ArriveeTournee;
 use App\Models\Convoyeur;
 use App\Models\DepartTournee;
+use App\Models\Personnel;
 use App\Models\SiteArriveeTournee;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class ArriveeTourneeController extends Controller
     {
         $departTournees = DepartTournee::all();
         $convoyeurs = Convoyeur::all();
-        return view('transport/arrivee-tournee.index', compact('departTournees', 'convoyeurs'));
+        $personnels = Personnel::all();
+        return view('transport/arrivee-tournee.index', compact('departTournees', 'convoyeurs', 'personnels'));
     }
 
     /**

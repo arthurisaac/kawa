@@ -12,10 +12,5 @@ class VidangeHuilePont extends Model
         'centre',
         'centreRegional',
         'kmActuel',
-        'prochainKm',
-        'huilePont',
-        'huilePontMarque',
-        'huilePontKm',
-        'huilePontFournisseur',
-        'huilePontmontant'];
+        'prochainKm'];
 }

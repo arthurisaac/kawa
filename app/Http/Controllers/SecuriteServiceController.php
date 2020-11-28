@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\SecuriteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class SecuriteServiceController extends Controller
 {
@@ -17,11 +18,12 @@ class SecuriteServiceController extends Controller
      */
     public function index()
     {
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
         $securiteService = SecuriteService::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         return view('securiteService.create',
-            compact('centres', 'centres_regionaux', 'securiteService'));
+            compact('centres', 'centres_regionaux', 'securiteService', 'personnels'));
     }
 
     /**
@@ -57,48 +59,27 @@ class SecuriteServiceController extends Controller
             'date' => $request->get('date'),
             'centre' => $request->get('centre'),
             'centreRegional' => $request->get('centreRegional'),
-            'nomChargeDeSecurite' => $request->get('nomChargeDeSecurite'),
-            'prenomChargeDeSecurite' => $request->get('prenomChargeDeSecurite'),
-            'fonctionChargeDeSecurite' => $request->get('fonctionChargeDeSecurite'),
-            'matriculeChargeDeSecurite' => $request->get('matriculeChargeDeSecurite'),
-            'heureDePriseServiceCs' => $request->get('heureDePriseServiceCs'),
-            'csHeureDeFinDeService' => $request->get('csHeureDeFinDeService'),
-            'eop11Nom' => $request->get('eop11Nom'),
-            'eop11Prenom' => $request->get('eop11Prenom'),
-            'eop11Fonction' => $request->get('eop11Fonction'),
-            'eop11Matricule' => $request->get('eop11Matricule'),
-            'eop11HeurePriseServ' => $request->get('eop11HeurePriseServ'),
-            'eop11HeureFinService' => $request->get('eop11HeureFinService'),
-            'eop112Nom' => $request->get('eop112Nom'),
-            'eop12Prenom' => $request->get('eop12Prenom'),
-            'eop12Fonction' => $request->get('eop12Fonction'),
-            'eop12Matricule' => $request->get('eop12Matricule'),
-            'eop12HeurePriseServ' => $request->get('eop12HeurePriseServ'),
-            'eop12HeureFinService' => $request->get('eop12HeureFinService'),
-            'eop21Nom' => $request->get('eop21Nom'),
-            'eop21Prenom' => $request->get('eop21Prenom'),
-            'eop21Fonction' => $request->get('eop21Fonction'),
-            'eop21Matricule' => $request->get('eop21Matricule'),
-            'eop21HeurePriseServ' => $request->get('eop21HeurePriseServ'),
-            'eop21HeureFinService' => $request->get('eop21HeureFinService'),
-            'eop22Nom' => $request->get('eop22Nom'),
-            'eop22Prenom' => $request->get('eop22Prenom'),
-            'eop22Fonction' => $request->get('eop22Fonction'),
-            'eop22Matricule' => $request->get('eop22Matricule'),
-            'eop22HeurePriseServ' => $request->get('eop22HeurePriseServ'),
-            'eop22HeureFinService' => $request->get('eop22HeureFinService'),
-            'eop31Nom' => $request->get('eop31Nom'),
-            'eop31Prenom' => $request->get('eop31Prenom'),
-            'eop31Fonction' => $request->get('eop31Fonction'),
-            'eop31Matricule' => $request->get('eop31Matricule'),
-            'eop31HeurePriseServ' => $request->get('eop31HeurePriseServ'),
-            'eop31HeureFinService' => $request->get('eop31HeureFinService'),
-            'eop32Nom' => $request->get('eop32Nom'),
-            'eop32Prenom' => $request->get('eop32Prenom'),
-            'eop32Fonction' => $request->get('eop32Fonction'),
-            'eop32Matricule' => $request->get('eop32Matricule'),
-            'eop32HeurePriseServ' => $request->get('eop32HeurePriseServ'),
-            'eop32HeureFinService' => $request->get('eop32HeureFinService'),
+            'chargeDeSecurite' => $request->get('matriculeChargeDeSecurite'),
+            'hps_cs' => $request->get('hps_cs'),
+            'hfs_cs' => $request->get('hfs_cs'),
+            'eop11' => $request->get('eop11Matricule'),
+            'hps_eop11' => $request->get('hps_eop11'),
+            'hfs_eop11' => $request->get('hfs_eop11'),
+            'eop12' => $request->get('eop12Matricule'),
+            'hps_eop12' => $request->get('hps_eop12'),
+            'hfs_eop12' => $request->get('hfs_eop12'),
+            'eop21' => $request->get('eop21Matricule'),
+            'hps_eop21' => $request->get('hps_eop21'),
+            'hfs_eop21' => $request->get('hfs_eop21'),
+            'eop22' => $request->get('eop22Matricule'),
+            'hps_eop22' => $request->get('hps_eop22'),
+            'hfs_eop22' => $request->get('hfs_eop22'),
+            'eop31' => $request->get('eop31Matricule'),
+            'hps_eop31' => $request->get('hps_eop31'),
+            'hfs_eop31' => $request->get('hfs_eop31'),
+            'eop32' => $request->get('eop32Matricule'),
+            'hps_eop32' => $request->get('hps_eop32'),
+            'hfs_eop32' => $request->get('hfs_eop32'),
         ]);
         $securiteService->save();
 

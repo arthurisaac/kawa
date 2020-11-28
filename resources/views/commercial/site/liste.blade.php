@@ -29,7 +29,7 @@
             <td>CTV</td>
             <td>GDF</td>
             <td>MAD</td>
-            <td>Objet op&eacute;ration</td>
+            <td>Coût</td>
             <td>TDF VB</td>
             <td>Actions</td>
         </tr>
@@ -46,7 +46,7 @@
             <td>{{$site->forfait_mensuel_ctv}}</td>
             <td>{{$site->forfait_mensuel_gdf}}</td>
             <td>{{$site->forfait_mensuel_mad}}</td>
-            <td>{{$site->objet_operation}}</td>
+            <td>{{$site->oo_total}}</td>
             <td>{{$site->tarif_tdf_vb}}</td>
             <td>
                 <a href="{{ route('commercial-site.edit', $site->id)}}" class="btn btn-primary btn-sm">Modifier</a>

@@ -74,10 +74,10 @@
                                 <label for="fonctionChargeCaisse" class="col-sm-5">Fonction</label>
                                 <input type="text" name="fonctionChargeCaisse" id="fonctionChargeCaisse" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            {{--<div class="form-group row">
                                 <label for="matriculeChargeCaisse" class="col-sm-5">Matricule</label>
                                 <input type="text" name="matriculeChargeCaisse" id="matriculeChargeCaisse" class="form-control col-sm-7"/>
-                            </div>
+                            </div>--}}
                             <div class="form-group row">
                                 <label for="chargeCaisseHPS" class="col-sm-5">Heure de prise de service</label>
                                 <input type="time" name="chargeCaisseHPS" id="chargeCaisseHPS" class="form-control col-sm-7"/>
@@ -113,10 +113,10 @@
                                 <label for="fonctionChargeCaisseAdjoint" class="col-sm-5">Fonction</label>
                                 <input type="text" name="fonctionChargeCaisseAdjoint" id="fonctionChargeCaisseAdjoint" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            {{--<div class="form-group row">
                                 <label for="matriculeChargeCaisseAdjoint" class="col-sm-5">Matricule</label>
                                 <input type="text" name="matriculeChargeCaisseAdjoint" id="matriculeChargeCaisseAdjoint" class="form-control col-sm-7"/>
-                            </div>
+                            </div>--}}
                             <div class="form-group row">
                                 <label for="chargeCaisseAdjointHPS" class="col-sm-5">Heure de prise de service</label>
                                 <input type="time" name="chargeCaisseAdjointHPS" id="chargeCaisseAdjointHPS" class="form-control col-sm-7"/>
@@ -253,7 +253,7 @@
                 if (personnel) {
                     $("#nomChargeCaisseAdjoint").val(personnel.nomPrenoms);
                     $("#fonctionChargeCaisseAdjoint").val(personnel.fonction);
-                    $("#matriculeOperatrice").val(personnel.matricule);
+                    // $("#matriculeOperatrice").val(personnel.matricule);
                 }
             });
 
@@ -262,7 +262,7 @@
                 if (personnel) {
                     $("#nomChargeCaisse").val(personnel.nomPrenoms);
                     $("#fonctionChargeCaisse").val(personnel.fonction);
-                    $("#matriculeChargeCaisse").val(personnel.matricule);
+                    // $("#matriculeChargeCaisse").val(personnel.matricule);
                 }
             });
         });

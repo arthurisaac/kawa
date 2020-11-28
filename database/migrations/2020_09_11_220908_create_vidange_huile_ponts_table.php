@@ -22,11 +22,11 @@ class CreateVidangeHuilePontsTable extends Migration
             $table->string('centreRegional');
             $table->integer('kmActuel');
             $table->integer('prochainKm');
-            $table->integer('huilePont');
+            /*$table->integer('huilePont');
             $table->string('huilePontMarque');
             $table->integer('huilePontKm');
             $table->string('huilePontFournisseur');
-            $table->integer('huilePontmontant');
+            $table->integer('huilePontmontant');*/
         });
     }
 
