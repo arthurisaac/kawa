@@ -95,27 +95,27 @@
                             <h6>Transport</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB extramuros bitume</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vb"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_extamuros_bitume"
                                        id="oo_tdf_vb">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB extramuros piste</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vl"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_extramuros_piste"
                                        id="oo_tdf_vl">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL extramuros bitume</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vl"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_bitume"
                                        id="oo_tdf_vl">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB (INTRAMUROS)</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vl"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_intramuros"
                                        id="oo_tdf_vl">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL (INTRAMUROS)</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_tdf_vl"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_intramuros"
                                        id="oo_tdf_vl">
                             </div>
                         </div>
@@ -123,66 +123,63 @@
                             <h6>CAISSIERES</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
-                                       id="oo_garde_fond">
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
                                 <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_comptage_tri" id="oo_comptage_tri">
+                                       name="oo_collecte">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">CCTV</label>
                                 <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_comptage_tri" id="oo_comptage_tri">
+                                       name="oo_cctv">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Collecte caisse</label>
                                 <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_comptage_tri" id="oo_comptage_tri">
+                                       name="oo_collecte_caisse">
                             </div>
                         </div>
                         <div class="col">
                             <h6>ATM</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne chèque</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
-                                       id="oo_garde_fond">
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_borne_cheque">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne des opérations</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
-                                       id="oo_garde_fond">
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_borne_operation">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Gestion des GAB</label>
-                                <select class="col-sm-6 form-control form-control-sm" name="oo_garde_fond" style="margin-bottom: 10px;">
+                                <select class="col-sm-6 form-control form-control-sm" name="oo_gestion_gab_niveau" style="margin-bottom: 10px;">
                                     <option>Niveau I</option>
                                     <option>Niveau II</option>
                                     <option>Appov</option>
                                 </select>
-                                <input type="number" class="offset-6 col-sm-6 form-control form-control-sm" name="oo_garde_fond"
-                                       id="oo_garde_fond" placeholder="Prix" min="0">
+                                <input type="number" class="offset-6 col-sm-6 form-control form-control-sm" name="oo_gestion_gab_prix"
+                                        placeholder="Prix" min="0">
                             </div>
 
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Maintenance N2\N3</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_maintenance_n2"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente\location ATM</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_location"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente consommables</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_consommables"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente pièces détachées</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_pieces_detachees"
                                        id="oo_garde_fond">
                             </div>
                         </div>
@@ -190,17 +187,17 @@
                             <h6>PETIT MATERIEL</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_securipack"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sac jute</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_sac_juste"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond"
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle"
                                        id="oo_garde_fond">
                             </div>
                         </div>
@@ -265,6 +262,7 @@
 
                 <div class="col">
                     <div>Régime</div>
+                    <br/>
                     <br/>
                     <div class="checkbox">
                         <input type="checkbox" id="cb_intra_muros" name="regime" value="Intra muros">
