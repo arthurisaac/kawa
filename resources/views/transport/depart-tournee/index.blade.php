@@ -50,7 +50,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Kilométrage départ</label>
-                        <input type="number" class="form-control" name="kmDepart" min="0" value="0" />
+                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" value="0" />
                     </div>
                 </div>
             </div>
@@ -120,10 +120,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -154,10 +156,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -188,10 +192,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -223,10 +229,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -257,10 +265,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -290,10 +300,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -325,10 +337,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -358,10 +372,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -391,10 +407,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -427,10 +445,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -460,10 +480,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -493,10 +515,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -528,10 +552,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -561,10 +587,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -593,11 +621,13 @@
                             <div class="form-group">
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
-                                    <option value="C">C</option>
                                     <option></option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -629,10 +659,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -662,10 +694,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -695,10 +729,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -732,10 +768,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -765,10 +803,12 @@
                                 <label>type</label>
                                 <select class="form-control" name="type[]">
                                     <option></option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="CC">CC</option>
-                                    <option value="DD">DD</option>
+                                    <option value="VB extramuros bitume">VB extramuros bitume</option>
+                                    <option value="VB extramuros piste">VB extramuros piste</option>
+                                    <option value="VL extramuros bitume">VL extramuros bitume</option>
+                                    <option value="VL extramuros piste">VL extramuros piste</option>
+                                    <option value="VB">VB</option>
+                                    <option value="VL">VL</option>
                                 </select>
                             </div>
                         </div>
@@ -786,6 +826,7 @@
         let vehicules = {!! json_encode($vehicules) !!};
         let sites = {!! json_encode($sites) !!};
         let cout = 0;
+        let site = null;
 
         $("#vehicule").on("change", function () {
             $("#chauffeur option").remove();
@@ -803,14 +844,20 @@
         });
 
         $("select[name='site[]']").on("change", function() {
-            const site = sites.find(s => s.id === parseInt(this.value));
-            console.log(site);
+            site = sites.find(s => s.id === parseInt(this.value));
+        });
+
+        $("select[name='type[]']").on("change", function() {
             if (site) {
-                cout += parseInt(site.oo_total);
+                cout += parseInt(site[this.value]);
+                console.log(site[this.value]);
                 $("#coutTournee").val(cout);
             }
-        })
+        });
 
+        $("#kmDepart").on("change", function() {
+            $("#coutTournee").val( cout * parseInt(this.value));
+        })
 
     </script>
 @endsection

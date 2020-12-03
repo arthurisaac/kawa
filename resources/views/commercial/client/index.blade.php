@@ -284,7 +284,7 @@
                         <div class="form-group row">
                             <label for="bt_petit_materiel_securipack" class="col-sm-5">Sécuripack</label>
                             <select name="base_petit_materiel_securipack" id="bt_petit_materiel_securipack"
-                                    class="editbox col-sm-7">
+                                             class="editbox col-sm-7">
                                 <option></option>
                                 <option value="Extra grand">Extra grand</option>
                                 <option value="Grand">Grand</option>
