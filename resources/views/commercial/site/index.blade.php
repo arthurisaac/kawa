@@ -95,29 +95,35 @@
                             <h6>Transport</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB extramuros bitume</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_extamuros_bitume"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vb_extamuros_bitume"
                                        id="oo_tdf_vb">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB extramuros piste</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_extramuros_piste"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vb_extramuros_piste"
                                        id="oo_tdf_vl">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL extramuros bitume</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_bitume">
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vl_extramuros_bitume">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL extramuros piste</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_piste">
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vl_extramuros_piste">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB (INTRAMUROS)</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_intramuros">
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vb_intramuros">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL (INTRAMUROS)</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_intramuros"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vl_intramuros"
                                        id="oo_tdf_vl">
                             </div>
                         </div>
@@ -147,41 +153,59 @@
                             <h6>ATM</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne chèque</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_borne_cheque">
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_borne_cheque">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne des opérations</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_borne_operation">
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_borne_operation">
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group">
                                 <label for="cb_tdf_vb" class="col-sm-6">Gestion des GAB</label>
-                                <select class="col-sm-6 form-control form-control-sm" name="oo_gestion_gab_niveau" style="margin-bottom: 10px;">
-                                    <option>Niveau I</option>
-                                    <option>Niveau II</option>
-                                    <option>Appov</option>
-                                </select>
-                                <input type="number" class="offset-6 col-sm-6 form-control form-control-sm" name="oo_gestion_gab_prix"
-                                        placeholder="Prix" min="0">
+                                <div class="row">
+                                    <label class="col-sm-6">Niveau I</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_gestion_gab_prix1"
+                                           placeholder="Prix" min="0">
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6">Niveau II</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_gestion_gab_prix2"
+                                           placeholder="Prix" min="0">
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6">Niveau II</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_gestion_gab_prix3"
+                                           placeholder="Prix" min="0">
+                                </div>
+
                             </div>
 
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Maintenance N2\N3</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_maintenance_n2"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_maintenance_n2"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente\location ATM</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_location"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vente_location"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente consommables</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_consommables"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vente_consommables"
                                        id="oo_garde_fond">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Vente pièces détachées</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vente_pieces_detachees"
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_vente_pieces_detachees"
                                        id="oo_garde_fond">
                             </div>
                         </div>
@@ -196,6 +220,8 @@
                                     <option value="Moyen">Moyen</option>
                                     <option value="Petit">Petit</option>
                                 </select>
+                                <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
+                                       name="oo_securipack_prix">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sac jute</label>
@@ -206,6 +232,8 @@
                                     <option value="Moyen">Moyen</option>
                                     <option value="Petit">Petit</option>
                                 </select>
+                                <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
+                                       name="oo_sac_juste_prix">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>
@@ -289,7 +317,7 @@
 
             <br/>
             <br/>
-            <div class="row">
+            {{--<div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label for="tarif_bitume" class="col-sm-2">Tarif (HF) Km bitume</label>
@@ -314,7 +342,7 @@
                                class="editbox col-sm-3"/>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <br/>
             <div class="row">
                 <div class="form-group row col-3">
