@@ -18,6 +18,7 @@ class Commercial_site extends Model
         'oo_vb_extamuros_bitume',
         'oo_vb_extramuros_piste',
         'oo_vl_extramuros_bitume',
+        'oo_vl_extramuros_piste',
         'oo_vb_intramuros',
         'oo_vl_intramuros',
         'oo_mad',

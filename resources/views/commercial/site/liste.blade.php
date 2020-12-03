@@ -21,16 +21,24 @@
         <tr>
             <td>Client</td>
             <td>Site</td>
-            <td>Nom contact site</td>
-            <td>g&eacute;ographique</td>
-            <td>Tel</td>
-            <td>N&deg; Carte</td>
-            <!--<td>Forfait mensuel</td>-->
-            <td>CTV</td>
-            <td>GDF</td>
+            <td>VB extramuros bitume</td>
+            <td>VB extramuros piste</td>
+            <td>VL extramuros bitume</td>
+            <td>VL extramuros piste</td>
+            <td>VB</td>
+            <td>VL</td>
+            <td>Niveau</td>
+            <td>Accompagnement</td>
+            <td>Gestion borne</td>
+            <td>GAB</td>
             <td>MAD</td>
-            <td>Coût</td>
-            <td>TDF VB</td>
+            <td>Collecte</td>
+            <td>CTV</td>
+            <td>Collecte + caisse</td>
+            <td>GDF</td>
+            <td>Sécuripack</td>
+            <td>Sac jute</td>
+            <td>scelle</td>
             <td>Actions</td>
         </tr>
         </thead>
@@ -39,15 +47,23 @@
         <tr>
             <td>{{$site->client}}</td>
             <td>{{$site->site}}</td>
-            <td>{{$site->site}}</td>
-            <td>{{$site->nom_contact_site}}</td>
-            <td>{{$site->telephone}}</td>
-            <td>{{$site->no_carte}}</td>
-            <td>{{$site->forfait_mensuel_ctv}}</td>
-            <td>{{$site->forfait_mensuel_gdf}}</td>
-            <td>{{$site->forfait_mensuel_mad}}</td>
-            <td>{{$site->oo_total}}</td>
-            <td>{{$site->tarif_tdf_vb}}</td>
+            <td>{{$site->oo_vb_extamuros_bitume}}</td>
+            <td>{{$site->oo_vb_extramuros_piste}}</td>
+            <td>{{$site->oo_vl_extramuros_bitume}}</td>
+            <td>{{$site->oo_vl_extramuros_piste}}</td>
+            <td>{{$site->oo_vb_intramuros}}</td>
+            <td>{{$site->oo_vl_intramuros}}</td>
+            <td>{{$site->oo_gestion_gab_niveau}}</td>
+            <td>{{$site->oo_gestion_gab_prix}}</td>
+            <td></td>
+            <td>{{$site->oo_borne_operation}}</td>
+            <td>{{$site->oo_mad}}</td>
+            <td>{{$site->oo_collecte}}</td>
+            <td>{{$site->oo_cctv}}</td>
+            <td></td>
+            <td>{{$site->oo_securipack}}</td>
+            <td>{{$site->oo_sac_juste}}</td>
+            <td>{{$site->oo_scelle}}</td>
             <td>
                 <a href="{{ route('commercial-site.edit', $site->id)}}" class="btn btn-primary btn-sm">Modifier</a>
                 <form action="{{ route('commercial-site.destroy', $site->id)}}" method="post">

@@ -105,13 +105,15 @@
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL extramuros bitume</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_bitume"
-                                       id="oo_tdf_vl">
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_bitume">
+                            </div>
+                            <div class="form-group row">
+                                <label for="cb_tdf_vb" class="col-sm-6">VL extramuros piste</label>
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vl_extramuros_piste">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VB (INTRAMUROS)</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_intramuros"
-                                       id="oo_tdf_vl">
+                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_vb_intramuros">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">VL (INTRAMUROS)</label>
@@ -187,13 +189,23 @@
                             <h6>PETIT MATERIEL</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_securipack"
-                                       id="oo_garde_fond">
+                                <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
+                                    <option></option>
+                                    <option value="Extra grand">Extra grand</option>
+                                    <option value="Grand">Grand</option>
+                                    <option value="Moyen">Moyen</option>
+                                    <option value="Petit">Petit</option>
+                                </select>
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sac jute</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_sac_juste"
-                                       id="oo_garde_fond">
+                                <select class="col-sm-6 form-control form-control-sm" name="oo_sac_juste">
+                                    <option></option>
+                                    <option value="Extra grand">Extra grand</option>
+                                    <option value="Grand">Grand</option>
+                                    <option value="Moyen">Moyen</option>
+                                    <option value="Petit">Petit</option>
+                                </select>
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>

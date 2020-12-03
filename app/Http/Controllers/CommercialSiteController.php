@@ -65,6 +65,8 @@ class CommercialSiteController extends Controller
             'no_carte' => $request->get('no_carte'),
             'oo_vb_extamuros_bitume' => $request->get('oo_vb_extamuros_bitume'),
             'oo_vb_extramuros_piste' => $request->get('oo_vb_extramuros_piste'),
+            'oo_vl_extramuros_bitume' => $request->get('oo_vl_extramuros_bitume'),
+            'oo_vl_extramuros_piste' => $request->get('oo_vl_extramuros_piste'),
             'oo_vb_intramuros' => $request->get('oo_vb_intramuros'),
             'oo_mad' => $request->get('oo_mad'),
             'oo_collecte' => $request->get('oo_collecte'),

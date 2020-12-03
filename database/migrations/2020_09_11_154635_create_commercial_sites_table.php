@@ -26,6 +26,8 @@ class CreateCommercialSitesTable extends Migration
             $table->string('no_carte')->nullable();
             $table->string('oo_vb_extamuros_bitume')->nullable();
             $table->string('oo_vb_extramuros_piste')->nullable();
+            $table->string('oo_vl_extramuros_bitume')->nullable();
+            $table->string('oo_vl_extramuros_piste')->nullable();
             $table->string('oo_vb_intramuros')->nullable();
             $table->string('oo_mad')->nullable();
             $table->string('oo_collecte')->nullable();
