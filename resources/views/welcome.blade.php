@@ -445,10 +445,19 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><a
-                                                href="javascript:popupwnd('depart-tournee','no','no','no','yes','yes','no','','','1000','500')"
-                                                target="_self" title="D&#233;part tourn&#233;e">D&#233;part&nbsp;tourn&#233;e</a>
+                                        <li><span></span><span>D&#233;part&nbsp;tourn&#233;e</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('depart-tournee','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Liste</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('depart-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Liste</a>
+                                                </li>
+                                            </ul>
                                         </li>
+
                                         <li><span></span><a
                                                 href="javascript:popupwnd('arrivee-tournee','no','no','no','yes','yes','no','','','1000','500')"
                                                 target="_self" title="Arriv&#233;e tourn&#233;e">Arriv&#233;e&nbsp;tourn&#233;e</a>
