@@ -27,11 +27,11 @@ class SecuriteMaincouranteController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
-        $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
-        $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
-        $vehicules = Vehicule::all();
-        $tournees = DepartTournee::all();
+        // $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        // $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
+        // $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
+        // $vehicules = Vehicule::with('chauffeurSuppleant')->with('chauffeurTitulaire')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::all();
         $arriveeSites = ArriveeSite::all();
         $departSites = DepartSite::all();
@@ -44,8 +44,8 @@ class SecuriteMaincouranteController extends Controller
             ->with('vehicules')
             ->get();
         return view('/securite/maincourante.index',
-            compact('centres', 'centres_regionaux', 'agents', 'chefBords', 'chauffeurs',
-                'vehicules', 'tournees', 'departCentres', 'arriveeSites',
+            compact('centres', 'centres_regionaux',
+                'tournees', 'departCentres', 'arriveeSites',
                 'departSites', 'arriveeCentres', 'tourneeCentres'));
     }
 

@@ -62,6 +62,7 @@
             <td>{{$depart->heureDepart}}</td>
             <td>{{$depart->kmDepart}}</td>
             <td>{{$depart->observation}}</td>
+            {{--TODO: actions--}}
         </tr>
         @endforeach
         </tbody>

@@ -55,6 +55,8 @@ Route::resource('vehicule', 'VehiculeController');
 Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, 'liste']);
 
 Route::resource('depart-tournee', 'DepartTourneeController');
+Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
+
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::resource('entretien-vehicule', 'EntretienVehiculeController');
 

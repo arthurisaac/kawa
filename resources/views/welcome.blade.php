@@ -192,7 +192,7 @@
                                                     </ul>
                                                 </li>
                                                 <li><span></span><a
-                                                        href="javascript:popupwnd('.maincourante','no','no','no','yes','yes','no','','','1000','600')"
+                                                        href="javascript:popupwnd('maincourante','no','no','no','yes','yes','no','','','1000','600')"
                                                         target="_self" title="Main courante">Main&nbsp;courante</a>
                                                     <ul>
                                                         <li><span></span><a
@@ -449,7 +449,7 @@
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('depart-tournee','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="D&#233;part tourn&#233;e">Liste</a>
+                                                        target="_self" title="D&#233;part tourn&#233;e">Nouveau</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('depart-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
@@ -667,34 +667,6 @@
                                                         </li>
                                                         <li><span></span><a
                                                                 href="javascript:popupwnd('regulation-scelle-liste','no','no','no','yes','yes','no','','','1200','600')"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><span></span><span>Colis</span>
-                                            <ul>
-                                                <li><span></span><span>Entr&#233;e&nbsp;de&nbsp;colis</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:displaylightbox('./regulation/entree-colis.html',{})"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:displaylightbox('./regulation/liste-entree-colis.html',{})"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>Sortie&nbsp;de&nbsp;colis</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:displaylightbox('./regulation/sortie-fond.html',{})"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:displaylightbox('./regulation/liste-sortie-fonds.html',{})"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
                                                     </ul>

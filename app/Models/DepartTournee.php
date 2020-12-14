@@ -16,4 +16,24 @@ class DepartTournee extends Model
         'coutTournee',
         'kmDepart'
     ];
+
+    public function agentDeGardes()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'agentDeGarde', 'id');
+    }
+
+    public function chefDeBords()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'chefDeBord', 'id');
+    }
+
+    public function chauffeurs()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'chauffeur', 'id');
+    }
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

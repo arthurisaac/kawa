@@ -26,7 +26,7 @@ class DepartTourneeController extends Controller
         $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         // $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
-        return view('transport/depart-tournee.index',
+        return view('transport.depart-tournee.index',
             compact('departTournee', 'vehicules', 'sites', 'agents', 'chefBords', 'num'));
     }
 
@@ -37,7 +37,15 @@ class DepartTourneeController extends Controller
      */
     public function create()
     {
-        //
+
+    }
+
+
+    public function liste()
+    {
+        $departTournee = DepartTournee::all();
+        return view('transport.depart-tournee.liste',
+            compact('departTournee'));
     }
 
     /**
@@ -84,7 +92,7 @@ class DepartTourneeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -95,7 +103,7 @@ class DepartTourneeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -107,7 +115,7 @@ class DepartTourneeController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -118,7 +126,7 @@ class DepartTourneeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)

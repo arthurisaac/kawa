@@ -102,7 +102,7 @@
                         <select class="editbox col-md-4" name="chauffeurTitulaire" id="chauffeurTitulaire">
                             <option></option>
                             @foreach($personnels as $personnel)
-                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -121,11 +121,11 @@
                         <input type="text" class="editbox col-md-4" name="chauffeurTitulaireFonction"
                                id="chauffeurTitulaireFonction" readonly/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="chauffeurTitulaireMatricule"
                                id="chauffeurTitulaireMatricule" readonly/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Date d'affection</label>
                         <input type="date" class="editbox col-md-4" name="chauffeurTitulaireDateAffection"
@@ -144,7 +144,7 @@
                         <select class="editbox col-md-4" name="chauffeurSuppleant" id="chauffeurSuppleant" >
                             <option></option>
                             @foreach($personnels as $personnel)
-                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
+                                <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -163,11 +163,11 @@
                         <input type="text" class="editbox col-md-4" name="chauffeurSuppleantFonction"
                                id="chauffeurSuppleantFonction" readonly/>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
                         <input type="text" class="editbox col-md-4" name="chauffeurSuppleantMatricule"
                                id="chauffeurSuppleantMatricule" readonly/>
-                    </div>
+                    </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Date d'affection</label>
                         <input type="date" class="editbox col-md-4" name="chauffeurSuppleantDateAffection"
@@ -217,7 +217,7 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                $('#centre_regional').append($('<option>', {text: ""}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {

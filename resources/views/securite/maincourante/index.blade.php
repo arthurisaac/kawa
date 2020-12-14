@@ -105,13 +105,13 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="date" class="col-sm-4">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-8"/>
+                        <input type="date" name="date" id="date" class="form-control col-sm-8" readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                        <select class="form-control col-sm-8" name="noTournee">
+                        <select class="form-control col-sm-8" name="noTournee" id="noTournee">
                             <option>Selectionnez numéro</option>
                             @foreach($tournees as $tournee)
                                 <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
@@ -121,14 +121,14 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label id="vehicule" class="col-sm-4">Véhicule</label>
-                        <!--<input type="text" name="vehicule" id="vehicule" class="form-control col-sm-8"/>-->
-                        <select class="form-control col-sm-8" name="vehicule">
-                            <option>Selectionnez véhicule</option>
+                        <label class="col-sm-4">Véhicule</label>
+                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly />
+                        {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
+                            <option></option>
                             @foreach($vehicules as $vehicule)
                                 <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                             @endforeach
-                        </select>
+                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -136,37 +136,34 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chef de bord</label>
-                        <!--<input type="date" name="chef_de_bord" class="form-control col-sm-8"/>-->
-                        <select class="form-control col-sm-8" name="chefDeBord">
+                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly />
+                        {{--<select class="form-control col-sm-8" name="chefDeBord">
                             <option></option>
                             @foreach($chefBords as $chef)
                                 <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
                             @endforeach
-                        </select>
+                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Agent garde</label>
-                        <!--<input type="text" name="agent_garde" class="form-control col-sm-8"/>-->
-                        <select class="form-control col-sm-8" name="agentDeGarde">
+                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly />
+                        {{--<select class="form-control col-sm-8" name="agentDeGarde">
                             <option></option>
                             @foreach($agents as $agent)
                                 <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
                             @endforeach
-                        </select>
+                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chauffeur:</label>
-                        <!--<input type="text" name="chauffeur" class="form-control col-sm-8"/>-->
-                        <select class="form-control col-sm-8" name="chauffeur">
+                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly />
+                        {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
                             <option></option>
-                            @foreach($chauffeurs as $chauffeur)
-                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
+                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -792,7 +789,7 @@
     </script>
     <script>
         let tourneeCentres =  {!! json_encode($tourneeCentres) !!};
-        console.log(tourneeCentres);
+        let tournees =  {!! json_encode($tournees) !!};
 
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
@@ -800,7 +797,7 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                $('#centre_regional').append($('<option>', {text: ""}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -812,6 +809,23 @@
                         text: centre_regional
                     }));
                 })
+            });
+
+            $("#noTournee").on("change", function () {
+                $("#chauffeur").val("");
+                $("#chefDeBord").val("");
+                $("#agentDeGarde").val("");
+                $("#date").val("");
+                $("#vehicule").val("");
+                const tournee = tournees.find(v => v.id === parseInt(this.value));
+                if (tournee) {
+                    if (tournee.chauffeurs) $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
+                    if (tournee.chef_de_bords) $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
+                    if (tournee.agent_de_gardes) $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    if (tournee.vehicules) $("#vehicule").val(tournee.vehicules.immatriculation);
+                    $("#date").val(tournee.date);
+                    console.log(tournee)
+                }
             });
 
 
@@ -901,7 +915,6 @@
                 success: function (data) {
                     alert('Enregistrement supprimé');
                     window.location.reload();
-                    //console.log(data);
                 }
             })
         }

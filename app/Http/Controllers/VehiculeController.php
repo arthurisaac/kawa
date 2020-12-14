@@ -8,6 +8,7 @@ use App\Models\Personnel;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class VehiculeController extends Controller
 {
@@ -21,8 +22,8 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $personnels = Personnel::all();
-        return view('transport/vehicule.index',
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        return view('transport.vehicule.index',
             compact('vehicule','centres', 'centres_regionaux', 'personnels'));
     }
 
