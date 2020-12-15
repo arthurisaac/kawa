@@ -584,37 +584,37 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale"/>
+                                <input type="number" class="form-control" name="vidangeGenerale" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Visite technique</label>
-                                <input type="number" class="form-control" name="visiteTechnique"/>
+                                <input type="number" class="form-control" name="visiteTechnique" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange Courroie</label>
-                                <input type="number" class="form-control" name="vidangeCourroie"/>
+                                <input type="number" class="form-control" name="vidangeCourroie" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Patente</label>
-                                <input type="number" class="form-control" name="patente"/>
+                                <label>Vidange Patente</label>
+                                <input type="number" class="form-control" name="patente" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Assurance fin</label>
-                                <input type="date" class="form-control" name="assuranceFin"/>
+                                <input type="date" class="form-control" name="assuranceFin" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Assurance pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont"/>
+                                <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
                             </div>
                         </div>
                     </div>
@@ -628,6 +628,8 @@
         let tournees = {!!json_encode($departTournees)!!};
         let personnels = {!!json_encode($personnels)!!};
         let sites = {!! json_encode($sites) !!};
+        let vidanges = {!! json_encode($vidanges) !!};
+        console.log(vidanges);
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -645,6 +647,9 @@
                     setConvoyeur(1, tournee.agentDeGarde);
                     setConvoyeur(2, tournee.chauffeur);
                     setConvoyeur(3, tournee.chefDeBord);
+
+                    const vidange = tournees.find(c => parseInt(c.id) === parseInt(tournee.vehicules.id));
+                    if (vidange) console.log(vidange);
                 }
             });
 
@@ -657,7 +662,7 @@
             }
 
             function populateSites(sites) {
-                console.log(sites);
+                // console.log(sites);
                 $(".sitesListes div").remove();
                 sites.map( s => {
 

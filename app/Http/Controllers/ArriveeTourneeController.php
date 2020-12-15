@@ -8,6 +8,7 @@ use App\Models\DepartTournee;
 use App\Models\Personnel;
 use App\Models\SiteArriveeTournee;
 use App\Models\SiteDepartTournee;
+use App\Models\VidangeGenerale;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -24,7 +25,8 @@ class ArriveeTourneeController extends Controller
         $convoyeurs = Convoyeur::all();
         $personnels = Personnel::all();
         $sites = SiteDepartTournee::with('sites')->get();
-        return view('transport.arrivee-tournee.index', compact('departTournees', 'convoyeurs', 'personnels', 'sites'));
+        $vidanges = VidangeGenerale::all();
+        return view('transport.arrivee-tournee.index', compact('departTournees', 'convoyeurs', 'personnels', 'sites', 'vidanges'));
     }
 
     /**

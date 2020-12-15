@@ -791,7 +791,7 @@
 
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
-        // let departSites = {!! json_encode($departSites) !!};
+        let departSites = {!! json_encode($departSites) !!};
 
         console.log(tourneeCentres)
 
