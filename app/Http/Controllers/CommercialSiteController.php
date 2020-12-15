@@ -118,7 +118,8 @@ class CommercialSiteController extends Controller
      */
     public function edit($id)
     {
-        $site = Commercial_site::find($id);
+        // $site = Commercial_site::find($id);
+        $site = Commercial_site::with('clients')->get()->find($id);
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();

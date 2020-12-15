@@ -317,32 +317,6 @@
 
             <br/>
             <br/>
-            {{--<div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="tarif_bitume" class="col-sm-2">Tarif (HF) Km bitume</label>
-                        <input id="tarif_bitume" name="tarif_bitume" type="number" min="0" class="editbox col-sm-3"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tarif_km_piste" class="col-sm-2">Tarif (HF) Km piste</label>
-                        <input id="tarif_km_piste" name="tarif_km_piste" type="number" min="0"
-                               class="editbox col-sm-3"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tarif_tdf_vb" class="col-sm-2">Tarif (HF) TDF VB</label>
-                        <input id="tarif_tdf_vb" name="tarif_tdf_vb" type="number" min="0" class="editbox col-sm-3"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tarif_tdf_vl" class="col-sm-2">Tarif (HF) TDF VL</label>
-                        <input id="tarif_tdf_vl" name="tarif_tdf_vl" type="number" min="0" class="editbox col-sm-3"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tarif_collecte_caissiere" class="col-sm-2">Tarif (HF) Collecte caissière</label>
-                        <input id="tarif_collecte_caissiere" name="tarif_collecte_caissiere" type="number" min="0"
-                               class="editbox col-sm-3"/>
-                    </div>
-                </div>
-            </div>--}}
             <br/>
             <div class="row">
                 <div class="form-group row col-3">

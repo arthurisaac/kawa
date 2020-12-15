@@ -47,4 +47,10 @@ class Commercial_site extends Model
         'tarif_tdf_vl',
         'tarif_collecte_caissiere',
         ];
+
+
+    public function clients()
+    {
+        return $this->belongsTo('App\Models\Commercial_client', 'client', 'id');
+    }
 }
