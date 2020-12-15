@@ -137,11 +137,6 @@ class CommercialSiteController extends Controller
     public function update(Request $request, $id)
     {
         $site = Commercial_site::find($id);
-        $objet_operation = null;
-        if (!empty($request->get('objet_operation'))) {
-            $objet_operation = implode(",", $request->get('objet_operation'));
-        }
-
         $site->client = $request->get('client');
         $site->site = $request->get('site');
         $site->nom_contact_site = $request->get('nom_contact_site');
@@ -150,7 +145,27 @@ class CommercialSiteController extends Controller
         $site->centre_regional = $request->get('centre_regional');
         $site->telephone = $request->get('telephone');
         $site->no_carte = $request->get('no_carte');
-        $site->objet_operation = $objet_operation;
+        $site->oo_vb_extamuros_bitume = $request->get('oo_vb_extamuros_bitume');
+        $site->oo_vb_extramuros_piste = $request->get('oo_vb_extramuros_piste');
+        $site->oo_vl_extramuros_bitume = $request->get('oo_vl_extramuros_bitume');
+        $site->oo_vl_extramuros_piste = $request->get('oo_vl_extramuros_piste');
+        $site->oo_vb_intramuros = $request->get('oo_vb_intramuros');
+        $site->oo_mad = $request->get('oo_mad');
+        $site->oo_collecte = $request->get('oo_collecte');
+        $site->oo_cctv = $request->get('oo_cctv');
+        $site->oo_collecte_caisse = $request->get('oo_collecte_caisse');
+        $site->oo_borne_cheque = $request->get('oo_borne_cheque');
+        $site->oo_borne_operation = $request->get('oo_borne_operation');
+        $site->oo_gestion_gab_niveau = $request->get('oo_gestion_gab_niveau');
+        $site->oo_gestion_gab_prix = $request->get('oo_gestion_gab_prix');
+        $site->oo_maintenance_n2 = $request->get('oo_maintenance_n2');
+        $site->oo_vente_location = $request->get('oo_vente_location');
+        $site->oo_vente_consommables = $request->get('oo_vente_consommables');
+        $site->oo_vente_pieces_detachees = $request->get('oo_vente_pieces_detachees');
+        $site->oo_securipack = $request->get('oo_securipack');
+        $site->oo_sac_juste = $request->get('oo_sac_juste');
+        $site->oo_scelle = $request->get('oo_scelle');
+        $site->oo_total = $request->get('oo_total');
         $site->forfait_mensuel_ctv = $request->get('forfait_mensuel_ctv');
         $site->forfait_mensuel_gdf = $request->get('forfait_mensuel_gdf');
         $site->forfait_mensuel_mad = $request->get('forfait_mensuel_mad');
@@ -161,7 +176,7 @@ class CommercialSiteController extends Controller
         $site->tarif_tdf_vl = $request->get('tarif_tdf_vl');
         $site->tarif_collecte_caissiere = $request->get('tarif_collecte_caissiere');
         $site->save();
-        return redirect('/commercial-site-liste')->with('success', 'Site enregistré!');
+        return redirect('/commercial-site-liste')->with('success', 'Site modifié avec succès!');
 
     }
 

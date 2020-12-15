@@ -35,7 +35,6 @@
             <td>Collecte</td>
             <td>CTV</td>
             <td>Collecte + caisse</td>
-            <td>GDF</td>
             <td>Sécuripack</td>
             <td>Sac jute</td>
             <td>scelle</td>
@@ -55,8 +54,8 @@
             <td>{{$site->oo_vl_intramuros}}</td>
             <td>{{$site->oo_gestion_gab_niveau}}</td>
             <td>{{$site->oo_gestion_gab_prix}}</td>
-            <td></td>
             <td>{{$site->oo_borne_operation}}</td>
+            <td></td>
             <td>{{$site->oo_mad}}</td>
             <td>{{$site->oo_collecte}}</td>
             <td>{{$site->oo_cctv}}</td>
