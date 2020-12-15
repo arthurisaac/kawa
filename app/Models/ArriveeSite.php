@@ -18,4 +18,9 @@ class ArriveeSite extends Model
     {
         return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
     }
+
+    public function departSites()
+    {
+        return $this->belongsTo('App\Models\DepartSite', 'site', 'id');
+    }
 }

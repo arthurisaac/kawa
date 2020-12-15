@@ -112,7 +112,6 @@
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
                         <select class="form-control col-sm-8" name="noTournee" id="noTournee">
-                            <option>Selectionnez numéro</option>
                             @foreach($tournees as $tournee)
                                 <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                             @endforeach
@@ -242,7 +241,7 @@
                                     <tbody>
                                     @foreach ($departCentres as $centre)
                                         <tr>
-                                            <td>{{$centre->noTournee}}</td>
+                                            <td>{{$centre->tournees->numeroTournee}}</td>
                                             <td>{{date('d/m/Y', strtotime($centre->date))}}</td>
                                             <td>{{$centre->heureDepart}}</td>
                                             <td>{{$centre->code}}</td>
@@ -312,7 +311,7 @@
                                     <tbody>
                                     @foreach ($arriveeSites as $arriveeSite)
                                         <tr>
-                                            <td>{{$arriveeSite->site}}</td>
+                                            <td>{{$arriveeSite->departSites->site}}</td>
                                             <td>{{$arriveeSite->tournees->date}}</td>
                                             <td>{{$arriveeSite->heureArrivee}}</td>
                                             <td>{{$arriveeSite->kmArrivee}}</td>
@@ -606,7 +605,7 @@
             </div>
             <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}">
+                    <form method="post" action="{{ route('maincourante.store') }}" id="arriveeCentre" novalidate>
                         @csrf
                         <input type="hidden" name="maincourante" value="arriveeCentre"/>
                         <div class="row">
@@ -623,7 +622,7 @@
                                     <label class="col-sm-5">Observation</label>
                                     <textarea name="observation" class="form-control col-sm-7"></textarea>
                                 </div>
-                                <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="acSubmit">Valider</button>
                             </div>
                             <div class="col">
                                 <table class="table table-bordered" style="width: 100%;" id="listeArriveeCentre">
@@ -639,8 +638,8 @@
                                     <tbody>
                                     @foreach ($arriveeCentres as $centre)
                                         <tr>
-                                            <td>{{$centre->tournee}}</td>
-                                            <td>{{$centre->date}}</td>
+                                            <td>{{$centre->tournees->numeroTournee}}</td>
+                                            <td>{{$centre->tournees->date}}</td>
                                             <td>{{$centre->heureArrivee}}</td>
                                             <td>{{$centre->kmArrive}}</td>
                                             <td>{{$centre->observation}}</td>
@@ -655,15 +654,15 @@
             </div>
             <div class="tab-pane fade" id="tournee-centre" role="tabpanel" aria-labelledby="tournee-centre-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}">
+                    <form method="post" action="{{ route('maincourante.store') }}" id="tourneeCentre" novalidate>
                         @csrf
                         <input type="hidden" name="maincourante" value="tourneeCentre"/>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label class="col-sm-5">Centre</label>
-                                    <select name="centre" id="centre" class="form-control col-sm-7">
-                                        <option>Choisir centre</option>
+                                    <select name="centre" id="centre" class="form-control col-sm-7" required>
+                                        <option></option>
                                         @foreach ($centres as $centre)
                                             <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                                         @endforeach
@@ -671,8 +670,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                                    <select id="centre_regional" name="centreRegional" class="form-control col-sm-7">
-                                        <option>Choisir centre régional</option>
+                                    <select id="centre_regional" name="centreRegional" class="form-control col-sm-7" required>
                                     </select>
                                 </div>
                             </div>
@@ -693,8 +691,8 @@
                         </div>
                         <br/>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                            <button class="btn btn-danger btn-sm" type="annuler">Annuler</button>
+                            <button class="btn btn-primary btn-sm" type="button" id="tcSubmit">Valider</button>
+                            <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
                         </div>
                     </form>
                     <div style="width: 100%; overflow-x: scroll;">
@@ -718,12 +716,12 @@
                             <tbody>
                             @foreach ($tourneeCentres as $tournee)
                                 <tr>
-                                    <td>{{$tournee->date}}</td>
-                                    <td>{{$tournee->tournee}}</td>
-                                    <td>{{$tournee->vehicules->immatriculation}}</td>
-                                    <td>{{$tournee->personnesChauffeur->nomPrenoms}}</td>
-                                    <td>{{$tournee->personnesChef->nomPrenoms}}</td>
-                                    <td>{{$tournee->personnesDeGarde->nomPrenoms}}</td>
+                                    <td>{{$tournee->tournees->date}}</td>
+                                    <td>{{$tournee->tournees->numeroTournee}}</td>
+                                    <td>{{$tournee->details->vehicules->immatriculation}}</td>
+                                    <td>{{$tournee->details->chauffeurs->nomPrenoms}}</td>
+                                    <td>{{$tournee->details->chefDeBords->nomPrenoms}}</td>
+                                    <td>{{$tournee->details->agentDeGardes->nomPrenoms}}</td>
                                     <td>{{$tournee->centre}}</td>
                                     <td>{{$tournee->centreRegional}}</td>
                                     <td>{{$tournee->dateDebut}}</td>
@@ -793,7 +791,9 @@
 
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
-        let departSites = {!! json_encode($departSites) !!};
+        // let departSites = {!! json_encode($departSites) !!};
+
+        console.log(tourneeCentres)
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
@@ -997,7 +997,11 @@
                         _token: _token
                     },
                     success: function(response) {
-                        alert("Enregistré avec succès!");
+                        if (response.errorInfo) {
+                            alert(response.errorInfo);
+                        } else {
+                            alert("Enregistré avec succès!");
+                        }
                     }
                 })
             });
@@ -1006,7 +1010,7 @@
                 const _token = $("input[name=_token]").val();
 
                 const noTournee = $("#noTournee").val();
-                const site = $("input[name=asSite]").val();
+                const site = $("select[name=asSite]").val();
                 const heureArrivee = $("input[name=asHeureArrivee]").val();
                 const kmArrivee = $("input[name=asKmArrivee]").val();
                 const observation = $("textarea[name=asObservation]").val();
@@ -1023,7 +1027,11 @@
                         _token: _token
                     },
                     success: function(response) {
-                        alert("Enregistré avec succès!");
+                        if (response.errorInfo) {
+                            alert(response.errorInfo);
+                        } else {
+                            alert("Enregistré avec succès!");
+                        }
                     }
                 })
             });
@@ -1038,6 +1046,44 @@
                     data : $('#departSite').serialize() + `&maincourante=departSite&noTournee=${noTournee}&_token=${_token}`,
                     success: function(response) {
                         alert("Enregistré avec succès!");
+                        console.log(response);
+                    }
+                })
+            });
+
+            $("#acSubmit").on("click", function() {
+                const _token = $("input[name=_token]").val();
+                const noTournee = $("#noTournee").val();
+
+                $.ajax({
+                    url: "{{ route('maincourante.store') }}",
+                    type: "POST",
+                    data : $('#arriveeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
+                    success: function(response) {
+                        if (response.errorInfo) {
+                            alert(response.errorInfo);
+                        } else {
+                            alert("Enregistré avec succès!");
+                        }
+                        console.log(response);
+                    }
+                })
+            });
+
+            $("#tcSubmit").on("click", function() {
+                const _token = $("input[name=_token]").val();
+                const noTournee = $("#noTournee").val();
+
+                $.ajax({
+                    url: "{{ route('maincourante.store') }}",
+                    type: "POST",
+                    data : $('#tourneeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
+                    success: function(response) {
+                        if (response.errorInfo) {
+                            alert(response.errorInfo);
+                        } else {
+                            alert("Enregistré avec succès!");
+                        }
                         console.log(response);
                     }
                 })

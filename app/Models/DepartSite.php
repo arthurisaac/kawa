@@ -17,4 +17,10 @@ class DepartSite extends Model
         'destination',
         'observation',
         ];
+
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
 }

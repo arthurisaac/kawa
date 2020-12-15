@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ArriveeCentre extends Model
 {
     protected $fillable = [
-        'date',
-        'tournee',
-        'vehicule',
-        'chefDeBord',
-        'agentDeGarde',
-        'chauffeur',
+        'noTournee',
         'heureArrivee',
         'kmArrive',
         'observation',
-        ];
+    ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
 }

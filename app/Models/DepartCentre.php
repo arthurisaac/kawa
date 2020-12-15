@@ -12,4 +12,9 @@ class DepartCentre extends Model
         'kmDepart',
         'observation',
     ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
 }

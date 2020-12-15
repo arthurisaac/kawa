@@ -3,23 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class TourneeCentre extends Model
 {
     protected $fillable = [
-        'date',
-        'tournee',
-        'vehicule',
-        'chefDeBord',
-        'agentDeGarde',
-        'chauffeur',
+        'noTournee',
         'centre',
         'centreRegional',
         'dateDebut',
         'dateFin',
     ];
 
-    public function personnesChef()
+    /*public function personnesChef()
     {
         return $this->belongsTo('App\Models\Personnel', 'chefDeBord', 'id');
     }
@@ -30,10 +26,18 @@ class TourneeCentre extends Model
     public function personnesDeGarde()
     {
         return $this->belongsTo('App\Models\Personnel', 'agentDeGarde', 'id');
+    }*/
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
     }
 
-    public function vehicules()
-    {
-        return $this->belongsTo('App\Models\Vehicule', 'vehicule', 'id');
+    function details() {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')
+            ->with('chauffeurs')
+            ->with('vehicules')
+            ->with('chefDeBords')
+            ->with('agentDeGardes');
     }
 }
