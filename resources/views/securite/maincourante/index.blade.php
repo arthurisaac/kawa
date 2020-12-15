@@ -201,7 +201,7 @@
             <div class="tab-pane fade show active" id="depart-centre" role="tabpanel"
                  aria-labelledby="depart-centre-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}">
+                    <form method="post" action="{{ route('maincourante.store') }}" novalidate id="departCentre">
                         @csrf
                         <input type="hidden" name="maincourante" value="departCentre"/>
                         <br/>
@@ -209,21 +209,21 @@
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                    <input type="time" name="heureDepart" class="form-control col-sm-8"/>
+                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="km_depart" class="col-sm-4">Km départ</label>
-                                    <input type="time" name="kmDepart" class="form-control col-sm-8"/>
+                                    <input type="time" name="dcKmDepart" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="observation" class="col-sm-4">Observation:</label>
-                                    <textarea name="observation" id="observation"
+                                    <textarea name="dcObservation" id="dcObservation"
                                               class="form-control col-sm-8"></textarea>
                                 </div>
 
                                 <div class="form-group row">
                                     <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="dcSubmit">Enregistrer</button>
                                 </div>
 
                             </div>
@@ -259,15 +259,15 @@
             </div>
             <div class="tab-pane fade" id="arrivee-site" role="tabpanel" aria-labelledby="arrivee-site-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}">
+                    <form method="post" action="{{ route('maincourante.store') }}" novalidate>
                         <input type="hidden" name="maincourante" value="arriveeSite"/>
                         @csrf
                         <div class="row">
                             <div class="col">
                                 <div class="form-group row">
-                                    <label class="col-sm-4">SITE 1</label>
-                                    <input type="text" name="site[]" class="form-control col-sm-8"/>
-                                    <input type="hidden" name="numeroSite[]" value="1" class="form-control col-sm-8"/>
+                                    <label class="col-sm-4">SITE</label>
+                                    <input type="text" name="asSite" class="form-control col-sm-8"/>
+                                    <input type="hidden" name="numeroSite" value="1" class="form-control col-sm-8"/>
                                 </div>
                             </div>
                             <div class="col"></div>
@@ -277,21 +277,21 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group row">
-                                    <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                    <input type="time" name="heureDepart[]" class="form-control col-sm-8"/>
+                                    <label for="heure_depart" class="col-sm-4">Heure d'arrivée</label>
+                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4">Km départ</label>
-                                    <input type="time" name="kmDepart[]" class="form-control col-sm-8"/>
+                                    <label class="col-sm-4">Km d'arrivée</label>
+                                    <input type="time" name="asKmArrivee" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Observation:</label>
-                                    <textarea name="observation[]" class="form-control col-sm-8"></textarea>
+                                    <textarea name="asObservation" class="form-control col-sm-8"></textarea>
                                 </div>
 
                                 <div class="form-group row">
                                     <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer</button>
                                 </div>
 
                             </div>
@@ -299,7 +299,6 @@
                                 <table class="table table-bordered" id="listeArriveeSite" style="width: 100%">
                                     <thead>
                                     <tr>
-                                        <td>Site Numero</td>
                                         <td>Site</td>
                                         <td>Date</td>
                                         <td>Heure</td>
@@ -311,11 +310,10 @@
                                     <tbody>
                                     @foreach ($arriveeSites as $arriveeSite)
                                         <tr>
-                                            <td>{{$arriveeSite->numeroSite}}</td>
                                             <td>{{$arriveeSite->site}}</td>
-                                            <td>{{$arriveeSite->date}}</td>
-                                            <td>{{$arriveeSite->heureDepart}}</td>
-                                            <td>{{$arriveeSite->kmDepart}}</td>
+                                            <td>{{$arriveeSite->tournees->date}}</td>
+                                            <td>{{$arriveeSite->heureArrivee}}</td>
+                                            <td>{{$arriveeSite->kmArrivee}}</td>
                                             <td>{{$arriveeSite->observation}}</td>
                                         </tr>
                                     @endforeach
@@ -329,7 +327,7 @@
             </div>
             <div class="tab-pane fade" id="depart-site" role="tabpanel" aria-labelledby="depart-site-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}">
+                    <form method="post" action="{{ route('maincourante.store') }}" id="departSite" novalidate>
                         @csrf
 
                         <input type="hidden" name="maincourante" value="departSite"/>
@@ -495,7 +493,7 @@
                                         <textarea class="form-control col-sm-6" name="observation[]"></textarea>
                                     </div>
                                     <div class="row">
-                                        <button class="btn btn-primary btn-sm">Enregistrer</button>
+                                        <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">Enregistrer</button>
                                     </div>
                                 </div>
                                 <div class="col"></div>
@@ -824,12 +822,9 @@
                     if (tournee.agent_de_gardes) $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
                     if (tournee.vehicules) $("#vehicule").val(tournee.vehicules.immatriculation);
                     $("#date").val(tournee.date);
-                    console.log(tournee)
                 }
             });
 
-
-            //
             const colisHTML = '<div class="row">\n' +
                 '                                        <div class="col-2">\n' +
                 '                                            <div class="form-group">\n' +
@@ -962,4 +957,73 @@
         })
     </script>
 
+    <script>
+        $(document).ready(function () {
+
+            $("#dcSubmit").on("click", function() {
+                const _token = $("input[name=_token]").val();
+
+                const noTournee = $("#noTournee").val();
+                const dcHeureDepart = $("input[name=dcHeureDepart]").val();
+                const dcKmDepart = $("input[name=dcKmDepart]").val();
+                const dcObservation = $("textarea[name=dcObservation]").val();
+                $.ajax({
+                    url: "{{ route('maincourante.store') }}",
+                    type: "POST",
+                    data: {
+                        maincourante: "departCentre",
+                        noTournee: noTournee,
+                        heureDepart: dcHeureDepart,
+                        kmDepart: dcKmDepart,
+                        observation: dcObservation,
+                        _token: _token
+                    },
+                    success: function(response) {
+                        alert("Enregistré avec succès!");
+                    }
+                })
+            });
+
+            $("#asSubmit").on("click", function() {
+                const _token = $("input[name=_token]").val();
+
+                const noTournee = $("#noTournee").val();
+                const site = $("input[name=asSite]").val();
+                const heureArrivee = $("input[name=asHeureArrivee]").val();
+                const kmArrivee = $("input[name=asKmArrivee]").val();
+                const observation = $("textarea[name=asObservation]").val();
+                $.ajax({
+                    url: "{{ route('maincourante.store') }}",
+                    type: "POST",
+                    data: {
+                        maincourante: "arriveeSite",
+                        noTournee: noTournee,
+                        site: site,
+                        heureArrivee: heureArrivee,
+                        kmArrivee: kmArrivee,
+                        observation: observation,
+                        _token: _token
+                    },
+                    success: function(response) {
+                        alert("Enregistré avec succès!");
+                    }
+                })
+            });
+
+            $("#dsSubmit").on("click", function() {
+                const _token = $("input[name=_token]").val();
+                const noTournee = $("#noTournee").val();
+
+                $.ajax({
+                    url: "{{ route('maincourante.store') }}",
+                    type: "POST",
+                    data : $('#departSite').serialize() + `&maincourante=departSite&noTournee=${noTournee}&_token=${_token}`,
+                    success: function(response) {
+                        alert("Enregistré avec succès!");
+                        console.log(response);
+                    }
+                })
+            })
+        });
+    </script>
 @endsection

@@ -16,15 +16,10 @@ class CreateDepartCentresTable extends Migration
         Schema::create('depart_centres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('date');
             $table->foreignId('noTournee')->references('id')->on('depart_tournees');
-            $table->foreignId('vehicule')->references('id')->on('vehicules');
-            $table->foreignId('chefDeBord')->references('id')->on('personnels');
-            $table->foreignId('agentDeGarde')->references('id')->on('personnels');
-            $table->foreignId('chauffeur')->references('id')->on('personnels');
-            $table->string('heureDepart');
-            $table->string('kmDepart');
-            $table->string('observation');
+            $table->string('heureDepart')->nullable();
+            $table->string('kmDepart')->nullable();
+            $table->string('observation')->nullable();
         });
     }
 

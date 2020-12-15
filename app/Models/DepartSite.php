@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DepartSite extends Model
 {
     protected $fillable = [
-        'date',
-        'vehicule',
-        'chefDeBord',
-        'chauffeur',
+        'noTournee',
         'numeroSite',
         'site',
         'finOp',

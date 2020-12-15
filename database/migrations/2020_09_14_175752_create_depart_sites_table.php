@@ -16,10 +16,7 @@ class CreateDepartSitesTable extends Migration
         Schema::create('depart_sites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
-            $table->foreignId('vehicule')->references('id')->on('vehicules');
-            $table->foreignId('chefDeBord')->references('id')->on('personnels');
-            $table->foreignId('chauffeur')->references('id')->on('personnels');
+            $table->string('noTournee')->nullable();
             $table->time('heureDepart')->nullable();
             $table->string('numeroSite')->nullable();
             $table->string('site')->nullable();

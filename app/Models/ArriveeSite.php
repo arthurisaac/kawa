@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class ArriveeSite extends Model
 {
     protected $fillable = [
-        'numeroSite',
+        'noTournee',
         'site',
-        'date',
-        'vehicule',
-        'chefDeBord',
-        'chauffeur',
-        'heureDepart',
-        'kmDepart',
+        'heureArrivee',
+        'kmArrivee',
         'observation',
     ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
 }

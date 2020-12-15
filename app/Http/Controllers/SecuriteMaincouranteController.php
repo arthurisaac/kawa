@@ -12,6 +12,7 @@ use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
 use App\Models\TourneeCentre;
 use App\Models\Vehicule;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -27,18 +28,13 @@ class SecuriteMaincouranteController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        // $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
-        // $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
-        // $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
-        // $vehicules = Vehicule::with('chauffeurSuppleant')->with('chauffeurTitulaire')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::all();
-        $arriveeSites = ArriveeSite::all();
+        $arriveeSites = ArriveeSite::with('tournees')->get();
         $departSites = DepartSite::all();
         $arriveeCentres = ArriveeCentre::all();
-        // $tourneeCentres = TourneeCentre::all();
         $tourneeCentres = TourneeCentre::
-            with('personnesChef')
+        with('personnesChef')
             ->with('personnesChauffeur')
             ->with('personnesDeGarde')
             ->with('vehicules')
@@ -56,7 +52,7 @@ class SecuriteMaincouranteController extends Controller
         $departSites = DepartSite::all();
         $arriveeCentres = ArriveeCentre::all();
 
-        return view('/securite/maincourante.liste',
+        return view('/securite.maincourante.liste',
             compact('departCentres', 'arriveeSites', 'arriveeCentres', 'departSites'));
     }
 
@@ -81,10 +77,6 @@ class SecuriteMaincouranteController extends Controller
         $departCentre = new DepartCentre([
             'date' => $request->get('date'),
             'noTournee' => $request->get('noTournee'),
-            'vehicule' => $request->get('vehicule'),
-            'chefDeBord' => $request->get('chefDeBord'),
-            'agentDeGarde' => $request->get('agentDeGarde'),
-            'chauffeur' => $request->get('chauffeur'),
             'heureDepart' => $request->get('heureDepart'),
             'kmDepart' => $request->get('kmDepart'),
             'observation' => $request->get('observation'),
@@ -94,42 +86,21 @@ class SecuriteMaincouranteController extends Controller
 
     public function storeArriveeSite(Request $request)
     {
-        $numeroSite = $request->get('numeroSite');
-        $site = $request->get('site');
-        $date = $request->get('date');
-        $vehicule = $request->get('vehicule');
-        $chefDeBord = $request->get('chefDeBord');
-        $chauffeur = $request->get('chauffeur');
-        $heureDepart = $request->get('heureDepart');
-        $kmDepart = $request->get('kmDepart');
-        $observation = $request->get('observation');
-
-        for ($i = 0; $i < count($site); $i++) {
-            if (!empty($site[$i])) {
-                $arriveeCentre = new ArriveeSite([
-                    'numeroSite' => $numeroSite[$i],
-                    'site' => $site[$i],
-                    'date' => $date[$i],
-                    'vehicule' => $vehicule[$i],
-                    'chefDeBord' => $chefDeBord[$i],
-                    'chauffeur' => $chauffeur[$i],
-                    'heureDepart' => $heureDepart[$i],
-                    'kmDepart' => $kmDepart[$i],
-                    'observation' => $observation[$i]
-                ]);
-                $arriveeCentre->save();
-            }
-        }
+        $arriveeCentre = new ArriveeSite([
+            'noTournee' => $request->get('noTournee'),
+            'site' => $request->get('site'),
+            'heureArrivee' => $request->get('heureArrivee'),
+            'kmArrivee' => $request->get('kmArrivee'),
+            'observation' => $request->get('observation'),
+        ]);
+        $arriveeCentre->save();
     }
 
     public function storeDepartSite(Request $request)
     {
+        $noTournee = $request->get('noTournee');
         $numeroSite = $request->get('numeroSite');
         $site = $request->get('site');
-        $date = $request->get('date');
-        $vehicule = $request->get('vehicule');
-        $chefDeBord = $request->get('chefDeBord');
-        $chauffeur = $request->get('chauffeur');
         $finOp = $request->get('finOp');
         $heureDepart = $request->get('heureDepart');
         $kmDepart = $request->get('kmDepart');
@@ -140,12 +111,9 @@ class SecuriteMaincouranteController extends Controller
         for ($i = 0; $i < count($site); $i++) {
             if (!empty($site[$i])) {
                 $departSite = new DepartSite([
+                    'noTournee' => $noTournee,
                     'numeroSite' => $numeroSite[$i],
                     'site' => $site[$i],
-                    'date' => $date[$i],
-                    'vehicule' => $vehicule[$i],
-                    'chefDeBord' => $chefDeBord[$i],
-                    'chauffeur' => $chauffeur[$i],
                     'finOp' => $finOp[$i],
                     'heureDepart' => $heureDepart[$i],
                     'kmDepart' => $kmDepart[$i],
@@ -172,34 +140,35 @@ class SecuriteMaincouranteController extends Controller
         $montantAnnonceSecuripack = $request->get('montantAnnonceSecuripack');
         $montantAnnonceSacjute = $request->get('montantAnnonceSacjute');
 
-        for ($i = 0; $i < count($totalColis); $i++) {
-            if (!empty($totalColis[$i])) {
-                $departSite = new DepartSiteColis([
-                    'departSite' => $id,
-                    'totalColis' => $totalColis[$i],
-                    'typeColisSecuripack' => $typeColisSecuripack[$i],
-                    'typeColisSacjute' => $typeColisSacjute[$i],
-                    'nombreColisSecuripack' => $nombreColisSecuripack[$i],
-                    'nombreColisSacjute' => $nombreColisSacjute[$i],
-                    'numeroScelleSecuripack' => $numeroScelleSecuripack[$i],
-                    'numeroScelleSacjute' => $numeroScelleSacjute[$i],
-                    'montantAnnonceSecuripack' => $montantAnnonceSecuripack[$i],
-                    'montantAnnonceSacjute' => $montantAnnonceSacjute[$i],
-                ]);
-                $departSite->save();
+            for ($i = 0; $i < count($totalColis); $i++) {
+                if (!empty($totalColis[$i])) {
+                    $departSite = new DepartSiteColis([
+                        'departSite' => $id,
+                        'totalColis' => $totalColis[$i],
+                        'typeColisSecuripack' => $typeColisSecuripack[$i],
+                        'typeColisSacjute' => $typeColisSacjute[$i],
+                        'nombreColisSecuripack' => $nombreColisSecuripack[$i],
+                        'nombreColisSacjute' => $nombreColisSacjute[$i],
+                        'numeroScelleSecuripack' => $numeroScelleSecuripack[$i],
+                        'numeroScelleSacjute' => $numeroScelleSacjute[$i],
+                        'montantAnnonceSecuripack' => $montantAnnonceSecuripack[$i],
+                        'montantAnnonceSacjute' => $montantAnnonceSacjute[$i],
+                    ]);
+                    $departSite->save();
+                }
             }
-        }
+
     }
 
     public function storeArriveeCentre(Request $request)
     {
         $request->validate([
-            'date'=>'required',
-            'tournee'=>'required',
-            'vehicule'=>'required',
-            'chefDeBord'=>'required',
-            'agentDeGarde'=>'required',
-            'chauffeur'=>'required',
+            'date' => 'required',
+            'tournee' => 'required',
+            'vehicule' => 'required',
+            'chefDeBord' => 'required',
+            'agentDeGarde' => 'required',
+            'chauffeur' => 'required',
         ]);
 
         $arriveeCentre = new ArriveeCentre([
@@ -219,12 +188,12 @@ class SecuriteMaincouranteController extends Controller
     public function storeTourneeCentre(Request $request)
     {
         $request->validate([
-            'date'=>'required',
-            'tournee'=>'required',
-            'vehicule'=>'required',
-            'chefDeBord'=>'required',
-            'agentDeGarde'=>'required',
-            'chauffeur'=>'required',
+            'date' => 'required',
+            'tournee' => 'required',
+            'vehicule' => 'required',
+            'chefDeBord' => 'required',
+            'agentDeGarde' => 'required',
+            'chauffeur' => 'required',
         ]);
 
         $arriveeCentre = new TourneeCentre([
@@ -246,7 +215,7 @@ class SecuriteMaincouranteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -259,7 +228,11 @@ class SecuriteMaincouranteController extends Controller
                 $this->storeArriveeSite($request);
                 break;
             case 'departSite':
-                $this->storeDepartSite($request);
+                try {
+                    $this->storeDepartSite($request);
+                } catch (\Exception $e) {
+                    return \response()->json($e);
+                }
                 break;
             case 'arriveeCentre':
                 $this->storeArriveeCentre($request);
@@ -268,14 +241,14 @@ class SecuriteMaincouranteController extends Controller
                 $this->storeTourneeCentre($request);
                 break;
         }
-        return redirect('/maincourante')->with('success', 'Enregistrement effectué!');
-
+        // return redirect('/maincourante')->with('success', 'Enregistrement effectué!');
+        return \response()->json($maincourante);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -286,7 +259,7 @@ class SecuriteMaincouranteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -298,7 +271,7 @@ class SecuriteMaincouranteController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -317,7 +290,8 @@ class SecuriteMaincouranteController extends Controller
         return redirect('/maincourante')->with('success', 'Enregistrement supprimé!');
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
 
         if ($request->ajax()) {
             return DepartSite::where('numeroSite', $request->numeroSite)->get();
@@ -325,7 +299,8 @@ class SecuriteMaincouranteController extends Controller
 
     }
 
-    public function deleteDepartSite(Request $request) {
+    public function deleteDepartSite(Request $request)
+    {
 
         if ($request->ajax()) {
             $departSite = DepartSite::find($request->id);
