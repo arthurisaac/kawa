@@ -266,7 +266,9 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-4">SITE</label>
-                                    <input type="text" name="asSite" class="form-control col-sm-8"/>
+                                    {{--<input type="text" name="asSite" class="form-control col-sm-8"/>--}}
+                                    <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
+                                    </select>
                                     <input type="hidden" name="numeroSite" value="1" class="form-control col-sm-8"/>
                                 </div>
                             </div>
@@ -282,7 +284,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Km d'arrivée</label>
-                                    <input type="time" name="asKmArrivee" class="form-control col-sm-8"/>
+                                    <input type="number" min="0" name="asKmArrivee" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Observation:</label>
@@ -791,6 +793,7 @@
 
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let departSites = {!! json_encode($departSites) !!};
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
@@ -815,13 +818,28 @@
                 $("#agentDeGarde").val("");
                 $("#date").val("");
                 $("#vehicule").val("");
+                $("#asSite option").remove();
                 const tournee = tournees.find(v => v.id === parseInt(this.value));
+                const departSite = departSites.filter(v => {
+                    return parseInt(v.noTournee) === parseInt(this.value);
+                });
+                if (departSite) {
+                    departSite.map( d => {
+                        $('#asSite').append($('<option>', {
+                            value: d.id,
+                            text: d.site
+                        }));
+                    });
+                }
+
                 if (tournee) {
                     if (tournee.chauffeurs) $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
                     if (tournee.chef_de_bords) $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
                     if (tournee.agent_de_gardes) $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
                     if (tournee.vehicules) $("#vehicule").val(tournee.vehicules.immatriculation);
                     $("#date").val(tournee.date);
+
+
                 }
             });
 
