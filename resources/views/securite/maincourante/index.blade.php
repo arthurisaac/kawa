@@ -112,6 +112,7 @@
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
                         <select class="form-control col-sm-8" name="noTournee" id="noTournee">
+                            <option></option>
                             @foreach($tournees as $tournee)
                                 <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                             @endforeach
