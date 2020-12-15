@@ -584,7 +584,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale" readonly/>
+                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale" readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -629,7 +629,6 @@
         let personnels = {!!json_encode($personnels)!!};
         let sites = {!! json_encode($sites) !!};
         let vidanges = {!! json_encode($vidanges) !!};
-        console.log(vidanges);
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -647,9 +646,12 @@
                     setConvoyeur(1, tournee.agentDeGarde);
                     setConvoyeur(2, tournee.chauffeur);
                     setConvoyeur(3, tournee.chefDeBord);
+                    const vidange = vidanges.find(v => v.idVehicule === tournee.vehicules.id);
+                    if (vidange) {
+                        $("#vidangeGenerale").val(vidange.prochainKm);
+                        console.log(vidange);
 
-                    const vidange = tournees.find(c => parseInt(c.id) === parseInt(tournee.vehicules.id));
-                    if (vidange) console.log(vidange);
+                    }
                 }
             });
 
