@@ -14,7 +14,10 @@ class DepartTournee extends Model
         'agentDeGarde',
         'chefDeBord',
         'coutTournee',
-        'kmDepart'
+        'kmDepart',
+        'heureDepart',
+        'kmArrivee',
+        'heureArrivee'
     ];
 
     public function agentDeGardes()

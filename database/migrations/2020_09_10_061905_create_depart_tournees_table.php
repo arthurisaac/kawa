@@ -24,6 +24,9 @@ class CreateDepartTourneesTable extends Migration
             $table->integer('chefDeBord')->nullable();
             $table->integer('coutTournee')->nullable();
             $table->integer('kmDepart')->nullable();
+            $table->time('heureDepart')->nullable();
+            $table->integer('kmArrivee')->nullable();
+            $table->time('heureArrivee')->nullable();
         });
     }
 

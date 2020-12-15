@@ -60,42 +60,24 @@
                     <div class="form-group">
                         <label>Convoyeur1</label>
                         <input class="form-control" type="text" name="convoyeur1" id="convoyeur1" readonly>
-                        {{--<select class="form-control" name="convoyeur1" >
-                            <option>Selectionnez convoyeur</option>
-                            @foreach($convoyeurs as $convoyeur)
-                            <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Convoyeur 2</label>
                         <input class="form-control" type="text" name="convoyeur2" id="convoyeur2" readonly>
-                        {{--<select class="form-control" name="convoyeur2" >
-                            <option>Selectionnez convoyeur</option>
-                            @foreach($convoyeurs as $convoyeur)
-                            <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Convoyeur 3</label>
                         <input class="form-control" type="text" name="convoyeur3" id="convoyeur3" readonly>
-                        {{--<select class="form-control" name="convoyeur3" >
-                            <option>Selectionnez convoyeur</option>
-                            @foreach($convoyeurs as $convoyeur)
-                            <option value="{{$convoyeur->id}}">{{$convoyeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>--}}
                     </div>
                 </div>
             </div>
             <br/>
 
-            <div class="row">
+            {{--<div class="row">
                 <div class="col">
                     <div class="row">
                         <div class="col">
@@ -555,19 +537,45 @@
                     </div>
                 </div>
                 <div class="col"></div>
-            </div>
+            </div>--}}
 
+            <div class="row sitesListes">
+                {{--<div class="col-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Site 1</label>
+                                <input type="text" class="form-control" name="site[]"/>
+                                <input type="hidden" class="form-control" name="id[]"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Bord</label>
+                                <input type="text" class="form-control" name="bord[]"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Montant</label>
+                                <input type="text" class="form-control" name="montant[]"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>--}}
+
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>Km arrivée</label>
-                        <input type="text" class="form-control" name="kmArrivee"/>
+                        <input type="text" class="form-control" name="kmArrivee" id="kmArrivee"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Heure arrivée</label>
-                        <input type="time" class="form-control" name="heureArrivee"/>
+                        <input type="time" class="form-control" name="heureArrivee" id="heureArrivee"/>
                     </div>
                 </div>
 
@@ -619,15 +627,21 @@
     <script>
         let tournees = {!!json_encode($departTournees)!!};
         let personnels = {!!json_encode($personnels)!!};
+        let sites = {!! json_encode($sites) !!};
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
                 const tournee = tournees.find(c => c.id === +this.value);
+                const departSites = sites.filter(v => {
+                    return parseInt(v.idTourneeDepart) === parseInt(this.value);
+                });
+                if (departSites) populateSites(departSites);
                 if (tournee) {
-                    console.log(tournee);
                     $("#date").val(tournee.date);
-                    $("#vehicule").val(tournee.idVehicule);
+                    $("#vehicule").val(tournee.vehicules.immatriculation);
                     $("#kmDepart").val(tournee.kmDepart);
+                    $("#kmArrivee").val(tournee.kmArrivee);
+                    $("#heureArrivee").val(tournee.heureArrivee);
                     setConvoyeur(1, tournee.agentDeGarde);
                     setConvoyeur(2, tournee.chauffeur);
                     setConvoyeur(3, tournee.chefDeBord);
@@ -636,12 +650,45 @@
 
             function setConvoyeur(numero, convoyeur) {
                 const personnel = personnels.find(p => p.id === convoyeur);
-                console.log(personnel);
-                 if (personnel)
-                     $("#convoyeur" + numero).val(personnel.nomPrenoms);
+                if (personnel)
+                    $("#convoyeur" + numero).val(personnel.nomPrenoms);
                 else
-                     $("#convoyeur" + numero).val(convoyeur)
+                    $("#convoyeur" + numero).val(convoyeur)
             }
+
+            function populateSites(sites) {
+                console.log(sites);
+                $(".sitesListes div").remove();
+                sites.map( s => {
+
+                    let HTML_NODE = `<div class="col-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Site</label>
+                                <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
+                                <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Bordereau</label>
+                                <input type="text" class="form-control" name="bordereau[]" value="${s?.bordereau}"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Montant</label>
+                                <input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+                    $(".sitesListes").append(HTML_NODE);
+                });
+            }
+
         });
     </script>
 @endsection
