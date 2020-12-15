@@ -366,6 +366,43 @@
 </script>
 <script>
     let site =  {!! json_encode($site) !!};
+    let total = 0;
+
+    $(document).ready(function () {
+        $("#oo_total").val(total);
+        $("#centre").on("change", function () {
+            $("#centre_regional option").remove();
+            $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+
+            const centre = centres.find(c => c.centre === this.value);
+            const regions = centres_regionaux.filter(region => {
+                return region.id_centre === centre.id;
+            });
+            regions.map(({centre_regional}) => {
+                $('#centre_regional').append($('<option>', {
+                    value: centre_regional,
+                    text: centre_regional
+                }));
+            })
+        });
+
+        $("#oo_tdf_vb").on("change", function () {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_tdf_vl").on("change", function () {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_mad_caisse").on("change", function () {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+        $("#oo_collecte").on("change", function () {
+            total = parseInt(this.value);
+            $("#oo_total").val(total);
+        });
+    });
     $(document).ready(function () {
 
         const objet_operation = site.objet_operation + "";

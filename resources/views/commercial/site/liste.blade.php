@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <br/>
     <table id="table_client_information" class="table table-bordered table-hover" style="width: 100%;">
         <thead>
