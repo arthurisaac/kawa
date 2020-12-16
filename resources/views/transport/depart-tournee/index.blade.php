@@ -842,17 +842,34 @@
             }
         });
 
-        $("select[name='site[]']").on("change", function() {
+
+
+        $("select[name='type[]']").on("change", function() {
+            cout = 0;
+
+            $.each( $( "select[name='type[]']" ), function() {
+                console.log(this.value);
+                site = sites.find(s => s.id === parseInt(this.value));
+                if (site) {
+                    cout += parseInt(site[this.value]);
+                    console.log(site[this.value]);
+                    $("#coutTournee").val(cout);
+                }
+            });
+        });
+
+       é/* $("select[name='site[]']").on("change", function() {
             site = sites.find(s => s.id === parseInt(this.value));
         });
 
         $("select[name='type[]']").on("change", function() {
+            console.log(this);
             if (site) {
                 cout += parseInt(site[this.value]);
                 console.log(site[this.value]);
                 $("#coutTournee").val(cout);
             }
-        });
+        });*/
 
         $("#kmDepart").on("change", function() {
             $("#coutTournee").val( cout * parseInt(this.value));

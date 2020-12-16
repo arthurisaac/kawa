@@ -10,6 +10,7 @@ use App\Models\DepartCentre;
 use App\Models\DepartSite;
 use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
+use App\Models\SiteDepartTournee;
 use App\Models\TourneeCentre;
 use App\Models\Vehicule;
 use Illuminate\Http\JsonResponse;
@@ -30,8 +31,8 @@ class SecuriteMaincouranteController extends Controller
         $centres_regionaux = Centre_regional::all();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::with('tournees')->get();
-        $arriveeSites = ArriveeSite::with('departSites')->get();
-        $departSites = DepartSite::with('tournees')->get();
+        $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
+        $departSites = SiteDepartTournee::with('tournees')->with('sites')->get();
         $arriveeCentres = ArriveeCentre::with('tournees')->get();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
@@ -98,20 +99,30 @@ class SecuriteMaincouranteController extends Controller
         $noTournee = $request->get('noTournee');
         $numeroSite = $request->get('numeroSite');
         $site = $request->get('site');
-        $finOp = $request->get('finOp');
         $heureDepart = $request->get('heureDepart');
         $kmDepart = $request->get('kmDepart');
         $bordereau = $request->get('bordereau');
         $destination = $request->get('destination');
         $observation = $request->get('observation');
 
-        for ($i = 0; $i < count($site); $i++) {
+        $departSite = new DepartSite([
+            'noTournee' => $noTournee,
+            'numeroSite' => $numeroSite,
+            'site' => $site,
+            'heureDepart' => $heureDepart,
+            'kmDepart' => $kmDepart,
+            'bordereau' => $bordereau,
+            'observation' => $observation,
+            'destination' => $destination,
+        ]);
+        $departSite->save();
+
+       /* for ($i = 0; $i < count($site); $i++) {
             if (!empty($site[$i])) {
                 $departSite = new DepartSite([
                     'noTournee' => $noTournee,
                     'numeroSite' => $numeroSite[$i],
-                    'site' => $site[$i],
-                    'finOp' => $finOp[$i],
+                    'site' => $site,
                     'heureDepart' => $heureDepart[$i],
                     'kmDepart' => $kmDepart[$i],
                     'bordereau' => $bordereau[$i],
@@ -119,9 +130,9 @@ class SecuriteMaincouranteController extends Controller
                     'destination' => $destination[$i],
                 ]);
                 $departSite->save();
-                $this->storeDepartSiteColis($request, $departSite->id);
+                // $this->storeDepartSiteColis($request, $departSite->id);
             }
-        }
+        }*/
     }
 
     public function storeDepartSiteColis(Request $request, $id)

@@ -14,4 +14,9 @@ class SiteDepartTournee extends Model
     {
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id');
     }
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'idTourneeDepart', 'id');
+    }
 }

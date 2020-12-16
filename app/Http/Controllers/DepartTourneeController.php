@@ -131,6 +131,8 @@ class DepartTourneeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $departTournee = DepartTournee::find($id);
+        $departTournee->delete();
+        return redirect('/depart-tournee-liste')->with('success', 'Tournée supprimée!');
     }
 }

@@ -29,7 +29,7 @@
                 <td>Véhicule</td>
                 <td>Chauffeur</td>
                 <td>Coût tournée</td>
-                {{--TODO: actions--}}
+                <td>Action</td>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +40,14 @@
                     <td>{{$depart->idVehicule}}</td>
                     <td>{{$depart->chauffeur}}</td>
                     <td>{{$depart->coutTournee}}</td>
+                    <td>
+                        <a href="{{ route('depart-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                        <form action="{{ route('depart-tournee.destroy', $depart->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

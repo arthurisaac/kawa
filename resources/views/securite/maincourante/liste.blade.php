@@ -15,6 +15,12 @@
     <br/>
     @endif
 
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <br/>
     <p>DEPART TOURNEE</p>
     <table class="table table-bordered table-hover" id="listeDepartTournee">
