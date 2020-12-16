@@ -1,85 +1,7 @@
 @extends('base')
 
 @section('main')
-    <style>
-        .nav-tabs {
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-            border: none;
-        }
-
-        .nav-tabs .nav-link {
-            border: none;
-            border-radius: 0;
-            transition: color .2s ease-out;
-        }
-
-        .tabs-dark .nav-link {
-            color: #fff;
-        }
-
-        .tabs-light .nav-link {
-            color: rgba(0, 0, 0, .5);
-        }
-
-        .tabs-dark .nav-link:not(.active):hover {
-            color: #aeb0b3;
-        }
-
-        .tabs-light .nav-link:not(.active):hover {
-            color: #495057;
-        }
-
-        .nav-pills .nav-link {
-            border-radius: 2px;
-            color: #495057;
-            transition: color .2s ease-out, box-shadow .2s;
-        }
-
-        .nav-pills .nav-link:hover {
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-
-        }
-
-        .nav-pills .nav-item {
-            margin: 0 5px;
-        }
-
-        .nav-pills.pills-dark .nav-link.active {
-            background-color: #343a40 !important;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-pills.pills-dark .nav-link:not(.active):hover {
-            color: #1d1e22;
-        }
-
-        .tabs-marker .nav-link {
-            position: relative;
-        }
-
-        .tabs-marker .nav-link.active .marker {
-            height: 30px;
-            width: 30px;
-            left: 50%;
-            bottom: -30px;
-            transform: translatex(-50%);
-            position: absolute;
-            overflow: hidden;
-        }
-
-        .tabs-marker .nav-link.active .marker:after {
-            content: "";
-            height: 15px;
-            width: 15px;
-            top: -8px;
-            left: 50%;
-            transform: rotate(45deg) translatex(-50%);
-            transform-origin: left;
-            background-color: #fff;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-            position: absolute;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">Maincourante</h2></div>
         <br/>
@@ -262,25 +184,18 @@
                     <form method="post" action="{{ route('maincourante.store') }}" novalidate>
                         <input type="hidden" name="maincourante" value="arriveeSite"/>
                         @csrf
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-sm-4">SITE</label>
-                                    {{--<input type="text" name="asSite" class="form-control col-sm-8"/>--}}
-                                    <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
-                                    </select>
-                                    <input type="hidden" name="numeroSite" value="1" class="form-control col-sm-8"/>
-                                </div>
-                            </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
                         <br/>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group row">
-                                    <label for="heure_depart" class="col-sm-4">N°Boredereau</label>
+                                    <label for="heure_depart" class="col-sm-4">N°Bordereau</label>
                                     <input type="text" name="asNumeroBordereau" class="form-control col-sm-8"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4">SITE</label>
+                                    <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
+                                    </select>
+                                    <input type="hidden" name="numeroSite" value="1" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">Heure d'arrivée</label>
@@ -291,7 +206,7 @@
                                     <input type="number" min="0" name="asKmArrivee" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4">Observation:</label>
+                                    <label class="col-sm-4">Observation</label>
                                     <textarea name="asObservation" class="form-control col-sm-8"></textarea>
                                 </div>
 
@@ -339,12 +254,6 @@
                         <input type="hidden" name="maincourante" value="departSite"/>
                         <div class="row">
                             <div class="col">
-                            </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-6">Heure de départ</label>
                                     <input type="time" name="heureDepart[]" class="form-control col-sm-6"/>
@@ -359,7 +268,6 @@
                         </div>
 
                         <div>
-                            <br/><br/>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
@@ -748,7 +656,7 @@
                         heureDepart: dcHeureDepart,
                         kmDepart: dcKmDepart,
                         observation: dcObservation,
-                        noBordereau: asNumeroBordereau
+                        noBordereau: asNumeroBordereau,
                         _token: _token
                     },
                     success: function(response) {

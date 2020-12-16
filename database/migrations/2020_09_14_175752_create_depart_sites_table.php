@@ -20,7 +20,6 @@ class CreateDepartSitesTable extends Migration
             $table->time('heureDepart')->nullable();
             $table->string('numeroSite')->nullable();
             $table->string('site')->nullable();
-            $table->string('finOp')->nullable();
             $table->integer('kmDepart')->nullable();
             $table->integer('bordereau');
             $table->string('destination')->nullable();

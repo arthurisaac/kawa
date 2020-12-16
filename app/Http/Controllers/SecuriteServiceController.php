@@ -33,7 +33,7 @@ class SecuriteServiceController extends Controller
      */
     public function liste()
     {
-        $securiteServices = SecuriteService::all();
+        $securiteServices = SecuriteService::with('personnes')->get();
         return view('securiteService.liste', compact('securiteServices'));
     }
 
