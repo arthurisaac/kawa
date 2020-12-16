@@ -87,6 +87,7 @@ class SecuriteMaincouranteController extends Controller
         $arriveeCentre = new ArriveeSite([
             'noTournee' => $request->get('noTournee'),
             'site' => $request->get('site'),
+            'noBordereau' => $request->get('noBordereau'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrivee' => $request->get('kmArrivee'),
             'observation' => $request->get('observation'),

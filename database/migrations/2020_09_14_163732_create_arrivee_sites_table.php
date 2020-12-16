@@ -18,6 +18,7 @@ class CreateArriveeSitesTable extends Migration
             $table->timestamps();
             $table->integer('noTournee');
             $table->string('site');
+            $table->string('noBordereau')->nullable();
             $table->string('heureArrivee')->nullable();
             $table->string('kmArrivee')->nullable();
             $table->string('observation')->nullable();

@@ -12,6 +12,7 @@ class ArriveeSite extends Model
         'heureArrivee',
         'kmArrivee',
         'observation',
+        'noBordereau',
     ];
 
     public function tournees()

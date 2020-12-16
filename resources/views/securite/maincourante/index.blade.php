@@ -279,6 +279,10 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group row">
+                                    <label for="heure_depart" class="col-sm-4">N°Boredereau</label>
+                                    <input type="text" name="asNumeroBordereau" class="form-control col-sm-8"/>
+                                </div>
+                                <div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">Heure d'arrivée</label>
                                     <input type="time" name="asHeureArrivee" class="form-control col-sm-8"/>
                                 </div>
@@ -734,6 +738,7 @@
                 const dcHeureDepart = $("input[name=dcHeureDepart]").val();
                 const dcKmDepart = $("input[name=dcKmDepart]").val();
                 const dcObservation = $("textarea[name=dcObservation]").val();
+                const asNumeroBordereau = $("textarea[name=asNumeroBordereau]").val();
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -743,6 +748,7 @@
                         heureDepart: dcHeureDepart,
                         kmDepart: dcKmDepart,
                         observation: dcObservation,
+                        noBordereau: asNumeroBordereau
                         _token: _token
                     },
                     success: function(response) {
