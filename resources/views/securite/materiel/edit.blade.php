@@ -48,7 +48,7 @@
                                     <label for="cbMatricule" class="col-sm-4">Matricule</label>
                                     <select type="text" name="cbMatricule" id="cbMatricule"
                                             class="form-control col-sm-8">
-                                        <option value="{{$materiel->cbMatricule}}">{{$materiel->cbMatricule}}</option>
+                                        <option value="{{$materiel->cbMatricule}}">{{$materiel->cbs->matricule}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -57,11 +57,11 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom</label>
-                                    <input type="text" class="form-control col-sm-8" name="cbNom">
+                                    <input type="text" class="form-control col-sm-8" name="cbNom" value="{{$materiel->cbs->nomPrenoms}}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Fonction</label>
-                                    <input type="text" class="form-control col-sm-8" name="cbFonction">
+                                    <input type="text" class="form-control col-sm-8" name="cbFonction" value="{{$materiel->cbs->fonction}}">
                                 </div>
                             </div>
                         </div>
@@ -71,10 +71,10 @@
                             <div class="col-2"><label>CC</label></div>
                             <div class="col">
                                 <div class="form-group row">
-                                    <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                    <select type="text" name="cbMatricule" id="ccMatricule"
+                                    <label for="ccMatricule" class="col-sm-4">Matricule</label>
+                                    <select type="text" name="ccMatricule" id="ccMatricule"
                                             class="form-control col-sm-8">
-                                        <option value="{{$materiel->ccMatricule}}">{{$materiel->ccMatricule}}</option>
+                                        <option value="{{$materiel->ccMatricule}}">{{$materiel->ccs->nomPrenoms}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -83,11 +83,11 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom</label>
-                                    <input type="text" class="form-control col-sm-8" name="ccNom">
+                                    <input type="text" class="form-control col-sm-8" name="ccNom" value="{{$materiel->ccs->nomPrenoms}}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Fonction</label>
-                                    <input type="text" class="form-control col-sm-8" name="ccFonction">
+                                    <input type="text" class="form-control col-sm-8" name="ccFonction" value="{{$materiel->ccs->fonction}}">
                                 </div>
                             </div>
                         </div>
@@ -98,10 +98,10 @@
                             <div class="col-2"><label>CG</label></div>
                             <div class="col">
                                 <div class="form-group row">
-                                    <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                    <select type="text" name="cbMatricule" id="cgMatricule"
+                                    <label for="cgMatricule" class="col-sm-4">Matricule</label>
+                                    <select type="text" name="cgMatricule" id="cgMatricule"
                                             class="form-control col-sm-8">
-                                        <option value="{{$materiel->cgMatricule}}">{{$materiel->cgMatricule}}</option>
+                                        <option value="{{$materiel->cgMatricule}}">{{$materiel->cgs->matricule}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -110,11 +110,11 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom</label>
-                                    <input type="text" class="form-control col-sm-8" name="cgNom">
+                                    <input type="text" class="form-control col-sm-8" name="cgNom" value="{{$materiel->cgs->nomPrenoms}}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Fonction</label>
-                                    <input type="text" class="form-control col-sm-8" name="cgFonction">
+                                    <input type="text" class="form-control col-sm-8" name="cgFonction" value="{{$materiel->cgs->fonction}}">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4">Tournée N°</label>
                     <select class="form-control col-sm-8" name="noTournee" required>
-                        <option value="{{$materiel->noTournee}}">{{$materiel->noTournee}}</option>
+                        <option value="{{$materiel->noTournee}}">{{$materiel->tournees->numeroTournee}}</option>
                         @foreach($tournees as $tournee)
                             <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                         @endforeach
@@ -191,7 +191,7 @@
                     <label for="operateurRadio" class="col-sm-4">Matricule</label>
                     <select type="text" name="operateurRadioMatricule" id="operateurRadioMatricule"
                             class="form-control col-sm-8">
-                        <option value="{{$materiel->operateurRadioMatricule}}">{{$materiel->operateurRadioMatricule}}</option>
+                        <option value="{{$materiel->operateurRadioMatricule}}">{{$materiel->operateurRadios->matricule}}</option>
                         @foreach($personnels as $personnel)
                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                 | {{$personnel->nomPrenoms}}</option>
@@ -200,19 +200,19 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Nom</label>
-                    <input type="text" class="form-control col-sm-8" name="operateurRadioNom">
+                    <input type="text" class="form-control col-sm-8" name="operateurRadioNom" value="{{$materiel->operateurRadios->matricule}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Fonction</label>
-                    <input type="text" class="form-control col-sm-8" name="operateurRadioFonction">
+                    <input type="text" class="form-control col-sm-8" name="operateurRadioFonction" value="{{$materiel->operateurRadios->fonction}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Heure de prise de service</label>
-                    <input type="time" class="form-control col-sm-8" name="operateurRadioHeurePrise">
+                    <input type="time" class="form-control col-sm-8" name="operateurRadioHeurePrise" value="{{$materiel->operateurRadioHeurePrise}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4">Heure de fin de service</label>
-                    <input type="time" class="form-control col-sm-8" name="operateurRadioHeureFin">
+                    <input type="time" class="form-control col-sm-8" name="operateurRadioHeureFin" value="{{$materiel->operateurRadioHeureFin}}">
                 </div>
             </div>
         </div>

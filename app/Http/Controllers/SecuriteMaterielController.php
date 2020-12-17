@@ -181,7 +181,7 @@ class SecuriteMaterielController extends Controller
      */
     public function edit($id)
     {
-        $materiel = SecuriteMateriel::with('cbs')->with('tournees')->find($id);
+        $materiel = SecuriteMateriel::with('cbs')->with('ccs')->with('cgs')->with('operateurRadios')->with('tournees')->find($id);
         $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel'));
