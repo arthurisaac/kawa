@@ -316,7 +316,8 @@
                             @foreach ($departSites as $depart)
                                 <tr>
                                     <td>{{$depart->numeroSite}}</td>
-                                    <td>{{$depart->sites->site}}</td>
+                                    <td>{{$depart->site}}</td>
+                                    {{--<td>{{$depart->sites->site}}</td>--}}
                                     <td>{{date('d-m-Y', strtotime($depart->tournees->date))}}</td>
                                     <td>{{$depart->heureDepart}}</td>
                                     {{--<td></td>

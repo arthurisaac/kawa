@@ -148,7 +148,6 @@ class DepartTourneeController extends Controller
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
-                // $siteDepartTournee->idTourneeDepart = $site_ids[$i];
                 $siteDepartTournee->site = $sites[$i];
                 $siteDepartTournee->heure = $heures[$i];
                 $siteDepartTournee->type = $types[$i];
