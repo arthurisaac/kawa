@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commercial_site;
+use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
 use App\Models\SiteDepartTournee;
 use App\Models\Vehicule;
@@ -108,7 +109,15 @@ class DepartTourneeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $commercial_sites = Commercial_site::all();
+        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
+        $vehicules = Vehicule::with('chauffeurSuppleant')->with('chauffeurTitulaire')->get();
+        $sites = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
+        $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
+        $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
+        return view('transport.depart-tournee.edit',
+            compact('tournee', 'vehicules', 'sites', 'commercial_sites', 'agents', 'chefBords', 'num'));
     }
 
     /**
@@ -120,7 +129,35 @@ class DepartTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $departTournee = DepartTournee::find($id);
+        $departTournee->coutTournee = $request->get('coutTournee');
+        $departTournee->numeroTournee = $request->get('numeroTournee');
+        $departTournee->date = $request->get('date');
+        $departTournee->idVehicule = $request->get('idVehicule');
+        $departTournee->chauffeur = $request->get('chauffeur');
+        $departTournee->agentDeGarde = $request->get('agentDeGarde');
+        $departTournee->chefDeBord = $request->get('chefDeBord');
+        $departTournee->kmDepart = $request->get('kmDepart');
+        $departTournee->save();
+
+        $sites = $request->get('site');
+        $heures = $request->get('heure');
+        $types = $request->get('type');
+        $site_ids = $request->get('site_id');
+
+        for ($i = 0; $i < count($sites); $i++) {
+            if (!empty($sites[$i])) {
+                $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
+                // $siteDepartTournee->idTourneeDepart = $site_ids[$i];
+                $siteDepartTournee->site = $sites[$i];
+                $siteDepartTournee->heure = $heures[$i];
+                $siteDepartTournee->type = $types[$i];
+                $siteDepartTournee->save();
+            }
+        }
+
+
+        return redirect('/depart-tournee-liste')->with('success', 'Tournée modifiée!');
     }
 
     /**
