@@ -8,7 +8,6 @@ class DepartSite extends Model
 {
     protected $fillable = [
         'noTournee',
-        'numeroSite',
         'site',
         'finOp',
         'heureDepart',

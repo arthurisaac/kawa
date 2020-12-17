@@ -18,7 +18,6 @@ class CreateDepartSitesTable extends Migration
             $table->timestamps();
             $table->string('noTournee')->nullable();
             $table->time('heureDepart')->nullable();
-            $table->string('numeroSite')->nullable();
             $table->string('site')->nullable();
             $table->integer('kmDepart')->nullable();
             $table->integer('bordereau');

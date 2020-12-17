@@ -39,7 +39,7 @@ class SecuriteMaincouranteController extends Controller
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
             ->get();
-        return view('/securite/maincourante.index',
+        return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
                 'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees'));
@@ -114,7 +114,6 @@ class SecuriteMaincouranteController extends Controller
 
         $departSite = new DepartSite([
             'noTournee' => $noTournee,
-            'numeroSite' => $numeroSite,
             'site' => $site,
             'heureDepart' => $heureDepart,
             'kmDepart' => $kmDepart,
