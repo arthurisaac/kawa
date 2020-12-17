@@ -41,12 +41,18 @@
                             <td>{{$service->centreRegional}}</td>
                             <td>{{$service->personnes->nomPrenoms}}</td>
                             <td>
-                                <a href="{{ route('securite-service.edit',$service->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                <form action="{{ route('securite-service.destroy', $service->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                </form>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ route('securite-service.edit',$service->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                    </div>
+                                    <div class="col">
+                                        <form action="{{ route('securite-service.destroy', $service->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

@@ -13,6 +13,7 @@ use App\Models\DepartTournee;
 use App\Models\SiteDepartTournee;
 use App\Models\TourneeCentre;
 use App\Models\Vehicule;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,7 +33,8 @@ class SecuriteMaincouranteController extends Controller
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::with('tournees')->get();
         $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
-        $departSites = SiteDepartTournee::with('tournees')->with('sites')->get();
+        $departSites = DepartSite::with('tournees')->get();
+        $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->get();
         $arriveeCentres = ArriveeCentre::with('tournees')->get();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
@@ -40,7 +42,7 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite/maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees'));
     }
 
     public function liste()
@@ -97,8 +99,12 @@ class SecuriteMaincouranteController extends Controller
 
     public function storeDepartSite(Request $request)
     {
+        $request->validate([
+            'noTournee' => 'required',
+            'site' => 'required',
+        ]);
         $noTournee = $request->get('noTournee');
-        $numeroSite = $request->get('numeroSite');
+        // $numeroSite = $request->get('numeroSite');
         $site = $request->get('site');
         $heureDepart = $request->get('heureDepart');
         $kmDepart = $request->get('kmDepart');
@@ -213,28 +219,28 @@ class SecuriteMaincouranteController extends Controller
             case 'arriveeSite':
                 try {
                     $this->storeArriveeSite($request);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     return \response()->json($e);
                 }
                 break;
             case 'departSite':
                 try {
                     $this->storeDepartSite($request);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     return \response()->json($e);
                 }
                 break;
             case 'arriveeCentre':
                 try {
                     $this->storeArriveeCentre($request);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     return \response()->json($e);
                 }
                 break;
             case 'tourneeCentre':
                 try {
                     $this->storeTourneeCentre($request);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     return \response()->json($e);
                 }
                 break;

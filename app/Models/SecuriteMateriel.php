@@ -9,26 +9,25 @@ class SecuriteMateriel extends Model
     protected $fillable = [
         'date',
         'cbNom',
-        'cbPrenom',
-        'cbFonction',
         'cbMatricule',
-        'ccNom',
-        'ccPrenom',
-        'ccFonction',
         'ccMatricule',
-        'cgNom',
-        'cgPrenom',
-        'cgFonction',
         'cgMatricule',
         'vehiculeVB',
         'vehiculeVL',
         'noTournee',
         'operateurRadio',
-        'operateurRadioNom',
-        'operateurRadioPrenom',
-        'operateurRadioFonction',
         'operateurRadioMatricule',
         'operateurRadioHeurePrise',
         'operateurRadioHeureFin'
     ];
+
+    public function cbs()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'cbMatricule', 'id');
+    }
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
 }

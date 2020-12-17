@@ -34,6 +34,11 @@ class SecuriteService extends Model
         'hfs_eop32',
     ];
 
+    public function chargeDeSecurites()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'chargeDeSecurite', 'id');
+    }
+
     public function personnes()
     {
         return $this->belongsTo('App\Models\Personnel', 'chargeDeSecurite', 'id');

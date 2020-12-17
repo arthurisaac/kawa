@@ -256,11 +256,11 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-6">Heure de départ</label>
-                                    <input type="time" name="heureDepart[]" class="form-control col-sm-6"/>
+                                    <input type="time" name="heureDepart" class="form-control col-sm-6"/>
                                 </div>
                                 <div class="form-group row">
                                     <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
-                                    <input type="number" name="kmDepart[]" id="kmDepart" class="form-control col-sm-6"/>
+                                    <input type="number" name="kmDepart" id="kmDepart" class="form-control col-sm-6"/>
                                 </div>
                             </div>
                             <div class="col"></div>
@@ -272,15 +272,15 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-6">N° de bordereau</label>
-                                        <input type="text" class="form-control col-sm-6" name="bordereau[]">
+                                        <input type="text" class="form-control col-sm-6" name="bordereau">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Destination</label>
-                                        <input type="text" class="form-control col-sm-6" name="destination[]">
+                                        <input type="text" class="form-control col-sm-6" name="destination">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Observation</label>
-                                        <textarea class="form-control col-sm-6" name="observation[]"></textarea>
+                                        <textarea class="form-control col-sm-6" name="observation"></textarea>
                                     </div>
                                     <div class="row">
                                         <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">Enregistrer</button>
@@ -297,7 +297,6 @@
                         <table class="table table-bordered" style="width: 100%;" id="listeDepartSite1">
                             <thead>
                             <tr>
-                                <th>No site</th>
                                 <th>SITE</th>
                                 <th>Date</th>
                                 <th>Heure de départ</th>
@@ -315,7 +314,6 @@
                             <tbody>
                             @foreach ($departSites as $depart)
                                 <tr>
-                                    <td>{{$depart->numeroSite}}</td>
                                     <td>{{$depart->site}}</td>
                                     {{--<td>{{$depart->sites->site}}</td>--}}
                                     <td>{{date('d-m-Y', strtotime($depart->tournees->date))}}</td>
@@ -529,8 +527,7 @@
 
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
-        let departSites = {!! json_encode($departSites) !!};
-        console.log({!! json_encode($arriveeSites) !!})
+        let departSites = {!! json_encode($sitesDepartTournees) !!};
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
@@ -718,6 +715,8 @@
                     success: function(response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
+                        } else if (response.errors) {
+                            alert(JSON.stringify(response.errors));
                         } else {
                             alert("Enregistré avec succès!");
                             document.getElementById('departSite').reset();

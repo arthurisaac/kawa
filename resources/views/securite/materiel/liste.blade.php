@@ -14,48 +14,50 @@
     </div>
     <br/>
     @endif
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="listeMateriels">
                 <thead>
                 <tr>
+                    <th>Tournée N°</th>
                     <th>Date</th>
+                    <th>Centre</th>
                     <th>Véhicule VB</th>
                     <th>Véhicule VL</th>
-                    <th>Tournée N°</th>
-                    <th>Equipe CB Nom</th>
-                    <th>Equipe CB Prenom</th>
-                    <th>Equipe CB Fonction</th>
-                    <th>Equipe CB Matricule</th>
-                    <th>Equipe CC Nom</th>
-                    <th>Equipe CC Prenom</th>
-                    <th>Equipe CC Fonction</th>
-                    <th>Equipe CC Matricule</th>
-                    <th>Equipe CG Nom</th>
-                    <th>Equipe CG Prenom</th>
-                    <th>Equipe CG Fonction</th>
-                    <th>Equipe CG Matricule</th>
+                    <th>Chef de bord</th>
+                    <th>Opération Ajout/Modif</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($materiels as $materiel)
                 <tr>
+                    <td>{{$materiel->tournees->numeroTournee}}</td>
                     <td>{{$materiel->date}}</td>
+                    <td></td>
                     <td>{{$materiel->vehiculeVB}}</td>
                     <td>{{$materiel->vehiculeVL}}</td>
-                    <td>{{$materiel->noTournee}}</td>
-                    <td>{{$materiel->cbNom}}</td>
-                    <td>{{$materiel->cbPrenom}}</td>
-                    <td>{{$materiel->cbFonction}}</td>
-                    <td>{{$materiel->cbMatricule}}</td>
-                    <td>{{$materiel->ccNom}}</td>
-                    <td>{{$materiel->ccPrenom}}</td>
-                    <td>{{$materiel->ccFonction}}</td>
-                    <td>{{$materiel->ccMatricule}}</td>
-                    <td>{{$materiel->ccNom}}</td>
-                    <td>{{$materiel->ccPrenom}}</td>
-                    <td>{{$materiel->ccFonction}}</td>
-                    <td>{{$materiel->ccMatricule}}</td>
+                    <td>{{$materiel->cbs->nomPrenoms}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ route('materiel.edit',$materiel->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                            </div>
+                            <div class="col">
+                                <form action="{{ route('materiel.destroy', $materiel->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -63,7 +65,7 @@
         </div>
     </div><br /><br />
 
-    <p>REMETTANTS</p>
+    {{--<p>REMETTANTS</p>
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%;" id="listeRemettants">
@@ -285,23 +287,13 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>--}}
 
 
 </div>
 <script>
     $(document).ready( function () {
         $('#listeMateriels').DataTable({
-            "language": {
-                "url": "French.json"
-            }
-        });
-        $('#listeRemettants').DataTable({
-            "language": {
-                "url": "French.json"
-            }
-        });
-        $('#listeBeneficiaires').DataTable({
             "language": {
                 "url": "French.json"
             }

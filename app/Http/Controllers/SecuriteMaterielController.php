@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartTournee;
 use App\Models\SecuriteMateriel;
 use App\Models\SecuriteMaterielBeneficiaire;
 use App\Models\SecuriteMaterielRemettant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class SecuriteMaterielController extends Controller
 {
@@ -17,7 +19,9 @@ class SecuriteMaterielController extends Controller
      */
     public function index()
     {
-        return view('securite/materiel.index');
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        return view('securite/materiel.index', compact('personnels', 'tournees'));
     }
 
     /**
@@ -27,7 +31,7 @@ class SecuriteMaterielController extends Controller
      */
     public function liste()
     {
-        $materiels = SecuriteMateriel::all();
+        $materiels = SecuriteMateriel::with('cbs')->with('tournees')->get();
         $remettants = SecuriteMaterielRemettant::with('materiels')->get();
         $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
         return view('securite/materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
@@ -53,25 +57,13 @@ class SecuriteMaterielController extends Controller
     {
         $saisie = new SecuriteMateriel([
             'date' => $request->get('date'),
-            'cbNom' => $request->get('cbNom'),
-            'cbPrenom' => $request->get('cbPrenom'),
-            'cbFonction' => $request->get('cbFonction'),
             'cbMatricule' => $request->get('cbMatricule'),
-            'ccNom' => $request->get('ccNom'),
-            'ccPrenom' => $request->get('ccPrenom'),
-            'ccFonction' => $request->get('ccFonction'),
             'ccMatricule' => $request->get('ccMatricule'),
-            'cgNom' => $request->get('cgNom'),
-            'cgPrenom' => $request->get('cgPrenom'),
-            'cgFonction' => $request->get('cgFonction'),
             'cgMatricule' => $request->get('cgMatricule'),
             'vehiculeVB' => $request->get('vehiculeVB'),
             'vehiculeVL' => $request->get('vehiculeVL'),
             'noTournee' => $request->get('noTournee'),
             'operateurRadio' => $request->get('operateurRadio'),
-            'operateurRadioNom' => $request->get('operateurRadioNom'),
-            'operateurRadioPrenom' => $request->get('operateurRadioPrenom'),
-            'operateurRadioFonction' => $request->get('operateurRadioFonction'),
             'operateurRadioMatricule' => $request->get('operateurRadioMatricule'),
             'operateurRadioHeurePrise' => $request->get('operateurRadioHeurePrise'),
             'operateurRadioHeureFin' => $request->get('operateurRadioHeureFin'),
@@ -167,7 +159,7 @@ class SecuriteMaterielController extends Controller
 
         $remettant->save();
         $beneficiare->save();
-        return redirect('/materiel')->with('success', 'Saisie enregistrée!');
+        return redirect('/materiel')->with('success', 'Matériel enregistrée!');
     }
 
     /**
@@ -189,7 +181,10 @@ class SecuriteMaterielController extends Controller
      */
     public function edit($id)
     {
-        //
+        $materiel = SecuriteMateriel::with('cbs')->with('tournees')->find($id);
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel'));
     }
 
     /**
@@ -201,7 +196,20 @@ class SecuriteMaterielController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $materiel = SecuriteMateriel::find($id);
+        $materiel->date = $request->get('date');
+        $materiel->cbMatricule = $request->get('cbMatricule');
+        $materiel->ccMatricule = $request->get('ccMatricule');
+        $materiel->cgMatricule = $request->get('cgMatricule');
+        $materiel->vehiculeVB = $request->get('vehiculeVB');
+        $materiel->vehiculeVL = $request->get('vehiculeVL');
+        $materiel->noTournee = $request->get('noTournee');
+        $materiel->operateurRadio = $request->get('operateurRadio');
+        $materiel->operateurRadioMatricule = $request->get('operateurRadioMatricule');
+        $materiel->operateurRadioHeurePrise = $request->get('operateurRadioHeurePrise');
+        $materiel->operateurRadioHeureFin = $request->get('operateurRadioHeureFin');
+        $materiel->save();
+        return redirect('/materiel-liste')->with('success', 'Matériel enregistrée!');
     }
 
     /**

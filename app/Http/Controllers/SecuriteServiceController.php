@@ -107,7 +107,7 @@ class SecuriteServiceController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $securiteService = SecuriteService::find($id);
+        $securiteService = SecuriteService::with('chargeDeSecurites')->get()->find($id);
         $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
         return view('/securiteService.edit', compact('securiteService','centres', 'centres_regionaux', 'personnels'));
     }

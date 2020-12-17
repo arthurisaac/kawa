@@ -21,8 +21,9 @@
         </div>
     @endif
 
-    <form method="post" action="{{ route('materiel.store') }}">
+    <form method="post" action="{{ route('materiel.update', $materiel->id) }}">
         @csrf
+        @method('PATCH')
 
         <!-- INFORMATIONS GENERALE -->
         <p>INFORMATIONS GENERALES</p>
@@ -32,7 +33,7 @@
             <div class="col-2">
                 <div class="form-group">
                     <label>Date</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="date" class="form-control" name="date" value="{{$materiel->date}}">
                 </div>
             </div>
             <div class="col">
@@ -47,7 +48,7 @@
                                     <label for="cbMatricule" class="col-sm-4">Matricule</label>
                                     <select type="text" name="cbMatricule" id="cbMatricule"
                                             class="form-control col-sm-8">
-                                        <option></option>
+                                        <option value="{{$materiel->cbMatricule}}">{{$materiel->cbMatricule}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -71,9 +72,9 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                    <select type="text" name="ccMatricule" id="ccMatricule"
+                                    <select type="text" name="cbMatricule" id="ccMatricule"
                                             class="form-control col-sm-8">
-                                        <option></option>
+                                        <option value="{{$materiel->ccMatricule}}">{{$materiel->ccMatricule}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -98,9 +99,9 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                    <select type="text" name="cgMatricule" id="cgMatricule"
+                                    <select type="text" name="cbMatricule" id="cgMatricule"
                                             class="form-control col-sm-8">
-                                        <option></option>
+                                        <option value="{{$materiel->cgMatricule}}">{{$materiel->cgMatricule}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -143,10 +144,10 @@
                     </div>
                     <div class="col-4">
                         <div class="form-group row">
-                            <input type="text" class="form-control" name="vehiculeVB">
+                            <input type="text" class="form-control" name="vehiculeVB" value="{{$materiel->vehiculeVB}}">
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" name="vehiculeVL">
+                            <input type="text" class="form-control" name="vehiculeVL" value="{{$materiel->vehiculeVL}}">
                         </div>
                     </div>
                 </div>
@@ -156,7 +157,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4">Tournée N°</label>
                     <select class="form-control col-sm-8" name="noTournee" required>
-                        <option></option>
+                        <option value="{{$materiel->noTournee}}">{{$materiel->noTournee}}</option>
                         @foreach($tournees as $tournee)
                             <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                         @endforeach
@@ -178,6 +179,7 @@
                     <div class="col-4"><label>Opération</label></div>
                     <div class="col">
                         <select class="form-control" name="operateurRadio">
+                            <option>{{$materiel->operateurRadio}}</option>
                             <option value="opérateur radio 1">Opérateur radio 1</option>
                             <option value="opérateur radio 2">Opérateur radio 2</option>
                         </select>
@@ -189,7 +191,7 @@
                     <label for="operateurRadio" class="col-sm-4">Matricule</label>
                     <select type="text" name="operateurRadioMatricule" id="operateurRadioMatricule"
                             class="form-control col-sm-8">
-                        <option></option>
+                        <option value="{{$materiel->operateurRadioMatricule}}">{{$materiel->operateurRadioMatricule}}</option>
                         @foreach($personnels as $personnel)
                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                 | {{$personnel->nomPrenoms}}</option>
@@ -218,7 +220,6 @@
         <div class="row">
             <div class="col-8">
                 <table class="table table-borderless">
-
                     <thead>
                     <tr>
                         <td>INTITULE</td>

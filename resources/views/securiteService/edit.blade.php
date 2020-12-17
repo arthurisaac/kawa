@@ -51,8 +51,8 @@
                     <div class="form-group row">
                         <label for="matriculeChargeDeSecurite" class="col-sm-3">Matricule</label>
                         <select type="text" name="matriculeChargeDeSecurite" id="matriculeChargeDeSecurite"
-                                class="form-control col-sm-4">
-                            <option>{{$securiteService->chargeDeSecurite}}</option>
+                                class="form-control col-md-4">
+                            <option value="{{$securiteService->chargeDeSecurite}}">{{$securiteService->chargeDeSecurites->matricule}}</option>
                             @foreach($personnels as $personnel)
                                 <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                     | {{$personnel->nomPrenoms}}</option>
@@ -62,7 +62,7 @@
                     <div class="form-group row">
                         <label class="col-md-3">Nom </label>
                         <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite"
-                               required/>
+                               value="{{$securiteService->chargeDeSecurites->nomPrenoms}}"/>
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Prénom</label>
@@ -71,7 +71,7 @@
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
                         <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite"
-                               id="fonctionChargeDeSecurite"/>
+                               value="{{$securiteService->chargeDeSecurites->fonction}}" id="fonctionChargeDeSecurite"/>
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
