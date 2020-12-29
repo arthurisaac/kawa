@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label>Véhicule</label>
                         <select class="form-control" name="idVehicule" id="vehicule">
-                            <option value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation}}</option>
+                            <option value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
                             @foreach($vehicules as $vehicule)
                                 <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                             @endforeach
@@ -63,7 +63,7 @@
                     <div class="form-group">
                         <label>Chauffeur</label>
                         <select class="form-control" name="chauffeur" id="chauffeur">
-                            <option value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms}}</option>
+                            <option value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
                         </select>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label>Agent de garde</label>
                         <select class="form-control" name="agentDeGarde">
-                            <option value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms}}</option>
+                            <option value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
                             @foreach($agents as $agent)
                                 <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
                             @endforeach
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <label>Chef de bord</label>
                         <select class="form-control" name="chefDeBord">
-                            <option value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms}}</option>
+                            <option value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
                             @foreach($chefBords as $chef)
                                 <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
                             @endforeach
@@ -97,6 +97,17 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Heure départ</label>
+                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}" />
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
             <br/>
 
             <div class="row">
@@ -107,7 +118,7 @@
                                 <div class="form-group">
                                     <label>Site</label>
                                     <select class="form-control" name="site[]">
-                                        <option>{{$site->sites->site}}</option>
+                                        <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
                                         @foreach ($commercial_sites as $commercial)
                                             <option value="{{$commercial->id}}">{{$commercial->site}}</option>
                                         @endforeach

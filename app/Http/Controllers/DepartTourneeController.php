@@ -99,7 +99,15 @@ class DepartTourneeController extends Controller
      */
     public function show($id)
     {
-        //
+        // $commercial_sites = Commercial_site::all();
+        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
+        // $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
+        $sites = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
+        //$agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
+        // $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
+        // $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
+        return view('transport.depart-tournee.show',
+            compact('tournee',  'sites'));
     }
 
     /**

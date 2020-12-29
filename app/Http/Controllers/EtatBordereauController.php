@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartTournee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -17,9 +18,13 @@ class EtatBordereauController extends Controller
         return view('/transport/etat-bordereau.index');
     }
 
-    public function tourneeSurPeriode()
+    public function tourneeSurPeriode(Request $request)
     {
-        return view('/transport/etat-bordereau.tournee-sur-periode');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() : DepartTournee::all();
+
+        return view('/transport/etat-bordereau.tournee-sur-periode', compact('tournees'));
     }
 
     public function surPeriode()
