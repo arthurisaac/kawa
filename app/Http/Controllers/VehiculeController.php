@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
-use App\Models\Personnel;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,7 +40,7 @@ class VehiculeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return void
      */
     public function create()
     {
@@ -84,8 +83,8 @@ class VehiculeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -100,7 +99,12 @@ class VehiculeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicule = Vehicule::with('chauffeurTitulaires')->with('chauffeurSuppleants')->find($id);
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        return view('transport.vehicule.edit',
+            compact('vehicule','centres', 'centres_regionaux', 'personnels'));
     }
 
     /**
@@ -112,7 +116,30 @@ class VehiculeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vehicule = Vehicule::find($id);
+        if($request->file()) {
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $request->file('photo')->storeAs('uploads', $fileName, 'public');
+            $photo = $fileName;
+            $vehicule->photo = $photo;
+        }
+
+
+        $vehicule->immatriculation = $request->get('immatriculation');
+
+        $vehicule->marque = $request->get('marque');
+        $vehicule->type = $request->get('type');
+        $vehicule->code = $request->get('code');
+        $vehicule->num_chassis = $request->get('num_chassis');
+        $vehicule->DPMC = $request->get('DPMC');
+        $vehicule->dateAcquisition = $request->get('dateAcquisition');
+        $vehicule->centre = $request->get('centre');
+        $vehicule->centreRegional = $request->get('centreRegional');
+        $vehicule->chauffeurTitulaire = $request->get('chauffeurTitulaire');
+        $vehicule->chauffeurSuppleant = $request->get('chauffeurSuppleant');
+        $vehicule->save();
+        return redirect('/vehicule-liste')->with('success', 'Véhicule modififé!');
+
     }
 
     /**
@@ -123,6 +150,8 @@ class VehiculeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vehicule = Vehicule::find($id);
+        $vehicule->delete();
+        return redirect('/vehicule-liste')->with('success', 'Véhicule supprimé!');
     }
 }

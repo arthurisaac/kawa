@@ -18,20 +18,35 @@
                     <td>Date acquisition</td>
                     <td>centre</td>
                     <td>Centre Régional</td>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($vehicules as $vehicule)
                 <tr>
-                    <td>{{$vehicule->immatriculation}}</td>
+                    <td>{{strtoupper($vehicule->immatriculation)}}</td>
                     <td>{{$vehicule->marque}}</td>
                     <td>{{$vehicule->type}}</td>
                     <td>{{$vehicule->code}}</td>
                     <td>{{$vehicule->num_chassis}}</td>
-                    <td>{{$vehicule->DPMC}}</td>
-                    <td>{{$vehicule->dateAcquisition}}</td>
+                    <td>{{date('d/m/Y', strtotime($vehicule->DPMC))}}</td>
+                    <td>{{date('d/m/Y', strtotime($vehicule->dateAcquisition))}}</td>
                     <td>{{$vehicule->centre}}</td>
                     <td>{{$vehicule->centreRegional}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ route('vehicule.edit',$vehicule->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                            </div>
+                            <div class="col">
+                                <form action="{{ route('vehicule.destroy', $vehicule->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -21,11 +21,11 @@ class Vehicule extends Model
         'chauffeurSuppleant',
     ];
 
-    public function chauffeurTitulaire()
+    public function chauffeurTitulaires()
     {
         return $this->belongsTo('App\Models\Personnel', 'chauffeurTitulaire', 'id');
     }
-    public function chauffeurSuppleant()
+    public function chauffeurSuppleants()
     {
         return $this->belongsTo('App\Models\Personnel', 'chauffeurSuppleant', 'id');
     }

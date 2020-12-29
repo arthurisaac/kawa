@@ -16,7 +16,31 @@ class CreateAchatFournisseurs extends Migration
         Schema::create('achat_fournisseurs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('societe')->nullable();
+            $table->string('denomination')->nullable();
+            $table->string('sigle')->nullable();
+            $table->string('secteur_activite')->nullable();
+            $table->string('rccm')->nullable();
+            $table->string('cnps')->nullable();
+            $table->string('cpt')->nullable();
+            $table->string('adresse_postale')->nullable();
+            $table->string('adresse_geo')->nullable();
+            $table->string('telephone_entreprise')->nullable();
+            $table->string('email_entreprise')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('siteweb')->nullable();
+            $table->string('fonction')->nullable();
+            $table->string('nom')->nullable();
+            $table->string('prenoms')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('part_marche')->nullable();
+            $table->string('taux_croissance')->nullable();
+            $table->string('chaine_valeur')->nullable();
+            $table->string('certification')->nullable();
+            $table->string('sous_traitant')->nullable();
+            $table->string('credit_30_jours')->nullable();
+            $table->string('credit_60_jours')->nullable();
+            /*$table->string('societe')->nullable();
             $table->string('civilite')->nullable();
             $table->string('nom')->nullable();
             $table->string('prenom')->nullable();
@@ -30,7 +54,7 @@ class CreateAchatFournisseurs extends Migration
             $table->string('domaine')->nullable();
             $table->string('delaiLivraison')->nullable();
             $table->string('conditionPaiement')->nullable();
-            $table->string('numeroAgrement')->nullable();
+            $table->string('numeroAgrement')->nullable();*/
         });
     }
 
