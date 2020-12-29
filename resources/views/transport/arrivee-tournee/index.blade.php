@@ -643,6 +643,7 @@
                     $("#kmDepart").val(tournee.kmDepart);
                     $("#kmArrivee").val(tournee.kmArrivee);
                     $("#heureArrivee").val(tournee.heureArrivee);
+                    $("#heureDepart").val(tournee.heureDepart);
                     setConvoyeur(1, tournee.agentDeGarde);
                     setConvoyeur(2, tournee.chauffeur);
                     setConvoyeur(3, tournee.chefDeBord);
@@ -680,13 +681,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Bordereau</label>
-                                <input type="text" class="form-control" name="bordereau[]" value="${s?.bordereau}"/>
+                                <input type="text" class="form-control" name="bordereau[]" value="${s?.bordereau ?? ''}"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Montant</label>
-                                <input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant}"/>
+                                <input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant ?? ''}"/>
                             </div>
                         </div>
                     </div>

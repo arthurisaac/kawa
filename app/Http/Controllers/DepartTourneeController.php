@@ -21,7 +21,7 @@ class DepartTourneeController extends Controller
     public function index()
     {
         $departTournee = DepartTournee::all();
-        $vehicules = Vehicule::with('chauffeurSuppleant')->with('chauffeurTitulaire')->get();
+        $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
         $sites = Commercial_site::all();
         $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
@@ -66,7 +66,8 @@ class DepartTourneeController extends Controller
             'chauffeur' => $request->get('chauffeur'),
             'agentDeGarde' => $request->get('agentDeGarde'),
             'chefDeBord' => $request->get('chefDeBord'),
-            'kmDepart' => $request->get('kmDepart')
+            'kmDepart' => $request->get('kmDepart'),
+            'heureDepart' => $request->get('heureDepart'),
         ]);
         $departTournee->save();
 

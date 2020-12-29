@@ -50,7 +50,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Kilométrage départ</label>
-                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" value="0" />
+                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" required />
                     </div>
                 </div>
             </div>
@@ -91,6 +91,17 @@
                         <input type="number" class="form-control" min="0" value="0" name="coutTournee" id="coutTournee"/>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Heure départ</label>
+                        <input type="time" class="form-control" name="heureDepart" />
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
             <br/>
 
@@ -832,12 +843,12 @@
             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
             if (vehicule) {
                 $('#chauffeur').append($('<option>', {
-                    value: vehicule.chauffeur_titulaire.id,
-                    text: vehicule.chauffeur_titulaire.nomPrenoms
+                    value: vehicule.chauffeur_titulaires.id,
+                    text: vehicule.chauffeur_titulaires.nomPrenoms
                 }));
                 $('#chauffeur').append($('<option>', {
-                    value: vehicule.chauffeur_suppleant.id,
-                    text: vehicule.chauffeur_suppleant.nomPrenoms
+                    value: vehicule.chauffeur_suppleants.id,
+                    text: vehicule.chauffeur_suppleants.nomPrenoms
                 }));
             }
         });
