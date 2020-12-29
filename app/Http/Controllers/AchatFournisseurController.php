@@ -105,23 +105,32 @@ class AchatFournisseurController extends Controller
     public function update(Request $request, $id)
     {
         $fournisseur = AchatFournisseur::find($id);
-        $fournisseur->societe = $request->get('societe');
-        $fournisseur->civilite = $request->get('civilite');
-        $fournisseur->nom = $request->get('nom');
-        $fournisseur->prenom = $request->get('prenom');
-        $fournisseur->adresse = $request->get('adresse');
-        $fournisseur->pays = $request->get('pays');
-        $fournisseur->telephone = $request->get('telephone');
-        $fournisseur->mobile = $request->get('mobile');
+        $fournisseur->denomination = $request->get('denomination');
+        $fournisseur->sigle = $request->get('sigle');
+        $fournisseur->secteur_activite = $request->get('secteur_activite');
+        $fournisseur->rccm = $request->get('rccm');
+        $fournisseur->cnps = $request->get('cnps');
+        $fournisseur->cpt = $request->get('cpt');
+        $fournisseur->adresse_postale = $request->get('adresse_postale');
+        $fournisseur->adresse_geo = $request->get('adresse_geo');
+        $fournisseur->telephone_entreprise = $request->get('telephone_entreprise');
+        $fournisseur->email_entreprise = $request->get('email_entreprise');
         $fournisseur->fax = $request->get('fax');
+        $fournisseur->siteweb = $request->get('siteweb');
+        $fournisseur->fonction = $request->get('fonction');
+        $fournisseur->nom = $request->get('nom');
+        $fournisseur->prenoms = $request->get('prenoms');
+        $fournisseur->telephone = $request->get('telephone');
         $fournisseur->email = $request->get('email');
-        $fournisseur->observation = $request->get('observation');
-        $fournisseur->domaine = $request->get('domaine');
-        $fournisseur->delaiLivraison = $request->get('delaiLivraison');
-        $fournisseur->conditionPaiement = $request->get('conditionPaiement');
-        $fournisseur->numeroAgrement = $request->get('numeroAgrement');
+        $fournisseur->part_marche = $request->get('part_marche');
+        $fournisseur->taux_croissance = $request->get('taux_croissance');
+        $fournisseur->chaine_valeur = $request->get('chaine_valeur');
+        $fournisseur->certification = $request->get('certification');
+        $fournisseur->sous_traitant = $request->get('sous_traitant');
+        $fournisseur->credit_30_jours = $request->get('credit_30_jours');
+        $fournisseur->credit_60_jours = $request->get('credit_60_jours');
         $fournisseur->save();
-        return redirect('achat-fournisseur-liste')->with('success', 'Enregistrement effectué!');
+        return redirect('achat-fournisseur-liste')->with('success', 'Enregistrement modifié!');
     }
 
     /**
