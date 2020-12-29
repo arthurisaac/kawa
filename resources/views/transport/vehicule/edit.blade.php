@@ -181,7 +181,7 @@
             </div>
             <br/>
 
-            <!--<button type="reset" class="btn btn-danger btn-sm">Annuler</button>-->
+            <button type="button" class="btn btn-danger btn-sm" onclick="window.history.back()">Annuler</button>
             <button type="submit" class="btn btn-primary btn-sm">Valider</button>
         </form>
     </div>

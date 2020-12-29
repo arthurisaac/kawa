@@ -209,6 +209,9 @@ Route::get('logistique-sortie-ticket-liste', [\App\Http\Controllers\LogistiqueSo
 Route::resource('achat-fournisseur', 'AchatFournisseurController');
 Route::get('achat-fournisseur-liste', [\App\Http\Controllers\AchatFournisseurController::class, 'liste']);
 
+Route::resource('achat-demande', 'AchatDemandeController');
+Route::get('achat-demande-liste', [\App\Http\Controllers\AchatDemandeController::class, 'liste']);
+
 Route::resource('achat-produit', 'AchatProduitController');
 Route::get('achat-produit-liste', [\App\Http\Controllers\AchatProduitController::class, 'liste']);
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -1801,6 +1801,18 @@
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('achat-fournisseur-liste','no','no','no','no','no','no','','','1000','400')"
+                                                        target="_self" title="Liste">Liste</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><span></span><span>Demande achat</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('achat-demande','no','no','no','yes','yes','no','','','1100','600')"
+                                                        target="_self" title="Nouveau">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('achat-demande-liste','no','no','no','no','no','no','','','1000','400')"
                                                         target="_self" title="Liste">Liste</a>
                                                 </li>
                                             </ul>
