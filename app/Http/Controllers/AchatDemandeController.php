@@ -101,7 +101,7 @@ class AchatDemandeController extends Controller
      */
     public function edit($id)
     {
-        $demande = AchatDemande::with('fournisseurs')->find($id);
+        $demande = AchatDemande::with('fournisseurs')->with('chauffeurs')->find($id);
         $consultes = AchatFournisseurConsulte::with('fournisseurs')->get()->where('achat_demandes_fk', '=', $id);
         $fournisseurs = AchatFournisseur::all();
         return view('achat.demande.edit', compact('demande', 'fournisseurs', 'consultes'));

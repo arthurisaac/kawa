@@ -37,8 +37,8 @@
                 <tr>
                     <td>{{$depart->date}}</td>
                     <td>{{$depart->numeroTournee}}</td>
-                    <td>{{$depart->idVehicule}}</td>
-                    <td>{{$depart->chauffeur}}</td>
+                    <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
+                    <td>{{$depart->chauffeurs->nomPrenoms ?? 'Peronnel non disponible ' . $depart->chauffeur}}</td>
                     <td>{{$depart->coutTournee}}</td>
                     <td>
                         <div class="row">
