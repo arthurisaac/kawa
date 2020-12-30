@@ -161,6 +161,27 @@
                 <div class="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">
                     <div class="container">
                         <!-- TODO : chiffres d'affaire-->
+
+                        <table id="financeTable">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>CA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="number" class="form-control" name="annee[]" placeholder="xxxx" />
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" name="ca[]" placeholder="chiffre d'affaire" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <button class="btn btn-primary btn-sm" type="button" id="addRow">Ajouter +</button>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="demarche" role="tabpanel" aria-labelledby="demarche-tab">
@@ -196,6 +217,8 @@
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
 
             <div class="row">
                 <div class="col-2">
@@ -207,5 +230,13 @@
 
         </form>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#addRow").on("click", function() {
+                console.log('adding ca row');
+                $('#financeTable').append('<tr><td><input type="number" class="form-control" name="annee[]" placeholder="20xx" /></td><td><input type="number" class="form-control" name="ca[]" placeholder="chiffre d\'affaire" /></td></tr>');
+            });
+        });
+    </script>
 
 @endsection

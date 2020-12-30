@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AchatFournisseurCA;
 use App\Models\AchatFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,6 +70,18 @@ class AchatFournisseurController extends Controller
             'credit_60_jours' => $request->get('credit_60_jours'),
         ]);
         $fournisseur->save();
+        $annees = $request->get('annee');
+        $cas = $request->get('ca');
+        for ($i = 0; $i < count($annees); $i++) {
+            if (!empty($annees[$i])) {
+                $achatCA = new AchatFournisseurCA([
+                   'fournisseur_fk' => $fournisseur->id,
+                   'annee' => $annees[$i],
+                   'ca' => $cas[$i],
+                ]);
+                $achatCA->save();
+            }
+        }
         return redirect('achat-fournisseur')->with('success', 'Enregistrement effectué!');
     }
 
@@ -92,7 +105,8 @@ class AchatFournisseurController extends Controller
     public function edit($id)
     {
         $fournisseur = AchatFournisseur::find($id);
-        return view('achat.fournisseur.edit', compact('fournisseur'));
+        $cas = AchatFournisseurCA::where('fournisseur_fk', '=', $id)->get();
+        return view('achat.fournisseur.edit', compact('fournisseur', 'cas'));
     }
 
     /**
@@ -130,6 +144,21 @@ class AchatFournisseurController extends Controller
         $fournisseur->credit_30_jours = $request->get('credit_30_jours');
         $fournisseur->credit_60_jours = $request->get('credit_60_jours');
         $fournisseur->save();
+
+        $fournisseur->save();
+        $annees = $request->get('annee');
+        $cas = $request->get('ca');
+        $ids = $request->get('ids');
+        for ($i = 0; $i < count($annees); $i++) {
+            if (!empty($annees[$i])) {
+                $achatCA = AchatFournisseurCA::find($ids[$i]);
+                $achatCA->fournisseur_fk = $id;
+                $achatCA->annee = $annees[$i];
+                $achatCA->ca = $cas[$i];
+                $achatCA->save();
+            }
+        }
+
         return redirect('achat-fournisseur-liste')->with('success', 'Enregistrement modifié!');
     }
 
