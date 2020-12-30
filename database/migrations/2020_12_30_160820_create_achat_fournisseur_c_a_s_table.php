@@ -16,7 +16,7 @@ class CreateAchatFournisseurCASTable extends Migration
         Schema::create('achat_fournisseur_c_a_s', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('fournisseur_fk')->references('id')->on('fournisseur')->onDelete('cascade');
+            $table->foreignId('fournisseur_fk')->references('id')->on('achat_fournisseurs')->onDelete('cascade');
             $table->bigInteger('ca');
             $table->string('annee');
         });
