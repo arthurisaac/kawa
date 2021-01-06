@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAchatFournisseurCASTable extends Migration
+class CreateAchatBonComandesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class CreateAchatFournisseurCASTable extends Migration
      */
     public function up()
     {
-        Schema::create('achat_fournisseur_c_a_s', function (Blueprint $table) {
+        Schema::create('achat_bon_comandes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->date('date');
+            $table->string('numero');
             $table->foreignId('fournisseur_fk')->references('id')->on('achat_fournisseurs')->onDelete('cascade');
-            $table->bigInteger('ca')->nullable();
-            $table->string('annee')->nullable();
+            $table->string('proforma')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('operation')->nullable();
+            $table->string('objet')->nullable();
+            $table->string('total')->nullable();
         });
     }
 
@@ -29,6 +34,6 @@ class CreateAchatFournisseurCASTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achat_fournisseur_c_a_s');
+        Schema::dropIfExists('achat_bon_comandes');
     }
 }

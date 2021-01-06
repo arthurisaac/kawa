@@ -1839,6 +1839,22 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li><span></span><span>Bon de commande</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('achat-bon','no','no','no','yes','no','no','','','1000','800')"
+                                                        target="_self" title="Nouveau">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('achat-bon-liste','no','no','no','no','yes','no','','','1000','800')"
+                                                        target="_self" title="Liste">Liste</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><span></span>
+                                            <span><a href="javascript:popupwnd('achat-suivi','no','no','no','yes','no','no','','','1000','800')"
+                                                    target="_self" title="Suivi des commandes">Etat suivi des commandes</a></span>
+                                        </li>
                                         <li><span></span><span>Rechercher</span>
                                             <ul>
                                                 <li><span></span><a

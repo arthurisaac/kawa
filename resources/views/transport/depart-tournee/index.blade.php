@@ -872,7 +872,6 @@
                 }
 
             });
-
         });
 
         $("#kmDepart").on("change", function() {

@@ -17,9 +17,9 @@ class CreateAchatFournisseurConsultesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('fournisseur');
-            $table->string('cotation_technique');
-            $table->bigInteger('prix_propose');
-            $table->string('choix');
+            $table->string('cotation_technique')->nullable();
+            $table->bigInteger('prix_propose')->nullable();
+            $table->string('choix')->nullable();
             $table->foreignId('achat_demandes_fk')->references('id')->on('achat_demandes')->onDelete('cascade');
         });
     }

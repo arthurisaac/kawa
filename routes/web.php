@@ -212,6 +212,11 @@ Route::get('achat-fournisseur-liste', [\App\Http\Controllers\AchatFournisseurCon
 Route::resource('achat-demande', 'AchatDemandeController');
 Route::get('achat-demande-liste', [\App\Http\Controllers\AchatDemandeController::class, 'liste']);
 
+Route::resource('achat-bon', 'AchatBonController');
+Route::get('achat-bon-liste', [\App\Http\Controllers\AchatBonController::class, 'liste']);
+
+Route::get('achat-suivi', [\App\Http\Controllers\AchatSuiviController::class, 'liste']);
+
 Route::resource('achat-produit', 'AchatProduitController');
 Route::get('achat-produit-liste', [\App\Http\Controllers\AchatProduitController::class, 'liste']);
 

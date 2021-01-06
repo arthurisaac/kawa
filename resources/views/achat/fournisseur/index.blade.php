@@ -160,8 +160,6 @@
                 </div>
                 <div class="tab-pane fade" id="finances" role="tabpanel" aria-labelledby="finances-tab">
                     <div class="container">
-                        <!-- TODO : chiffres d'affaire-->
-
                         <table id="financeTable">
                             <thead>
                                 <tr>
