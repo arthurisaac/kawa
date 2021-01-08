@@ -13,4 +13,9 @@ class AchatBonComandeItem extends Model
         'prix',
         'montant',
     ];
+
+    public function bons()
+    {
+        return $this->belongsTo('App\Models\AchatBonComande', 'achat_bon_fk', 'id');
+    }
 }

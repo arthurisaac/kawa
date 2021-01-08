@@ -62,7 +62,7 @@ class AchatBonController extends Controller
             // $montant = $request->get('pu');
 
             for ($i = 0; $i < count($designation); $i++) {
-                if (!empty($designation[$i]) && !empty($quantite) && !empty($pu)) {
+                if (!empty($designation[$i]) && !empty($quantite[$i]) && !empty($pu[$i])) {
                     $item = new AchatBonComandeItem([
                         'achat_bon_fk' => $data->id,
                         'designation' => $designation[$i],
@@ -102,7 +102,8 @@ class AchatBonController extends Controller
         // $bon = AchatBonComande::with('fournisseurs')->find($id)->get();
         $bon = AchatBonComande::find($id);
         $fournisseurs = AchatFournisseur::all();
-        return view('/achat.bon.edit', compact('bon', 'fournisseurs'));
+        $bonItems = AchatBonComandeItem::with('bons')->get()->where('achat_bon_fk', '=', $id);
+        return view('/achat.bon.edit', compact('bon', 'fournisseurs', 'bonItems'));
     }
 
     /**
@@ -115,17 +116,40 @@ class AchatBonController extends Controller
     public function update(Request $request, $id)
     {
 //        try {
-            $data = AchatBonComande::find($id);
-            $data->date = $request->get('date');
-            $data->numero = $request->get('numero');
-            $data->fournisseur_fk = $request->get('fournisseur_fk');
-            $data->proforma = $request->get('proforma');
-            $data->telephone = $request->get('telephone');
-            $data->operation = $request->get('operation');
-            $data->objet = $request->get('objet');
-            $data->total = $request->get('total');
-            $data->save();
-            return redirect('achat-bon-liste')->with('success', 'Enregistrement modifié!');
+        $montant = 0;
+        $designation = $request->get('designation');
+        $quantite = $request->get('quantite');
+        $pu = $request->get('pu');
+        $ids = $request->get('ids');
+
+        for ($i = 0; $i < count($designation); $i++) {
+            if (!empty($designation[$i]) && !empty($quantite[$i]) && !empty($pu[$i]) && !empty($ids[$i])) {
+                $total = intval($pu[$i]) * intval($quantite[$i]);
+                $montant += $total;
+                $item = AchatBonComandeItem::find($ids[$i]);
+                $item->achat_bon_fk = $id;
+                $item->designation = $designation[$i];
+                $item->quantite = $quantite[$i];
+                $item->prix = $pu[$i];
+                $item->montant = $total;
+                $item->save();
+            }
+        }
+
+        $data = AchatBonComande::find($id);
+        $data->date = $request->get('date');
+        $data->numero = $request->get('numero');
+        $data->fournisseur_fk = $request->get('fournisseur_fk');
+        $data->proforma = $request->get('proforma');
+        $data->telephone = $request->get('telephone');
+        $data->operation = $request->get('operation');
+        $data->objet = $request->get('objet');
+        $data->total = $montant;
+        $data->save();
+
+        // $montant = $request->get('pu');
+
+        return redirect('achat-bon-liste')->with('success', 'Enregistrement modifié!');
         /*} catch (\Exception $e) {
             return redirect('achat-bon-liste')->with('error', 'Une erreur s\'est produite: ' . $e->getMessage());
         }*/
