@@ -111,7 +111,7 @@
                     <div class="container">
                         <div class="row" style="align-items: center;">
                             <div class="col-2">
-                                <label>Chauffeur titulaire</label>
+                                <h5>Chauffeur titulaire</h5>
                             </div>
                             <div class="col">
                                 <div class="form-group row">
@@ -157,7 +157,7 @@
                     <div class="container">
                         <div class="row" style="align-items: center;">
                             <div class="col-2">
-                                <label>Chauffeur Suppléant</label>
+                                <h5>Chauffeur Suppléant</h5>
                             </div>
                             <div class="col">
                                 <div class="form-group row">

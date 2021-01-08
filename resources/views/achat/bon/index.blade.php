@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('main')
+    <script src="{{ asset('js/written-number.js') }}"></script>
     <div class="burval-container">
         <div><h2 class="heading">Bon de commande</h2></div>
         <br/>
@@ -91,9 +92,12 @@
             <br>
 
             <div class="form-group row">
-                <label class="col-sm-5">Total</label>
-                <input type="text" name="total" class="form-control col-sm-7" readonly required>
+                <label class="col-sm-1">Total</label>
+                <input type="text" name="total" class="form-control form-control-bordeless col-sm-4" readonly required>
             </div>
+            <p>
+                <i id="totalWritten"></i>
+            </p>
             <div class="row">
                 <div class="col-2">
                     <button class="btn btn-block btn-primary btn-sm" type="submit">Valider</button>
@@ -104,6 +108,8 @@
         </form>
     </div>
     <script>
+        writtenNumber.defaults.lang = 'fr';
+
         $(document).ready(function () {
             $("#addRow").on("click", function () {
                 $('#bonItem').append('<tr>\n' +
@@ -122,7 +128,6 @@
                     '                </tr>');
 
             });
-
             $("input[name='pu[]']").on("change", function () {
                 let i = -1;
                 if (!isNaN(parseInt(this.value))) {
@@ -142,16 +147,7 @@
                     console.log('pu', !isNaN(parseInt(this.value)))
                 }
             });
-
         });
-
-        function updateTotal() {
-            let total = 0;
-            $.each($("input[name='montant[]']"), function () {
-                if (!isNaN(parseInt(this.value))) total += parseInt(this.value);
-            });
-            $("input[name='total']").val(total);
-        }
 
         $(document).on('DOMNodeInserted', function() {
             $("input[name='montant[]']").on("change", function () {
@@ -181,6 +177,18 @@
                 }
             });
         });
+
+        function updateTotal() {
+            let total = 0;
+            $.each($("input[name='montant[]']"), function () {
+                if (!isNaN(parseInt(this.value))) total += parseInt(this.value);
+            });
+            $("input[name='total']").val(total);
+            const totalWritten = writtenNumber(total);
+            $("#totalWritten").text(totalWritten + ' francs CFA');
+
+            console.log();
+        }
     </script>
 
 @endsection
