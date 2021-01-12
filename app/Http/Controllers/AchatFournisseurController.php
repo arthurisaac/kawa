@@ -82,7 +82,7 @@ class AchatFournisseurController extends Controller
                 $achatCA->save();
             }
         }
-        return redirect('achat-fournisseur')->with('success', 'Enregistrement effectué!');
+        return redirect('achat-fournisseur-liste')->with('success', 'Enregistrement effectué!');
     }
 
     /**

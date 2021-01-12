@@ -79,7 +79,7 @@ class AchatDemandeController extends Controller
                 $fournisseur->save();
             }
         }
-        return redirect('achat-demande')->with('success', 'Enregistrement effectué!');
+        return redirect('achat-demande-liste')->with('success', 'Enregistrement effectué!');
     }
 
     /**

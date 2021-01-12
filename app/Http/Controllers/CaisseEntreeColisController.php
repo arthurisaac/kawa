@@ -91,7 +91,7 @@ class CaisseEntreeColisController extends Controller
             }
         }
 
-        return redirect('/caisse-entree-colis')->with('success', 'Service enregistré!');
+        return redirect('/caisse-entree-colis-liste')->with('success', 'Service enregistré!');
 
     }
 

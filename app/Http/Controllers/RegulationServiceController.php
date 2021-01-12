@@ -57,7 +57,7 @@ class RegulationServiceController extends Controller
             'chargeeRegulationAdjointHFS' => $request->get('chargeeRegulationAdjointHFS'),
         ]);
         $service->save();
-        return redirect('/regulation-service')->with('success', 'Service enregistré!');
+        return redirect('/regulation-service-liste')->with('success', 'Service enregistré!');
     }
 
     /**

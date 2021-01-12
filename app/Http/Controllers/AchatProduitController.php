@@ -87,7 +87,7 @@ class AchatProduitController extends Controller
             'suiviBudgetaire' => $request->get('suiviBudgetaire'),
         ]);
         $achat->save();
-        return redirect('achat-produit')->with('success', 'Enregistrement effectué!');
+        return redirect('achat-produit-liste')->with('success', 'Enregistrement effectué!');
 
     }
 

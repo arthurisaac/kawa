@@ -46,11 +46,32 @@
                     <th>Km arrivé</th>
                     <th>Tps tournée</th>
                     <th>Total km</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
+                <tbody>
+                @foreach($tournees as $tournee)
+                    <tr>
+                        <td>{{$tournee->date}}</td>
+                        <td>{{ strtoupper($tournee->vehicules->immatriculation) ?? $tournee->idVehicule}}</td>
+                        <td>{{$tournee->chauffeur}}</td>
+                        <td>{{$tournee->numeroTournee}}</td>
+                        <td>{{$tournee->heureDepart}}</td>
+                        <td>{{$tournee->kmDepart}}</td>
+                        <td>{{$tournee->heureArrivee}}</td>
+                        <td>{{$tournee->kmArrivee}}</td>
+                        <td>{{(strtotime($tournee->heureArrivee) - strtotime($tournee->heureDepart)) / 60}}</td>
+                        <td>{{$tournee->kmArrivee - $tournee->kmDepart}}</td>
+                        <td>
+                            <a href="javascript:popupwnd('{{route('depart-tournee.show',$tournee->id)}}','no','no','no','no','no','no','','','1000','400')"
+                               target="_self" class="btn btn-primary btn-sm">Voir</a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="10">Compteur</td>
+                    <td colspan="11">Compteur</td>
                 </tr>
                 </tfoot>
             </table>

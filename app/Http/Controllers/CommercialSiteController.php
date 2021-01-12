@@ -96,7 +96,7 @@ class CommercialSiteController extends Controller
             'tarif_collecte_caissiere' => $request->get('tarif_collecte_caissiere'),
         ]);
         $site->save();
-        return redirect('/commercial-site')->with('success', 'Site enregistré!');
+        return redirect('/commercial-site-liste')->with('success', 'Site enregistré!');
     }
 
     /**

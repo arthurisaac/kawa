@@ -88,7 +88,7 @@ class DepartTourneeController extends Controller
         }
 
 
-        return redirect('/depart-tournee')->with('success', 'Tournée enregistrée!');
+        return redirect('/depart-tournee-liste')->with('success', 'Tournée enregistrée!');
     }
 
     /**

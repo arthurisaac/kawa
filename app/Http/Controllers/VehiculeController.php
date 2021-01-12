@@ -77,7 +77,7 @@ class VehiculeController extends Controller
             'chauffeurSuppleant' => $request->get('chauffeurSuppleant'),
         ]);
         $vehicule->save();
-        return redirect('/vehicule')->with('success', 'Véhicule enregistré!');
+        return redirect('/vehicule-liste')->with('success', 'Véhicule enregistré!');
     }
 
     /**

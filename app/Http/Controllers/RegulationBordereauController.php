@@ -66,7 +66,7 @@ class RegulationBordereauController extends Controller
             'stockActuel' => $request->get('date'),
         ]);
         $bordereau->save();
-        return redirect('/regulation.service.edit');
+        return redirect('/regulation-vervice-liste');
     }
 
     /**

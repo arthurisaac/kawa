@@ -83,7 +83,8 @@ class SecuriteServiceController extends Controller
         ]);
         $securiteService->save();
 
-        return redirect('/securite-service')->with('success', 'Service enregistré!');
+        // return redirect('/securite-service')->with('success', 'Service enregistré!');
+        return redirect('/securite-service-liste')->with('success', 'Service enregistré!');
     }
 
     /**

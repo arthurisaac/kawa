@@ -45,7 +45,7 @@ class LogistiqueSortieApprovisionController extends Controller
             'prixUnitaire' => $request->get('prixUnitaire'),
         ]);
         $sortie->save();
-        return redirect('/logistique-sortie-approvision')->with('success', 'Sortie approvisionnement enregitrée');
+        return redirect('/logistique-sortie-approvision-liste')->with('success', 'Sortie approvisionnement enregitrée');
     }
 
     /**

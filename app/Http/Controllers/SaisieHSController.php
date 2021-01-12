@@ -58,7 +58,7 @@ class SaisieHSController extends Controller
             'heureDepart3' => $request->get('heureDepart3'),
         ]);
         $saisie->save();
-        return redirect('/saisie')->with('success', 'Saisie enregistré!');
+        return redirect('/saisie-liste')->with('success', 'Saisie enregistré!');
     }
 
     /**

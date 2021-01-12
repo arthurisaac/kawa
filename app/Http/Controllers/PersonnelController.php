@@ -173,6 +173,7 @@ class PersonnelController extends Controller
         $personnel->nomConjoint = $request->get('nomConjoint');
         $personnel->personneContacter = $request->get('personneContacter');
         $personnel->save();
+        // return redirect('/personnel-liste')->with('success', 'Personnel enregistré!');
         return redirect('/personnel-liste')->with('success', 'Personnel enregistré!');
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DepartTournee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class EtatBordereauController extends Controller
 {
@@ -27,39 +28,72 @@ class EtatBordereauController extends Controller
         return view('/transport/etat-bordereau.tournee-sur-periode', compact('tournees'));
     }
 
-    public function surPeriode()
+    public function surPeriode(Request $request)
     {
-        return view('/transport/etat-bordereau.sur-periode');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        return view('/transport/etat-bordereau.sur-periode', compact('tournees'));
     }
 
     public function rentabiliteTournee()
     {
-        return view('/transport/etat-bordereau.rentabilite-tournee');
+        return view('/transport/etat-bordereau.rentabilite-tournee', compact('tournees'));
     }
 
-    public function parSite()
+    public function parSite(Request $request)
     {
-        return view('/transport/etat-bordereau.par-site');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        return view('/transport/etat-bordereau.par-site', compact('tournees'));
     }
 
-    public function parClient()
+    public function parClient(Request $request)
     {
-        return view('/transport/etat-bordereau.par-client');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        return view('/transport/etat-bordereau.par-client', compact('tournees'));
     }
 
-    public function parVehicule()
+    public function parVehicule(Request $request)
     {
-        return view('/transport/etat-bordereau.par-vehicule');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        return view('/transport/etat-bordereau.par-vehicule', compact('tournees'));
     }
 
-    public function parConvoyeur()
+    public function parConvoyeur(Request $request)
     {
-        return view('/transport/etat-bordereau.par-convoyeur');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        return view('/transport/etat-bordereau.par-convoyeur', compact('tournees'));
     }
 
-    public function fondTransport()
+    public function fondTransport(Request $request)
     {
-        return view('/transport/etat-bordereau.fond-transport-periode');
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
+            DepartTournee::with('vehicules')->get();
+        $total = isset($from) && isset($to) ?
+            DB::table("depart_tournees")
+                ->select(DB::raw("SUM(coutTournee) as total"))
+                ->whereBetween('date', [$from, $to])
+                ->get() :
+            DB::table("depart_tournees")
+                ->select(DB::raw("SUM(coutTournee) as total"))
+                ->get();
+
+        return view('/transport/etat-bordereau.fond-transport-periode', compact('tournees', 'total'));
     }
 
     /**

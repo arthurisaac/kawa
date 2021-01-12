@@ -55,7 +55,7 @@ class LogistiqueProduitController extends Controller
             'prix' => $request->get('prix'),
         ]);
         $produit->save();
-        return redirect('/logistique-produit')->with('success', 'Produit enregistré!');
+        return redirect('/logistique-produit-liste')->with('success', 'Produit enregistré!');
     }
 
     /**

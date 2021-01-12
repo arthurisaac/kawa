@@ -62,7 +62,7 @@ class LogistiqueFournisseurController extends Controller
             'conditionPaiement' => $request->get('conditionPaiement'),
         ]);
         $fournisseur->save();
-        return redirect('/logistique-fournisseur')->with('success', 'Fournisseur enregistré!');
+        return redirect('/logistique-fournisseur-liste')->with('success', 'Fournisseur enregistré!');
     }
 
     /**

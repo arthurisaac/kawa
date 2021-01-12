@@ -75,7 +75,7 @@ class CaisseServiceController extends Controller
             }
         }
 
-        return redirect('/caisse-service')->with('success', 'Service enregistré!');
+        return redirect('/caisse-service-liste')->with('success', 'Service enregistré!');
     }
 
     public function show($id)

@@ -120,7 +120,7 @@ class CaisseCtvController extends Controller
         ]);
         $billetage->save();
 
-        return redirect('/ctv')->with('success', 'CTV enregistré!');
+        return redirect('/ctv-liste')->with('success', 'CTV enregistré!');
     }
 
 

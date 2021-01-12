@@ -159,7 +159,8 @@ class SecuriteMaterielController extends Controller
 
         $remettant->save();
         $beneficiare->save();
-        return redirect('/materiel')->with('success', 'Matériel enregistrée!');
+        // return redirect('/materiel')->with('success', 'Matériel enregistrée!');
+        return redirect('/materiel-liste')->with('success', 'Matériel enregistré!');
     }
 
     /**
@@ -209,7 +210,7 @@ class SecuriteMaterielController extends Controller
         $materiel->operateurRadioHeurePrise = $request->get('operateurRadioHeurePrise');
         $materiel->operateurRadioHeureFin = $request->get('operateurRadioHeureFin');
         $materiel->save();
-        return redirect('/materiel-liste')->with('success', 'Matériel enregistrée!');
+        return redirect('/materiel-liste')->with('success', 'Matériel enregistré!');
     }
 
     /**
@@ -220,6 +221,8 @@ class SecuriteMaterielController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $materiel = SecuriteMateriel::find($id);
+        $materiel->delete();
+        return redirect('/materiel-liste')->with('success', 'Matériel supprimé!');
     }
 }

@@ -74,7 +74,7 @@ class SsbCommercialController extends Controller
             'montant' => $request->get('montant'),
         ]);
         $ssb->save();
-        return redirect('/ssb-commercial')->with('success', 'Enregistrement effectué!');
+        return redirect('/ssb-commercial-liste')->with('success', 'Enregistrement effectué!');
     }
 
     /**
