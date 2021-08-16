@@ -231,7 +231,7 @@
                                     <tbody>
                                     @foreach ($arriveeSites as $arriveeSite)
                                         <tr>
-                                            <td>{{$arriveeSite->sites->site}}</td>
+                                            <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
                                             <td>{{$arriveeSite->tournees->date}}</td>
                                             <td>{{$arriveeSite->heureArrivee}}</td>
                                             <td>{{$arriveeSite->kmArrivee}}</td>
@@ -455,9 +455,9 @@
                                     <td>{{$tournee->tournees->date}}</td>
                                     <td>{{$tournee->tournees->numeroTournee}}</td>
                                     <td>{{$tournee->details->vehicules->immatriculation}}</td>
-                                    <td>{{$tournee->details->chauffeurs->nomPrenoms}}</td>
-                                    <td>{{$tournee->details->chefDeBords->nomPrenoms}}</td>
-                                    <td>{{$tournee->details->agentDeGardes->nomPrenoms}}</td>
+                                    <td>{{$tournee->details->chauffeurs->nomPrenoms ?? ""}}</td>
+                                    <td>{{$tournee->details->chefDeBords->nomPrenoms ?? ""}}</td>
+                                    <td>{{$tournee->details->agentDeGardes->nomPrenoms ?? ""}}</td>
                                     <td>{{$tournee->centre}}</td>
                                     <td>{{$tournee->centreRegional}}</td>
                                     <td>{{$tournee->dateDebut}}</td>
