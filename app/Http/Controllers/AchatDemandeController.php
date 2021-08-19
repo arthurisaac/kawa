@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\AchatDemande;
 use App\Models\AchatFournisseur;
 use App\Models\AchatFournisseurConsulte;
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class AchatDemandeController extends Controller
 {
@@ -18,7 +21,11 @@ class AchatDemandeController extends Controller
     public function index()
     {
         $fournisseurs = AchatFournisseur::all();
-        return view('achat.demande.index', compact('fournisseurs'));
+        $numeroDA =  DB::table('achat_demandes')->max('id') + 1;
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        return view('achat.demande.index', compact('fournisseurs', 'numeroDA', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -34,7 +41,10 @@ class AchatDemandeController extends Controller
     public function liste()
     {
         $demandes = AchatDemande::all();
-        return view('achat.demande.liste', compact('demandes'));
+        $achatsRefuses = AchatDemande::all()->where("demande", "=", "Demande refusée");
+        $achatsValides = AchatDemande::all()->where("demande", "=", "Demande validée");
+        $achatsEnCours = AchatDemande::all()->where("demande", "=", "Demande en cours");
+        return view('achat.demande.liste', compact('demandes', 'achatsRefuses', 'achatsValides', 'achatsEnCours'));
     }
 
     /**
@@ -45,6 +55,7 @@ class AchatDemandeController extends Controller
      */
     public function store(Request $request)
     {
+        $type = !empty($request->get('type_demande')) ? implode(",", $request->get('type_demande')) : null;
         $data = new AchatDemande([
             'date' => $request->get('date'),
             'identite' => $request->get('identite'),
@@ -57,8 +68,12 @@ class AchatDemandeController extends Controller
             'famille_achat' => $request->get('famille_achat'),
             'fournisseur_retenu' => $request->get('fournisseur_retenu'),
             'montant_retenu' => $request->get('montant_retenu'),
-            'type_demande' => implode(",", $request->get('type_demande')),
+            'type_demande' => $type,
             'nature_demande' => $request->get('nature_demande'),
+            'numero_da' => $request->get('numero_da'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
+            'demande' => $request->get('demande'),
             // 'type_demande'  => $request->get('type_demande'),
         ]);
         $data->save();
@@ -104,7 +119,9 @@ class AchatDemandeController extends Controller
         $demande = AchatDemande::with('fournisseurs')->with('chauffeurs')->find($id);
         $consultes = AchatFournisseurConsulte::with('fournisseurs')->get()->where('achat_demandes_fk', '=', $id);
         $fournisseurs = AchatFournisseur::all();
-        return view('achat.demande.edit', compact('demande', 'fournisseurs', 'consultes'));
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('achat.demande.edit', compact('demande', 'fournisseurs', 'consultes', 'centres', 'centres_regionaux'));
     }
 
     /**

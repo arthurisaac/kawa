@@ -66,8 +66,8 @@ class AchatFournisseurController extends Controller
             'chaine_valeur' => $request->get('chaine_valeur'),
             'certification' => $request->get('certification'),
             'sous_traitant' => $request->get('sous_traitant'),
-            'credit_30_jours' => $request->get('credit_30_jours'),
-            'credit_60_jours' => $request->get('credit_60_jours'),
+            'condition' => $request->get('condition'),
+            'mode_paiement' => $request->get('mode_paiement'),
         ]);
         $fournisseur->save();
         $annees = $request->get('annee');
@@ -141,9 +141,8 @@ class AchatFournisseurController extends Controller
         $fournisseur->chaine_valeur = $request->get('chaine_valeur');
         $fournisseur->certification = $request->get('certification');
         $fournisseur->sous_traitant = $request->get('sous_traitant');
-        $fournisseur->credit_30_jours = $request->get('credit_30_jours');
-        $fournisseur->credit_60_jours = $request->get('credit_60_jours');
-        $fournisseur->save();
+        $fournisseur->condition = $request->get('condition');
+        $fournisseur->mode_paiement = $request->get('mode_paiement');
 
         $fournisseur->save();
         $annees = $request->get('annee');

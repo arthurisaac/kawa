@@ -38,8 +38,8 @@ class CreateAchatFournisseurs extends Migration
             $table->string('chaine_valeur')->nullable();
             $table->string('certification')->nullable();
             $table->string('sous_traitant')->nullable();
-            $table->string('credit_30_jours')->nullable();
-            $table->string('credit_60_jours')->nullable();
+            $table->string('condition')->nullable();
+            $table->string('mode_paiement')->nullable();
             /*$table->string('societe')->nullable();
             $table->string('civilite')->nullable();
             $table->string('nom')->nullable();

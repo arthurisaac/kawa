@@ -20,7 +20,11 @@ class AchatDemande extends Model
         'montant_retenu',
         'type_demande',
         'nature_demande',
-        ];
+        'numero_da',
+        'centre',
+        'centre_regional',
+        'demande'
+    ];
 
     public function fournisseurs()
     {

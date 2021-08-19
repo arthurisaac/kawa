@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AchatBonComande;
 use App\Models\AchatBonComandeItem;
+use App\Models\AchatDemande;
 use App\Models\AchatFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,7 +22,8 @@ class AchatBonController extends Controller
         $numeroBon = (DB::table('achat_bon_comandes')->max('id') + 1) . '-' . date('d') . '-' . date('m') . '-' . date('Y');
         $currentDate = date('Y-m-d');
         $fournisseurs = AchatFournisseur::all();
-        return view('/achat.bon.index', compact('fournisseurs', 'numeroBon', 'currentDate'));
+        $demandes = AchatDemande::all();
+        return view('/achat.bon.index', compact('fournisseurs', 'numeroBon', 'currentDate', 'demandes'));
     }
 
     /**
@@ -53,6 +55,7 @@ class AchatBonController extends Controller
                 'operation' => $request->get('operation'),
                 'objet' => $request->get('objet'),
                 'total' => $request->get('total'),
+                'livraison' => $request->get('livraison'),
             ]);
             $data->save();
 

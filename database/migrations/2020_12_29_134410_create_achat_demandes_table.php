@@ -29,6 +29,10 @@ class CreateAchatDemandesTable extends Migration
             $table->bigInteger('montant_retenu')->nullable();
             $table->string('type_demande')->nullable();
             $table->string('nature_demande')->nullable();
+            $table->string('numero_da')->nullable();
+            $table->string('centre')->nullable();
+            $table->string('centre_regional')->nullable();
+            $table->string('demande')->nullable();
         });
     }
 

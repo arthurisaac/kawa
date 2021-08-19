@@ -24,6 +24,7 @@ class CreateAchatBonComandesTable extends Migration
             $table->string('operation')->nullable();
             $table->string('objet')->nullable();
             $table->string('total')->nullable();
+            $table->string('livraison')->nullable();
         });
     }
 

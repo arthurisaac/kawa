@@ -31,6 +31,15 @@
                 <input type="text" name="numero" value="{{$numeroBon}}" class="form-control col-sm-7" required readonly>
             </div>
             <div class="form-group row">
+                <label class="col-sm-5">Numero DA</label>
+                <select name="numero_da" id="numero_da" value="{{$numeroBon}}" class="form-control col-sm-7" required>
+                    <option></option>
+                    @foreach($demandes as $demande)
+                        <option value="{{$demande->id}}">{{$demande->numero_da}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group row">
                 <label class="col-sm-5">Date</label>
                 <input type="date" name="date" class="form-control col-sm-7" value="{{$currentDate}}" required>
             </div>
@@ -49,7 +58,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Tel</label>
-                <input type="text" name="telephone" class="form-control col-sm-7" required>
+                <input type="text" name="telephone" id="telephone" class="form-control col-sm-7" required>
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Note</label>
@@ -57,16 +66,22 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Objet</label>
-                <input type="text" name="objet" class="form-control col-sm-7" required>
+                <input type="text" name="objet" id="objet" class="form-control col-sm-7" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5">Livraison</label>
+                <input type="text" name="livraison" class="form-control col-sm-7" required>
             </div>
 
+            <br>
             <table id="bonItem">
                 <thead>
                 <tr>
                     <th>Désignation</th>
                     <th>Quantitté</th>
-                    <th>Prix unitaire TTC</th>
-                    <th>Montant TTC</th>
+                    <th>Prix unitaire</th>
+                    <th>TVA</th>
+                    <th>Montant Total</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,6 +94,12 @@
                     </td>
                     <td>
                         <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC"/>
+                    </td>
+                    <td>
+                        <select class="form-control" name="tva[]">
+                            <option value="18">18%</option>
+                            <option value="0">0%</option>
+                        </select>
                     </td>
                     <td>
                         <input type="number" class="form-control" name="montant[]" placeholder="Montant TTC" readonly/>
@@ -123,6 +144,12 @@
                     '                        <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" />\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
+                    '                        <select class="form-control" name="tva[]">\n' +
+                    '                            <option value="18">18%</option>\n' +
+                    '                            <option value="0">0%</option>\n' +
+                    '                        </select>\n' +
+                    '                    </td>'+
+                    '                    <td>\n' +
                     '                        <input type="number" class="form-control" name="montant[]" placeholder="Montant TTC" readonly />\n' +
                     '                    </td>\n' +
                     '                </tr>');
@@ -135,8 +162,11 @@
                         i++;
                         const quantite = $("input[name='quantite[]']").get(i);
                         const pu = $("input[name='pu[]']").get(i);
+                        const tva = $("select[name='tva[]'] option:selected").get(i);
                         if (!isNaN(parseInt(quantite.value))) {
-                            $("input[name='montant[]']").eq(i).val(parseInt(quantite.value) * parseInt(pu.value));
+                            const total = parseInt(quantite.value) * parseInt(pu.value);
+                            const ht = parseInt(tva.value);
+                            $("input[name='montant[]']").eq(i).val(ht + total);
                             updateTotal();
                         } else {
                             console.log('quantite', !isNaN(parseInt(quantite)))
@@ -164,8 +194,11 @@
                         i++;
                         const quantite = $("input[name='quantite[]']").get(i);
                         const pu = $("input[name='pu[]']").get(i);
+                        const tva = $("select[name='tva[]'] option:selected").get(i);
                         if (!isNaN(parseInt(quantite.value))) {
-                            $("input[name='montant[]']").eq(i).val(parseInt(quantite.value) * parseInt(pu.value));
+                            const total = parseInt(quantite.value) * parseInt(pu.value);
+                            const ht = parseInt(tva.value) / 100;
+                            $("input[name='montant[]']").eq(i).val(total + ht);
                             updateTotal();
                         } else {
                             console.log('quantite', !isNaN(parseInt(quantite)))
@@ -189,6 +222,18 @@
 
             console.log();
         }
+    </script>
+    <script>
+        let demandes = {!! json_encode($demandes) !!};
+        $(document).ready(function () {
+            $("#numero_da").on("change", function () {
+                const demande = demandes.find(d => d.numero_da === this.value.toString().padStart(3, 0));
+                if (demande) {
+                    $("#telephone").val(demande.telephone_demandeur);
+                    $("#objet").val(demande.objet_achat);
+                }
+            });
+        });
     </script>
 
 @endsection

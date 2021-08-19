@@ -33,6 +33,15 @@
                        readonly>
             </div>
             <div class="form-group row">
+                <label class="col-sm-5">Numero DA</label>
+                <select name="numero_da" value="{{$numeroBon}}" class="form-control col-sm-7" required>
+                    <option value="{{$bon->livraison}}">{{$bon->livraison}}</option>
+                    @foreach($demandes as $demande)
+                        <option value="{{$demande->id}}">{{$demande->numero_da}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group row">
                 <label class="col-sm-5">Date</label>
                 <input type="date" name="date" class="form-control col-sm-7" value="{{$bon->date}}" required>
             </div>
@@ -61,6 +70,10 @@
             <div class="form-group row">
                 <label class="col-sm-5">Objet</label>
                 <input type="text" name="objet" value="{{$bon->objet}}" class="form-control col-sm-7" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5">Livraison</label>
+                <input type="text" name="livraison"  value="{{$bon->livraison}}" class="form-control col-sm-7" required>
             </div>
             <br />
             <div class="form-group row">

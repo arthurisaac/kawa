@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="paiement-tab" data-toggle="tab" href="#paiement" role="tab"
-                       aria-controls="paiement" aria-selected="false">Mode de paiement</a>
+                       aria-controls="paiement" aria-selected="false">Mode et condition de paiement</a>
                 </li>
             </ul>
             <br/>
@@ -237,14 +237,25 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-5">Credit 30 jours</label>
-                                    <input type="text" name="credit_30_jours" value="{{$fournisseur->credit_30_jours}}"
-                                           class="form-control col-sm-7">
+                                    <label class="col-sm-5">Condition</label>
+                                    <select name="condition" class="form-control col-sm-7">
+                                        <option>{{$fournisseur->condition}}</option>
+                                        <option>Comptant</option>
+                                        <option>Comptant</option>
+                                        <option>15 jours</option>
+                                        <option>30 jours</option>
+                                        <option>45 jours</option>
+                                        <option>60 jours</option>
+                                        <option>90 jours</option>
+                                    </select>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-5">Credit 60 jours</label>
-                                    <input type="text" name="credit_60_jours" value="{{$fournisseur->credit_60_jours}}"
-                                           class="form-control col-sm-7">
+                                    <label class="col-sm-5">Mode de paiement</label>
+                                    <select name="mode_paiement" class="form-control col-sm-7">
+                                        <option>{{$fournisseur->mode_paiement}}</option>
+                                        <option>ESPECE</option>
+                                        <option>CHEQUE</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

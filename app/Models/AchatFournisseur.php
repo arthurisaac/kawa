@@ -30,7 +30,7 @@ class AchatFournisseur extends Model
         'chaine_valeur',
         'certification',
         'sous_traitant',
-        'credit_30_jours',
-        'credit_60_jours',
+        'condition',
+        'mode_paiement',
     ];
 }
