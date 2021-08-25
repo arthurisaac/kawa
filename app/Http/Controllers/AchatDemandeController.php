@@ -20,12 +20,13 @@ class AchatDemandeController extends Controller
      */
     public function index()
     {
+        $user = session('user');
         $fournisseurs = AchatFournisseur::all();
-        $numeroDA =  DB::table('achat_demandes')->max('id') + 1;
+        $numeroDA = DB::table('achat_demandes')->max('id') + 1;
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
 
-        return view('achat.demande.index', compact('fournisseurs', 'numeroDA', 'centres', 'centres_regionaux'));
+        return view('achat.demande.index', compact('fournisseurs', 'numeroDA', 'centres', 'centres_regionaux', 'user'));
     }
 
     /**
@@ -116,7 +117,8 @@ class AchatDemandeController extends Controller
      */
     public function edit($id)
     {
-        $demande = AchatDemande::with('fournisseurs')->with('chauffeurs')->find($id);
+        //$demande = AchatDemande::with('fournisseurs')->with('chauffeurs')->find($id);
+        $demande = AchatDemande::with('fournisseurs')->find($id);
         $consultes = AchatFournisseurConsulte::with('fournisseurs')->get()->where('achat_demandes_fk', '=', $id);
         $fournisseurs = AchatFournisseur::all();
         $centres = Centre::all();
@@ -145,8 +147,11 @@ class AchatDemandeController extends Controller
         $data->famille_achat = $request->get('famille_achat');
         $data->fournisseur_retenu = $request->get('fournisseur_retenu');
         $data->montant_retenu = $request->get('montant_retenu');
-        if (!empty($request->get('type_demande')) ) $data->type_demande = implode(",", $request->get('type_demande'));
+        if (!empty($request->get('type_demande'))) $data->type_demande = implode(",", $request->get('type_demande'));
         $data->nature_demande = $request->get('nature_demande');
+        $data->centre = $request->get('centre');
+        $data->centre_regional = $request->get('centre_regional');
+        $data->demande = $request->get('demande');
         $data->save();
 
         $fournisseurs = $request->get('fournisseur');
@@ -155,17 +160,39 @@ class AchatDemandeController extends Controller
         $choix = $request->get('choix');
         $ids = $request->get('id');
 
-        for ($i = 0; $i < count($fournisseurs); $i++) {
-            if (!empty($fournisseurs[$i])) {
-                $fournisseur = AchatFournisseurConsulte::find($ids[$i]);
-                $fournisseur->fournisseur = $fournisseurs[$i];
-                $fournisseur->cotation_technique = $cotation_techniques[$i];
-                $fournisseur->prix_propose = $prix_proposes[$i];
-                $fournisseur->choix = $choix[$i];
-                $fournisseur->achat_demandes_fk = $id;
+        if ($request->get('fournisseur')) {
+
+            for ($i = 0; $i < count($fournisseurs); $i++) {
+                if (!empty($fournisseurs[$i])) {
+                    $fournisseur = AchatFournisseurConsulte::find($ids[$i]);
+                    $fournisseur->fournisseur = $fournisseurs[$i];
+                    $fournisseur->cotation_technique = $cotation_techniques[$i];
+                    $fournisseur->prix_propose = $prix_proposes[$i];
+                    $fournisseur->choix = $choix[$i];
+                    $fournisseur->achat_demandes_fk = $id;
+                    $fournisseur->save();
+                }
+            }
+        }
+
+        //nouveau
+        $fournisseurs_n = $request->get('fournisseur_n');
+        $cotation_techniques_n = $request->get('cotation_technique_n');
+        $prix_proposes_n = $request->get('prix_propose_n');
+        $choix_n = $request->get('choix_n');
+        for ($i = 0; $i < count($fournisseurs_n); $i++) {
+            if (!empty($fournisseurs_n[$i])) {
+                $fournisseur = new AchatFournisseurConsulte([
+                    'fournisseur' => $fournisseurs_n[$i],
+                    'cotation_technique' => $cotation_techniques_n[$i],
+                    'prix_propose' => $prix_proposes_n[$i],
+                    'choix' => $choix_n[$i],
+                    'achat_demandes_fk' => $id,
+                ]);
                 $fournisseur->save();
             }
         }
+
         return redirect('achat-demande-liste')->with('success', 'Enregistrement modifié!');
     }
 

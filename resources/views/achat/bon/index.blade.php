@@ -32,7 +32,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Numero DA</label>
-                <select name="numero_da" id="numero_da" value="{{$numeroBon}}" class="form-control col-sm-7" required>
+                <select name="numero_da" id="numero_da" class="form-control col-sm-7" required>
                     <option></option>
                     @foreach($demandes as $demande)
                         <option value="{{$demande->id}}">{{$demande->numero_da}}</option>
@@ -135,16 +135,16 @@
             $("#addRow").on("click", function () {
                 $('#bonItem').append('<tr>\n' +
                     '                    <td>\n' +
-                    '                        <input type="text" class="form-control" name="designation[]" placeholder="Désignation" />\n' +
+                    '                        <input type="text" class="form-control" name="designation[]" placeholder="Désignation" required />\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
-                    '                        <input type="number" class="form-control" name="quantite[]" placeholder="Quantité" />\n' +
+                    '                        <input type="number" class="form-control" name="quantite[]" placeholder="Quantité" required/>\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
-                    '                        <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" />\n' +
+                    '                        <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" required />\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
-                    '                        <select class="form-control" name="tva[]">\n' +
+                    '                        <select class="form-control" name="tva[]" required>\n' +
                     '                            <option value="18">18%</option>\n' +
                     '                            <option value="0">0%</option>\n' +
                     '                        </select>\n' +
@@ -165,7 +165,7 @@
                         const tva = $("select[name='tva[]'] option:selected").get(i);
                         if (!isNaN(parseInt(quantite.value))) {
                             const total = parseInt(quantite.value) * parseInt(pu.value);
-                            const ht = parseInt(tva.value);
+                            const ht = total * parseInt(tva.value) / 100;
                             $("input[name='montant[]']").eq(i).val(ht + total);
                             updateTotal();
                         } else {
@@ -214,13 +214,13 @@
         function updateTotal() {
             let total = 0;
             $.each($("input[name='montant[]']"), function () {
-                if (!isNaN(parseInt(this.value))) total += parseInt(this.value);
+                if (!isNaN(parseFloat(this.value))) total += parseFloat(this.value);
             });
-            $("input[name='total']").val(total);
+            $("input[name='total']").val(total.toFixed(2));
             const totalWritten = writtenNumber(total);
             $("#totalWritten").text(totalWritten + ' francs CFA');
 
-            console.log();
+            console.log(total);
         }
     </script>
     <script>

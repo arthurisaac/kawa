@@ -11,6 +11,7 @@ class AchatBonComandeItem extends Model
         'designation',
         'quantite',
         'prix',
+        'tva',
         'montant',
     ];
 

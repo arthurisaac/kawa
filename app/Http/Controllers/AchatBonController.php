@@ -45,10 +45,11 @@ class AchatBonController extends Controller
      */
     public function store(Request $request)
     {
-        try {
+        //try {
             $data = new AchatBonComande([
                 'date' => $request->get('date'),
                 'numero' => $request->get('numero'),
+                'numero_da' => $request->get('numero_da'),
                 'fournisseur_fk' => $request->get('fournisseur_fk'),
                 'proforma' => $request->get('proforma'),
                 'telephone' => $request->get('telephone'),
@@ -62,6 +63,7 @@ class AchatBonController extends Controller
             $designation = $request->get('designation');
             $quantite = $request->get('quantite');
             $pu = $request->get('pu');
+            $tva = $request->get('tva');
             // $montant = $request->get('pu');
 
             for ($i = 0; $i < count($designation); $i++) {
@@ -71,16 +73,17 @@ class AchatBonController extends Controller
                         'designation' => $designation[$i],
                         'quantite' => $quantite[$i],
                         'prix' => $pu[$i],
-                        'montant' => intval($pu[$i]) * intval($quantite[$i])
+                        'tva' => $tva[$i],
+                        'montant' => intval($pu[$i]) * intval($quantite[$i]) + (intval($pu[$i]) * intval($quantite[$i]) * ($tva[$i] / 100))
                     ]);
                     $item->save();
                 }
             }
 
             return redirect('achat-bon-liste')->with('success', 'Enregistrement effectué!');
-        } catch (\Exception $e) {
+        /*} catch (\Exception $e) {
             return redirect('achat-bon')->with('error', 'Une erreur s\'est produite: ' . $e->getMessage());
-        }
+        }*/
     }
 
     /**
@@ -105,8 +108,9 @@ class AchatBonController extends Controller
         // $bon = AchatBonComande::with('fournisseurs')->find($id)->get();
         $bon = AchatBonComande::find($id);
         $fournisseurs = AchatFournisseur::all();
+        $demandes = AchatDemande::all();
         $bonItems = AchatBonComandeItem::with('bons')->get()->where('achat_bon_fk', '=', $id);
-        return view('/achat.bon.edit', compact('bon', 'fournisseurs', 'bonItems'));
+        return view('/achat.bon.edit', compact('bon', 'fournisseurs', 'bonItems', 'demandes'));
     }
 
     /**
@@ -123,17 +127,20 @@ class AchatBonController extends Controller
         $designation = $request->get('designation');
         $quantite = $request->get('quantite');
         $pu = $request->get('pu');
+        $tva = $request->get('tva');
         $ids = $request->get('ids');
 
         for ($i = 0; $i < count($designation); $i++) {
             if (!empty($designation[$i]) && !empty($quantite[$i]) && !empty($pu[$i]) && !empty($ids[$i])) {
-                $total = intval($pu[$i]) * intval($quantite[$i]);
+                $ht = intval($pu[$i]) * intval($quantite[$i]);
+                $total = $ht + ($ht * intval($tva[$i]) / 100); // intval($pu[$i]) * intval($quantite[$i]);
                 $montant += $total;
                 $item = AchatBonComandeItem::find($ids[$i]);
                 $item->achat_bon_fk = $id;
                 $item->designation = $designation[$i];
                 $item->quantite = $quantite[$i];
                 $item->prix = $pu[$i];
+                $item->tva = $tva[$i];
                 $item->montant = $total;
                 $item->save();
             }
@@ -142,11 +149,13 @@ class AchatBonController extends Controller
         $data = AchatBonComande::find($id);
         $data->date = $request->get('date');
         $data->numero = $request->get('numero');
+        $data->numero_da = $request->get('numero_da');
         $data->fournisseur_fk = $request->get('fournisseur_fk');
         $data->proforma = $request->get('proforma');
         $data->telephone = $request->get('telephone');
         $data->operation = $request->get('operation');
         $data->objet = $request->get('objet');
+        $data->livraison = $request->get('livraison');
         $data->total = $montant;
         $data->save();
 

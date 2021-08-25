@@ -28,17 +28,17 @@
 
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="entreprise-tab" data-toggle="tab" href="#demande" role="tab"
+                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? '', 'operateur') ? '' : 'disabled' }}" id="entreprise-tab" data-toggle="tab" href="#demande" role="tab"
                        aria-controls="demande" aria-selected="true">Informations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="imputations-tab" data-toggle="tab" href="#imputations" role="tab"
+                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? 'operateur', 'operateur') ? 'disabled' : '' }}" id="imputations-tab" data-toggle="tab" href="#imputations" role="tab"
                        aria-controls="imputations" aria-selected="false">Imputation</a>
                 </li>
             </ul>
             <br>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="demande" role="tabpanel"
+                <div class="tab-pane fade show" id="demande" role="tabpanel"
                      aria-labelledby="entreprise-tab">
                     <div class="container">
                         <div class="row">

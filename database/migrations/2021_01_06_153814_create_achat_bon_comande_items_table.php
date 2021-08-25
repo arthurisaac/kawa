@@ -20,6 +20,7 @@ class CreateAchatBonComandeItemsTable extends Migration
             $table->string('designation')->nullable();
             $table->string('quantite')->nullable();
             $table->string('prix')->nullable();
+            $table->integer('tva')->nullable();
             $table->string('montant')->nullable();
         });
     }

@@ -19,6 +19,7 @@ class CreateAchatBonComandesTable extends Migration
             $table->date('date');
             $table->string('numero');
             $table->foreignId('fournisseur_fk')->references('id')->on('achat_fournisseurs')->onDelete('cascade');
+            $table->foreignId('numero_da')->references('numero_da')->on('achat_demandes')->onDelete('cascade');
             $table->string('proforma')->nullable();
             $table->string('telephone')->nullable();
             $table->string('operation')->nullable();

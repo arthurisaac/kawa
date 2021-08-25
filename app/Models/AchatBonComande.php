@@ -10,13 +10,14 @@ class AchatBonComande extends Model
         'date',
         'numero',
         'fournisseur_fk',
+        'numero_da',
         'proforma',
         'telephone',
         'operation',
         'objet',
         'total',
         'livraison',
-        ];
+    ];
 
     public function fournisseurs()
     {

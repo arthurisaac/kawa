@@ -34,8 +34,8 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Numero DA</label>
-                <select name="numero_da" value="{{$numeroBon}}" class="form-control col-sm-7" required>
-                    <option value="{{$bon->livraison}}">{{$bon->livraison}}</option>
+                <select name="numero_da" class="form-control col-sm-7" required>
+                    <option value="{{$bon->numero_da}}">{{ str_pad($bon->numero_da, 3, '0', STR_PAD_LEFT) }}</option>
                     @foreach($demandes as $demande)
                         <option value="{{$demande->id}}">{{$demande->numero_da}}</option>
                     @endforeach
@@ -73,12 +73,13 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-5">Livraison</label>
-                <input type="text" name="livraison"  value="{{$bon->livraison}}" class="form-control col-sm-7" required>
+                <input type="text" name="livraison" value="{{$bon->livraison}}" class="form-control col-sm-7" required>
             </div>
-            <br />
+            <br/>
             <div class="form-group row">
                 <label class="col-sm-1">Total</label>
-                <input type="text" name="total" class="form-control form-control-bordeless col-sm-4" value="{{$bon->total}}" readonly>
+                <input type="text" name="total" class="form-control form-control-bordeless col-sm-4"
+                       value="{{$bon->total}}" readonly>
             </div>
             <p>
                 <i id="totalWritten"></i>
@@ -90,6 +91,7 @@
                     <th>Désignation</th>
                     <th>Quantitté</th>
                     <th>Prix unitaire TTC</th>
+                    <th>TVA</th>
                     <th>Montant TTC</th>
                 </tr>
                 </thead>
@@ -97,17 +99,29 @@
                 @foreach($bonItems as $bonItem)
                     <tr>
                         <td>
-                            <input type="hidden" class="form-control" name="ids[]" placeholder="Désignation" value="{{$bonItem->id}}"/>
-                            <input type="text" class="form-control" name="designation[]" placeholder="Désignation" value="{{$bonItem->designation}}"/>
+                            <input type="hidden" class="form-control" name="ids[]" placeholder="Désignation"
+                                   value="{{$bonItem->id}}"/>
+                            <input type="text" class="form-control" name="designation[]" placeholder="Désignation"
+                                   value="{{$bonItem->designation}}"/>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="quantite[]" placeholder="Quantité" value="{{$bonItem->quantite}}"/>
+                            <input type="number" class="form-control" name="quantite[]" placeholder="Quantité"
+                                   value="{{$bonItem->quantite}}"/>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" value="{{$bonItem->prix}}"/>
+                            <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC"
+                                   value="{{$bonItem->prix}}"/>
                         </td>
                         <td>
-                            <input type="number" class="form-control" name="montant[]" placeholder="Montant TTC" value="{{$bonItem->montant}}"
+                            <select class="form-control" name="tva[]">
+                                <option value="{{$bonItem->tva}}">{{$bonItem->tva}}%</option>
+                                <option value="18">18%</option>
+                                <option value="0">0%</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="montant[]" placeholder="Montant TTC"
+                                   value="{{($bonItem->prix * $bonItem->quantite) + ($bonItem->prix * $bonItem->quantite * $bonItem->tva /100 )}}"
                                    readonly/>
                         </td>
                     </tr>
@@ -134,14 +148,20 @@
             $("#addRow").on("click", function () {
                 $('#bonItem').append('<tr>\n' +
                     '                    <td>\n' +
-                    '                        <input type="text" class="form-control" name="designation[]" placeholder="Désignation" />\n' +
+                    '                        <input type="text" class="form-control" name="designation[]" placeholder="Désignation" required />\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
-                    '                        <input type="number" class="form-control" name="quantite[]" placeholder="Quantité" />\n' +
+                    '                        <input type="number" class="form-control" name="quantite[]" placeholder="Quantité" required/>\n' +
                     '                    </td>\n' +
                     '                    <td>\n' +
-                    '                        <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" />\n' +
+                    '                        <input type="number" class="form-control" name="pu[]" placeholder="Prix unitaite TTC" required />\n' +
                     '                    </td>\n' +
+                    '                    <td>\n' +
+                    '                        <select class="form-control" name="tva[]" required>\n' +
+                    '                            <option value="18">18%</option>\n' +
+                    '                            <option value="0">0%</option>\n' +
+                    '                        </select>\n' +
+                    '                    </td>' +
                     '                    <td>\n' +
                     '                        <input type="number" class="form-control" name="montant[]" placeholder="Montant TTC" readonly />\n' +
                     '                    </td>\n' +
@@ -155,8 +175,11 @@
                         i++;
                         const quantite = $("input[name='quantite[]']").get(i);
                         const pu = $("input[name='pu[]']").get(i);
+                        const tva = $("select[name='tva[]'] option:selected").get(i);
                         if (!isNaN(parseInt(quantite.value))) {
-                            $("input[name='montant[]']").eq(i).val(parseInt(quantite.value) * parseInt(pu.value));
+                            const total = parseInt(quantite.value) * parseInt(pu.value);
+                            const ht = total * parseInt(tva.value) / 100;
+                            $("input[name='montant[]']").eq(i).val(ht + total);
                             updateTotal();
                         } else {
                             console.log('quantite', !isNaN(parseInt(quantite)))
@@ -168,11 +191,11 @@
                 }
             });
 
-            const totalWritten = writtenNumber(parseInt($("input[name='total']").val()));
+            const totalWritten = writtenNumber(parseFloat($("input[name='total']").val()));
             $("#totalWritten").text(totalWritten + ' francs CFA');
         });
 
-        $(document).on('DOMNodeInserted', function() {
+        $(document).on('DOMNodeInserted', function () {
             $("input[name='montant[]']").on("change", function () {
                 let total = 0;
                 $.each($("input[name='montant[]']"), function () {
@@ -187,16 +210,17 @@
                         i++;
                         const quantite = $("input[name='quantite[]']").get(i);
                         const pu = $("input[name='pu[]']").get(i);
+                        const tva = $("select[name='tva[]'] option:selected").get(i);
                         if (!isNaN(parseInt(quantite.value))) {
-                            $("input[name='montant[]']").eq(i).val(parseInt(quantite.value) * parseInt(pu.value));
+                            const total = parseInt(quantite.value) * parseInt(pu.value);
+                            const ht = total * parseInt(tva.value) / 100;
+                            $("input[name='montant[]']").eq(i).val(total + ht);
                             updateTotal();
                         } else {
                             console.log('quantite', !isNaN(parseInt(quantite)))
                         }
 
                     });
-                } else {
-                    console.log('pu', !isNaN(parseInt(this.value)))
                 }
             });
         });
@@ -204,13 +228,13 @@
         function updateTotal() {
             let total = 0;
             $.each($("input[name='montant[]']"), function () {
-                if (!isNaN(parseInt(this.value))) total += parseInt(this.value);
+                if (!isNaN(parseFloat(this.value))) total += parseFloat(this.value);
             });
-            $("input[name='total']").val(total);
+            $("input[name='total']").val(total.toFixed(2));
             const totalWritten = writtenNumber(total);
             $("#totalWritten").text(totalWritten + ' francs CFA');
 
-            console.log();
+            console.log(total);
         }
     </script>
 @endsection
