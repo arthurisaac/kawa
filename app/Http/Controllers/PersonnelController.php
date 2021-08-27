@@ -187,6 +187,9 @@ class PersonnelController extends Controller
     {
         $personnel = Personnel::find($id);
         $personnel->delete();
-        return redirect('/personnel-liste')->with('success', 'Personnel supprimé!');
+        return response()->json([
+            'message' => 'Good!'
+        ]);
+        //return redirect('/personnel-liste')->with('success', 'Personnel supprimé!');
     }
 }

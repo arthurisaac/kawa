@@ -18,19 +18,25 @@
             @method('PATCH')
             @csrf
 
+            <div style="text-align: right;">
+                <h5>{{ $personnel->nomPrenoms }}</h5>
+                <p style="color: darkred">{{ $personnel->fonction }}</p>
+            </div>
+            <br>
+
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
                        aria-controls="affectation" aria-selected="false">Affectation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
@@ -38,6 +44,29 @@
                 <li class="nav-item">
                     <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
                        aria-controls="infos" aria-selected="false">Informations complementaires</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
+                       aria-controls="gestion-mission" aria-selected="false">Gestion des congés</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-absences-tab" data-toggle="tab" href="#gestion-absences" role="tab"
+                       aria-controls="gestion-absences" aria-selected="false">Gestion des absences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-contrats-tab" data-toggle="tab" href="#gestion-contrats" role="tab"
+                       aria-controls="gestion-contrats" aria-selected="false">Gestion des contrats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-explication-tab" data-toggle="tab" href="#gestion-explication"
+                       role="tab"
+                       aria-controls="gestion-explication" aria-selected="false">Gestion des explications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-affectation-tab" data-toggle="tab" href="#gestion-affectation"
+                       role="tab"
+                       aria-controls="gestion-affectation" aria-selected="false">Gestion des affectations</a>
                 </li>
             </ul>
 
@@ -47,6 +76,23 @@
                         <br>
                         <div class="row">
                             <div class="col-5">
+                                <div class="form-group row">
+                                    <label class="col-md-4">Centre</label>
+                                    <select class="Combobox col-md-6" name="centre" id="centre" required>
+                                        <option value={{ $personnel->centre }}>{{ $personnel->centre }}</option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Centre régional</label>
+                                    <select class="Combobox col-md-6" name="centreRegional" id="centre_regional"
+                                            required>
+                                        <option
+                                            value={{ $personnel->centreRegional }}> {{ $personnel->centreRegional }}</option>
+                                    </select>
+                                </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom et prénoms</label>
                                     <input type="text" name="nomPrenoms" class="form-control col-sm-6"
@@ -120,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="affectation" role="tabpanel" aria-labelledby="affectation-tab">
+                {{--<div class="tab-pane fade" id="affectation" role="tabpanel" aria-labelledby="affectation-tab">
                     <div class="container">
                         <br/>
                         <div class="row">
@@ -379,8 +425,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
+                </div>--}}
+                {{--<div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
                         <div class="row">
                             <div class="col-5">
@@ -404,7 +450,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
                     <div class="container">
                         <div class="row">

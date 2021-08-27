@@ -30,14 +30,14 @@
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
                        aria-controls="affectation" aria-selected="false">Affectation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
@@ -46,6 +46,28 @@
                     <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
                        aria-controls="infos" aria-selected="false">Informations complementaires</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
+                       aria-controls="gestion-mission" aria-selected="false">Gestion des congés</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-absences-tab" data-toggle="tab" href="#gestion-absences" role="tab"
+                       aria-controls="gestion-absences" aria-selected="false">Gestion des absences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-contrats-tab" data-toggle="tab" href="#gestion-contrats" role="tab"
+                       aria-controls="gestion-contrats" aria-selected="false">Gestion des contrats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-explication-tab" data-toggle="tab" href="#gestion-explication"
+                       role="tab"
+                       aria-controls="gestion-explication" aria-selected="false">Gestion des explications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gestion-affectation-tab" data-toggle="tab" href="#gestion-affectation"
+                       role="tab"
+                       aria-controls="gestion-affectation" aria-selected="false">Gestion des affectations</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="personnel" role="tabpanel" aria-labelledby="personnel-tab">
@@ -53,6 +75,25 @@
                         <br>
                         <div class="row">
                             <div class="col-5">
+                                <div class="form-group row">
+                                    <label class="col-sm-4">Matricule</label>
+                                    <input type="text" class="form-control col-sm-6" name="matricule"
+                                           value={{$nextId}} required/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4">Centre</label>
+                                    <select class="form-control col-sm-6" name="centre" id="centre" required>
+                                        <option>Choisir centre</option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4">Centre régional</label>
+                                    <select class="form-control col-sm-6" name="centreRegional" id="centre_regional"
+                                            required></select>
+                                </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom et prénoms</label>
                                     <input type="text" name="nomPrenoms" class="form-control col-sm-6" required>
@@ -117,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="affectation" role="tabpanel" aria-labelledby="affectation-tab">
+                {{--<div class="tab-pane fade" id="affectation" role="tabpanel" aria-labelledby="affectation-tab">
                     <div class="container">
                         <br/>
                         <div class="row">
@@ -379,8 +420,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
+                </div>--}}
+                {{--<div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
                         <div class="row">
                             <div class="col-5">
@@ -404,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
                     <div class="container">
                         <div class="row">
@@ -459,6 +500,128 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-mission" role="tabpanel" aria-labelledby="gestion-mission-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Début mission</th>
+                                <th>Fin mission</th>
+                                <th>Nbre de jours</th>
+                                <th>Lieu</th>
+                                <th>Motif</th>
+                                <th>Frais</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-absences" role="tabpanel" aria-labelledby="gestion-absences-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Date absence</th>
+                                <th>Fin absence</th>
+                                <th>Nbre de jours</th>
+                                <th>Motif</th>
+                                <th>Frais</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-contrats" role="tabpanel" aria-labelledby="gestion-contrats-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Type de contrat</th>
+                                <th>Début contrat</th>
+                                <th>Fin contrat</th>
+                                <th>Nbre de jours</th>
+                                <th>Fonction</th>
+                                <th>Salaire</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-explication" role="tabpanel"
+                     aria-labelledby="gestion-explication-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Date demande d'explication</th>
+                                <th>Motif demande explication</th>
+                                <th>Sanctions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-affectation" role="tabpanel"
+                     aria-labelledby="gestion-affectation-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Date d'affectation</th>
+                                <th>Centre</th>
+                                <th>Motif</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
