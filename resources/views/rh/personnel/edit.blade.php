@@ -29,14 +29,14 @@
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
-                {{--<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
                        aria-controls="affectation" aria-selected="false">Affectation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>
-                </li>--}}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
@@ -48,7 +48,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
-                       aria-controls="gestion-mission" aria-selected="false">Gestion des congés</a>
+                       aria-controls="gestion-mission" aria-selected="false">Gestion des missions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-absences-tab" data-toggle="tab" href="#gestion-absences" role="tab"
@@ -90,18 +90,18 @@
                                     <select class="Combobox col-md-6" name="centreRegional" id="centre_regional"
                                             required>
                                         <option
-                                            value={{ $personnel->centreRegional }}> {{ $personnel->centreRegional }}</option>
+                                            value="{{ $personnel->centreRegional }}"> {{ $personnel->centreRegional }}</option>
                                     </select>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nom et prénoms</label>
                                     <input type="text" name="nomPrenoms" class="form-control col-sm-6"
-                                           value={{ $personnel->nomPrenoms }} required>
+                                           value="{{ $personnel->nomPrenoms }}" required>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Date de naissance</label>
                                     <input type="date" name="dateNaissance" class="form-control col-sm-6"
-                                           value={{ $personnel->dateNaissance }}>
+                                           value="{{ $personnel->dateNaissance }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Date d’entrée dans la société</label>
@@ -111,7 +111,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4">Date de sortie</label>
                                     <input type="date" name="dateSortie" class="form-control col-sm-6"
-                                           value={{ $personnel->dateSortie }}>
+                                           value="{{ $personnel->dateSortie }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Type de sortie</label>
@@ -126,17 +126,17 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4">Fontion</label>
                                     <input type="text" name="fonction" class="form-control col-sm-6"
-                                           value={{ $personnel->fonction }}>
+                                           value="{{ $personnel->fonction }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Service</label>
                                     <input type="text" name="service" class="form-control col-sm-6"
-                                           value={{ $personnel->service }}>
+                                           value="{{ $personnel->service }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nature du contrat</label>
                                     <select name="natureContrat" class="form-control col-sm-6"
-                                            value={{ $personnel->natureContrat }}>
+                                            value="{{ $personnel->natureContrat }}">
                                         <option value="CDD">CDD</option>
                                         <option value="CDI">CDI</option>
                                         <option value="PRESTATAIRE">PRESTATAIRE</option>
@@ -150,12 +150,12 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4">Situation matrimoniale</label>
                                     <input type="text" name="situationMatrimoniale" class="form-control col-sm-6"
-                                           value={{ $personnel->situationMatrimoniale }}>
+                                           value="{{ $personnel->situationMatrimoniale }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nombre d'enfants</label>
                                     <input type="number" min="0" name="nombreEnfants" class="form-control col-sm-6"
-                                           value={{ $personnel->nombreEnfants }}>
+                                           value="{{ $personnel->nombreEnfants }}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Photo</label>
@@ -426,7 +426,7 @@
                         </div>
                     </div>
                 </div>--}}
-                {{--<div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
+                <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
                         <div class="row">
                             <div class="col-5">
@@ -450,7 +450,7 @@
                             </div>
                         </div>
                     </div>
-                </div>--}}
+                </div>
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
                     <div class="container">
                         <div class="row">
@@ -511,6 +511,208 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-mission" role="tabpanel" aria-labelledby="gestion-mission-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Début mission</th>
+                                <th>Fin mission</th>
+                                <th>Nbre de jours</th>
+                                <th>Lieu</th>
+                                <th>Motif</th>
+                                <th>Frais</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionMission as $mission)
+                                <tr>
+                                    <td><input type="date" name="missions_debut_edit[]"
+                                               value="{{$mission->debut_mission}}" class="form-control"></td>
+                                    <td><input type="date" name="missions_fin_edit[]" value="{{$mission->fin_mission}}"
+                                               class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_nbre_jours_edit[]"
+                                               value="{{$mission->nombre_jours}}"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="missions_lieu_edit[]" value="{{$mission->lieu}}"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="missions_motif_edit[]" value="{{$mission->motif}}"
+                                               class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_frais_edit[]"
+                                               value="{{$mission->frais}}" class="form-control"></td>
+                                    <td><input type="hidden" name="missions_ids_edit[]" value="{{$mission->id}}"
+                                               class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="missions_debut[]" class="form-control"></td>
+                                    <td><input type="date" name="missions_fin[]" class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_nbre_jours[]"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>
+                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">
+                                    </td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-absences" role="tabpanel" aria-labelledby="gestion-absences-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Début absence</th>
+                                <th>Fin absence</th>
+                                <th>Nbre de jours</th>
+                                <th>Motif</th>
+                                <th>Frais</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionAbsences as $data)
+                                <tr>
+                                    <input type="hidden" value="{{$data->id}}">
+                                    <td><input type="date" name="absence_debut_edit[]" value="{{$data->debut_absence}}"
+                                               class="form-control"></td>
+                                    <td><input type="date" name="absence_fin_edit[]" value="{{$data->fin_absence}}"
+                                               class="form-control"></td>
+                                    <td><input type="number" name="absence_nombre_jours_edit[]"
+                                               value="{{$data->nombre_jours}}" class="form-control"></td>
+                                    <td><input type="text" name="absence_motif_edit[]" value="{{$data->motif}}"
+                                               class="form-control"></td>
+                                    <td><input type="number" name="absence_frais_edit[]" value="{{$data->frais}}"
+                                               class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="absence_debut[]" class="form-control"></td>
+                                    <td><input type="date" name="absence_fin[]" class="form-control"></td>
+                                    <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>
+                                    <td><input type="text" name="absence_motif[]" class="form-control"></td>
+                                    <td><input type="number" name="absence_frais[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-contrats" role="tabpanel" aria-labelledby="gestion-contrats-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Type de contrat</th>
+                                <th>Début contrat</th>
+                                <th>Fin contrat</th>
+                                <th>Nbre de jours</th>
+                                <th>Fonction</th>
+                                <th>Salaire</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionContrats as $gestion)
+                                <tr>
+                                    <input type="hidden" name="contrat_id" value="{{$gestion->id}}">
+                                    <td><input type="text" name="contrat_type_contrat_edit[]"
+                                               value="{{$gestion->type_contrat}}" class="form-control"></td>
+                                    <td><input type="date" name="contrat_debut_contrat_edit[]"
+                                               value="{{$gestion->debut_contrat}}" class="form-control"></td>
+                                    <td><input type="date" name="contrat_fin_contrat_edit[]"
+                                               value="{{$gestion->fin_contrat}}" class="form-control"></td>
+                                    <td><input type="number" name="contrat_nombre_jours_edit[]"
+                                               value="{{$gestion->nombre_jours}}" class="form-control"></td>
+                                    <td><input type="text" name="contrat_fonction_edit[]" value="{{$gestion->fonction}}"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="contrat_salaire_edit[]" value="{{$gestion->salaire}}"
+                                               class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="text" name="contrat_type_contrat[]" class="form-control"></td>
+                                    <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>
+                                    <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>
+                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
+                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>
+                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-explication" role="tabpanel"
+                     aria-labelledby="gestion-explication-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Date demande d'explication</th>
+                                <th>Motif demande explication</th>
+                                <th>Sanctions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionExplications as $gestion)
+                                <tr>
+                                    <input type="hidden" name="demande_id[]" value="{{$gestion->id}}">
+                                    <td><input type="date" name="demande_date_demande_edit[]" value="{{$gestion->date_demande}}" class="form-control"></td>
+                                    <td><input type="text" name="demande_motif_edit[]" value="{{$gestion->motif}}" class="form-control"></td>
+                                    <td><input type="text" name="demande_sanctions_edit[]" value="{{$gestion->sanctions}}" class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i < 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
+                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>
+                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gestion-affectation" role="tabpanel"
+                     aria-labelledby="gestion-affectation-tab">
+                    <div class="container">
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Date d'affectation</th>
+                                <th>Centre</th>
+                                <th>Motif</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionAffectation as $gestion)
+                                <tr>
+                                    <input type="hidden" name="affectation_id[]" value="{{$gestion->id}}">
+                                    <td><input type="date" name="affectation_date_edit[]" value="{{$gestion->date_affectation}}" class="form-control"></td>
+                                    <td><input type="text" name="affectation_centre_edit[]" value="{{$gestion->centre}}" class="form-control"></td>
+                                    <td><input type="text" name="affectation_motif_edit[]" value="{{$gestion->motif}}" class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i < 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>
+                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>
+                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

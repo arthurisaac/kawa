@@ -21,8 +21,7 @@
         @endif
 
         <div class="row">
-            <a href="{{route('personnel.index')}}" class="btn btn-primary">Nouveau personnel
-                +</a>
+            <a href="{{route('personnel.index')}}" class="btn btn-primary">Nouveau personnel +</a>
         </div>
         <br>
         <div class="row">

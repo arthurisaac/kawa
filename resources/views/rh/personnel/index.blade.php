@@ -517,14 +517,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="missions_debut[]" class="form-control"></td>
+                                    <td><input type="date" name="missions_fin[]" class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_nbre_jours[]"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>
+                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>
+                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">
+                                    </td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </div>
@@ -543,13 +547,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="absence_debut[]" class="form-control"></td>
+                                    <td><input type="date" name="absence_fin[]" class="form-control"></td>
+                                    <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>
+                                    <td><input type="text" name="absence_motif[]" class="form-control"></td>
+                                    <td><input type="number" name="absence_frais[]" class="form-control"></td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </div>
@@ -569,14 +575,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i = 0; $i <= 5; $i++)
+                                <tr>
+                                    <td><input type="text" name="contrat_type_contrat[]" class="form-control"></td>
+                                    <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>
+                                    <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>
+                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
+                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>
+                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </div>
@@ -594,10 +602,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i = 0; $i < 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
+                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>
+                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </div>
@@ -615,11 +626,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i = 0; $i < 5; $i++)
+                                <tr>
+                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>
+                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>
+                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </div>
