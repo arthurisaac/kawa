@@ -32,10 +32,10 @@
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
-                       aria-controls="affectation" aria-selected="false">Affectation</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"--}}
+{{--                       aria-controls="affectation" aria-selected="false">Affectation</a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>

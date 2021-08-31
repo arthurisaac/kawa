@@ -17,8 +17,12 @@
         @endif
 
         @if(session()->get('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="successAlert">
                 {{ session()->get('success') }}
+                <br>
+                <br>
+                <button class="btn btn-outline-dark btn-sm" id="continueBtn">Continuer</button>
+                <a href="/personnel-liste" class="btn btn-info btn-sm">Consulter la liste</a>
             </div>
         @endif
 
@@ -668,7 +672,7 @@
         </form>
     </div>
     <script>
-        let centres =  {!! json_encode($centres) !!};
+        let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
         $(document).ready(function () {
@@ -753,4 +757,13 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#continueBtn").on("click", function () {
+                $("#successAlert").hide();
+            });
+        });
+    </script>
+
 @endsection
