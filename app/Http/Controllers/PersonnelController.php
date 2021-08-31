@@ -15,6 +15,7 @@ use App\Models\PersonnelSanction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PersonnelController extends Controller
 {
@@ -59,6 +60,15 @@ class PersonnelController extends Controller
     public function store(Request $request)
     {
 
+        $photo = null;
+        if ($files = $request->file('photo')) {
+            // $name = $files->getClientOriginalName();
+            // $files->move('images', $name); //Save to public dir
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $filePath = $request->file('photo')->storeAs('/', $fileName, 'ftp');
+            $photo = $filePath;
+        }
+
         $personnel = new Personnel([
             'matricule' => $request->get('matricule'),
             'centre' => $request->get('centre'),
@@ -81,13 +91,14 @@ class PersonnelController extends Controller
             'numeroCNPS' => $request->get('numeroCNPS'),
             'situationMatrimoniale' => $request->get('situationMatrimoniale'),
             'nombreEnfants' => $request->get('nombreEnfants'),
-            'photo' => base64_encode($request->get('photo')), // TODO
+            //'photo' => base64_encode($request->get('photo')),
             'adresseGeographique' => $request->get('adresseGeographique'),
             'contactPersonnel' => $request->get('contactPersonnel'),
             'nomPere' => $request->get('nomPere'),
             'nomMere' => $request->get('nomMere'),
             'nomConjoint' => $request->get('nomConjoint'),
             'personneContacter' => $request->get('personneContacter'),
+            'photo' => $photo
         ]);
         $personnel->save();
         if (!empty($request->get('nombreJourPris'))) {
@@ -162,7 +173,7 @@ class PersonnelController extends Controller
             $absence_fin = $request->get('absence_fin');
             $absence_nombre_jours = $request->get('absence_nombre_jours');
             $absence_motif = $request->get('absence_motif');
-            $absence_frais = $request->get('absence_frais');
+            //$absence_frais = $request->get('absence_frais');
 
             for ($i = 0; $i < count($contrat_); $i++) {
                 if ($contrat_[$i] != null && !empty($contrat_[$i])) {
@@ -171,7 +182,7 @@ class PersonnelController extends Controller
                         "fin_absence" => $absence_fin[$i],
                         "nombre_jours" => $absence_nombre_jours[$i],
                         "motif" => $absence_motif[$i],
-                        "frais" => $absence_frais[$i],
+                        //"frais" => $absence_frais[$i],
                         "personnel" => $personnel->id,
                     ]);
                     $absence->save();
@@ -288,7 +299,6 @@ class PersonnelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $photo = null;// TODO
 
         $personnel = Personnel::find($id);
         $personnel->centre = $request->get('centre');
@@ -311,14 +321,20 @@ class PersonnelController extends Controller
         $personnel->numeroCNPS = $request->get('numeroCNPS');
         $personnel->situationMatrimoniale = $request->get('situationMatrimoniale');
         $personnel->nombreEnfants = $request->get('nombreEnfants');
-        $personnel->photo = $photo;
         $personnel->adresseGeographique = $request->get('adresseGeographique');
         $personnel->contactPersonnel = $request->get('contactPersonnel');
         $personnel->nomPere = $request->get('nomPere');
         $personnel->nomMere = $request->get('nomMere');
         $personnel->nomConjoint = $request->get('nomConjoint');
         $personnel->personneContacter = $request->get('personneContacter');
-        //$personnel->save();
+        if ($files = $request->file('photo')) {
+            // $name = $files->getClientOriginalName();
+            // $files->move('images', $name); //Save to public dir
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $filePath = $request->file('photo')->storeAs('/', $fileName, 'ftp');
+            $personnel->photo = $filePath;
+        }
+        $personnel->save();
         // return redirect('/personnel-liste')->with('success', 'Personnel enregistré!');
 
         /* missions */

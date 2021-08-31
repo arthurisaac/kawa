@@ -64,7 +64,19 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'ftp.bafagroupe.com',
+            'username' => 'kawa@bafagroupe.com',
+            'password' => 'kawa2021',
 
+            // Optional FTP Settings...
+            // 'port' => 21,
+            // 'root' => '',
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
     ],
 
     /*

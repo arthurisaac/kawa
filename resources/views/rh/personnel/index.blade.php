@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form method="post" action="{{ route('personnel.store') }}">
+        <form method="post" action="{{ route('personnel.store') }}" enctype="multipart/form-data">
             @csrf
 
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
@@ -48,7 +48,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
-                       aria-controls="gestion-mission" aria-selected="false">Gestion des congés</a>
+                       aria-controls="gestion-mission" aria-selected="false">Gestion des missions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-absences-tab" data-toggle="tab" href="#gestion-absences" role="tab"
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Photo</label>
-                                    <input type="file" name="photo" class="form-control-file col-sm-6">
+                                    <input type="file" name="photo" id="photo" class="form-control-file col-sm-6">
                                 </div>
                                 <br/>
                             </div>
@@ -505,7 +505,10 @@
                 <div class="tab-pane fade" id="gestion-mission" role="tabpanel" aria-labelledby="gestion-mission-tab">
                     <div class="container">
                         <br>
-                        <table class="table table-bordered">
+                        <button type="button" id="addRowMission" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableMission">
                             <thead>
                             <tr>
                                 <th>Début mission</th>
@@ -517,7 +520,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i <= 5; $i++)
+                            @for($i = 0; $i <= 2; $i++)
                                 <tr>
                                     <td><input type="date" name="missions_debut[]" class="form-control"></td>
                                     <td><input type="date" name="missions_fin[]" class="form-control"></td>
@@ -536,24 +539,25 @@
                 <div class="tab-pane fade" id="gestion-absences" role="tabpanel" aria-labelledby="gestion-absences-tab">
                     <div class="container">
                         <br>
-                        <table class="table table-bordered">
+                        <button type="button" id="addRowAbsences" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableAbsences">
                             <thead>
                             <tr>
                                 <th>Date absence</th>
                                 <th>Fin absence</th>
                                 <th>Nbre de jours</th>
                                 <th>Motif</th>
-                                <th>Frais</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i <= 5; $i++)
+                            @for($i = 0; $i <= 2; $i++)
                                 <tr>
                                     <td><input type="date" name="absence_debut[]" class="form-control"></td>
                                     <td><input type="date" name="absence_fin[]" class="form-control"></td>
                                     <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>
                                     <td><input type="text" name="absence_motif[]" class="form-control"></td>
-                                    <td><input type="number" name="absence_frais[]" class="form-control"></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -563,7 +567,10 @@
                 <div class="tab-pane fade" id="gestion-contrats" role="tabpanel" aria-labelledby="gestion-contrats-tab">
                     <div class="container">
                         <br>
-                        <table class="table table-bordered">
+                        <button type="button" id="addRowContrats" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableContrats">
                             <thead>
                             <tr>
                                 <th>Type de contrat</th>
@@ -575,9 +582,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i <= 5; $i++)
+                            @for($i = 0; $i <= 2; $i++)
                                 <tr>
-                                    <td><input type="text" name="contrat_type_contrat[]" class="form-control"></td>
+                                    <td><select type="text" name="contrat_type_contrat[]" class="form-control">
+                                            <option>CDD</option>
+                                            <option>CDI</option>
+                                            <option>STAGE</option>
+                                            <option>INTERIM</option>
+                                            <option>IMMERSION</option>
+                                        </select></td>
                                     <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>
                                     <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>
                                     <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
@@ -593,7 +606,10 @@
                      aria-labelledby="gestion-explication-tab">
                     <div class="container">
                         <br>
-                        <table class="table table-bordered">
+                        <button type="button" id="addRowExplication" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableExplication">
                             <thead>
                             <tr>
                                 <th>Date demande d'explication</th>
@@ -602,7 +618,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i < 5; $i++)
+                            @for($i = 0; $i < 2; $i++)
                                 <tr>
                                     <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
                                     <td><input type="text" name="demande_motif[]" class="form-control"></td>
@@ -617,7 +633,10 @@
                      aria-labelledby="gestion-affectation-tab">
                     <div class="container">
                         <br>
-                        <table class="table table-bordered">
+                        <button type="button" id="addRowAffection" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableAffectation">
                             <thead>
                             <tr>
                                 <th>Date d'affectation</th>
@@ -626,7 +645,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i < 5; $i++)
+                            @for($i = 0; $i < 2; $i++)
                                 <tr>
                                     <td><input type="date" name="affectation_date[]" class="form-control"></td>
                                     <td><input type="text" name="affectation_centre[]" class="form-control"></td>
@@ -666,7 +685,71 @@
                         value: centre_regional,
                         text: centre_regional
                     }));
-                })
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Gestion des missions
+            $("#addRowMission").on("click", function () {
+                $('#tableMission').append('<tr>\n' +
+                    '                                    <td><input type="date" name="missions_debut[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="date" name="missions_fin[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="number" min="0" name="missions_nbre_jours[]"\n' +
+                    '                                               class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">\n' +
+                    '                                    </td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des absences
+            $("#addRowAbsences").on("click", function () {
+                $('#tableAbsences').append('<tr>\n' +
+                    '                                    <td><input type="date" name="absence_debut[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="date" name="absence_fin[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="absence_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des contrats
+            $("#addRowContrats").on("click", function () {
+                $('#tableContrats').append('<tr>\n' +
+                    '                                    <td><select type="text" name="contrat_type_contrat[]" class="form-control">\n' +
+                    '                                            <option>CDD</option>\n' +
+                    '                                            <option>CDI</option>\n' +
+                    '                                            <option>STAGE</option>\n' +
+                    '                                            <option>INTERIM</option>\n' +
+                    '                                            <option>IMMERSION</option>\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des explications
+            $("#addRowExplication").on("click", function () {
+                $('#tableExplication').append('<tr>\n' +
+                    '                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des affectations
+            $("#addRowAffection").on("click", function () {
+                $('#tableAffectation').append('<tr>\n' +
+                    '                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
             });
         });
     </script>

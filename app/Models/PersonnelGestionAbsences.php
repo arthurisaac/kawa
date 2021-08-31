@@ -11,7 +11,6 @@ class PersonnelGestionAbsences extends Model
         "fin_absence",
         "nombre_jours",
         "motif",
-        "frais",
         "personnel"
     ];
 }
