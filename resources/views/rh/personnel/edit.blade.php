@@ -456,24 +456,45 @@
                 </div>
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
                     <div class="container">
-                        <div class="row">
-                            <br>
-                            <div class="col-5">
-                                <br/>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Avertissement</label>
-                                    <input type="date" name="avertissement" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Mise à pied</label>
-                                    <input type="date" name="miseAPied" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Licenciement</label>
-                                    <input type="number" min="0" name="licenciement" class="form-control col-sm-6">
-                                </div>
-                            </div>
-                        </div>
+                        <br>
+                        <button type="button" id="addRowSanction" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableSanction">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sanction</th>
+                                <th>Motif</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionSanction as $mission)
+                                <tr>
+                                    <input type="hidden" name="sanction_id[]" value="{{$mission->id}}"
+                                           class="form-control">
+                                    <td><input type="date" name="sanction_date_edit[]"
+                                               value="{{$mission->date}}" class="form-control"></td>
+                                    <td><input type="text" name="sanction_sanction_edit[]"
+                                               value="{{$mission->sanction}}" class="form-control"></td>
+                                    <td><input type="text" name="sanction_motif_edit[]"
+                                               value="{{$mission->motif}}" class="form-control"></td>
+
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i <= 2; $i++)
+                                <tr>
+                                    <td><input type="date" name="sanction_date[]" class="form-control"></td>
+                                    <td><select type="text" name="sanction_sanction[]" class="form-control">
+                                            <option>Avertissement</option>
+                                            <option>Mise à pied</option>
+                                            <option>Licenciement </option>
+                                        </select></td>
+                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="infos" role="tabpanel" aria-labelledby="infos-tab">
@@ -830,6 +851,19 @@
                     '                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des sanctions
+            $("#addRowSanction").on("click", function () {
+                $('#tableSanction').append('<tr>\n' +
+                    '                                    <td><input type="date" name="sanction_date[]" class="form-control"></td>\n' +
+                    '                                    <td><select type="text" name="sanction_sanction[]" class="form-control">\n' +
+                    '                                            <option>Avertissement</option>\n' +
+                    '                                            <option>Mise à pied</option>\n' +
+                    '                                            <option>Licenciement </option>\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
                     '                                </tr>');
             });
         });

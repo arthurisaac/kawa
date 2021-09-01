@@ -11,6 +11,7 @@ use App\Models\PersonnelGestionAffectations;
 use App\Models\PersonnelGestionContrats;
 use App\Models\PersonnelGestionExplications;
 use App\Models\PersonnelGestionMission;
+use App\Models\PersonnelGestionSanction;
 use App\Models\PersonnelSanction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -218,15 +219,15 @@ class PersonnelController extends Controller
 
         /* explications */
         if (!empty($request->get('demande_date_demande')) && !empty($request->get('demande_motif'))) {
-            $affectation_date = $request->get('demande_date_demande');
+            $sanction_ = $request->get('demande_date_demande');
             $affectation_centre = $request->get('demande_motif');
             $affectation_motif = $request->get('demande_sanctions');
 
 
-            for ($i = 0; $i < count($affectation_date); $i++) {
-                if ($affectation_date[$i] != null && !empty($affectation_date[$i])) {
+            for ($i = 0; $i < count($sanction_); $i++) {
+                if ($sanction_[$i] != null && !empty($sanction_[$i])) {
                     $data = new PersonnelGestionExplications([
-                        "date_demande" => $affectation_date[$i],
+                        "date_demande" => $sanction_[$i],
                         "motif" => $affectation_centre[$i],
                         "sanctions" => $affectation_motif[$i],
                         "personnel" => $personnel->id,
@@ -238,17 +239,37 @@ class PersonnelController extends Controller
 
         /* affectation */
         if (!empty($request->get('affectation_date')) && !empty($request->get('affectation_centre'))) {
-            $affectation_date = $request->get('affectation_date');
+            $sanction_ = $request->get('affectation_date');
             $affectation_centre = $request->get('affectation_centre');
             $affectation_motif = $request->get('affectation_motif');
 
 
-            for ($i = 0; $i < count($affectation_date); $i++) {
-                if ($affectation_date[$i] != null && !empty($affectation_date[$i])) {
+            for ($i = 0; $i < count($sanction_); $i++) {
+                if ($sanction_[$i] != null && !empty($sanction_[$i])) {
                     $data = new PersonnelGestionAffectations([
-                        "date_affectation" => $affectation_date[$i],
+                        "date_affectation" => $sanction_[$i],
                         "centre" => $affectation_centre[$i],
                         "motif" => $affectation_motif[$i],
+                        "personnel" => $personnel->id,
+                    ]);
+                    $data->save();
+                }
+            }
+        }
+
+        /* sanctions */
+        if (!empty($request->get('sanction_date')) && !empty($request->get('sanction_sanction'))) {
+            $sanction_date = $request->get('sanction_date');
+            $sanction_sanction = $request->get('sanction_sanction');
+            $sanction_motif = $request->get('sanction_motif');
+
+
+            for ($i = 0; $i < count($sanction_date); $i++) {
+                if ($sanction_date[$i] != null && !empty($sanction_date[$i])) {
+                    $data = new PersonnelGestionSanction([
+                        "date" => $sanction_date[$i],
+                        "sanction" => $sanction_sanction[$i],
+                        "motif" => $sanction_motif[$i],
                         "personnel" => $personnel->id,
                     ]);
                     $data->save();
@@ -286,8 +307,9 @@ class PersonnelController extends Controller
         $gestionContrats = PersonnelGestionContrats::all()->where('personnel', '=', $id);
         $gestionExplications = PersonnelGestionExplications::all()->where('personnel', '=', $id);
         $gestionAffectation = PersonnelGestionAffectations::all()->where('personnel', '=', $id);
+        $gestionSanction = PersonnelGestionSanction::all()->where('personnel', '=', $id);
         $personnel = Personnel::find($id);
-        return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux', 'gestionMission', 'gestionAbsences', 'gestionContrats', 'gestionExplications', 'gestionAffectation'));
+        return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux', 'gestionMission', 'gestionAbsences', 'gestionContrats', 'gestionExplications', 'gestionAffectation', 'gestionSanction'));
     }
 
     /**
@@ -532,6 +554,44 @@ class PersonnelController extends Controller
                     $data->date_affectation = $affectation_date[$i];
                     $data->centre = $affectation_centre[$i];
                     $data->motif = $affectation_motif[$i];
+                    $data->save();
+                }
+            }
+        }
+
+        /* sanctions */
+        if (!empty($request->get('sanction_date')) && !empty($request->get('sanction_sanction'))) {
+            $sanction_date = $request->get('sanction_date');
+            $sanction_sanction = $request->get('sanction_sanction');
+            $sanction_motif = $request->get('sanction_motif');
+
+
+            for ($i = 0; $i < count($sanction_date); $i++) {
+                if ($sanction_date[$i] != null && !empty($sanction_date[$i])) {
+                    $data = new PersonnelGestionSanction([
+                        "date" => $sanction_date[$i],
+                        "sanction" => $sanction_sanction[$i],
+                        "motif" => $sanction_motif[$i],
+                        "personnel" => $personnel->id,
+                    ]);
+                    $data->save();
+                }
+            }
+        }
+
+        if (!empty($request->get('sanction_date_edit')) && !empty($request->get('sanction_sanction_edit'))) {
+            $sanction_date = $request->get('sanction_date_edit');
+            $sanction_sanction = $request->get('sanction_sanction_edit');
+            $sanction_motif = $request->get('sanction_motif_edit');
+            $sanction_ids = $request->get('sanction_id');
+
+
+            for ($i = 0; $i < count($sanction_date); $i++) {
+                if ($sanction_date[$i] != null && !empty($sanction_date[$i])) {
+                    $data = PersonnelGestionSanction::find($sanction_ids[$i]);
+                    $data->date = $sanction_date[$i];
+                    $data->sanction = $sanction_sanction[$i];
+                    $data->motif = $sanction_motif[$i];
                     $data->save();
                 }
             }

@@ -37,11 +37,11 @@
                 {{--<li class="nav-item">
                     <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
                        aria-controls="affectation" aria-selected="false">Affectation</a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>
-                </li>--}}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
@@ -425,7 +425,7 @@
                         </div>
                     </div>
                 </div>--}}
-                {{--<div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
+                <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
                         <div class="row">
                             <div class="col-5">
@@ -449,27 +449,35 @@
                             </div>
                         </div>
                     </div>
-                </div>--}}
+                </div>
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
                     <div class="container">
-                        <div class="row">
-                            <br>
-                            <div class="col-5">
-                                <br/>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Avertissement</label>
-                                    <input type="date" name="avertissement" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Mise à pied</label>
-                                    <input type="date" name="miseAPied" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Licenciement</label>
-                                    <input type="number" min="0" name="licenciement" class="form-control col-sm-6">
-                                </div>
-                            </div>
-                        </div>
+                        <br>
+                        <button type="button" id="addRowSanction" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableSanction">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sanction</th>
+                                <th>Motif</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for($i = 0; $i <= 2; $i++)
+                                <tr>
+                                    <td><input type="date" name="sanction_date[]" class="form-control"></td>
+                                    <td><select type="text" name="sanction_sanction[]" class="form-control">
+                                            <option>Avertissement</option>
+                                            <option>Mise à pied</option>
+                                            <option>Licenciement </option>
+                                        </select></td>
+                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="infos" role="tabpanel" aria-labelledby="infos-tab">
@@ -753,6 +761,19 @@
                     '                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des sanctions
+            $("#addRowSanction").on("click", function () {
+                $('#tableSanction').append('<tr>\n' +
+                    '                                    <td><input type="date" name="sanction_date[]" class="form-control"></td>\n' +
+                    '                                    <td><select type="text" name="sanction_sanction[]" class="form-control">\n' +
+                    '                                            <option>Avertissement</option>\n' +
+                    '                                            <option>Mise à pied</option>\n' +
+                    '                                            <option>Licenciement </option>\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
                     '                                </tr>');
             });
         });
