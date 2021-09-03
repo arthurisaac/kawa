@@ -82,15 +82,18 @@ class CommercialClientController extends Controller
             'base_petit_materiel_securipack' => $request->get('base_petit_materiel_securipack'),
             'base_petit_materiel_sacjute' => $request->get('base_petit_materiel_sacjute'),
             'base_petit_materiel_scelle' => $request->get('base_petit_materiel_scelle'),
-            'base_garde_de_fonds_cout_unitaire' => $request->get('base_garde_de_fonds_cout_unitaire'),
-            'base_garde_de_fonds_montant_garde_cu' => $request->get('base_garde_de_fonds_montant_garde_cu'),
-            'base_garde_de_fonds_cout_forfetaire' => $request->get('base_garde_de_fonds_cout_forfetaire'),
-            'base_garde_de_fonds_montant_garde_cf' => $request->get('base_garde_de_fonds_montant_garde_cf'),
-            'base_comptage_tri_cout_unitaire' => $request->get('base_comptage_tri_cout_unitaire'),
-            'base_comptage_tri_montant_ctv' => $request->get('base_comptage_tri_montant_ctv'),
-            'base_gestion_atm' => $request->get('base_gestion_atm'),
-            'base_maintenance_atm' => $request->get('base_maintenance_atm'),
-            'base_consommable_atm' => $request->get('base_consommable_atm'),
+            //'base_garde_de_fonds_cout_unitaire' => $request->get('base_garde_de_fonds_cout_unitaire'),
+            //'base_garde_de_fonds_montant_garde_cu' => $request->get('base_garde_de_fonds_montant_garde_cu'),
+            //'base_garde_de_fonds_cout_forfetaire' => $request->get('base_garde_de_fonds_cout_forfetaire'),
+            //'base_garde_de_fonds_montant_garde_cf' => $request->get('base_garde_de_fonds_montant_garde_cf'),
+            //'base_comptage_tri_cout_unitaire' => $request->get('base_comptage_tri_cout_unitaire'),
+            //'base_comptage_tri_montant_ctv' => $request->get('base_comptage_tri_montant_ctv'),
+            //'base_gestion_atm' => $request->get('base_gestion_atm'),
+            'bt_atm' => $request->get('bt_atm'),
+            'base_comptage_montant_forfaitaire' => $request->get('base_comptage_montant_forfaitaire'),
+            'base_garde_de_fonds_montant_forfaitaire' => $request->get('base_garde_de_fonds_montant_forfaitaire'),
+            //ase_maintenance_atm' => $request->get('base_maintenance_atm'),
+            //'base_consommable_atm' => $request->get('base_consommable_atm'),
         ]);
         $client->save();
     }
@@ -145,15 +148,18 @@ class CommercialClientController extends Controller
         $client->base_petit_materiel_securipack = $request->get('base_petit_materiel_securipack');
         $client->base_petit_materiel_sacjute = $request->get('base_petit_materiel_sacjute');
         $client->base_petit_materiel_scelle = $request->get('base_petit_materiel_scelle');
-        $client->base_garde_de_fonds_cout_unitaire = $request->get('base_garde_de_fonds_cout_unitaire');
-        $client->base_garde_de_fonds_montant_garde_cu = $request->get('base_garde_de_fonds_montant_garde_cu');
-        $client->base_garde_de_fonds_cout_forfetaire = $request->get('base_garde_de_fonds_cout_forfetaire');
-        $client->base_garde_de_fonds_montant_garde_cf = $request->get('base_garde_de_fonds_montant_garde_cf');
-        $client->base_comptage_tri_cout_unitaire = $request->get('base_comptage_tri_cout_unitaire');
-        $client->base_comptage_tri_montant_ctv = $request->get('base_comptage_tri_montant_ctv');
-        $client->base_gestion_atm = $request->get('base_gestion_atm');
-        $client->base_maintenance_atm = $request->get('base_maintenance_atm');
-        $client->base_consommable_atm = $request->get('base_consommable_atm');
+        //$client->base_garde_de_fonds_cout_unitaire = $request->get('base_garde_de_fonds_cout_unitaire');
+        //$client->base_garde_de_fonds_montant_garde_cu = $request->get('base_garde_de_fonds_montant_garde_cu');
+        //$client->base_garde_de_fonds_cout_forfetaire = $request->get('base_garde_de_fonds_cout_forfetaire');
+        //$client->base_garde_de_fonds_montant_garde_cf = $request->get('base_garde_de_fonds_montant_garde_cf');
+        //$client->base_comptage_tri_cout_unitaire = $request->get('base_comptage_tri_cout_unitaire');
+        //$client->base_comptage_tri_montant_ctv = $request->get('base_comptage_tri_montant_ctv');
+        //$client->base_gestion_atm = $request->get('base_gestion_atm');
+        //$client->base_maintenance_atm = $request->get('base_maintenance_atm');
+        //$client->base_consommable_atm = $request->get('base_consommable_atm');
+        $client->bt_atm = $request->get("bt_atm");
+        $client->base_comptage_montant_forfaitaire = $request->get("base_comptage_montant_forfaitaire");
+        $client->base_garde_de_fonds_montant_forfaitaire = $request->get("base_garde_de_fonds_montant_forfaitaire");
 
         $client->save();
     }
@@ -215,6 +221,10 @@ class CommercialClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Commercial_client::find($id);
+        $client->delete();
+        return response()->json([
+            'message' => 'Good!'
+        ]);
     }
 }

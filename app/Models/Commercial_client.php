@@ -35,14 +35,17 @@ class Commercial_client extends Model
         'base_petit_materiel_securipack',
         'base_petit_materiel_sacjute',
         'base_petit_materiel_scelle',
-        'base_garde_de_fonds_cout_unitaire',
-        'base_garde_de_fonds_montant_garde_cu',
-        'base_garde_de_fonds_cout_forfetaire',
-        'base_garde_de_fonds_montant_garde_cf',
-        'base_comptage_tri_cout_unitaire',
-        'base_comptage_tri_montant_ctv',
-        'base_gestion_atm',
-        'base_maintenance_atm',
-        'base_consommable_atm',
-        ];
+        //'base_garde_de_fonds_cout_unitaire',
+        //'base_garde_de_fonds_montant_garde_cu',
+        //'base_garde_de_fonds_cout_forfetaire',
+        //'base_garde_de_fonds_montant_garde_cf',
+        //'base_comptage_tri_cout_unitaire',
+        //'base_comptage_tri_montant_ctv',
+        //'base_gestion_atm',
+        //'base_maintenance_atm',
+        //'base_consommable_atm',
+        'base_garde_de_fonds_montant_forfaitaire',
+        'base_comptage_montant_forfaitaire',
+        'bt_atm'
+    ];
 }
