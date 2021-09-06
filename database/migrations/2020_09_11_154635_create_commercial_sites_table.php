@@ -35,14 +35,20 @@ class CreateCommercialSitesTable extends Migration
             $table->string('oo_collecte_caisse')->nullable();
             $table->string('oo_borne_cheque')->nullable();
             $table->string('oo_borne_operation')->nullable();
-            $table->string('oo_gestion_gab_niveau')->nullable();
-            $table->string('oo_gestion_gab_prix')->nullable();
+            //$table->string('oo_gestion_gab_niveau')->nullable();
+            $table->string('oo_gestion_gab')->nullable();
             $table->string('oo_maintenance_n2')->nullable();
             $table->string('oo_vente_location')->nullable();
             $table->string('oo_vente_consommables')->nullable();
             $table->string('oo_vente_pieces_detachees')->nullable();
-            $table->string('oo_securipack')->nullable();
-            $table->string('oo_sac_juste')->nullable();
+            $table->string('oo_securipack_extra_grand')->nullable();
+            $table->string('oo_securipack_grand')->nullable();
+            $table->string('oo_securipack_moyen')->nullable();
+            $table->string('oo_securipack_petit')->nullable();
+            $table->string('oo_sacjuste_extra_grand')->nullable();
+            $table->string('oo_sacjuste_grand')->nullable();
+            $table->string('oo_sacjuste_moyen')->nullable();
+            $table->string('oo_sacjuste_petit')->nullable();
             $table->string('oo_scelle')->nullable();
 
             $table->string('oo_total')->nullable();

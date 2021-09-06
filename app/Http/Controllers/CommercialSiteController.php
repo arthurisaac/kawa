@@ -22,7 +22,7 @@ class CommercialSiteController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         return view('commercial/site.index',
-            compact('clients','centres', 'centres_regionaux'));
+            compact('clients', 'centres', 'centres_regionaux'));
     }
 
     public function liste()
@@ -74,14 +74,19 @@ class CommercialSiteController extends Controller
             'oo_collecte_caisse' => $request->get('oo_collecte_caisse'),
             'oo_borne_cheque' => $request->get('oo_borne_cheque'),
             'oo_borne_operation' => $request->get('oo_borne_operation'),
-            'oo_gestion_gab_niveau' => $request->get('oo_gestion_gab_niveau'),
-            'oo_gestion_gab_prix' => $request->get('oo_gestion_gab_prix'),
+            'oo_gestion_gab' => $request->get('oo_gestion_gab'),
             'oo_maintenance_n2' => $request->get('oo_maintenance_n2'),
             'oo_vente_location' => $request->get('oo_vente_location'),
             'oo_vente_consommables' => $request->get('oo_vente_consommables'),
             'oo_vente_pieces_detachees' => $request->get('oo_vente_pieces_detachees'),
-            'oo_securipack' => $request->get('oo_securipack'),
-            'oo_sac_juste' => $request->get('oo_sac_juste'),
+            'oo_securipack_extra_grand' => $request->get('oo_securipack_extra_grand'),
+            'oo_securipack_grand' => $request->get('oo_securipack_grand'),
+            'oo_securipack_moyen' => $request->get('oo_securipack_moyen'),
+            'oo_securipack_petit' => $request->get('oo_securipack_petit'),
+            'oo_sacjuste_extra_grand' => $request->get('oo_sacjuste_extra_grand'),
+            'oo_sacjuste_grand' => $request->get('oo_sacjuste_grand'),
+            'oo_sacjuste_moyen' => $request->get('oo_sacjuste_moyen'),
+            'oo_sacjuste_petit' => $request->get('oo_sacjuste_petit'),
             'oo_scelle' => $request->get('oo_scelle'),
             'oo_total' => $request->get('oo_total'),
             //'objet_operation' => $objet_operation,
@@ -102,7 +107,7 @@ class CommercialSiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -113,7 +118,7 @@ class CommercialSiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -124,14 +129,14 @@ class CommercialSiteController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         return view('commercial.site.edit',
-            compact('site', 'clients','centres', 'centres_regionaux'));
+            compact('site', 'clients', 'centres', 'centres_regionaux'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -156,14 +161,18 @@ class CommercialSiteController extends Controller
         $site->oo_collecte_caisse = $request->get('oo_collecte_caisse');
         $site->oo_borne_cheque = $request->get('oo_borne_cheque');
         $site->oo_borne_operation = $request->get('oo_borne_operation');
-        $site->oo_gestion_gab_niveau = $request->get('oo_gestion_gab_niveau');
-        $site->oo_gestion_gab_prix = $request->get('oo_gestion_gab_prix');
+        $site->oo_gestion_gab = $request->get('oo_gestion_gab');
         $site->oo_maintenance_n2 = $request->get('oo_maintenance_n2');
         $site->oo_vente_location = $request->get('oo_vente_location');
         $site->oo_vente_consommables = $request->get('oo_vente_consommables');
         $site->oo_vente_pieces_detachees = $request->get('oo_vente_pieces_detachees');
-        $site->oo_securipack = $request->get('oo_securipack');
-        $site->oo_sac_juste = $request->get('oo_sac_juste');
+        $site->oo_securipack_grand = $request->get('oo_securipack_grand');
+        $site->oo_securipack_moyen = $request->get('oo_securipack_moyen');
+        $site->oo_securipack_petit = $request->get('oo_securipack_petit');
+        $site->oo_sacjuste_extra_grand = $request->get('oo_sacjuste_extra_grand');
+        $site->oo_sacjuste_grand = $request->get('oo_sacjuste_grand');
+        $site->oo_sacjuste_moyen = $request->get('oo_sacjuste_moyen');
+        $site->oo_sacjuste_petit = $request->get('oo_sacjuste_petit');
         $site->oo_scelle = $request->get('oo_scelle');
         $site->oo_total = $request->get('oo_total');
         $site->forfait_mensuel_ctv = $request->get('forfait_mensuel_ctv');
@@ -183,13 +192,16 @@ class CommercialSiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
         $site = Commercial_site::find($id);
         $site->delete();
-        return redirect('/commercial-site-liste')->with('success', 'Site supprimé!');
+        return response()->json([
+            'message' => 'Good!'
+        ]);
+        //return redirect('/commercial-site-liste')->with('success', 'Site supprimé!');
     }
 }

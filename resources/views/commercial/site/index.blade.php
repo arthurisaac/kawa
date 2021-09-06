@@ -158,17 +158,19 @@
                             <h6>ATM</h6>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne chèque</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                <input type="text" class="col-sm-6 form-control form-control-sm"
                                        name="oo_borne_cheque">
                             </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Borne des opérations</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                <input type="text" class="col-sm-6 form-control form-control-sm"
                                        name="oo_borne_operation">
                             </div>
-                            <div class="form-group">
-                                <label for="cb_tdf_vb" class="col-sm-6">Gestion des GAB</label>
-                                <div class="row">
+                            <div class="form-group row">
+                                <label class="col-sm-6">Gestion des GAB</label>
+                                <input type="text" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_gestion_gab"/>
+                                {{--<div class="row">
                                     <label class="col-sm-6">Niveau I</label>
                                     <input type="number" class="col-sm-6 form-control form-control-sm"
                                            name="oo_gestion_gab_prix1"
@@ -185,8 +187,7 @@
                                     <input type="number" class="col-sm-6 form-control form-control-sm"
                                            name="oo_gestion_gab_prix3"
                                            placeholder="Prix" min="0">
-                                </div>
-
+                                </div>--}}
                             </div>
 
                             <div class="form-group row">
@@ -248,9 +249,9 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="materiel-c" role="tabpanel" aria-labelledby="materiel-tab">
-                    <div class="row">
-                        <div class="col">
-                            <h6>PETIT MATERIEL</h6>
+                        <div class="container-fluid">
+                            <h5>PETIT MATERIEL</h5>
+                            <h6>Sécuripack</h6>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
@@ -265,23 +266,56 @@
                                         <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
                                                name="oo_securipack_grand">
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-6">Moyen</label>
-                                            <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                                   name="oo_securipack_moyen">
-                                        </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Moyen</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_securipack_moyen">
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-6">Petit</label>
-                                            <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                                   name="oo_securipack_petit">
-                                        </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Petit</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_securipack_petit">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <br>
+                            <h6>Sac jute</h6>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Extra grand</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_sacjuste_extra_grand">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Grand</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_sacjuste_grand">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Moyen</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_sacjuste_moyen">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Petit</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_sacjuste_petit">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            {{--<div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
                                 <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
                                     <option></option>
@@ -304,15 +338,18 @@
                                 </select>
                                 <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
                                        name="oo_sac_juste_prix">
-                            </div>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle"
-                                       id="oo_garde_fond">
+                            </div>--}}
+                            <h6>Sac jute</h6>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group row">
+                                        <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>
+                                        <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle"
+                                               id="oo_garde_fond">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
                 </div>
                 <div class="tab-pane fade" id="regime-c" role="tabpanel" aria-labelledby="regime-tab">
                     <div class="row">
@@ -350,7 +387,7 @@
             $("#oo_total").val(total);
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
