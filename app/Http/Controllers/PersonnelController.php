@@ -8,6 +8,7 @@ use App\Models\Personnel;
 use App\Models\PersonnelConge;
 use App\Models\PersonnelGestionAbsences;
 use App\Models\PersonnelGestionAffectations;
+use App\Models\PersonnelGestionConge;
 use App\Models\PersonnelGestionContrats;
 use App\Models\PersonnelGestionExplications;
 use App\Models\PersonnelGestionMission;
@@ -31,8 +32,7 @@ class PersonnelController extends Controller
         $centres_regionaux = Centre_regional::all();
         $personnels = Personnel::all();
         $nextId = DB::table('personnels')->max('id') + 1;
-        return view('/rh/personnel.index',
-            compact('centres', 'centres_regionaux', 'personnels', 'nextId'));
+        return view('/rh/personnel.index', compact('centres', 'centres_regionaux', 'personnels', 'nextId'));
     }
 
     public function liste()
@@ -65,7 +65,7 @@ class PersonnelController extends Controller
         if ($files = $request->file('photo')) {
             // $name = $files->getClientOriginalName();
             // $files->move('images', $name); //Save to public dir
-            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $fileName = time() . '_' . $request->photo->getClientOriginalName();
             $filePath = $request->file('photo')->storeAs('/', $fileName, 'ftp');
             $photo = $filePath;
         }
@@ -102,7 +102,7 @@ class PersonnelController extends Controller
             'photo' => $photo
         ]);
         $personnel->save();
-        if (!empty($request->get('nombreJourPris'))) {
+        /*if (!empty($request->get('nombreJourPris'))) {
             $conges = new PersonnelConge([
                 'personnel' => $personnel->id,
                 'dateDernierDepartConge' => $request->get('dateDernierDepartConge'),
@@ -120,7 +120,7 @@ class PersonnelController extends Controller
                 'licenciement' => $request->get('licenciement')
             ]);
             $sanctions->save();
-        }
+        }*/
         /*if (!empty($request->get('missions_debut')) && !empty($request->get('missions_fin'))) {
             $missions_debut = $request->get('missions_debut');
             $missions_fin = $request->get('missions_fin');
@@ -277,6 +277,25 @@ class PersonnelController extends Controller
             }
         }
 
+        /* congés */
+        if (!empty($request->get('dateDernierDepartConge')) && !empty($request->get('dateProchainDepartConge'))) {
+            $dernier = $request->get('dateDernierDepartConge');
+            $dateProchainDepartConge = $request->get('dateProchainDepartConge');
+            $nombreJourPris = $request->get('nombreJourPris');
+
+
+            for ($i = 0; $i < count($dernier); $i++) {
+                if ($dernier[$i] != null && !empty($dernier[$i])) {
+                    $data = new PersonnelGestionConge([
+                        'dernier' => $dernier[$i],
+                        'prochain' => $dateProchainDepartConge[$i],
+                        'jourPris' => $nombreJourPris[$i],
+                        "personnel" => $personnel->id,
+                    ]);
+                    $data->save();
+                }
+            }
+        }
 
         return redirect('/personnel')->with('success', 'Personnel enregistré!');
     }
@@ -308,8 +327,9 @@ class PersonnelController extends Controller
         $gestionExplications = PersonnelGestionExplications::all()->where('personnel', '=', $id);
         $gestionAffectation = PersonnelGestionAffectations::all()->where('personnel', '=', $id);
         $gestionSanction = PersonnelGestionSanction::all()->where('personnel', '=', $id);
+        $gestionConge = PersonnelGestionConge::all()->where('personnel', '=', $id);
         $personnel = Personnel::find($id);
-        return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux', 'gestionMission', 'gestionAbsences', 'gestionContrats', 'gestionExplications', 'gestionAffectation', 'gestionSanction'));
+        return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux', 'gestionMission', 'gestionAbsences', 'gestionContrats', 'gestionExplications', 'gestionAffectation', 'gestionSanction', 'gestionConge'));
     }
 
     /**
@@ -352,7 +372,7 @@ class PersonnelController extends Controller
         if ($files = $request->file('photo')) {
             // $name = $files->getClientOriginalName();
             // $files->move('images', $name); //Save to public dir
-            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $fileName = time() . '_' . $request->photo->getClientOriginalName();
             $filePath = $request->file('photo')->storeAs('/', $fileName, 'ftp');
             $personnel->photo = $filePath;
         }
@@ -596,6 +616,62 @@ class PersonnelController extends Controller
                 }
             }
         }
+
+        if (!empty($request->get('sanction_date_edit')) && !empty($request->get('sanction_sanction_edit'))) {
+            $sanction_date = $request->get('sanction_date_edit');
+            $sanction_sanction = $request->get('sanction_sanction_edit');
+            $sanction_motif = $request->get('sanction_motif_edit');
+            $sanction_ids = $request->get('sanction_id');
+
+
+            for ($i = 0; $i < count($sanction_date); $i++) {
+                if ($sanction_date[$i] != null && !empty($sanction_date[$i])) {
+                    $data = PersonnelGestionSanction::find($sanction_ids[$i]);
+                    $data->date = $sanction_date[$i];
+                    $data->sanction = $sanction_sanction[$i];
+                    $data->motif = $sanction_motif[$i];
+                    $data->save();
+                }
+            }
+        }
+
+        /* congés */
+        if (!empty($request->get('dateDernierDepartConge')) && !empty($request->get('dateProchainDepartConge'))) {
+            $dernier = $request->get('dateDernierDepartConge');
+            $dateProchainDepartConge = $request->get('dateProchainDepartConge');
+            $nombreJourPris = $request->get('nombreJourPris');
+
+
+            for ($i = 0; $i < count($dernier); $i++) {
+                if ($dernier[$i] != null && !empty($dernier[$i])) {
+                    $data = new PersonnelGestionConge([
+                        'dernier' => $dernier[$i],
+                        'prochain' => $dateProchainDepartConge[$i],
+                        'jourPris' => $nombreJourPris[$i],
+                        "personnel" => $personnel->id,
+                    ]);
+                    $data->save();
+                }
+            }
+        }
+
+        if (!empty($request->get('dateDernierDepartConge_edit')) && !empty($request->get('dateProchainDepartConge_edit'))) {
+            $dernier = $request->get('dateDernierDepartConge_edit');
+            $dateProchainDepartConge = $request->get('dateProchainDepartConge_edit');
+            $nombreJourPris = $request->get('nombreJourPris_edit');
+            $conge_id = $request->get('conge_id');
+
+            for ($i = 0; $i < count($dernier); $i++) {
+                if ($dernier[$i] != null && !empty($dernier[$i])) {
+                    $data = PersonnelGestionConge::find($conge_id[$i]);
+                    $data->dernier = $dernier[$i];
+                    $data->prochain = $dateProchainDepartConge[$i];
+                    $data->jourPris = $nombreJourPris[$i];
+                    $data->save();
+                }
+            }
+        }
+
 
         return redirect('/personnel-liste')->with('success', 'Personnel enregistré!');
     }

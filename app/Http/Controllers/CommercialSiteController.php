@@ -68,6 +68,7 @@ class CommercialSiteController extends Controller
             'oo_vl_extramuros_bitume' => $request->get('oo_vl_extramuros_bitume'),
             'oo_vl_extramuros_piste' => $request->get('oo_vl_extramuros_piste'),
             'oo_vb_intramuros' => $request->get('oo_vb_intramuros'),
+            'oo_vl_intramuros' => $request->get('oo_vl_intramuros'),
             'oo_mad' => $request->get('oo_mad'),
             'oo_collecte' => $request->get('oo_collecte'),
             'oo_cctv' => $request->get('oo_cctv'),
@@ -155,6 +156,7 @@ class CommercialSiteController extends Controller
         $site->oo_vl_extramuros_bitume = $request->get('oo_vl_extramuros_bitume');
         $site->oo_vl_extramuros_piste = $request->get('oo_vl_extramuros_piste');
         $site->oo_vb_intramuros = $request->get('oo_vb_intramuros');
+        $site->oo_vl_intramuros = $request->get('oo_vl_intramuros');
         $site->oo_mad = $request->get('oo_mad');
         $site->oo_collecte = $request->get('oo_collecte');
         $site->oo_cctv = $request->get('oo_cctv');

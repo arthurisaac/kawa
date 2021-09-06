@@ -370,7 +370,7 @@
                 </div>
             </div>
             <br/>
-            <div class="row">
+            <div class="row" style="display: none;">
                 <div class="form-group row col-3">
                     <label class="col-sm-4">Coût</label>
                     <input type="number" class="form-control col-sm-8" id="oo_total" name="oo_total" readonly/>

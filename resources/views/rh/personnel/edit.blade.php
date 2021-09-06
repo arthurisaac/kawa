@@ -32,6 +32,10 @@
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
+                       aria-controls="infos" aria-selected="false">Informations complementaires</a>
+                </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"--}}
 {{--                       aria-controls="affectation" aria-selected="false">Affectation</a>--}}
@@ -44,11 +48,6 @@
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
-                       aria-controls="infos" aria-selected="false">Informations complementaires</a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
                        aria-controls="gestion-mission" aria-selected="false">Gestion des missions</a>
@@ -431,27 +430,37 @@
                 </div>--}}
                 <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-5">
-                                <br/>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Date du dernier départ en congé</label>
-                                    <input type="date" name="dateDernierDepartConge" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Date du prochain départ en congé</label>
-                                    <input type="date" name="dateProchainDepartConge" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Nombre de jours pris</label>
-                                    <input type="number" min="0" name="nombreJourPris" class="form-control col-sm-6">
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4">Nombre de jours pris</label>
-                                    <input type="number" min="0" name="nombreJourRestant" class="form-control col-sm-6">
-                                </div>
-                            </div>
-                        </div>
+                        <br>
+                        <button type="button" id="addRowConges" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableConge">
+                            <thead>
+                            <tr>
+                                <th>Date du dernier départ</th>
+                                <th>Date du prochain départ</th>
+                                <th>Nombre de jours pris</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($gestionConge as $gestion)
+                                <tr>
+                                    <input type="hidden" name="conge_id[]" value="{{$gestion->id}}"
+                                           class="form-control">
+                                    <td><input type="date" name="dateDernierDepartConge_edit[]" value="{{$gestion->dernier}}" class="form-control"></td>
+                                    <td><input type="date" name="dateProchainDepartConge[]"  value="{{$gestion->prochain}}" class="form-control"></td>
+                                    <td><input type="text" name="nombreJourPris[]" value="{{$gestion->jourPris}}" class="form-control"></td>
+                                </tr>
+                            @endforeach
+                            @for($i = 0; $i <= 2; $i++)
+                                <tr>
+                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
+                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
+                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
@@ -864,6 +873,15 @@
                     '                                            <option>Licenciement </option>\n' +
                     '                                        </select></td>\n' +
                     '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des congés
+            $("#addRowConges").on("click", function () {
+                $('#tableConge').append('<tr>\n' +
+                    '                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>\n' +
                     '                                </tr>');
             });
         });

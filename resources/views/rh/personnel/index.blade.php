@@ -34,6 +34,10 @@
                     <a class="nav-link active" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab"
                        aria-controls="personne" aria-selected="true">Information personnel</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
+                       aria-controls="infos" aria-selected="false">Informations complementaires</a>
+                </li>
                 {{--<li class="nav-item">
                     <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"
                        aria-controls="affectation" aria-selected="false">Affectation</a>
@@ -45,10 +49,6 @@
                 <li class="nav-item">
                     <a class="nav-link" id="sanctions-tab" data-toggle="tab" href="#sanctions" role="tab"
                        aria-controls="sanctions" aria-selected="false">Gestion des sanctions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
-                       aria-controls="infos" aria-selected="false">Informations complementaires</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="gestion-mission-tab" data-toggle="tab" href="#gestion-mission" role="tab"
@@ -427,7 +427,29 @@
                 </div>--}}
                 <div class="tab-pane fade" id="conges" role="tabpanel" aria-labelledby="conges-tab">
                     <div class="container">
-                        <div class="row">
+                        <br>
+                        <button type="button" id="addRowConges" class="btn btn-sm btn-dark">Ajouter</button>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="tableConge">
+                            <thead>
+                            <tr>
+                                <th>Date du dernier départ</th>
+                                <th>Date du prochain départ</th>
+                                <th>Nombre de jours pris</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for($i = 0; $i <= 2; $i++)
+                                <tr>
+                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
+                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
+                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                        {{--<div class="row">
                             <div class="col-5">
                                 <br/>
                                 <div class="form-group row">
@@ -447,7 +469,7 @@
                                     <input type="number" min="0" name="nombreJourRestant" class="form-control col-sm-6">
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
                 <div class="tab-pane fade" id="sanctions" role="tabpanel" aria-labelledby="sanctions-tab">
@@ -564,7 +586,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i <= 2; $i++)
+                            @for($i = 0; $i < 2; $i++)
                                 <tr>
                                     <td><input type="date" name="absence_debut[]" class="form-control"></td>
                                     <td><input type="date" name="absence_fin[]" class="form-control"></td>
@@ -774,6 +796,15 @@
                     '                                            <option>Licenciement </option>\n' +
                     '                                        </select></td>\n' +
                     '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
+                    '                                </tr>');
+            });
+
+            // Gestion des congés
+            $("#addRowConges").on("click", function () {
+                $('#tableConge').append('<tr>\n' +
+                    '                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>\n' +
+                    '                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>\n' +
                     '                                </tr>');
             });
         });

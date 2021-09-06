@@ -67,7 +67,7 @@ return [
         'ftp' => [
             'driver' => 'ftp',
             'host' => 'ftp.bafagroupe.com',
-            'username' => 'kawa@bafagroupe.com',
+            'username' => 'kawa@kisalgroup.com',
             'password' => 'kawa2021',
 
             // Optional FTP Settings...
