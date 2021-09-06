@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('main')
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">Site</h2></div>
         <br/>
@@ -83,13 +84,30 @@
                 </div>
 
             </div>
-
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-10">
-                    <div>Objet-opération</div>
-                    <br/>
+            <br>
+            <br>
+            <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="transport-c-tab" data-toggle="tab" href="#transport-c" role="tab"
+                       aria-controls="transport" aria-selected="true">Transport</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="atm-tab" data-toggle="tab" href="#atm-c" role="tab"
+                       aria-controls="atm-c" aria-selected="false">ATM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="caisse-tab" data-toggle="tab" href="#caisse-c" role="tab"
+                       aria-controls="caisse-c" aria-selected="false">Caisse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="materiel-c-tab" data-toggle="tab" href="#materiel-c" role="tab"
+                       aria-controls="materiel" aria-selected="false">Petit matériel</a>
+                </li>
+            </ul>
+            <br>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="transport-c" role="tabpanel"
+                     aria-labelledby="transport-c-tab">
                     <div class="row">
                         <div class="col">
                             <h6>Transport</h6>
@@ -127,28 +145,11 @@
                                        id="oo_tdf_vl">
                             </div>
                         </div>
-                        <div class="col">
-                            <h6>CAISSIERES</h6>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad">
-                            </div>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_collecte">
-                            </div>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">CCTV</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_cctv">
-                            </div>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">Collecte caisse</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm"
-                                       name="oo_collecte_caisse">
-                            </div>
-                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="atm-c" role="tabpanel" aria-labelledby="atm-tab">
+                    <div class="row">
                         <div class="col">
                             <h6>ATM</h6>
                             <div class="form-group row">
@@ -209,6 +210,41 @@
                                        id="oo_garde_fond">
                             </div>
                         </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="caisse-c" role="tabpanel" aria-labelledby="caisse-tab">
+                    <div class="col-10">
+                        <div>Objet-opération</div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <h6>CAISSIERES</h6>
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_collecte">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">CCTV</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_cctv">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Collecte caisse</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_collecte_caisse">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="materiel-c" role="tabpanel" aria-labelledby="materiel-tab">
+                    <div class="row">
                         <div class="col">
                             <h6>PETIT MATERIEL</h6>
                             <div class="form-group row">
@@ -241,82 +277,22 @@
                                        id="oo_garde_fond">
                             </div>
                         </div>
-                        {{--<div class="col">
-                            <h6>Opération dabiste</h6>
-                            <div class="form-group row">
-                                <label class="col-sm-6">Gestion ATM</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_gestion_atm" id="oo_gestion_atm">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-6">Maintenance ATM</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_maintenance_atm" id="oo_maintenance_atm">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-6">Consommable ATM</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_consommable_atm" id="oo_consommable_atm">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-6">Petit matériel</label>
-                                <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_petit_materiel" id="oo_petit_materiel">
-                            </div>
-                            --}}{{--<div class="checkbox">
-                                <input type="checkbox" id="cb_gestion_atm" name="objet_operation[]" value="Gestion ATM">
-                                <label for="cb_gestion_atm">Gestion ATM</label>
+                        <div class="col">
+                            <div>Régime</div>
+                            <br/>
+                            <br/>
+                            <div class="checkbox">
+                                <input type="checkbox" id="cb_intra_muros" name="regime" value="Intra muros">
+                                <label for="cb_intra_muros">Intra muros</label>
                             </div>
                             <div class="checkbox">
-                                <input type="checkbox" id="cb_maintenance" name="objet_operation[]" value="Maintenance ATM">
-                                <label for="cb_maintenance">Maintenance ATM</label>
+                                <input type="checkbox" id="cb_intra_muros" name="regime" value="Extra muros">
+                                <label for="cb_extra_muros">Extra muros</label>
                             </div>
-                            <div class="checkbox">
-                                <input type="checkbox" id="Checkbox2" name="objet_operation[]" value="Consommable ATM">
-                                <label for="Checkbox2">Consommable ATM</label>
-                            </div>
-                            <div class="checkbox">
-                                <input type="checkbox" id="cb_petit_materiel" name="objet_operation[]"
-                                       value="Petit matériel">
-                                <label for="cb_petit_materiel">Petit matériel</label>
-                            </div>--}}{{--
-                        </div>--}}
-                    </div>
-                </div>
-
-                {{--<div class="col">
-                    <br/>
-                    <br/>
-                    <div class="form-group row">
-                        <label for="forfait_mensuel_ctv" class="col-sm-6">Forfait mensuel CTV</label>
-                        <input id="forfait_mensuel_ctv" name="forfait_mensuel_ctv" type="number" min="0"
-                               class="form-control col-sm-6"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="forfait_mensuel_gdf" class="col-sm-6">Forfait mensuel GDF</label>
-                        <input id="forfait_mensuel_gdf" name="forfait_mensuel_gdf" type="number" min="0"
-                               class="form-control col-sm-6"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="forfait_mensuel_mad" class="col-sm-6">Forfait mensuel MAD</label>
-                        <input id="forfait_mensuel_mad" name="forfait_mensuel_mad" type="text"
-                               class="form-control col-sm-6"/>
-                    </div>
-                </div>--}}
-
-                <div class="col">
-                    <div>Régime</div>
-                    <br/>
-                    <br/>
-                    <div class="checkbox">
-                        <input type="checkbox" id="cb_intra_muros" name="regime" value="Intra muros">
-                        <label for="cb_intra_muros">Intra muros</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" id="cb_intra_muros" name="regime" value="Extra muros">
-                        <label for="cb_extra_muros">Extra muros</label>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <br/>
-            <br/>
             <br/>
             <div class="row">
                 <div class="form-group row col-3">
