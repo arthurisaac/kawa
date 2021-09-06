@@ -103,6 +103,10 @@
                     <a class="nav-link" id="materiel-c-tab" data-toggle="tab" href="#materiel-c" role="tab"
                        aria-controls="materiel" aria-selected="false">Petit matériel</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="regime-c-tab" data-toggle="tab" href="#regime-c" role="tab"
+                       aria-controls="regime" aria-selected="false">Régime</a>
+                </li>
             </ul>
             <br>
             <div class="tab-content">
@@ -247,6 +251,36 @@
                     <div class="row">
                         <div class="col">
                             <h6>PETIT MATERIEL</h6>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Extra grand</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_securipack_extra_grand">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Grand</label>
+                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                               name="oo_securipack_grand">
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6">Moyen</label>
+                                            <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                                   name="oo_securipack_moyen">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6">Petit</label>
+                                            <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                                   name="oo_securipack_petit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
                                 <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
@@ -277,6 +311,11 @@
                                        id="oo_garde_fond">
                             </div>
                         </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="regime-c" role="tabpanel" aria-labelledby="regime-tab">
+                    <div class="row">
                         <div class="col">
                             <div>Régime</div>
                             <br/>
