@@ -88,8 +88,10 @@ class CommercialSiteController extends Controller
             'oo_sacjuste_grand' => $request->get('oo_sacjuste_grand'),
             'oo_sacjuste_moyen' => $request->get('oo_sacjuste_moyen'),
             'oo_sacjuste_petit' => $request->get('oo_sacjuste_petit'),
-            'oo_scelle' => $request->get('oo_scelle'),
-            'oo_total' => $request->get('oo_total'),
+            'oo_scelle_extra_grand' => $request->get('oo_scelle_extra_grand'),
+            'oo_scelle_grand' => $request->get('oo_scelle_grand'),
+            'oo_scelle_moyen' => $request->get('oo_scelle_moyen'),
+            'oo_scelle_petit' => $request->get('oo_scelle_petit'),
             //'objet_operation' => $objet_operation,
             'forfait_mensuel_ctv' => $request->get('forfait_mensuel_ctv'),
             'forfait_mensuel_gdf' => $request->get('forfait_mensuel_gdf'),
@@ -175,7 +177,10 @@ class CommercialSiteController extends Controller
         $site->oo_sacjuste_grand = $request->get('oo_sacjuste_grand');
         $site->oo_sacjuste_moyen = $request->get('oo_sacjuste_moyen');
         $site->oo_sacjuste_petit = $request->get('oo_sacjuste_petit');
-        $site->oo_scelle = $request->get('oo_scelle');
+        $site->oo_scelle_extra_grand = $request->get('oo_scelle_extra_grand');
+        $site->oo_scelle_grand = $request->get('oo_scelle_grand');
+        $site->oo_scelle_moyen = $request->get('oo_scelle_moyen');
+        $site->oo_scelle_petit = $request->get('oo_scelle_petit');
         $site->oo_total = $request->get('oo_total');
         $site->forfait_mensuel_ctv = $request->get('forfait_mensuel_ctv');
         $site->forfait_mensuel_gdf = $request->get('forfait_mensuel_gdf');

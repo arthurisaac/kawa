@@ -158,34 +158,6 @@
                 </div>
                 <div class="tab-pane fade" id="atm-c" role="tabpanel" aria-labelledby="atm-tab">
                     <div class="col">
-                        <h6>CAISSIERES</h6>
-                        <div class="form-group row">
-                            <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
-                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad"
-                                   value="{{$site->oo_mad}}">
-                        </div>
-                        <div class="form-group row">
-                            <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
-                            <input type="number" class="col-sm-6 form-control form-control-sm"
-                                   name="oo_collecte"
-                                   value="{{$site->oo_collecte}}">
-                        </div>
-                        <div class="form-group row">
-                            <label for="cb_tdf_vb" class="col-sm-6">CCTV</label>
-                            <input type="number" class="col-sm-6 form-control form-control-sm"
-                                   name="oo_cctv"
-                                   value="{{$site->oo_cctv}}">
-                        </div>
-                        <div class="form-group row">
-                            <label for="cb_tdf_vb" class="col-sm-6">Collecte caisse</label>
-                            <input type="number" class="col-sm-6 form-control form-control-sm"
-                                   name="oo_collecte_caisse"
-                                   value="{{$site->oo_collecte_caisse}}">
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="caisse-c" role="tabpanel" aria-labelledby="caisse-tab">
-                    <div class="col">
                         <h6>ATM</h6>
                         <div class="form-group row">
                             <label for="cb_tdf_vb" class="col-sm-6">Borne chèque</label>
@@ -232,6 +204,34 @@
                                    name="oo_vente_pieces_detachees"
                                    id="oo_garde_fond"
                                    value="{{$site->oo_vente_pieces_detachees}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="caisse-c" role="tabpanel" aria-labelledby="caisse-tab">
+                    <div class="col">
+                        <h6>CAISSIERES</h6>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad"
+                                   value="{{$site->oo_mad}}">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Collecte</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm"
+                                   name="oo_collecte"
+                                   value="{{$site->oo_collecte}}">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">CCTV</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm"
+                                   name="oo_cctv"
+                                   value="{{$site->oo_cctv}}">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Collecte caisse</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm"
+                                   name="oo_collecte_caisse"
+                                   value="{{$site->oo_collecte_caisse}}">
                         </div>
                     </div>
                 </div>
@@ -326,12 +326,30 @@
                             <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
                                    name="oo_sac_juste_prix">
                         </div>--}}
-                        <h6>Sac jute</h6>
+                        <h6>Scellé</h6>
                         <div class="row">
                             <div class="col-3">
                                 <div class="form-group row">
-                                    <label class="col-sm-6">Scellé</label>
-                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle" value="{{$site->oo_scelle}}">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Extra Grand</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle_extra_grand" value="{{$site->oo_scelle_extra_grand}}">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Grand</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle_grand" value="{{$site->oo_scelle_grand}}">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Moyen</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle_moyen" value="{{$site->oo_scelle_moyen}}" >
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Petit</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle_petit" value="{{$site->oo_scelle_petit}}" >
                                 </div>
                             </div>
                         </div>

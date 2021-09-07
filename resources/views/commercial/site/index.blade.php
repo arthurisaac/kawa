@@ -249,107 +249,128 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="materiel-c" role="tabpanel" aria-labelledby="materiel-tab">
-                        <div class="container-fluid">
-                            <h5>PETIT MATERIEL</h5>
-                            <h6>Sécuripack</h6>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Extra grand</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_securipack_extra_grand">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Grand</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_securipack_grand">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Moyen</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_securipack_moyen">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Petit</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_securipack_petit">
-                                    </div>
+                    <div class="container-fluid">
+                        <h5>PETIT MATERIEL</h5>
+                        <h6>Sécuripack</h6>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Extra grand</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_securipack_extra_grand">
                                 </div>
                             </div>
-                            <br>
-                            <h6>Sac jute</h6>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Extra grand</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_sacjuste_extra_grand">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Grand</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_sacjuste_grand">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Moyen</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_sacjuste_moyen">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Petit</label>
-                                        <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
-                                               name="oo_sacjuste_petit">
-                                    </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Grand</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_securipack_grand">
                                 </div>
                             </div>
-                            <br>
-                            {{--<div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
-                                <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
-                                    <option></option>
-                                    <option value="Extra grand">Extra grand</option>
-                                    <option value="Grand">Grand</option>
-                                    <option value="Moyen">Moyen</option>
-                                    <option value="Petit">Petit</option>
-                                </select>
-                                <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
-                                       name="oo_securipack_prix">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Moyen</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_securipack_moyen">
+                                </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">Sac jute</label>
-                                <select class="col-sm-6 form-control form-control-sm" name="oo_sac_juste">
-                                    <option></option>
-                                    <option value="Extra grand">Extra grand</option>
-                                    <option value="Grand">Grand</option>
-                                    <option value="Moyen">Moyen</option>
-                                    <option value="Petit">Petit</option>
-                                </select>
-                                <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
-                                       name="oo_sac_juste_prix">
-                            </div>--}}
-                            <h6>Sac jute</h6>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-group row">
-                                        <label for="cb_tdf_vb" class="col-sm-6">Scellé</label>
-                                        <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_scelle"
-                                               id="oo_garde_fond">
-                                    </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Petit</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_securipack_petit">
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <h6>Sac jute</h6>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Extra grand</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_sacjuste_extra_grand">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Grand</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_sacjuste_grand">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Moyen</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_sacjuste_moyen">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-sm-6">Petit</label>
+                                    <input type="number" min="0" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_sacjuste_petit">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        {{--<div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Sécuripacks</label>
+                            <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
+                                <option></option>
+                                <option value="Extra grand">Extra grand</option>
+                                <option value="Grand">Grand</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Petit">Petit</option>
+                            </select>
+                            <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
+                                   name="oo_securipack_prix">
+                        </div>
+                        <div class="form-group row">
+                            <label for="cb_tdf_vb" class="col-sm-6">Sac jute</label>
+                            <select class="col-sm-6 form-control form-control-sm" name="oo_sac_juste">
+                                <option></option>
+                                <option value="Extra grand">Extra grand</option>
+                                <option value="Grand">Grand</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Petit">Petit</option>
+                            </select>
+                            <input type="number" min="0" class="offset-6 col-sm-6 form-control form-control-sm"
+                                   name="oo_sac_juste_prix">
+                        </div>--}}
+                        <h6>Scellé</h6>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Extra Grand</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_scelle_extra_grand">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Grand</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_scelle_grand">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Moyen</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_scelle_moyen">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group row">
+                                    <label for="cb_tdf_vb" class="col-sm-6">Petit</label>
+                                    <input type="number" class="col-sm-6 form-control form-control-sm"
+                                           name="oo_scelle_petit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="regime-c" role="tabpanel" aria-labelledby="regime-tab">
                     <div class="row">
