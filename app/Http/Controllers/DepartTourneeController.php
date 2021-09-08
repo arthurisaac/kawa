@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_site;
-use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
 use App\Models\SiteDepartTournee;
 use App\Models\Vehicule;
@@ -48,7 +47,9 @@ class DepartTourneeController extends Controller
 
     public function liste()
     {
-        $departTournee = DepartTournee::with('vehicules')->get();
+        $departTournee = DepartTournee::with('vehicules')
+            ->orderByDesc("created_at")
+            ->get();
         return view('transport.depart-tournee.liste',
             compact('departTournee'));
     }

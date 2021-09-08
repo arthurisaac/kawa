@@ -24,6 +24,7 @@
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
+                <td>Création</td>
                 <td>Date</td>
                 <td>N°Tournée</td>
                 <td>Véhicule</td>
@@ -35,6 +36,7 @@
             <tbody>
             @foreach ($departTournee as $depart)
                 <tr>
+                    <td>{{$depart->created_at}}</td>
                     <td>{{$depart->date}}</td>
                     <td>{{$depart->numeroTournee}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
@@ -57,7 +59,8 @@
                 $('#table').DataTable({
                     "language": {
                         "url": "French.json"
-                    }
+                    },
+                    "order": [[ 0, "desc" ]]
                 });
             });
         </script>
