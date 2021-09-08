@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use App\Models\Commercial_site;
 use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
@@ -20,6 +22,8 @@ class DepartTourneeController extends Controller
      */
     public function index()
     {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         $departTournee = DepartTournee::all();
         $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
         $sites = Commercial_site::all();
@@ -28,7 +32,7 @@ class DepartTourneeController extends Controller
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         $chauffeurs = DB::table('personnels')->where('transport', 'like', 'chauffeur')->get();
         return view('transport.depart-tournee.index',
-            compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num'));
+            compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -68,6 +72,8 @@ class DepartTourneeController extends Controller
             'chefDeBord' => $request->get('chefDeBord'),
             'kmDepart' => $request->get('kmDepart'),
             'heureDepart' => $request->get('heureDepart'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional')
         ]);
         $departTournee->save();
 
@@ -120,6 +126,8 @@ class DepartTourneeController extends Controller
      */
     public function edit($id)
     {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         $commercial_sites = Commercial_site::all();
         $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
         $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
@@ -129,7 +137,7 @@ class DepartTourneeController extends Controller
         $chauffeurs = DB::table('personnels')->where('transport', 'like', 'chauffeur')->get();
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         return view('transport.depart-tournee.edit',
-            compact('tournee', 'vehicules', 'sitesTournees', 'commercial_sites', 'agents', 'chefBords', 'num', 'chauffeurs'));
+            compact('tournee', 'vehicules', 'sitesTournees', 'commercial_sites', 'agents', 'chefBords', 'num', 'chauffeurs', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -150,6 +158,8 @@ class DepartTourneeController extends Controller
         $departTournee->agentDeGarde = $request->get('agentDeGarde');
         $departTournee->chefDeBord = $request->get('chefDeBord');
         $departTournee->kmDepart = $request->get('kmDepart');
+        $departTournee->centre = $request->get('centre');
+        $departTournee->centre_regional = $request->get('centre_regional');
         $departTournee->save();
 
         $sites = $request->get('site');

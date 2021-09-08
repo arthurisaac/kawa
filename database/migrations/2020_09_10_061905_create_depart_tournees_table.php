@@ -27,6 +27,8 @@ class CreateDepartTourneesTable extends Migration
             $table->time('heureDepart')->nullable();
             $table->integer('kmArrivee')->nullable();
             $table->time('heureArrivee')->nullable();
+            $table->string('centre')->nullable();
+            $table->string('centre_regional')->nullable();
         });
     }
 

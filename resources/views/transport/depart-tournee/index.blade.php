@@ -103,8 +103,25 @@
                         <input type="time" class="form-control" name="heureDepart"/>
                     </div>
                 </div>
-                <div class="col"></div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre">Centre</label>
+                        <select name="centre" id="centre" class="form-control" required>
+                            <option>Choisir centre</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre_regional">Centre régional</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control" required>
+                            <option>Choisir centre régional</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col"></div>
             </div>
             <br/>
@@ -170,6 +187,23 @@
     </div>
     <script>
         $(document).ready(function () {
+            let centres = {!! json_encode($centres) !!};
+            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
+
             let index = 1;
             $("#add").on("click", function () {
                 index++;
@@ -231,20 +265,20 @@
         let cout = 0;
         let site = null;
 
-       /* $("#vehicule").on("change", function () {
-            $("#chauffeur option").remove();
-            const vehicule = vehicules.find(v => v.id === parseInt(this.value));
-            if (vehicule) {
-                $('#chauffeur').append($('<option>', {
-                    value: vehicule.chauffeur_titulaires.id,
-                    text: vehicule.chauffeur_titulaires.nomPrenoms
-                }));
-                $('#chauffeur').append($('<option>', {
-                    value: vehicule.chauffeur_suppleants.id,
-                    text: vehicule.chauffeur_suppleants.nomPrenoms
-                }));
-            }
-        });*/
+        /* $("#vehicule").on("change", function () {
+             $("#chauffeur option").remove();
+             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
+             if (vehicule) {
+                 $('#chauffeur').append($('<option>', {
+                     value: vehicule.chauffeur_titulaires.id,
+                     text: vehicule.chauffeur_titulaires.nomPrenoms
+                 }));
+                 $('#chauffeur').append($('<option>', {
+                     value: vehicule.chauffeur_suppleants.id,
+                     text: vehicule.chauffeur_suppleants.nomPrenoms
+                 }));
+             }
+         });*/
 
         /*$("select[name='type[]']").on("change", function () {
             cout = 0;
@@ -270,7 +304,7 @@
 
     </script>
     <script>
-        $(document).on('DOMNodeInserted', function() {
+        $(document).on('DOMNodeInserted', function () {
 
             // Activer les champs TDF et Caisse
             $("select[name='site[]']").on("change", function () {

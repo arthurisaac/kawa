@@ -107,8 +107,25 @@
                         <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}" />
                     </div>
                 </div>
-                <div class="col"></div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre">Centre</label>
+                        <select name="centre" id="centre" class="form-control" required>
+                            <option>{{$tournee->centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre_regional">Centre régional</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control" required>
+                            <option>{{$tournee->centre_regional}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col"></div>
             </div>
             <br/>
@@ -179,8 +196,21 @@
     </div>
     <script>
         $(document).ready(function () {
-            $.each($("select[name='tdf[]']"), function (i) {
+            let centres = {!! json_encode($centres) !!};
+            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
             });
         });
         /*let vehicules = {};
