@@ -110,34 +110,32 @@
             </div>
             <br/>
 
-            <div class="row">
-                @foreach ($sites as $site)
-                    <div class="col-4">
+            @foreach($sitesTournees as $site)
+                <div class="row">
+                    <div class="col">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Site</label>
-                                    <select class="form-control" name="site[]">
+                                    <select class="form-control" name="site[]" id="site{{$site->id}}">
                                         <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
                                         @foreach ($commercial_sites as $commercial)
                                             <option value="{{$commercial->id}}">{{$commercial->site}}</option>
                                         @endforeach
                                     </select>
-                                    <input type="hidden" name="site_id[]" value="{{$site->id}}">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>heure</label>
-                                    <input type="time" class="form-control" name="heure[]"
-                                           value="{{$site->heure}}"/>
+                                    <input type="time" class="form-control" name="heure[]" value="{{$site->heure}}"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>type</label>
-                                    <select class="form-control" name="type[]">
-                                        <option>{{$site->type}}</option>
+                                    <label>TDF</label>
+                                    <select class="form-control" name="tdf[]" disabled>
+                                        <option value="{{$site->tdf}}">{{$site->tdf}}</option>
                                         <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                         <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                         <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -147,10 +145,23 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Caisse</label>
+                                    <select class="form-control" name="caisse[]" disabled>
+                                        <option value="{{$site->caisse}}">{{$site->caisse}}</option>
+                                        <option value="oo_mad">MAD</option>
+                                        <option value="oo_collecte">Collecte</option>
+                                        <option value="oo_cctv">CCTV</option>
+                                        <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+            <div class="row">
                 <div class="col-4">
                     <div class="col">
                         <br/>
@@ -160,13 +171,16 @@
                 </div>
             </div>
 
-            <div class="row sitesListes"></div>
-
         </form>
     </div>
     <script>
-        let vehicules = {!! json_encode($vehicules) !!};
-        let sites = {!! json_encode($sites) !!};
+        $(document).ready(function () {
+            $.each($("select[name='tdf[]']"), function (i) {
+
+            });
+        });
+        /*let vehicules = {};
+        let sites = {};
 
         let cout = 0;
         let site = null;
@@ -184,9 +198,9 @@
                     text: vehicule.chauffeur_suppleant.nomPrenoms
                 }));
             }
-        });
+        });*/
 
-        $("select[name='type[]']").on("change", function() {
+        /*$("select[name='type[]']").on("change", function() {
             cout = 0;
             let i = -1;
             $.each( $( "select[name='type[]']" ), function() {
@@ -210,10 +224,6 @@
 
         $("#kmDepart").on("change", function () {
             $("#coutTournee").val(cout * parseInt(this.value));
-        });
-
-        $(document).ready(function () {
-
         });
 
         function populateSites(sites) {
@@ -247,7 +257,7 @@
 
                 $(".sitesListes").append(HTML_NODE);
             });
-        }
+        }*/
 
     </script>
 @endsection

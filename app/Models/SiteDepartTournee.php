@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SiteDepartTournee extends Model
 {
     protected $fillable = [
-        'site', 'heure', 'type', 'idTourneeDepart', 'bordereau', 'montant'
+        'site', 'heure', 'tdf', 'idTourneeDepart', 'caisse', 'montant'
     ];
 
     public function sites()

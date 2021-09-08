@@ -50,7 +50,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Kilométrage départ</label>
-                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" required />
+                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" required/>
                     </div>
                 </div>
             </div>
@@ -60,6 +60,9 @@
                         <label>Chauffeur</label>
                         <select class="form-control" name="chauffeur" id="chauffeur">
                             <option></option>
+                            @foreach($chauffeurs as $chauffeur)
+                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -88,7 +91,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Coût tournée</label>
-                        <input type="number" class="form-control" min="0" value="0" name="coutTournee" id="coutTournee"/>
+                        <input type="number" class="form-control" min="0" value="0" name="coutTournee"
+                               id="coutTournee"/>
                     </div>
                 </div>
             </div>
@@ -96,7 +100,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart" />
+                        <input type="time" class="form-control" name="heureDepart"/>
                     </div>
                 </div>
                 <div class="col"></div>
@@ -105,740 +109,129 @@
             </div>
             <br/>
 
-            <div class="row">
-                <div class="col">
+            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+            <br>
+            <div id="data">
+                @for($i=0; $i<2; $i++)
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
-                                <label>Site 1</label>
-                                <select class="form-control" name="site[]" id="site1">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Site {{$i}}</label>
+                                        <select class="form-control" name="site[]" id="site{{$i}}">
+                                            <option></option>
+                                            @foreach ($sites as $site)
+                                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>heure</label>
+                                        <input type="time" class="form-control" name="heure[]"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>TDF</label>
+                                        <select class="form-control" name="tdf[]" disabled>
+                                            <option></option>
+                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                            <option value="oo_vb_intramuros">VB</option>
+                                            <option value="oo_vl_intramuros">VL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Caisse</label>
+                                        <select class="form-control" name="caisse[]" disabled>
+                                            <option></option>
+                                            <option value="oo_mad">MAD</option>
+                                            <option value="oo_collecte">Collecte</option>
+                                            <option value="oo_cctv">CCTV</option>
+                                            <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 8</label>
-                                <select class="form-control" name="site[]" id="site8">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 15</label>
-                                <select class="form-control" name="site[]" id="site15">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 2</label>
-                                <select class="form-control" name="site[]" id="site2">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 9</label>
-                                <select class="form-control" name="site[]" id="site9">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 16</label>
-                                <select class="form-control" name="site[]" id="site16">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 3</label>
-                                <select class="form-control" name="site[]" id="site3">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 10</label>
-                                <select class="form-control" name="site[]" id="site10">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 17</label>
-                                <select class="form-control" name="site[]" id="site17">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 4</label>
-                                <select class="form-control" name="site[]" id="site4">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 11</label>
-                                <select class="form-control" name="site[]" id="site11">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 18</label>
-                                <select class="form-control" name="site[]" id="site18">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 5</label>
-                                <select class="form-control" name="site[]" id="site5">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 12</label>
-                                <select class="form-control" name="site[]" id="site12">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 19</label>
-                                <select class="form-control" name="site[]" id="site19">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 6</label>
-                                <select class="form-control" name="site[]" id="site6">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 13</label>
-                                <select class="form-control" name="site[]" id="site13">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 20</label>
-                                <select class="form-control" name="site[]" id="site20">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 6</label>
-                                <select class="form-control" name="site[]" id="site6">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                    <option value="oo_vb_intramuros">VB</option>
-                                    <option value="oo_vl_intramuros">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site 13</label>
-                                <select class="form-control" name="site[]" id="site13">
-                                    <option></option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>heure</label>
-                                <input type="time" class="form-control" name="heure[]"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>type</label>
-                                <select class="form-control" name="type[]">
-                                    <option></option>
-                                    <option value="VB extramuros bitume">VB extramuros bitume</option>
-                                    <option value="VB extramuros piste">VB extramuros piste</option>
-                                    <option value="VL extramuros bitume">VL extramuros bitume</option>
-                                    <option value="VL extramuros piste">VL extramuros piste</option>
-                                    <option value="VB">VB</option>
-                                    <option value="VL">VL</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <br/>
-                    <button class="btn btn-primary">Enregistrer</button>
-                    <button class="btn btn-danger">Annuler</button>
-                </div>
-            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function () {
+            let index = 1;
+            $("#add").on("click", function () {
+                index++;
+                $("#data").append(' <div class="row">\n' +
+                    '                        <div class="col">\n' +
+                    '                            <div class="row">\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>Site ' + index + '</label>\n' +
+                    '                                        <select class="form-control" name="site[]" id="site{{$i}}">\n' +
+                    '                                            <option></option>\n' +
+                    '                                            @foreach ($sites as $site)\n' +
+                    '                                                <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                            @endforeach\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>heure</label>\n' +
+                    '                                        <input type="time" class="form-control" name="heure[]"/>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>TDF</label>\n' +
+                    '                                        <select class="form-control" name="tdf[]" disabled>\n' +
+                    '                                            <option></option>\n' +
+                    '                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
+                    '                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
+                    '                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
+                    '                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
+                    '                                            <option value="oo_vb_intramuros">VB</option>\n' +
+                    '                                            <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>Caisse</label>\n' +
+                    '                                        <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                            <option></option>\n' +
+                    '                                            <option value="oo_mad">MAD</option>\n' +
+                    '                                            <option value="oo_collecte">Collecte</option>\n' +
+                    '                                            <option value="oo_cctv">CCTV</option>\n' +
+                    '                                            <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+            });
+        });
+    </script>
     <script>
         let vehicules = {!! json_encode($vehicules) !!};
         let sites = {!! json_encode($sites) !!};
         let cout = 0;
         let site = null;
 
-        $("#vehicule").on("change", function () {
+       /* $("#vehicule").on("change", function () {
             $("#chauffeur option").remove();
             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
             if (vehicule) {
@@ -851,12 +244,12 @@
                     text: vehicule.chauffeur_suppleants.nomPrenoms
                 }));
             }
-        });
+        });*/
 
-        $("select[name='type[]']").on("change", function() {
+        /*$("select[name='type[]']").on("change", function () {
             cout = 0;
             let i = -1;
-            $.each( $( "select[name='type[]']" ), function() {
+            $.each($("select[name='type[]']"), function () {
                 i++;
                 const type = $("select[name='type[]']").get(i);
                 const site = $("select[name='site[]']").get(i);
@@ -872,11 +265,86 @@
                 }
 
             });
+        });*/
+
+
+    </script>
+    <script>
+        $(document).on('DOMNodeInserted', function() {
+
+            // Activer les champs TDF et Caisse
+            $("select[name='site[]']").on("change", function () {
+                let index = 0;
+                const thisSite = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='site[]']"), function (i) {
+                    const site = $("select[name='site[]']").get(i);
+                    if (thisSite === site) {
+                        index = i;
+                    }
+                });
+                const site = sites.find(s => s.id === parseInt(this.value));
+                if (site) {
+                    $("select[name='tdf[]']").eq(index).prop('disabled', false);
+                    $("select[name='caisse[]']").eq(index).prop('disabled', false);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+
+            // Calculer count total à partir de TDF
+            $("select[name='tdf[]']").on("change", function () {
+                let coutTournee = 0;
+                const thisTDF = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='tdf[]']"), function (i) {
+                    const tdf = $("select[name='tdf[]']").get(i);
+                    if (thisTDF === tdf) {
+                        index = i;
+                    }
+                    const siteInput = $("select[name='site[]']").get(i);
+                    const site = sites.find(s => s.id === parseInt(siteInput.value));
+                    const caisseInput = $("select[name='caisse[]']").get(i);
+                    if (site) {
+                        const montantTDF = site[this.value] ?? 0;
+                        const montantCaisse = site[caisseInput.value] ?? 0;
+                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                        $("#coutTournee").val(cout);
+                    } else {
+                        console.log("Site non trouvé :-(");
+                    }
+                });
+
+            });
+
+            // Calculer count total à partir de Caisse
+            $("select[name='caisse[]']").on("change", function () {
+                let coutTournee = 0;
+                const thisTDF = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='caisse[]']"), function (i) {
+                    const tdf = $("select[name='caisse[]']").get(i);
+                    if (thisTDF === tdf) {
+                        index = i;
+                    }
+                    const siteInput = $("select[name='site[]']").get(i);
+                    const site = sites.find(s => s.id === parseInt(siteInput.value));
+                    const tdfInput = $("select[name='tdf[]']").get(i);
+                    if (site) {
+                        const montantCaisse = site[this.value] ?? 0;
+                        const montantTDF = site[tdfInput.value] ?? 0;
+                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                        $("#coutTournee").val(cout);
+                    } else {
+                        console.log("Site non trouvé :-(");
+                    }
+                });
+
+            });
+
+            /*$("#kmDepart").on("change", function () {
+                $("#coutTournee").val(cout * parseInt(this.value));
+            })*/
         });
-
-        $("#kmDepart").on("change", function() {
-            $("#coutTournee").val( cout * parseInt(this.value));
-        })
-
     </script>
 @endsection

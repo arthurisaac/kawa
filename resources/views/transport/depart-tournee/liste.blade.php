@@ -40,18 +40,11 @@
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
                     <td>{{$depart->chauffeurs->nomPrenoms ?? 'Peronnel non disponible ' . $depart->chauffeur}}</td>
                     <td>{{$depart->coutTournee}}</td>
-                    <td>
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{ route('depart-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                            </div>
-                            <div class="col">
-                                <form action="{{ route('depart-tournee.destroy', $depart->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                </form>
-                            </div>
+                    <td  style="width: 70px;">
+
+                        <div>
+                            <a href="{{ route('depart-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm"></a>
+                            <button class="btn btn-danger btn-sm" onclick="supprimer('{{$depart->id}}', this)"></button>
                         </div>
                     </td>
                 </tr>
@@ -67,5 +60,33 @@
                     }
                 });
             });
+        </script>
+        <script>
+            function supprimer(id, e) {
+                if (confirm("Confirmer la suppression?")) {
+                    const token = "{{ csrf_token() }}";
+                    $.ajax({
+                        url: "depart-tournee/" + id,
+                        type: 'DELETE',
+                        dataType: "JSON",
+                        data: {
+                            "id": id,
+                            _token: token,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            alert("Suppression effectuée");
+                            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                            document.getElementById("table_client_informations").deleteRow(indexLigne);
+                        },
+                        error: function (err) {
+                            console.error(err.responseJSON.message);
+                            alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                        }
+                    }).done(function () {
+                        // TODO hide loader
+                    });
+                }
+            }
         </script>
 @endsection

@@ -26,9 +26,9 @@ class DepartTourneeController extends Controller
         $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
-        // $chauffeurs = DB::table('personnels')->where('transport', '=', 'Chauffeur')->get();
+        $chauffeurs = DB::table('personnels')->where('transport', 'like', 'chauffeur')->get();
         return view('transport.depart-tournee.index',
-            compact('departTournee', 'vehicules', 'sites', 'agents', 'chefBords', 'num'));
+            compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num'));
     }
 
     /**
@@ -73,7 +73,8 @@ class DepartTourneeController extends Controller
 
         $sites = $request->get('site');
         $heures = $request->get('heure');
-        $types = $request->get('type');
+        $tdf = $request->get('tdf');
+        $caisse = $request->get('caisse');
 
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
@@ -81,7 +82,8 @@ class DepartTourneeController extends Controller
                     'idTourneeDepart' => $departTournee->id,
                     'site' => $sites[$i],
                     'heure' => $heures[$i],
-                    'type' => $types[$i],
+                    'tdf' => $tdf[$i],
+                    'caisse' => $caisse[$i],
                 ]);
                 $siteDepartTournee->save();
             }
@@ -121,12 +123,12 @@ class DepartTourneeController extends Controller
         $commercial_sites = Commercial_site::all();
         $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
         $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
-        $sites = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
+        $sitesTournees = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
         $agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         return view('transport.depart-tournee.edit',
-            compact('tournee', 'vehicules', 'sites', 'commercial_sites', 'agents', 'chefBords', 'num'));
+            compact('tournee', 'vehicules', 'sitesTournees', 'commercial_sites', 'agents', 'chefBords', 'num'));
     }
 
     /**
@@ -177,7 +179,14 @@ class DepartTourneeController extends Controller
     public function destroy($id)
     {
         $departTournee = DepartTournee::find($id);
+        $sitesDepart = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
+        foreach ($sitesDepart as $site)
+            $site->delete();
+
         $departTournee->delete();
-        return redirect('/depart-tournee-liste')->with('success', 'Tournée supprimée!');
+        return response()->json([
+            'message' => 'Good!'
+        ]);
+        //return redirect('/depart-tournee-liste')->with('success', 'Tournée supprimée!');
     }
 }

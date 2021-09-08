@@ -22,7 +22,7 @@
         @endif
 
         <br/>
-        <table id="table_client_informations" class="table table-bordered table-hover">
+        <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
             <thead>
             <tr>
                 <th scope="col">Client</th>
@@ -45,8 +45,10 @@
                     <td>{{$client->contact_email}}</td>
                     <td>
                         <div style="width: 110px;">
-                            <a href="{{ route('commercial-client.edit', $client->id)}}" class="btn btn-primary btn-sm">Mod.</a>
-                            <a class="btn btn-danger btn-sm" type="submit" onclick="supprimer({{$client->id}}, this)">Supp.</a>
+                            <a href="{{ route('commercial-client.edit', $client->id)}}"
+                               class="btn btn-primary btn-sm"></a>
+                            <a class="btn btn-danger btn-sm" type="submit"
+                               onclick="supprimer({{$client->id}}, this)"></a>
                         </div>
                     </td>
                 </tr>
