@@ -114,6 +114,7 @@
             <br/>
 
             @foreach($sitesTournees as $site)
+                <input type="hidden" name="site_id[]" value="{{$site->id}}">
                 <div class="row">
                     <div class="col">
                         <div class="row">
@@ -169,7 +170,7 @@
                     <div class="col">
                         <br/>
                         <button class="btn btn-primary">Enregistrer</button>
-                        <button class="btn btn-danger">Annuler</button>
+                        <button class="btn btn-danger" type="button" onclick="window.history.back()">Annuler</button>
                     </div>
                 </div>
             </div>
