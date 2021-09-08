@@ -26,6 +26,8 @@
             <tr>
                 <td>Création</td>
                 <td>Date</td>
+                <td>Centre</td>
+                <td>Centre régionale</td>
                 <td>N°Tournée</td>
                 <td>Véhicule</td>
                 <td>Chauffeur</td>
@@ -38,6 +40,8 @@
                 <tr>
                     <td>{{$depart->created_at}}</td>
                     <td>{{$depart->date}}</td>
+                    <td>{{$depart->centre}}</td>
+                    <td>{{$depart->centre_regional}}</td>
                     <td>{{$depart->numeroTournee}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
                     <td>{{$depart->chauffeurs->nomPrenoms ?? 'Peronnel non disponible ' . $depart->chauffeur}}</td>

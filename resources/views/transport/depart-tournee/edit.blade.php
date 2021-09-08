@@ -43,7 +43,8 @@
                     <div class="form-group">
                         <label>Véhicule</label>
                         <select class="form-control" name="idVehicule" id="vehicule">
-                            <option value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
+                            <option
+                                value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
                             @foreach($vehicules as $vehicule)
                                 <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
                             @endforeach
@@ -63,7 +64,8 @@
                     <div class="form-group">
                         <label>Chauffeur</label>
                         <select class="form-control" name="chauffeur" id="chauffeur">
-                            <option value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
+                            <option
+                                value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
                             @foreach($chauffeurs as $chauffeur)
                                 <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
                             @endforeach
@@ -74,7 +76,8 @@
                     <div class="form-group">
                         <label>Agent de garde</label>
                         <select class="form-control" name="agentDeGarde">
-                            <option value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
+                            <option
+                                value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
                             @foreach($agents as $agent)
                                 <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
                             @endforeach
@@ -85,7 +88,8 @@
                     <div class="form-group">
                         <label>Chef de bord</label>
                         <select class="form-control" name="chefDeBord">
-                            <option value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
+                            <option
+                                value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
                             @foreach($chefBords as $chef)
                                 <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
                             @endforeach
@@ -104,7 +108,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}" />
+                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}"/>
                     </div>
                 </div>
                 <div class="col">
@@ -130,58 +134,67 @@
             </div>
             <br/>
 
-            @foreach($sitesTournees as $site)
-                <input type="hidden" name="site_id[]" value="{{$site->id}}">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Site</label>
-                                    <select class="form-control" name="site[]" id="site{{$site->id}}">
-                                        <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
-                                        @foreach ($commercial_sites as $commercial)
-                                            <option value="{{$commercial->id}}">{{$commercial->site}}</option>
-                                        @endforeach
-                                    </select>
+
+            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+            <br>
+            <div id="data">
+                @foreach($sitesTournees as $site)
+                    <input type="hidden" name="site_id[]" value="{{$site->id}}">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Site</label>
+                                        <select class="form-control" name="site_edit[]" id="site{{$site->id}}">
+                                            <option
+                                                value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
+                                            @foreach ($commercial_sites as $commercial)
+                                                <option value="{{$commercial->id}}">{{$commercial->site}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>heure</label>
-                                    <input type="time" class="form-control" name="heure[]" value="{{$site->heure}}"/>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>heure</label>
+                                        <input type="time" class="form-control" name="heure_edit[]"
+                                               value="{{$site->heure}}"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>TDF</label>
-                                    <select class="form-control" name="tdf[]">
-                                        <option value="{{$site->tdf}}">{{$site->sites["$site->tdf"] ?? 0}}</option>
-                                        <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                        <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                        <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                        <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                        <option value="oo_vb_intramuros">VB</option>
-                                        <option value="oo_vl_intramuros">VL</option>
-                                    </select>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>TDF</label>
+                                        <select class="form-control" name="tdf_edit[]">
+                                            <option value="{{$site->tdf}}">{{$site->sites["$site->tdf"] ?? 0}}</option>
+                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                            <option value="oo_vb_intramuros">VB</option>
+                                            <option value="oo_vl_intramuros">VL</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Caisse</label>
-                                    <select class="form-control" name="caisse[]">
-                                        <option value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
-                                        <option value="oo_mad">MAD</option>
-                                        <option value="oo_collecte">Collecte</option>
-                                        <option value="oo_cctv">CCTV</option>
-                                        <option value="oo_collecte_caisse">Collecte Caisse</option>
-                                    </select>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Caisse</label>
+                                        <select class="form-control" name="caisse_edit[]">
+                                            <option
+                                                value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
+                                            <option value="oo_mad">MAD</option>
+                                            <option value="oo_collecte">Collecte</option>
+                                            <option value="oo_cctv">CCTV</option>
+                                            <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
             <div class="row">
                 <div class="col-4">
                     <div class="col">
@@ -293,5 +306,137 @@
             });
         }*/
 
+        $(document).ready(function () {
+            let index = 0;
+            $("#add").on("click", function () {
+                index++;
+                $("#data").append(' <div class="row">\n' +
+                    '                        <div class="col">\n' +
+                    '                            <div class="row">\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>Site </label>\n' +
+                    '                                        <select class="form-control" name="site[]" id="site '+index+'">\n' +
+                    '                                            <option></option>\n' +
+                    '                                            @foreach ($commercial_sites as $site)\n' +
+                    '                                                <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                            @endforeach\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>heure</label>\n' +
+                    '                                        <input type="time" class="form-control" name="heure[]"/>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>TDF</label>\n' +
+                    '                                        <select class="form-control" name="tdf[]" disabled>\n' +
+                    '                                            <option></option>\n' +
+                    '                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
+                    '                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
+                    '                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
+                    '                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
+                    '                                            <option value="oo_vb_intramuros">VB</option>\n' +
+                    '                                            <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="col">\n' +
+                    '                                    <div class="form-group">\n' +
+                    '                                        <label>Caisse</label>\n' +
+                    '                                        <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                            <option></option>\n' +
+                    '                                            <option value="oo_mad">MAD</option>\n' +
+                    '                                            <option value="oo_collecte">Collecte</option>\n' +
+                    '                                            <option value="oo_cctv">CCTV</option>\n' +
+                    '                                            <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
+                    '                                        </select>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+            });
+        });
+    </script>
+
+    <script>
+
+        let sites = {!! json_encode($commercial_sites) !!};
+        $(document).on('DOMNodeInserted', function () {
+
+            // Activer les champs TDF et Caisse
+            $("select[name='site[]']").on("change", function () {
+                let index = 0;
+                const thisSite = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='site[]']"), function (i) {
+                    const site = $("select[name='site[]']").get(i);
+                    if (thisSite === site) {
+                        index = i;
+                    }
+                });
+                const site = sites.find(s => s.id === parseInt(this.value));
+                if (site) {
+                    $("select[name='tdf[]']").eq(index).prop('disabled', false);
+                    $("select[name='caisse[]']").eq(index).prop('disabled', false);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+
+            // Calculer count total à partir de TDF
+            $("select[name='tdf[]']").on("change", function () {
+                let coutTournee = 0;
+                const thisTDF = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='tdf[]']"), function (i) {
+                    const tdf = $("select[name='tdf[]']").get(i);
+                    if (thisTDF === tdf) {
+                        index = i;
+                    }
+                    const siteInput = $("select[name='site[]']").get(i);
+                    const site = sites.find(s => s.id === parseInt(siteInput.value));
+                    const caisseInput = $("select[name='caisse[]']").get(i);
+                    if (site) {
+                        const montantTDF = site[this.value] ?? 0;
+                        const montantCaisse = site[caisseInput.value] ?? 0;
+                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                        $("#coutTournee").val(cout);
+                    } else {
+                        console.log("Site non trouvé :-(");
+                    }
+                });
+
+            });
+
+            // Calculer count total à partir de Caisse
+            $("select[name='caisse[]']").on("change", function () {
+                let coutTournee = 0;
+                const thisTDF = this;
+                // Trouver l'index du champs actuel
+                $.each($("select[name='caisse[]']"), function (i) {
+                    const tdf = $("select[name='caisse[]']").get(i);
+                    if (thisTDF === tdf) {
+                        index = i;
+                    }
+                    const siteInput = $("select[name='site[]']").get(i);
+                    const site = sites.find(s => s.id === parseInt(siteInput.value));
+                    const tdfInput = $("select[name='tdf[]']").get(i);
+                    if (site) {
+                        const montantCaisse = site[this.value] ?? 0;
+                        const montantTDF = site[tdfInput.value] ?? 0;
+                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                        $("#coutTournee").val(cout);
+                    } else {
+                        console.log("Site non trouvé :-(");
+                    }
+                });
+
+            });
+        });
     </script>
 @endsection

@@ -163,20 +163,36 @@ class DepartTourneeController extends Controller
         $departTournee->centre_regional = $request->get('centre_regional');
         $departTournee->save();
 
+        $sites_edit = $request->get('site_edit');
+        $heures_edit = $request->get('heure_edit');
+        $tdf_edit = $request->get('tdf_edit');
+        $caisse_edit = $request->get('caisse_edit');
+        $site_ids = $request->get('site_id');
+
+        for ($i = 0; $i < count($sites_edit); $i++) {
+            if (!empty($sites[$i])) {
+                $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
+                $siteDepartTournee->site = $sites_edit[$i];
+                $siteDepartTournee->heure = $heures_edit[$i];
+                $siteDepartTournee->tdf = $tdf_edit[$i];
+                $siteDepartTournee->caisse = $caisse_edit[$i];
+                $siteDepartTournee->save();
+            }
+        }
+
         $sites = $request->get('site');
         $heures = $request->get('heure');
         $tdf = $request->get('tdf');
         $caisse = $request->get('caisse');
-        $site_ids = $request->get('site_id');
-
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
-                $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
-                $siteDepartTournee->idTourneeDepart = $departTournee->id;
-                $siteDepartTournee->site = $sites[$i];
-                $siteDepartTournee->heure = $heures[$i];
-                $siteDepartTournee->tdf = $tdf[$i];
-                $siteDepartTournee->caisse = $caisse[$i];
+                $siteDepartTournee = new SiteDepartTournee([
+                    'idTourneeDepart' => $departTournee->id,
+                    'site' => $sites[$i],
+                    'heure' => $heures[$i],
+                    'tdf' => $tdf[$i],
+                    'caisse' => $caisse[$i],
+                ]);
                 $siteDepartTournee->save();
             }
         }
