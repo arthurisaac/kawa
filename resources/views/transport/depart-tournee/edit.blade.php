@@ -64,6 +64,9 @@
                         <label>Chauffeur</label>
                         <select class="form-control" name="chauffeur" id="chauffeur">
                             <option value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
+                            @foreach($chauffeurs as $chauffeur)
+                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -134,8 +137,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>TDF</label>
-                                    <select class="form-control" name="tdf[]" disabled>
-                                        <option value="{{$site->tdf}}">{{$site->tdf}}</option>
+                                    <select class="form-control" name="tdf[]">
+                                        <option value="{{$site->tdf}}">{{$site->sites["$site->tdf"] ?? 0}}</option>
                                         <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                         <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                         <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -148,8 +151,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Caisse</label>
-                                    <select class="form-control" name="caisse[]" disabled>
-                                        <option value="{{$site->caisse}}">{{$site->caisse}}</option>
+                                    <select class="form-control" name="caisse[]">
+                                        <option value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
                                         <option value="oo_mad">MAD</option>
                                         <option value="oo_collecte">Collecte</option>
                                         <option value="oo_cctv">CCTV</option>
