@@ -18,7 +18,7 @@ class SecuriteServiceController extends Controller
      */
     public function index()
     {
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $personnels = DB::table('personnels')->where('service', 'LIKE', "securite")->orderBy('nomPrenoms')->get();
         $securiteService = SecuriteService::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();

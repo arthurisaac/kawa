@@ -44,7 +44,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Véhicule</label>
-                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly />
+                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
                         {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
                             <option></option>
                             @foreach($vehicules as $vehicule)
@@ -58,7 +58,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chef de bord</label>
-                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly />
+                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
                         {{--<select class="form-control col-sm-8" name="chefDeBord">
                             <option></option>
                             @foreach($chefBords as $chef)
@@ -70,7 +70,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Agent garde</label>
-                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly />
+                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
                         {{--<select class="form-control col-sm-8" name="agentDeGarde">
                             <option></option>
                             @foreach($agents as $agent)
@@ -82,7 +82,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chauffeur:</label>
-                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly />
+                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
                         {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
                             <option></option>
                         </select>--}}
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <br />
+        <br/>
         <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="depart-centre-tab" data-toggle="tab" href="#depart-centre" role="tab"
@@ -145,7 +145,8 @@
 
                                 <div class="form-group row">
                                     <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="button" id="dcSubmit">Enregistrer</button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="dcSubmit">Enregistrer
+                                    </button>
                                 </div>
 
                             </div>
@@ -212,7 +213,8 @@
 
                                 <div class="form-group row">
                                     <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer</button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer
+                                    </button>
                                 </div>
 
                             </div>
@@ -232,7 +234,7 @@
                                     @foreach ($arriveeSites as $arriveeSite)
                                         <tr>
                                             <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
-                                            <td>{{$arriveeSite->tournees->date}}</td>
+                                            <td>{{$arriveeSite->tournees->date ?? $arriveeSite->tournees }}</td>
                                             <td>{{$arriveeSite->heureArrivee}}</td>
                                             <td>{{$arriveeSite->kmArrivee}}</td>
                                             <td>{{$arriveeSite->observation}}</td>
@@ -283,7 +285,8 @@
                                         <textarea class="form-control col-sm-6" name="observation"></textarea>
                                     </div>
                                     <div class="row">
-                                        <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">Enregistrer</button>
+                                        <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">Enregistrer
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col"></div>
@@ -316,7 +319,7 @@
                                 <tr>
                                     <td>{{$depart->site}}</td>
                                     {{--<td>{{$depart->sites->site}}</td>--}}
-                                    <td>{{date('d-m-Y', strtotime($depart->tournees->date))}}</td>
+                                    <td>{{date('d-m-Y', strtotime($depart->tournees->date ?? ""))}}</td>
                                     <td>{{$depart->heureDepart}}</td>
                                     {{--<td></td>
                                     <td></td>
@@ -406,7 +409,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                                    <select id="centre_regional" name="centreRegional" class="form-control col-sm-7" required>
+                                    <select id="centre_regional" name="centreRegional" class="form-control col-sm-7"
+                                            required>
                                     </select>
                                 </div>
                             </div>
@@ -452,9 +456,9 @@
                             <tbody>
                             @foreach ($tourneeCentres as $tournee)
                                 <tr>
-                                    <td>{{$tournee->tournees->date}}</td>
-                                    <td>{{$tournee->tournees->numeroTournee}}</td>
-                                    <td>{{$tournee->details->vehicules->immatriculation}}</td>
+                                    <td>{{$tournee->tournees->date ?? "Indisponible"}}</td>
+                                    <td>{{$tournee->tournees->numeroTournee  ?? "Indisponible"}}</td>
+                                    <td>{{$tournee->details->vehicules->immatriculation ?? "Indisponible"}}</td>
                                     <td>{{$tournee->details->chauffeurs->nomPrenoms ?? ""}}</td>
                                     <td>{{$tournee->details->chefDeBords->nomPrenoms ?? ""}}</td>
                                     <td>{{$tournee->details->agentDeGardes->nomPrenoms ?? ""}}</td>
@@ -557,7 +561,7 @@
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
                 });
                 if (departSite) {
-                    departSite.map( d => {
+                    departSite.map(d => {
                         $('#asSite').append($('<option>', {
                             value: d.sites.id,
                             text: d.sites.site
@@ -637,7 +641,7 @@
     <script>
         $(document).ready(function () {
 
-            $("#dcSubmit").on("click", function() {
+            $("#dcSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
 
                 const noTournee = $("#noTournee").val();
@@ -657,7 +661,7 @@
                         noBordereau: asNumeroBordereau,
                         _token: _token
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
@@ -670,7 +674,7 @@
                 })
             });
 
-            $("#asSubmit").on("click", function() {
+            $("#asSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
 
                 const noTournee = $("#noTournee").val();
@@ -690,7 +694,7 @@
                         observation: observation,
                         _token: _token
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
@@ -703,7 +707,7 @@
                 })
             });
 
-            $("#dsSubmit").on("click", function() {
+            $("#dsSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
                 const noTournee = $("#noTournee").val();
                 const site = $("select[name=asSite]").val();
@@ -711,8 +715,8 @@
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
-                    data : $('#departSite').serialize() + `&maincourante=departSite&noTournee=${noTournee}&_token=${_token}&site=${site}`,
-                    success: function(response) {
+                    data: $('#departSite').serialize() + `&maincourante=departSite&noTournee=${noTournee}&_token=${_token}&site=${site}`,
+                    success: function (response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else if (response.errors) {
@@ -725,15 +729,15 @@
                 })
             });
 
-            $("#acSubmit").on("click", function() {
+            $("#acSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
                 const noTournee = $("#noTournee").val();
 
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
-                    data : $('#arriveeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
-                    success: function(response) {
+                    data: $('#arriveeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
+                    success: function (response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
@@ -745,15 +749,15 @@
                 })
             });
 
-            $("#tcSubmit").on("click", function() {
+            $("#tcSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
                 const noTournee = $("#noTournee").val();
 
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
-                    data : $('#tourneeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
-                    success: function(response) {
+                    data: $('#tourneeCentre').serialize() + `&noTournee=${noTournee}&_token=${_token}`,
+                    success: function (response) {
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
