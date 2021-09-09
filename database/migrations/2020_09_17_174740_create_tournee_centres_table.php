@@ -16,7 +16,7 @@ class CreateTourneeCentresTable extends Migration
         Schema::create('tournee_centres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('noTournee')->references('id')->on('depart_tournees');
+            $table->foreignId('noTournee')->references('id')->on('depart_tournees')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('centre');
             $table->string('centreRegional');
             $table->date('dateDebut')->nullable();

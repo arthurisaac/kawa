@@ -17,8 +17,8 @@ class CreateArriveeTourneesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('numeroTournee');
-            $table->foreignId('convoyeur1')->references('id')->on('personnels');;
-            $table->foreignId('convoyeur2')->references('id')->on('personnels');;
+            $table->foreignId('convoyeur1')->references('id')->on('personnels');
+            $table->foreignId('convoyeur2')->references('id')->on('personnels');
             $table->foreignId('convoyeur3')->references('id')->on('personnels');
             $table->integer('kmDepart')->nullable();
             $table->time('heureDepart')->nullable();

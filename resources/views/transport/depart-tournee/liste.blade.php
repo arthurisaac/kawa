@@ -84,7 +84,7 @@
                             console.log(response);
                             alert("Suppression effectuée");
                             const indexLigne = $(e).closest('tr').get(0).rowIndex;
-                            document.getElementById("table_client_informations").deleteRow(indexLigne);
+                            document.getElementById("table").deleteRow(indexLigne);
                         },
                         error: function (err) {
                             console.error(err.responseJSON.message);

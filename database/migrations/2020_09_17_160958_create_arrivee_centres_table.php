@@ -16,7 +16,7 @@ class CreateArriveeCentresTable extends Migration
         Schema::create('arrivee_centres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('noTournee')->references('id')->on('depart_tournees');;
+            $table->foreignId('noTournee')->references('id')->on('depart_tournees')->cascadeOnDelete()->cascadeOnUpdate();
             $table->time('heureArrivee');
             $table->string('kmArrive');
             $table->string('observation')->nullable()->default('RAS');
