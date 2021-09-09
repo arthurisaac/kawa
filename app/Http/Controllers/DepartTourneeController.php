@@ -180,23 +180,24 @@ class DepartTourneeController extends Controller
             }
         }
 
-        $sites = $request->get('site');
-        $heures = $request->get('heure');
-        $tdf = $request->get('tdf');
-        $caisse = $request->get('caisse');
-        for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($sites[$i])) {
-                $siteDepartTournee = new SiteDepartTournee([
-                    'idTourneeDepart' => $departTournee->id,
-                    'site' => $sites[$i],
-                    'heure' => $heures[$i],
-                    'tdf' => $tdf[$i],
-                    'caisse' => $caisse[$i],
-                ]);
-                $siteDepartTournee->save();
+        if ($request->get('site')) {
+            $sites = $request->get('site');
+            $heures = $request->get('heure');
+            $tdf = $request->get('tdf');
+            $caisse = $request->get('caisse');
+            for ($i = 0; $i < count($sites); $i++) {
+                if (!empty($sites[$i])) {
+                    $siteDepartTournee = new SiteDepartTournee([
+                        'idTourneeDepart' => $departTournee->id,
+                        'site' => $sites[$i],
+                        'heure' => $heures[$i],
+                        'tdf' => $tdf[$i],
+                        'caisse' => $caisse[$i],
+                    ]);
+                    $siteDepartTournee->save();
+                }
             }
         }
-
 
         return redirect('/depart-tournee-liste')->with('success', 'Tournée modifiée!');
     }
