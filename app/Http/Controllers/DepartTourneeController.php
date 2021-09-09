@@ -169,8 +169,8 @@ class DepartTourneeController extends Controller
         $caisse_edit = $request->get('caisse_edit');
         $site_ids = $request->get('site_id');
 
-        for ($i = 0; $i < count($sites_edit); $i++) {
-            if (!empty($sites[$i])) {
+        for ($i = 0; $i < count($site_ids); $i++) {
+            if (!empty($sites_edit[$i]) && !empty($tdf_edit[$i])) {
                 $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
                 $siteDepartTournee->site = $sites_edit[$i];
                 $siteDepartTournee->heure = $heures_edit[$i];
