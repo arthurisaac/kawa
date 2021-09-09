@@ -166,7 +166,7 @@
                                     <div class="form-group">
                                         <label>TDF</label>
                                         <select class="form-control" name="tdf_edit[]">
-                                            <option value="{{$site->tdf}}">{{$site->sites["$site->tdf"] ?? 0}}</option>
+                                            <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? 0}}</option>
                                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                             <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                             <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -211,7 +211,6 @@
     <script>
         let sites = {!! json_encode($commercial_sites) !!};
         $(document).on('DOMNodeInserted', function () {
-
             // Activer les champs TDF et Caisse
             $("select[name='site[]']").on("change", function () {
                 let index = 0;
@@ -333,6 +332,38 @@
                     }));
                 })
             });
+
+            // Remplacer montant tdf par text du select
+            $.each($("select[name='tdf_edit[]']"), function (i) {
+                const tdfInput = $("select[name='tdf_edit[]']").get(i);
+                console.log(tdfInput.value);
+                switch (tdfInput.value) {
+                    case "oo_vb_extamuros_bitume_edit":
+                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extamuros_bitume");
+                        break;
+                    case "oo_vb_extramuros_piste_edit":
+                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extramuros_piste");
+                        break;
+                    case "oo_vl_extramuros_bitume_edit":
+                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_bitume");
+                        break;
+                    case "oo_vl_extramuros_piste_edit":
+                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_piste");
+                        break;
+                    case "oo_vb_intramuros_edit":
+                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_intramuros");
+                        break;
+                    case "oo_vb_intramuros_edit":
+                        $("select[name='oo_vl_intramuros[]']").eq(i).val("oo_vl_intramuros");
+                        break;
+                    default:
+                        console.log("aucun tdf");
+                }
+            });
+
+            $("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
+
+
 
             // Activer les champs TDF et Caisse edit
             $("select[name='site_edit[]']").on("change", function () {
