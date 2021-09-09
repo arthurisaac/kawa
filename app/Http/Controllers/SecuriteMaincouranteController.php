@@ -28,6 +28,7 @@ class SecuriteMaincouranteController extends Controller
      */
     public function index()
     {
+        $date = date('d/m/Y');
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
@@ -42,7 +43,7 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date'));
     }
 
     public function liste()

@@ -27,7 +27,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="date" class="col-sm-4">Date</label>
-                        <input type="date" name="date" id="date" class="form-control col-sm-8" readonly/>
+                        <input type="text" name="date" id="date" value="{{$date}}" class="form-control col-sm-8" readonly/>
                     </div>
                 </div>
                 <div class="col">
