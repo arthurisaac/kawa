@@ -44,15 +44,18 @@ class CreateCommercialClientsTable extends Migration
             $table->string('base_petit_materiel_securipack')->nullable();
             $table->string('base_petit_materiel_sacjute')->nullable();
             $table->string('base_petit_materiel_scelle')->nullable();
-            $table->string('base_garde_de_fonds_cout_unitaire')->nullable();
-            $table->string('base_garde_de_fonds_montant_garde_cu')->nullable();
-            $table->string('base_garde_de_fonds_cout_forfetaire')->nullable();
-            $table->string('base_garde_de_fonds_montant_garde_cf')->nullable();
-            $table->string('base_comptage_tri_cout_unitaire')->nullable();
-            $table->string('base_comptage_tri_montant_ctv')->nullable();
-            $table->string('base_gestion_atm')->nullable();
-            $table->string('base_maintenance_atm')->nullable();
-            $table->string('base_consommable_atm')->nullable();
+            //$table->string('base_garde_de_fonds_cout_unitaire')->nullable();
+            //$table->string('base_garde_de_fonds_montant_garde_cu')->nullable();
+            //$table->string('base_garde_de_fonds_cout_forfetaire')->nullable();
+            //$table->string('base_garde_de_fonds_montant_garde_cf')->nullable();
+            //$table->string('base_comptage_tri_cout_unitaire')->nullable();
+            //$table->string('base_comptage_tri_montant_ctv')->nullable();
+            //$table->string('base_gestion_atm')->nullable();
+            //$table->string('base_maintenance_atm')->nullable();
+            //$table->string('base_consommable_atm')->nullable();
+            $table->string('base_garde_de_fonds_montant_forfaitaire')->nullable();
+            $table->string('base_comptage_montant_forfaitaire')->nullable();
+            $table->string('bt_atm')->nullable();
         });
     }
 
