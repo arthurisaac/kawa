@@ -18,6 +18,7 @@ class CreateArriveeSiteColisTable extends Migration
             $table->foreignId('arrivee_site')->references('id')->on('arrivee_sites')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('site')->references('id')->on('commercial_sites')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('colis')->nullable();
+            $table->integer('num_colis')->default(0);
             $table->string('bordereau')->nullable();
             $table->float('montant')->nullable();
             $table->string('nature')->nullable();

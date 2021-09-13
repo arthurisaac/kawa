@@ -10,6 +10,7 @@ class ArriveeSiteColis extends Model
         'arrivee_site',
         'site',
         'colis',
+        'num_colis',
         'bordereau',
         'montant',
         'nature',

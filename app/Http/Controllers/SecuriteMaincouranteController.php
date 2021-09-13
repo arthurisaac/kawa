@@ -131,7 +131,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function storeArriveeSite(Request $request)
     {
-        $arriveeCentre = new ArriveeSite([
+        $arrivee = new ArriveeSite([
             'noTournee' => $request->get('noTournee'),
             'site' => $request->get('site'),
             'dateArrivee' => $request->get('dateArrivee'),
@@ -144,26 +144,28 @@ class SecuriteMaincouranteController extends Controller
             'kmArrivee' => $request->get('kmArrivee'),
             'observation' => $request->get('observation'),*/
         ]);
-        $arriveeCentre->save();
+        $arrivee->save();
 
+        $asColis = $request->get('asColis');
         $asNbColis = $request->get('asNbColis');
         $asNumColis = $request->get('asNumColis');
         $asNumBordereau = $request->get('asNumBordereau');
         $asMontantAnnonce = $request->get('asMontantAnnonce');
         $asNatureColis = $request->get('asNatureColis');
 
-        for ($i = 0; $i < count($asNbColis); $i++) {
-            if (!empty($asNbColis[$i])) {
+        for ($i = 0; $i < count($asNumColis); $i++) {
+            //if (!empty($asNbColis[$i])) {
                 $as = new ArriveeSiteColis([
-                    'arrivee_site' => $request->get('arrivee_site'),
+                    'arrivee_site' => $arrivee->id,
                     'site' => $asNbColis[$i],
-                    'colis' => $asNumColis[$i],
+                    'colis' => $asColis[$i],
+                    'num_colis' => $asNumColis[$i],
                     'bordereau' => $asNumBordereau[$i],
                     'montant' => $asMontantAnnonce[$i],
                     'nature' => $asNatureColis[$i],
                 ]);
                 $as->save();
-            }
+            //}
         }
     }
 

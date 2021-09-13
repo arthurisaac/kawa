@@ -239,7 +239,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label class="col-sm-4">Heure fin opération</label>
+                                            <label class="col-sm-4">Colis</label>
                                             <select name="asColis[]" class="form-control col-sm-8">
                                                 <option>Keep Safe</option>
                                                 <option>Sac juste</option>
@@ -711,11 +711,32 @@
                 const tempsOperation = $("input[name=asTempsOperation]").val();
                 const asNbColis = $("input[name=asNbColis]").val();
 
-                const asColis = $("input[name=asColis]").val();
-                const asNumColis = $("input[name=asNumColis").val();
-                const asNumBordereau = $("input[name=asNumBordereau]").val();
-                const asMontantAnnonce = $("input[name=asMontantAnnonce]").val();
-                const asNatureColis = $("input[name=asNatureColis]").val();
+                const asColis = [];
+                const asNumColis = [];
+                const asNumBordereau = [];
+                const asMontantAnnonce = [];
+                const asNatureColis = [];
+                $('select[name^="asColis"]').each(function(i) {
+                    console.log(i);
+                    asColis.push($(this).val())
+                });
+                $('input[name^="asNumColis"]').each(function() {
+                    asNumColis.push($(this).val())
+                });
+                $('input[name^="asNumBordereau"]').each(function() {
+                    asNumBordereau.push($(this).val())
+                });
+                $('input[name^="asMontantAnnonce"]').each(function() {
+                    asMontantAnnonce.push($(this).val())
+                });
+                $('input[name^="asNatureColis"]').each(function() {
+                    asNatureColis.push($(this).val())
+                });
+                //const asColis = $("input[name=asColis]").val();
+                //const asNumColis = $("input[name=asNumColis]").val();
+                //const asNumBordereau = $("input[name=asNumBordereau]").val();
+                //const asMontantAnnonce = $("input[name=asMontantAnnonce]").val();
+                //const asNatureColis = $("input[name=asNatureColis]").val();
 
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
@@ -724,7 +745,7 @@
                         maincourante: "arriveeSite",
                         noTournee: noTournee,
                         site: site,
-                        dateArrivee: dateArrivee,
+                        dateArrivee,
                         heureArrivee: heureArrivee,
                         debutOperation: debutOperation,
                         finOperation: finOperation,
