@@ -15,7 +15,9 @@ class DepartSite extends Model
         'bordereau',
         'destination',
         'observation',
-        ];
+        'centre',
+        'centre_regional',
+    ];
 
 
     public function tournees()

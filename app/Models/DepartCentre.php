@@ -11,6 +11,7 @@ class DepartCentre extends Model
         'heureDepart',
         'kmDepart',
         'observation',
+        'niveauCarburant',
     ];
 
     public function tournees()

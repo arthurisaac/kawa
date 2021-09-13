@@ -13,6 +13,8 @@ class ArriveeSite extends Model
         'kmArrivee',
         'observation',
         'noBordereau',
+        'centre',
+        'centre_regional',
     ];
 
     public function tournees()

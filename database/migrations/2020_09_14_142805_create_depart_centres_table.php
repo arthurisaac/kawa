@@ -20,6 +20,7 @@ class CreateDepartCentresTable extends Migration
             $table->string('heureDepart')->nullable();
             $table->string('kmDepart')->nullable();
             $table->string('observation')->nullable();
+            $table->integer('niveauCarburant')->nullable()->default(0);
         });
     }
 

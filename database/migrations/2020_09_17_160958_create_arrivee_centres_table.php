@@ -20,6 +20,8 @@ class CreateArriveeCentresTable extends Migration
             $table->time('heureArrivee');
             $table->string('kmArrive');
             $table->string('observation')->nullable()->default('RAS');
+            $table->string('centre')->nullable();
+            $table->string('centre_regional')->nullable();
         });
     }
 

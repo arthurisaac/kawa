@@ -57,6 +57,46 @@ class SecuriteMaincouranteController extends Controller
             compact('departCentres', 'arriveeSites', 'arriveeCentres', 'departSites'));
     }
 
+    public function arriveeSiteListe()
+    {
+        $arriveeSites = ArriveeSite::all();
+
+        return view('/securite.maincourante.arrivee-site.liste',
+            compact('arriveeSites'));
+    }
+
+    public function departCentreListe()
+    {
+        $departCentres = DepartCentre::all();
+
+        return view('/securite.maincourante.depart-centres.liste',
+            compact('departCentres'));
+    }
+
+    public function departSiteListe()
+    {
+        $departSites = DepartSite::all();
+
+        return view('/securite.maincourante.depart-site.liste',
+            compact('departSites'));
+    }
+
+    public function arriveeCentreListe()
+    {
+        $arriveeCentres = ArriveeCentre::all();
+
+        return view('/securite.maincourante.arrivee-centre.liste',
+            compact('arriveeCentres'));
+    }
+
+    public function tourneeCentreListe()
+    {
+        $tourneeCentres = TourneeCentre::with('tournees');
+
+        return view('/securite.maincourante.tournee-centre.liste',
+            compact('tourneeCentres'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,6 +121,7 @@ class SecuriteMaincouranteController extends Controller
             'heureDepart' => $request->get('heureDepart'),
             'kmDepart' => $request->get('kmDepart'),
             'observation' => $request->get('observation'),
+            'niveauCarburant' => $request->get('niveauCarburant'),
         ]);
         $departCentre->save();
     }
@@ -310,6 +351,18 @@ class SecuriteMaincouranteController extends Controller
             $departSite = DepartSite::find($request->id);
             $departSite->delete();
             return $departSite;
+        }
+
+    }
+    public function deleteDepartCentre(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = DepartCentre::find($id);
+            $data->delete();
+            return \response()->json([
+                'message' => 'supprimé'
+            ]);
         }
 
     }

@@ -22,6 +22,8 @@ class CreateArriveeSitesTable extends Migration
             $table->string('heureArrivee')->nullable();
             $table->string('kmArrivee')->nullable();
             $table->string('observation')->nullable();
+            $table->string('centre')->nullable();
+            $table->string('centre_regionial')->nullable();
         });
     }
 

@@ -89,6 +89,21 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-sm-4">Centre</label>
+                        <input name="centre" id="centre" class="form-control col-sm-8" readonly />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-sm-4">Centre régional</label>
+                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly />
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
         </div>
 
         <br/>
@@ -138,6 +153,10 @@
                                     <input type="number" name="dcKmDepart" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="km_depart" class="col-sm-4">Niveau carburant</label>
+                                    <input type="number" name="dcNiveauCarburant" class="form-control col-sm-8"/>
+                                </div>
+                                <div class="form-group row">
                                     <label for="observation" class="col-sm-4">Observation:</label>
                                     <textarea name="dcObservation" id="dcObservation"
                                               class="form-control col-sm-8"></textarea>
@@ -151,30 +170,7 @@
 
                             </div>
                             <div class="col-8">
-                                <table class="table table-bordered" id="listeDepartCentre">
-                                    <thead>
-                                    <tr>
-                                        <td>N°Tournée</td>
-                                        <td>Date</td>
-                                        <td>Heure</td>
-                                        <td>Code</td>
-                                        <td>Km départ</td>
-                                        <td>Observation</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($departCentres as $centre)
-                                        <tr>
-                                            <td>{{$centre->tournees->numeroTournee}}</td>
-                                            <td>{{date('d/m/Y', strtotime($centre->date))}}</td>
-                                            <td>{{$centre->heureDepart}}</td>
-                                            <td>{{$centre->code}}</td>
-                                            <td>{{$centre->kmDepart}}</td>
-                                            <td>{{$centre->observation}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+
                             </div>
                         </div>
                     </form>
@@ -219,29 +215,6 @@
 
                             </div>
                             <div class="col-8">
-                                <table class="table table-bordered" id="listeArriveeSite" style="width: 100%">
-                                    <thead>
-                                    <tr>
-                                        <td>Site</td>
-                                        <td>Date</td>
-                                        <td>Heure</td>
-                                        <!--<td>Code</td>-->
-                                        <td>Km départ</td>
-                                        <td>Observation</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($arriveeSites as $arriveeSite)
-                                        <tr>
-                                            <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
-                                            <td>{{$arriveeSite->tournees->date ?? $arriveeSite->tournees }}</td>
-                                            <td>{{$arriveeSite->heureArrivee}}</td>
-                                            <td>{{$arriveeSite->kmArrivee}}</td>
-                                            <td>{{$arriveeSite->observation}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         <br/>
@@ -296,47 +269,6 @@
                         </div>
                     </form>
 
-                    <div style="width: 100%; overflow-x: scroll;">
-                        <table class="table table-bordered" style="width: 100%;" id="listeDepartSite1">
-                            <thead>
-                            <tr>
-                                <th>SITE</th>
-                                <th>Date</th>
-                                <th>Heure de départ</th>
-                                {{--<th>Type colis</th>
-                                <th>Nombre de colis</th>
-                                <th>N° Sécuripack</th>--}}
-                                <th>Destination</th>
-                                <th>Observation</th>
-                                {{-- <th>Nombre de colis</th>
-                                 <th>Numéro sécuripack</th>--}}
-                                <th>Numéro bordereau</th>
-                                <th>Kilométrage départ</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($departSites as $depart)
-                                <tr>
-                                    <td>{{$depart->site}}</td>
-                                    {{--<td>{{$depart->sites->site}}</td>--}}
-                                    <td>{{date('d-m-Y', strtotime($depart->tournees->date ?? ""))}}</td>
-                                    <td>{{$depart->heureDepart}}</td>
-                                    {{--<td></td>
-                                    <td></td>
-                                    <td></td>--}}
-                                    <td>{{$depart->destination}}</td>
-                                    <td>{{$depart->observation}}</td>
-                                    {{--<td></td>
-                                    <td></td>--}}
-                                    <td>{{$depart->bordereau}}</td>
-                                    <td>{{$depart->kmDepart}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-
-                        </table>
-                    </div>
-
                     <br/>
                     <br/>
                 </div>
@@ -363,7 +295,7 @@
                                 </div>
                                 <button class="btn btn-primary btn-sm" type="button" id="acSubmit">Valider</button>
                             </div>
-                            <div class="col">
+                            {{--<div class="col">
                                 <table class="table table-bordered" style="width: 100%;" id="listeArriveeCentre">
                                     <thead>
                                     <tr>
@@ -386,7 +318,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>--}}
                         </div>
                     </form>
                 </div>
@@ -438,7 +370,7 @@
                     <div style="width: 100%; overflow-x: scroll;">
                         <br/>
                         <br/>
-                        <table style="width: 100%;" class="table table-bordered" id="listeTourneeCentre">
+                        {{--<table style="width: 100%;" class="table table-bordered" id="listeTourneeCentre">
                             <thead>
                             <tr>
                                 <th>Date</th>
@@ -469,7 +401,7 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                        </table>
+                        </table>--}}
                     </div>
                 </div>
             </div>
@@ -480,6 +412,49 @@
 
     </div>
     <script src="js/jquery-ui.min.js"></script>
+    <script>
+        let tournees = {!! json_encode($tournees) !!};
+        $(document).ready(function () {
+            $("#noTournee").on("change", function () {
+                $("#vehicule").val("");
+                $("#chauffeur").val("");
+                $("#chefDeBord").val("");
+                $("#agentDeGarde").val("");
+                $("#centre_regional option").remove();
+
+                const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
+                if (tournee) {
+                    $("#vehicule").val(tournee.vehicules.immatriculation);
+                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
+                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
+                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    $("#centre").val(tournee.centre);
+                    $("#centre_regional").val(tournee.centre_regional);
+                }
+            });
+        });
+    </script>
+    <script>
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        $(document).ready(function () {
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $("#Tabs2").tabs(
@@ -494,11 +469,6 @@
     <script>
         $(document).ready(function () {
             $('#listeArriveeSite').DataTable({
-                "language": {
-                    "url": "French.json"
-                }
-            });
-            $('#listeDepartCentre').DataTable({
                 "language": {
                     "url": "French.json"
                 }
@@ -524,62 +494,6 @@
                 }
             });
         })
-    </script>
-    <script>
-        let tourneeCentres =  {!! json_encode($tourneeCentres) !!};
-        let tournees =  {!! json_encode($tournees) !!};
-
-        let centres =  {!! json_encode($centres) !!};
-        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
-        let departSites = {!! json_encode($sitesDepartTournees) !!};
-        $(document).ready(function () {
-            $("#centre").on("change", function () {
-                $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: ""}));
-
-                const centre = centres.find(c => c.centre === this.value);
-                const regions = centres_regionaux.filter(region => {
-                    return region.id_centre === centre.id;
-                });
-                regions.map(({centre_regional}) => {
-                    $('#centre_regional').append($('<option>', {
-                        value: centre_regional,
-                        text: centre_regional
-                    }));
-                })
-            });
-
-            $("#noTournee").on("change", function () {
-                $("#chauffeur").val("");
-                $("#chefDeBord").val("");
-                $("#agentDeGarde").val("");
-                $("#date").val("");
-                $("#vehicule").val("");
-                $("#asSite option").remove();
-                const tournee = tournees.find(v => v.id === parseInt(this.value));
-                const departSite = departSites.filter(v => {
-                    return parseInt(v.idTourneeDepart) === parseInt(this.value);
-                });
-                if (departSite) {
-                    departSite.map(d => {
-                        $('#asSite').append($('<option>', {
-                            value: d.sites.id,
-                            text: d.sites.site
-                        }));
-                    });
-                }
-
-                if (tournee) {
-                    if (tournee.chauffeurs) $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
-                    if (tournee.chef_de_bords) $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
-                    if (tournee.agent_de_gardes) $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
-                    if (tournee.vehicules) $("#vehicule").val(tournee.vehicules.immatriculation);
-                    $("#date").val(tournee.date);
-
-
-                }
-            });
-        });
     </script>
 
     <script>
@@ -649,6 +563,7 @@
                 const dcKmDepart = $("input[name=dcKmDepart]").val();
                 const dcObservation = $("textarea[name=dcObservation]").val();
                 const asNumeroBordereau = $("textarea[name=asNumeroBordereau]").val();
+                const dcNiveauCarburant = $("input[name=dcNiveauCarburant]").val();
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -659,6 +574,7 @@
                         kmDepart: dcKmDepart,
                         observation: dcObservation,
                         noBordereau: asNumeroBordereau,
+                        niveauCarburant: dcNiveauCarburant,
                         _token: _token
                     },
                     success: function (response) {

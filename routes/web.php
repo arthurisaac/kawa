@@ -43,6 +43,13 @@ Route::get('materiel-liste', [\App\Http\Controllers\SecuriteMaterielController::
 
 Route::resource('maincourante', 'SecuriteMaincouranteController');
 Route::get('maincourante-liste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'liste']);
+Route::get('maincourante-departcentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departCentreListe']);
+Route::delete('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteDepartCentre']);
+Route::get('maincourante-arriveesiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeSiteListe']);
+Route::get('maincourante-departsiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departSiteListe']);
+Route::get('maincourante-arriveecentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeCentreListe']);
+Route::get('maincourante-tourneecentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'tourneeCentreListe']);
+
 Route::get('search', 'SecuriteMaincouranteController@search')->name('search');
 Route::get('deleteDepartSite', 'SecuriteMaincouranteController@deleteDepartSite')->name('deleteDepartSite');
 

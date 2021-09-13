@@ -21,6 +21,8 @@ class CreateTourneeCentresTable extends Migration
             $table->string('centreRegional');
             $table->date('dateDebut')->nullable();
             $table->date('dateFin')->nullable();
+            $table->date('centre')->nullable();
+            $table->date('centre_regional')->nullable();
         });
     }
 

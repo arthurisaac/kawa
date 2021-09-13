@@ -14,12 +14,10 @@
 
 
 -- Listage de la structure de la base pour rwc5v1789xflwyyt
-DROP DATABASE IF EXISTS `rwc5v1789xflwyyt`;
 CREATE DATABASE IF NOT EXISTS `rwc5v1789xflwyyt` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `rwc5v1789xflwyyt`;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. accesses
-DROP TABLE IF EXISTS `accesses`;
 CREATE TABLE IF NOT EXISTS `accesses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -51,7 +49,6 @@ INSERT INTO `accesses` (`id`, `created_at`, `updated_at`, `role`, `services`) VA
 /*!40000 ALTER TABLE `accesses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_bon_comandes
-DROP TABLE IF EXISTS `achat_bon_comandes`;
 CREATE TABLE IF NOT EXISTS `achat_bon_comandes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -77,7 +74,6 @@ DELETE FROM `achat_bon_comandes`;
 /*!40000 ALTER TABLE `achat_bon_comandes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_bon_comande_items
-DROP TABLE IF EXISTS `achat_bon_comande_items`;
 CREATE TABLE IF NOT EXISTS `achat_bon_comande_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -99,7 +95,6 @@ DELETE FROM `achat_bon_comande_items`;
 /*!40000 ALTER TABLE `achat_bon_comande_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_demandes
-DROP TABLE IF EXISTS `achat_demandes`;
 CREATE TABLE IF NOT EXISTS `achat_demandes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -132,7 +127,6 @@ INSERT INTO `achat_demandes` (`id`, `created_at`, `updated_at`, `date`, `identit
 /*!40000 ALTER TABLE `achat_demandes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseurs
-DROP TABLE IF EXISTS `achat_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -166,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `achat_fournisseurs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.achat_fournisseurs : ~26 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.achat_fournisseurs : ~42 rows (environ)
 DELETE FROM `achat_fournisseurs`;
 /*!40000 ALTER TABLE `achat_fournisseurs` DISABLE KEYS */;
 INSERT INTO `achat_fournisseurs` (`id`, `created_at`, `updated_at`, `denomination`, `sigle`, `secteur_activite`, `rccm`, `cnps`, `cpt`, `adresse_postale`, `adresse_geo`, `telephone_entreprise`, `email_entreprise`, `fax`, `siteweb`, `fonction`, `nom`, `prenoms`, `telephone`, `email`, `part_marche`, `taux_croissance`, `chaine_valeur`, `certification`, `sous_traitant`, `credit_30_jours`, `credit_60_jours`, `condition`, `mode_paiement`) VALUES
@@ -215,7 +209,6 @@ INSERT INTO `achat_fournisseurs` (`id`, `created_at`, `updated_at`, `denominatio
 /*!40000 ALTER TABLE `achat_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseur_consultes
-DROP TABLE IF EXISTS `achat_fournisseur_consultes`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseur_consultes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -236,7 +229,6 @@ DELETE FROM `achat_fournisseur_consultes`;
 /*!40000 ALTER TABLE `achat_fournisseur_consultes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseur_c_a_s
-DROP TABLE IF EXISTS `achat_fournisseur_c_a_s`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseur_c_a_s` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -249,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `achat_fournisseur_c_a_s` (
   CONSTRAINT `achat_fournisseur_c_a_s_fournisseur_fk_foreign` FOREIGN KEY (`fournisseur_fk`) REFERENCES `achat_fournisseurs` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.achat_fournisseur_c_a_s : ~12 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.achat_fournisseur_c_a_s : ~42 rows (environ)
 DELETE FROM `achat_fournisseur_c_a_s`;
 /*!40000 ALTER TABLE `achat_fournisseur_c_a_s` DISABLE KEYS */;
 INSERT INTO `achat_fournisseur_c_a_s` (`id`, `created_at`, `updated_at`, `fournisseur_fk`, `ca`, `annee`) VALUES
@@ -298,7 +290,6 @@ INSERT INTO `achat_fournisseur_c_a_s` (`id`, `created_at`, `updated_at`, `fourni
 /*!40000 ALTER TABLE `achat_fournisseur_c_a_s` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_produits
-DROP TABLE IF EXISTS `achat_produits`;
 CREATE TABLE IF NOT EXISTS `achat_produits` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -326,7 +317,6 @@ DELETE FROM `achat_produits`;
 /*!40000 ALTER TABLE `achat_produits` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_centres
-DROP TABLE IF EXISTS `arrivee_centres`;
 CREATE TABLE IF NOT EXISTS `arrivee_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -336,21 +326,15 @@ CREATE TABLE IF NOT EXISTS `arrivee_centres` (
   `kmArrive` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `observation` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'RAS',
   PRIMARY KEY (`id`),
-  KEY `arrivee_centres_notournee_foreign` (`noTournee`),
-  CONSTRAINT `arrivee_centres_notournee_foreign` FOREIGN KEY (`noTournee`) REFERENCES `depart_tournees` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `arrivee_centres_notournee_foreign` (`noTournee`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.arrivee_centres : ~2 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.arrivee_centres : 0 rows
 DELETE FROM `arrivee_centres`;
 /*!40000 ALTER TABLE `arrivee_centres` DISABLE KEYS */;
-INSERT INTO `arrivee_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `heureArrivee`, `kmArrive`, `observation`) VALUES
-	(1, '2020-12-17 15:03:23', '2020-12-17 15:03:23', 1, '20:29:00', '100', 'TEST OBSERVATON ARRIIVE'),
-	(2, '2020-12-17 15:30:23', '2020-12-17 15:30:23', 2, '18:30:00', '562', 'OB7'),
-	(3, '2020-12-28 14:53:44', '2020-12-28 14:53:44', 8, '19:53:00', '9900', 'observation29');
 /*!40000 ALTER TABLE `arrivee_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_sites
-DROP TABLE IF EXISTS `arrivee_sites`;
 CREATE TABLE IF NOT EXISTS `arrivee_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -364,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `arrivee_sites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.arrivee_sites : ~2 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.arrivee_sites : ~3 rows (environ)
 DELETE FROM `arrivee_sites`;
 /*!40000 ALTER TABLE `arrivee_sites` DISABLE KEYS */;
 INSERT INTO `arrivee_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `site`, `noBordereau`, `heureArrivee`, `kmArrivee`, `observation`) VALUES
@@ -374,7 +358,6 @@ INSERT INTO `arrivee_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `sit
 /*!40000 ALTER TABLE `arrivee_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_tournees
-DROP TABLE IF EXISTS `arrivee_tournees`;
 CREATE TABLE IF NOT EXISTS `arrivee_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -408,7 +391,6 @@ DELETE FROM `arrivee_tournees`;
 /*!40000 ALTER TABLE `arrivee_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_billetages
-DROP TABLE IF EXISTS `caisse_billetages`;
 CREATE TABLE IF NOT EXISTS `caisse_billetages` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -451,7 +433,6 @@ DELETE FROM `caisse_billetages`;
 /*!40000 ALTER TABLE `caisse_billetages` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_ctvs
-DROP TABLE IF EXISTS `caisse_ctvs`;
 CREATE TABLE IF NOT EXISTS `caisse_ctvs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -508,7 +489,6 @@ DELETE FROM `caisse_ctvs`;
 /*!40000 ALTER TABLE `caisse_ctvs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_entree_colis
-DROP TABLE IF EXISTS `caisse_entree_colis`;
 CREATE TABLE IF NOT EXISTS `caisse_entree_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -528,7 +508,6 @@ DELETE FROM `caisse_entree_colis`;
 /*!40000 ALTER TABLE `caisse_entree_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_entree_colis_items
-DROP TABLE IF EXISTS `caisse_entree_colis_items`;
 CREATE TABLE IF NOT EXISTS `caisse_entree_colis_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -556,7 +535,6 @@ DELETE FROM `caisse_entree_colis_items`;
 /*!40000 ALTER TABLE `caisse_entree_colis_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_services
-DROP TABLE IF EXISTS `caisse_services`;
 CREATE TABLE IF NOT EXISTS `caisse_services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -583,7 +561,6 @@ DELETE FROM `caisse_services`;
 /*!40000 ALTER TABLE `caisse_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_service_operatrices
-DROP TABLE IF EXISTS `caisse_service_operatrices`;
 CREATE TABLE IF NOT EXISTS `caisse_service_operatrices` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -605,7 +582,6 @@ DELETE FROM `caisse_service_operatrices`;
 /*!40000 ALTER TABLE `caisse_service_operatrices` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_sortie_colis
-DROP TABLE IF EXISTS `caisse_sortie_colis`;
 CREATE TABLE IF NOT EXISTS `caisse_sortie_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -625,7 +601,6 @@ DELETE FROM `caisse_sortie_colis`;
 /*!40000 ALTER TABLE `caisse_sortie_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_sortie_colis_items
-DROP TABLE IF EXISTS `caisse_sortie_colis_items`;
 CREATE TABLE IF NOT EXISTS `caisse_sortie_colis_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -653,7 +628,6 @@ DELETE FROM `caisse_sortie_colis_items`;
 /*!40000 ALTER TABLE `caisse_sortie_colis_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_video_surveillances
-DROP TABLE IF EXISTS `caisse_video_surveillances`;
 CREATE TABLE IF NOT EXISTS `caisse_video_surveillances` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -681,7 +655,6 @@ DELETE FROM `caisse_video_surveillances`;
 /*!40000 ALTER TABLE `caisse_video_surveillances` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_cartes
-DROP TABLE IF EXISTS `carburant_cartes`;
 CREATE TABLE IF NOT EXISTS `carburant_cartes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -701,7 +674,6 @@ INSERT INTO `carburant_cartes` (`id`, `created_at`, `updated_at`, `numeroCarte`,
 /*!40000 ALTER TABLE `carburant_cartes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_comptants
-DROP TABLE IF EXISTS `carburant_comptants`;
 CREATE TABLE IF NOT EXISTS `carburant_comptants` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -723,7 +695,6 @@ DELETE FROM `carburant_comptants`;
 /*!40000 ALTER TABLE `carburant_comptants` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_previsions
-DROP TABLE IF EXISTS `carburant_previsions`;
 CREATE TABLE IF NOT EXISTS `carburant_previsions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -749,7 +720,6 @@ DELETE FROM `carburant_previsions`;
 /*!40000 ALTER TABLE `carburant_previsions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_tickets
-DROP TABLE IF EXISTS `carburant_tickets`;
 CREATE TABLE IF NOT EXISTS `carburant_tickets` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -776,7 +746,6 @@ INSERT INTO `carburant_tickets` (`id`, `created_at`, `updated_at`, `date`, `heur
 /*!40000 ALTER TABLE `carburant_tickets` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. centres
-DROP TABLE IF EXISTS `centres`;
 CREATE TABLE IF NOT EXISTS `centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -795,7 +764,6 @@ INSERT INTO `centres` (`id`, `created_at`, `updated_at`, `centre`) VALUES
 /*!40000 ALTER TABLE `centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. centre_regionals
-DROP TABLE IF EXISTS `centre_regionals`;
 CREATE TABLE IF NOT EXISTS `centre_regionals` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -821,7 +789,6 @@ INSERT INTO `centre_regionals` (`id`, `created_at`, `updated_at`, `centre_region
 /*!40000 ALTER TABLE `centre_regionals` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. commercial_clients
-DROP TABLE IF EXISTS `commercial_clients`;
 CREATE TABLE IF NOT EXISTS `commercial_clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -863,67 +830,69 @@ CREATE TABLE IF NOT EXISTS `commercial_clients` (
   `base_gestion_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `base_maintenance_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `base_consommable_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `base_garde_de_fonds_montant_forfaitaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `base_comptage_montant_forfaitaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bt_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.commercial_clients : ~43 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.commercial_clients : ~49 rows (environ)
 DELETE FROM `commercial_clients`;
 /*!40000 ALTER TABLE `commercial_clients` DISABLE KEYS */;
-INSERT INTO `commercial_clients` (`id`, `created_at`, `updated_at`, `client_nom`, `client_situation_geographique`, `client_tel`, `client_regime_impot`, `client_boite_postale`, `client_ville`, `client_rc`, `client_ncc`, `contact_nom`, `contact_email`, `contact_portefeuille`, `contact_fonction`, `contact_portable`, `contact_secteur_activite`, `contrat_numero`, `contrat_date_effet`, `contrat_duree`, `contrat_objet`, `contrat_desserte`, `contrat_frequence_op`, `contrat_regime`, `base_tdf_vb`, `base_tdf_vl`, `base_mad_caisse`, `base_collecte`, `base_petit_materiel_securipack`, `base_petit_materiel_sacjute`, `base_petit_materiel_scelle`, `base_garde_de_fonds_cout_unitaire`, `base_garde_de_fonds_montant_garde_cu`, `base_garde_de_fonds_cout_forfetaire`, `base_garde_de_fonds_montant_garde_cf`, `base_comptage_tri_cout_unitaire`, `base_comptage_tri_montant_ctv`, `base_gestion_atm`, `base_maintenance_atm`, `base_consommable_atm`) VALUES
-	(1, '2020-12-15 16:23:40', '2020-12-15 16:23:40', 'BANK DE BEDI', 'ABIDJAN', '02557052', NULL, NULL, NULL, NULL, NULL, 'BDEDI CLAUDE NICOLAS', 'sawaad1@gmail.com', NULL, 'transitaire', '658999', 'transiteJ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, '2020-12-15 16:24:34', '2020-12-15 16:24:34', 'BANK IVOIRE', 'MAN', '55555555', 'normalS', '01 BP 1048', 'ABIDJAN', '22222222', 'cc 02454v14M', 'BDEDI CLAUDE', 'asdoS@mail.com', 'dersklj', 'transitaire', '658999', 'transite1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(3, '2020-12-15 16:25:31', '2020-12-15 16:25:31', 'AFRIKA KANK DEV', 'DALOA -DAKOTA', '52478963', 'normal', '01 BP 1048', 'ABIDJAN', '22222222', NULL, 'BDEDI CLAUDE', 'asdoS@mail.com', 'derskl12', 'caissiere', '6589995', 'transiteK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, '2021-07-09 08:32:36', '2021-07-09 08:32:36', 'client coris b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'km piste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, '2021-08-04 14:10:56', '2021-08-04 14:12:06', 'DIS', NULL, NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'SAWADOGO ISSIAKA', 'isakas@yahoo.fr', 'DIRECTION COMMERCIALE', 'GERANT/ADMINISTRAEUR', '07 07 02 27 62/07 07 24 19 19', 'PETROLIER', NULL, NULL, NULL, 'TDF VL,Collecte,Petit matériel', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, '2021-08-04 15:05:03', '2021-08-04 15:05:03', 'SICOGI', 'ADJAME MIRADOR', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'SIDIBE', 'Assetou.KONATE@sicogi.ci', 'DIRECTION COMMERCIALE', 'DAF', '20 01 12 99/07 07 40 60 24', 'LOGEMENT', NULL, NULL, NULL, 'TDF VB,Collecte,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(7, '2021-08-04 18:10:18', '2021-08-04 18:11:20', 'PISAM COCODY', NULL, NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUA RICHMOND', 'bkoua@pisam.ci', 'DIRECTION COMMERCIALE', 'COMPTABLE', '22 48 31 06/07 08 74 94 15', NULL, NULL, NULL, NULL, 'TDF VL,Collecte,Petit matériel', NULL, 'Permanent', NULL, NULL, NULL, NULL, '23333', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(8, '2021-08-04 18:18:13', '2021-08-04 18:18:13', 'KAYDEN DISTRIBUTION', 'COCODY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME KOUADIO MADELAINE', 'm.kouadio@adiscom.net', 'DIRECTION COMMERCIALE', 'GERANTE', '05 46 95 05 33', 'PETROLIER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8000', 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(9, '2021-08-04 18:26:22', '2021-08-04 18:26:22', 'IVT GOLF', 'COCODY RIVIERA 3', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'PHILIPPE MONIQUE', 'monikmph@gmail.com', 'DIRECTION COMMERCIALE', 'DIRECTRICE', '05 05 05 04 02', 'TOURISME', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Appel', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(10, '2021-08-04 18:37:47', '2021-08-04 18:37:47', 'POLYCLINIQUE FARAH', 'MARCORY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ABBAS ABDOUL', 'ab.abboud@polycliquefarah.com', 'DIRECTION COMMERCIALE', 'DAF', '21 26 00 93/07 48 92 47 45', NULL, NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(11, '2021-08-04 18:53:28', '2021-08-05 14:25:57', 'AMBASSADE DES USA', 'COCODY', NULL, 'normal', NULL, 'ABIDJAN', NULL, NULL, 'HARAWA GEOFFREY', 'harawagk@state.gov', 'DIRECTION COMMERCIALE', 'PRINCIPAL CASHIER', '22 49 40 55/05 55 56 21 22', 'CHANCELERIE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(12, '2021-08-04 19:14:32', '2021-08-04 19:14:32', 'DOLIDOL', 'YOPOUGON ZONE INDUSTRIEL', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME DEYENE KHADIJA', 'kdeyene@dolidol.ci', 'DIRECTION COMMERCIALE', 'DIRECTRICE SUPPORT', '23 50 80 02/ 07 87 68 51 69', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(13, '2021-08-04 19:21:27', '2021-08-04 19:21:27', 'SUITE COM', 'COCODY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MLLE KONAN YAHAUT', 'deenahk-yahaut@suitecom-ci.com', 'DIRECTION COMMERCIALE', 'DIRECTRICE OPERATIONS', '07 07 01 85 16', 'TELEPHONIE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(14, '2021-08-05 09:31:21', '2021-08-05 09:31:21', 'CLIENT BAFATAK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(15, '2021-08-05 10:54:10', '2021-08-05 10:54:10', 'UBA/CFCI', 'YOPOUGON', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME SAKO HADJA', 'hadja.sako@ubagroup.com', 'DIRECTION COMMERCIALE', 'CHARGE PORTEFEUILLE', '20 31 22 22/07 7962 28 03', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(16, '2021-08-05 11:05:57', '2021-08-05 11:05:57', 'CDCI CI', 'TREICHVILLE PORT', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MAACHI', NULL, 'DIRECTION COMMERCIALE', 'DAF', '21 24 01 51/21 24 26 82', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(17, '2021-08-05 11:17:27', '2021-08-05 11:47:38', 'ecobank-bouaké', 'bouaké-commerce', NULL, NULL, NULL, 'bouaké', NULL, NULL, 'toualy kevin', 'ktoualy@ecobank.com', 'direction commerciale', 'chef de caisse', '0709249329', 'banque', NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Comptage + tri,Petit matériel', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(18, '2021-08-05 11:38:54', '2021-08-05 11:38:54', 'MOSAIK TELECOM', 'COCODY ANGRE', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ALLAH ARSENE', 'aallahkouame@mosaiktelecom.com', 'DIRECTION COMMERCIALE', 'SG', '07  07 01 11 23', 'TELEPHONIE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(19, '2021-08-05 11:41:33', '2021-08-05 11:43:24', 'CORISBANK', 'bouaké-commerce', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'soro aboulaye', 'absoro@corisbank.com', 'direction commerciale', 'chef d\'agence', '0575237990', 'banque', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Intra muros,Extra muros', 'km bitume', NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(20, '2021-08-05 11:48:02', '2021-08-05 11:48:02', 'SII', 'COCODY DANGA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUAMELA EKISSI HERVE', 'ekissih@yahoo.fr', 'DIRECTION COMMERCIALE', 'DAF', '22 44 04 54/ 07 47 86 14 14', 'TELEPHONIE', NULL, NULL, NULL, 'TDF VB,TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(21, '2021-08-05 12:18:22', '2021-08-05 12:25:10', 'QUIPUX GUICHET UNIQUE BOUAKE', 'BOUAKE-NIMBO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'N\'ZUE INNOCENTE', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0707495111', NULL, NULL, NULL, NULL, 'TDF VL,Petit matériel', NULL, NULL, 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(22, '2021-08-05 12:24:03', '2021-08-05 12:24:03', 'QUIPUX CGI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'FOFANA SEKOU', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0747478337', NULL, NULL, NULL, NULL, 'TDF VL', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(23, '2021-08-05 12:29:06', '2021-08-05 12:29:06', 'COOPEC BOUAKE1', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'GOME', 'cbouake@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF DE CAISSE', '0102036433', 'banque', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(24, '2021-08-05 12:43:49', '2021-08-05 13:05:22', 'COOPEC SAKASSOU', 'SAKASSOU', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'SORO DOKPORO', 'csakassou@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0708192503', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(25, '2021-08-05 12:46:01', '2021-08-05 13:04:45', 'COOPEC DOUGOUBA', 'BOUAKE-DOUGOUBA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOUASSI MARIE LAURE', 'cdougouba@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0102502357', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(26, '2021-08-05 12:51:01', '2021-08-05 12:59:04', 'COOPEC BEOUMI', 'BEOUMI', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'ANIBE', 'cbeoumi@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0101623856', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(27, '2021-08-05 12:53:25', '2021-08-05 12:59:32', 'COOPEC DABAKALA', 'DABAKALA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'SANOGO', 'cdabakala@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0102038499', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(28, '2021-08-05 12:56:44', '2021-08-05 13:01:02', 'COOPEC NIAKARA', 'NIAKARA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOIGNY BAKAN SERGE', 'cniakara@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0140011145', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(29, '2021-08-05 12:57:55', '2021-08-05 12:57:55', 'ATLANTIQUE  TELECOM', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME NGUETTE KADJO', 'Augstine.KADJO@Moov.Com', 'DIRECTION COMMERCIALE', 'DAF', '20 21 01 01', 'TELEPHONIE', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(30, '2021-08-05 13:03:49', '2021-08-05 13:03:49', 'COOPEC MANKONO', 'MANKONO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOUASSI YAO PATRICE', 'cmankono@unacoopec.ci', NULL, 'CHEF D\'AGENCE', '0140011145', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(31, '2021-08-05 13:28:20', '2021-08-05 13:28:20', 'MOOV BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'Mme DAGO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '0101000434', NULL, NULL, NULL, NULL, 'TDF VL', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(32, '2021-08-05 13:31:16', '2021-08-05 13:31:16', 'UNACOOPEC', 'COCODY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ETIBOA', 'etiboa@unacoopec.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '01 02 02 13 26', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Permanent,Appel', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(33, '2021-08-05 13:32:17', '2021-08-05 13:34:35', 'WAVE BOUAKE COMMERCE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(34, '2021-08-05 13:33:49', '2021-08-05 13:35:20', 'WAVE MARCHE DE GROS BOUAKE', 'BOUAKE-MARCHE DE GROS', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(35, '2021-08-05 13:37:39', '2021-08-05 13:37:39', 'SGCI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'GRIS JEAN CHRISTIAN', 'Jean-christian.gris@socgen.com', 'DIRECTION COMMERCIALE', 'RESPO ADJOINT SUPLLY CHAIN', '20 25 99 49/ 05 46 94 14 57', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte,Gestion ATM,Maintenance ATM', NULL, 'Appel', 'Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(36, '2021-08-05 13:38:06', '2021-08-05 13:38:06', 'WAVE KATIOLA', 'KATIOLA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Garde de fonds,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(37, '2021-08-05 13:41:03', '2021-08-05 13:41:03', 'WAVE TIENINGBOUE', 'TIENINGBOUE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(38, '2021-08-05 13:42:13', '2021-08-05 13:42:13', 'WAVE MANKONO', 'MANKONO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Garde de fonds,Petit matériel', NULL, NULL, NULL, 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(39, '2021-08-05 13:42:32', '2021-08-05 13:42:32', 'PAMF', 'YOPOUGON', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KONE PAHADJA', 'pahadja.kone@ci.pamfwa.org', 'DIRECTION COMMERCIALE', 'DAF', '07 49 19 96 88', 'MICROFINANCE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(40, '2021-08-05 13:47:58', '2021-08-05 13:47:58', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL),
-	(41, '2021-08-05 13:47:59', '2021-08-05 13:47:59', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL),
-	(42, '2021-08-05 13:53:21', '2021-08-05 13:53:21', 'ECOBANK CI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KANGHAH FRANCK CESAR', 'akanghah@ecobank.com', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 93 11', 'BANQUE', NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Permanent,Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(43, '2021-08-05 13:57:31', '2021-08-05 13:57:31', 'LAJOY SARL', 'ZUENOULA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'DJEBI', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0748012769', 'micro-finance', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(44, '2021-08-05 14:58:19', '2021-08-05 14:58:19', 'CORIS BANK', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOFFI YAO EMERSON', 'kyao@coris-bank.com', 'DIRECTION COMMERCIALE', 'CHARGE DU PATRIMOINE', '20 20 94 87 /05 04 12 75 52', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(45, '2021-08-05 15:11:48', '2021-08-05 15:11:48', 'BNI \'', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'COULIBALY KAMA PATRICK', 'patrice.coulibaly@bni.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 51 43/01 03 43 80 69', NULL, NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(46, '2021-08-05 16:36:05', '2021-08-05 16:36:05', 'BGFI', 'MARCORY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME NGORAN MARIE LAURE', 'm-l-ngoran@bgfigroupe.com', 'DIRECTION COMMERCIALE', 'CHEF DES SERVICES MOYEN GENERAUX', '21 56 91 56 /58 51 30 10', 'BANQUE', NULL, NULL, NULL, 'Gestion ATM,Maintenance ATM', NULL, 'Appel', 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(47, '2021-08-05 16:41:59', '2021-08-05 16:41:59', 'BANQUE POPULAIRE', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME DAPA SEWA DEKI KOUAKOU', 'aadeki@caissepargne.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES MOYENS GENERAUX', '07 08 14 68 77', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(48, '2021-08-05 16:47:45', '2021-08-05 16:47:45', 'BACI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUADIO JEAN BAPTISTE', 'jean-baptiste.kouadio@banqueatlatlantique.net', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 59 67/01 01 50 13 46', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(49, '2021-08-05 16:51:14', '2021-08-05 16:51:14', 'AGIR FINANCE', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'GOSSE FRANCK', 'gossfranck@gmail.com', 'DIRECTION COMMERCIALE', 'DAF', '07 08 02 24 40 08', 'MICROFINANCE', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(50, '2021-08-05 16:59:42', '2021-08-05 16:59:42', 'QUIPUX CI', 'COCODY RIVIERA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'YAO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '05 54 01 19 58', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `commercial_clients` (`id`, `created_at`, `updated_at`, `client_nom`, `client_situation_geographique`, `client_tel`, `client_regime_impot`, `client_boite_postale`, `client_ville`, `client_rc`, `client_ncc`, `contact_nom`, `contact_email`, `contact_portefeuille`, `contact_fonction`, `contact_portable`, `contact_secteur_activite`, `contrat_numero`, `contrat_date_effet`, `contrat_duree`, `contrat_objet`, `contrat_desserte`, `contrat_frequence_op`, `contrat_regime`, `base_tdf_vb`, `base_tdf_vl`, `base_mad_caisse`, `base_collecte`, `base_petit_materiel_securipack`, `base_petit_materiel_sacjute`, `base_petit_materiel_scelle`, `base_garde_de_fonds_cout_unitaire`, `base_garde_de_fonds_montant_garde_cu`, `base_garde_de_fonds_cout_forfetaire`, `base_garde_de_fonds_montant_garde_cf`, `base_comptage_tri_cout_unitaire`, `base_comptage_tri_montant_ctv`, `base_gestion_atm`, `base_maintenance_atm`, `base_consommable_atm`, `base_garde_de_fonds_montant_forfaitaire`, `base_comptage_montant_forfaitaire`, `bt_atm`) VALUES
+	(4, '2021-07-09 08:32:36', '2021-07-09 08:32:36', 'client coris b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'km piste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(5, '2021-08-04 14:10:56', '2021-08-04 14:12:06', 'DIS', NULL, NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'SAWADOGO ISSIAKA', 'isakas@yahoo.fr', 'DIRECTION COMMERCIALE', 'GERANT/ADMINISTRAEUR', '07 07 02 27 62/07 07 24 19 19', 'PETROLIER', NULL, NULL, NULL, 'TDF VL,Collecte,Petit matériel', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, '2021-08-04 15:05:03', '2021-08-04 15:05:03', 'SICOGI', 'ADJAME MIRADOR', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'SIDIBE', 'Assetou.KONATE@sicogi.ci', 'DIRECTION COMMERCIALE', 'DAF', '20 01 12 99/07 07 40 60 24', 'LOGEMENT', NULL, NULL, NULL, 'TDF VB,Collecte,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(7, '2021-08-04 18:10:18', '2021-08-04 18:11:20', 'PISAM COCODY', NULL, NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUA RICHMOND', 'bkoua@pisam.ci', 'DIRECTION COMMERCIALE', 'COMPTABLE', '22 48 31 06/07 08 74 94 15', NULL, NULL, NULL, NULL, 'TDF VL,Collecte,Petit matériel', NULL, 'Permanent', NULL, NULL, NULL, NULL, '23333', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(8, '2021-08-04 18:18:13', '2021-08-04 18:18:13', 'KAYDEN DISTRIBUTION', 'COCODY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME KOUADIO MADELAINE', 'm.kouadio@adiscom.net', 'DIRECTION COMMERCIALE', 'GERANTE', '05 46 95 05 33', 'PETROLIER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8000', 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(9, '2021-08-04 18:26:22', '2021-08-04 18:26:22', 'IVT GOLF', 'COCODY RIVIERA 3', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'PHILIPPE MONIQUE', 'monikmph@gmail.com', 'DIRECTION COMMERCIALE', 'DIRECTRICE', '05 05 05 04 02', 'TOURISME', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Appel', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(10, '2021-08-04 18:37:47', '2021-08-04 18:37:47', 'POLYCLINIQUE FARAH', 'MARCORY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ABBAS ABDOUL', 'ab.abboud@polycliquefarah.com', 'DIRECTION COMMERCIALE', 'DAF', '21 26 00 93/07 48 92 47 45', NULL, NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(11, '2021-08-04 18:53:28', '2021-08-05 14:25:57', 'AMBASSADE DES USA', 'COCODY', NULL, 'normal', NULL, 'ABIDJAN', NULL, NULL, 'HARAWA GEOFFREY', 'harawagk@state.gov', 'DIRECTION COMMERCIALE', 'PRINCIPAL CASHIER', '22 49 40 55/05 55 56 21 22', 'CHANCELERIE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(12, '2021-08-04 19:14:32', '2021-08-04 19:14:32', 'DOLIDOL', 'YOPOUGON ZONE INDUSTRIEL', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME DEYENE KHADIJA', 'kdeyene@dolidol.ci', 'DIRECTION COMMERCIALE', 'DIRECTRICE SUPPORT', '23 50 80 02/ 07 87 68 51 69', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(13, '2021-08-04 19:21:27', '2021-09-10 14:53:19', 'SUITE COM', '2 PLATEAU BVD LATRILLE', '07 07 01 85 50/ 07 07 09 44 92', NULL, '28 BP 95 ABIDJAN 28', 'ABIDJAN', 'CI-ABJ-2006-B-109', '0611813Z', 'MLLE KONAN YAHAUT', 'deenahk-yahaut@suitecom-ci.com', 'DIRECTION COMMERCIALE', 'DIRECTRICE OPERATIONS', '07 07 01 85 16', 'TELEPHONIE', NULL, '2019-07-10', NULL, 'TDF VB,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'moyen', NULL, 'scelle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(14, '2021-08-05 09:31:21', '2021-08-05 09:31:21', 'CLIENT BAFATAK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(15, '2021-08-05 10:54:10', '2021-08-05 10:54:10', 'UBA/CFCI', 'YOPOUGON', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME SAKO HADJA', 'hadja.sako@ubagroup.com', 'DIRECTION COMMERCIALE', 'CHARGE PORTEFEUILLE', '20 31 22 22/07 7962 28 03', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(16, '2021-08-05 11:05:57', '2021-08-05 11:05:57', 'CDCI CI', 'TREICHVILLE PORT', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MAACHI', NULL, 'DIRECTION COMMERCIALE', 'DAF', '21 24 01 51/21 24 26 82', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(17, '2021-08-05 11:17:27', '2021-08-05 11:47:38', 'ecobank-bouaké', 'bouaké-commerce', NULL, NULL, NULL, 'bouaké', NULL, NULL, 'toualy kevin', 'ktoualy@ecobank.com', 'direction commerciale', 'chef de caisse', '0709249329', 'banque', NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Comptage + tri,Petit matériel', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(18, '2021-08-05 11:38:54', '2021-08-05 11:38:54', 'MOSAIK TELECOM', 'COCODY ANGRE', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ALLAH ARSENE', 'aallahkouame@mosaiktelecom.com', 'DIRECTION COMMERCIALE', 'SG', '07  07 01 11 23', 'TELEPHONIE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(19, '2021-08-05 11:41:33', '2021-08-05 11:43:24', 'CORISBANK', 'bouaké-commerce', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'soro aboulaye', 'absoro@corisbank.com', 'direction commerciale', 'chef d\'agence', '0575237990', 'banque', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Intra muros,Extra muros', 'km bitume', NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(20, '2021-08-05 11:48:02', '2021-08-05 11:48:02', 'SII', 'COCODY DANGA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUAMELA EKISSI HERVE', 'ekissih@yahoo.fr', 'DIRECTION COMMERCIALE', 'DAF', '22 44 04 54/ 07 47 86 14 14', 'TELEPHONIE', NULL, NULL, NULL, 'TDF VB,TDF VL,Collecte', NULL, 'Permanent', NULL, NULL, NULL, NULL, NULL, 'Moyen', 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(21, '2021-08-05 12:18:22', '2021-08-05 12:25:10', 'QUIPUX GUICHET UNIQUE BOUAKE', 'BOUAKE-NIMBO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'N\'ZUE INNOCENTE', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0707495111', NULL, NULL, NULL, NULL, 'TDF VL,Petit matériel', NULL, NULL, 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(22, '2021-08-05 12:24:03', '2021-08-05 12:24:03', 'QUIPUX CGI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'FOFANA SEKOU', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0747478337', NULL, NULL, NULL, NULL, 'TDF VL', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(23, '2021-08-05 12:29:06', '2021-08-05 12:29:06', 'COOPEC BOUAKE1', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'GOME', 'cbouake@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF DE CAISSE', '0102036433', 'banque', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(24, '2021-08-05 12:43:49', '2021-08-05 13:05:22', 'COOPEC SAKASSOU', 'SAKASSOU', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'SORO DOKPORO', 'csakassou@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0708192503', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(25, '2021-08-05 12:46:01', '2021-08-05 13:04:45', 'COOPEC DOUGOUBA', 'BOUAKE-DOUGOUBA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOUASSI MARIE LAURE', 'cdougouba@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0102502357', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(26, '2021-08-05 12:51:01', '2021-08-05 12:59:04', 'COOPEC BEOUMI', 'BEOUMI', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'ANIBE', 'cbeoumi@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0101623856', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(27, '2021-08-05 12:53:25', '2021-08-05 12:59:32', 'COOPEC DABAKALA', 'DABAKALA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'SANOGO', 'cdabakala@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0102038499', NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(28, '2021-08-05 12:56:44', '2021-08-05 13:01:02', 'COOPEC NIAKARA', 'NIAKARA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOIGNY BAKAN SERGE', 'cniakara@unacoopec.ci', 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0140011145', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(29, '2021-08-05 12:57:55', '2021-09-10 10:04:02', 'ATLANTIQUE  TELECOM', 'PLATEAU AV BOTREAU ROUSSEL', '27 20 27 01 01/F 27 20 25 01 03', NULL, '01 BP 2347 ABJ 01', 'ABIDJAN', 'CI-ABJ-2005-B-1378', '0521319F', 'MME NGUETTE KADJO', 'Augstine.KADJO@Moov.Com', 'DIRECTION COMMERCIALE', 'DAF', '20 21 01 01', 'TELEPHONIE', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(30, '2021-08-05 13:03:49', '2021-08-05 13:03:49', 'COOPEC MANKONO', 'MANKONO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'KOUASSI YAO PATRICE', 'cmankono@unacoopec.ci', NULL, 'CHEF D\'AGENCE', '0140011145', NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(31, '2021-08-05 13:28:20', '2021-08-05 13:28:20', 'MOOV BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'Mme DAGO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '0101000434', NULL, NULL, NULL, NULL, 'TDF VL', NULL, 'Permanent', 'Intra muros', NULL, 'intra muros', NULL, NULL, 'Petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(32, '2021-08-05 13:31:16', '2021-08-05 13:31:16', 'UNACOOPEC', 'COCODY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'ETIBOA', 'etiboa@unacoopec.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '01 02 02 13 26', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Permanent,Appel', NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(33, '2021-08-05 13:32:17', '2021-08-05 13:34:35', 'WAVE BOUAKE COMMERCE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(34, '2021-08-05 13:33:49', '2021-08-05 13:35:20', 'WAVE MARCHE DE GROS BOUAKE', 'BOUAKE-MARCHE DE GROS', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Garde de fonds,Petit matériel', NULL, 'Appel', 'Intra muros', 'intra muros', NULL, 'MIS A DISPOSITION DE CAISSIERE', NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(35, '2021-08-05 13:37:39', '2021-08-05 13:37:39', 'SGCI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'GRIS JEAN CHRISTIAN', 'Jean-christian.gris@socgen.com', 'DIRECTION COMMERCIALE', 'RESPO ADJOINT SUPLLY CHAIN', '20 25 99 49/ 05 46 94 14 57', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte,Gestion ATM,Maintenance ATM', NULL, 'Appel', 'Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(36, '2021-08-05 13:38:06', '2021-08-05 13:38:06', 'WAVE KATIOLA', 'KATIOLA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Garde de fonds,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(37, '2021-08-05 13:41:03', '2021-08-05 13:41:03', 'WAVE TIENINGBOUE', 'TIENINGBOUE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(38, '2021-08-05 13:42:13', '2021-08-05 13:42:13', 'WAVE MANKONO', 'MANKONO', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, NULL, NULL, 'DIRECTION COMMERCIALE', 'RESPONSABLE D\'AGENCE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Garde de fonds,Petit matériel', NULL, NULL, NULL, 'km bitume', NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(39, '2021-08-05 13:42:32', '2021-08-05 13:42:32', 'PAMF', 'YOPOUGON', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KONE PAHADJA', 'pahadja.kone@ci.pamfwa.org', 'DIRECTION COMMERCIALE', 'DAF', '07 49 19 96 88', 'MICROFINANCE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(40, '2021-08-05 13:47:58', '2021-08-05 13:47:58', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL, NULL, NULL, NULL),
+	(41, '2021-08-05 13:47:59', '2021-08-05 13:47:59', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL, NULL, NULL, NULL),
+	(42, '2021-08-05 13:53:21', '2021-08-05 13:53:21', 'ECOBANK CI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KANGHAH FRANCK CESAR', 'akanghah@ecobank.com', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 93 11', 'BANQUE', NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Permanent,Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(43, '2021-08-05 13:57:31', '2021-08-05 13:57:31', 'LAJOY SARL', 'ZUENOULA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'DJEBI', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0748012769', 'micro-finance', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(44, '2021-08-05 14:58:19', '2021-08-05 14:58:19', 'CORIS BANK', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOFFI YAO EMERSON', 'kyao@coris-bank.com', 'DIRECTION COMMERCIALE', 'CHARGE DU PATRIMOINE', '20 20 94 87 /05 04 12 75 52', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(45, '2021-08-05 15:11:48', '2021-08-05 15:11:48', 'BNI \'', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'COULIBALY KAMA PATRICK', 'patrice.coulibaly@bni.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 51 43/01 03 43 80 69', NULL, NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(46, '2021-08-05 16:36:05', '2021-08-05 16:36:05', 'BGFI', 'MARCORY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME NGORAN MARIE LAURE', 'm-l-ngoran@bgfigroupe.com', 'DIRECTION COMMERCIALE', 'CHEF DES SERVICES MOYEN GENERAUX', '21 56 91 56 /58 51 30 10', 'BANQUE', NULL, NULL, NULL, 'Gestion ATM,Maintenance ATM', NULL, 'Appel', 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(47, '2021-08-05 16:41:59', '2021-09-10 13:29:31', 'BANQUE POPULAIRE', 'PLATEAU 11 AV. JOSEPH ANOMA', '27 20 25 53 01', NULL, '01 BP 6889 ABIDJAN 01', 'ABIDJAN', 'CI-ABJ-1998-B-233922', '9909042Q', 'MME DAPA SEWA DEKI KOUAKOU', 'aadeki@caissepargne.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES MOYENS GENERAUX', '07 08 14 68 77', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(48, '2021-08-05 16:47:45', '2021-09-10 11:20:00', 'BACI', 'PLATEAU IM ATLANTIQUE AV NOGUES', '27 20 31 50 59/F 27 20 31 59 51', NULL, '04 BP 1036 ABJ 04', 'ABIDJAN', 'CI-ABJ-1978-B-31372', NULL, 'KOUADIO JEAN BAPTISTE', 'jean-baptiste.kouadio@banqueatlatlantique.net', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 59 67/01 01 50 13 46', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(49, '2021-08-05 16:51:14', '2021-09-10 09:49:48', 'AGIR FINANCE', 'PLATEAU', '27 20 23 85 85/F 27 20 23 25 90', NULL, '17 BP 1223 ABJ 17', 'ABIDJAN', 'CI-ABJ-2018-M-05306', '1654356', 'GOSSE FRANCK', 'gossfranck@gmail.com', 'DIRECTION COMMERCIALE', 'DAF', '07 08 02 24 40 08', 'MICROFINANCE', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(50, '2021-08-05 16:59:42', '2021-08-05 16:59:42', 'QUIPUX CI', 'COCODY RIVIERA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'YAO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '05 54 01 19 58', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(51, '2021-09-10 14:04:52', '2021-09-10 14:04:52', 'AMANDA PRESTIGE', 'DUEKOUE', '07 07 06 24 17/07 08 26 80 39', NULL, NULL, 'DUEKOUE', 'CI-ABG-2011-N-158', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(52, '2021-09-10 14:34:37', '2021-09-10 14:34:37', 'AFRICAN COMMUNICATION BUSINESS', 'MARCORY MARIE CORE RESIDENCIEL', '01 01 23 35 35/01 03 83 25 63', NULL, '17 BP 591 ABJ 17', 'ABIDJAN', 'CI-GRD BSM-2009-B-1330', '0917260M', 'MME KOUADIO GISELE', 'gisele.kouadio@acb.ci', NULL, 'GERANTE', '01 03 83 25 63', 'TELEPHONIE', NULL, '2020-08-28', NULL, 'TDF VL,Petit matériel', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10000', NULL, NULL),
+	(53, '2021-09-10 15:41:43', '2021-09-10 15:41:43', 'IVOIRIENNE DE DISTRIB TELECOM', 'SAN PEDRO ZONE INDUSTRIELLE', '27 34 71 17 40', NULL, 'BP 22 SAN PEDRO', 'SAN PEDRO', NULL, NULL, 'DOUMBIA ENLYOU', 'enlyou.doumbia@ivoiredt-ci.com', NULL, 'RESPONSABLE FINANCIER', '07 57 88 88 12', 'TELEPHONIE', NULL, '2018-04-13', NULL, 'TDF VB,TDF VL,MAD CAISSE', NULL, 'Appel', 'Extra muros', NULL, NULL, NULL, NULL, 'petit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `commercial_clients` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. commercial_sites
-DROP TABLE IF EXISTS `commercial_sites`;
 CREATE TABLE IF NOT EXISTS `commercial_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -980,40 +949,89 @@ CREATE TABLE IF NOT EXISTS `commercial_sites` (
   `oo_scelle_grand` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `oo_scelle_moyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `oo_scelle_petit` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `base_garde_de_fonds_montant_forfaitaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `base_comptage_montant_forfaitaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bt_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `commercial_sites_client_foreign` (`client`),
   CONSTRAINT `commercial_sites_client_foreign` FOREIGN KEY (`client`) REFERENCES `commercial_clients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.commercial_sites : ~21 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.commercial_sites : ~64 rows (environ)
 DELETE FROM `commercial_sites`;
 /*!40000 ALTER TABLE `commercial_sites` DISABLE KEYS */;
-INSERT INTO `commercial_sites` (`id`, `created_at`, `updated_at`, `client`, `site`, `nom_contact_site`, `fonction_contact`, `centre`, `centre_regional`, `telephone`, `no_carte`, `oo_vb_extamuros_bitume`, `oo_vb_extramuros_piste`, `oo_vl_extramuros_bitume`, `oo_vl_extramuros_piste`, `oo_vb_intramuros`, `oo_mad`, `oo_collecte`, `oo_cctv`, `oo_collecte_caisse`, `oo_borne_cheque`, `oo_borne_operation`, `oo_gestion_gab_niveau`, `oo_gestion_gab_prix`, `oo_maintenance_n2`, `oo_vente_location`, `oo_vente_consommables`, `oo_vente_pieces_detachees`, `oo_securipack`, `oo_sac_juste`, `oo_scelle`, `oo_total`, `forfait_mensuel_ctv`, `forfait_mensuel_gdf`, `forfait_mensuel_mad`, `regime`, `tarif_bitume`, `tarif_km_piste`, `tarif_tdf_vb`, `tarif_tdf_vl`, `tarif_collecte_caissiere`, `oo_securipack_extra_grand`, `oo_securipack_grand`, `oo_securipack_moyen`, `oo_securipack_petit`, `oo_sacjuste_extra_grand`, `oo_sacjuste_grand`, `oo_sacjuste_moyen`, `oo_sacjuste_petit`, `oo_gestion_gab`, `oo_vl_intramuros`, `oo_scelle_extra_grand`, `oo_scelle_grand`, `oo_scelle_moyen`, `oo_scelle_petit`) VALUES
-	(5, '2021-08-04 14:18:50', '2021-09-06 15:33:44', 5, 'SHELL PO ABATTA', 'BLAISE', 'Gérant piste', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, '8000', NULL, '0', '2500', '5000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, '2021-08-05 10:59:51', '2021-08-05 10:59:51', 15, 'UNIWAX PLATEAU', 'MORO', NULL, 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(7, '2021-08-05 11:27:45', '2021-08-05 11:29:31', 17, 'BCEAO', 'TOUALY KEVIN', 'CHEF DE CAISSE', 'Bouaké', 'Bouaké', NULL, NULL, '127200', NULL, NULL, NULL, '21750', '50000', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra grand', 'Grand', '550', '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(8, '2021-08-05 16:55:13', '2021-09-07 07:48:31', 49, 'CIL/AGIR FINANCE', 'GOSSE FRANCK', 'DAF', 'Abidjan', 'Abidjan Sud', '07 08 02 24 44 08', NULL, '7000', '6000', '5000', '4000', '3000', '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9000', NULL, NULL, NULL, NULL),
-	(9, '2021-08-05 17:13:34', '2021-08-05 17:13:34', 50, 'QUIPUX YOPOUGON BAE', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(10, '2021-08-05 17:17:58', '2021-08-05 17:17:58', 50, 'QUIPUX CIL', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(11, '2021-08-05 17:23:08', '2021-08-05 17:23:08', 50, 'QUIPUX PONT HB', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(12, '2021-08-05 17:26:44', '2021-08-05 17:26:44', 50, 'QUIPUX SOLIBRA', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Choisir centre', 'Choisir centre régional', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(13, '2021-08-05 17:29:49', '2021-08-05 17:29:49', 50, 'QUIPUX VALLON', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(14, '2021-08-05 17:33:52', '2021-08-05 17:33:52', 50, 'QUIPUX STE CAMILLE', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(15, '2021-08-05 17:37:57', '2021-08-05 17:37:57', 50, 'QUIPUX DOKUI', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(16, '2021-08-05 17:54:25', '2021-09-06 13:32:03', 5, 'SHELL 7 TRANCHE', 'BLAISE', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, NULL, NULL, NULL, NULL, '700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(17, '2021-08-05 17:56:12', '2021-08-05 17:56:12', 5, 'SHELL FIGAYO', 'BLAISE', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(18, '2021-08-09 13:04:02', '2021-08-09 13:04:02', 15, 'UNIWAX Z.I', 'MORO', 'CHARGE RECONNAISSANCE', 'Choisir centre', 'Choisir centre régional', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(19, '2021-08-09 13:18:59', '2021-08-09 13:18:59', 15, 'UNIWAX P.MARCORY', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(20, '2021-08-09 13:21:23', '2021-08-09 13:21:23', 15, 'UNIWAX P.PALMERAIE', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(21, '2021-08-09 13:22:48', '2021-08-09 13:22:48', 15, 'UNIWAX CAP SUD', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(22, '2021-08-09 13:23:57', '2021-08-09 13:23:57', 15, 'UNIWAX WOODIN', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(23, '2021-08-09 13:24:57', '2021-08-09 13:24:57', 15, 'UNIWAX VILSCO', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(24, '2021-08-09 13:26:27', '2021-08-09 13:26:27', 15, 'UNIWAX DJIBI', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(25, '2021-08-09 13:27:33', '2021-08-09 13:27:33', 15, 'UNIWAX CAP NORD', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `commercial_sites` (`id`, `created_at`, `updated_at`, `client`, `site`, `nom_contact_site`, `fonction_contact`, `centre`, `centre_regional`, `telephone`, `no_carte`, `oo_vb_extamuros_bitume`, `oo_vb_extramuros_piste`, `oo_vl_extramuros_bitume`, `oo_vl_extramuros_piste`, `oo_vb_intramuros`, `oo_mad`, `oo_collecte`, `oo_cctv`, `oo_collecte_caisse`, `oo_borne_cheque`, `oo_borne_operation`, `oo_gestion_gab_niveau`, `oo_gestion_gab_prix`, `oo_maintenance_n2`, `oo_vente_location`, `oo_vente_consommables`, `oo_vente_pieces_detachees`, `oo_securipack`, `oo_sac_juste`, `oo_scelle`, `oo_total`, `forfait_mensuel_ctv`, `forfait_mensuel_gdf`, `forfait_mensuel_mad`, `regime`, `tarif_bitume`, `tarif_km_piste`, `tarif_tdf_vb`, `tarif_tdf_vl`, `tarif_collecte_caissiere`, `oo_securipack_extra_grand`, `oo_securipack_grand`, `oo_securipack_moyen`, `oo_securipack_petit`, `oo_sacjuste_extra_grand`, `oo_sacjuste_grand`, `oo_sacjuste_moyen`, `oo_sacjuste_petit`, `oo_gestion_gab`, `oo_vl_intramuros`, `oo_scelle_extra_grand`, `oo_scelle_grand`, `oo_scelle_moyen`, `oo_scelle_petit`, `base_garde_de_fonds_montant_forfaitaire`, `base_comptage_montant_forfaitaire`, `bt_atm`) VALUES
+	(5, '2021-08-04 14:18:50', '2021-09-06 15:33:44', 5, 'SHELL PO ABATTA', 'BLAISE', 'Gérant piste', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, '8000', NULL, '0', '2500', '5000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, '2021-08-05 10:59:51', '2021-08-05 10:59:51', 15, 'UNIWAX PLATEAU', 'MORO', NULL, 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(7, '2021-08-05 11:27:45', '2021-09-09 14:20:10', 17, 'BCEAO', 'TOUALY KEVIN', 'CHEF DE CAISSE', 'Bouaké', 'Bouaké', NULL, NULL, '1000', '2000', '3000', '4000', '5000', '50000', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra grand', 'Grand', '550', '2000', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '6000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(8, '2021-08-05 16:55:13', '2021-09-10 09:51:47', 49, 'CIL/AGIR FINANCE', 'GOSSE FRANCK', 'DAF', 'Abidjan', 'Abidjan Sud', '07 08 02 24 44 08', NULL, NULL, '6000', '5000', '4000', '3000', '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '900', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(9, '2021-08-05 17:13:34', '2021-08-05 17:13:34', 50, 'QUIPUX YOPOUGON BAE', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(10, '2021-08-05 17:17:58', '2021-08-05 17:17:58', 50, 'QUIPUX CIL', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(11, '2021-08-05 17:23:08', '2021-08-05 17:23:08', 50, 'QUIPUX PONT HB', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(12, '2021-08-05 17:26:44', '2021-08-05 17:26:44', 50, 'QUIPUX SOLIBRA', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Choisir centre', 'Choisir centre régional', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(13, '2021-08-05 17:29:49', '2021-08-05 17:29:49', 50, 'QUIPUX VALLON', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(14, '2021-08-05 17:33:52', '2021-08-05 17:33:52', 50, 'QUIPUX STE CAMILLE', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(15, '2021-08-05 17:37:57', '2021-08-05 17:37:57', 50, 'QUIPUX DOKUI', 'KOMARA', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '07 08 00 26 31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(16, '2021-08-05 17:54:25', '2021-09-06 13:32:03', 5, 'SHELL 7 TRANCHE', 'BLAISE', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, NULL, NULL, NULL, NULL, '700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(17, '2021-08-05 17:56:12', '2021-08-05 17:56:12', 5, 'SHELL FIGAYO', 'BLAISE', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '01 01 83 85 79', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(18, '2021-08-09 13:04:02', '2021-08-09 13:04:02', 15, 'UNIWAX Z.I', 'MORO', 'CHARGE RECONNAISSANCE', 'Choisir centre', 'Choisir centre régional', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(19, '2021-08-09 13:18:59', '2021-08-09 13:18:59', 15, 'UNIWAX P.MARCORY', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(20, '2021-08-09 13:21:23', '2021-08-09 13:21:23', 15, 'UNIWAX P.PALMERAIE', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(21, '2021-08-09 13:22:48', '2021-08-09 13:22:48', 15, 'UNIWAX CAP SUD', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(22, '2021-08-09 13:23:57', '2021-08-09 13:23:57', 15, 'UNIWAX WOODIN', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(23, '2021-08-09 13:24:57', '2021-08-09 13:24:57', 15, 'UNIWAX VILSCO', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(24, '2021-08-09 13:26:27', '2021-08-09 13:26:27', 15, 'UNIWAX DJIBI', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(25, '2021-08-09 13:27:33', '2021-09-09 14:17:46', 15, 'UNIWAX CAP NORD', 'MORO', 'CHARGE RECONNAISSANCE', 'Abidjan', 'Abidjan Sud', '05 44 20 5678', NULL, '40000', '30000', '20000', '10000', '50000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, '30000', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(26, '2021-09-10 10:13:21', '2021-09-10 10:13:21', 29, 'GBD COCODY ANONO', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(27, '2021-09-10 10:15:51', '2021-09-10 10:15:51', 29, 'YOPOUGON SABLE', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(28, '2021-09-10 10:17:30', '2021-09-10 10:17:30', 29, 'PLATEAU', NULL, NULL, 'Abidjan', 'Abidjan Sud', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(29, '2021-09-10 10:18:31', '2021-09-10 10:18:31', 29, 'COCODY ST JEAN', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(30, '2021-09-10 10:19:42', '2021-09-10 10:19:42', 29, 'CARREFOUR PRIMA', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(31, '2021-09-10 10:20:48', '2021-09-10 10:20:48', 29, 'CARREFOUR ENA', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(32, '2021-09-10 10:21:47', '2021-09-10 10:21:47', 29, 'ABOBO', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(33, '2021-09-10 10:22:49', '2021-09-10 10:22:49', 29, 'ABIDJAN MALL', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(34, '2021-09-10 10:24:53', '2021-09-10 10:24:53', 29, 'PLAYCE MARCORY', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(35, '2021-09-10 10:25:48', '2021-09-10 10:25:48', 29, 'CAP SUD', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(36, '2021-09-10 10:27:35', '2021-09-10 10:27:35', 29, 'COPORATE', NULL, NULL, 'Abidjan', 'Abidjan Sud', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(37, '2021-09-10 10:28:37', '2021-09-10 10:28:37', 29, 'PLAYCE ABATTA', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(38, '2021-09-10 10:29:43', '2021-09-10 10:29:43', 29, 'YOPOUGON COSMOS', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(39, '2021-09-10 10:31:04', '2021-09-10 10:31:04', 29, 'DISTRIB ACB', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(40, '2021-09-10 10:32:01', '2021-09-10 10:32:01', 29, 'ONE MART', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(41, '2021-09-10 10:39:35', '2021-09-10 10:39:35', 29, 'BOUAKE', NULL, NULL, 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(42, '2021-09-10 10:43:15', '2021-09-10 10:43:15', 29, 'MAN', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(43, '2021-09-10 10:45:29', '2021-09-10 10:45:29', 29, 'KORHOGO', NULL, NULL, 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(44, '2021-09-10 10:48:10', '2021-09-10 10:48:10', 29, 'CITE', NULL, NULL, 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(45, '2021-09-10 10:49:14', '2021-09-10 10:49:14', 29, 'SOUBRE', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(46, '2021-09-10 10:50:30', '2021-09-10 10:50:30', 29, 'DIVO', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(47, '2021-09-10 10:51:43', '2021-09-10 10:51:43', 29, 'GAGNOA', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(48, '2021-09-10 10:53:32', '2021-09-10 10:53:32', 29, 'YAMOUSSOKRO', NULL, NULL, 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(49, '2021-09-10 10:55:26', '2021-09-10 10:55:26', 29, 'ABENGOUROU', NULL, NULL, 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(50, '2021-09-10 10:56:38', '2021-09-10 10:56:38', 29, 'DALOA', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(51, '2021-09-10 11:04:01', '2021-09-10 11:04:01', 29, 'CIT DALOA', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(52, '2021-09-10 11:05:02', '2021-09-10 11:05:02', 29, 'CIT MAN', NULL, NULL, 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(53, '2021-09-10 11:06:37', '2021-09-10 11:06:37', 29, 'CIT DUEKOUE', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(54, '2021-09-10 11:07:52', '2021-09-10 11:07:52', 29, 'SUCCES SAN PEDRO', NULL, NULL, 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(55, '2021-09-10 11:09:00', '2021-09-10 11:09:00', 29, 'NOUR DISTRIBUTION BKE', NULL, NULL, 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(56, '2021-09-10 11:11:20', '2021-09-10 11:11:20', 29, 'NOUR DISTRIBUTION KORHOGO', NULL, NULL, 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(57, '2021-09-10 11:13:24', '2021-09-10 11:13:24', 29, 'GBD ABENGOUROU', NULL, NULL, 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '0', NULL, NULL, NULL, NULL, NULL, '9450', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(58, '2021-09-10 11:54:09', '2021-09-10 11:54:09', 48, 'ABENGOUROU', NULL, NULL, 'Abidjan', 'Abengourou', NULL, NULL, '800', NULL, NULL, NULL, '28000', NULL, NULL, '3000000', NULL, NULL, NULL, NULL, NULL, '15000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, '1100', '900', '750', NULL, NULL, NULL, NULL, NULL, '270000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(59, '2021-09-10 14:14:35', '2021-09-10 14:14:35', 51, 'AMANDA POINT ORANGE', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, '10000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, '1100', NULL, NULL, '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(60, '2021-09-10 14:18:07', '2021-09-10 14:20:23', 51, 'AMANDA KOUIBLY', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, '600', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, '1100', NULL, NULL, '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(61, '2021-09-10 14:20:06', '2021-09-10 14:20:06', 51, 'AMANDA MAHAPLEU', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, '600', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, '1100', NULL, NULL, '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(62, '2021-09-10 14:56:23', '2021-09-10 14:56:23', 13, 'SUITE COM ANONO', NULL, NULL, 'Abidjan', 'Abidjan Sud', NULL, NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(63, '2021-09-10 14:58:42', '2021-09-10 14:58:42', 13, 'SUITE COM ANGRE', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(64, '2021-09-10 15:00:34', '2021-09-10 15:00:34', 13, 'SUITE COM PALMERAIE', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(65, '2021-09-10 15:04:05', '2021-09-10 15:04:05', 13, 'SUITE COM SIEGE II PLATEAUX', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(66, '2021-09-10 15:11:05', '2021-09-10 15:15:33', 13, 'SUITE COM  II PLATEAU VALLON', NULL, NULL, 'Abidjan', 'Abidjan Nord', '27 22 44 47 19', NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(67, '2021-09-10 15:14:02', '2021-09-10 15:14:02', 13, 'SUITE COM LYCEE TECHNIQUE', NULL, NULL, 'Abidjan', 'Abidjan Nord', NULL, NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(68, '2021-09-10 15:17:21', '2021-09-10 15:17:21', 13, 'SUITE COM RIVIERA GOLF', NULL, NULL, 'Abidjan', 'Abidjan Nord', '27 22 44 47 19', NULL, NULL, NULL, NULL, NULL, '23000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '410', NULL, NULL, NULL),
+	(69, '2021-09-10 15:45:32', '2021-09-10 15:45:32', 53, 'IDT GABIADJI', NULL, NULL, 'Daloa', 'Daloa', '07 57 88 88 12', NULL, '600', NULL, NULL, NULL, NULL, '25000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(70, '2021-09-10 15:49:53', '2021-09-10 15:49:53', 53, 'IDT SOTREF', NULL, NULL, 'Daloa', 'Daloa', '07 57 88 88 12', NULL, NULL, NULL, NULL, NULL, NULL, '25000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '550', NULL, NULL, NULL, NULL, NULL, '12500', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(71, '2021-09-10 15:53:07', '2021-09-10 15:53:07', 53, 'IDT TABOU-BEREBY', NULL, NULL, 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '25000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(72, '2021-09-10 15:57:23', '2021-09-10 15:57:23', 53, 'IDT BUYO', NULL, NULL, 'Daloa', 'Daloa', '07 57 88 88 12', NULL, NULL, NULL, NULL, NULL, NULL, '25000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '750', '500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `commercial_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_degradations
-DROP TABLE IF EXISTS `comptabilite_degradations`;
 CREATE TABLE IF NOT EXISTS `comptabilite_degradations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1046,7 +1064,6 @@ DELETE FROM `comptabilite_degradations`;
 /*!40000 ALTER TABLE `comptabilite_degradations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_entree_caisses
-DROP TABLE IF EXISTS `comptabilite_entree_caisses`;
 CREATE TABLE IF NOT EXISTS `comptabilite_entree_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1065,7 +1082,6 @@ DELETE FROM `comptabilite_entree_caisses`;
 /*!40000 ALTER TABLE `comptabilite_entree_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_factures
-DROP TABLE IF EXISTS `comptabilite_factures`;
 CREATE TABLE IF NOT EXISTS `comptabilite_factures` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1087,7 +1103,6 @@ DELETE FROM `comptabilite_factures`;
 /*!40000 ALTER TABLE `comptabilite_factures` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_reglement_fatures
-DROP TABLE IF EXISTS `comptabilite_reglement_fatures`;
 CREATE TABLE IF NOT EXISTS `comptabilite_reglement_fatures` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1109,7 +1124,6 @@ DELETE FROM `comptabilite_reglement_fatures`;
 /*!40000 ALTER TABLE `comptabilite_reglement_fatures` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_sortie_caisses
-DROP TABLE IF EXISTS `comptabilite_sortie_caisses`;
 CREATE TABLE IF NOT EXISTS `comptabilite_sortie_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1128,7 +1142,6 @@ DELETE FROM `comptabilite_sortie_caisses`;
 /*!40000 ALTER TABLE `comptabilite_sortie_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. conteneurs
-DROP TABLE IF EXISTS `conteneurs`;
 CREATE TABLE IF NOT EXISTS `conteneurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1157,7 +1170,6 @@ DELETE FROM `conteneurs`;
 /*!40000 ALTER TABLE `conteneurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. convoyeurs
-DROP TABLE IF EXISTS `convoyeurs`;
 CREATE TABLE IF NOT EXISTS `convoyeurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1177,7 +1189,6 @@ DELETE FROM `convoyeurs`;
 /*!40000 ALTER TABLE `convoyeurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_centres
-DROP TABLE IF EXISTS `depart_centres`;
 CREATE TABLE IF NOT EXISTS `depart_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1187,25 +1198,15 @@ CREATE TABLE IF NOT EXISTS `depart_centres` (
   `kmDepart` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `observation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `depart_centres_notournee_foreign` (`noTournee`),
-  CONSTRAINT `depart_centres_notournee_foreign` FOREIGN KEY (`noTournee`) REFERENCES `depart_tournees` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `depart_centres_notournee_foreign` (`noTournee`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.depart_centres : ~2 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.depart_centres : 0 rows
 DELETE FROM `depart_centres`;
 /*!40000 ALTER TABLE `depart_centres` DISABLE KEYS */;
-INSERT INTO `depart_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `heureDepart`, `kmDepart`, `observation`) VALUES
-	(1, '2020-12-17 15:14:34', '2020-12-17 15:14:34', 1, '15:16', '10', 'TEST OBSERVATION DEP CENTRE'),
-	(2, '2020-12-17 15:28:18', '2020-12-17 15:28:18', 2, '15:28', '1200', 'BIEN'),
-	(3, '2020-12-21 14:01:57', '2020-12-21 14:01:57', 3, '14:01', '1600', 'obs1'),
-	(4, '2020-12-21 14:41:48', '2020-12-21 14:41:48', 5, '14:41', '1000', 'OBS2'),
-	(5, '2020-12-28 14:50:55', '2020-12-28 14:50:55', 8, '14:50', '2500', 'observation du 28'),
-	(6, '2021-08-17 07:58:18', '2021-08-17 07:58:18', 3, '07:57', '888', NULL),
-	(7, '2021-08-17 08:00:59', '2021-08-17 08:00:59', 3, '08:00', '777', 'xxxxxxxxxxx');
 /*!40000 ALTER TABLE `depart_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_sites
-DROP TABLE IF EXISTS `depart_sites`;
 CREATE TABLE IF NOT EXISTS `depart_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1220,7 +1221,7 @@ CREATE TABLE IF NOT EXISTS `depart_sites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.depart_sites : ~2 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.depart_sites : ~4 rows (environ)
 DELETE FROM `depart_sites`;
 /*!40000 ALTER TABLE `depart_sites` DISABLE KEYS */;
 INSERT INTO `depart_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `heureDepart`, `site`, `kmDepart`, `bordereau`, `destination`, `observation`) VALUES
@@ -1231,7 +1232,6 @@ INSERT INTO `depart_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `heur
 /*!40000 ALTER TABLE `depart_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_site_colis
-DROP TABLE IF EXISTS `depart_site_colis`;
 CREATE TABLE IF NOT EXISTS `depart_site_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1257,7 +1257,6 @@ DELETE FROM `depart_site_colis`;
 /*!40000 ALTER TABLE `depart_site_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_tournees
-DROP TABLE IF EXISTS `depart_tournees`;
 CREATE TABLE IF NOT EXISTS `depart_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1273,27 +1272,21 @@ CREATE TABLE IF NOT EXISTS `depart_tournees` (
   `heureDepart` time DEFAULT NULL,
   `kmArrivee` int(11) DEFAULT NULL,
   `heureArrivee` time DEFAULT NULL,
+  `centre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `centre_regional` varchar(225) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `depart_tournees_idvehicule_foreign` (`idVehicule`),
   CONSTRAINT `depart_tournees_idvehicule_foreign` FOREIGN KEY (`idVehicule`) REFERENCES `vehicules` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.depart_tournees : ~8 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.depart_tournees : ~1 rows (environ)
 DELETE FROM `depart_tournees`;
 /*!40000 ALTER TABLE `depart_tournees` DISABLE KEYS */;
-INSERT INTO `depart_tournees` (`id`, `created_at`, `updated_at`, `numeroTournee`, `date`, `idVehicule`, `chauffeur`, `agentDeGarde`, `chefDeBord`, `coutTournee`, `kmDepart`, `heureDepart`, `kmArrivee`, `heureArrivee`) VALUES
-	(1, '2020-12-17 15:01:36', '2020-12-17 15:01:36', 171220201, '2020-12-11', 2, 10, 11, 9, 12000, 0, NULL, NULL, NULL),
-	(2, '2020-12-17 15:25:57', '2020-12-17 15:25:57', 171220202, '2020-12-17', 1, 1, 11, 7, 11200, 0, NULL, NULL, NULL),
-	(3, '2020-12-21 13:58:13', '2020-12-21 13:58:13', 211220203, '2020-12-10', 3, 10, 11, 9, 25500, 0, NULL, NULL, NULL),
-	(4, '2020-12-21 14:38:42', '2020-12-21 14:38:42', 211220204, '2020-12-21', 4, 7, 11, 7, 19300, 0, NULL, NULL, NULL),
-	(5, '2020-12-21 14:40:32', '2020-12-21 14:40:32', 211220205, '2020-12-21', 2, 10, 11, 10, 14200, 0, NULL, NULL, NULL),
-	(6, '2020-12-21 14:52:45', '2020-12-21 14:52:45', 211220206, '2020-12-25', 2, 10, 11, 7, 4500, 0, NULL, NULL, NULL),
-	(7, '2020-12-28 13:49:24', '2020-12-28 13:49:24', 281220207, '2020-12-28', 3, 2, 11, 10, 14700, 0, NULL, NULL, NULL),
-	(8, '2020-12-28 13:53:29', '2020-12-28 13:53:29', 281220208, '2020-12-28', 3, 2, 11, 10, 23900, 0, NULL, NULL, NULL);
+INSERT INTO `depart_tournees` (`id`, `created_at`, `updated_at`, `numeroTournee`, `date`, `idVehicule`, `chauffeur`, `agentDeGarde`, `chefDeBord`, `coutTournee`, `kmDepart`, `heureDepart`, `kmArrivee`, `heureArrivee`, `centre`, `centre_regional`) VALUES
+	(17, '2021-09-09 14:19:13', '2021-09-09 14:21:07', 90920211, '2021-09-10', 2, 92, 74, 64, 46000, 6666666, '14:18:00', NULL, NULL, 'Abidjan', 'Abidjan Nord');
 /*!40000 ALTER TABLE `depart_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. failed_jobs
-DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1310,7 +1303,6 @@ DELETE FROM `failed_jobs`;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. heure_supps
-DROP TABLE IF EXISTS `heure_supps`;
 CREATE TABLE IF NOT EXISTS `heure_supps` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1337,7 +1329,6 @@ DELETE FROM `heure_supps`;
 /*!40000 ALTER TABLE `heure_supps` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_fournisseurs
-DROP TABLE IF EXISTS `informatique_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `informatique_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1357,7 +1348,6 @@ DELETE FROM `informatique_fournisseurs`;
 /*!40000 ALTER TABLE `informatique_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_materiels
-DROP TABLE IF EXISTS `informatique_materiels`;
 CREATE TABLE IF NOT EXISTS `informatique_materiels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1383,7 +1373,6 @@ INSERT INTO `informatique_materiels` (`id`, `created_at`, `updated_at`, `centre`
 /*!40000 ALTER TABLE `informatique_materiels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_missions
-DROP TABLE IF EXISTS `informatique_missions`;
 CREATE TABLE IF NOT EXISTS `informatique_missions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1406,7 +1395,6 @@ DELETE FROM `informatique_missions`;
 /*!40000 ALTER TABLE `informatique_missions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_operations
-DROP TABLE IF EXISTS `informatique_operations`;
 CREATE TABLE IF NOT EXISTS `informatique_operations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1429,7 +1417,6 @@ DELETE FROM `informatique_operations`;
 /*!40000 ALTER TABLE `informatique_operations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_chargement_cartes
-DROP TABLE IF EXISTS `logistique_chargement_cartes`;
 CREATE TABLE IF NOT EXISTS `logistique_chargement_cartes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1449,7 +1436,6 @@ DELETE FROM `logistique_chargement_cartes`;
 /*!40000 ALTER TABLE `logistique_chargement_cartes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_approvision
-DROP TABLE IF EXISTS `logistique_entree_approvision`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_approvision` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1470,7 +1456,6 @@ DELETE FROM `logistique_entree_approvision`;
 /*!40000 ALTER TABLE `logistique_entree_approvision` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_bordereaux
-DROP TABLE IF EXISTS `logistique_entree_bordereaux`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_bordereaux` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1492,7 +1477,6 @@ DELETE FROM `logistique_entree_bordereaux`;
 /*!40000 ALTER TABLE `logistique_entree_bordereaux` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_carnet_caisses
-DROP TABLE IF EXISTS `logistique_entree_carnet_caisses`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_carnet_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1513,7 +1497,6 @@ DELETE FROM `logistique_entree_carnet_caisses`;
 /*!40000 ALTER TABLE `logistique_entree_carnet_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_commande
-DROP TABLE IF EXISTS `logistique_entree_commande`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_commande` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1534,7 +1517,6 @@ DELETE FROM `logistique_entree_commande`;
 /*!40000 ALTER TABLE `logistique_entree_commande` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_maintenance
-DROP TABLE IF EXISTS `logistique_entree_maintenance`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_maintenance` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1555,7 +1537,6 @@ DELETE FROM `logistique_entree_maintenance`;
 /*!40000 ALTER TABLE `logistique_entree_maintenance` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_securipack
-DROP TABLE IF EXISTS `logistique_entree_securipack`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_securipack` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1577,7 +1558,6 @@ DELETE FROM `logistique_entree_securipack`;
 /*!40000 ALTER TABLE `logistique_entree_securipack` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_stocks
-DROP TABLE IF EXISTS `logistique_entree_stocks`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_stocks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1602,7 +1582,6 @@ DELETE FROM `logistique_entree_stocks`;
 /*!40000 ALTER TABLE `logistique_entree_stocks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_ticket_visite
-DROP TABLE IF EXISTS `logistique_entree_ticket_visite`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_ticket_visite` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1623,7 +1602,6 @@ DELETE FROM `logistique_entree_ticket_visite`;
 /*!40000 ALTER TABLE `logistique_entree_ticket_visite` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_fournisseurs
-DROP TABLE IF EXISTS `logistique_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `logistique_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1651,7 +1629,6 @@ DELETE FROM `logistique_fournisseurs`;
 /*!40000 ALTER TABLE `logistique_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_produits
-DROP TABLE IF EXISTS `logistique_produits`;
 CREATE TABLE IF NOT EXISTS `logistique_produits` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1675,7 +1652,6 @@ DELETE FROM `logistique_produits`;
 /*!40000 ALTER TABLE `logistique_produits` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_approvision
-DROP TABLE IF EXISTS `logistique_sortie_approvision`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_approvision` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1694,7 +1670,6 @@ DELETE FROM `logistique_sortie_approvision`;
 /*!40000 ALTER TABLE `logistique_sortie_approvision` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_bordereaux
-DROP TABLE IF EXISTS `logistique_sortie_bordereaux`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_bordereaux` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1713,7 +1688,6 @@ DELETE FROM `logistique_sortie_bordereaux`;
 /*!40000 ALTER TABLE `logistique_sortie_bordereaux` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_carnet_caisses
-DROP TABLE IF EXISTS `logistique_sortie_carnet_caisses`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_carnet_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1732,7 +1706,6 @@ DELETE FROM `logistique_sortie_carnet_caisses`;
 /*!40000 ALTER TABLE `logistique_sortie_carnet_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_commande
-DROP TABLE IF EXISTS `logistique_sortie_commande`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_commande` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1751,7 +1724,6 @@ DELETE FROM `logistique_sortie_commande`;
 /*!40000 ALTER TABLE `logistique_sortie_commande` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_maintenance
-DROP TABLE IF EXISTS `logistique_sortie_maintenance`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_maintenance` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1770,7 +1742,6 @@ DELETE FROM `logistique_sortie_maintenance`;
 /*!40000 ALTER TABLE `logistique_sortie_maintenance` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_securipack
-DROP TABLE IF EXISTS `logistique_sortie_securipack`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_securipack` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1790,7 +1761,6 @@ DELETE FROM `logistique_sortie_securipack`;
 /*!40000 ALTER TABLE `logistique_sortie_securipack` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_stocks
-DROP TABLE IF EXISTS `logistique_sortie_stocks`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_stocks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1813,7 +1783,6 @@ DELETE FROM `logistique_sortie_stocks`;
 /*!40000 ALTER TABLE `logistique_sortie_stocks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_ticket_visite
-DROP TABLE IF EXISTS `logistique_sortie_ticket_visite`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_ticket_visite` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1833,15 +1802,14 @@ DELETE FROM `logistique_sortie_ticket_visite`;
 /*!40000 ALTER TABLE `logistique_sortie_ticket_visite` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. migrations
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.migrations : ~92 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.migrations : ~104 rows (environ)
 DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -1880,14 +1848,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(33, '2020_09_13_121455_create_securite_materiels_table', 1),
 	(34, '2020_09_14_055201_create_securite_materiel_beneficiaires_table', 1),
 	(35, '2020_09_14_055353_create_securite_materiel_remettants_table', 1),
-	(36, '2020_09_14_142805_create_depart_centres_table', 1),
 	(37, '2020_09_14_163732_create_arrivee_sites_table', 1),
 	(38, '2020_09_14_175752_create_depart_sites_table', 1),
 	(39, '2020_09_15_142147_create_personnel_conges_table', 1),
 	(40, '2020_09_15_142939_create_personnel_sanctions_table', 1),
 	(41, '2020_09_16_171046_create_depart_site_colis_table', 1),
-	(42, '2020_09_17_160958_create_arrivee_centres_table', 1),
-	(43, '2020_09_17_174740_create_tournee_centres_table', 1),
 	(44, '2020_09_21_112242_create_caisse_services_table', 1),
 	(45, '2020_09_21_112811_create_caisse_service_operatrices_table', 1),
 	(46, '2020_09_21_121127_create_caisse_ctvs_table', 1),
@@ -1948,11 +1913,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(105, '2021_08_27_172304_create_personnel_gestion_explications_table', 5),
 	(106, '2021_08_27_172615_create_personnel_gestion_affectations_table', 5),
 	(107, '2021_09_01_180423_create_personnel_gestion_sanctions_table', 6),
-	(108, '2021_09_06_154415_create_personnel_gestion_conges_table', 7);
+	(108, '2021_09_06_154415_create_personnel_gestion_conges_table', 7),
+	(109, '2020_09_14_142805_create_depart_centres_table', 8),
+	(110, '2020_09_17_160958_create_arrivee_centres_table', 8),
+	(112, '2020_09_17_174740_create_tournee_centres_table', 9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. password_resets
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1966,7 +1933,6 @@ DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnels
-DROP TABLE IF EXISTS `personnels`;
 CREATE TABLE IF NOT EXISTS `personnels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2002,7 +1968,7 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.personnels : ~146 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.personnels : ~164 rows (environ)
 DELETE FROM `personnels`;
 /*!40000 ALTER TABLE `personnels` DISABLE KEYS */;
 INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre`, `centreRegional`, `securite`, `transport`, `caisse`, `regulation`, `siegeService`, `siegeDirection`, `siegeDirectionGenerale`, `nomPrenoms`, `dateNaissance`, `dateEntreeSociete`, `dateSortie`, `typeSortie`, `fonction`, `service`, `natureContrat`, `numeroCNPS`, `situationMatrimoniale`, `nombreEnfants`, `photo`, `adresseGeographique`, `contactPersonnel`, `nomPere`, `nomMere`, `nomConjoint`, `personneContacter`) VALUES
@@ -2019,9 +1985,9 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 	(26, '2021-08-05 10:38:47', '2021-09-07 11:25:45', '26', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BOLOU ELIANE', '1978-07-15', '2017-08-01', NULL, 'Fin contrat', 'RESPONSABLE COMMERCIALE ET MARKETING', 'COMMERCIAL', 'CDD', '278010608303', 'MARIE', '3', '1631013943_Photo MONOBOLOU.jpg', NULL, NULL, 'BOLOU', 'BLABO', 'MONOBOLOU', NULL),
 	(27, '2021-08-05 10:45:21', '2021-09-08 11:01:09', '27', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SOUROU JOANCE ROMEO', '1986-03-28', '2020-01-06', NULL, 'Fin contrat', 'RESPONSABLE DSSB', 'MONETIQUE', 'CDD', '186010951848', 'MARIE', '2', '', NULL, '07-78-13-13-74', 'SOUROU', 'BOTO', 'BOSSON', NULL),
 	(28, '2021-08-05 12:27:13', '2021-08-05 12:27:13', '28', 'Abidjan', 'Choisir centre régional', NULL, 'Chauffeur', NULL, NULL, NULL, NULL, NULL, 'DOUMBIA KARAMOKO', '1978-07-24', '2019-08-26', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', '178011524429', 'CELIBATAIRE', '3', '', NULL, '05-05-54-82-47', 'DOUMBIA BRAHIMA', 'KOFFI AHOU', NULL, NULL),
-	(29, '2021-08-05 13:16:13', '2021-09-07 16:18:14', '29', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EPONON ERIC', '1981-03-19', '2021-04-03', NULL, 'Fin contrat', 'AGENT PCC', 'SECURITE', 'CDD', '181010859617', 'MARIE', '2', '1631031492_Photo EPONON ERIC_0001.jpg', NULL, '01-01-90-54-37', 'EPONON', 'AKOUA', NULL, NULL),
+	(29, '2021-08-05 13:16:13', '2021-09-10 08:35:14', '29', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EPONON ERIC', '1981-03-19', '2021-04-03', NULL, 'Fin contrat', 'AGENT PCC', 'SECURITE', 'CDD', '181010859617', 'MARIE', '2', '1631262912_Photo EPONON Eric.jpg', NULL, '01-01-90-54-37', 'EPONON', 'AKOUA', NULL, NULL),
 	(30, '2021-08-05 13:46:28', '2021-09-07 11:47:16', '30', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIE LOU GOUNAN ADELE', '1980-10-25', '2020-02-17', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', '280012036338', 'MARIE', '5', '1631015235_Photo DIE LOU GOUNAN.jpg', NULL, '07-08-88-70-23', 'IRIE', 'GORE', NULL, NULL),
-	(31, '2021-08-05 15:44:28', '2021-09-07 16:29:13', '31', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOFFI RODOLPHE', '1983-01-08', '2019-05-13', NULL, 'Fin contrat', 'TECHNICIEN MONETIQUE', 'MONETIQUE', 'CDI', '183011150636', 'MARIE', '0', '1631032152_Photo kouadio Koffi rodolphe.jpg', NULL, '07-08-33-10-15', 'KOUADIO', 'KRA', NULL, NULL),
+	(31, '2021-08-05 15:44:28', '2021-09-10 10:16:43', '31', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOFFI RODOLPHE', '1983-01-08', '2019-05-13', NULL, 'Fin contrat', 'TECHNICIEN MONETIQUE', 'MONETIQUE', 'CDD', '183011150636', 'MARIE', '0', '1631032152_Photo kouadio Koffi rodolphe.jpg', NULL, '07-08-33-10-15', 'KOUADIO', 'KRA', NULL, NULL),
 	(32, '2021-08-05 16:15:06', '2021-08-05 16:15:06', '32', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'KAKOU BROU NADEGE', '1980-11-10', '2019-07-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', '280010902459', 'CELIBATAIRE', '0', '', NULL, '07-07-35-00-92', 'ANOH KAKOU', 'KOUAME KISSI', NULL, NULL),
 	(33, '2021-08-05 16:23:53', '2021-09-07 11:52:38', '33', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MAHAN JOSIANE NOELLE', '1979-07-03', '2019-07-01', NULL, 'Fin contrat', 'TRIEUSE', 'CAISSE', 'CDD', '279012057726', 'MARIE', '2', '1631015556_Photo MAHAN Josiane.jpg', NULL, '07-87-03-12-94', 'MAHAN', 'KOSSA', NULL, NULL),
 	(34, '2021-08-05 17:12:15', '2021-09-07 16:15:11', '34', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO ABENAN EVELYNE', '1988-01-26', '2021-04-01', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', '286011377871', 'CELIBATAIRE', '0', '1631031309_Photo KOUADIO Abenan Evelyne_0001.jpg', NULL, '07-12-89-69', 'KOUADIO', 'AMANAMAN', NULL, NULL),
@@ -2034,7 +2000,7 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 	(41, '2021-08-06 12:06:16', '2021-09-08 10:42:10', '41', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COULIBALY ABOU', '1964-01-01', NULL, NULL, 'Fin contrat', 'RESPONSABLE SECURITE', 'SECURITE', 'CDD', NULL, 'MARIE', NULL, '', NULL, '07-67-78-52-75', 'MORY', 'OUAGA', NULL, NULL),
 	(42, '2021-08-06 12:19:20', '2021-09-07 14:54:23', '42', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ADDI TANON KONE GILDAS', '1976-11-19', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '5', '1631026461_Photo ADDI Tanon.jpg', NULL, '07-08-11-64-56', 'BILSON', 'KOUASSI', NULL, NULL),
 	(43, '2021-08-06 12:23:23', '2021-08-06 12:23:23', '43', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'NATHALIE BAILLY', '1970-08-20', '2017-11-07', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', NULL, 'CELIBATAIRE', '1', '', NULL, '07-48-33-70-98', 'BAILLY TAGRO MATHIEU', 'DIMAN AUGUSTINE', NULL, NULL),
-	(44, '2021-08-06 12:26:13', '2021-09-07 16:25:10', '44', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ALBERT OLOUBI', '1971-04-08', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '2', '1631031908_Photo ALBERT OLOUBI.jpg', NULL, '01-01-16-82-52', 'OLOUBI', 'TOURE', NULL, NULL),
+	(44, '2021-08-06 12:26:13', '2021-09-09 14:41:05', '44', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ALBERT OLOUBI', '1971-04-08', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', '1631031908_Photo ALBERT OLOUBI.jpg', NULL, '01-01-16-82-52', 'OLOUBI', 'TOURE', NULL, NULL),
 	(45, '2021-08-06 12:29:16', '2021-09-07 11:44:29', '45', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAO LOUKOU YOBOUET OKA EDITH', NULL, '2021-04-01', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'MARIE', '1', '1631015068_Photo LOUKOU YOBOUET.jpg', NULL, '05-66-80-61-04', 'YAO', 'KOUASSI', NULL, NULL),
 	(46, '2021-08-06 12:37:33', '2021-09-07 16:33:32', '46', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ASSI OYA ARCHANGE APPOLINAIRE', '1980-12-30', '2019-08-26', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDI', '202100001416', 'MARIE', '3', '1631032410_Photo ASSI OYA Archange.jpg', NULL, '07-48-47-75-64', 'ASSI', 'AKE', NULL, NULL),
 	(47, '2021-08-06 12:44:53', '2021-08-06 12:44:53', '47', 'Abidjan', 'Choisir centre régional', NULL, 'Chauffeur', NULL, NULL, NULL, NULL, NULL, 'KONAN KOUASSI DESIRE', '1975-06-23', '2020-09-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '0', '', NULL, '07-08-62-21-28', 'KONAN KAN FIRMIN', 'KONO AKISSI', NULL, NULL),
@@ -2054,16 +2020,16 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 	(61, '2021-08-09 15:19:05', '2021-09-07 15:58:58', '61', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONAN ALLOUFOU DENIS', '1974-12-29', '2020-10-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'CHAUFFEUR', 'CDD', '174019614381', 'MARIE', '7', '1631030337_Photo Konan Alloufou denis.jpg', NULL, '07-08-02-14-39', NULL, NULL, NULL, NULL),
 	(62, '2021-08-09 15:45:08', '2021-09-07 16:26:54', '62', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOFFI AHOU MONIQUE', '1976-06-17', '2020-02-17', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', '276010129606', 'CELIBATAIRE', '1', '1631032012_Photo Koffi Ahou Monique.jpg', NULL, '07-48-81-10-14', 'KONAN', 'KOFFI', NULL, NULL),
 	(63, '2021-08-09 16:12:04', '2021-08-09 16:12:04', '63', 'Daloa', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'AHING KOFFI ADJOUA INNOCENTE', '1978-07-25', '2019-02-18', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', '202100001425', 'CELIBATAIRE', '2', '', NULL, '07-07-29-60-74', 'KOFFI YAO', 'KONAN AKISSI BERNADETTE', NULL, NULL),
-	(64, '2021-08-09 16:17:54', '2021-08-09 16:17:54', '64', 'Daloa', 'Choisir centre régional', NULL, 'Chef de bord', NULL, NULL, NULL, NULL, NULL, 'ABE DJOMAN EMMANUEL', '1978-12-23', '2018-06-01', NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', NULL, '', NULL, '07-08-79-38-88', 'DJOMAN ABE JACQUES', 'AHOUADJA YOUA EUGENIE', NULL, NULL),
-	(65, '2021-08-09 16:25:23', '2021-08-09 16:25:23', '65', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TANOH YAO ROGER', '1988-12-18', '2019-08-26', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', NULL, 'CELIBATAIRE', '1', '', NULL, '05-06-07-74-62', NULL, NULL, NULL, NULL),
-	(66, '2021-08-09 16:31:51', '2021-08-09 16:31:51', '66', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOHI ESSANE THERESE YOLANDE', '1980-04-13', '2018-11-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', NULL, 'MARIE', '1', '', NULL, '07-07-38-16-23', 'KOHI DJEDJANGNE JOSEPH', 'AKA ESSIOU PAULETTE', NULL, NULL),
-	(67, '2021-08-09 16:35:55', '2021-08-09 16:35:55', '67', 'Daloa', 'Choisir centre régional', NULL, 'Convoyeur', NULL, NULL, NULL, NULL, NULL, 'FANNY DAOUDA', '1975-01-01', '2018-01-16', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '5', '', NULL, '05-05-58-47-87', 'FANNY FANTILE', 'KONATE KARTIA', NULL, NULL),
+	(64, '2021-08-09 16:17:54', '2021-09-10 10:50:10', '64', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ABE DJOMAN EMMANUEL', '1978-12-23', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', NULL, '', NULL, '07-08-79-38-88', 'DJOMAN', 'AHOUADJA', NULL, NULL),
+	(65, '2021-08-09 16:25:23', '2021-09-09 10:40:30', '65', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TANOH YAO ROGER', '1988-12-18', '2019-08-26', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', '1', '1631184028_Photo TANOH Yao Roger.jpg', NULL, '05-06-07-74-62', NULL, NULL, NULL, NULL),
+	(66, '2021-08-09 16:31:51', '2021-09-09 10:38:19', '66', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOHI ESSANE THERESE YOLANDE', '1980-04-13', '2018-11-01', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'MARIE', '1', '1631183897_Photo KOHI Essan Thérèse_0001.jpg', NULL, '07-07-38-16-23', 'KOHI', 'AKA', NULL, NULL),
+	(67, '2021-08-09 16:35:55', '2021-09-10 10:14:49', '67', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FANNY DAOUDA', '1975-01-01', '2018-01-16', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '5', '', NULL, '05-05-58-47-87', 'FANNY', 'KONATE', NULL, NULL),
 	(68, '2021-08-09 16:45:44', '2021-08-09 16:45:44', '68', 'Choisir centre', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PENAN DJAO SERGES', '1986-07-13', '2018-06-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', '186012067203', 'CELIBATAIRE', '3', '', NULL, '07-09-87-82-21', 'PENAN ROBERT', 'BLE JEANNETTE', NULL, NULL),
-	(69, '2021-08-10 10:01:04', '2021-08-10 10:01:04', '69', 'Daloa', 'Choisir centre régional', NULL, 'Convoyeur', NULL, NULL, NULL, NULL, NULL, 'YAOHOURI SERGE ALBAN', '1974-06-22', '2019-06-24', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '174011213039', 'CELIBATAIRE', '1', '', NULL, '07-48-94-49-68', 'YAOHIROU PAUL', 'BOBIA BOUDEROU BERTINE', NULL, NULL),
+	(69, '2021-08-10 10:01:04', '2021-09-10 10:28:12', '69', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAOHOURI SERGE ALBAN', '1974-06-22', '2019-06-24', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '174011213039', 'CELIBATAIRE', '1', '', NULL, '07-48-94-49-68', 'YAOHIROU', 'BOBIA', NULL, NULL),
 	(70, '2021-08-12 11:23:47', '2021-09-08 10:51:35', '70', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DJESSO FIRMIN FAUSTIN ERIC', '1982-11-22', '2018-06-01', NULL, 'Fin contrat', 'CHEF DE CENTRE', NULL, 'CDD', NULL, NULL, NULL, '', NULL, '07-07-92-20-06', 'DJESSO', 'SENEKO', NULL, NULL),
-	(71, '2021-08-12 11:34:28', '2021-08-12 11:34:28', '71', 'Daloa', 'Choisir centre régional', NULL, 'Garde', NULL, NULL, NULL, NULL, NULL, 'GOUAMENE ZATO JULES', '1976-01-01', '2019-02-13', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '4', '', NULL, '01-03-73-55-69', 'GOUAMENE BERNARD', 'GBAGBE OTTITRO', NULL, NULL),
-	(72, '2021-08-12 11:39:36', '2021-08-12 11:39:36', '72', 'Daloa', 'Choisir centre régional', NULL, 'Garde', NULL, NULL, NULL, NULL, NULL, 'OUATTARA YIRANI', '1972-06-15', '2018-12-15', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', '', NULL, '01-02-24-18-09', 'OUATTARA BABAPLE', 'PONATIENLIN OUATTARA', NULL, NULL),
-	(73, '2021-08-12 11:51:17', '2021-08-12 11:51:17', '73', 'Daloa', 'Choisir centre régional', NULL, 'Chauffeur', NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOFFI KABEYO', '1977-10-20', '2018-12-22', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, NULL, NULL, '', NULL, '07-08-80-40-31', 'KONAN KOUADIO', 'BOASSA KRA', NULL, NULL),
+	(71, '2021-08-12 11:34:28', '2021-09-10 10:19:01', '71', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GOUAMENE ZATO JULES', '1976-01-01', '2019-02-13', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '4', '', NULL, '01-03-73-55-69', 'GOUAMENE', 'GBAGBE', NULL, NULL),
+	(72, '2021-08-12 11:39:36', '2021-09-10 10:37:42', '72', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUATTARA YIRANI', '1972-06-15', '2018-12-15', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', '', NULL, '01-02-24-18-09', 'OUATTARA', 'PONATIENLIN', NULL, NULL),
+	(73, '2021-08-12 11:51:17', '2021-09-10 10:21:23', '73', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOFFI KABEYO', '1977-10-20', '2018-12-22', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, NULL, NULL, '', NULL, '07-08-80-40-31', 'KONAN', 'BOASSA', NULL, NULL),
 	(74, '2021-08-12 12:06:42', '2021-08-12 12:06:42', '74', 'Abidjan', 'Choisir centre régional', NULL, 'Garde', NULL, NULL, NULL, NULL, NULL, 'ABASSAON DOLLO JEAN PACOME', '1983-03-25', '2020-01-08', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', '', NULL, '05-06-75-19-72', 'AYENON ABASSON JACQUES', 'DOLLO APIE', NULL, NULL),
 	(75, '2021-08-12 12:08:50', '2021-09-07 14:40:14', '75', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRA SOUMAILA', '61981-02-20', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', '1631025612_Photo DIARRA Soumaila_0001.jpg', NULL, '05-04-70-78-28', 'DIARRA', 'ODJOUA', NULL, NULL),
 	(76, '2021-08-12 12:20:23', '2021-08-12 12:20:23', '76', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE KADJO STANISLAS', '1986-12-15', '2019-08-26', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', '3', '', NULL, '01-42-00-73-00', NULL, NULL, NULL, NULL),
@@ -2082,11 +2048,11 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 	(90, '2021-08-13 09:45:26', '2021-09-07 12:21:27', '90', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N\'GOUAN ANO MARIE ODILE', '1973-01-12', '2019-03-01', NULL, 'Fin contrat', 'CHARGE CAISSE', 'CAISSE', 'CDD', '273010419849', 'CELIBATAIRE', '2', '1631017285_Photo N\'GUAN Marie Odile.jpg', NULL, '07-08-14-44-04', 'N\'GOUAN', 'ETTIEGNE', NULL, NULL),
 	(91, '2021-08-13 09:51:58', '2021-08-13 09:51:58', '91', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'MIEZAN BENIE VANESSA FLORENCE', '1989-06-13', '2018-06-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', '202100001687', 'CELIBATAIRE', '0', '', NULL, '07-08-88-13-33', 'MIEZAN MICHEL', 'KADJOMOU VADJO VALENTINE', NULL, NULL),
 	(92, '2021-08-13 09:56:41', '2021-08-13 09:56:41', '92', 'Abidjan', 'Choisir centre régional', NULL, 'Chauffeur', NULL, NULL, NULL, NULL, NULL, 'AMARA OUATTARA', '1975-08-25', '2019-09-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'MARIE', '3', '', NULL, '05-45-89-04-05', 'OUELEDOU OUATTARA', 'KOUA AYA', NULL, NULL),
-	(93, '2021-08-13 10:02:33', '2021-09-08 09:52:51', '93', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SOUMAHORO DON CHARLES', NULL, '2018-02-14', NULL, 'Fin contrat', 'CHEF DE CENTRE', NULL, 'CDI', '173010305250', 'MARIE', '4', '1631094770_Photo SOUMAHORO DON CHARLES.jpg', NULL, '07-07-81-94-91', 'SOUMAHORO', 'KONE', NULL, NULL),
+	(93, '2021-08-13 10:02:33', '2021-09-10 10:06:57', '93', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SOUMAHORO DON CHARLES', NULL, '2018-02-14', NULL, 'Fin contrat', 'CHEF DE CENTRE', NULL, 'CDD', '173010305250', 'MARIE', '4', '1631094770_Photo SOUMAHORO DON CHARLES.jpg', NULL, '07-07-81-94-91', 'SOUMAHORO', 'KONE', NULL, NULL),
 	(94, '2021-08-13 10:13:41', '2021-08-13 10:13:41', '94', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'KOUASSI MONEY ELODIE FLORA', '1981-12-20', '2018-07-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', NULL, 'MARIE', '2', '', NULL, '07-77-77-76-64', 'KOUASSI BROU', 'CHONOU ESSIN', NULL, NULL),
 	(95, '2021-08-13 10:19:03', '2021-08-13 10:19:03', '95', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, 'MONETIQUE', NULL, NULL, 'KOUASSI JANDRY LEOPOLD', '1972-11-02', '2017-10-05', NULL, NULL, 'TECHNICIEN MONETIQUE', 'MONETIQUE', 'CDI', '172011510220', 'MARIE', '2', '', NULL, '01-41-07-79-43', 'KOUADIO KOUASSI', 'OURA AFFOUE', NULL, NULL),
 	(96, '2021-08-13 10:22:58', '2021-09-07 14:28:01', '96', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUATTARA MAFIRI NATACHA', '1988-08-09', '2019-11-01', NULL, 'Fin contrat', 'TRIEUSE', 'CAISSE', 'CDD', NULL, 'CELIBATAIRE', NULL, '1631024879_Photo OUATTARA Mafiri.jpg', NULL, '07-77-13-08-44', 'MAMADOU', 'N\'GUESSAN', NULL, NULL),
-	(97, '2021-08-13 11:17:33', '2021-08-13 11:17:33', '97', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, 'GARAGE', NULL, NULL, 'COULIBALY SOULEYMANE', '1991-10-26', '2019-11-01', NULL, NULL, 'ASSISTANT GARAGE', 'GARAGE', 'CDD', NULL, 'CELIBATAIRE', '0', '', NULL, '05-55-04-99-08', 'COULIBALY ZANA', 'COULIBALY MINATA', NULL, NULL),
+	(97, '2021-08-13 11:17:33', '2021-09-10 10:09:18', '97', 'Daloa', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COULIBALY SOULEYMANE', '1991-10-26', '2019-11-01', NULL, 'Fin contrat', 'ASSISTANT GARAGE', 'GARAGE', 'CDD', NULL, 'CELIBATAIRE', '0', '', NULL, '05-55-04-99-08', 'COULIBALY', 'COULIBALY', NULL, NULL),
 	(98, '2021-08-13 11:22:18', '2021-09-08 11:15:17', '98', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUASSI KOUADIO CLOVIS', '1988-12-20', '2021-04-04', NULL, 'Fin contrat', 'AGENT PCC', 'SECURITE', 'CDD', '188012027303', 'CELIBATAIRE', '0', '', NULL, '07-47-12-19-32', 'ANDO', 'OKA', NULL, NULL),
 	(99, '2021-08-13 11:24:41', '2021-08-13 11:24:41', '99', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Caissière', NULL, NULL, NULL, NULL, 'KOUAME AHOU ESTELLE', '1995-12-27', '2021-04-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'CELIBATAIRE', '0', '', NULL, '07-58-27-52-24', 'YAO KOUAME', 'KOUAME AMOIN RUTH', NULL, NULL),
 	(100, '2021-08-13 11:30:04', '2021-08-13 11:30:04', '100', 'Abidjan', 'Choisir centre régional', NULL, NULL, 'Trieuse', NULL, NULL, NULL, NULL, 'KEHO TIEPORO OPPORTUNE', '1977-09-29', '2019-07-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDI', '277012057752', 'CELIBATAIRE', '2', '', NULL, '07-07-77-03-34', 'NANOUROU KEHO', 'KONE MASSIBERY', NULL, NULL),
@@ -2096,84 +2062,83 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 	(104, '2021-08-13 12:38:16', '2021-08-13 12:38:16', '104', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, 'MONETIQUE', NULL, NULL, 'N\'GUESSAN KOUASSI PASCAL', '1995-10-10', '2021-04-01', NULL, NULL, 'TECHNICIEN MONETIQUE', 'MONETIQUE', 'CDD', NULL, 'CELIBATAIRE', NULL, '', NULL, '07-57-50-28-66', 'N\'GUESSAN KONAN PASCAL', 'KAMENAN ABLAN', NULL, NULL),
 	(105, '2021-08-13 13:09:57', '2021-08-13 13:09:57', '105', 'Abidjan', 'Choisir centre régional', NULL, 'Chauffeur', NULL, NULL, NULL, NULL, NULL, 'DAGO RABE JEAN PHILIPPE', '1993-01-07', '2021-04-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', '', NULL, '07-79-90-28-16', 'DAGO BEUGRE HENRI', 'MOMO AFFI', NULL, NULL),
 	(106, '2021-08-13 13:15:41', '2021-08-13 13:15:41', '106', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GNAKAMENE PATRICK HERVE', '1987-08-29', '2021-01-01', NULL, NULL, 'AGENT PCC', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', NULL, '', NULL, '07-59-49-51-50', 'GNAKAMENE GBAKA EMMANUEL', 'GBALLOU SAHONE BESSEHON SOLANGE', NULL, NULL),
-	(107, '2021-08-16 16:07:29', '2021-08-16 16:07:29', '107', 'Bouaké', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TOKASSEU DEUKEU MARCEL', '1990-12-04', '2018-08-01', NULL, NULL, 'AGENT PCS', NULL, 'CDI', NULL, 'CELIBATAIRE', '1', '', NULL, '07-57-88-66-04', 'KPEA TOKASSEU PIERRE', 'MASSOUO MEUYO LOUISE', NULL, NULL),
-	(108, '2021-08-16 16:17:46', '2021-08-16 16:17:46', '108', 'Bouaké', 'Choisir centre régional', NULL, NULL, NULL, NULL, 'MONETIQUE', NULL, NULL, 'YAO MOHARY PAULIN', '1971-12-20', '2018-04-03', NULL, NULL, 'CHARGE DES GABS', 'MONETIQUE', 'CDI', '171010633395', 'CELIBATAIRE', '2', '', NULL, '05-05-05-56-98', 'YAO KA', 'BOHUE AKISSI EUGENIE', NULL, NULL),
+	(107, '2021-08-16 16:07:29', '2021-09-10 12:23:17', '107', 'Bouaké', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TOKASSEU DEUKEU MARCEL', '1990-12-04', '2018-08-01', NULL, 'Fin contrat', 'AGENT PCS', NULL, 'CDD', NULL, 'CELIBATAIRE', '1', '', NULL, '07-57-88-66-04', 'KPEA', 'MASSOUO', NULL, NULL),
+	(108, '2021-08-16 16:17:46', '2021-09-10 10:46:59', '108', 'Bouaké', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAO MOHARY PAULIN', '1971-12-20', '2018-04-03', NULL, 'Fin contrat', 'CHARGE DES GABS', 'MONETIQUE', 'CDD', '171010633395', 'CELIBATAIRE', '2', '', NULL, '05-05-05-56-98', 'YAO', 'BOHUE', NULL, NULL),
 	(109, '2021-08-16 16:27:28', '2021-09-08 11:18:01', '109', 'Bouaké', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KEITA MOUSSA', '1975-04-24', '2017-12-04', NULL, 'Fin contrat', 'CHARGE TRANSPORT', 'TRANSPORT', 'CDD', '175010202600', 'CELIBATAIRE', '2', '', NULL, '07-07-94-57-47', 'KEITA', 'ASSETOU', NULL, NULL),
 	(110, '2021-09-01 10:53:47', '2021-09-01 10:55:23', '110', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IPOU CHRISTELLE N\'DAH AFFOUE', '1991-12-16', '2018-04-03', NULL, 'Fin contrat', 'ASSISTANTE COMMERCIALE', 'COMMERCIAL', 'CDI', NULL, NULL, NULL, NULL, NULL, '07-59-90-67-05', 'IPOU KOUADIO ANTOINE', 'MAOUA FOFANA', NULL, NULL),
 	(111, '2021-09-01 11:06:55', '2021-09-01 11:32:21', '111', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MAHE GUY ETIENNE', '1977-01-01', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '05-04-29-18-24', 'MAHE VICTOIRE', 'SIEHI MARIE', NULL, NULL),
-	(112, '2021-09-01 11:38:11', '2021-09-01 11:38:11', '112', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DEYA DJIBRIL', '1968-10-30', '2018-06-01', NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'MARIE', '7', NULL, NULL, '05-04-41-56-05', 'DEYA META', 'KOUASSI AMINA', 'KOUAKOU AKISSI MADELEINE', NULL),
+	(112, '2021-09-01 11:38:11', '2021-09-10 10:36:28', '112', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DEYA DJIBRIL', '1968-10-30', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'MARIE', '7', NULL, NULL, '05-04-41-56-05', 'DEYA', 'KOUASSI', 'KOUAKOU', NULL),
 	(113, '2021-09-01 11:56:23', '2021-09-08 11:19:52', '113', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GUIZOE KPASSOU JEAN YVES DIDIER', '1989-12-20', '2019-08-26', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '202100001512', 'CELIBATAIRE', '0', NULL, NULL, '05-54-35-17-84', 'GUIZOE', NULL, NULL, NULL),
 	(114, '2021-09-01 12:03:37', '2021-09-01 12:03:37', '114', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUDOU PASCALINE', '1986-03-20', '2018-04-03', NULL, NULL, 'CHEF DE CENTRE', NULL, 'CDI', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-08-56-66-10', NULL, NULL, NULL, NULL),
 	(115, '2021-09-01 12:23:19', '2021-09-01 12:23:19', '115', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BAMBA MOHAMED', '1984-01-05', '2017-08-01', NULL, NULL, 'CHARGE TRANSPORT', 'TRANSPORT', 'CDI', '184011036728', 'MARIE', '2', NULL, NULL, '05-06-22-04-04', 'SEYDOU BAMBA', 'ABENAN KRA', NULL, NULL),
 	(116, '2021-09-01 13:12:47', '2021-09-08 10:48:16', '116', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE MOHAMED ABDUL KARIM', '1991-09-27', '2018-05-01', NULL, 'Fin contrat', 'TECHNICIEN MONETIQUE', 'MONETIQUE', 'CDD', '191011750737', 'CELIBATAIRE', '0', NULL, NULL, '07-77-27-87-65', 'KONE', 'KONE', NULL, NULL),
-	(117, '2021-09-01 13:53:07', '2021-09-01 13:53:07', '117', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOUADIO EVRARD', '1987-08-14', '2018-06-01', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', '187012047193', 'CELIBATAIRE', '1', NULL, NULL, '07-47-43-22-37', 'KOUADIO KOUAME', 'KOFFI AMOIN SIMONE', NULL, NULL),
+	(117, '2021-09-01 13:53:07', '2021-09-10 12:17:20', '117', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOUADIO EVRARD', '1987-08-14', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', '187012047193', 'CELIBATAIRE', '1', NULL, NULL, '07-47-43-22-37', 'KOUADIO', 'KOFFI', NULL, NULL),
 	(118, '2021-09-01 14:28:45', '2021-09-08 10:24:12', '118', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BARTHELEMY YA IRITIE BI', '1968-08-24', '2018-06-01', NULL, 'Fin contrat', 'CHARGE TRANSPORT', 'TRANSPORT', 'CDD', '168019612160', 'CELIBATAIRE', '2', NULL, NULL, '07-07-35-46-46', 'IRITIE', 'GOOURE', NULL, NULL),
 	(119, '2021-09-01 14:53:32', '2021-09-08 10:38:18', '119', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOKO YAO TOUSSAINT', '1975-10-31', '2018-09-21', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '175010507992', 'CELIBATAIRE', '3', NULL, NULL, '07-07-00-29-18', 'KOFFI', 'LAHOURE', NULL, NULL),
-	(120, '2021-09-01 15:42:46', '2021-09-01 15:42:46', '120', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUAME KONAN AMBROISE', '1974-12-30', '2018-06-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-07-55-31-15', 'KOUADIO KOUAME', 'KOFFI AFFOUE', NULL, NULL),
+	(120, '2021-09-01 15:42:46', '2021-09-10 10:40:36', '120', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUAME KONAN AMBROISE', '1974-12-30', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-07-55-31-15', 'KOUADIO', 'KOFFI', NULL, NULL),
 	(121, '2021-09-01 15:51:48', '2021-09-08 10:39:37', '121', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BEIBRO KOUAME ANGE ODILE', '1985-03-23', '2021-02-20', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '185011017188', 'CELIBATAIRE', NULL, NULL, NULL, '07-77-31-88-95', 'BREIBRO', 'KOUAKOU', NULL, NULL),
 	(122, '2021-09-01 16:00:15', '2021-09-08 10:31:16', '122', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GBEULI ANTOINE', '1968-10-20', '2018-06-01', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDD', NULL, NULL, NULL, NULL, NULL, '07-48-08-59-92', 'FALLE', 'GBEULI', NULL, NULL),
 	(123, '2021-09-01 16:07:56', '2021-09-01 16:07:56', '123', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAPO CHIADON CARINE MARINA', '1985-12-31', '2021-04-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', '285011052965', 'CELIBATAIRE', NULL, NULL, NULL, '07-09-89-06-47', 'YAPO AGNISSAN', 'ACHIEPO BOSSOMA', NULL, NULL),
-	(124, '2021-09-01 16:14:01', '2021-09-01 16:14:01', '124', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EBY JEAN-MARIE KOFFI', '1972-12-12', '2018-09-21', NULL, NULL, 'CONVOYEUR GARDE', 'SECURITE', 'CDI', NULL, 'CELIBATAIRE', '4', NULL, NULL, '07-48-28-50-91', 'KOFFI EBY', 'TANOH ADJOUA', NULL, NULL),
+	(124, '2021-09-01 16:14:01', '2021-09-10 10:41:31', '124', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EBY JEAN-MARIE KOFFI', '1972-12-12', '2018-09-21', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', '4', NULL, NULL, '07-48-28-50-91', 'KOFFI', 'TANOH', NULL, NULL),
 	(125, '2021-09-01 16:20:40', '2021-09-08 10:38:55', '125', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRA ADAMA', '1974-07-14', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR DE CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '5', NULL, NULL, '07-08-93-55-74', 'DIARRA', 'KAMATE', NULL, NULL),
 	(126, '2021-09-01 16:28:18', '2021-09-01 16:28:18', '126', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SEDJI ALLOUKOU JOSEE MADELAINE', '1977-04-16', '2018-09-10', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', NULL, 'CELIBATAIRE', '2', NULL, NULL, '07-08-36-11-80', 'SEDJI ABOUYA SALOMON', 'AGOUSSI KONDE PAULINE', NULL, NULL),
-	(127, '2021-09-01 16:38:52', '2021-09-01 16:38:52', '127', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GNOU SEHOUNDEBO VALENTIN', '1987-09-20', '2021-04-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', NULL, NULL, '05-04-44-72-41', 'GUIRIA GNOU', 'MAHIN DJEA EUGENIE', NULL, NULL),
+	(127, '2021-09-01 16:38:52', '2021-09-10 11:36:56', '127', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GNOU SEHOUNDEBO VALENTIN', '1987-09-20', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', NULL, NULL, '05-04-44-72-41', 'GUIRIA', 'MAHIN', NULL, NULL),
 	(128, '2021-09-01 16:44:59', '2021-09-01 16:44:59', '128', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GONGUE ELISEE', '1977-12-26', '2019-04-23', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', '177010139051', NULL, NULL, NULL, NULL, NULL, 'GONGUE FELIX', 'SEABE HENRIETTE', NULL, NULL),
 	(129, '2021-09-02 11:07:41', '2021-09-02 11:07:41', '129', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AIDARA AWA', '1981-02-15', '2017-11-07', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDI', '281010871350', 'CELIBATAIRE', NULL, NULL, NULL, '05-05-05-63-82', 'AIDARA EBABI KRINE SIDEC', 'AHOU ROSALIE', NULL, NULL),
-	(130, '2021-09-02 11:15:34', '2021-09-02 11:15:34', '130', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOFFI N\'DRI YVES SEPHANE', '1984-07-31', '2019-02-13', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-48-63-12-65', NULL, NULL, NULL, NULL),
+	(130, '2021-09-02 11:15:34', '2021-09-09 12:16:21', '130', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOFFI N\'DRI YVES SEPHANE', '1984-07-31', '2019-02-13', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', '1631189779_Photo KOFFI N\'dri Yves Stephane.jpg', NULL, '07-48-63-12-65', NULL, NULL, NULL, NULL),
 	(131, '2021-09-02 11:23:38', '2021-09-02 11:23:38', '131', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AKASSE WILSON', '1971-06-26', '2018-03-01', NULL, NULL, 'CHARGE TRANSPORT', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-08-36-77-09', 'AKASSE NASSE ABEL', 'GABY JEANNETTE', NULL, NULL),
-	(132, '2021-09-02 11:29:14', '2021-09-02 11:29:14', '132', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRA BOURAHIMA', '1967-03-03', '2019-08-12', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', '167010959159', 'CELIBATAIRE', '4', NULL, NULL, '05-05-31-09-23', 'DIARRA SOUNGALO', 'TOURE FANTA', NULL, NULL),
+	(132, '2021-09-02 11:29:14', '2021-09-09 12:16:48', '132', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRA BOURAHIMA', '1967-03-03', '2019-08-12', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '167010959159', 'CELIBATAIRE', '4', '1631189807_Photo DIARRA Bourahima_0001.jpg', NULL, '05-05-31-09-23', 'DIARRA', 'TOURE', NULL, NULL),
 	(133, '2021-09-02 11:33:37', '2021-09-02 11:33:37', '133', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MEMEL EVARISTE', '1976-07-09', '2020-01-06', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', '176010517755', 'CELIBATAIRE', '4', NULL, NULL, '07-07-17-12-32', 'MEMEL MELESS ETIENNE', 'NOMEL MELEM ALBERTINE', NULL, NULL),
-	(134, '2021-09-02 11:39:09', '2021-09-02 11:39:09', '134', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOFANA LASSANA', '1975-01-01', '2020-01-06', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '175010217008', 'MARIE', '2', NULL, NULL, '07-59-32-17-04', 'FOFANA MEBANA', 'COULIBALY NOKOMAKRO', NULL, NULL),
+	(134, '2021-09-02 11:39:09', '2021-09-10 10:26:33', '134', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOFANA LASSANA', '1975-01-01', '2020-01-06', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '175010217008', 'MARIE', '2', NULL, NULL, '07-59-32-17-04', 'FOFANA', 'COULIBALY', NULL, NULL),
 	(135, '2021-09-02 11:43:37', '2021-09-02 11:43:37', '135', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KABA YAHAYA', '1982-07-02', '2018-06-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', '182011111174', 'CELIBATAIRE', NULL, NULL, NULL, '05-06-46-80-82', 'MAMADI KABA', 'DJENE DAFFE', NULL, NULL),
 	(136, '2021-09-02 11:53:36', '2021-09-02 11:53:36', '136', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AKPRO LATHE LASME JEAN JACQUES', '1972-07-03', '2019-02-13', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-48-87-66-67', 'AKPRO LATHE', 'MELEM YVONNE', NULL, NULL),
 	(137, '2021-09-02 11:58:29', '2021-09-02 11:58:29', '137', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BONOUMAN GILLES FREDERIC', '1974-09-02', '2019-04-23', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', NULL, 'CELIBATAIRE', '0', NULL, NULL, '01-02-77-77-09', NULL, NULL, NULL, NULL),
 	(138, '2021-09-02 12:01:44', '2021-09-02 12:01:44', '138', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ADOULAIS KONE', '1967-01-28', '2018-06-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', NULL, 'MARIE', '7', NULL, NULL, '07-58-25-45-69', 'KONE SOULEYMANE', 'SOUNTIO COULIBALY', NULL, NULL),
 	(139, '2021-09-02 12:13:47', '2021-09-02 12:13:47', '139', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LOWES YVES', '1977-01-04', '2017-10-01', NULL, NULL, 'CHARGE DE PORTEFEUILLE', NULL, 'CDI', '177011031739', 'MARIE', NULL, NULL, NULL, NULL, 'LATTE LOWES OSEE', 'N\'DJA YANNE SUZANNE', 'YAO YEI MARIE JEANNE', NULL),
-	(140, '2021-09-02 12:18:29', '2021-09-02 12:18:29', '140', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LEGRE CHRISTIAN', '1973-07-24', '2019-04-08', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', '173010908484', 'MARIE', '4', NULL, NULL, '07-08-39-75-63', 'LEGRE DANIEL', 'GUIGO JULIENNE', NULL, NULL),
-	(141, '2021-09-02 12:27:33', '2021-09-02 12:27:33', '141', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DAO DJAKARIDJA', NULL, '2019-02-13', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', '202100001423', 'MARIE', '1', NULL, NULL, '05-05-00-25-94', 'DAO SEYDOU', 'SOMA FATOUMATA', NULL, NULL),
+	(140, '2021-09-02 12:18:29', '2021-09-09 11:41:13', '140', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LEGRE CHRISTIAN', '1973-07-24', '2019-04-08', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', '173010908484', 'MARIE', '4', '1631187671_Photo LEGRE Christian.jpg', NULL, '07-08-39-75-63', 'LEGRE', 'GUIGO', NULL, NULL),
+	(141, '2021-09-02 12:27:33', '2021-09-09 11:40:05', '141', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DAO DJAKARIDJA', NULL, '2019-02-13', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '202100001423', 'MARIE', '1', '1631187604_Photo DAO Djakaridja_0001.jpg', NULL, '05-05-00-25-94', 'DAO', 'SOMA', NULL, NULL),
 	(142, '2021-09-02 12:34:09', '2021-09-02 12:34:09', '142', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PALM SIE GILBERT', '1988-06-06', '2019-02-13', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', '188011211241', 'CELIBATAIRE', '1', NULL, NULL, '07-58-54-01-45', 'PALM HOMPA', 'KISSI ATOUO MARIE MADELEINE', NULL, NULL),
-	(143, '2021-09-02 12:37:50', '2021-09-02 12:37:50', '143', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BOZON MAHE FLORENTIN', '1982-02-22', '2019-02-13', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'MARIE', '2', NULL, NULL, '07-07-78-16-31', 'BOZON LOUIS', 'KOYE ASSO JEANNETTE', NULL, NULL),
+	(143, '2021-09-02 12:37:50', '2021-09-09 11:36:38', '143', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BOZON MAHE FLORENTIN', '1982-02-22', '2019-02-13', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'MARIE', '2', '1631187396_Photo BOZON Mahe Florentin.jpg', NULL, '07-07-78-16-31', 'BOZON', 'KOYE', NULL, NULL),
 	(144, '2021-09-02 12:43:34', '2021-09-02 12:43:34', '144', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ZAGADOU GBALLOU GUILLAUME', '1981-07-13', '2018-05-02', NULL, NULL, 'CHARGE TRANSPORT', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-08-06-18-16', 'ZAGADOU JOACHIM', 'OBOU ALBERTINE', NULL, NULL),
-	(145, '2021-09-02 12:47:49', '2021-09-02 12:47:49', '145', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE MAMADOU', '1973-08-06', '2018-05-02', NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', '202100015427', 'MARIE', '4', NULL, NULL, '07-07-67-44-23', 'KONE MOULAYE', 'KONE TIONRON', NULL, NULL),
-	(146, '2021-09-02 12:52:18', '2021-09-02 12:52:18', '146', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE MEA AIME', '1975-09-30', '2018-06-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-07-77-26-97', 'KONE OUA KONE FELIX', 'ETTIEN N\'GUESSAN', NULL, NULL),
+	(145, '2021-09-02 12:47:49', '2021-09-10 11:09:34', '145', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE MAMADOU', '1973-08-06', '2018-05-02', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', '202100015427', 'MARIE', '4', NULL, NULL, '07-07-67-44-23', 'KONE', 'KONE', NULL, NULL),
+	(146, '2021-09-02 12:52:18', '2021-09-09 11:23:13', '146', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KONE MEA AIME', '1975-09-30', '2018-06-01', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', '3', '1631186591_Photo KONE Mea Aime_0001.jpg', NULL, '07-07-77-26-97', 'KONE', 'ETTIEN', NULL, NULL),
 	(147, '2021-09-02 13:15:28', '2021-09-02 13:15:28', '147', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IRITIE GOHI CELESTTIN', '1967-04-06', '2018-06-01', NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '6', NULL, NULL, '07-07-80-83-84', 'IRITIE BINIANTIE PAUL', 'BORE LOU MAMBO', NULL, NULL),
-	(148, '2021-09-02 13:32:15', '2021-09-02 13:32:15', '148', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N\'GOUAN ESSAN INNOCENT JUNIOR', '1983-06-02', '2019-08-12', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '2', NULL, NULL, '07-08-32-24-58', 'AMOA N\'GORAN', 'N\'GOUAN BAVOA', NULL, NULL),
+	(148, '2021-09-02 13:32:15', '2021-09-09 11:20:48', '148', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N\'GOUAN ESSAN INNOCENT JUNIOR', '1983-06-02', '2019-08-12', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', '1631186446_Photo N\'GOUAN Essan Innocent.jpg', NULL, '07-08-32-24-58', 'AMOA', 'N\'GOUAN', NULL, NULL),
 	(149, '2021-09-02 13:34:33', '2021-09-02 13:34:33', '149', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BLEU SALOME', '1984-07-17', '2021-03-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'MARIE', '2', NULL, NULL, '07-47-31-58-33', 'BLEU TIEMOKO', 'KPAN MARIE', NULL, NULL),
-	(150, '2021-09-02 13:37:44', '2021-09-02 13:37:44', '150', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IRIE TRAYE BI DJE PASCAL', '1988-11-17', '2021-04-01', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', NULL, NULL, NULL, '05-04-13-54-42', 'IRIE BI TRAYE ALPHONSE', 'TA LOU TANAN', NULL, NULL),
+	(150, '2021-09-02 13:37:44', '2021-09-09 10:55:57', '150', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'IRIE TRAYE BI DJE PASCAL', '1988-11-17', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', NULL, '1631184956_Photo IRIE Traye Bi.jpg', NULL, '05-04-13-54-42', 'IRIE', 'TA', NULL, NULL),
 	(151, '2021-09-02 13:47:18', '2021-09-02 13:47:18', '151', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COULIBALY ADAMA', '1977-10-01', '2018-05-01', NULL, NULL, 'CHARGE TRANSPORT', 'TRANSPORT', 'CDD', NULL, NULL, NULL, NULL, NULL, '07-07-16-44-52', 'COULIBALY MAMADOU', 'COULIBALY DIANEBA', NULL, NULL),
-	(152, '2021-09-02 13:55:48', '2021-09-02 13:55:48', '152', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ASSI KOUAO VINCENT DE PAUL', '1977-04-03', '2019-04-23', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', '177011222936', 'MARIE', '2', NULL, NULL, '07-49-54-57-96', 'ASSI ASSI GUIAUME', 'KOUAO BROU ANGELLE', NULL, NULL),
-	(153, '2021-09-02 13:58:36', '2021-09-02 13:58:36', '153', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRASSOUBA SIAKA', '1976-01-10', '2018-06-01', NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '3', NULL, NULL, '05-05-68-95-31', 'DIARRASSOUBA MORY', 'DIABATA MARIAM', NULL, NULL),
-	(154, '2021-09-02 14:01:09', '2021-09-02 14:01:09', '154', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TCHETCHE TAPE DIDIER', '1978-08-01', '2018-06-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '1', NULL, NULL, '05-06-35-91-45', 'TCHETCHE JEAN', 'BLEGBO GBIAGOHI THERESE', NULL, NULL),
+	(152, '2021-09-02 13:55:48', '2021-09-10 09:57:40', '152', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ASSI KOUAO VINCENT DE PAUL', '1977-04-03', '2019-04-23', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', '177011222936', 'MARIE', '2', NULL, NULL, '07-49-54-57-96', 'ASSI', 'KOUAO', NULL, NULL),
+	(153, '2021-09-02 13:58:36', '2021-09-10 09:56:24', '153', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DIARRASSOUBA SIAKA', '1976-01-10', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', NULL, NULL, '05-05-68-95-31', 'DIARRASSOUBA', 'DIABATA', NULL, NULL),
+	(154, '2021-09-02 14:01:09', '2021-09-10 09:54:34', '154', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TCHETCHE TAPE DIDIER', '1978-08-01', '2018-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '05-06-35-91-45', 'TCHETCHE', 'BLEGBO', NULL, NULL),
 	(155, '2021-09-02 14:04:14', '2021-09-02 14:04:14', '155', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TIEU DEDO ELODIE', '1988-06-28', '2021-03-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDD', NULL, 'CELIBATAIRE', NULL, NULL, NULL, '07-08-54-16-90', 'DAVID TIEU GBEU', 'KESSE SUZANNE', NULL, NULL),
 	(156, '2021-09-02 14:09:44', '2021-09-02 14:09:44', '156', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NEMAHIOUON CHRISTIAN', '1979-05-22', '2021-04-01', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '0', NULL, NULL, '07-88-31-36-15', 'NEMAHIOUON LAURENT', 'IPOTE HENRIETTE', NULL, NULL),
-	(157, '2021-09-02 14:14:53', '2021-09-02 14:14:53', '157', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BOLO BI TIE IRIE CONSTANT', '1980-12-28', '2021-04-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', NULL, NULL, '07-07-17-81-82', 'BOLO BI TIE', 'ZAOULI LOU TIZIENAN', NULL, NULL),
+	(157, '2021-09-02 14:14:53', '2021-09-10 11:42:55', '157', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BOLO BI TIE IRIE CONSTANT', '1980-12-28', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '2', NULL, NULL, '07-07-17-81-82', 'BOLO', 'ZAOULI', NULL, NULL),
 	(158, '2021-09-02 14:19:37', '2021-09-02 14:19:37', '158', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MALAN BOMO', '1980-08-07', '2021-02-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDD', '202100050451', 'CELIBATAIRE', '0', NULL, NULL, '01-41-57-95-65', 'N\'GORAN MALAN', 'KOUAME AMENAN', NULL, NULL),
 	(159, '2021-09-02 14:23:15', '2021-09-07 11:54:26', '159', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DAO YACOUBA', '1974-01-01', '2020-09-28', NULL, 'Fin contrat', 'DIRECTEUR ADMINISTRATION ET FINANCIER', 'COMPTABLE', 'CDD', NULL, NULL, NULL, '1631015665_Photo DAO Yacouba.jpg', NULL, '07-07-67-40-04', 'DAO', 'COULIBALY', NULL, NULL),
 	(160, '2021-09-02 14:28:53', '2021-09-02 14:28:53', '160', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ZOMBRA EMMANUEL', '1970-01-11', '2021-03-01', NULL, NULL, 'OPERATEUR D\'EXPOITATION', NULL, 'CDD', NULL, 'MARIE', '2', NULL, NULL, NULL, 'ZOMBRA ZENE', 'KERE POKO', NULL, NULL),
 	(161, '2021-09-02 14:32:08', '2021-09-02 14:32:08', '161', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AHIPO SERGES ARNAUD', '1991-11-22', '2021-04-16', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-57-88-19-89', NULL, NULL, NULL, NULL),
-	(162, '2021-09-02 14:35:13', '2021-09-02 14:35:13', '162', 'Abidjan', 'Abidjan Sud', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ETCHIAN BOSSON GUY JOEL', '1985-02-07', '2021-06-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '01-52-24-14-95', 'ETCHIAN ABO CLEMENT', 'AKA AFAH JEANETTE', NULL, NULL),
+	(162, '2021-09-02 14:35:13', '2021-09-10 08:32:53', '162', 'Abidjan', 'Abidjan Sud', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ETCHIAN BOSSON GUY JOEL', '1985-02-07', '2021-06-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', '1631262772_Photo ETCHIAN Bosson.jpg', NULL, '01-52-24-14-95', 'ETCHIAN', 'AKA', NULL, NULL),
 	(163, '2021-09-02 14:48:51', '2021-09-02 14:48:51', '163', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TANO AKESSE RICHARD', '1975-12-20', '2018-12-15', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDI', '202100017030', 'MARIE', '2', NULL, NULL, '07-09-26-27-52', 'KOUA TANO', 'TANOH MAYE', 'N\'GORAN N\'GORAN NATACHA', NULL),
 	(164, '2021-09-02 14:52:20', '2021-09-02 14:52:20', '164', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'APHING ADJOUA INNOCENTE', '1978-07-25', '2019-02-18', NULL, NULL, 'CHARGE CAISSE', 'CAISSE', 'CDD', '202100001425', 'CELIBATAIRE', '2', NULL, NULL, '07-07-29-60-74', 'KOFFI YAO', 'KONAN AKISSI BERNADETTE', NULL, NULL),
-	(165, '2021-09-02 14:55:28', '2021-09-02 14:55:28', '165', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GOHI BI IRIE MICHEL', '1961-01-31', NULL, NULL, NULL, 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'MARIE', '5', NULL, NULL, '05-04-88-99-51', 'FAYE IRIE BI GOHI', 'FOUA LOU DRI', NULL, NULL),
+	(165, '2021-09-02 14:55:28', '2021-09-10 10:23:44', '165', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GOHI BI IRIE MICHEL', '1961-01-31', NULL, NULL, 'Fin contrat', 'CONVOYEUR CHEF DE BORD', 'TRANSPORT', 'CDD', NULL, 'MARIE', '5', NULL, NULL, '05-04-88-99-51', 'FAYE', 'FOUA', NULL, NULL),
 	(166, '2021-09-02 15:00:48', '2021-09-02 15:00:48', '166', 'Daloa', 'Daloa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUASSI N\'GORAN CHARLES', '1977-03-30', '2018-06-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDI', NULL, 'CELIBATAIRE', '1', NULL, NULL, '05-05-88-03-95', 'KOUAME KOUASSI', 'KOUAKOU N\'GUESSAN MARIE', NULL, NULL),
 	(167, '2021-09-02 15:08:31', '2021-09-08 11:10:11', '167', 'Bouaké', 'Yamoussokro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GNONGUE ELISE', '1977-12-26', '2019-04-23', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', '177010139051', 'MARIE', '3', NULL, NULL, '07-08-25-97-05', 'GNONGUE', 'SEABE', 'KABO', NULL),
-	(168, '2021-09-02 15:16:53', '2021-09-02 15:16:53', '168', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BAMBA AMED FANNY', '1994-06-17', '2021-04-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', NULL, NULL, '07-48-86-20-63', 'BAMBA SOUKALO', 'COULIBALY AWA', NULL, NULL),
-	(169, '2021-09-02 15:20:11', '2021-09-02 15:20:11', '169', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DALE GUEDE PRIVAT', '1988-12-26', '2021-04-01', NULL, NULL, 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-07-35-46-08', 'DALE KPAGBI LAURENT', 'GRAHON ALPHONSINE', NULL, NULL),
+	(168, '2021-09-02 15:16:53', '2021-09-09 12:00:31', '168', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BAMBA AMED FANNY', '1994-06-17', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '3', '1631188829_Photo BAMBA Fanny Amed.jpg', NULL, '07-48-86-20-63', 'BAMBA', 'COULIBALY', NULL, NULL),
+	(169, '2021-09-02 15:20:11', '2021-09-10 11:07:57', '169', 'Bouaké', 'Bouaké', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DALE GUEDE PRIVAT', '1988-12-26', '2021-04-01', NULL, 'Fin contrat', 'CONVOYEUR GARDE', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-07-35-46-08', 'DALE', 'GRAHON', NULL, NULL),
 	(170, '2021-09-03 09:16:29', '2021-09-03 09:16:29', '170', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ADON APO JULIE JOSEPHINE', '1977-04-16', '2020-10-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDD', '202100018613', 'CELIBATAIRE', '0', NULL, NULL, '07-07-69-02-96', 'ASSI ADON BARTHELEMY CARNOT', 'KOUASSI APO THERESE', NULL, NULL),
 	(171, '2021-09-03 09:22:55', '2021-09-03 09:22:55', '171', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO CHARLOTTE', '1977-01-01', '2020-10-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDD', '202100016689', 'CELIBATAIRE', '3', NULL, NULL, '01-01-06-86-10', 'KOUADIO KOUADIO', 'EHOUMAN N\'DOUA', NULL, NULL),
-	(172, '2021-09-03 09:26:56', '2021-09-03 09:26:56', '172', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUANDA ZOHONON ANNE MAIRIE', '1972-11-02', '2020-11-19', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'CELIBATAIRE', '3', NULL, NULL, '05-05-32-44-80', 'OUANDA BADA DENIS', 'ZETY GOULE THERESE', NULL, NULL),
-	(173, '2021-09-03 10:11:51', '2021-09-03 10:11:51', '173', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AFRO AHOUNOU ANNE ROSELINE', '1981-09-01', '2021-02-01', NULL, NULL, 'TRIEUSE', 'CAISSE', 'CDD', '281010855694', 'MARIE', '2', NULL, NULL, '07-09-31-32-73', 'AFRO MESSOU', 'ABO CHANTAL', NULL, NULL),
-	(174, '2021-09-03 10:17:46', '2021-09-03 10:17:46', '174', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUATTARA PEWE AUGUSTIN', '1977-05-25', '2020-08-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDD', '177010325568', 'CELIBATAIRE', '0', NULL, NULL, '07-58-57-94-80', 'OUATTARA DRISSA BARNABE', 'YAO ADJOUA', NULL, NULL),
-	(175, '2021-09-03 10:20:48', '2021-09-03 10:20:48', '175', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAO KKAN PROSPER', '1985-02-05', '2020-08-01', NULL, NULL, 'AGENT PCS', 'SECURITE', 'CDD', '185011021723', NULL, NULL, NULL, NULL, '07-08-66-24-46', 'YAO KOUADIO', 'KOANAN AHOU', NULL, NULL),
-	(176, '2021-09-03 10:25:35', '2021-09-03 10:25:35', '176', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO NINA', '1977-01-14', '2021-04-01', NULL, NULL, 'CAISSIERE', 'CAISSE', 'CDD', NULL, NULL, NULL, NULL, NULL, '07-07-87-47-67', 'KOUADIO KOUAME ALEXANDRE', 'KOUAKOU N\'GUESSAN ADELAIDE', NULL, NULL),
+	(172, '2021-09-03 09:26:56', '2021-09-09 12:15:42', '172', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUANDA ZOHONON ANNE MAIRIE', '1972-11-02', '2020-11-19', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', NULL, 'CELIBATAIRE', '3', '1631189740_Photo OUANDA Anne marie.jpg', NULL, '05-05-32-44-80', 'OUANDA', 'ZETY', NULL, NULL),
+	(173, '2021-09-03 10:11:51', '2021-09-09 11:51:20', '173', 'Bouaké', 'Korogo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AFRO AHOUNOU ANNE ROSELINE', '1981-09-01', '2021-02-01', NULL, 'Fin contrat', 'TRIEUSE', 'CAISSE', 'CDD', '281010855694', 'MARIE', '2', '1631188278_Photo AFRO Ahounou.jpg', NULL, '07-09-31-32-73', 'AFRO', 'ABO', NULL, NULL),
+	(174, '2021-09-03 10:17:46', '2021-09-09 10:46:14', '174', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'OUATTARA PEWE AUGUSTIN', '1977-05-25', '2020-08-01', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDD', '177010325568', 'CELIBATAIRE', '0', '1631184372_Photo OUATTARA Pewe_0001.jpg', NULL, '07-58-57-94-80', 'OUATTARA', 'YAO', NULL, NULL),
+	(175, '2021-09-03 10:20:48', '2021-09-10 09:44:32', '175', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YAO KKAN PROSPER', '1985-02-05', '2020-08-01', NULL, 'Fin contrat', 'AGENT PCS', 'SECURITE', 'CDD', '185011021723', NULL, NULL, NULL, NULL, '07-08-66-24-46', 'YAO', 'KOANAN', NULL, NULL),
+	(176, '2021-09-03 10:25:35', '2021-09-09 10:48:27', '176', 'Daloa', 'San Pedro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOUADIO NINA', '1977-01-14', '2021-04-01', NULL, 'Fin contrat', 'CAISSIERE', 'CAISSE', 'CDD', NULL, NULL, NULL, '1631184505_Photo KOUADIO Nina.jpg', NULL, '07-07-87-47-67', 'KOUADIO', 'KOUAKOU', NULL, NULL),
 	(177, '2021-09-03 10:33:50', '2021-09-03 10:33:50', '177', 'Daloa', 'Man', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'KOFFI YAO BERTIN', '1971-10-10', '2017-12-04', NULL, NULL, 'CHARGE TRANSPORT', 'TRANSPORT', 'CDI', '171010405291', NULL, '2', NULL, NULL, '07-08-32-14-23', 'AHUI KOFFI', 'BOUSSOU AYA', NULL, NULL),
 	(178, '2021-09-03 10:37:01', '2021-09-03 10:37:01', '178', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EKAZA N\'GORAN ALAIN', '1973-12-24', '2018-05-01', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', '202100011544', NULL, '1', NULL, NULL, '07-47-71-00-52', 'EKAZA BOSSON', 'KOUA BOSSON', NULL, NULL),
-	(179, '2021-09-03 10:47:15', '2021-09-03 10:47:15', '179', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TEA BEAULIEU JEAN LUC', '1971-10-27', '2017-11-07', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDI', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-09-09-28-03', 'NIANKOYE SAMOE TEA', 'TRAORE HAOUA', NULL, NULL),
+	(179, '2021-09-03 10:47:15', '2021-09-10 11:35:04', '179', 'Abidjan', 'Abengourou', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TEA BEAULIEU JEAN LUC', '1971-10-27', '2017-11-07', NULL, 'Fin contrat', 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'CELIBATAIRE', '1', NULL, NULL, '07-09-09-28-03', 'NIANKOYE', 'TRAORE', NULL, NULL),
 	(180, '2021-09-07 14:34:58', '2021-09-07 14:34:58', '180', 'Abidjan', 'Choisir centre régional', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BA DJEANMIN JEAN JACQUES', '1971-12-07', '2019-04-08', NULL, NULL, 'CONVOYEUR CHAUFFEUR', 'TRANSPORT', 'CDD', NULL, 'MARIE', '5', NULL, NULL, '07-08-24-61-04', 'BA GEORGES', 'BAGNI COLETTE', NULL, NULL);
 /*!40000 ALTER TABLE `personnels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_conges
-DROP TABLE IF EXISTS `personnel_conges`;
 CREATE TABLE IF NOT EXISTS `personnel_conges` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2194,7 +2159,6 @@ DELETE FROM `personnel_conges`;
 /*!40000 ALTER TABLE `personnel_conges` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_absences
-DROP TABLE IF EXISTS `personnel_gestion_absences`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_absences` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `debut_absence` date DEFAULT NULL,
@@ -2216,7 +2180,6 @@ DELETE FROM `personnel_gestion_absences`;
 /*!40000 ALTER TABLE `personnel_gestion_absences` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_affectations
-DROP TABLE IF EXISTS `personnel_gestion_affectations`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_affectations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date_affectation` date DEFAULT NULL,
@@ -2236,7 +2199,6 @@ DELETE FROM `personnel_gestion_affectations`;
 /*!40000 ALTER TABLE `personnel_gestion_affectations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_conges
-DROP TABLE IF EXISTS `personnel_gestion_conges`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_conges` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `dernier` date DEFAULT NULL,
@@ -2256,7 +2218,6 @@ DELETE FROM `personnel_gestion_conges`;
 /*!40000 ALTER TABLE `personnel_gestion_conges` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_contrats
-DROP TABLE IF EXISTS `personnel_gestion_contrats`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_contrats` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `type_contrat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2279,7 +2240,6 @@ DELETE FROM `personnel_gestion_contrats`;
 /*!40000 ALTER TABLE `personnel_gestion_contrats` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_explications
-DROP TABLE IF EXISTS `personnel_gestion_explications`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_explications` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date_demande` date DEFAULT NULL,
@@ -2299,7 +2259,6 @@ DELETE FROM `personnel_gestion_explications`;
 /*!40000 ALTER TABLE `personnel_gestion_explications` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_missions
-DROP TABLE IF EXISTS `personnel_gestion_missions`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_missions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `debut_mission` date DEFAULT NULL,
@@ -2314,9 +2273,9 @@ CREATE TABLE IF NOT EXISTS `personnel_gestion_missions` (
   PRIMARY KEY (`id`),
   KEY `personnel_gestion_missions_personnel_foreign` (`personnel`),
   CONSTRAINT `personnel_gestion_missions_personnel_foreign` FOREIGN KEY (`personnel`) REFERENCES `personnels` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.personnel_gestion_missions : ~20 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.personnel_gestion_missions : ~97 rows (environ)
 DELETE FROM `personnel_gestion_missions`;
 /*!40000 ALTER TABLE `personnel_gestion_missions` DISABLE KEYS */;
 INSERT INTO `personnel_gestion_missions` (`id`, `debut_mission`, `fin_mission`, `nombre_jours`, `lieu`, `motif`, `frais`, `personnel`, `created_at`, `updated_at`) VALUES
@@ -2340,11 +2299,91 @@ INSERT INTO `personnel_gestion_missions` (`id`, `debut_mission`, `fin_mission`, 
 	(18, '2021-02-02', '2021-02-02', 1, 'ABIDJAN', NULL, 9000, 98, '2021-09-08 11:15:17', '2021-09-08 11:15:17'),
 	(19, '2021-02-02', '2021-02-02', 1, 'ABIDJAN', 'Acheminer le VB au centre de yamoussoukro', 5000, 109, '2021-09-08 11:18:01', '2021-09-08 11:18:01'),
 	(20, '2021-02-02', '2021-02-02', 1, 'ABIDJAN', 'Acheminer le VB au centre de yamoussoukro', 5000, 113, '2021-09-08 11:19:52', '2021-09-08 11:19:52'),
-	(21, '2021-02-05', '2021-02-06', 2, 'BOUNA', 'Opération ELS Bouna', 30500, 122, '2021-09-08 11:23:39', '2021-09-08 11:23:39');
+	(21, '2021-02-05', '2021-02-06', 2, 'BOUNA', 'Opération ELS Bouna', 30500, 122, '2021-09-08 11:23:39', '2021-09-08 11:23:39'),
+	(22, '2021-06-08', '2021-06-09', 2, 'BOUNA', 'Rajout DAB ELS BOUNA', 30500, 175, '2021-09-10 09:44:32', '2021-09-10 09:44:32'),
+	(23, '2021-06-06', '2021-06-09', 3, 'KORHOGO', 'Réparation VB 4827HP 01', 48500, 40, '2021-09-10 09:47:27', '2021-09-10 09:47:27'),
+	(24, '2021-06-10', '2021-06-13', 3, 'SAN PEDRO', 'Installation de matériels', 76200, 81, '2021-09-10 09:49:42', '2021-09-10 09:49:42'),
+	(25, '2021-06-15', '2021-06-16', 2, 'BOUNA', 'Rajout DAB ELS BOUNA', 30500, 175, '2021-09-10 09:51:30', '2021-09-10 09:51:30'),
+	(26, '2021-05-20', '2021-05-21', 1, 'ODIENNE', 'OPERATION CDCI ET WAVE', 12500, 154, '2021-09-10 09:54:34', '2021-09-10 09:54:34'),
+	(27, '2021-05-20', '2021-05-21', 1, 'ODIENNE', 'OPERATION CDCI ET WAVE', 12500, 153, '2021-09-10 09:56:24', '2021-09-10 09:56:24'),
+	(28, '2021-05-20', '2021-05-21', 1, 'ODIENNE', 'OPERATION CDCI ET WAVE', 12500, 152, '2021-09-10 09:57:40', '2021-09-10 09:57:40'),
+	(29, '2021-06-06', '2021-06-15', 10, 'KORHOGO', 'OPERATION 4827 HP 01', 53000, 40, '2021-09-10 10:00:06', '2021-09-10 10:00:06'),
+	(30, '2021-06-22', '2021-06-23', 2, 'BOUNA', 'Opération ELS Bouna', 30500, 175, '2021-09-10 10:01:55', '2021-09-10 10:01:55'),
+	(31, '2021-06-18', '2021-06-19', 2, 'ZUENOULA', 'OPERATION DAB ECOBANK', 13500, 116, '2021-09-10 10:04:17', '2021-09-10 10:04:17'),
+	(32, '2021-06-23', '2021-06-24', 2, 'AGBAOU', 'COLLECTE DE METAUX PRECIEUX', 35000, 93, '2021-09-10 10:06:57', '2021-09-10 10:06:57'),
+	(33, '2021-04-17', '2021-04-18', 1, 'ABIDJAN', 'Dépannage d\'un véhicule', 12500, 97, '2021-09-10 10:09:18', '2021-09-10 10:09:18'),
+	(34, '2021-04-17', '2021-04-18', 1, 'ABIDJAN', 'Dépannage d\'un véhicule', 12500, 141, '2021-09-10 10:10:37', '2021-09-10 10:10:37'),
+	(35, '2021-06-29', '2021-06-30', 2, 'BOUNA', 'Rajout DAB ELS BOUNA', 30500, 175, '2021-09-10 10:12:47', '2021-09-10 10:12:47'),
+	(36, '2021-06-28', '2021-06-29', 1, 'MAN', 'Opération banque populaire', 2500, 67, '2021-09-10 10:14:49', '2021-09-10 10:14:49'),
+	(37, '2021-06-28', '2021-06-29', 1, 'MAN', 'Opération banque populaire', 2500, 31, '2021-09-10 10:16:43', '2021-09-10 10:16:43'),
+	(38, '2021-06-28', '2021-06-29', 1, 'MAN', 'Opération banque populaire', 2500, 71, '2021-09-10 10:19:01', '2021-09-10 10:19:01'),
+	(39, '2021-06-28', '2021-06-29', 1, 'MAN', 'Opération banque populaire', 2500, 73, '2021-09-10 10:21:23', '2021-09-10 10:21:23'),
+	(40, '2021-06-28', '2021-06-29', 1, 'SAN PEDRO', 'Opération banque populaire', 2500, 165, '2021-09-10 10:23:44', '2021-09-10 10:23:44'),
+	(41, '2021-06-28', '2021-06-29', 1, 'SAN PEDRO', 'opération banque populaire', 2500, 134, '2021-09-10 10:26:33', '2021-09-10 10:26:33'),
+	(42, '2021-06-28', '2021-06-29', 1, 'SAN PEDRO', 'Opération banque populaire', 2500, 69, '2021-09-10 10:28:12', '2021-09-10 10:28:12'),
+	(43, '2021-06-30', '2021-07-01', 1, 'MAN', 'opération banque populaire', 2500, 165, '2021-09-10 10:30:47', '2021-09-10 10:30:47'),
+	(44, '2021-06-30', '2021-07-01', 1, 'MAN', 'Opération banque populaire', 2500, 134, '2021-09-10 10:32:21', '2021-09-10 10:32:21'),
+	(45, '2021-06-30', '2021-07-01', 1, 'MAN', 'Opération banque populaire', 2500, 69, '2021-09-10 10:33:38', '2021-09-10 10:33:38'),
+	(46, '2021-06-30', '2021-07-01', 1, 'SAN PEDRO', 'opération banque populaire', 2500, 67, '2021-09-10 10:35:19', '2021-09-10 10:35:19'),
+	(47, '2021-06-30', '2021-07-01', 1, 'SAN PEDRO', 'opération banque populaire', 2500, 112, '2021-09-10 10:36:28', '2021-09-10 10:36:28'),
+	(48, '2021-06-30', '2021-07-01', 1, 'SAN PEDRO', 'opération banque populaire', 2500, 72, '2021-09-10 10:37:42', '2021-09-10 10:37:42'),
+	(49, '2021-07-01', '2021-07-02', 1, 'BOUNA', 'Aprovisionnement DAB els bouna', 12500, 119, '2021-09-10 10:39:12', '2021-09-10 10:39:12'),
+	(50, '2021-07-01', '2021-07-02', 1, 'BOUNA', 'Opération ELS Bouna', 12500, 120, '2021-09-10 10:40:36', '2021-09-10 10:40:36'),
+	(51, '2021-07-01', '2021-07-02', 1, 'BOUNA', 'Opération ELS Bouna', 12500, 124, '2021-09-10 10:41:31', '2021-09-10 10:41:31'),
+	(52, '2021-07-03', '2021-07-03', 0, 'SEGUELA', 'Présenter des condoléances', 27500, 70, '2021-09-10 10:44:40', '2021-09-10 10:44:40'),
+	(53, '2021-07-03', '2021-07-03', 0, 'SEGUELA', 'Présenter des condoléances', 2500, 108, '2021-09-10 10:46:59', '2021-09-10 10:46:59'),
+	(54, '2021-07-02', '2021-07-02', 2, 'SEGUELA', 'Incendie seguela', 2500, 64, '2021-09-10 10:50:10', '2021-09-10 10:50:10'),
+	(55, '2021-07-02', '2021-07-02', 1, 'SEGUELA', 'Incendie seguela', 12500, 71, '2021-09-10 11:04:06', '2021-09-10 11:04:06'),
+	(56, '2021-07-02', '2021-07-02', 1, 'SEGUELA', 'Incendie seguela', 12500, 73, '2021-09-10 11:05:56', '2021-09-10 11:05:56'),
+	(57, '2021-07-03', '2021-07-03', 1, 'ABIDJAN', 'Opération ecobank', 2500, 169, '2021-09-10 11:07:57', '2021-09-10 11:07:57'),
+	(58, '2021-07-03', '2021-07-03', 1, 'ABIDJAN', 'Opération ecobank', 7500, 145, '2021-09-10 11:09:34', '2021-09-10 11:09:34'),
+	(59, '2021-07-03', '2021-07-03', 1, 'ABIDJAN', 'Opération ecobank', 2500, 113, '2021-09-10 11:11:12', '2021-09-10 11:11:12'),
+	(60, '2021-07-06', '2021-07-07', 2, 'BOUNA', 'Approvisionnement DAB els bouna', 30500, 175, '2021-09-10 11:14:19', '2021-09-10 11:14:19'),
+	(61, '2021-07-06', '2021-07-07', 1, 'BONDOUKOU', 'Approvisionnement DAB els bouna', 12500, 119, '2021-09-10 11:16:37', '2021-09-10 11:16:37'),
+	(62, '2021-07-06', '2021-07-07', 1, 'BONDOUKOU', 'Approvisionnement  els bouna', 12500, 120, '2021-09-10 11:18:14', '2021-09-10 11:18:14'),
+	(63, '2021-07-06', '2021-07-07', 1, 'BONDOUKOU', 'Approvisionnement els bouna', 12500, 124, '2021-09-10 11:19:35', '2021-09-10 11:19:35'),
+	(64, '2021-07-10', '2021-07-14', 5, 'DALOA', 'Maintenance televideo', 134200, 81, '2021-09-10 11:21:31', '2021-09-10 11:21:31'),
+	(65, '2021-07-13', '2021-07-14', 2, 'BOUNA', 'Rajout DAB ELS BOUNA', 30500, 175, '2021-09-10 11:23:26', '2021-09-10 11:23:26'),
+	(66, '2021-07-12', '2021-07-13', 1, 'MAN', 'Opération banque populaire', 12500, 71, '2021-09-10 11:24:59', '2021-09-10 11:24:59'),
+	(67, '2021-07-12', '2021-07-13', 1, 'MAN', 'Opération banque populaire', 12500, 67, '2021-09-10 11:26:03', '2021-09-10 11:26:03'),
+	(68, '2021-07-12', '2021-07-13', 1, 'MAN', 'Opération banque populaire', 12500, 72, '2021-09-10 11:26:52', '2021-09-10 11:26:52'),
+	(69, '2021-07-15', '2021-07-15', 1, 'AGBAOU', 'COLLECTE DE METAUX PRECIEUX', 15000, 93, '2021-09-10 11:28:13', '2021-09-10 11:28:13'),
+	(70, '2021-07-13', '2021-07-13', 1, 'MANKONO', 'Opération wave', 2500, 145, '2021-09-10 11:30:18', '2021-09-10 11:30:18'),
+	(71, '2021-07-13', '2021-07-13', 2, 'MANKONO', 'OPERATION  WAVE', 2500, 169, '2021-09-10 11:32:03', '2021-09-10 11:32:03'),
+	(72, '2021-07-13', '2021-07-13', 1, 'MANKONO', 'OPERATION  WAVE', 2500, 113, '2021-09-10 11:33:24', '2021-09-10 11:33:24'),
+	(73, '2021-07-15', '2021-07-16', 2, 'BOUNA', 'Aprovisionnement  els bouna', 12500, 179, '2021-09-10 11:35:04', '2021-09-10 11:35:04'),
+	(74, '2021-07-15', '2021-07-16', 2, 'BOUNA', 'Approvisionnement  els bouna', 12500, 127, '2021-09-10 11:36:56', '2021-09-10 11:36:56'),
+	(75, '2021-07-15', '2021-07-16', 2, 'BOUNA', 'Approvisionnement  els bouna', 12500, 124, '2021-09-10 11:38:15', '2021-09-10 11:38:15'),
+	(76, '2021-07-15', '2021-07-15', 0, 'MAN', 'Procéder a la passation des charges', 15000, 70, '2021-09-10 11:40:18', '2021-09-10 11:40:18'),
+	(77, '2021-07-16', '2021-07-17', 2, 'LAKOTA', 'Opération banque populaire', 2500, 167, '2021-09-10 11:41:39', '2021-09-10 11:41:39'),
+	(78, '2021-07-16', '2021-07-17', 2, 'LAKOTA', 'Opération banque populaire', 2500, 157, '2021-09-10 11:42:55', '2021-09-10 11:42:55'),
+	(79, '2021-07-17', '2021-07-17', 1, 'ABIDJAN', 'Prise de matériels', 2000, 119, '2021-09-10 11:45:07', '2021-09-10 11:45:07'),
+	(80, '2021-07-17', '2021-07-17', 1, 'ABIDJAN', 'Prise de matériels', 4000, 120, '2021-09-10 11:47:47', '2021-09-10 11:47:47'),
+	(81, '2021-07-17', '2021-07-17', 1, 'ABIDJAN', 'Prise de matériels', 2000, 124, '2021-09-10 11:49:08', '2021-09-10 11:49:08'),
+	(82, '2021-07-19', '2021-07-19', 1, 'MAN', 'Convocation au tribunal', 8500, 71, '2021-09-10 11:50:50', '2021-09-10 11:50:50'),
+	(83, '2021-07-19', '2021-07-19', 1, 'MAN', 'Convocation au tribunal', 8500, 73, '2021-09-10 11:52:37', '2021-09-10 11:52:37'),
+	(84, '2021-07-17', '2021-07-18', 2, 'ABIDJAN', 'Depot de devise ecobank et prise de matériel', 12500, 67, '2021-09-10 11:54:41', '2021-09-10 11:54:41'),
+	(85, '2021-07-17', '2021-07-18', 2, 'ABIDJAN', 'Dépôt de devise ecobank et prise de matériel', 12500, 112, '2021-09-10 11:56:18', '2021-09-10 11:56:18'),
+	(86, '2021-07-17', '2021-07-18', 2, 'ABIDJAN', 'Depot de devise ecobank et prise de matériel', 12500, 72, '2021-09-10 11:57:38', '2021-09-10 11:57:38'),
+	(87, '2021-07-23', '2021-07-24', 2, 'BOUNA', 'Rajout DAB ELS BOUNA', 30500, 175, '2021-09-10 11:59:01', '2021-09-10 11:59:01'),
+	(88, '2021-07-21', '2021-07-22', 2, 'SAN PEDRO', 'Opération banque populaire', 2500, 134, '2021-09-10 12:00:12', '2021-09-10 12:00:12'),
+	(89, '2021-07-21', '2021-07-22', 2, 'SAN PEDRO', 'Opération banque populaire', 2500, 112, '2021-09-10 12:01:08', '2021-09-10 12:01:08'),
+	(90, '2021-07-21', '2021-07-22', 2, 'SAN PEDRO', 'Opération banque populaire', 2500, 73, '2021-09-10 12:02:22', '2021-09-10 12:02:22'),
+	(91, '2021-07-23', '2021-07-24', 2, 'SAN PEDRO', 'Opération banque populaire', 2500, 165, '2021-09-10 12:03:40', '2021-09-10 12:03:40'),
+	(92, '2021-07-23', '2021-07-24', 2, 'SAN PEDRO', 'Opération banque populaire', 12500, 67, '2021-09-10 12:05:01', '2021-09-10 12:05:01'),
+	(93, '2021-07-23', '2021-07-24', 2, 'SAN PEDRO', 'Opération banque populaire', 2500, 69, '2021-09-10 12:07:18', '2021-09-10 12:07:18'),
+	(94, '2021-07-23', '2021-07-24', 2, 'MAN', 'Opération banque populaire', 2500, 71, '2021-09-10 12:09:01', '2021-09-10 12:09:01'),
+	(95, '2021-07-23', '2021-07-24', 2, 'MAN', 'Opération banque populaire', 2500, 134, '2021-09-10 12:10:28', '2021-09-10 12:10:28'),
+	(96, '2021-07-23', '2021-07-24', 2, 'MAN', 'Opération banque populaire', 2500, 72, '2021-09-10 12:12:41', '2021-09-10 12:12:41'),
+	(97, '2021-07-23', '2021-07-24', 2, 'DIVO', 'Opération wave', 2500, 157, '2021-09-10 12:14:36', '2021-09-10 12:14:36'),
+	(98, '2021-07-23', '2021-07-24', 2, 'DIVO', 'OPERATION  WAVE', 2500, 167, '2021-09-10 12:15:49', '2021-09-10 12:15:49'),
+	(99, '2021-07-23', '2021-07-24', 2, 'DIVO', 'OPERATION  WAVE', 2500, 117, '2021-09-10 12:17:20', '2021-09-10 12:17:20'),
+	(100, '2021-07-24', '2021-07-26', 3, 'MAN', 'Installation camera dome', 81200, 81, '2021-09-10 12:19:12', '2021-09-10 12:19:12'),
+	(101, '2021-05-15', '2021-05-16', 2, 'KORHOGO', 'Approvisionnement dab els', 28000, 116, '2021-09-10 12:21:40', '2021-09-10 12:21:40'),
+	(102, '2021-07-27', '2021-07-28', 1, 'KORHOGO', 'Opération ELS', 22500, 107, '2021-09-10 12:23:17', '2021-09-10 12:23:17');
 /*!40000 ALTER TABLE `personnel_gestion_missions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_sanctions
-DROP TABLE IF EXISTS `personnel_gestion_sanctions`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_sanctions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
@@ -2364,7 +2403,6 @@ DELETE FROM `personnel_gestion_sanctions`;
 /*!40000 ALTER TABLE `personnel_gestion_sanctions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_sanctions
-DROP TABLE IF EXISTS `personnel_sanctions`;
 CREATE TABLE IF NOT EXISTS `personnel_sanctions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2384,7 +2422,6 @@ DELETE FROM `personnel_sanctions`;
 /*!40000 ALTER TABLE `personnel_sanctions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_bordereau
-DROP TABLE IF EXISTS `regulation_bordereau`;
 CREATE TABLE IF NOT EXISTS `regulation_bordereau` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2419,7 +2456,6 @@ DELETE FROM `regulation_bordereau`;
 /*!40000 ALTER TABLE `regulation_bordereau` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_confirmation_clients
-DROP TABLE IF EXISTS `regulation_confirmation_clients`;
 CREATE TABLE IF NOT EXISTS `regulation_confirmation_clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2444,7 +2480,6 @@ DELETE FROM `regulation_confirmation_clients`;
 /*!40000 ALTER TABLE `regulation_confirmation_clients` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_facturations
-DROP TABLE IF EXISTS `regulation_facturations`;
 CREATE TABLE IF NOT EXISTS `regulation_facturations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2471,7 +2506,6 @@ DELETE FROM `regulation_facturations`;
 /*!40000 ALTER TABLE `regulation_facturations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_scelles
-DROP TABLE IF EXISTS `regulation_scelles`;
 CREATE TABLE IF NOT EXISTS `regulation_scelles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2497,7 +2531,6 @@ DELETE FROM `regulation_scelles`;
 /*!40000 ALTER TABLE `regulation_scelles` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_securipacks
-DROP TABLE IF EXISTS `regulation_securipacks`;
 CREATE TABLE IF NOT EXISTS `regulation_securipacks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2524,7 +2557,6 @@ DELETE FROM `regulation_securipacks`;
 /*!40000 ALTER TABLE `regulation_securipacks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_services
-DROP TABLE IF EXISTS `regulation_services`;
 CREATE TABLE IF NOT EXISTS `regulation_services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2551,7 +2583,6 @@ DELETE FROM `regulation_services`;
 /*!40000 ALTER TABLE `regulation_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. roles
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2580,7 +2611,6 @@ INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiels
-DROP TABLE IF EXISTS `securite_materiels`;
 CREATE TABLE IF NOT EXISTS `securite_materiels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2617,7 +2647,6 @@ DELETE FROM `securite_materiels`;
 /*!40000 ALTER TABLE `securite_materiels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiel_beneficiaires
-DROP TABLE IF EXISTS `securite_materiel_beneficiaires`;
 CREATE TABLE IF NOT EXISTS `securite_materiel_beneficiaires` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2673,7 +2702,6 @@ DELETE FROM `securite_materiel_beneficiaires`;
 /*!40000 ALTER TABLE `securite_materiel_beneficiaires` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiel_remettants
-DROP TABLE IF EXISTS `securite_materiel_remettants`;
 CREATE TABLE IF NOT EXISTS `securite_materiel_remettants` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2730,7 +2758,6 @@ DELETE FROM `securite_materiel_remettants`;
 /*!40000 ALTER TABLE `securite_materiel_remettants` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_services
-DROP TABLE IF EXISTS `securite_services`;
 CREATE TABLE IF NOT EXISTS `securite_services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2768,7 +2795,6 @@ DELETE FROM `securite_services`;
 /*!40000 ALTER TABLE `securite_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. site_arrivee_tournees
-DROP TABLE IF EXISTS `site_arrivee_tournees`;
 CREATE TABLE IF NOT EXISTS `site_arrivee_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2788,49 +2814,32 @@ DELETE FROM `site_arrivee_tournees`;
 /*!40000 ALTER TABLE `site_arrivee_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. site_depart_tournees
-DROP TABLE IF EXISTS `site_depart_tournees`;
 CREATE TABLE IF NOT EXISTS `site_depart_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `site` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `heure` time DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `bordereau` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tdf` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `caisse` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `montant` int(11) DEFAULT NULL,
   `idTourneeDepart` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `site_depart_tournees_idtourneedepart_foreign` (`idTourneeDepart`),
   CONSTRAINT `site_depart_tournees_idtourneedepart_foreign` FOREIGN KEY (`idTourneeDepart`) REFERENCES `depart_tournees` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.site_depart_tournees : ~18 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.site_depart_tournees : ~3 rows (environ)
 DELETE FROM `site_depart_tournees`;
 /*!40000 ALTER TABLE `site_depart_tournees` DISABLE KEYS */;
-INSERT INTO `site_depart_tournees` (`id`, `created_at`, `updated_at`, `site`, `heure`, `type`, `bordereau`, `montant`, `idTourneeDepart`) VALUES
-	(1, '2020-12-17 15:01:36', '2020-12-17 15:01:36', '1', '15:02:00', 'oo_vb_extamuros_bitume', NULL, NULL, 1),
-	(2, '2020-12-17 15:01:36', '2020-12-17 15:01:36', '2', '15:02:00', 'oo_vl_extramuros_bitume', NULL, NULL, 1),
-	(3, '2020-12-17 15:25:57', '2020-12-17 15:25:57', '1', '15:25:00', 'oo_vb_extamuros_bitume', NULL, NULL, 2),
-	(4, '2020-12-17 15:25:57', '2020-12-17 15:25:57', '2', '17:25:00', 'oo_vb_extamuros_bitume', NULL, NULL, 2),
-	(5, '2020-12-21 13:58:13', '2020-12-21 13:58:13', '3', '14:57:00', 'oo_vb_extamuros_bitume', NULL, NULL, 3),
-	(6, '2020-12-21 13:58:13', '2020-12-21 13:58:13', '1', '14:58:00', 'oo_vb_extramuros_piste', NULL, NULL, 3),
-	(7, '2020-12-21 13:58:13', '2020-12-21 13:58:13', '1', '14:58:00', 'oo_vl_extramuros_piste', NULL, NULL, 3),
-	(8, '2020-12-21 14:38:42', '2020-12-21 14:38:42', '4', '14:38:00', 'oo_vb_extramuros_piste', NULL, NULL, 4),
-	(9, '2020-12-21 14:38:42', '2020-12-21 14:38:42', '2', '14:38:00', 'oo_vb_intramuros', NULL, NULL, 4),
-	(10, '2020-12-21 14:40:32', '2020-12-21 14:40:32', '2', '15:40:00', 'oo_vb_extamuros_bitume', NULL, NULL, 5),
-	(11, '2020-12-21 14:40:32', '2020-12-21 14:40:32', '4', '19:40:00', 'oo_vb_extramuros_piste', NULL, NULL, 5),
-	(12, '2020-12-21 14:52:45', '2020-12-21 14:52:45', '2', '14:53:00', 'oo_vl_extramuros_piste', NULL, NULL, 6),
-	(13, '2020-12-28 13:49:24', '2020-12-28 13:49:24', '2', NULL, 'oo_vb_extamuros_bitume', NULL, NULL, 7),
-	(14, '2020-12-28 13:49:24', '2020-12-28 13:49:24', '1', NULL, 'oo_vb_intramuros', NULL, NULL, 7),
-	(15, '2020-12-28 13:49:24', '2020-12-28 13:49:24', '3', NULL, 'oo_vl_extramuros_bitume', NULL, NULL, 7),
-	(16, '2020-12-28 13:53:29', '2020-12-28 13:56:38', '1', '13:52:00', 'oo_vb_extamuros_bitume', '120', 55000, 8),
-	(17, '2020-12-28 13:53:29', '2020-12-28 13:56:38', '2', '15:53:00', 'oo_vb_extramuros_piste', '2145', 23000000, 8),
-	(18, '2020-12-28 13:53:29', '2020-12-28 13:56:38', '3', '16:53:00', 'oo_vl_extramuros_bitume', '11', 630000, 8),
-	(19, '2020-12-28 13:53:29', '2020-12-28 13:56:38', '4', '16:53:00', 'oo_vl_extramuros_piste', '123', 22000, 8);
+INSERT INTO `site_depart_tournees` (`id`, `created_at`, `updated_at`, `site`, `heure`, `tdf`, `caisse`, `montant`, `idTourneeDepart`) VALUES
+	(38, '2021-09-09 14:19:13', '2021-09-09 14:19:13', '25', '14:18:00', 'oo_vb_extamuros_bitume', NULL, NULL, 17),
+	(39, '2021-09-09 14:19:14', '2021-09-09 14:19:14', '8', '15:19:00', 'oo_vb_intramuros', NULL, NULL, 17),
+	(40, '2021-09-09 14:21:07', '2021-09-09 14:21:07', '7', NULL, 'oo_vb_extamuros_bitume', NULL, NULL, 17),
+	(41, '2021-09-09 14:21:07', '2021-09-09 14:21:07', '7', NULL, 'oo_vb_extramuros_piste', NULL, NULL, 17);
 /*!40000 ALTER TABLE `site_depart_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb
-DROP TABLE IF EXISTS `ssb`;
 CREATE TABLE IF NOT EXISTS `ssb` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2861,7 +2870,6 @@ DELETE FROM `ssb`;
 /*!40000 ALTER TABLE `ssb` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb_commercials
-DROP TABLE IF EXISTS `ssb_commercials`;
 CREATE TABLE IF NOT EXISTS `ssb_commercials` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2909,7 +2917,6 @@ DELETE FROM `ssb_commercials`;
 /*!40000 ALTER TABLE `ssb_commercials` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb_sites
-DROP TABLE IF EXISTS `ssb_sites`;
 CREATE TABLE IF NOT EXISTS `ssb_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2940,7 +2947,6 @@ DELETE FROM `ssb_sites`;
 /*!40000 ALTER TABLE `ssb_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. tournee_centres
-DROP TABLE IF EXISTS `tournee_centres`;
 CREATE TABLE IF NOT EXISTS `tournee_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2951,11 +2957,10 @@ CREATE TABLE IF NOT EXISTS `tournee_centres` (
   `dateDebut` date DEFAULT NULL,
   `dateFin` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `tournee_centres_notournee_foreign` (`noTournee`),
-  CONSTRAINT `tournee_centres_notournee_foreign` FOREIGN KEY (`noTournee`) REFERENCES `depart_tournees` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `tournee_centres_notournee_foreign` (`noTournee`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.tournee_centres : ~0 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.tournee_centres : 2 rows
 DELETE FROM `tournee_centres`;
 /*!40000 ALTER TABLE `tournee_centres` DISABLE KEYS */;
 INSERT INTO `tournee_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `centre`, `centreRegional`, `dateDebut`, `dateFin`) VALUES
@@ -2964,7 +2969,6 @@ INSERT INTO `tournee_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `c
 /*!40000 ALTER TABLE `tournee_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -3001,7 +3005,6 @@ INSERT INTO `users` (`id`, `nom`, `compte`, `email`, `email_verified_at`, `passw
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vehicules
-DROP TABLE IF EXISTS `vehicules`;
 CREATE TABLE IF NOT EXISTS `vehicules` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3019,20 +3022,21 @@ CREATE TABLE IF NOT EXISTS `vehicules` (
   `chauffeurTitulaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `chauffeurSuppleant` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.vehicules : ~4 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.vehicules : ~6 rows (environ)
 DELETE FROM `vehicules`;
 /*!40000 ALTER TABLE `vehicules` DISABLE KEYS */;
 INSERT INTO `vehicules` (`id`, `created_at`, `updated_at`, `immatriculation`, `marque`, `type`, `code`, `num_chassis`, `DPMC`, `dateAcquisition`, `centre`, `centreRegional`, `photo`, `chauffeurTitulaire`, `chauffeurSuppleant`) VALUES
 	(1, '2020-12-15 16:34:58', '2020-12-15 16:34:58', 'AF CI 2020', 'toyota', 'VL', 'COLBIS', '02222', '2020-12-15', '2020-12-01', 'Bouaké', 'Bouaké', 'user.png', '1', '2'),
 	(2, '2020-12-15 16:36:04', '2020-12-15 16:36:04', '5m8988', 'PEUGEAOT', 'VL', 'zender', '7545585', '2020-12-15', '2020-12-03', 'Daloa', 'Daloa', 'user.png', '10', '9'),
 	(3, '2020-12-21 13:27:58', '2020-12-21 13:27:58', 'jfk421', 'MERCEDES', 'VL', 'zender', '526', '2020-12-21', '2020-12-22', 'Abidjan', 'Abidjan Sud', 'user.png', '10', '2'),
-	(4, '2020-12-21 13:28:38', '2020-12-21 13:28:38', '452', 'renault xxl', 'VL', '547', NULL, '2020-12-22', '2020-12-22', 'Bouaké', 'Korogo', 'user.png', '7', '9');
+	(4, '2020-12-21 13:28:38', '2020-12-21 13:28:38', '452', 'renault xxl', 'VL', '547', NULL, '2020-12-22', '2020-12-22', 'Bouaké', 'Korogo', 'user.png', '7', '9'),
+	(5, '2021-09-10 09:27:00', '2021-09-10 09:27:00', '321 HS 01', 'TOYOTA', 'VL', 'BRAVO 1', 'JTELB71J104311612', '2017-07-21', '2017-07-21', 'Abidjan', 'Abidjan Sud', 'user.png', NULL, NULL),
+	(6, '2021-09-10 09:32:23', '2021-09-10 09:32:23', '4830HT 01', 'TOYOTA', 'VL', 'CHARLY 1', 'CIABJ2016B03869', '2017-09-07', '2017-09-07', 'Abidjan', 'Abidjan Sud', 'user.png', NULL, NULL);
 /*!40000 ALTER TABLE `vehicules` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_assurances
-DROP TABLE IF EXISTS `vidange_assurances`;
 CREATE TABLE IF NOT EXISTS `vidange_assurances` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3053,7 +3057,6 @@ DELETE FROM `vidange_assurances`;
 /*!40000 ALTER TABLE `vidange_assurances` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_courroies
-DROP TABLE IF EXISTS `vidange_courroies`;
 CREATE TABLE IF NOT EXISTS `vidange_courroies` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3078,7 +3081,6 @@ DELETE FROM `vidange_courroies`;
 /*!40000 ALTER TABLE `vidange_courroies` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_generales
-DROP TABLE IF EXISTS `vidange_generales`;
 CREATE TABLE IF NOT EXISTS `vidange_generales` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3113,7 +3115,6 @@ DELETE FROM `vidange_generales`;
 /*!40000 ALTER TABLE `vidange_generales` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_huile_ponts
-DROP TABLE IF EXISTS `vidange_huile_ponts`;
 CREATE TABLE IF NOT EXISTS `vidange_huile_ponts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3133,7 +3134,6 @@ DELETE FROM `vidange_huile_ponts`;
 /*!40000 ALTER TABLE `vidange_huile_ponts` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_patentes
-DROP TABLE IF EXISTS `vidange_patentes`;
 CREATE TABLE IF NOT EXISTS `vidange_patentes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3154,7 +3154,6 @@ DELETE FROM `vidange_patentes`;
 /*!40000 ALTER TABLE `vidange_patentes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_stationnements
-DROP TABLE IF EXISTS `vidange_stationnements`;
 CREATE TABLE IF NOT EXISTS `vidange_stationnements` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3175,7 +3174,6 @@ DELETE FROM `vidange_stationnements`;
 /*!40000 ALTER TABLE `vidange_stationnements` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_transports
-DROP TABLE IF EXISTS `vidange_transports`;
 CREATE TABLE IF NOT EXISTS `vidange_transports` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3196,7 +3194,6 @@ DELETE FROM `vidange_transports`;
 /*!40000 ALTER TABLE `vidange_transports` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_vignettes
-DROP TABLE IF EXISTS `vidange_vignettes`;
 CREATE TABLE IF NOT EXISTS `vidange_vignettes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3217,7 +3214,6 @@ DELETE FROM `vidange_vignettes`;
 /*!40000 ALTER TABLE `vidange_vignettes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_visites
-DROP TABLE IF EXISTS `vidange_visites`;
 CREATE TABLE IF NOT EXISTS `vidange_visites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3238,7 +3234,6 @@ DELETE FROM `vidange_visites`;
 /*!40000 ALTER TABLE `vidange_visites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. virgilometries
-DROP TABLE IF EXISTS `virgilometries`;
 CREATE TABLE IF NOT EXISTS `virgilometries` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
