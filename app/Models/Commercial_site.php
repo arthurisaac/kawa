@@ -54,7 +54,10 @@ class Commercial_site extends Model
         'tarif_tdf_vb',
         'tarif_tdf_vl',
         'tarif_collecte_caissiere',
-        ];
+        'oo_garde_fond',
+        'oo_comptage',
+        'oo_dispatching',
+    ];
 
 
     public function clients()

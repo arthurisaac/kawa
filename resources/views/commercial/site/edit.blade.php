@@ -211,6 +211,18 @@
                     <div class="col">
                         <h6>CAISSIERES</h6>
                         <div class="form-group row">
+                            <label class="col-sm-6">Garde de fond</label>
+                            <input type="text" class="col-sm-6 form-control form-control-sm" name="oo_garde_fond" value="{{$site->oo_garde_fond}}">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6">Opération comptage BCEAO</label>
+                            <input type="text" class="col-sm-6 form-control form-control-sm" name="oo_comptage" value="{{$site->oo_comptage}}">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6">Opération dispatching</label>
+                            <input type="text" class="col-sm-6 form-control form-control-sm" name="oo_dispatching" value="{{$site->oo_dispatching}}">
+                        </div>
+                        <div class="form-group row">
                             <label for="cb_tdf_vb" class="col-sm-6">MAD</label>
                             <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad"
                                    value="{{$site->oo_mad}}">

@@ -102,6 +102,9 @@ class CommercialSiteController extends Controller
             'tarif_tdf_vb' => $request->get('tarif_tdf_vb'),
             'tarif_tdf_vl' => $request->get('tarif_tdf_vl'),
             'tarif_collecte_caissiere' => $request->get('tarif_collecte_caissiere'),
+            'oo_garde_fond' => $request->get('oo_garde_fond'),
+            'oo_comptage' => $request->get('oo_comptage'),
+            'oo_dispatching' => $request->get('oo_dispatching'),
         ]);
         $site->save();
         return redirect('/commercial-site-liste')->with('success', 'Site enregistré!');
@@ -191,6 +194,9 @@ class CommercialSiteController extends Controller
         $site->tarif_tdf_vb = $request->get('tarif_tdf_vb');
         $site->tarif_tdf_vl = $request->get('tarif_tdf_vl');
         $site->tarif_collecte_caissiere = $request->get('tarif_collecte_caissiere');
+        $site->oo_garde_fond = $request->get('oo_garde_fond');
+        $site->oo_comptage = $request->get('oo_comptage');
+        $site->oo_dispatching = $request->get('oo_dispatching');
         $site->save();
         return redirect('/commercial-site-liste')->with('success', 'Site modifié avec succès!');
 
