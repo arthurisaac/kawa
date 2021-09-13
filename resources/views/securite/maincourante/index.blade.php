@@ -22,12 +22,13 @@
             </div>
         @endif
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label for="date" class="col-sm-4">Date</label>
-                        <input type="text" name="date" id="date" value="{{$date}}" class="form-control col-sm-8" readonly/>
+                        <input type="text" name="date" id="date" value="{{$date}}" class="form-control col-sm-8"
+                               readonly/>
                     </div>
                 </div>
                 <div class="col">
@@ -93,13 +94,13 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre" class="col-sm-4">Centre</label>
-                        <input name="centre" id="centre" class="form-control col-sm-8" readonly />
+                        <input name="centre" id="centre" class="form-control col-sm-8" readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre_regional" class="col-sm-4">Centre régional</label>
-                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly />
+                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>
                     </div>
                 </div>
                 <div class="col"></div>
@@ -137,7 +138,7 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="depart-centre" role="tabpanel"
                  aria-labelledby="depart-centre-tab">
-                <div class="container">
+                <div class="container-fluid">
                     <form method="post" action="{{ route('maincourante.store') }}" novalidate id="departCentre">
                         @csrf
                         <input type="hidden" name="maincourante" value="departCentre"/>
@@ -177,47 +178,108 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="arrivee-site" role="tabpanel" aria-labelledby="arrivee-site-tab">
-                <div class="container">
+                <div class="container-fluid">
                     <form method="post" action="{{ route('maincourante.store') }}" novalidate>
                         <input type="hidden" name="maincourante" value="arriveeSite"/>
                         @csrf
                         <br/>
                         <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
+                            <div class="col-6">
+                                {{--<div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">N°Bordereau</label>
                                     <input type="text" name="asNumeroBordereau" class="form-control col-sm-8"/>
-                                </div>
+                                </div>--}}
                                 <div class="form-group row">
                                     <label class="col-sm-4">SITE</label>
                                     <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
                                     </select>
-                                    <input type="hidden" name="numeroSite" value="1" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="heure_depart" class="col-sm-4">Heure d'arrivée</label>
+                                    <label for="heure_depart" class="col-sm-4">Type opération</label>
+                                    <select name="asTypeOperation" class="form-control col-sm-8">
+                                        <option></option>
+                                        <option>Enlèvement</option>
+                                        <option>Dépot</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
+                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
                                     <input type="time" name="asHeureArrivee" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4">Km d'arrivée</label>
-                                    <input type="number" min="0" name="asKmArrivee" class="form-control col-sm-8"/>
+                                    <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
+                                    <input type="time" name="asDebutOperation" class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4">Observation</label>
-                                    <textarea name="asObservation" class="form-control col-sm-8"></textarea>
+                                    <label for="asFinOpération" class="col-sm-4">Heure fin opération</label>
+                                    <input type="time" name="asFinOpération" class="form-control col-sm-8"/>
                                 </div>
-
                                 <div class="form-group row">
-                                    <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer
-                                    </button>
+                                    <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
+                                    <input type="number" name="asTempsOperation" id="asTempsOperation" class="form-control col-sm-8"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
+                                    <input type="number" name="asNbColis" id="asNbColis" class="form-control col-sm-8"/>
                                 </div>
 
                             </div>
-                            <div class="col-8">
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <br>
+                            <br>
+                            <button class="btn btn-sm btn-primary" id="arriveeSiteColisButton" type="button">+</button>
+                            <br>
+                            <div id="arriveeSiteColisRow">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">Heure fin opération</label>
+                                            <select name="asColis[]" class="form-control col-sm-8">
+                                                <option>Keep Safe</option>
+                                                <option>Sac juste</option>
+                                                <option>Pierres précieuses</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">N° colis</label>
+                                            <input type="number" name="asNumColis[]" class="form-control col-sm-8"/>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">N° bordereau</label>
+                                            <input type="text" name="asNumBordereau[]" class="form-control col-sm-8"/>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">Montant annoncé</label>
+                                            <input type="number" name="asMontantAnnonce[]" class="form-control col-sm-8"/>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">Nature colis</label>
+                                            <input type="text" name="asNatureColis[]" class="form-control col-sm-8"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                         <br/>
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -406,7 +468,6 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="info-site" role="tabpanel" aria-labelledby="info-site-tab">
-
             </div>
         </div>
 
@@ -414,6 +475,7 @@
     <script src="js/jquery-ui.min.js"></script>
     <script>
         let tournees = {!! json_encode($tournees) !!};
+        let sites = {!! json_encode($sites) !!};
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
                 $("#vehicule").val("");
@@ -430,6 +492,16 @@
                     $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
+
+                    const commerciaux = sites.filter(site => {
+                        return site.centre === tournee.centre;
+                    });
+                    commerciaux.map(({id, site}) => {
+                        $('#asSite').append($('<option>', {
+                            value: id,
+                            text: site
+                        }));
+                    })
                 }
             });
         });
@@ -464,6 +536,45 @@
                     event: 'click',
                     collapsible: false
                 });
+
+            $("#arriveeSiteColisButton").on("click", function () {
+                $("#arriveeSiteColisRow").append('<div class="row">\n' +
+                    '                                    <div class="col">\n' +
+                    '                                        <div class="form-group row">\n' +
+                    '                                            <label class="col-sm-4">Heure fin opération</label>\n' +
+                    '                                            <select name="asColis[]" class="form-control col-sm-8">\n' +
+                    '                                                <option>Keep Safe</option>\n' +
+                    '                                                <option>Sac juste</option>\n' +
+                    '                                                <option>Pierres précieuses</option>\n' +
+                    '                                            </select>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col">\n' +
+                    '                                        <div class="form-group row">\n' +
+                    '                                            <label class="col-sm-4">N° colis</label>\n' +
+                    '                                            <input type="number" name="asNumColis[]" class="form-control col-sm-8"/>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col">\n' +
+                    '                                        <div class="form-group row">\n' +
+                    '                                            <label class="col-sm-4">N° bordereau</label>\n' +
+                    '                                            <input type="text" name="asNumBordereau[]" class="form-control col-sm-8"/>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col">\n' +
+                    '                                        <div class="form-group row">\n' +
+                    '                                            <label class="col-sm-4">Montant annoncé</label>\n' +
+                    '                                            <input type="number" name="asMontantAnnonce[]" class="form-control col-sm-8"/>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col">\n' +
+                    '                                        <div class="form-group row">\n' +
+                    '                                            <label class="col-sm-4">Nature colis</label>\n' +
+                    '                                            <input type="text" name="asNatureColis[]" class="form-control col-sm-8"/>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>')
+            });
         });
     </script>
     <script>
@@ -495,7 +606,6 @@
             });
         })
     </script>
-
     <script>
         function deleteDepartSite(id) {
             $.ajax({
@@ -551,7 +661,6 @@
             }
         })
     </script>
-
     <script>
         $(document).ready(function () {
 
@@ -595,9 +704,19 @@
 
                 const noTournee = $("#noTournee").val();
                 const site = $("select[name=asSite]").val();
+                const dateArrivee = $("input[name=asDateArrivee]").val();
                 const heureArrivee = $("input[name=asHeureArrivee]").val();
-                const kmArrivee = $("input[name=asKmArrivee]").val();
-                const observation = $("textarea[name=asObservation]").val();
+                const debutOperation = $("input[name=asDebutOperation]").val();
+                const finOperation = $("input[name=asFinOpération]").val();
+                const tempsOperation = $("input[name=asTempsOperation]").val();
+                const asNbColis = $("input[name=asNbColis]").val();
+
+                const asColis = $("input[name=asColis]").val();
+                const asNumColis = $("input[name=asNumColis").val();
+                const asNumBordereau = $("input[name=asNumBordereau]").val();
+                const asMontantAnnonce = $("input[name=asMontantAnnonce]").val();
+                const asNatureColis = $("input[name=asNatureColis]").val();
+
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -605,9 +724,17 @@
                         maincourante: "arriveeSite",
                         noTournee: noTournee,
                         site: site,
+                        dateArrivee: dateArrivee,
                         heureArrivee: heureArrivee,
-                        kmArrivee: kmArrivee,
-                        observation: observation,
+                        debutOperation: debutOperation,
+                        finOperation: finOperation,
+                        tempsOperation: tempsOperation,
+                        asNbColis: asNbColis,
+                        asColis,
+                        asNumColis,
+                        asNumBordereau,
+                        asMontantAnnonce,
+                        asNatureColis,
                         _token: _token
                     },
                     success: function (response) {

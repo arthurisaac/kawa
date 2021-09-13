@@ -9,12 +9,17 @@ class ArriveeSite extends Model
     protected $fillable = [
         'noTournee',
         'site',
+        'dateArrivee',
         'heureArrivee',
+        'debutOperation',
+        'finOperation',
+        'tempsOperation'
+        /*'heureArrivee',
         'kmArrivee',
         'observation',
         'noBordereau',
         'centre',
-        'centre_regional',
+        'centre_regional',*/
     ];
 
     public function tournees()

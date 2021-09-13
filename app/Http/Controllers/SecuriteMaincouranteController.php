@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ArriveeCentre;
 use App\Models\ArriveeSite;
+use App\Models\ArriveeSiteColis;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_site;
 use App\Models\DepartCentre;
 use App\Models\DepartSite;
 use App\Models\DepartSiteColis;
@@ -31,6 +33,7 @@ class SecuriteMaincouranteController extends Controller
         $date = date('d/m/Y');
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
+        $sites = Commercial_site::all();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::with('tournees')->get();
         $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
@@ -43,7 +46,7 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites'));
     }
 
     public function liste()
@@ -131,12 +134,37 @@ class SecuriteMaincouranteController extends Controller
         $arriveeCentre = new ArriveeSite([
             'noTournee' => $request->get('noTournee'),
             'site' => $request->get('site'),
-            'noBordereau' => $request->get('noBordereau'),
+            'dateArrivee' => $request->get('dateArrivee'),
+            'heureArrivee' => $request->get('heureArrivee'),
+            'debutOperation' => $request->get('debutOperation'),
+            'finOperation' => $request->get('finOperation'),
+            'tempsOperation' => $request->get('tempsOperation'),
+            /*'noBordereau' => $request->get('noBordereau'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrivee' => $request->get('kmArrivee'),
-            'observation' => $request->get('observation'),
+            'observation' => $request->get('observation'),*/
         ]);
         $arriveeCentre->save();
+
+        $asNbColis = $request->get('asNbColis');
+        $asNumColis = $request->get('asNumColis');
+        $asNumBordereau = $request->get('asNumBordereau');
+        $asMontantAnnonce = $request->get('asMontantAnnonce');
+        $asNatureColis = $request->get('asNatureColis');
+
+        for ($i = 0; $i < count($asNbColis); $i++) {
+            if (!empty($asNbColis[$i])) {
+                $as = new ArriveeSiteColis([
+                    'arrivee_site' => $request->get('arrivee_site'),
+                    'site' => $asNbColis[$i],
+                    'colis' => $asNumColis[$i],
+                    'bordereau' => $asNumBordereau[$i],
+                    'montant' => $asMontantAnnonce[$i],
+                    'nature' => $asNatureColis[$i],
+                ]);
+                $as->save();
+            }
+        }
     }
 
     public function storeDepartSite(Request $request)
