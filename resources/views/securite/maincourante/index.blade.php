@@ -184,7 +184,7 @@
                         @csrf
                         <br/>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                                 {{--<div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">N°Bordereau</label>
                                     <input type="text" name="asNumeroBordereau" class="form-control col-sm-8"/>
@@ -212,15 +212,18 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
-                                    <input type="time" name="asDebutOperation" class="form-control col-sm-8"/>
+                                    <input type="time" name="asDebutOperation" id="asDebutOperation"
+                                           class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="asFinOpération" class="col-sm-4">Heure fin opération</label>
-                                    <input type="time" name="asFinOpération" class="form-control col-sm-8"/>
+                                    <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
+                                    <input type="time" name="asFinOperation" id="asFinOperation"
+                                           class="form-control col-sm-8"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
-                                    <input type="number" name="asTempsOperation" id="asTempsOperation" class="form-control col-sm-8"/>
+                                    <input type="number" name="asTempsOperation" id="asTempsOperation"
+                                           class="form-control col-sm-8" readonly/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
@@ -228,53 +231,42 @@
                                 </div>
 
                             </div>
-                            <div class="col"></div>
-                        </div>
-                        <div class="row">
-                            <br>
-                            <br>
-                            <button class="btn btn-sm btn-primary" id="arriveeSiteColisButton" type="button">+</button>
-                            <br>
-                            <div id="arriveeSiteColisRow">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Colis</label>
-                                            <select name="asColis[]" class="form-control col-sm-8">
+                            <div class="col">
+
+                                <br>
+                                <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">Ajouter
+                                </button>
+                                <br>
+                                <br>
+                                <table class="table table-bordered" id="tableASColis">
+                                    <thead>
+                                    <tr>
+                                        <th>Colis</th>
+                                        <th>N° Colis</th>
+                                        <th>N° Bordereau</th>
+                                        <th>Montant annoncé</th>
+                                        <th>Nature colis</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="asColis[]" class="form-control">
                                                 <option>Keep Safe</option>
                                                 <option>Sac juste</option>
                                                 <option>Pierres précieuses</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">N° colis</label>
-                                            <input type="number" name="asNumColis[]" class="form-control col-sm-8"/>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">N° bordereau</label>
-                                            <input type="text" name="asNumBordereau[]" class="form-control col-sm-8"/>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Montant annoncé</label>
-                                            <input type="number" name="asMontantAnnonce[]" class="form-control col-sm-8"/>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Nature colis</label>
-                                            <input type="text" name="asNatureColis[]" class="form-control col-sm-8"/>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </td>
+                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>
+                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>
+                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
+                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
+
                         <br/>
                         <div class="form-group">
                             <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer
@@ -538,43 +530,44 @@
                 });
 
             $("#arriveeSiteColisButton").on("click", function () {
-                $("#arriveeSiteColisRow").append('<div class="row">\n' +
-                    '                                    <div class="col">\n' +
-                    '                                        <div class="form-group row">\n' +
-                    '                                            <label class="col-sm-4">Heure fin opération</label>\n' +
-                    '                                            <select name="asColis[]" class="form-control col-sm-8">\n' +
+                $("#tableASColis").append('<tr>\n' +
+                    '                                        <td>\n' +
+                    '                                            <select name="asColis[]" class="form-control">\n' +
                     '                                                <option>Keep Safe</option>\n' +
                     '                                                <option>Sac juste</option>\n' +
                     '                                                <option>Pierres précieuses</option>\n' +
                     '                                            </select>\n' +
-                    '                                        </div>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col">\n' +
-                    '                                        <div class="form-group row">\n' +
-                    '                                            <label class="col-sm-4">N° colis</label>\n' +
-                    '                                            <input type="number" name="asNumColis[]" class="form-control col-sm-8"/>\n' +
-                    '                                        </div>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col">\n' +
-                    '                                        <div class="form-group row">\n' +
-                    '                                            <label class="col-sm-4">N° bordereau</label>\n' +
-                    '                                            <input type="text" name="asNumBordereau[]" class="form-control col-sm-8"/>\n' +
-                    '                                        </div>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col">\n' +
-                    '                                        <div class="form-group row">\n' +
-                    '                                            <label class="col-sm-4">Montant annoncé</label>\n' +
-                    '                                            <input type="number" name="asMontantAnnonce[]" class="form-control col-sm-8"/>\n' +
-                    '                                        </div>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col">\n' +
-                    '                                        <div class="form-group row">\n' +
-                    '                                            <label class="col-sm-4">Nature colis</label>\n' +
-                    '                                            <input type="text" name="asNatureColis[]" class="form-control col-sm-8"/>\n' +
-                    '                                        </div>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>')
+                    '                                        </td>\n' +
+                    '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    '                                    </tr>')
             });
+
+            $("#asDebutOperation").on("change", function () {
+                const fin = $("#asFinOperation").val();
+                if (fin !== undefined) {
+                    console.log(fin);
+                }
+            });
+
+            $("#asFinOperation").on("change", function () {
+                const debut = $("#asDebutOperation").val();
+                console.log("debut :", debut);
+                console.log("fin :", this.value);
+                const debutDate = new Date(`01/01/2021 ${debut}`);
+                const finDate = new Date(`01/01/2021 ${this.value}`);
+                $("#asTempsOperation").val(diff_hours(debutDate, finDate));
+            });
+
+            function diff_hours(dt2, dt1) {
+                let diff = (dt2.getTime() - dt1.getTime()) / 1000;
+                //diff /= (60 * 60);         //For Hours
+                diff /= (60);         // For Minutes
+                return Math.abs(Math.round(diff));
+
+            }
         });
     </script>
     <script>
@@ -707,7 +700,7 @@
                 const dateArrivee = $("input[name=asDateArrivee]").val();
                 const heureArrivee = $("input[name=asHeureArrivee]").val();
                 const debutOperation = $("input[name=asDebutOperation]").val();
-                const finOperation = $("input[name=asFinOpération]").val();
+                const finOperation = $("input[name=asFinOperation]").val();
                 const tempsOperation = $("input[name=asTempsOperation]").val();
                 const asNbColis = $("input[name=asNbColis]").val();
 
@@ -716,20 +709,20 @@
                 const asNumBordereau = [];
                 const asMontantAnnonce = [];
                 const asNatureColis = [];
-                $('select[name^="asColis"]').each(function(i) {
+                $('select[name^="asColis"]').each(function (i) {
                     console.log(i);
                     asColis.push($(this).val())
                 });
-                $('input[name^="asNumColis"]').each(function() {
+                $('input[name^="asNumColis"]').each(function () {
                     asNumColis.push($(this).val())
                 });
-                $('input[name^="asNumBordereau"]').each(function() {
+                $('input[name^="asNumBordereau"]').each(function () {
                     asNumBordereau.push($(this).val())
                 });
-                $('input[name^="asMontantAnnonce"]').each(function() {
+                $('input[name^="asMontantAnnonce"]').each(function () {
                     asMontantAnnonce.push($(this).val())
                 });
-                $('input[name^="asNatureColis"]').each(function() {
+                $('input[name^="asNatureColis"]').each(function () {
                     asNatureColis.push($(this).val())
                 });
                 //const asColis = $("input[name=asColis]").val();
