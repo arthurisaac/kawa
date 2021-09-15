@@ -43,13 +43,13 @@
                     <td>
                         <div class="row">
                             <div class="col">
-                                <a href="{{ route('vehicule.edit',$vehicule->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('vehicule.edit',$vehicule->id)}}" class="btn btn-primary btn-sm"></a>
                             </div>
                             <div class="col">
                                 <form action="{{ route('vehicule.destroy', $vehicule->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </div>
                         </div>

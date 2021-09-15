@@ -78,8 +78,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function departSiteListe()
     {
-        $departSites = DepartSite::all();
-
+        $departSites = DepartSite::with("tournees")->get();
         return view('/securite.maincourante.depart-site.liste',
             compact('departSites'));
     }
@@ -182,20 +181,20 @@ class SecuriteMaincouranteController extends Controller
         $site = $request->get('site');
         $heureDepart = $request->get('heureDepart');
         $kmDepart = $request->get('kmDepart');
-        $bordereau = $request->get('bordereau');
+        $departSite = $request->get('departSite');
         $destination = $request->get('destination');
         $observation = $request->get('observation');
 
-        $departSite = new DepartSite([
+        $data = new DepartSite([
             'noTournee' => $noTournee,
             'site' => $site,
             'heureDepart' => $heureDepart,
             'kmDepart' => $kmDepart,
-            'bordereau' => $bordereau,
+            'depart_site' => $departSite,
             'observation' => $observation,
             'destination' => $destination,
         ]);
-        $departSite->save();
+        $data->save();
 
         /* for ($i = 0; $i < count($site); $i++) {
              if (!empty($site[$i])) {
@@ -352,6 +351,12 @@ class SecuriteMaincouranteController extends Controller
         return view('securite.maincourante.arrivee-site.edit', compact('site', 'sites', 'arriveeColis'));
     }
 
+    public function editDepartSite(Request $request, $id)
+    {
+        $site = DepartSite::all()->find($id);
+        return view('securite.maincourante.depart-site.edit', compact('site'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -361,7 +366,7 @@ class SecuriteMaincouranteController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     public function updateArriveeColis(Request $request, $id)
@@ -420,6 +425,24 @@ class SecuriteMaincouranteController extends Controller
         return redirect()->back()->with('success', 'Enregistré');
     }
 
+    public function updateDepartSite(Request $request, $id)
+    {
+        $heureDepart = $request->get('heureDepart');
+        $kmDepart = $request->get('kmDepart');
+        $departSite = $request->get('departSite');
+        $destination = $request->get('destination');
+        $observation = $request->get('observation');
+
+        $data = DepartSite::find($id);
+        $data->heureDepart = $heureDepart;
+        $data->kmDepart = $kmDepart;
+        $data->depart_site = $departSite;
+        $data->observation = $observation;
+        $data->destination = $destination;
+        $data->save();
+        return redirect()->back()->with('success', 'Mise à jour réussie');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -442,7 +465,6 @@ class SecuriteMaincouranteController extends Controller
 
     public function deleteDepartSite(Request $request)
     {
-
         if ($request->ajax()) {
             $departSite = DepartSite::find($request->id);
             $departSite->delete();
@@ -474,6 +496,5 @@ class SecuriteMaincouranteController extends Controller
                 'message' => 'supprimé'
             ]);
         }
-
     }
 }

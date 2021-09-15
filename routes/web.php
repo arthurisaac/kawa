@@ -45,12 +45,17 @@ Route::resource('maincourante', 'SecuriteMaincouranteController');
 Route::get('maincourante-liste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'liste']);
 Route::get('maincourante-departcentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departCentreListe']);
 Route::delete('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteDepartCentre']);
+
 Route::get('maincourante-arriveesiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeSiteListe']);
 Route::get('maincourante-arriveesiteliste/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editArriveeSite']);
 Route::delete('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteArriveeSite']);
 Route::patch('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'updateArriveeColis']);
 
 Route::get('maincourante-departsiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departSiteListe']);
+Route::get('maincourante-departsite/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editDepartSite']);
+Route::delete('maincourante-departsite/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteDepartSite']);
+Route::patch('maincourante-departsite/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'updateDepartSite']);
+
 Route::get('maincourante-arriveecentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeCentreListe']);
 Route::get('maincourante-tourneecentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'tourneeCentreListe']);
 

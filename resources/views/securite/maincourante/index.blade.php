@@ -300,8 +300,8 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-6">N° de bordereau</label>
-                                        <input type="text" class="form-control col-sm-6" name="bordereau">
+                                        <label class="col-sm-6">Date départ site</label>
+                                        <input type="date" class="form-control col-sm-6" name="departSite">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Destination</label>
@@ -326,7 +326,6 @@
                     <br/>
                     <br/>
                 </div>
-
             </div>
             <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
                 <div class="container">

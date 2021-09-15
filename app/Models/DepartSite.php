@@ -12,16 +12,14 @@ class DepartSite extends Model
         'finOp',
         'heureDepart',
         'kmDepart',
-        'bordereau',
+        'depart_site',
         'destination',
         'observation',
-        'centre',
-        'centre_regional',
     ];
 
 
     public function tournees()
     {
-        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')->with('vehicules');
     }
 }
