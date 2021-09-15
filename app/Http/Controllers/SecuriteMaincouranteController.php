@@ -134,11 +134,13 @@ class SecuriteMaincouranteController extends Controller
         $arrivee = new ArriveeSite([
             'noTournee' => $request->get('noTournee'),
             'site' => $request->get('site'),
+            'operation' => $request->get('operation'),
             'dateArrivee' => $request->get('dateArrivee'),
             'heureArrivee' => $request->get('heureArrivee'),
             'debutOperation' => $request->get('debutOperation'),
             'finOperation' => $request->get('finOperation'),
             'tempsOperation' => $request->get('tempsOperation'),
+            'nombre_colis' => $request->get('asNbColis'),
             /*'noBordereau' => $request->get('noBordereau'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrivee' => $request->get('kmArrivee'),
@@ -155,16 +157,16 @@ class SecuriteMaincouranteController extends Controller
 
         for ($i = 0; $i < count($asNumColis); $i++) {
             //if (!empty($asNbColis[$i])) {
-                $as = new ArriveeSiteColis([
-                    'arrivee_site' => $arrivee->id,
-                    'site' => $asNbColis[$i],
-                    'colis' => $asColis[$i],
-                    'num_colis' => $asNumColis[$i],
-                    'bordereau' => $asNumBordereau[$i],
-                    'montant' => $asMontantAnnonce[$i],
-                    'nature' => $asNatureColis[$i],
-                ]);
-                $as->save();
+            $as = new ArriveeSiteColis([
+                'arrivee_site' => $arrivee->id,
+                'site' => $asNbColis[$i],
+                'colis' => $asColis[$i],
+                'num_colis' => $asNumColis[$i],
+                'bordereau' => $asNumBordereau[$i],
+                'montant' => $asMontantAnnonce[$i],
+                'nature' => $asNatureColis[$i],
+            ]);
+            $as->save();
             //}
         }
     }
@@ -195,22 +197,22 @@ class SecuriteMaincouranteController extends Controller
         ]);
         $departSite->save();
 
-       /* for ($i = 0; $i < count($site); $i++) {
-            if (!empty($site[$i])) {
-                $departSite = new DepartSite([
-                    'noTournee' => $noTournee,
-                    'numeroSite' => $numeroSite[$i],
-                    'site' => $site,
-                    'heureDepart' => $heureDepart[$i],
-                    'kmDepart' => $kmDepart[$i],
-                    'bordereau' => $bordereau[$i],
-                    'observation' => $observation[$i],
-                    'destination' => $destination[$i],
-                ]);
-                $departSite->save();
-                // $this->storeDepartSiteColis($request, $departSite->id);
-            }
-        }*/
+        /* for ($i = 0; $i < count($site); $i++) {
+             if (!empty($site[$i])) {
+                 $departSite = new DepartSite([
+                     'noTournee' => $noTournee,
+                     'numeroSite' => $numeroSite[$i],
+                     'site' => $site,
+                     'heureDepart' => $heureDepart[$i],
+                     'kmDepart' => $kmDepart[$i],
+                     'bordereau' => $bordereau[$i],
+                     'observation' => $observation[$i],
+                     'destination' => $destination[$i],
+                 ]);
+                 $departSite->save();
+                 // $this->storeDepartSiteColis($request, $departSite->id);
+             }
+         }*/
     }
 
     public function storeDepartSiteColis(Request $request, $id)
@@ -342,6 +344,14 @@ class SecuriteMaincouranteController extends Controller
         //
     }
 
+    public function editArriveeSite(Request $request, $id)
+    {
+        $site = ArriveeSite::with('sites')->find($id);
+        $arriveeColis = ArriveeSiteColis::all()->where('arrivee_site', '=', $id);
+        $sites = Commercial_site::all();
+        return view('securite.maincourante.arrivee-site.edit', compact('site', 'sites', 'arriveeColis'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -351,7 +361,63 @@ class SecuriteMaincouranteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+    }
+
+    public function updateArriveeColis(Request $request, $id)
+    {
+        $arrivee = ArriveeSite::find($id);
+        $arrivee->site = $request->get('asSite');
+        $arrivee->operation = $request->get('asTypeOperation');
+        $arrivee->dateArrivee = $request->get('asDateArrivee');
+        $arrivee->heureArrivee = $request->get('asHeureArrivee');
+        $arrivee->debutOperation = $request->get('asDebutOperation');
+        $arrivee->finOperation = $request->get('asFinOperation');
+        $arrivee->tempsOperation = $request->get('asTempsOperation');
+        $arrivee->nombre_colis = $request->get('asNbColis');
+        $arrivee->save();
+
+        $asColis_edit = $request->get('asColis_edit');
+        $asNumColis_edit = $request->get('asNumColis_edit');
+        $asNumBordereau_edit = $request->get('asNumBordereau_edit');
+        $asMontantAnnonce_edit = $request->get('asMontantAnnonce_edit');
+        $asNatureColis_edit = $request->get('asNatureColis_edit');
+        $ids = $request->get('colis_id');
+
+        for ($i = 0; $i < count($asNumColis_edit); $i++) {
+            if (!empty($asNumColis_edit[$i])) {
+                $as = ArriveeSiteColis::find($ids[$i]);
+                $as->arrivee_site = $id;
+                $as->colis = $asColis_edit[$i];
+                $as->num_colis = $asNumColis_edit[$i];
+                $as->bordereau = $asNumBordereau_edit[$i];
+                $as->montant = $asMontantAnnonce_edit[$i];
+                $as->nature = $asNatureColis_edit[$i];
+                $as->save();
+            }
+        }
+
+        $asColis = $request->get('asColis');
+        $asNumColis = $request->get('asNumColis');
+        $asNumBordereau = $request->get('asNumBordereau');
+        $asMontantAnnonce = $request->get('asMontantAnnonce');
+        $asNatureColis = $request->get('asNatureColis');
+
+        for ($i = 0; $i < count($asNumColis); $i++) {
+            if (!empty($asNumColis[$i])) {
+                $as = new ArriveeSiteColis([
+                    'arrivee_site' => $id,
+                    'colis' => $asColis[$i],
+                    'num_colis' => $asNumColis[$i],
+                    'bordereau' => $asNumBordereau[$i],
+                    'montant' => $asMontantAnnonce[$i],
+                    'nature' => $asNatureColis[$i],
+                ]);
+                $as->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Enregistré');
     }
 
     /**
@@ -384,11 +450,25 @@ class SecuriteMaincouranteController extends Controller
         }
 
     }
+
     public function deleteDepartCentre(Request $request, $id)
     {
 
         if ($request->ajax()) {
             $data = DepartCentre::find($id);
+            $data->delete();
+            return \response()->json([
+                'message' => 'supprimé'
+            ]);
+        }
+
+    }
+
+    public function deleteArriveeSite(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = ArriveeSite::find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'

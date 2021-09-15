@@ -8,7 +8,6 @@ class ArriveeSiteColis extends Model
 {
     protected $fillable = [
         'arrivee_site',
-        'site',
         'colis',
         'num_colis',
         'bordereau',

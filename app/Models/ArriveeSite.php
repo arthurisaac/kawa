@@ -9,11 +9,13 @@ class ArriveeSite extends Model
     protected $fillable = [
         'noTournee',
         'site',
+        'operation',
         'dateArrivee',
         'heureArrivee',
         'debutOperation',
         'finOperation',
-        'tempsOperation'
+        'tempsOperation',
+        'nombre_colis'
         /*'heureArrivee',
         'kmArrivee',
         'observation',
