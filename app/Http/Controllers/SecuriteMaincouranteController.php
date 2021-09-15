@@ -143,7 +143,7 @@ class SecuriteMaincouranteController extends Controller
         $asNatureColis = $request->get('asNatureColis');
 
         for ($i = 0; $i < count($asNumColis); $i++) {
-            if (!empty(asNumColis[$i])) {
+            if (!empty($asNumColis[$i])) {
                 $as = new ArriveeSiteColis([
                     'arrivee_site' => $arrivee->id,
                     'site' => $asNbColis[$i],
@@ -393,7 +393,7 @@ class SecuriteMaincouranteController extends Controller
         $asNatureColis_edit = $request->get('asNatureColis_edit');
         $ids = $request->get('colis_id');
 
-        for ($i = 0; $i < count($asNumColis_edit); $i++) {
+        for ($i = 0; $i < count($asNumColis_edit) ?? []; $i++) {
             if (!empty($asNumColis_edit[$i])) {
                 $as = ArriveeSiteColis::find($ids[$i]);
                 $as->arrivee_site = $id;
