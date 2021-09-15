@@ -11,6 +11,9 @@ class ArriveeCentre extends Model
         'heureArrivee',
         'kmArrive',
         'observation',
+        'niveauCarburant',
+        'finTournee',
+        'dateArrivee',
     ];
 
     public function tournees()

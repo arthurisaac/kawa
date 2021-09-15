@@ -125,14 +125,10 @@
                 <a class="nav-link" id="arrivee-centre-tab" data-toggle="tab" href="#arrivee-centre" role="tab"
                    aria-controls="arrivee-centre" aria-selected="false">Arrivée centre</a>
             </li>
-            <li class="nav-item">
+            {{--<li class="nav-item">
                 <a class="nav-link" id="tournee-centre-tab" data-toggle="tab" href="#tournee-centre" role="tab"
                    aria-controls="tournee-centre" aria-selected="false">Tournée centre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="info-site-tab" data-toggle="tab" href="#info-site" role="tab"
-                   aria-controls="info-site" aria-selected="false">Info site</a>
-            </li>
+            </li>--}}
         </ul>
         <br/>
         <div class="tab-content">
@@ -343,6 +339,27 @@
                                     <input type="number" name="kmArrive" class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-sm-5">Niveau carburant</label>
+                                    <select name="niveauCarburant" class="form-control col-sm-7">
+                                        <option></option>
+                                        <option>1/4</option>
+                                        <option>2/4</option>
+                                        <option>3/4</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5">Fin de tournée</label>
+                                    <select name="finTournee" class="form-control col-sm-7">
+                                        <option></option>
+                                        <option>fin</option>
+                                        <option>transite</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5">Date arrivée centre</label>
+                                    <input type="date" name="dateArrivee" class="form-control col-sm-7"/>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-sm-5">Observation</label>
                                     <textarea name="observation" class="form-control col-sm-7"></textarea>
                                 </div>
@@ -351,58 +368,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="tournee-centre" role="tabpanel" aria-labelledby="tournee-centre-tab">
-                <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}" id="tourneeCentre" novalidate>
-                        @csrf
-                        <input type="hidden" name="maincourante" value="tourneeCentre"/>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Centre</label>
-                                    <select name="centre" id="centre" class="form-control col-sm-7" required>
-                                        <option></option>
-                                        @foreach ($centres as $centre)
-                                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                                    <select id="centre_regional" name="centreRegional" class="form-control col-sm-7"
-                                            required>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Date début</label>
-                                    <input type="date" name="dateDebut" class="form-control col-sm-7">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Date fin</label>
-                                    <input type="date" name="dateFin" class="form-control col-sm-7">
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="button" id="tcSubmit">Valider</button>
-                            <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
-                        </div>
-                    </form>
-                    <div style="width: 100%; overflow-x: scroll;">
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="info-site" role="tabpanel" aria-labelledby="info-site-tab">
             </div>
         </div>
 

@@ -216,10 +216,6 @@
                                                                 target="_self" title="Liste">Liste arrivée centre</a>
                                                         </li>
                                                         <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-tourneecentreliste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste tournée centre</a>
-                                                        </li>
-                                                        <li><span></span><a
                                                                 href="javascript:popupwnd('maincourante-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>

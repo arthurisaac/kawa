@@ -91,14 +91,6 @@ class SecuriteMaincouranteController extends Controller
             compact('arriveeCentres'));
     }
 
-    public function tourneeCentreListe()
-    {
-        $tourneeCentres = TourneeCentre::with('tournees');
-
-        return view('/securite.maincourante.tournee-centre.liste',
-            compact('tourneeCentres'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -254,6 +246,9 @@ class SecuriteMaincouranteController extends Controller
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrive' => $request->get('kmArrive'),
             'observation' => $request->get('observation'),
+            'niveauCarburant' => $request->get('niveauCarburant'),
+            'finTournee' => $request->get('finTournee'),
+            'dateArrivee' => $request->get('dateArrivee'),
         ]);
         $arriveeCentre->save();
     }
@@ -277,6 +272,7 @@ class SecuriteMaincouranteController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
+
     public function store(Request $request)
     {
 
@@ -355,6 +351,12 @@ class SecuriteMaincouranteController extends Controller
     {
         $site = DepartSite::all()->find($id);
         return view('securite.maincourante.depart-site.edit', compact('site'));
+    }
+
+    public function editArriveeCentre(Request $request, $id)
+    {
+        $centre = ArriveeCentre::all()->find($id);
+        return view('securite.maincourante.arrivee-centre.edit', compact('centre'));
     }
 
     /**
@@ -443,6 +445,19 @@ class SecuriteMaincouranteController extends Controller
         return redirect()->back()->with('success', 'Mise à jour réussie');
     }
 
+    public function updateArriveeCentre(Request $request, $id)
+    {
+        $centre = ArriveeCentre::find($id);
+        $centre->heureArrivee = $request->get('heureArrivee');
+        $centre->kmArrive = $request->get('kmArrive');
+        $centre->observation = $request->get('observation');
+        $centre->niveauCarburant = $request->get('niveauCarburant');
+        $centre->finTournee = $request->get('finTournee');
+        $centre->dateArrivee = $request->get('dateArrivee');
+        $centre->save();
+        return redirect()->back()->with('success', 'Mise à jour réussie');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -491,6 +506,18 @@ class SecuriteMaincouranteController extends Controller
 
         if ($request->ajax()) {
             $data = ArriveeSite::find($id);
+            $data->delete();
+            return \response()->json([
+                'message' => 'supprimé'
+            ]);
+        }
+    }
+
+    public function deleteArriveeCentre(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = ArriveeCentre::find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'
