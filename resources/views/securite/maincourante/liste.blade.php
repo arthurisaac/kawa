@@ -1,168 +1,105 @@
 @extends('base')
 
 @section('main')
-<div class="burval-container">
-    <div><h2 class="heading">Maincourante</h2></div>
-    <br/>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+    <div class="burval-container">
+        <div><h2 class="heading">Maincourante</h2></div>
+        <br/>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <br/>
+        @endif
+
+        @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
+        <br/>
+        <p>Maincourante</p>
+        <table class="table table-bordered table-hover" id="listeMaincourante">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>N°Tournée</td>
+                <td>Date</td>
+                <td>Véhicule</td>
+                <td>Km départ centre</td>
+                <td>Km arrivée centre</td>
+                <td>Fin de tournée</td>
+                <td>Action</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($tournees as $tournee)
+                <tr>
+                    <td>{{$tournee->id}}</td>
+                    <td>{{$tournee->numeroTournee}}</td>
+                    <td>{{$tournee->date}}</td>
+                    <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->kmDepart}}</td>
+                    <td>{{$tournee->kmArrivee}}</td>
+                    <td>{{--TODO: demander à M. BEDI--}}</td>
+                    <td>
+                        <a href="" class="btn btn-sm btn-danger"></a>
+                    </td>
+                </tr>
             @endforeach
-        </ul>
+            </tbody>
+        </table>
+
+        {{--<p>MOUVEMENT CENTRE</p>
+        <table class="table table-bordered table-hover" style="width: 100%">
+            <thead>
+            <tr>
+                <td>Site</td>
+                <td>Date</td>
+                <td>Heure</td>
+                <td>Num tournée</td>
+                <td>Type colis</td>
+                <td>Nombre de colis</td>
+                <td>N°Sécuripack</td>
+                <td>Destination</td>
+                <td>Observation</td>
+                <td>Numéro bordereau</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <p>POINTAGE SITE</p>
+        <table class="table table-bordered table-hover" style="width: 100%">
+            <thead>
+            <tr>
+                <td>Date</td>
+                <td>N°Tournée</td>
+                <td>Site</td>
+                <td>Heure arrivée</td>
+                <td>Heure dep</td>
+                <td>Duree</td>
+                <td>Observation</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>--}}
+
+
     </div>
-    <br/>
-    @endif
-
-    @if(session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
-
-    <br/>
-    <p>DEPART TOURNEE</p>
-    <table class="table table-bordered table-hover" id="listeDepartTournee">
-        <thead>
-        <tr>
-            <td>N°Tournée</td>
-            <td>Date</td>
-            <td>Heure</td>
-            <td>Code</td>
-            <td>Km départ</td>
-            <td>Observation</td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($departCentres as $depart)
-        <tr>
-            <td>{{$depart->noTournee}}</td>
-            <td>{{$depart->date}}</td>
-            <td>{{$depart->heureDepart}}</td>
-            <td>{{$depart->code}}</td>
-            <td>{{$depart->kmDepart}}</td>
-            <td>{{$depart->observation}}</td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
-
-    <br/>
-    <p>ARRIVEE CENTRE</p>
-    <table class="table table-bordered table-hover" style="width: 100%"  id="listeArriveeTournee">
-        <thead>
-        <tr>
-            <td>Site</td>
-            <td>Date</td>
-            <td>Heure</td>
-            <td>Km départ</td>
-            <td>Observation</td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($arriveeCentres as $depart)
-        <tr>
-            <td>{{$depart->site}}</td>
-            <td>{{$depart->date}}</td>
-            <td>{{$depart->heureDepart}}</td>
-            <td>{{$depart->kmDepart}}</td>
-            <td>{{$depart->observation}}</td>
-            {{--TODO: actions--}}
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
-
-    <br/>
-    <p>MOUVEMENT CENTRE</p>
-    <table class="table table-bordered table-hover" style="width: 100%">
-        <thead>
-        <tr>
-            <td>Date</td>
-            <td>N°Tournee</td>
-            <td>Vehicule</td>
-            <td>Temps tournée</td>
-            <td>Km parcouru</td>
-            <td>Observe départ</td>
-            <td>Observ arrivée</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-    <br/>
-    <p>MOUVEMENT CENTRE</p>
-    <table class="table table-bordered table-hover" style="width: 100%">
-        <thead>
-        <tr>
-            <td>Site</td>
-            <td>Date</td>
-            <td>Heure</td>
-            <td>Km arrivée</td>
-            <td>N°Tournée</td>
-            <td>Code</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <br/>
-
-    <p>MOUVEMENT CENTRE</p>
-    <table class="table table-bordered table-hover" style="width: 100%">
-        <thead>
-        <tr>
-            <td>Site</td>
-            <td>Date</td>
-            <td>Heure</td>
-            <td>Num tournée</td>
-            <td>Type colis</td>
-            <td>Nombre de colis</td>
-            <td>N°Sécuripack</td>
-            <td>Destination</td>
-            <td>Observation</td>
-            <td>Numéro bordereau</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-    <p>POINTAGE SITE</p>
-    <table class="table table-bordered table-hover" style="width: 100%">
-        <thead>
-        <tr>
-            <td>Date</td>
-            <td>N°Tournée</td>
-            <td>Site</td>
-            <td>Heure arrivée</td>
-            <td>Heure dep</td>
-            <td>Duree</td>
-            <td>Observation</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-
-
-</div>
-<script>
-    $(document).ready(function () {
-        $('#listeDepartTournee').DataTable({
-            "language": {
-                "url": "French.json"
-            }
+    <script>
+        $(document).ready(function () {
+            $('#listeMaincourante').DataTable({
+                "language": {
+                    "url": "French.json"
+                }
+            });
         });
-        $('#listeArriveeTournee').DataTable({
-            "language": {
-                "url": "French.json"
-            }
-        });
-
-    });
-</script>
+    </script>
 @endsection

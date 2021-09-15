@@ -51,13 +51,9 @@ class SecuriteMaincouranteController extends Controller
 
     public function liste()
     {
-        $departCentres = DepartCentre::all();
-        $arriveeSites = ArriveeSite::all();
-        $departSites = DepartSite::all();
-        $arriveeCentres = ArriveeCentre::all();
+        $tournees = DepartTournee::all();
 
-        return view('/securite.maincourante.liste',
-            compact('departCentres', 'arriveeSites', 'arriveeCentres', 'departSites'));
+        return view('/securite.maincourante.liste', compact('tournees'));
     }
 
     public function arriveeSiteListe()

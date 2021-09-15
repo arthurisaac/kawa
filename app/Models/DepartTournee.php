@@ -18,8 +18,6 @@ class DepartTournee extends Model
         'heureDepart',
         'kmArrivee',
         'heureArrivee',
-            'centre',
-            'centre_regional'
     ];
 
     public function agentDeGardes()
