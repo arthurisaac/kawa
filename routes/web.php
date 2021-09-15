@@ -45,7 +45,7 @@ Route::resource('maincourante', 'SecuriteMaincouranteController');
 Route::get('maincourante-liste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'liste']);
 
 Route::get('maincourante-departcentreliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departCentreListe']);
-Route::get('maincourante-departcentreliste/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editDepartCentre']);
+Route::get('maincourante-departcentre/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editDepartCentre']);
 Route::delete('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteDepartCentre']);
 Route::patch('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'updatedepartCentre']);
 

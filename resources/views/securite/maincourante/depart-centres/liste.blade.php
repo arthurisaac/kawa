@@ -26,7 +26,7 @@
                     <td>{{$centre->niveauCarburant}}</td>
                     <td>{{$centre->observation}}</td>
                     <td>
-                        <a href="maincourante-departsite/{{$centre->id}}/edit" class="btn btn-primary btn-sm"></a>
+                        <a href="maincourante-departcentre/{{$centre->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$centre->id}}', this)"></a>
                     </td>
                 </tr>

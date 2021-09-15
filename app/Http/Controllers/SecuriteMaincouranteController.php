@@ -74,7 +74,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function departSiteListe()
     {
-        $departSites = DepartSite::with("tournees")->get();
+        $departSites = DepartSite::all();
         return view('/securite.maincourante.depart-site.liste',
             compact('departSites'));
     }
@@ -337,8 +337,8 @@ class SecuriteMaincouranteController extends Controller
 
     public function editDepartCentre(Request $request, $id)
     {
-        $centre = DepartCentre::find($id);
-        return view('securite.maincourante.depart-centres.edit', compact('site', 'sites', 'centre'));
+        $centre = DepartCentre::all()->find($id);
+        return view('securite.maincourante.depart-centres.edit', compact('centre'));
     }
 
     public function editArriveeSite(Request $request, $id)
@@ -351,7 +351,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function editDepartSite(Request $request, $id)
     {
-        $site = DepartSite::all()->find($id);
+        $site = DepartSite::with('tournees')->find($id);
         return view('securite.maincourante.depart-site.edit', compact('site'));
     }
 

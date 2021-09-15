@@ -6,6 +6,86 @@
         <h2 class="heading">Arrivée site</h2>
         <a href="/maincourante-arriveesiteliste">Liste arrivée site</a>
         <br>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="date" class="col-sm-4">Date</label>
+                        <input type="text" name="date" id="date" value="{{$site->tournees->date}}" class="form-control col-sm-8"
+                               readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="no_tournee" class="col-sm-4">N°Tournée</label>
+                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee}}" readonly />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-sm-4">Véhicule</label>
+                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$site->tournees->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
+                        {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
+                            <option></option>
+                            @foreach($vehicules as $vehicule)
+                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                            @endforeach
+                        </select>--}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-sm-4">Chef de bord</label>
+                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$site->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                        {{--<select class="form-control col-sm-8" name="chefDeBord">
+                            <option></option>
+                            @foreach($chefBords as $chef)
+                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                            @endforeach
+                        </select>--}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-sm-4">Agent garde</label>
+                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$site->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>
+                        {{--<select class="form-control col-sm-8" name="agentDeGarde">
+                            <option></option>
+                            @foreach($agents as $agent)
+                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                            @endforeach
+                        </select>--}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-sm-4">Chauffeur:</label>
+                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$site->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                        {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
+                            <option></option>
+                        </select>--}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-sm-4">Centre</label>
+                        <input name="centre" id="centre" class="form-control col-sm-8" value="{{$site->tournees->centre}}" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-sm-4">Centre régional</label>
+                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$site->tournees->centre}}" readonly/>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
         <div class="container-fluid">
             <form method="post" action="/maincourante-arriveesiteliste/{{$site->id}}" novalidate>
                 <input type="hidden" name="maincourante" value="arriveeSite"/>

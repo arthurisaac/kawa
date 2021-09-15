@@ -20,6 +20,10 @@ class DepartSite extends Model
 
     public function tournees()
     {
-        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')->with('vehicules');
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')
+            ->with('vehicules')
+            ->with('agentDeGardes')
+            ->with('chauffeurs')
+            ->with('chefDeBords');
     }
 }
