@@ -36,7 +36,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" class="form-control" name="date" value="{{$tournee->date}}"/>
+                        <input type="date" class="form-control" name="date" value="{{$tournee->date}}" required/>
                     </div>
                 </div>
                 <div class="col">

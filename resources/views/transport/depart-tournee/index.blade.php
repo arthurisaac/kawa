@@ -33,7 +33,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" class="form-control" name="date"/>
+                        <input type="date" class="form-control" name="date" required/>
                     </div>
                 </div>
                 <div class="col">

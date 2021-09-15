@@ -349,30 +349,6 @@
                                 </div>
                                 <button class="btn btn-primary btn-sm" type="button" id="acSubmit">Valider</button>
                             </div>
-                            {{--<div class="col">
-                                <table class="table table-bordered" style="width: 100%;" id="listeArriveeCentre">
-                                    <thead>
-                                    <tr>
-                                        <th>N°Tournée</th>
-                                        <th>Date</th>
-                                        <th>Heure arrivée</th>
-                                        <th>Km arrivé</th>
-                                        <th>Observation</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($arriveeCentres as $centre)
-                                        <tr>
-                                            <td>{{$centre->tournees->numeroTournee}}</td>
-                                            <td>{{$centre->tournees->date}}</td>
-                                            <td>{{$centre->heureArrivee}}</td>
-                                            <td>{{$centre->kmArrive}}</td>
-                                            <td>{{$centre->observation}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>--}}
                         </div>
                     </form>
                 </div>
@@ -424,38 +400,6 @@
                     <div style="width: 100%; overflow-x: scroll;">
                         <br/>
                         <br/>
-                        {{--<table style="width: 100%;" class="table table-bordered" id="listeTourneeCentre">
-                            <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>N° Tournee</th>
-                                <th>Véhicule</th>
-                                <th>Chauffeur</th>
-                                <th>Chef de bord</th>
-                                <th>Agent de garde</th>
-                                <th>Centre</th>
-                                <th>Centre régional</th>
-                                <th>Date début</th>
-                                <th>Date fin</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($tourneeCentres as $tournee)
-                                <tr>
-                                    <td>{{$tournee->tournees->date ?? "Indisponible"}}</td>
-                                    <td>{{$tournee->tournees->numeroTournee  ?? "Indisponible"}}</td>
-                                    <td>{{$tournee->details->vehicules->immatriculation ?? "Indisponible"}}</td>
-                                    <td>{{$tournee->details->chauffeurs->nomPrenoms ?? ""}}</td>
-                                    <td>{{$tournee->details->chefDeBords->nomPrenoms ?? ""}}</td>
-                                    <td>{{$tournee->details->agentDeGardes->nomPrenoms ?? ""}}</td>
-                                    <td>{{$tournee->centre}}</td>
-                                    <td>{{$tournee->centreRegional}}</td>
-                                    <td>{{$tournee->dateDebut}}</td>
-                                    <td>{{$tournee->dateFin}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>--}}
                     </div>
                 </div>
             </div>
@@ -566,7 +510,6 @@
                 //diff /= (60 * 60);         //For Hours
                 diff /= (60);         // For Minutes
                 return Math.abs(Math.round(diff));
-
             }
         });
     </script>
@@ -697,6 +640,7 @@
 
                 const noTournee = $("#noTournee").val();
                 const site = $("select[name=asSite]").val();
+                const operation = $("select[name=asTypeOperation]").val();
                 const dateArrivee = $("input[name=asDateArrivee]").val();
                 const heureArrivee = $("input[name=asHeureArrivee]").val();
                 const debutOperation = $("input[name=asDebutOperation]").val();
@@ -738,6 +682,7 @@
                         maincourante: "arriveeSite",
                         noTournee: noTournee,
                         site: site,
+                        operation,
                         dateArrivee,
                         heureArrivee: heureArrivee,
                         debutOperation: debutOperation,
