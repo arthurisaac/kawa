@@ -590,10 +590,13 @@
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
-                            alert("Enregistré avec succès!");
+                            //alert("Enregistré avec succès!");
                             $("input[name=dcHeureDepart]").val("");
                             $("input[name=dcKmDepart]").val("");
                             $("textarea[name=dcObservation]").val("");
+                            if (confirm("Enregistré avec succès! Ouvrir la liste de depart centre ?")) {
+                                window.location.replace("maincourante-departcentreliste");
+                            }
                         }
                     }
                 })
@@ -664,10 +667,13 @@
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
-                            alert("Enregistré avec succès!");
+                            //alert("Enregistré avec succès!");
                             $("input[name=asHeureArrivee]").val("");
                             $("input[name=asKmArrivee]").val("");
                             $("textarea[name=asObservation]").val("");
+                            if (confirm("Enregistré avec succès! Ouvrir la liste de arrivée site ?")) {
+                                window.location.replace("maincourante-arriveesiteliste");
+                            }
                         }
                     }
                 })
@@ -688,8 +694,11 @@
                         } else if (response.errors) {
                             alert(JSON.stringify(response.errors));
                         } else {
-                            alert("Enregistré avec succès!");
+                            //alert("Enregistré avec succès!");
                             document.getElementById('departSite').reset();
+                            if (confirm("Enregistré avec succès! Ouvrir la liste de départ site ?")) {
+                                window.location.replace("maincourante-departsiteliste");
+                            }
                         }
                     }
                 })
@@ -707,8 +716,11 @@
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
-                            alert("Enregistré avec succès!");
+                            //alert("Enregistré avec succès!");
                             document.getElementById('arriveeCentre').reset();
+                            if (confirm("Enregistré avec succès! Ouvrir la liste de arrivée centre ?")) {
+                                window.location.replace("maincourante-arriveecentreliste");
+                            }
                         }
                         console.log(response);
                     }
