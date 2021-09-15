@@ -47,7 +47,7 @@
                     <td>{{$tournee->kmArrivee}}</td>
                     <td>{{--TODO: demander à M. BEDI--}}</td>
                     <td>
-                        <a href="" class="btn btn-sm btn-danger"></a>
+                        <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
                     </td>
                 </tr>
             @endforeach
@@ -104,7 +104,7 @@
     </script>
     <script>
         function supprimer(id, e) {
-            if (confirm("Confirmer la suppression? Cela entrainement la suppression de départ tournée")) {
+            if (confirm("Confirmer la suppression? Cela entrainera la suppression de départ tournée.")) {
                 const token = "{{ csrf_token() }}";
                 $.ajax({
                     url: "maincourante/" + id,
@@ -118,14 +118,12 @@
                         console.log(response);
                         alert("Suppression effectuée");
                         const indexLigne = $(e).closest('tr').get(0).rowIndex;
-                        document.getElementById("liste").deleteRow(indexLigne);
+                        document.getElementById("listeMaincourante").deleteRow(indexLigne);
                     },
                     error: function () {
                         alert("Une erreur s'est produite");
                     }
-                }).done(function () {
-                    // TODO hide loader
-                });
+                })
 
 
             }
