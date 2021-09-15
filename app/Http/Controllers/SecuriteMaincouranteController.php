@@ -458,10 +458,19 @@ class SecuriteMaincouranteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        if ($request->ajax()) {
+            $data = DepartTournee::find($id);
+            $data->delete();
+            return \response()->json([
+                'message' => 'supprimé'
+            ]);
+        }
+        $data = DepartTournee::find($id);
+        $data->delete();
         return redirect('/maincourante')->with('success', 'Enregistrement supprimé!');
     }
 

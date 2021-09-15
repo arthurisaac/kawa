@@ -102,4 +102,34 @@
             });
         });
     </script>
+    <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression? Cela entrainement la suppression de départ tournée")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "maincourante/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("liste").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+
+
+            }
+
+        }
+    </script>
 @endsection
