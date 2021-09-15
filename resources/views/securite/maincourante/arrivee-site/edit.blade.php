@@ -132,6 +132,25 @@
 
     <script>
         $(document).ready(function () {
+            $("#arriveeSiteColisButton").on("click", function () {
+                $("#tableASColis").append('<tr>\n' +
+                    '                                        <td>\n' +
+                    '                                            <select name="asColis[]" class="form-control">\n' +
+                    '                                                <option>Keep Safe</option>\n' +
+                    '                                                <option>Sac juste</option>\n' +
+                    '                                                <option>Pierres précieuses</option>\n' +
+                    '                                            </select>\n' +
+                    '                                        </td>\n' +
+                    '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    '                                    </tr>')
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
             $('#listeArriveeSite').DataTable({
                 "language": {
                     "url": "French.json"
