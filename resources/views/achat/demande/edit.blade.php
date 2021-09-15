@@ -29,12 +29,12 @@
 
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? '', 'operateur') ? '' : 'disabled' }}"
+                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? '', 'operateur') ? '' : '' }}"
                        id="entreprise-tab" data-toggle="tab" href="#demande" role="tab"
                        aria-controls="demande" aria-selected="true">Informations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? 'operateur', 'operateur') ? 'disabled' : '' }}"
+                    <a class="nav-link {{ str_contains(Session::get('user')->compte ?? 'operateur', 'operateur') ? '' : '' }}"
                        id="imputations-tab" data-toggle="tab" href="#imputations" role="tab"
                        aria-controls="imputations" aria-selected="false">Imputation</a>
                 </li>

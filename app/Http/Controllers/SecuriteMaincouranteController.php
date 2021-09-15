@@ -335,6 +335,12 @@ class SecuriteMaincouranteController extends Controller
         //
     }
 
+    public function editDepartCentre(Request $request, $id)
+    {
+        $centre = DepartCentre::find($id);
+        return view('securite.maincourante.depart-centres.edit', compact('site', 'sites', 'centre'));
+    }
+
     public function editArriveeSite(Request $request, $id)
     {
         $site = ArriveeSite::with('sites')->find($id);
@@ -451,6 +457,20 @@ class SecuriteMaincouranteController extends Controller
         $centre->finTournee = $request->get('finTournee');
         $centre->dateArrivee = $request->get('dateArrivee');
         $centre->save();
+        return redirect()->back()->with('success', 'Mise à jour réussie');
+    }
+
+    public function updatedepartCentre(Request $request, $id)
+    {
+        $departCentre = DepartCentre::find($id);
+        $departCentre->date = $request->get('date');
+        $departCentre->noTournee = $request->get('noTournee');
+        $departCentre->heureDepart = $request->get('heureDepart');
+        $departCentre->kmDepart = $request->get('kmDepart');
+        $departCentre->observation = $request->get('observation');
+        $departCentre->niveauCarburant = $request->get('niveauCarburant');
+
+        $departCentre->save();
         return redirect()->back()->with('success', 'Mise à jour réussie');
     }
 

@@ -69,12 +69,12 @@
                                     <td>{{$demande->montant_retenu}}</td>
                                     <td>
                                         <a href="{{ route('achat-demande.edit',$demande->id)}}"
-                                           class="btn btn-primary btn-sm">Modifier</a>
+                                           class="btn btn-primary btn-sm"></a>
                                         <form action="{{ route('achat-demande.destroy', $demande->id)}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                            <button class="btn btn-danger btn-sm" type="submit"></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -114,12 +114,12 @@
                                     <td>{{$demande->montant_retenu}}</td>
                                     <td>
                                         <a href="{{ route('achat-demande.edit',$demande->id)}}"
-                                           class="btn btn-primary btn-sm">Modifier</a>
+                                           class="btn btn-primary btn-sm"></a>
                                         <form action="{{ route('achat-demande.destroy', $demande->id)}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                            <button class="btn btn-danger btn-sm" type="submit"></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -159,12 +159,12 @@
                                     <td>{{$demande->montant_retenu}}</td>
                                     <td>
                                         <a href="{{ route('achat-demande.edit',$demande->id)}}"
-                                           class="btn btn-primary btn-sm">Modifier</a>
+                                           class="btn btn-primary btn-sm"></a>
                                         <form action="{{ route('achat-demande.destroy', $demande->id)}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                            <button class="btn btn-danger btn-sm" type="submit"></button>
                                         </form>
                                     </td>
                                 </tr>
