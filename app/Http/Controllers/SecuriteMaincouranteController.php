@@ -393,16 +393,18 @@ class SecuriteMaincouranteController extends Controller
         $asNatureColis_edit = $request->get('asNatureColis_edit');
         $ids = $request->get('colis_id');
 
-        for ($i = 0; $i < count($asNumColis_edit) ?? []; $i++) {
-            if (!empty($asNumColis_edit[$i])) {
-                $as = ArriveeSiteColis::find($ids[$i]);
-                $as->arrivee_site = $id;
-                $as->colis = $asColis_edit[$i];
-                $as->num_colis = $asNumColis_edit[$i];
-                $as->bordereau = $asNumBordereau_edit[$i];
-                $as->montant = $asMontantAnnonce_edit[$i];
-                $as->nature = $asNatureColis_edit[$i];
-                $as->save();
+        if ($request->get('asNumColis_edit')) {
+            for ($i = 0; $i < count($asNumColis_edit); $i++) {
+                if (!empty($asNumColis_edit[$i])) {
+                    $as = ArriveeSiteColis::find($ids[$i]);
+                    $as->arrivee_site = $id;
+                    $as->colis = $asColis_edit[$i];
+                    $as->num_colis = $asNumColis_edit[$i];
+                    $as->bordereau = $asNumBordereau_edit[$i];
+                    $as->montant = $asMontantAnnonce_edit[$i];
+                    $as->nature = $asNatureColis_edit[$i];
+                    $as->save();
+                }
             }
         }
 

@@ -7,6 +7,7 @@
         <a href="/maincourante-arriveesiteliste">Liste arrivée site</a>
         <br>
         <br>
+        @if ($site->tournees)
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
@@ -86,6 +87,9 @@
                 <div class="col"></div>
             </div>
         </div>
+        @else
+            <div>Donnée tournées indisponible</div>
+        @endif
         <div class="container-fluid">
             <form method="post" action="/maincourante-arriveesiteliste/{{$site->id}}" novalidate>
                 <input type="hidden" name="maincourante" value="arriveeSite"/>

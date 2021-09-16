@@ -12,8 +12,14 @@
                 <td>Site</td>
                 <td>Date</td>
                 <td>Heure</td>
-                <!--<td>Code</td>-->
-                <td>Km départ</td>
+                <td>N° Tournée</td>
+                <td>Véhicule</td>
+                <td>Chef de bord</td>
+                <td>Agent de garde</td>
+                <td>Chauffeur</td>
+                <td>Début op.</td>
+                <td>Fin op.</td>
+                <td>Temps op.</td>
                 <td>Observation</td>
                 <td>Actions</td>
             </tr>
@@ -23,9 +29,16 @@
                 <tr>
                     <td style="width: 20px; text-align: center">{{$arriveeSite->id}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
-                    <td>{{$arriveeSite->tournees->date ?? $arriveeSite->tournees }}</td>
+                    <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->heureArrivee}}</td>
-                    <td>{{$arriveeSite->kmArrivee}}</td>
+                    <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->debutOperation}}</td>
+                    <td>{{$arriveeSite->finOperation}}</td>
+                    <td>{{$arriveeSite->tempsOperation}}</td>
                     <td>{{$arriveeSite->observation}}</td>
                     <td style="width: 30px; text-align: center;">
                         <a href="/maincourante-arriveesiteliste/{{$arriveeSite->id}}/edit" class="btn btn-sm btn-primary"></a>
