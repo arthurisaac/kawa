@@ -1,7 +1,7 @@
 @extends("base")
 
 @section("main")
-    <div class="container">
+    <div class="container-fluid">
         <br>
         <br>
         <table class="table table-bordered" id="listeDepartCentre">
@@ -18,7 +18,6 @@
                 <th>Centre régional</th>
                 <th>Km départ</th>
                 <th>Niveau carburant</th>
-                <th>Observation</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -36,7 +35,6 @@
                     <td>{{$centre->tournees->centre_regional ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->kmDepart}}</td>
                     <td>{{$centre->niveauCarburant}}</td>
-                    <td>{{$centre->observation}}</td>
                     <td>
                         <a href="maincourante-departcentre/{{$centre->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$centre->id}}', this)"></a>
