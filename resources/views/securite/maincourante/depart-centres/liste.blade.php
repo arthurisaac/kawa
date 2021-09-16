@@ -7,13 +7,17 @@
         <table class="table table-bordered" id="listeDepartCentre">
             <thead>
             <tr>
-                <td>N°Tournée</td>
-                <td>Date</td>
-                <td>Heure</td>
-                <td>Km départ</td>
-                <td>Niveau carburant</td>
-                <td>Observation</td>
-                <td>Actions</td>
+                <th>N°Tournée</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Véhicule</th>
+                <th>Chef de bord</th>
+                <th>Agent de garde</th>
+                <th>Chauffeur</th>
+                <th>Km départ</th>
+                <th>Niveau carburant</th>
+                <th>Observation</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -22,6 +26,10 @@
                     <td>{{$centre->tournees->numeroTournee}}</td>
                     <td>{{date('d/m/Y', strtotime($centre->date))}}</td>
                     <td>{{$centre->heureDepart}}</td>
+                    <td>{{$centre->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->kmDepart}}</td>
                     <td>{{$centre->niveauCarburant}}</td>
                     <td>{{$centre->observation}}</td>

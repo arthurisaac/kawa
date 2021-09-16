@@ -396,10 +396,11 @@
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;
                     });
-                    commerciaux.map(({id, site}) => {
+                    console.log(commerciaux);
+                    commerciaux.map(({id, site, clients}) => {
                         $('#asSite').append($('<option>', {
                             value: id,
-                            text: site
+                            text: `${site} (${clients.client_nom})`
                         }));
                     })
                 }

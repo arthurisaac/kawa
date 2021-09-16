@@ -10,6 +10,9 @@
             <tr>
                 <th>N°Tournée</th>
                 <th>Véhicule</th>
+                <th>Chef de bord</th>
+                <th>Agent de garde</th>
+                <th>Chauffeur</th>
                 <th>Date arrivée</th>
                 <th>Heure arrivée</th>
                 <th>Km arrivée centre</th>
@@ -21,7 +24,10 @@
             @foreach ($arriveeCentres as $centre)
                 <tr>
                     <td>{{$centre->tournees->numeroTournee}}</td>
-                    <td>{{$depart->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->dateArrivee}}</td>
                     <td>{{$centre->heureArrivee}}</td>
                     <td>{{$centre->kmArrive}}</td>

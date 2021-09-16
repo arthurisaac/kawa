@@ -11,6 +11,9 @@
                 <th>N°</th>
                 <th>N° Tournée</th>
                 <th>Véhicule</th>
+                <th>Chef de bord</th>
+                <th>Agent de garde</th>
+                <th>Chauffeur</th>
                 <th>Date départ</th>
                 <th>Heure de départ</th>
                 <th>Kilométrage départ</th>
@@ -23,6 +26,9 @@
                     <td>{{$depart->id}}</td>
                     <td>{{$depart->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$depart->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$depart->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$depart->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$depart->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{date('d-m-Y', strtotime($depart->depart_site ?? ""))}}</td>
                     <td>{{$depart->heureDepart}}</td>
                     <td>{{$depart->kmDepart}}</td>

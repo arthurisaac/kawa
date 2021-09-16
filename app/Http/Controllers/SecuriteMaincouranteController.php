@@ -33,7 +33,7 @@ class SecuriteMaincouranteController extends Controller
         $date = date('d/m/Y');
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::with('clients')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $departCentres = DepartCentre::with('tournees')->get();
         $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
