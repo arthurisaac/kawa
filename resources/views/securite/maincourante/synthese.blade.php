@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Maincourante</h2></div>
+        <div><h2 class="heading">Liste Synthèse de Tournée</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -27,12 +27,17 @@
             <thead>
             <tr>
                 <td>ID</td>
-                <td>N°Tournée</td>
                 <td>Date</td>
+                <td>N°Tournée</td>
                 <td>Véhicule</td>
-                <td>Km départ centre</td>
-                <td>Km arrivée centre</td>
-                <td>Fin de tournée</td>
+                <td>Départ centre</td>
+                <td>Km départ</td>
+                <td>Carburant départ</td>
+                <td>Arrivée centre</td>
+                <td>Km arrivée</td>
+                <td>Carburant arrivée</td>
+                <td>Km parcouru</td>
+                <td>Temps tournée</td>
                 <td>Action</td>
             </tr>
             </thead>
@@ -40,12 +45,17 @@
             @foreach($tournees as $tournee)
                 <tr>
                     <td>{{$tournee->id}}</td>
-                    <td>{{$tournee->numeroTournee}}</td>
                     <td>{{$tournee->date}}</td>
+                    <td>{{$tournee->numeroTournee}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->kmDepart}}</td>
-                    <td>{{$tournee->kmArrivee}}</td>
-                    <td>{{--TODO: demander à M. BEDI--}}</td>
+                    <td></td>
+                    <td>{{$tournee->departCentre[0]->kmDepart ?? ""}}</td>
+                    <td>{{$tournee->departCentre[0]->niveauCarburant ?? ""}}</td>
+                    <td></td>
+                    <td>{{$tournee->arriveeCentre[0]->kmArrive ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->arriveeCentre[0]->niveauCarburant ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>
+                    <td></td>
                     <td>
                         <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
                     </td>

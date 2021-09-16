@@ -56,6 +56,16 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.liste', compact('tournees'));
     }
 
+    public function synthesesListe()
+    {
+        //$tournees = DepartTournee::all();
+        $tournees = DepartTournee::with('departCentre')
+            ->with('arriveeCentre')
+            ->get();
+
+        return view('/securite.maincourante.synthese', compact('tournees'));
+    }
+
     public function arriveeSiteListe()
     {
         $arriveeSites = ArriveeSite::all();

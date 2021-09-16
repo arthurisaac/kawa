@@ -39,4 +39,14 @@ class DepartTournee extends Model
     {
         return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
     }
+
+    public function departCentre()
+    {
+        return $this->hasMany('App\Models\DepartCentre', 'noTournee');
+    }
+
+    public function arriveeCentre()
+    {
+        return $this->hasMany('App\Models\ArriveeCentre', 'noTournee');
+    }
 }

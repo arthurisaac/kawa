@@ -216,8 +216,12 @@
                                                                 target="_self" title="Liste">Liste arrivée centre</a>
                                                         </li>
                                                         <li><span></span><a
+                                                                href="javascript:popupwnd('maincourante-synthese','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Liste">Synthèse de tournée</a>
+                                                        </li>
+                                                        <li><span></span><a
                                                                 href="javascript:popupwnd('maincourante-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste</a>
+                                                                target="_self" title="Liste">Liste MainCourante</a>
                                                         </li>
                                                     </ul>
                                                 </li>
