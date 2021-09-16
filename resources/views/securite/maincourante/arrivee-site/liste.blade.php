@@ -28,7 +28,7 @@
                 <tr>
                     <td style="width: 20px; text-align: center">{{$arriveeSite->id}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
-                    <td>{{$arriveeSite->sites->clients->contact_nom ?? "Non précisé"}}</td>
+                    <td>{{$arriveeSite->sites->clients->client_nom ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
