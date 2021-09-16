@@ -14,6 +14,8 @@
                 <th>Chef de bord</th>
                 <th>Agent de garde</th>
                 <th>Chauffeur</th>
+                <th>Centre</th>
+                <th>Centre régional</th>
                 <th>Km départ</th>
                 <th>Niveau carburant</th>
                 <th>Observation</th>
@@ -30,6 +32,8 @@
                     <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->centre ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->centre_regional ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->kmDepart}}</td>
                     <td>{{$centre->niveauCarburant}}</td>
                     <td>{{$centre->observation}}</td>

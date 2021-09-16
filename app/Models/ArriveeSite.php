@@ -35,6 +35,7 @@ class ArriveeSite extends Model
 
     public function sites()
     {
-        return $this->belongsTo('App\Models\Commercial_site', 'site', 'id');
+        return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
+            ->with('clients');
     }
 }

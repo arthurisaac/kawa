@@ -10,15 +10,15 @@
             <tr>
                 <td>N°</td>
                 <td>Site</td>
+                <td>Client</td>
                 <td>Date</td>
-                <td>Heure</td>
                 <td>N° Tournée</td>
                 <td>Véhicule</td>
                 <td>Chef de bord</td>
                 <td>Agent de garde</td>
                 <td>Chauffeur</td>
-                <td>Début op.</td>
-                <td>Fin op.</td>
+                <td>Centre</td>
+                <td>Centre régional</td>
                 <td>Temps op.</td>
                 <td>Actions</td>
             </tr>
@@ -28,15 +28,15 @@
                 <tr>
                     <td style="width: 20px; text-align: center">{{$arriveeSite->id}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
+                    <td>{{$arriveeSite->sites->clients->contact_nom ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->heureArrivee}}</td>
                     <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->debutOperation}}</td>
-                    <td>{{$arriveeSite->finOperation}}</td>
+                    <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->centre_regional ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tempsOperation}}</td>
                     <td style="width: 30px; text-align: center;">
                         <a href="/maincourante-arriveesiteliste/{{$arriveeSite->id}}/edit" class="btn btn-sm btn-primary"></a>

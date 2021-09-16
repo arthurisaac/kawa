@@ -13,6 +13,8 @@
                 <th>Chef de bord</th>
                 <th>Agent de garde</th>
                 <th>Chauffeur</th>
+                <th>Centre</th>
+                <th>Centre régional</th>
                 <th>Date arrivée</th>
                 <th>Heure arrivée</th>
                 <th>Km arrivée centre</th>
@@ -28,6 +30,8 @@
                     <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->centre ?? "Donnée indisponible"}}</td>
+                    <td>{{$centre->tournees->centre_regional ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->dateArrivee}}</td>
                     <td>{{$centre->heureArrivee}}</td>
                     <td>{{$centre->kmArrive}}</td>
