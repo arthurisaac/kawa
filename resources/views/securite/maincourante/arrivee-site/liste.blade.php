@@ -20,7 +20,6 @@
                 <td>Début op.</td>
                 <td>Fin op.</td>
                 <td>Temps op.</td>
-                <td>Observation</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -39,7 +38,6 @@
                     <td>{{$arriveeSite->debutOperation}}</td>
                     <td>{{$arriveeSite->finOperation}}</td>
                     <td>{{$arriveeSite->tempsOperation}}</td>
-                    <td>{{$arriveeSite->observation}}</td>
                     <td style="width: 30px; text-align: center;">
                         <a href="/maincourante-arriveesiteliste/{{$arriveeSite->id}}/edit" class="btn btn-sm btn-primary"></a>
                         <button class="btn btn-sm btn-danger" onclick="supprimer('{{$arriveeSite->id}}', this)"></button>
