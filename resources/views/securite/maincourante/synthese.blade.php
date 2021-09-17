@@ -28,8 +28,8 @@
                 <tr>
                     <td>ID</td>
                     <td>Date</td>
-                    <td>Centre</td>
                     <td>Centre Régional</td>
+                    <td>Centre</td>
                     <td>N°Tournée</td>
                     <td>Véhicule</td>
                     <td>Départ centre</td>

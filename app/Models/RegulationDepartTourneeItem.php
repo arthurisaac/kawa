@@ -15,4 +15,10 @@ class RegulationDepartTourneeItem extends Model
         'numero_scelle',
         'montant',
     ];
+
+    public function sites()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
+            ->with('clients');
+    }
 }

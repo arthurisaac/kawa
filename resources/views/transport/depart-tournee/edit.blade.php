@@ -113,7 +113,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="centre">Centre</label>
+                        <label for="centre">Centre régional</label>
                         <select name="centre" id="centre" class="form-control" required>
                             <option>{{$tournee->centre}}</option>
                             @foreach ($centres as $centre)
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="centre_regional">Centre régional</label>
+                        <label for="centre_regional">Centre</label>
                         <select id="centre_regional" name="centre_regional" class="form-control" required>
                             <option>{{$tournee->centre_regional}}</option>
                         </select>

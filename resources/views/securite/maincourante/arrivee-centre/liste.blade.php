@@ -13,8 +13,8 @@
                 <th>Chef de bord</th>
                 <th>Agent de garde</th>
                 <th>Chauffeur</th>
-                <th>Centre</th>
                 <th>Centre régional</th>
+                <th>Centre</th>
                 <th>Date arrivée</th>
                 <th>Heure arrivée</th>
                 <th>Km arrivée centre</th>

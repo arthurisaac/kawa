@@ -88,13 +88,13 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre" class="col-sm-4">Centre</label>
+                        <label for="centre" class="col-sm-4">Centre régional</label>
                         <input name="centre" id="centre" class="form-control col-sm-8" value="{{$centre->tournees->centre}}" readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre_regional" class="col-sm-4">Centre régional</label>
+                        <label for="centre_regional" class="col-sm-4">Centre</label>
                         <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$centre->tournees->centre}}" readonly/>
                     </div>
                 </div>

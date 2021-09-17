@@ -14,8 +14,8 @@
                     <th>Chauffeur</th>
                     <th>Chef de bord</th>
                     <th>Agent de garde</th>
-                    <th>Centre</th>
                     <th>Centre régional</th>
+                    <th>Centre</th>
                     <th>Date début</th>
                     <th>Date fin</th>
                 </tr>

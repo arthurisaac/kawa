@@ -17,8 +17,8 @@
                 <td>Chef de bord</td>
                 <td>Agent de garde</td>
                 <td>Chauffeur</td>
-                <td>Centre</td>
                 <td>Centre régional</td>
+                <td>Centre</td>
                 <td>Temps op.</td>
                 <td>Actions</td>
             </tr>

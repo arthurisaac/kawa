@@ -26,8 +26,8 @@
             <tr>
                 <td>Création</td>
                 <td>Date</td>
+                <td>Centre régional</td>
                 <td>Centre</td>
-                <td>Centre régionale</td>
                 <td>N°Tournée</td>
                 <td>Véhicule</td>
                 <td>Chauffeur</td>

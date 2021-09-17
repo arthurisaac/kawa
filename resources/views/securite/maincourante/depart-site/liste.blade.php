@@ -14,8 +14,8 @@
                 <th>Chef de bord</th>
                 <th>Agent de garde</th>
                 <th>Chauffeur</th>
-                <th>Centre</th>
                 <th>Centre régional</th>
+                <th>Centre</th>
                 <th>Date départ</th>
                 <th>Heure de départ</th>
                 <th>Kilométrage départ</th>
