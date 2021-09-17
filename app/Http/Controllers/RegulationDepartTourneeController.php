@@ -156,9 +156,8 @@ class RegulationDepartTourneeController extends Controller
         $ids = $request->get('id');
 
         for ($i = 0; $i < count($sites_edit); $i++) {
-            if (!empty($client_edit[$i]) && !empty($nbre_colis_edit[$i]) && !empty($nbre_colise_dit[$i]) && !empty($montant_edit[$i])) {
+            if (!empty($client_edit[$i]) && !empty($nbre_colis_edit[$i]) && !empty($montant_edit[$i])) {
                 $dataSite = RegulationDepartTourneeItem::find($ids[$i]);
-                $dataSite->regulation_depart = $data->id;
                 $dataSite->site = $sites_edit[$i] ?? 0;
                 $dataSite->client = $client_edit[$i] ?? "";
                 $dataSite->nature = $nature_edit[$i] ?? "";

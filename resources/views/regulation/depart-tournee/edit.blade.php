@@ -118,12 +118,14 @@
                     <tbody>
                     @foreach($sitesItems as $site)
                         <tr>
-                            <td><select name="site_edit[]" class="form-control">
+                            <td>
+                                <select name="site_edit[]" class="form-control">
                                     <option value="{{$site->site}}">{{$site->sites->site}}</option>
                                     @foreach($sites as $s)
                                         <option value="{{$s->id}}">{{$s->site}}</option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="id[]" value="{{$site->id}}">
                             </td>
                             <td><input type="text" name="client_edit[]" value="{{$site->client}}" class="form-control"></td>
                             <td><input type="text" name="nature_edit[]" value="{{$site->nature}}" class="form-control"></td>
