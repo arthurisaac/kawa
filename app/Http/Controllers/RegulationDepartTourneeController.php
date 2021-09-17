@@ -27,7 +27,8 @@ class RegulationDepartTourneeController extends Controller
 
     public function liste()
     {
-        return view("regulation.depart-tournee.liste");
+        $tournees = RegulationDepartTournee::all();
+        return view("regulation.depart-tournee.liste", compact("tournees"));
     }
 
     /**

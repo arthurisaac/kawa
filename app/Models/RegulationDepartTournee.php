@@ -13,4 +13,13 @@ class RegulationDepartTournee extends Model
         'totalMontant',
         'totalColis',
     ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')
+            ->with('vehicules')
+            ->with('agentDeGardes')
+            ->with('chauffeurs')
+            ->with('chefDeBords');
+    }
 }
