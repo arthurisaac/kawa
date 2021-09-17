@@ -304,6 +304,10 @@ Route::get('regulation-etat-securipack-vendu', [\App\Http\Controllers\Regulation
 Route::get('regulation-etat-scelle-utilise', [\App\Http\Controllers\RegulationEtatController::class, 'scelleUtilise']);
 Route::get('regulation-etat-scelle-vendu', [\App\Http\Controllers\RegulationEtatController::class, 'scelleVendu']);
 
+Route::resource('regulation-depart-tournee', 'RegulationDepartTournee');
+Route::get('regulation-depart-tournee-liste', [\App\Http\Controllers\RegulationDepartTournee::class, 'liste']);
+
+
 /*
  * VIRGILOMETREIE
  */

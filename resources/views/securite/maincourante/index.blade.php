@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group row">
+                    <div class="form-group row" >
                         <label class="col-sm-4">Véhicule</label>
                         <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
                         {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">

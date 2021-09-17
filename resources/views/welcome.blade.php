@@ -717,6 +717,22 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li><span></span><span>Tournées</span>
+                                            <ul>
+                                                <li><span></span><span>Départ tournée</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-depart-tournee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Nouveau</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-depart-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Liste</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><span>Securipack</span>

@@ -22,48 +22,52 @@
         @endif
 
         <br/>
-        <p>Maincourante</p>
-        <table class="table table-bordered table-hover" id="listeMaincourante">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Date</td>
-                <td>N°Tournée</td>
-                <td>Véhicule</td>
-                <td>Départ centre</td>
-                <td>Km départ</td>
-                <td>Carburant départ</td>
-                <td>Arrivée centre</td>
-                <td>Km arrivée</td>
-                <td>Carburant arrivée</td>
-                <td>Km parcouru</td>
-                <td>Temps tournée</td>
-                <td>Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($tournees as $tournee)
+        <div class="container-fluid">
+            <table class="table table-bordered table-hover" id="listeMaincourante">
+                <thead>
                 <tr>
-                    <td>{{$tournee->id}}</td>
-                    <td>{{$tournee->date}}</td>
-                    <td>{{$tournee->numeroTournee}}</td>
-                    <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                    <td></td>
-
-                    <td>{{$tournee->departCentre->kmDepart ?? ""}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
-                    <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
-                    <td></td>
-                    <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
-                    <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
-                    <td></td>
-                    <td>
-                        <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
-                    </td>
+                    <td>ID</td>
+                    <td>Date</td>
+                    <td>Centre</td>
+                    <td>N°Tournée</td>
+                    <td>Véhicule</td>
+                    <td>Départ centre</td>
+                    <td>Km départ</td>
+                    <td>Carburant départ</td>
+                    <td>Arrivée centre</td>
+                    <td>Km arrivée</td>
+                    <td>Carburant arrivée</td>
+                    <td>Km parcouru</td>
+                    <td>Temps tournée</td>
+                    <td>Action</td>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($tournees as $tournee)
+                    <tr>
+                        <td>{{$tournee->id}}</td>
+                        <td>{{$tournee->date}}</td>
+                        <td>{{$tournee->centre}}</td>
+                        <td>{{$tournee->numeroTournee}}</td>
+                        <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                        <td></td>
+
+                        <td>{{$tournee->departCentre->kmDepart ?? ""}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
+                        <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
+                        <td></td>
+                        <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
+                        <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
+                        <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
+                        <td></td>
+                        <td>
+                            <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
     <script>
@@ -97,10 +101,7 @@
                         alert("Une erreur s'est produite");
                     }
                 })
-
-
             }
-
         }
     </script>
 @endsection
