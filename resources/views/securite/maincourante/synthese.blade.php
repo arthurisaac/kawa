@@ -23,7 +23,7 @@
 
         <br/>
         <div class="container-fluid">
-            <table class="table table-bordered table-hover" id="listeMaincourante">
+            <table class="table table-bordered table-hover" id="listeMaincourante" style="width: 100%;">
                 <thead>
                 <tr>
                     <td>ID</td>

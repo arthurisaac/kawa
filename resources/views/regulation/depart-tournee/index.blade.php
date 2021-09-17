@@ -20,6 +20,7 @@
                 </div>
             </div>
             <div class="col"></div>
+            <div class="col"></div>
         </div>
         <div class="row">
             <div class="col-3">
@@ -74,6 +75,41 @@
                 </div>
             </div>
             <div class="col"></div>
+            <div class="col"></div>
         </div>
     </div>
+    <script>
+        let tournees = {!! json_encode($tournees) !!};
+        let sites = {!! json_encode($sites) !!};
+        $(document).ready(function () {
+            $("#noTournee").on("change", function () {
+                $("#vehicule").val("");
+                $("#chauffeur").val("");
+                $("#chefDeBord").val("");
+                $("#agentDeGarde").val("");
+                $("#centre_regional option").remove();
+
+                const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
+                if (tournee) {
+                    $("#vehicule").val(tournee.vehicules.immatriculation);
+                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
+                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
+                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    $("#centre").val(tournee.centre);
+                    $("#centre_regional").val(tournee.centre_regional);
+
+                    const commerciaux = sites.filter(site => {
+                        return site.centre === tournee.centre;
+                    });
+                    console.log(commerciaux);
+                    commerciaux.map(({id, site, clients}) => {
+                        $('#asSite').append($('<option>', {
+                            value: id,
+                            text: `${site} (${clients.client_nom})`
+                        }));
+                    })
+                }
+            });
+        });
+    </script>
 @endsection

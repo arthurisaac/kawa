@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commercial_site;
+use App\Models\DepartTournee;
 use Illuminate\Http\Request;
 
 class RegulationDepartTournee extends Controller
@@ -15,7 +17,9 @@ class RegulationDepartTournee extends Controller
     {
         $date = date("Y/m/d");
         $heure = date("H:i");
-        return view("regulation.depart-tournee.index", compact("date", "heure"));
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $sites = Commercial_site::with('clients')->get();
+        return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites"));
     }
 
 
