@@ -55,7 +55,7 @@
                     <td></td>
                     <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->departCentre->kmDepart - $tournee->arriveeCentre->kmArrive}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
+                    <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                     <td></td>
                     <td>
                         <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
