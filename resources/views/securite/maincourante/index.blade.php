@@ -3,7 +3,6 @@
 @section('main')
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
-        <div><h2 class="heading">Maincourante</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
