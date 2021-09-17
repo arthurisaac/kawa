@@ -29,6 +29,7 @@
                     <td>ID</td>
                     <td>Date</td>
                     <td>Centre</td>
+                    <td>Centre Régional</td>
                     <td>N°Tournée</td>
                     <td>Véhicule</td>
                     <td>Départ centre</td>
@@ -48,6 +49,7 @@
                         <td>{{$tournee->id}}</td>
                         <td>{{$tournee->date}}</td>
                         <td>{{$tournee->centre}}</td>
+                        <td>{{$tournee->centre_regional}}</td>
                         <td>{{$tournee->numeroTournee}}</td>
                         <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                         <td></td>
