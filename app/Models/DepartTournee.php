@@ -42,11 +42,11 @@ class DepartTournee extends Model
 
     public function departCentre()
     {
-        return $this->hasMany('App\Models\DepartCentre', 'noTournee');
+        return $this->hasOne('App\Models\DepartCentre', 'noTournee');
     }
 
     public function arriveeCentre()
     {
-        return $this->hasMany('App\Models\ArriveeCentre', 'noTournee');
+        return $this->hasOne('App\Models\ArriveeCentre', 'noTournee');
     }
 }

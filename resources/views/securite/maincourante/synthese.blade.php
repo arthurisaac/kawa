@@ -49,12 +49,13 @@
                     <td>{{$tournee->numeroTournee}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td></td>
-                    <td>{{$tournee->departCentre[0]->kmDepart ?? ""}}</td>
-                    <td>{{$tournee->departCentre[0]->niveauCarburant ?? ""}}</td>
+
+                    <td>{{$tournee->departCentre->kmDepart ?? ""}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
+                    <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
                     <td></td>
-                    <td>{{$tournee->arriveeCentre[0]->kmArrive ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->arriveeCentre[0]->niveauCarburant ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>
+                    <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->departCentre->kmDepart - $tournee->arriveeCentre->kmArrive}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                     <td></td>
                     <td>
                         <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
