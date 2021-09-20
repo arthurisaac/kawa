@@ -61,9 +61,7 @@
                         <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
                         <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                         <td></td>
-                        <td>
-                            <button onclick="supprimer('{{$tournee->id}}', this)" class="btn btn-sm btn-danger"></button>
-                        </td>
+                        <td></td>
                     </tr>
                 @endforeach
                 </tbody>
