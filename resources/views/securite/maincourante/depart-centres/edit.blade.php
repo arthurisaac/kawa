@@ -117,7 +117,13 @@
                         </div>
                         <div class="form-group row">
                             <label for="km_depart" class="col-sm-4">Niveau carburant</label>
-                            <input type="number" name="dcNiveauCarburant" value="{{$centre->niveauCarburant}}" class="form-control col-sm-8"/>
+                            <select name="dcNiveauCarburant" class="form-control col-sm-8">
+                                <option>{{$centre->niveauCarburant}}</option>
+                                <option>1/4</option>
+                                <option>2/4</option>
+                                <option>3/4</option>
+                                <option>4/4</option>
+                            </select>
                         </div>
                         <div class="form-group row">
                             <label for="observation" class="col-sm-4">Observation:</label>
