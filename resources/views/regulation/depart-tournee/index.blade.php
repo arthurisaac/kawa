@@ -124,7 +124,12 @@
                                 </select>
                             </td>
                             <td><input type="text" name="client[]" class="form-control"></td>
-                            <td><input type="text" name="nature[]" class="form-control"></td>
+                            <td><select name="nature[]" class="form-control">
+                                    <option>envoi</option>
+                                    <option>tri</option>
+                                    <option>transite</option>
+                                    <option><option>approvisionnement</option></option>
+                                </select></td>
                             <td><input type="text" name="numero_scelle[]" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                             <td><input type="text" name="montant[]" class="form-control"></td>
@@ -191,7 +196,12 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="nature[]" class="form-control"></td>\n' +
+                    '                        <td><select name="nature[]" class="form-control">\n' +
+                    '                                    <option>envoi</option>\n' +
+                    '                                    <option>tri</option>\n' +
+                    '                                    <option>transite</option>\n' +
+                    '                                    <option><option>approvisionnement</option></option>\n' +
+                    '                                </select></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +

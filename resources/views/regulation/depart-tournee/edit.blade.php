@@ -128,7 +128,13 @@
                                 <input type="hidden" name="id[]" value="{{$site->id}}">
                             </td>
                             <td><input type="text" name="client_edit[]" value="{{$site->client}}" class="form-control"></td>
-                            <td><input type="text" name="nature_edit[]" value="{{$site->nature}}" class="form-control"></td>
+                            <td><select name="nature_edit[]" class="form-control">
+                                    <option>{{$site->nature}}</option>
+                                    <option>envoi</option>
+                                    <option>tri</option>
+                                    <option>transite</option>
+                                    <option>approvisionnement</option>
+                                </select></td>
                             <td><input type="text" name="numero_scelle_edit[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis_edit[]" value="{{$site->nbre_colis}}" class="form-control"></td>
                             <td><input type="text" name="montant_edit[]" value="{{$site->montant}}" class="form-control"></td>
@@ -208,7 +214,12 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="nature[]" class="form-control"></td>\n' +
+                    '                        <td><select name="nature[]" class="form-control">\n' +
+                    '                                    <option>envoi</option>\n' +
+                    '                                    <option>tri</option>\n' +
+                    '                                    <option>transite</option>\n' +
+                    '                                    <option>approvisionnement</option>\n' +
+                    '                                </select></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
