@@ -24,7 +24,7 @@
             <tbody>
             @foreach ($departCentres as $centre)
                 <tr>
-                    <td>{{$centre->tournees->numeroTournee}}</td>
+                    <td>{{$centre->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{date('d/m/Y', strtotime($centre->date))}}</td>
                     <td>{{$centre->heureDepart}}</td>
                     <td>{{$centre->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
