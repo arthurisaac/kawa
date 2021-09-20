@@ -61,7 +61,7 @@
                         <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                         <td>
                             <?php
-                                $date1 = new DateTime($tournee->arriveeCentre->dateArrivee);
+                                $date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
                                 $date2 = new DateTime($tournee->date);
                                 $interval = $date1->diff($date2);
                                 echo $interval->days;
