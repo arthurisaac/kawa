@@ -53,14 +53,20 @@
                         <td>{{$tournee->numeroTournee}}</td>
                         <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                         <td></td>
-
                         <td>{{$tournee->departCentre->kmDepart ?? ""}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
                         <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
-                        <td></td>
+                        <td>{{$tournee->arriveeCentre->dateArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
                         <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
-                        <td></td>
+                        <td>
+                            <?php
+                                $date1 = new DateTime($tournee->arriveeCentre->dateArrivee);
+                                $date2 = new DateTime($tournee->date);
+                                $interval = $date1->diff($date2);
+                                echo $interval->days;
+                            ?>
+                        </td>
                         <td></td>
                     </tr>
                 @endforeach

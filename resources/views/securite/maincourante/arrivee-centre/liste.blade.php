@@ -25,7 +25,7 @@
             <tbody>
             @foreach ($arriveeCentres as $centre)
                 <tr>
-                    <td>{{$centre->tournees->numeroTournee}}</td>
+                    <td>{{$centre->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
