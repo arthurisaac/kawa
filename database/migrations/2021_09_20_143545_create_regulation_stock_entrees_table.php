@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegulationFacturations extends Migration
+class CreateRegulationStockEntreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateRegulationFacturations extends Migration
      */
     public function up()
     {
-        Schema::create('regulation_facturations', function (Blueprint $table) {
+        Schema::create('regulation_stock_entrees', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->string("numero")->nullable();
+            $table->string("numero");
             $table->string("centre")->nullable();
             $table->string("centre_regional")->nullable();
-            $table->float("montantTotal")->default(0);
-            $table->foreignId('client')->references('id')->on('commercial_clients')->onDelete('cascade');
+            $table->date("date")->nullable();
+            $table->string("libelle")->nullable();
+            $table->string("fournisseur")->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateRegulationFacturations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regulation_facturation');
+        Schema::dropIfExists('regulation_stock_entrees');
     }
 }

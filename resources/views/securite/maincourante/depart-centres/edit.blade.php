@@ -133,7 +133,7 @@
 
                         <div class="form-group row">
                             <span class="col-4"></span>
-                            <button class="btn btn-sm btn-primary" type="button" id="dcSubmit">Enregistrer
+                            <button class="btn btn-sm btn-primary" type="submit" id="dcSubmit">Enregistrer
                             </button>
                         </div>
 
@@ -145,7 +145,6 @@
             </form>
         </div>
     </div>
-
 
     <script>
         $(document).ready(function () {

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Commercial_client;
 use App\Models\RegulationFacturation;
+use App\Models\RegulationFacturationItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegulationFacturationController extends Controller
 {
@@ -14,7 +19,11 @@ class RegulationFacturationController extends Controller
      */
     public function index()
     {
-        return view('.regulation.facturation.index');
+        $numero = DB::table('regulation_facturations')->max('id') + 1 . '-' . date('Y-m-d');
+        $clients = Commercial_client::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('.regulation.facturation.index', compact('numero', 'clients', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -36,7 +45,41 @@ class RegulationFacturationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new RegulationFacturation([
+            'date' => $request->get("date"),
+            'numero' => $request->get("numero"),
+            'centre' => $request->get("centre"),
+            'centre_regional' => $request->get("centre_regional"),
+            'montantTotal' => $request->get("montantTotal"),
+            'client' => $request->get("client"),
+        ]);
+        $data->save();
+
+        $libelle = $request->get("libelle");
+        $qte = $request->get("qte");
+        $pu = $request->get("pu");
+        $reference = $request->get("reference");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $montant = $request->get("montant");
+
+        if (!empty($libelle) && !empty($qte) && !empty($pu)) {
+            for ($i = 0; $i < count($libelle); $i++) {
+                $item = new RegulationFacturationItem([
+                    'facturation' => $data->id,
+                    'libelle' => $libelle[$i],
+                    'qte' => $qte[$i],
+                    'pu' => $pu{$i},
+                    'reference' => $reference[$i],
+                    'debut' => $debut[$i],
+                    'fin' => $fin[$i],
+                    'montant' => $montant[$i],
+                ]);
+                $item->save();
+            }
+        }
+
+        return redirect()->back()->with("success", "Enregistré avec succès");
     }
 
     /**

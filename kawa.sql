@@ -14,10 +14,12 @@
 
 
 -- Listage de la structure de la base pour rwc5v1789xflwyyt
+DROP DATABASE IF EXISTS `rwc5v1789xflwyyt`;
 CREATE DATABASE IF NOT EXISTS `rwc5v1789xflwyyt` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `rwc5v1789xflwyyt`;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. accesses
+DROP TABLE IF EXISTS `accesses`;
 CREATE TABLE IF NOT EXISTS `accesses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -49,6 +51,7 @@ INSERT INTO `accesses` (`id`, `created_at`, `updated_at`, `role`, `services`) VA
 /*!40000 ALTER TABLE `accesses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_bon_comandes
+DROP TABLE IF EXISTS `achat_bon_comandes`;
 CREATE TABLE IF NOT EXISTS `achat_bon_comandes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -74,6 +77,7 @@ DELETE FROM `achat_bon_comandes`;
 /*!40000 ALTER TABLE `achat_bon_comandes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_bon_comande_items
+DROP TABLE IF EXISTS `achat_bon_comande_items`;
 CREATE TABLE IF NOT EXISTS `achat_bon_comande_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -95,6 +99,7 @@ DELETE FROM `achat_bon_comande_items`;
 /*!40000 ALTER TABLE `achat_bon_comande_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_demandes
+DROP TABLE IF EXISTS `achat_demandes`;
 CREATE TABLE IF NOT EXISTS `achat_demandes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -117,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `achat_demandes` (
   `centre_regional` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `demande` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.achat_demandes : ~1 rows (environ)
 DELETE FROM `achat_demandes`;
@@ -125,10 +130,12 @@ DELETE FROM `achat_demandes`;
 INSERT INTO `achat_demandes` (`id`, `created_at`, `updated_at`, `date`, `identite`, `service`, `nom_demandeur`, `telephone_demandeur`, `adresse_electronique_demandeur`, `objet_achat`, `famille_achat`, `sous_famille_achat`, `fournisseur_retenu`, `montant_retenu`, `type_demande`, `nature_demande`, `numero_da`, `centre`, `centre_regional`, `demande`) VALUES
 	(2, '2021-09-15 14:24:23', '2021-09-15 14:24:23', '2021-09-16', 'B1109023', 'Dev', 'Arthur SONDO', '+22672362736', 'r.thur.light@gmail.com', 'Achat test 2', 'Famille test', 'Sous famille test 2', 1, 0, NULL, NULL, '002', 'Abidjan', 'Abidjan Nord', 'Demande en cours'),
 	(3, '2021-09-15 15:08:50', '2021-09-15 15:08:50', '2021-09-16', 'B1109023', 'Deap', 'Arthur SONDO', '+22656526195', 'admin@gmail.com', 'Achat test 2', 'Famille test', 'Sous famille test 2', 1, 0, NULL, NULL, '003', 'Bouaké', 'Yamoussokro', 'Demande en cours'),
-	(4, '2021-09-17 08:36:19', '2021-09-17 08:36:19', '2021-09-17', 'Martin EHOUSSOU', 'Achats et Logistique', 'DAO', '20 50 31 81', 'kouadio.martin@burvalcorporate.com', 'cartouche d\'encre', 'LOGISTIQUE', 'ENCRE', 5, 152200, 'Gré à Gré', 'Charges', '004', 'Abidjan', 'Abidjan Sud', 'Demande en cours');
+	(4, '2021-09-17 08:36:19', '2021-09-17 08:36:19', '2021-09-17', 'Martin EHOUSSOU', 'Achats et Logistique', 'DAO', '20 50 31 81', 'kouadio.martin@burvalcorporate.com', 'cartouche d\'encre', 'LOGISTIQUE', 'ENCRE', 5, 152200, 'Gré à Gré', 'Charges', '004', 'Abidjan', 'Abidjan Sud', 'Demande en cours'),
+	(5, '2021-09-20 14:34:13', '2021-09-20 14:34:13', '2021-09-20', 'Martin EHOUSSOU', 'Achats et Logistique', 'DAO', '27 21 75 63 65/66', 'kouadio.martin@burvalcorporate.com', 'INSTALLATION CLIMATISEUR', 'ELECTRICITE FROID', 'FROID', 45, 141600, 'Consultation restreinte', NULL, '005', 'Abidjan', 'Abidjan Sud', 'Demande en cours');
 /*!40000 ALTER TABLE `achat_demandes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseurs
+DROP TABLE IF EXISTS `achat_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -217,6 +224,7 @@ INSERT INTO `achat_fournisseurs` (`id`, `created_at`, `updated_at`, `denominatio
 /*!40000 ALTER TABLE `achat_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseur_consultes
+DROP TABLE IF EXISTS `achat_fournisseur_consultes`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseur_consultes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -237,6 +245,7 @@ DELETE FROM `achat_fournisseur_consultes`;
 /*!40000 ALTER TABLE `achat_fournisseur_consultes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_fournisseur_c_a_s
+DROP TABLE IF EXISTS `achat_fournisseur_c_a_s`;
 CREATE TABLE IF NOT EXISTS `achat_fournisseur_c_a_s` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -304,6 +313,7 @@ INSERT INTO `achat_fournisseur_c_a_s` (`id`, `created_at`, `updated_at`, `fourni
 /*!40000 ALTER TABLE `achat_fournisseur_c_a_s` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. achat_produits
+DROP TABLE IF EXISTS `achat_produits`;
 CREATE TABLE IF NOT EXISTS `achat_produits` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -331,6 +341,7 @@ DELETE FROM `achat_produits`;
 /*!40000 ALTER TABLE `achat_produits` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_centres
+DROP TABLE IF EXISTS `arrivee_centres`;
 CREATE TABLE IF NOT EXISTS `arrivee_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -344,17 +355,17 @@ CREATE TABLE IF NOT EXISTS `arrivee_centres` (
   `observation` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'RAS',
   PRIMARY KEY (`id`),
   KEY `arrivee_centres_notournee_foreign` (`noTournee`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.arrivee_centres : 2 rows
+-- Listage des données de la table rwc5v1789xflwyyt.arrivee_centres : 1 rows
 DELETE FROM `arrivee_centres`;
 /*!40000 ALTER TABLE `arrivee_centres` DISABLE KEYS */;
 INSERT INTO `arrivee_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `heureArrivee`, `kmArrive`, `niveauCarburant`, `finTournee`, `dateArrivee`, `observation`) VALUES
-	(1, '2021-09-16 09:11:23', '2021-09-16 09:12:34', 22, '09:10:00', '8', '1/4', 'fin', '2021-09-17', 'KKKL'),
-	(2, '2021-09-16 13:58:31', '2021-09-16 13:58:31', 23, '13:58:00', '4', '1/4', 'fin', '2021-09-17', NULL);
+	(7, '2021-09-20 12:11:55', '2021-09-20 12:27:19', 29, '17:20:00', '11500', '2/4', 'fin', '2021-09-26', 'llll');
 /*!40000 ALTER TABLE `arrivee_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_sites
+DROP TABLE IF EXISTS `arrivee_sites`;
 CREATE TABLE IF NOT EXISTS `arrivee_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -370,14 +381,18 @@ CREATE TABLE IF NOT EXISTS `arrivee_sites` (
   `tempsOperation` int(11) DEFAULT NULL,
   `nombre_colis` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.arrivee_sites : ~0 rows (environ)
+-- Listage des données de la table rwc5v1789xflwyyt.arrivee_sites : ~1 rows (environ)
 DELETE FROM `arrivee_sites`;
 /*!40000 ALTER TABLE `arrivee_sites` DISABLE KEYS */;
+INSERT INTO `arrivee_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `site`, `operation`, `observation`, `dateArrivee`, `heureArrivee`, `debutOperation`, `finOperation`, `tempsOperation`, `nombre_colis`) VALUES
+	(34, '2021-09-20 12:52:48', '2021-09-20 12:52:48', 36, '5', 'Enlèvement', NULL, '2021-09-20', '12:51:00', '13:51:00', '12:54:00', 57, 2),
+	(35, '2021-09-20 12:56:06', '2021-09-20 12:56:06', 36, '21', 'Dépot', NULL, '2021-09-20', '12:55:00', '12:56:00', '12:57:00', 1, 1);
 /*!40000 ALTER TABLE `arrivee_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_site_colis
+DROP TABLE IF EXISTS `arrivee_site_colis`;
 CREATE TABLE IF NOT EXISTS `arrivee_site_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `arrivee_site` bigint(20) unsigned NOT NULL,
@@ -390,9 +405,9 @@ CREATE TABLE IF NOT EXISTS `arrivee_site_colis` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `arrivee_site_colis_arrivee_site_foreign` (`arrivee_site`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table rwc5v1789xflwyyt.arrivee_site_colis : 14 rows
+-- Listage des données de la table rwc5v1789xflwyyt.arrivee_site_colis : 16 rows
 DELETE FROM `arrivee_site_colis`;
 /*!40000 ALTER TABLE `arrivee_site_colis` DISABLE KEYS */;
 INSERT INTO `arrivee_site_colis` (`id`, `arrivee_site`, `colis`, `num_colis`, `bordereau`, `montant`, `nature`, `created_at`, `updated_at`) VALUES
@@ -409,10 +424,13 @@ INSERT INTO `arrivee_site_colis` (`id`, `arrivee_site`, `colis`, `num_colis`, `b
 	(17, 26, 'Pierres précieuses', 2000, '2555', 9800.00, '5000', '2021-09-15 14:59:31', '2021-09-15 14:59:48'),
 	(18, 26, 'Sac juste', 78000, '24000', 7800.00, '2000', '2021-09-15 14:59:31', '2021-09-15 14:59:48'),
 	(19, 29, 'Keep Safe', 10, '32', 5.00, '123', '2021-09-16 11:27:59', '2021-09-16 11:27:59'),
-	(20, 32, 'Sac juste', 222, '122222', 11122.00, NULL, '2021-09-16 12:53:57', '2021-09-16 12:53:57');
+	(20, 32, 'Sac juste', 222, '122222', 11122.00, NULL, '2021-09-16 12:53:57', '2021-09-16 12:53:57'),
+	(21, 34, 'Sac juste', 1, '122222', 100000.00, NULL, '2021-09-20 12:52:48', '2021-09-20 12:52:48'),
+	(22, 35, 'Sac juste', 1221, '122222', 45000.00, NULL, '2021-09-20 12:56:06', '2021-09-20 12:56:06');
 /*!40000 ALTER TABLE `arrivee_site_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. arrivee_tournees
+DROP TABLE IF EXISTS `arrivee_tournees`;
 CREATE TABLE IF NOT EXISTS `arrivee_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -446,6 +464,7 @@ DELETE FROM `arrivee_tournees`;
 /*!40000 ALTER TABLE `arrivee_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_billetages
+DROP TABLE IF EXISTS `caisse_billetages`;
 CREATE TABLE IF NOT EXISTS `caisse_billetages` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -488,6 +507,7 @@ DELETE FROM `caisse_billetages`;
 /*!40000 ALTER TABLE `caisse_billetages` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_ctvs
+DROP TABLE IF EXISTS `caisse_ctvs`;
 CREATE TABLE IF NOT EXISTS `caisse_ctvs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -544,6 +564,7 @@ DELETE FROM `caisse_ctvs`;
 /*!40000 ALTER TABLE `caisse_ctvs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_entree_colis
+DROP TABLE IF EXISTS `caisse_entree_colis`;
 CREATE TABLE IF NOT EXISTS `caisse_entree_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -563,6 +584,7 @@ DELETE FROM `caisse_entree_colis`;
 /*!40000 ALTER TABLE `caisse_entree_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_entree_colis_items
+DROP TABLE IF EXISTS `caisse_entree_colis_items`;
 CREATE TABLE IF NOT EXISTS `caisse_entree_colis_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -590,6 +612,7 @@ DELETE FROM `caisse_entree_colis_items`;
 /*!40000 ALTER TABLE `caisse_entree_colis_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_services
+DROP TABLE IF EXISTS `caisse_services`;
 CREATE TABLE IF NOT EXISTS `caisse_services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -616,6 +639,7 @@ DELETE FROM `caisse_services`;
 /*!40000 ALTER TABLE `caisse_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_service_operatrices
+DROP TABLE IF EXISTS `caisse_service_operatrices`;
 CREATE TABLE IF NOT EXISTS `caisse_service_operatrices` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -637,6 +661,7 @@ DELETE FROM `caisse_service_operatrices`;
 /*!40000 ALTER TABLE `caisse_service_operatrices` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_sortie_colis
+DROP TABLE IF EXISTS `caisse_sortie_colis`;
 CREATE TABLE IF NOT EXISTS `caisse_sortie_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -656,6 +681,7 @@ DELETE FROM `caisse_sortie_colis`;
 /*!40000 ALTER TABLE `caisse_sortie_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_sortie_colis_items
+DROP TABLE IF EXISTS `caisse_sortie_colis_items`;
 CREATE TABLE IF NOT EXISTS `caisse_sortie_colis_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -683,6 +709,7 @@ DELETE FROM `caisse_sortie_colis_items`;
 /*!40000 ALTER TABLE `caisse_sortie_colis_items` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. caisse_video_surveillances
+DROP TABLE IF EXISTS `caisse_video_surveillances`;
 CREATE TABLE IF NOT EXISTS `caisse_video_surveillances` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -710,6 +737,7 @@ DELETE FROM `caisse_video_surveillances`;
 /*!40000 ALTER TABLE `caisse_video_surveillances` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_cartes
+DROP TABLE IF EXISTS `carburant_cartes`;
 CREATE TABLE IF NOT EXISTS `carburant_cartes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -729,6 +757,7 @@ INSERT INTO `carburant_cartes` (`id`, `created_at`, `updated_at`, `numeroCarte`,
 /*!40000 ALTER TABLE `carburant_cartes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_comptants
+DROP TABLE IF EXISTS `carburant_comptants`;
 CREATE TABLE IF NOT EXISTS `carburant_comptants` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -750,6 +779,7 @@ DELETE FROM `carburant_comptants`;
 /*!40000 ALTER TABLE `carburant_comptants` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_previsions
+DROP TABLE IF EXISTS `carburant_previsions`;
 CREATE TABLE IF NOT EXISTS `carburant_previsions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -775,6 +805,7 @@ DELETE FROM `carburant_previsions`;
 /*!40000 ALTER TABLE `carburant_previsions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. carburant_tickets
+DROP TABLE IF EXISTS `carburant_tickets`;
 CREATE TABLE IF NOT EXISTS `carburant_tickets` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -801,6 +832,7 @@ INSERT INTO `carburant_tickets` (`id`, `created_at`, `updated_at`, `date`, `heur
 /*!40000 ALTER TABLE `carburant_tickets` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. centres
+DROP TABLE IF EXISTS `centres`;
 CREATE TABLE IF NOT EXISTS `centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -819,6 +851,7 @@ INSERT INTO `centres` (`id`, `created_at`, `updated_at`, `centre`) VALUES
 /*!40000 ALTER TABLE `centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. centre_regionals
+DROP TABLE IF EXISTS `centre_regionals`;
 CREATE TABLE IF NOT EXISTS `centre_regionals` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -844,6 +877,7 @@ INSERT INTO `centre_regionals` (`id`, `created_at`, `updated_at`, `centre_region
 /*!40000 ALTER TABLE `centre_regionals` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. commercial_clients
+DROP TABLE IF EXISTS `commercial_clients`;
 CREATE TABLE IF NOT EXISTS `commercial_clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -889,7 +923,7 @@ CREATE TABLE IF NOT EXISTS `commercial_clients` (
   `base_comptage_montant_forfaitaire` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bt_atm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.commercial_clients : ~50 rows (environ)
 DELETE FROM `commercial_clients`;
@@ -937,17 +971,20 @@ INSERT INTO `commercial_clients` (`id`, `created_at`, `updated_at`, `client_nom`
 	(40, '2021-08-05 13:47:58', '2021-08-05 13:47:58', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL, NULL, NULL, NULL),
 	(41, '2021-08-05 13:47:59', '2021-08-05 13:47:59', 'SGCI BOUAKE', 'BOUAKE-COMMERCE', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'YAPO OLIVIER', 'olivier.yapo@socgen.com', 'DIRECTION COMMERCIALE', 'RESPONSABLE MONETIQUE', NULL, NULL, NULL, NULL, NULL, 'TDF VB,Gestion ATM,Maintenance ATM,Consommable ATM', NULL, 'Permanent', 'Intra muros', 'intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'GESTION ATM', NULL, NULL, NULL, NULL, NULL),
 	(42, '2021-08-05 13:53:21', '2021-08-05 13:53:21', 'ECOBANK CI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KANGHAH FRANCK CESAR', 'akanghah@ecobank.com', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 93 11', 'BANQUE', NULL, NULL, NULL, 'TDF VB,MAD CAISSE,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Permanent,Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(43, '2021-08-05 13:57:31', '2021-08-05 13:57:31', 'LAJOY SARL', 'ZUENOULA', NULL, NULL, NULL, 'BOUAKE', NULL, NULL, 'DJEBI', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0748012769', 'micro-finance', NULL, NULL, NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', 'km bitume', NULL, NULL, NULL, 'Grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(43, '2021-08-05 13:57:31', '2021-09-20 09:23:33', 'LAJOY SARL', 'ZUENOULA', '07 89 71 64 24', NULL, 'ABATTA BP 766', 'BOUAKE', 'CI-ABJ-2019-B-00803', '1903161 W', 'DJEBI', NULL, 'DIRECTION COMMERCIALE', 'CHEF D\'AGENCE', '0748012769', 'micro-finance', NULL, '2021-04-06', NULL, 'TDF VB,Petit matériel', NULL, 'Appel', 'Extra muros', NULL, NULL, NULL, NULL, 'grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(44, '2021-08-05 14:58:19', '2021-08-05 14:58:19', 'CORIS BANK', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOFFI YAO EMERSON', 'kyao@coris-bank.com', 'DIRECTION COMMERCIALE', 'CHARGE DU PATRIMOINE', '20 20 94 87 /05 04 12 75 52', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', NULL, NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(45, '2021-08-05 15:11:48', '2021-08-05 15:11:48', 'BNI \'', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'COULIBALY KAMA PATRICK', 'patrice.coulibaly@bni.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 51 43/01 03 43 80 69', NULL, NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(46, '2021-08-05 16:36:05', '2021-08-05 16:36:05', 'BGFI', 'MARCORY', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME NGORAN MARIE LAURE', 'm-l-ngoran@bgfigroupe.com', 'DIRECTION COMMERCIALE', 'CHEF DES SERVICES MOYEN GENERAUX', '21 56 91 56 /58 51 30 10', 'BANQUE', NULL, NULL, NULL, 'Gestion ATM,Maintenance ATM', NULL, 'Appel', 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(47, '2021-08-05 16:41:59', '2021-08-05 16:41:59', 'BANQUE POPULAIRE', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'MME DAPA SEWA DEKI KOUAKOU', 'aadeki@caissepargne.ci', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES MOYENS GENERAUX', '07 08 14 68 77', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte', NULL, 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, 'Extra grand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(48, '2021-08-05 16:47:45', '2021-08-05 16:47:45', 'BACI', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'KOUADIO JEAN BAPTISTE', 'jean-baptiste.kouadio@banqueatlatlantique.net', 'DIRECTION COMMERCIALE', 'DIRECTEUR DES OPERATIONS', '20 31 59 67/01 01 50 13 46', 'BANQUE', NULL, NULL, NULL, 'TDF VB,Collecte,Garde de fonds,Comptage + tri,Gestion ATM,Maintenance ATM', 'Banque centrale,Agence principale,Agence secondaire', 'Appel', 'Intra muros,Extra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(49, '2021-08-05 16:51:14', '2021-09-15 12:25:43', 'AGIR FINANCE', 'PLATEAU', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'GOSSE FRANCK', 'gossfranck@gmail.com', 'DIRECTION COMMERCIALE', 'DAF', '07 08 02 24 40 08', 'MICROFINANCE', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(50, '2021-08-05 16:59:42', '2021-08-05 16:59:42', 'QUIPUX CI', 'COCODY RIVIERA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'YAO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '05 54 01 19 58', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(50, '2021-08-05 16:59:42', '2021-08-05 16:59:42', 'QUIPUX CI', 'COCODY RIVIERA', NULL, NULL, NULL, 'ABIDJAN', NULL, NULL, 'YAO', NULL, 'DIRECTION COMMERCIALE', 'DAF', '05 54 01 19 58', 'DISTRIBUTEUR', NULL, NULL, NULL, 'TDF VL,Collecte', NULL, 'Permanent', 'Intra muros', NULL, NULL, NULL, NULL, 'Moyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(51, '2021-09-20 10:55:55', '2021-09-20 10:55:55', 'ucci dolidol', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(52, '2021-09-20 10:55:56', '2021-09-20 10:55:56', 'ucci dolidol', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `commercial_clients` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. commercial_sites
+DROP TABLE IF EXISTS `commercial_sites`;
 CREATE TABLE IF NOT EXISTS `commercial_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1040,6 +1077,7 @@ INSERT INTO `commercial_sites` (`id`, `created_at`, `updated_at`, `client`, `sit
 /*!40000 ALTER TABLE `commercial_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_degradations
+DROP TABLE IF EXISTS `comptabilite_degradations`;
 CREATE TABLE IF NOT EXISTS `comptabilite_degradations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1072,6 +1110,7 @@ DELETE FROM `comptabilite_degradations`;
 /*!40000 ALTER TABLE `comptabilite_degradations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_entree_caisses
+DROP TABLE IF EXISTS `comptabilite_entree_caisses`;
 CREATE TABLE IF NOT EXISTS `comptabilite_entree_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1090,6 +1129,7 @@ DELETE FROM `comptabilite_entree_caisses`;
 /*!40000 ALTER TABLE `comptabilite_entree_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_factures
+DROP TABLE IF EXISTS `comptabilite_factures`;
 CREATE TABLE IF NOT EXISTS `comptabilite_factures` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1111,6 +1151,7 @@ DELETE FROM `comptabilite_factures`;
 /*!40000 ALTER TABLE `comptabilite_factures` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_reglement_fatures
+DROP TABLE IF EXISTS `comptabilite_reglement_fatures`;
 CREATE TABLE IF NOT EXISTS `comptabilite_reglement_fatures` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1132,6 +1173,7 @@ DELETE FROM `comptabilite_reglement_fatures`;
 /*!40000 ALTER TABLE `comptabilite_reglement_fatures` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. comptabilite_sortie_caisses
+DROP TABLE IF EXISTS `comptabilite_sortie_caisses`;
 CREATE TABLE IF NOT EXISTS `comptabilite_sortie_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1150,6 +1192,7 @@ DELETE FROM `comptabilite_sortie_caisses`;
 /*!40000 ALTER TABLE `comptabilite_sortie_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. conteneurs
+DROP TABLE IF EXISTS `conteneurs`;
 CREATE TABLE IF NOT EXISTS `conteneurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1178,6 +1221,7 @@ DELETE FROM `conteneurs`;
 /*!40000 ALTER TABLE `conteneurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. convoyeurs
+DROP TABLE IF EXISTS `convoyeurs`;
 CREATE TABLE IF NOT EXISTS `convoyeurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1197,6 +1241,7 @@ DELETE FROM `convoyeurs`;
 /*!40000 ALTER TABLE `convoyeurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_centres
+DROP TABLE IF EXISTS `depart_centres`;
 CREATE TABLE IF NOT EXISTS `depart_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1208,17 +1253,18 @@ CREATE TABLE IF NOT EXISTS `depart_centres` (
   `niveauCarburant` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `depart_centres_notournee_foreign` (`noTournee`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.depart_centres : 2 rows
 DELETE FROM `depart_centres`;
 /*!40000 ALTER TABLE `depart_centres` DISABLE KEYS */;
 INSERT INTO `depart_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `heureDepart`, `kmDepart`, `observation`, `niveauCarburant`) VALUES
-	(2, '2021-09-15 14:25:21', '2021-09-15 14:25:21', 21, '14:26', '10', 'OP', '5'),
-	(3, '2021-09-15 14:26:50', '2021-09-15 14:26:50', 21, '14:26', '155', '/LMMM', '3');
+	(9, '2021-09-20 12:00:31', '2021-09-20 12:00:31', 29, '12:00', '1000', 'xxl', NULL),
+	(10, '2021-09-20 12:45:20', '2021-09-20 12:45:20', 36, '12:44', '32000', 'xcl', NULL);
 /*!40000 ALTER TABLE `depart_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_sites
+DROP TABLE IF EXISTS `depart_sites`;
 CREATE TABLE IF NOT EXISTS `depart_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1231,7 +1277,7 @@ CREATE TABLE IF NOT EXISTS `depart_sites` (
   `destination` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `observation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.depart_sites : ~4 rows (environ)
 DELETE FROM `depart_sites`;
@@ -1240,10 +1286,12 @@ INSERT INTO `depart_sites` (`id`, `created_at`, `updated_at`, `noTournee`, `heur
 	(1, '2020-12-17 15:15:30', '2020-12-17 15:15:30', '1', '15:18:00', '1', 15, '0000-00-00', 'TEST DESTINATION', 'TEST OBSERVATION DEPART SITE'),
 	(2, '2020-12-17 15:29:42', '2020-12-17 15:29:42', '2', '17:29:00', '1', 1583, '0000-00-00', 'MABV', 'OB3'),
 	(3, '2020-12-21 14:47:58', '2020-12-21 14:47:58', '5', '15:47:00', '2', 15020, '0000-00-00', '236', 'XVB'),
-	(4, '2020-12-28 14:53:01', '2020-12-28 14:53:01', '8', '17:52:00', '1', 9000, '0000-00-00', 'oumr', 'observation du 28');
+	(4, '2020-12-28 14:53:01', '2020-12-28 14:53:01', '8', '17:52:00', '1', 9000, '0000-00-00', 'oumr', 'observation du 28'),
+	(5, '2021-09-20 10:01:01', '2021-09-20 10:01:01', '28', '12:02:00', '5', 8, '2021-09-16', 'ici', 'ok à vous');
 /*!40000 ALTER TABLE `depart_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_site_colis
+DROP TABLE IF EXISTS `depart_site_colis`;
 CREATE TABLE IF NOT EXISTS `depart_site_colis` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1269,6 +1317,7 @@ DELETE FROM `depart_site_colis`;
 /*!40000 ALTER TABLE `depart_site_colis` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. depart_tournees
+DROP TABLE IF EXISTS `depart_tournees`;
 CREATE TABLE IF NOT EXISTS `depart_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1289,14 +1338,18 @@ CREATE TABLE IF NOT EXISTS `depart_tournees` (
   PRIMARY KEY (`id`),
   KEY `depart_tournees_idvehicule_foreign` (`idVehicule`),
   CONSTRAINT `depart_tournees_idvehicule_foreign` FOREIGN KEY (`idVehicule`) REFERENCES `vehicules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.depart_tournees : ~1 rows (environ)
 DELETE FROM `depart_tournees`;
 /*!40000 ALTER TABLE `depart_tournees` DISABLE KEYS */;
+INSERT INTO `depart_tournees` (`id`, `created_at`, `updated_at`, `numeroTournee`, `date`, `idVehicule`, `chauffeur`, `agentDeGarde`, `chefDeBord`, `coutTournee`, `kmDepart`, `heureDepart`, `kmArrivee`, `heureArrivee`, `centre`, `centre_regional`) VALUES
+	(29, '2021-09-20 11:59:57', '2021-09-20 12:25:21', 200920211, '2021-09-20', 7, 44, 47, 69, 8000, 1000, '11:59:00', NULL, NULL, 'Daloa', 'Man'),
+	(36, '2021-09-20 12:44:33', '2021-09-20 12:44:33', 2009202130, '2021-09-20', 13, 73, 48, 83, 5000, 15000, '12:43:00', NULL, NULL, 'Abidjan', 'Abengourou');
 /*!40000 ALTER TABLE `depart_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. failed_jobs
+DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1313,6 +1366,7 @@ DELETE FROM `failed_jobs`;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. heure_supps
+DROP TABLE IF EXISTS `heure_supps`;
 CREATE TABLE IF NOT EXISTS `heure_supps` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1339,6 +1393,7 @@ DELETE FROM `heure_supps`;
 /*!40000 ALTER TABLE `heure_supps` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_fournisseurs
+DROP TABLE IF EXISTS `informatique_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `informatique_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1358,6 +1413,7 @@ DELETE FROM `informatique_fournisseurs`;
 /*!40000 ALTER TABLE `informatique_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_materiels
+DROP TABLE IF EXISTS `informatique_materiels`;
 CREATE TABLE IF NOT EXISTS `informatique_materiels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1383,6 +1439,7 @@ INSERT INTO `informatique_materiels` (`id`, `created_at`, `updated_at`, `centre`
 /*!40000 ALTER TABLE `informatique_materiels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_missions
+DROP TABLE IF EXISTS `informatique_missions`;
 CREATE TABLE IF NOT EXISTS `informatique_missions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1405,6 +1462,7 @@ DELETE FROM `informatique_missions`;
 /*!40000 ALTER TABLE `informatique_missions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. informatique_operations
+DROP TABLE IF EXISTS `informatique_operations`;
 CREATE TABLE IF NOT EXISTS `informatique_operations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1427,6 +1485,7 @@ DELETE FROM `informatique_operations`;
 /*!40000 ALTER TABLE `informatique_operations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_chargement_cartes
+DROP TABLE IF EXISTS `logistique_chargement_cartes`;
 CREATE TABLE IF NOT EXISTS `logistique_chargement_cartes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1446,6 +1505,7 @@ DELETE FROM `logistique_chargement_cartes`;
 /*!40000 ALTER TABLE `logistique_chargement_cartes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_approvision
+DROP TABLE IF EXISTS `logistique_entree_approvision`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_approvision` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1466,6 +1526,7 @@ DELETE FROM `logistique_entree_approvision`;
 /*!40000 ALTER TABLE `logistique_entree_approvision` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_bordereaux
+DROP TABLE IF EXISTS `logistique_entree_bordereaux`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_bordereaux` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1487,6 +1548,7 @@ DELETE FROM `logistique_entree_bordereaux`;
 /*!40000 ALTER TABLE `logistique_entree_bordereaux` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_carnet_caisses
+DROP TABLE IF EXISTS `logistique_entree_carnet_caisses`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_carnet_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1507,6 +1569,7 @@ DELETE FROM `logistique_entree_carnet_caisses`;
 /*!40000 ALTER TABLE `logistique_entree_carnet_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_commande
+DROP TABLE IF EXISTS `logistique_entree_commande`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_commande` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1527,6 +1590,7 @@ DELETE FROM `logistique_entree_commande`;
 /*!40000 ALTER TABLE `logistique_entree_commande` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_maintenance
+DROP TABLE IF EXISTS `logistique_entree_maintenance`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_maintenance` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1547,6 +1611,7 @@ DELETE FROM `logistique_entree_maintenance`;
 /*!40000 ALTER TABLE `logistique_entree_maintenance` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_securipack
+DROP TABLE IF EXISTS `logistique_entree_securipack`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_securipack` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1568,6 +1633,7 @@ DELETE FROM `logistique_entree_securipack`;
 /*!40000 ALTER TABLE `logistique_entree_securipack` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_stocks
+DROP TABLE IF EXISTS `logistique_entree_stocks`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_stocks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1592,6 +1658,7 @@ DELETE FROM `logistique_entree_stocks`;
 /*!40000 ALTER TABLE `logistique_entree_stocks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_entree_ticket_visite
+DROP TABLE IF EXISTS `logistique_entree_ticket_visite`;
 CREATE TABLE IF NOT EXISTS `logistique_entree_ticket_visite` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1612,6 +1679,7 @@ DELETE FROM `logistique_entree_ticket_visite`;
 /*!40000 ALTER TABLE `logistique_entree_ticket_visite` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_fournisseurs
+DROP TABLE IF EXISTS `logistique_fournisseurs`;
 CREATE TABLE IF NOT EXISTS `logistique_fournisseurs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1639,6 +1707,7 @@ DELETE FROM `logistique_fournisseurs`;
 /*!40000 ALTER TABLE `logistique_fournisseurs` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_produits
+DROP TABLE IF EXISTS `logistique_produits`;
 CREATE TABLE IF NOT EXISTS `logistique_produits` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1662,6 +1731,7 @@ DELETE FROM `logistique_produits`;
 /*!40000 ALTER TABLE `logistique_produits` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_approvision
+DROP TABLE IF EXISTS `logistique_sortie_approvision`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_approvision` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1680,6 +1750,7 @@ DELETE FROM `logistique_sortie_approvision`;
 /*!40000 ALTER TABLE `logistique_sortie_approvision` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_bordereaux
+DROP TABLE IF EXISTS `logistique_sortie_bordereaux`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_bordereaux` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1698,6 +1769,7 @@ DELETE FROM `logistique_sortie_bordereaux`;
 /*!40000 ALTER TABLE `logistique_sortie_bordereaux` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_carnet_caisses
+DROP TABLE IF EXISTS `logistique_sortie_carnet_caisses`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_carnet_caisses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1716,6 +1788,7 @@ DELETE FROM `logistique_sortie_carnet_caisses`;
 /*!40000 ALTER TABLE `logistique_sortie_carnet_caisses` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_commande
+DROP TABLE IF EXISTS `logistique_sortie_commande`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_commande` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1734,6 +1807,7 @@ DELETE FROM `logistique_sortie_commande`;
 /*!40000 ALTER TABLE `logistique_sortie_commande` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_maintenance
+DROP TABLE IF EXISTS `logistique_sortie_maintenance`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_maintenance` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1752,6 +1826,7 @@ DELETE FROM `logistique_sortie_maintenance`;
 /*!40000 ALTER TABLE `logistique_sortie_maintenance` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_securipack
+DROP TABLE IF EXISTS `logistique_sortie_securipack`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_securipack` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1771,6 +1846,7 @@ DELETE FROM `logistique_sortie_securipack`;
 /*!40000 ALTER TABLE `logistique_sortie_securipack` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_stocks
+DROP TABLE IF EXISTS `logistique_sortie_stocks`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_stocks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1793,6 +1869,7 @@ DELETE FROM `logistique_sortie_stocks`;
 /*!40000 ALTER TABLE `logistique_sortie_stocks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. logistique_sortie_ticket_visite
+DROP TABLE IF EXISTS `logistique_sortie_ticket_visite`;
 CREATE TABLE IF NOT EXISTS `logistique_sortie_ticket_visite` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1812,12 +1889,13 @@ DELETE FROM `logistique_sortie_ticket_visite`;
 /*!40000 ALTER TABLE `logistique_sortie_ticket_visite` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. migrations
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.migrations : ~105 rows (environ)
 DELETE FROM `migrations`;
@@ -1927,10 +2005,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(109, '2020_09_14_142805_create_depart_centres_table', 8),
 	(110, '2020_09_17_160958_create_arrivee_centres_table', 8),
 	(112, '2020_09_17_174740_create_tournee_centres_table', 9),
-	(113, '2021_09_13_132908_create_arrivee_site_colis_table', 10);
+	(113, '2021_09_13_132908_create_arrivee_site_colis_table', 10),
+	(114, '2021_09_17_142359_create_regulation_depart_tournees_table', 11),
+	(115, '2021_09_17_142735_create_regulation_depart_tournee_items_table', 11);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. password_resets
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1944,6 +2025,7 @@ DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnels
+DROP TABLE IF EXISTS `personnels`;
 CREATE TABLE IF NOT EXISTS `personnels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2153,6 +2235,7 @@ INSERT INTO `personnels` (`id`, `created_at`, `updated_at`, `matricule`, `centre
 /*!40000 ALTER TABLE `personnels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_conges
+DROP TABLE IF EXISTS `personnel_conges`;
 CREATE TABLE IF NOT EXISTS `personnel_conges` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2173,6 +2256,7 @@ DELETE FROM `personnel_conges`;
 /*!40000 ALTER TABLE `personnel_conges` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_absences
+DROP TABLE IF EXISTS `personnel_gestion_absences`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_absences` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `debut_absence` date DEFAULT NULL,
@@ -2194,6 +2278,7 @@ DELETE FROM `personnel_gestion_absences`;
 /*!40000 ALTER TABLE `personnel_gestion_absences` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_affectations
+DROP TABLE IF EXISTS `personnel_gestion_affectations`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_affectations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date_affectation` date DEFAULT NULL,
@@ -2213,6 +2298,7 @@ DELETE FROM `personnel_gestion_affectations`;
 /*!40000 ALTER TABLE `personnel_gestion_affectations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_conges
+DROP TABLE IF EXISTS `personnel_gestion_conges`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_conges` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `dernier` date DEFAULT NULL,
@@ -2232,6 +2318,7 @@ DELETE FROM `personnel_gestion_conges`;
 /*!40000 ALTER TABLE `personnel_gestion_conges` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_contrats
+DROP TABLE IF EXISTS `personnel_gestion_contrats`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_contrats` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `type_contrat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2254,6 +2341,7 @@ DELETE FROM `personnel_gestion_contrats`;
 /*!40000 ALTER TABLE `personnel_gestion_contrats` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_explications
+DROP TABLE IF EXISTS `personnel_gestion_explications`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_explications` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date_demande` date DEFAULT NULL,
@@ -2273,6 +2361,7 @@ DELETE FROM `personnel_gestion_explications`;
 /*!40000 ALTER TABLE `personnel_gestion_explications` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_missions
+DROP TABLE IF EXISTS `personnel_gestion_missions`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_missions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `debut_mission` date DEFAULT NULL,
@@ -2317,6 +2406,7 @@ INSERT INTO `personnel_gestion_missions` (`id`, `debut_mission`, `fin_mission`, 
 /*!40000 ALTER TABLE `personnel_gestion_missions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_gestion_sanctions
+DROP TABLE IF EXISTS `personnel_gestion_sanctions`;
 CREATE TABLE IF NOT EXISTS `personnel_gestion_sanctions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
@@ -2336,6 +2426,7 @@ DELETE FROM `personnel_gestion_sanctions`;
 /*!40000 ALTER TABLE `personnel_gestion_sanctions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. personnel_sanctions
+DROP TABLE IF EXISTS `personnel_sanctions`;
 CREATE TABLE IF NOT EXISTS `personnel_sanctions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2355,6 +2446,7 @@ DELETE FROM `personnel_sanctions`;
 /*!40000 ALTER TABLE `personnel_sanctions` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_bordereau
+DROP TABLE IF EXISTS `regulation_bordereau`;
 CREATE TABLE IF NOT EXISTS `regulation_bordereau` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2389,6 +2481,7 @@ DELETE FROM `regulation_bordereau`;
 /*!40000 ALTER TABLE `regulation_bordereau` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_confirmation_clients
+DROP TABLE IF EXISTS `regulation_confirmation_clients`;
 CREATE TABLE IF NOT EXISTS `regulation_confirmation_clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2412,7 +2505,54 @@ DELETE FROM `regulation_confirmation_clients`;
 /*!40000 ALTER TABLE `regulation_confirmation_clients` DISABLE KEYS */;
 /*!40000 ALTER TABLE `regulation_confirmation_clients` ENABLE KEYS */;
 
+-- Listage de la structure de la table rwc5v1789xflwyyt. regulation_depart_tournees
+DROP TABLE IF EXISTS `regulation_depart_tournees`;
+CREATE TABLE IF NOT EXISTS `regulation_depart_tournees` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `heure` time NOT NULL,
+  `noTournee` bigint(20) unsigned NOT NULL,
+  `totalMontant` double(8,2) NOT NULL DEFAULT '0.00',
+  `totalColis` double(8,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `regulation_depart_tournees_notournee_foreign` (`noTournee`),
+  CONSTRAINT `regulation_depart_tournees_notournee_foreign` FOREIGN KEY (`noTournee`) REFERENCES `depart_tournees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Listage des données de la table rwc5v1789xflwyyt.regulation_depart_tournees : ~0 rows (environ)
+DELETE FROM `regulation_depart_tournees`;
+/*!40000 ALTER TABLE `regulation_depart_tournees` DISABLE KEYS */;
+/*!40000 ALTER TABLE `regulation_depart_tournees` ENABLE KEYS */;
+
+-- Listage de la structure de la table rwc5v1789xflwyyt. regulation_depart_tournee_items
+DROP TABLE IF EXISTS `regulation_depart_tournee_items`;
+CREATE TABLE IF NOT EXISTS `regulation_depart_tournee_items` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `regulation_depart` bigint(20) unsigned NOT NULL,
+  `site` bigint(20) unsigned NOT NULL,
+  `client` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nature` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nbre_colis` int(11) NOT NULL DEFAULT '0',
+  `numero_scelle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `montant` double(8,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `regulation_depart_tournee_items_regulation_depart_foreign` (`regulation_depart`),
+  KEY `regulation_depart_tournee_items_site_foreign` (`site`),
+  CONSTRAINT `regulation_depart_tournee_items_regulation_depart_foreign` FOREIGN KEY (`regulation_depart`) REFERENCES `regulation_depart_tournees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `regulation_depart_tournee_items_site_foreign` FOREIGN KEY (`site`) REFERENCES `commercial_sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Listage des données de la table rwc5v1789xflwyyt.regulation_depart_tournee_items : ~0 rows (environ)
+DELETE FROM `regulation_depart_tournee_items`;
+/*!40000 ALTER TABLE `regulation_depart_tournee_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `regulation_depart_tournee_items` ENABLE KEYS */;
+
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_facturations
+DROP TABLE IF EXISTS `regulation_facturations`;
 CREATE TABLE IF NOT EXISTS `regulation_facturations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2439,6 +2579,7 @@ DELETE FROM `regulation_facturations`;
 /*!40000 ALTER TABLE `regulation_facturations` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_scelles
+DROP TABLE IF EXISTS `regulation_scelles`;
 CREATE TABLE IF NOT EXISTS `regulation_scelles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2464,6 +2605,7 @@ DELETE FROM `regulation_scelles`;
 /*!40000 ALTER TABLE `regulation_scelles` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_securipacks
+DROP TABLE IF EXISTS `regulation_securipacks`;
 CREATE TABLE IF NOT EXISTS `regulation_securipacks` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2490,6 +2632,7 @@ DELETE FROM `regulation_securipacks`;
 /*!40000 ALTER TABLE `regulation_securipacks` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. regulation_services
+DROP TABLE IF EXISTS `regulation_services`;
 CREATE TABLE IF NOT EXISTS `regulation_services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2516,6 +2659,7 @@ DELETE FROM `regulation_services`;
 /*!40000 ALTER TABLE `regulation_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. roles
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2544,6 +2688,7 @@ INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiels
+DROP TABLE IF EXISTS `securite_materiels`;
 CREATE TABLE IF NOT EXISTS `securite_materiels` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2580,6 +2725,7 @@ DELETE FROM `securite_materiels`;
 /*!40000 ALTER TABLE `securite_materiels` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiel_beneficiaires
+DROP TABLE IF EXISTS `securite_materiel_beneficiaires`;
 CREATE TABLE IF NOT EXISTS `securite_materiel_beneficiaires` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2635,6 +2781,7 @@ DELETE FROM `securite_materiel_beneficiaires`;
 /*!40000 ALTER TABLE `securite_materiel_beneficiaires` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_materiel_remettants
+DROP TABLE IF EXISTS `securite_materiel_remettants`;
 CREATE TABLE IF NOT EXISTS `securite_materiel_remettants` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2691,6 +2838,7 @@ DELETE FROM `securite_materiel_remettants`;
 /*!40000 ALTER TABLE `securite_materiel_remettants` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. securite_services
+DROP TABLE IF EXISTS `securite_services`;
 CREATE TABLE IF NOT EXISTS `securite_services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2728,6 +2876,7 @@ DELETE FROM `securite_services`;
 /*!40000 ALTER TABLE `securite_services` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. site_arrivee_tournees
+DROP TABLE IF EXISTS `site_arrivee_tournees`;
 CREATE TABLE IF NOT EXISTS `site_arrivee_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2747,6 +2896,7 @@ DELETE FROM `site_arrivee_tournees`;
 /*!40000 ALTER TABLE `site_arrivee_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. site_depart_tournees
+DROP TABLE IF EXISTS `site_depart_tournees`;
 CREATE TABLE IF NOT EXISTS `site_depart_tournees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2760,14 +2910,19 @@ CREATE TABLE IF NOT EXISTS `site_depart_tournees` (
   PRIMARY KEY (`id`),
   KEY `site_depart_tournees_idtourneedepart_foreign` (`idTourneeDepart`),
   CONSTRAINT `site_depart_tournees_idtourneedepart_foreign` FOREIGN KEY (`idTourneeDepart`) REFERENCES `depart_tournees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table rwc5v1789xflwyyt.site_depart_tournees : ~2 rows (environ)
 DELETE FROM `site_depart_tournees`;
 /*!40000 ALTER TABLE `site_depart_tournees` DISABLE KEYS */;
+INSERT INTO `site_depart_tournees` (`id`, `created_at`, `updated_at`, `site`, `heure`, `tdf`, `caisse`, `montant`, `idTourneeDepart`) VALUES
+	(50, '2021-09-20 11:59:57', '2021-09-20 12:25:21', '8', NULL, 'oo_vb_intramuros', NULL, NULL, 29),
+	(55, '2021-09-20 12:25:21', '2021-09-20 12:25:21', '5', NULL, 'oo_vb_intramuros', NULL, NULL, 29),
+	(56, '2021-09-20 12:44:33', '2021-09-20 12:44:33', '5', NULL, 'oo_vb_intramuros', NULL, NULL, 36);
 /*!40000 ALTER TABLE `site_depart_tournees` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb
+DROP TABLE IF EXISTS `ssb`;
 CREATE TABLE IF NOT EXISTS `ssb` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2798,6 +2953,7 @@ DELETE FROM `ssb`;
 /*!40000 ALTER TABLE `ssb` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb_commercials
+DROP TABLE IF EXISTS `ssb_commercials`;
 CREATE TABLE IF NOT EXISTS `ssb_commercials` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2845,6 +3001,7 @@ DELETE FROM `ssb_commercials`;
 /*!40000 ALTER TABLE `ssb_commercials` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. ssb_sites
+DROP TABLE IF EXISTS `ssb_sites`;
 CREATE TABLE IF NOT EXISTS `ssb_sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2875,6 +3032,7 @@ DELETE FROM `ssb_sites`;
 /*!40000 ALTER TABLE `ssb_sites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. tournee_centres
+DROP TABLE IF EXISTS `tournee_centres`;
 CREATE TABLE IF NOT EXISTS `tournee_centres` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2897,6 +3055,7 @@ INSERT INTO `tournee_centres` (`id`, `created_at`, `updated_at`, `noTournee`, `c
 /*!40000 ALTER TABLE `tournee_centres` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2933,6 +3092,7 @@ INSERT INTO `users` (`id`, `nom`, `compte`, `email`, `email_verified_at`, `passw
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vehicules
+DROP TABLE IF EXISTS `vehicules`;
 CREATE TABLE IF NOT EXISTS `vehicules` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2966,6 +3126,7 @@ INSERT INTO `vehicules` (`id`, `created_at`, `updated_at`, `immatriculation`, `m
 /*!40000 ALTER TABLE `vehicules` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_assurances
+DROP TABLE IF EXISTS `vidange_assurances`;
 CREATE TABLE IF NOT EXISTS `vidange_assurances` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2986,6 +3147,7 @@ DELETE FROM `vidange_assurances`;
 /*!40000 ALTER TABLE `vidange_assurances` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_courroies
+DROP TABLE IF EXISTS `vidange_courroies`;
 CREATE TABLE IF NOT EXISTS `vidange_courroies` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3010,6 +3172,7 @@ DELETE FROM `vidange_courroies`;
 /*!40000 ALTER TABLE `vidange_courroies` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_generales
+DROP TABLE IF EXISTS `vidange_generales`;
 CREATE TABLE IF NOT EXISTS `vidange_generales` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3044,6 +3207,7 @@ DELETE FROM `vidange_generales`;
 /*!40000 ALTER TABLE `vidange_generales` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_huile_ponts
+DROP TABLE IF EXISTS `vidange_huile_ponts`;
 CREATE TABLE IF NOT EXISTS `vidange_huile_ponts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3063,6 +3227,7 @@ DELETE FROM `vidange_huile_ponts`;
 /*!40000 ALTER TABLE `vidange_huile_ponts` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_patentes
+DROP TABLE IF EXISTS `vidange_patentes`;
 CREATE TABLE IF NOT EXISTS `vidange_patentes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3083,6 +3248,7 @@ DELETE FROM `vidange_patentes`;
 /*!40000 ALTER TABLE `vidange_patentes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_stationnements
+DROP TABLE IF EXISTS `vidange_stationnements`;
 CREATE TABLE IF NOT EXISTS `vidange_stationnements` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3103,6 +3269,7 @@ DELETE FROM `vidange_stationnements`;
 /*!40000 ALTER TABLE `vidange_stationnements` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_transports
+DROP TABLE IF EXISTS `vidange_transports`;
 CREATE TABLE IF NOT EXISTS `vidange_transports` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3123,6 +3290,7 @@ DELETE FROM `vidange_transports`;
 /*!40000 ALTER TABLE `vidange_transports` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_vignettes
+DROP TABLE IF EXISTS `vidange_vignettes`;
 CREATE TABLE IF NOT EXISTS `vidange_vignettes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3143,6 +3311,7 @@ DELETE FROM `vidange_vignettes`;
 /*!40000 ALTER TABLE `vidange_vignettes` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. vidange_visites
+DROP TABLE IF EXISTS `vidange_visites`;
 CREATE TABLE IF NOT EXISTS `vidange_visites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3163,6 +3332,7 @@ DELETE FROM `vidange_visites`;
 /*!40000 ALTER TABLE `vidange_visites` ENABLE KEYS */;
 
 -- Listage de la structure de la table rwc5v1789xflwyyt. virgilometries
+DROP TABLE IF EXISTS `virgilometries`;
 CREATE TABLE IF NOT EXISTS `virgilometries` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,

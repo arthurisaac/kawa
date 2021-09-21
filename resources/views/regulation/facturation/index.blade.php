@@ -25,46 +25,22 @@
         <form method="post" action="{{ route('regulation-facturation.store') }}">
             @csrf
 
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Date</label>
-                        <input type="date" class="form-control col-sm-7">
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Type de facturation</label>
-                        <input type="text" class="form-control col-sm-7" />
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col">
-                    <br />
-                    <h6>SECURIPACK</h6>
                     <div class="form-group row">
-                        <label class="col-sm-5">N° Debut</label>
-                        <input type="number" class="form-control col-sm-7">
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">N° fin</label>
-                        <input type="number" class="form-control col-sm-7" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <br />
-                    <h6>CLIENT</h6>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Site</label>
-                        <select type="number" class="form-control col-sm-7" required>
+                        <label for="centre" class="col-4">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col-8" required>
                             <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-5">Client</label>
-                        <select type="number" class="form-control col-sm-7" required>
+                        <label for="centre_regional" class="col-4">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
                             <option></option>
                         </select>
                     </div>
@@ -74,31 +50,104 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-5">Prix unitaire</label>
-                        <input type="number" class="form-control col-sm-7" required/>
+                        <label for="date" class="col-4">Date</label>
+                        <input type="date" id="date" name="date" value="{{date('Y-m-d')}}"
+                               class="form-control col-8" required readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-5">Quantité</label>
-                        <input type="number" class="form-control col-sm-7" required/>
+                        <label for="centre" class="col-4">Numero</label>
+                        <input type="text" name="numero" id="numero" value="{{$numero}}" class="form-control col-8  "
+                               required/>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Prix total</label>
-                        <input type="number" class="form-control col-sm-7" />
-                    </div>
-                </div>
+                <div class="col"></div>
             </div>
             <div class="row">
-                <div class="col-4">
-                    <br />
-                    <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                    <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-4">Client</label>
+                        <select id="client" name="client" class="form-control col-8" required>
+                            <option></option>
+                            @foreach($clients as $client)
+                                <option value="{{$client->id}}">{{$client->client_nom}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
+            <br/>
+
+            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+            <br>
+            <br>
+            <table class="table table-bordered" style="width: 100%" id="table">
+                <thead>
+                <tr>
+                    <th>Libellé</th>
+                    <th>Qté</th>
+                    <th>Pu</th>
+                    <th>Référence</th>
+                    <th>N° début</th>
+                    <th>N° fin</th>
+                    <th>Montant</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" name="libelle[]"/></td>
+                    <td><input type="number" min="0" class="form-control" name="qte[]"/></td>
+                    <td><input type="number" min="0" class="form-control" name="pu[]"/></td>
+                    <td><input type="text" class="form-control" name="reference[]"/></td>
+                    <td><input type="text" class="form-control" name="debut[]"/></td>
+                    <td><input type="text" class="form-control" name="fin[]"/></td>
+                    <td><input type="number" min="0" class="form-control" name="montant[]"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#add").on("click", function () {
+                $('#table').append('<tr>\n' +
+                    '                    <td><input type="text" class="form-control" name="libelle[]"/></td>\n' +
+                    '                    <td><input type="number" min="0" class="form-control" name="qte[]"/></td>\n' +
+                    '                    <td><input type="number" min="0" class="form-control" name="pu[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="reference[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="debut[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="fin[]"/></td>\n' +
+                    '                    <td><input type="number" min="0" class="form-control" name="montant[]"/></td>\n' +
+                    '                </tr>');
+            });
+        })
+    </script>
+    <script>
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        $(document).ready(function () {
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
+        });
+    </script>
 
 @endsection

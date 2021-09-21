@@ -10,15 +10,11 @@ class RegulationFacturation extends Model
 
     protected $fillable = [
         'date',
-        'typeFacturation',
-        'numeroDebut',
-        'numeroFin',
-        'site',
+        'numero',
+        'centre',
+        'centre_regional',
+        'montantTotal',
         'client',
-        'prixUnitaire',
-        'quantite',
-        'prixTotal',
-
     ];
 
 }
