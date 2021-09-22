@@ -52,6 +52,7 @@ class RegulationFacturationController extends Controller
             'centre_regional' => $request->get("centre_regional"),
             'montantTotal' => $request->get("montantTotal"),
             'client' => $request->get("client"),
+            'type' => $request->get("type"),
         ]);
         $data->save();
 
@@ -124,6 +125,12 @@ class RegulationFacturationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = RegulationFacturation::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return response()->json([
+            "message" => "good"
+        ]);
     }
 }

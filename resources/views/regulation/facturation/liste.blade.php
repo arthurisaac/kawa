@@ -4,6 +4,8 @@
     <div class="burval-container">
         <div><h2 class="heading">Facturation</h2></div>
         <br/>
+        <a href="/regulation-facturation" class="btn btn-primary btn-sm">Nouvelle facture</a>
+        <br/>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -27,15 +29,13 @@
                 <table class="table table-bordered" style="width: 100%;" id="liste">
                     <thead>
                     <tr>
-                        <td>Date</td>
-                        <td>Type</td>
+                        <td>ID</td>
+                        <td>Centre régional</td>
+                        <td>Centre</td>
+                        <td>DATE Fact</td>
+                        <td>Type Facture</td>
                         <td>Client</td>
-                        <td>Site</td>
-                        <td>N° début</td>
-                        <td>N° fin</td>
-                        <td>Quantité</td>
-                        <td>Prix unitaire</td>
-                        <td>Prix total</td>
+                        <td>Montant total</td>
                         <td>Actions</td>
                     </tr>
                     </thead>
@@ -43,21 +43,17 @@
                     @foreach ($regulations as $regulation)
                         <tr>
                             <td>{{$regulation->date}}</td>
-                            <td>{{$regulation->typeSecuripack}}</td>
+                            <td>{{$regulation->centre_regional}}</td>
+                            <td>{{$regulation->centre}}</td>
+                            <td>{{$regulation->date}}</td>
+                            <td>{{$regulation->type}}</td>
                             <td>{{$regulation->client}}</td>
-                            <td>{{$regulation->site}}</td>
-                            <td>{{$bordereau->numeroDebut}}</td>
-                            <td>{{$bordereau->numeroFin}}</td>
-                            <td>{{$bordereau->quantite}}</td>
-                            <td>{{$bordereau->prixUnitaire}}</td>
-                            <td>{{$bordereau->prixTotal}}</td>
+                            <td>{{$regulation->montantTotal}}</td>
                             <td>
-                                <a href="{{ route('regulation-facturation.edit',$regulation->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                <form action="{{ route('regulation-facturation.destroy', $regulation->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                </form>
+                                <a href="{{ route('personnel.edit',$regulation->id)}}"
+                                   class="btn btn-primary btn-sm"></a>
+                                <a class="btn btn-danger btn-sm"
+                                        onclick="supprimer('{{$regulation->id}}', this)"></a>
                             </td>
                         </tr>
                     @endforeach
@@ -75,5 +71,31 @@
                 }
             });
         });
+    </script>
+    <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "regulation-facturation/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("liste").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+
+        }
     </script>
 @endsection

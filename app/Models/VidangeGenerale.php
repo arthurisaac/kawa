@@ -9,8 +9,6 @@ class VidangeGenerale extends Model
     protected $fillable = [
         'date',
         'idVehicule',
-        'centre',
-        'centreRegional',
         'kmActuel',
         'prochainKm',
         'huileMoteur',

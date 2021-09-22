@@ -76,7 +76,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                        <div class="form-group row">
+                            <label for="type" class="col-4">Type facture</label>
+                            <select id="type" name="type" class="form-control col-8" required>
+                                <option>Facture</option>
+                                <option>Proforma</option>
+                            </select>
+                        </div>
+                </div>
                 <div class="col"></div>
             </div>
             <br/>
@@ -98,7 +106,15 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" class="form-control" name="libelle[]"/></td>
+                    <td><select type="text" class="form-control" name="libelle[]">
+                            <option>Securipack grand</option>
+                            <option>Securipack moyen</option>
+                            <option>Securipack petit</option>
+                            <option>Sacs jutes grand</option>
+                            <option>Sacs jutes moyen</option>
+                            <option>Sacs jutes petit</option>
+                            <option>Scellé</option>
+                        </select></td>
                     <td><input type="number" min="0" class="form-control" name="qte[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="pu[]"/></td>
                     <td><input type="text" class="form-control" name="reference[]"/></td>
@@ -107,6 +123,12 @@
                     <td><input type="number" min="0" class="form-control" name="montant[]"/></td>
                 </tr>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6">Total</td>
+                    <td><input type="number" min="0" class="form-control" name="montantTotal"/></td>
+                </tr>
+                </tfoot>
             </table>
 
             <br>

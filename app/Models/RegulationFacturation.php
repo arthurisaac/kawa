@@ -15,6 +15,7 @@ class RegulationFacturation extends Model
         'centre_regional',
         'montantTotal',
         'client',
+        'type',
     ];
 
 }

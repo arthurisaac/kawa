@@ -9,8 +9,7 @@ class VidangeHuilePont extends Model
     protected $fillable = [
         'date',
         'idVehicule',
-        'centre',
-        'centreRegional',
         'kmActuel',
-        'prochainKm'];
+        'prochainKm',
+    ];
 }

@@ -45,15 +45,14 @@ class VidangeVignetteController extends Controller
     {
         $vignette = new VidangeVignette([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_vignette'),
             'dateRenouvellement' => $request->get('dateRenouvellement'),
             'prochainRenouvellement' => $request->get('prochainRenouvellement'),
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-vignette')->with('success', 'Vignette enregistrée!');
+        //return redirect('/vidange-vignette')->with('success', 'Vignette enregistrée!');
+        return redirect()->back()->with('success', 'Vignette enregistrée!');
     }
 
     /**

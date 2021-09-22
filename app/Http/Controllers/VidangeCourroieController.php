@@ -45,9 +45,7 @@ class VidangeCourroieController extends Controller
     {
         $vidange = new VidangeCourroie([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_courroie'),
             'kmActuel' => $request->get('kmActuel'),
             'prochainKm' => $request->get('prochainKm'),
             'courroie' => $request->get('courroie'),
@@ -57,6 +55,7 @@ class VidangeCourroieController extends Controller
             'courroieMontant' => $request->get('courroieMontant'),
         ]);
         $vidange->save();
+        //return redirect('/vidange-courroie')->with('success', 'Courroie enregistré!');
         return redirect('/vidange-courroie')->with('success', 'Courroie enregistré!');
     }
 

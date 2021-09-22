@@ -19,6 +19,7 @@ class CreateRegulationFacturations extends Migration
             $table->string("numero")->nullable();
             $table->string("centre")->nullable();
             $table->string("centre_regional")->nullable();
+            $table->string("type")->nullable();
             $table->float("montantTotal")->default(0);
             $table->foreignId('client')->references('id')->on('commercial_clients')->onDelete('cascade');
             $table->timestamps();

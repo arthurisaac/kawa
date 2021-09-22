@@ -6,6 +6,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangeHuilePont;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -47,8 +48,6 @@ class VidangePontController extends Controller
         $vidanges = new VidangeHuilePont([
             'date' => $request->get('date'),
             'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
             'kmActuel' => $request->get('kmActuel'),
             'prochainKm' => $request->get('prochainKm'),
             'huilePont' => $request->get('huilePont'),
@@ -58,7 +57,8 @@ class VidangePontController extends Controller
             'huilePontmontant' => $request->get('huilePontmontant'),
         ]);
         $vidanges->save();
-        return redirect('/vidange-pont')->with('success', 'Vidange pont enregistrée!');
+        //return redirect('/vidange-pont')->with('success', 'Vidange pont enregistrée!');
+        return redirect()->back()->with('success', 'Vidange pont enregistrée!');
     }
 
     /**
@@ -98,11 +98,17 @@ class VidangePontController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = VidangeHuilePont::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return \response()->json([
+            "message" => "good"
+        ]);
     }
 }

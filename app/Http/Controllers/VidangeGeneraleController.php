@@ -57,9 +57,7 @@ class VidangeGeneraleController extends Controller
     {
         $vidangeGenerale = new VidangeGenerale([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_generale'),
             'kmActuel' => $request->get('kmActuel'),
             'prochainKm' => $request->get('prochainKm'),
             'huileMoteur' => $request->get('huileMoteur'),
@@ -77,7 +75,8 @@ class VidangeGeneraleController extends Controller
             'autresConsommablesMontant' => $request->get('autresConsommablesMontant'),
         ]);
         $vidangeGenerale->save();
-        return redirect('/vidange-generale')->with('success', 'Véhicule enregistré!');
+        //return redirect('/vidange-generale')->with('success', 'Véhicule enregistré!');
+        return redirect()->back()->with('success', 'Enregistrement effectué!');
 
     }
 
