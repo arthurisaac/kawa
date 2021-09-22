@@ -45,15 +45,14 @@ class VidangeVisiteController extends Controller
     {
         $vignette = new VidangeVisite([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_visite'),
             'dateRenouvellement' => $request->get('dateRenouvellement'),
             'prochainRenouvellement' => $request->get('prochainRenouvellement'),
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-visite')->with('success', 'Vignette enregistré!');
+        //return redirect('/vidange-visite')->with('success', 'Vignette enregistré!');
+        return redirect()->back()->with('success', 'Enregistrement effectué!');
     }
 
     /**
@@ -94,10 +93,16 @@ class VidangeVisiteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = VidangeVisite::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return \response()->json([
+            "message" => "good"
+        ]);
     }
 }

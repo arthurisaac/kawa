@@ -19,7 +19,7 @@
         @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
-            </div><br />
+            </div><br/>
         @endif
         <br>
         <br>
@@ -76,10 +76,10 @@
                     <a class="nav-link" id="carte-transport-tab" data-toggle="tab" href="#carte-transport" role="tab"
                        aria-controls="carte-transport" aria-selected="false">Carte de transport</a>
                 </li>
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a class="nav-link" id="vidange-patente-tab" data-toggle="tab" href="#vidange-patente" role="tab"
                        aria-controls="vidange-patente" aria-selected="false">Patente</a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="vidange-visite-tab" data-toggle="tab" href="#vidange-visite" role="tab"
                        aria-controls="vidange-visite" aria-selected="false">Visite technique</a>
@@ -349,7 +349,8 @@
                                             <!--<td>{{date('Y-m-d H:i:s'), strtotime($vidange->date. ' + 5 days')}}</td>-->
                                                 <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
                                                 <td>
-                                                    <a class="btn btn-danger btn-sm" onclick="supprimerVHM('{{$vidange->id}}', this)"></a>
+                                                    <a class="btn btn-danger btn-sm"
+                                                       onclick="supprimerVHM('{{$vidange->id}}', this)"></a>
                                                 </td>
                                             </tr>
 
@@ -374,12 +375,14 @@
                                 <div class="col-4">
                                     <div class="form-group row">
                                         <label class="col-md-4">Km actuel</label>
-                                        <input type="number" class="form-control form-control-sm col-md-8" name="kmActuel"
+                                        <input type="number" class="form-control form-control-sm col-md-8"
+                                               name="kmActuel"
                                                required/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4">Prochain km</label>
-                                        <input type="number" class="form-control form-control-sm col-md-8" name="prochainKm"
+                                        <input type="number" class="form-control form-control-sm col-md-8"
+                                               name="prochainKm"
                                                required/>
                                     </div>
                                 </div>
@@ -425,16 +428,46 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Fournisseur</label>
-                                        <input type="text" class="form-control form-control-sm" name="courroieFournisseur"/>
+                                        <input type="text" class="form-control form-control-sm"
+                                               name="courroieFournisseur"/>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Montant</label>
-                                        <input type="text" min="0" class="form-control form-control-sm" name="courroieMontant"/>
+                                        <input type="text" min="0" class="form-control form-control-sm"
+                                               name="courroieMontant"/>
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            <br>
+                            <table class="table table-bordered" id="listeVC">
+                                <thead>
+                                <tr>
+                                    <th>Véhicule</th>
+                                    <th>Total vidange</th>
+                                    <th>Prochain changement de courroie</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($vidangeCourroie as $vidange)
+                                    <tr>
+                                        <td>{{$vidange->idVehicule}}</td>
+                                        <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant +
+                            $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}
+                                        </td>
+                                        <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
+                                        <td>
+                                            <a class="btn btn-danger btn-sm"
+                                               onclick="supprimerVC('{{$vidange->id}}', this)"></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+
                             <br>
                             <button type="submit" class="btn btn-primary btn-sm">Valider</button>
                         </form>
@@ -451,15 +484,18 @@
                                 <div class="col-5">
                                     <div class="form-group row">
                                         <label class="col-md-4">Date de renouvellement</label>
-                                        <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement"/>
+                                        <input type="date" class="form-control form-control-sm col-md-8"
+                                               name="dateRenouvellement"/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4">Prochain renouvellement</label>
-                                        <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement"/>
+                                        <input type="date" class="form-control form-control-sm col-md-8"
+                                               name="prochainRenouvellement"/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4">Montant</label>
-                                        <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant"/>
+                                        <input type="number" min="0" class="form-control form-control-sm col-md-8"
+                                               name="montant"/>
                                     </div>
                                 </div>
                             </div>
@@ -470,11 +506,115 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="carte-transport" role="tabpanel"
-                     aria-labelledby="carte-transport-tab"></div>
-                <div class="tab-pane fade" id="vidange-patente" role="tabpanel"
-                     aria-labelledby="vidange-patente-tab"></div>
+                     aria-labelledby="carte-transport-tab">
+                    <form method="post" action="{{ route('vidange-transport.store') }}">
+                        @csrf
+                        <input type="hidden" name="idVehicule_transport" required>
+                        <br>
+                        <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group row">
+                                    <label class="col-md-4">Date de renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8"
+                                           name="dateRenouvellement"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Prochain renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8"
+                                           name="prochainRenouvellement"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Montant</label>
+                                    <input type="number" min="0" class="form-control form-control-sm col-md-8"
+                                           name="montant"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <table class="table table-bordered" id="listeVCT">
+                                    <thead>
+                                    <tr>
+                                        <th>Véhicule</th>
+                                        <th>Date</th>
+                                        <th>Prochaine vignette</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($vidangeTransport as $vidange)
+                                        <tr>
+                                            <td>{{$vidange->idVehicule}}</td>
+                                            <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
+                                            <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm"
+                                                   onclick="supprimerVCT('{{$vidange->id}}', this)"></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-sm">Valider</button>
+                    </form>
+                </div>
+                {{--<div class="tab-pane fade" id="vidange-patente" role="tabpanel"
+                     aria-labelledby="vidange-patente-tab"></div>--}}
                 <div class="tab-pane fade" id="vidange-visite" role="tabpanel"
-                     aria-labelledby="vidange-visite-tab"></div>
+                     aria-labelledby="vidange-visite-tab">
+                    <form method="post" action="{{ route('vidange-visite.store') }}">
+                        @csrf
+
+                        <input type="hidden" name="idVehicule_visite" required>
+                        <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group row">
+                                    <label class="col-md-4">Date de renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Prochain renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Montant</label>
+                                    <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant"/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-bordered" id="listeVVT">
+                                    <thead>
+                                    <tr>
+                                        <th>Véhicule</th>
+                                        <th>Date</th>
+                                        <th>Prochaine vignette</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($vidangeVisite as $vidange)
+                                        <tr>
+                                            <td>{{$vidange->idVehicule}}</td>
+                                            <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
+                                            <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm"
+                                                   onclick="supprimerVVT('{{$vidange->id}}', this)"></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-sm">Valider</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -495,11 +635,13 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#vehicule").on("change", function () {
                 $("input[name='idVehicule']").val(this.value);
                 $("input[name='idVehicule_courroie']").val(this.value);
                 $("input[name='idVehicule_vignette']").val(this.value);
+                $("input[name='idVehicule_transport']").val(this.value);
+                $("input[name='idVehicule_visite']").val(this.value);
             })
         })
     </script>
@@ -526,7 +668,75 @@
                     }
                 });
             }
-
+        }
+        function supprimerVCT(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "vidange-transport/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("listeVCT").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
+        function supprimerVVT(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "vidange-visite/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("listeVVT").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
+        function supprimerVC(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "vidange-courroie/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("listeVC").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
         }
     </script>
 @endsection

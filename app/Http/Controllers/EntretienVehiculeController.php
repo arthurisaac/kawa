@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
+use App\Models\VidangeCourroie;
 use App\Models\VidangeHuilePont;
+use App\Models\VidangeTransport;
+use App\Models\VidangeVisite;
 use Illuminate\Http\Request;
 
 class EntretienVehiculeController extends Controller
@@ -21,8 +24,11 @@ class EntretienVehiculeController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $vidangePonts = VidangeHuilePont::all();
+        $vidangeTransport = VidangeTransport::all();
+        $vidangeVisite = VidangeVisite::all();
+        $vidangeCourroie = VidangeCourroie::all();
         return view('/transport/entretien-vehicule.index',
-            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts'));
+            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie'));
     }
 
     /**

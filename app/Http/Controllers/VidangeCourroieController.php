@@ -6,6 +6,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangeCourroie;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VidangeCourroieController extends Controller
@@ -97,10 +98,16 @@ class VidangeCourroieController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = VidangeCourroie::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return \response()->json([
+            "message" => "good"
+        ]);
     }
 }
