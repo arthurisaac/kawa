@@ -27,7 +27,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>N°Tournée:</label>
-                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly/>
+                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly required/>
                     </div>
                 </div>
                 <div class="col">

@@ -36,7 +36,8 @@
                     <div class="col">
                         <div class="form-group row">
                             <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure" id="heure" value="{{$heure}}" class="form-control col-sm-8"/>
+                            <input type="text" name="heure" id="heure" value="{{$heure}}"
+                                   class="form-control col-sm-8"/>
                         </div>
                     </div>
                     <div class="col"></div>
@@ -108,6 +109,7 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
+                        <th>Autre</th>
                         <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
@@ -115,32 +117,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @for($i = 0; $i < 2; $i++)
-                        <tr>
-                            <td><select name="site[]" class="form-control">
-                                    @foreach($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td><input type="text" name="client[]" class="form-control"></td>
-                            <td><select name="nature[]" class="form-control">
-                                    <option>envoi</option>
-                                    <option>tri</option>
-                                    <option>transite</option>
-                                    <option><option>approvisionnement</option></option>
-                                </select></td>
-                            <td><input type="text" name="numero_scelle[]" class="form-control"></td>
-                            <td><input type="number" name="nbre_colis[]" class="form-control"></td>
-                            <td><input type="text" name="montant[]" class="form-control"></td>
-                        </tr>
-                    @endfor
+                    <tr>
+                        <td>
+                            <select name="site[]" class="form-control">
+                                <option></option>
+                                @foreach($sites as $site)
+                                    <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td><input type="text" name="client[]" class="form-control"></td>
+                        <td><input type="text" name="autre[]" class="form-control"></td>
+                        <td><select name="nature[]" class="form-control">
+                                <option>envoi</option>
+                                <option>tri</option>
+                                <option>transite</option>
+                                <option>approvisionnement</option>
+                            </select></td>
+                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>
+                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>
+                        <td><input type="text" name="montant[]" class="form-control"></td>
+                    </tr>
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalColis" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" class="form-control"></td>
+                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
+                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -189,24 +192,70 @@
             // Gestion des missions
             $("#addRowSite").on("click", function () {
                 $('#tableSite').append('<tr>\n' +
-                    '                        <td><select name="site[]" class="form-control">\n' +
+                    '                        <td>\n' +
+                    '                            <select name="site[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
                     '                                @foreach($sites as $site)\n' +
                     '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
                     '                                @endforeach\n' +
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
                     '                        <td><select name="nature[]" class="form-control">\n' +
-                    '                                    <option>envoi</option>\n' +
-                    '                                    <option>tri</option>\n' +
-                    '                                    <option>transite</option>\n' +
-                    '                                    <option><option>approvisionnement</option></option>\n' +
-                    '                                </select></td>\n' +
-                    '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
+                    '                                <option>envoi</option>\n' +
+                    '                                <option>tri</option>\n' +
+                    '                                <option>transite</option>\n' +
+                    '                                <option>approvisionnement</option>\n' +
+                    '                            </select></td>\n' +
                     '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');
             });
         })
+    </script>
+    <script>
+        $(document).on('DOMNodeInserted', function () {
+            $("select[name='site[]']").on("change", function () {
+                let index = 0;
+                const thisSite = this;
+                $.each($("select[name='site[]']"), function (i) {
+                    const site = $("select[name='site[]']").get(i);
+                    if (thisSite === site) {
+                        index = i;
+                    }
+                });
+                const site = sites.find(s => s.id === parseInt(this.value));
+                if (site) {
+                    console.log(site);
+                    $("input[name='client[]']").eq(index).val(site.clients.client_nom);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).on('DOMNodeInserted', function () {
+            $("input[name='montant[]']").on("change", function () {
+                let montantTotal = 0;
+                $.each($("input[name='montant[]']"), function (i) {
+                    const montant = $("input[name='montant[]'").get(i).value;
+                    montantTotal += parseFloat(montant) ?? 0;
+                });
+                $("#totalMontant").val(montantTotal);
+
+            });
+            $("input[name='nbre_colis[]']").on("change", function () {
+                let totalColis = 0;
+                $.each($("input[name='nbre_colis[]']"), function (i) {
+                    const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                    totalColis += parseFloat(nbre) ?? 0;
+                });
+                $("#totalColis").val(totalColis);
+
+            });
+        });
     </script>
 @endsection

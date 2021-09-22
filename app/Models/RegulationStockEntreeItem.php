@@ -13,5 +13,7 @@ class RegulationStockEntreeItem extends Model
         "debut",
         "fin",
         "reste",
+        "autre",
+        "colis",
     ];
 }
