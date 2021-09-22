@@ -478,8 +478,6 @@
                         <form method="post" action="{{ route('vidange-vignette.store') }}">
                             @csrf
 
-                            <input type="hidden" name="idVehicule_vignette" required>
-                            <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group row">
@@ -498,7 +496,36 @@
                                                name="montant"/>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <table class="table table-bordered" id="listeVV">
+                                        <thead>
+                                        <tr>
+                                            <th>Véhicule</th>
+                                            <th>Date</th>
+                                            <th>Prochaine vignette</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($vidangeVignette as $vidange)
+                                            <tr>
+                                                <td>{{$vidange->idVehicule}}</td>
+                                                <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
+                                                <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                                                <td>
+                                                    <a class="btn btn-danger btn-sm"
+                                                       onclick="supprimerVV('{{$vidange->id}}', this)"></a>
+                                                </td>
+                                            </tr>
+
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <input type="hidden" name="idVehicule_vignette" required>
+                            <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
+
                             <br/>
                             <br>
                             <button type="submit" class="btn btn-primary btn-sm">Valider</button>
@@ -731,6 +758,29 @@
                         alert("Suppression effectuée");
                         const indexLigne = $(e).closest('tr').get(0).rowIndex;
                         document.getElementById("listeVC").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
+        function supprimerVV(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "vidange-vignette/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("listeVV").deleteRow(indexLigne);
                     },
                     error: function () {
                         alert("Une erreur s'est produite");

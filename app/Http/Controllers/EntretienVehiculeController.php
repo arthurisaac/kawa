@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use App\Models\VidangeCourroie;
 use App\Models\VidangeHuilePont;
 use App\Models\VidangeTransport;
+use App\Models\VidangeVignette;
 use App\Models\VidangeVisite;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,9 @@ class EntretienVehiculeController extends Controller
         $vidangeTransport = VidangeTransport::all();
         $vidangeVisite = VidangeVisite::all();
         $vidangeCourroie = VidangeCourroie::all();
+        $vidangeVignette = VidangeVignette::all();
         return view('/transport/entretien-vehicule.index',
-            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie'));
+            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie', 'vidangeVignette'));
     }
 
     /**
