@@ -655,42 +655,6 @@
                                         </li>
                                         <li><span></span><span>Stock</span>
                                             <ul>
-                                                <li><span></span><span>Bordereau</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-bordereau','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-bordereau-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>Securipack</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-securipack','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-securipack-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>Scell&#233;</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-scelle','no','no','no','yes','yes','no','','','1300','700')"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-scelle-liste','no','no','no','yes','yes','no','','','1200','600')"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
                                                 <li><span></span><span>Entrée</span>
                                                     <ul>
                                                         <li><span></span><a
