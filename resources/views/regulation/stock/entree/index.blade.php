@@ -152,4 +152,17 @@
             });
         });
     </script>
+    <script>
+        $(document).on('DOMNodeInserted', function () {
+            $("input[name='qte_livree[]']").on("change", function () {
+
+                $.each($("input[name='qte_livree[]']"), function (i) {
+                    const qte_livree = $("input[name='qte_livree[]'").get(i).value;
+                    const qte_attendu = $("input[name='qte_attendu[]'").get(i).value;
+                    const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
+                    $("input[name='reste[]'").eq(i).val(reste);
+                });
+            });
+        });
+    </script>
 @endsection
