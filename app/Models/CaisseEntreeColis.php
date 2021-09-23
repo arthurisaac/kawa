@@ -9,12 +9,22 @@ class CaisseEntreeColis extends Model
     protected $fillable = [
         'date',
         'heure',
-        'agentRegulation',
+        'centre',
+        'centre_regional',
+        'agent',
+        'chef',
         'observation',
+        'totalMontant',
+        'totalColis',
     ];
 
-    public function agentRegulations()
+    public function agents()
     {
-        return $this->belongsTo('App\Models\Personnel', 'agentRegulation', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'agent', 'id');
+    }
+
+    public function chefs()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'chef', 'id');
     }
 }

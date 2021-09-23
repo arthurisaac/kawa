@@ -21,309 +21,232 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('caisse-entree-colis.update', $coli->id) }}">
-            @method('PATCH')
+        <form action="{{ route('caisse-entree-colis.update', $coli->id) }}" method="post">
             @csrf
-            <div class="row">
-                <div class="col-3">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Date</label>
-                        <input value="{{$coli->date}}" type="date" name="date" class="form-control col-sm-7" required/>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Heure</label>
-                        <input value="{{$coli->heure}}" type="time" name="heure" class="form-control col-sm-7"
-                               required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Agent de régulation</label>
-                        <select name="agentRegulation" class="form-control col-sm-7" required>
-                            <option
-                                value="{{$coli->agentRegulations->id}}">{{$coli->agentRegulations->nomPrenoms}}</option>
-                            @foreach($personnels as $personnel)
-                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            @method("PATCH")
 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-4">Date départ</label>
+                            <input type="text" name="date" id="date" value="{{$coli->date}}"
+                                   class="form-control col-sm-8"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="heure" class="col-sm-4">Heure départ</label>
+                            <input type="text" name="heure" id="heure" value="{{$coli->heure}}"
+                                   class="form-control col-sm-8"/>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label class="col-sm-4">Agent garde</label>
+                            <select class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" required>
+                                <option value="{{$coli->agent}}">{{$coli->agents->nomPrenoms ?? ""}}</option>
+                                @foreach($agents as $agent)
+                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label class="col-sm-4">Chef de bord</label>
+                            <select class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" required>
+                                <option value="{{$coli->chef}}">{{$coli->chefs->nomPrenoms ?? ""}}</option>
+                                @foreach($chefBords as $agent)
+                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="centre" class="col-sm-4">Centre</label>
+                            <select name="centre" id="centre" class="form-control col-8" required>
+                                <option>{{$coli->centre}}</option>
+                                @foreach ($centres as $centre)
+                                    <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="centre_regional" class="col-sm-4">Centre régional</label>
+                            <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
+                                <option>{{$coli->centre_regional}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
                 </div>
             </div>
-            <br/><br/>
-
-            <div class="row">
-                <div class="col-10">
-                    <div class="colis">
-                        @foreach($items as $item)
-                            <div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label>Numero bordereau</label>
-                                            <input type="text" name="bordereau[]" value="{{$item->bordereau}}" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label>Expéditeur</label>
-                                            <input name="expediteur[]" value="{{$item->expediteur}}" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <input type="hidden" name="idItem[]" value="{{$item->id}}">
-                                    <div class="col-2">
-                                        <div class="form-group">
-                                            <h6>Nombre total de colis</h6>
-                                            <select name="totalColis[]"
-                                                    class="form-control">
-                                                <option>{{$item->totalColis}}</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6>Type de colis</h6>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6">Sécuripack</label>
-                                            <select name="typeColisSecuripack[]"
-                                                    class="form-control col-sm-6">
-                                                <option>{{$item->typeColisSecuripack}}</option>
-                                                <option value="Extra grand">Extra grand</option>
-                                                <option>Grand</option>
-                                                <option value="Moyen">Moyen</option>
-                                                <option value="Petit">Petit</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6">Sac jute</label>
-                                            <select name="typeColisSacjute[]" class="form-control col-sm-6">
-                                                <option>{{$item->typeColisSacjute}}</option>
-                                                <option value="Extra grand">Extra grand</option>
-                                                <option>Grand</option>
-                                                <option value="Moyen">Moyen</option>
-                                                <option value="Petit">Petit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <h6 for="nombre_colis">Nombre de colis</h6>
-                                        <div class="form-group">
-                                            <input type="number" name="nombreColisSecuripack[]" id="nombre_colis"
-                                                   class="form-control" value="{{$item->nombreColisSecuripack}}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="number" min="0" name="nombreColisSacjute[]"
-                                                   class="form-control" value="{{$item->nombreColisSacjute}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <h6>N° de scellé</h6>
-                                        <div class="form-group row">
-                                            <select name="numeroScelleSecuripack[]" class="form-control">
-                                                <option>{{$item->numeroScelleSecuripack}}</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group row">
-                                            <select name="numeroScelleSacjute[]" class="form-control">
-                                                <option>{{$item->numeroScelleSacjute}}</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6>Montant annoncé</h6>
-                                        <div class="form-group">
-                                            <input type="number" min="0" name="montantAnnonceSecuripack[]"
-                                                   value="{{$item->montantAnnonceSecuripack}}" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="number" min="0" name="montantAnnonceSacjute[]"
-                                                   value="{{$item->montantAnnonceSacjute}}" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="col-2">
-                    <br/>
-                    {{--<button class="btn btn-primary" type="button" id="nouveau-colis">+</button>--}}
-                </div>
-            </div>
-            <br/><br/>
-
-            <div class="row">
-                <div class="col-sm-6">
-
-                    <div class="form-group">
-                        <label>Observation</label>
-                        <textarea name="observation" class="form-control"
-                                  rows="5">{{$coli->observation}}</textarea><br/>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-sm">Valider</button>
-                        <button type="reset" class="btn btn-danger btn-sm">Annuler</button>
-                    </div>
-                </div>
+            <div class="container">
+                <br>
+                <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
+                <br>
+                <br>
+                <table class="table table-bordered" id="table">
+                    <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Client</th>
+                        <th>Autre</th>
+                        <th>Nature</th>
+                        <th>Numéros scellé</th>
+                        <th>Nbre colis</th>
+                        <th>Montant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($items as $item)
+                        <tr>
+                            <td>
+                                <input type="hidden" name="ids[]" value="{{$item->id}}">
+                                <select name="site_edit[]" class="form-control">
+                                    <option>{{$item->site}}</option>
+                                    @foreach($sites as $site)
+                                        <option value="{{$site->id}}">{{$site->site}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td><input type="text" name="client_edit[]" value="{{$item->client}}" class="form-control"></td>
+                            <td><input type="text" name="autre_edit[]" value="{{$item->autre}}" class="form-control"></td>
+                            <td><select name="nature_edit[]" class="form-control">
+                                    <option>{{$item->nature}}</option>
+                                    <option>envoi</option>
+                                    <option>tri</option>
+                                    <option>transite</option>
+                                    <option>approvisionnement</option>
+                                </select></td>
+                            <td><input type="text" name="scelle_edit[]" value="{{$item->scelle}}" class="form-control"></td>
+                            <td><input type="number" name="nbre_colis_edit[]" value="{{$item->nbre_colis}}" class="form-control"></td>
+                            <td><input type="text" name="montant_edit[]" value="{{$item->montant }}" class="form-control"></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
+                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <br>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
 
     </div>
+
+    <script>
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let sites = {!! json_encode($sites) !!};
+        $(document).ready(function () {
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
-            const colisHTML = '<div>\n' +
-                '                            <div class="row">\n' +
-                '                                <div class="col-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label>Numero bordereau</label>\n' +
-                '                                        <input type="text" name="bordereau[]" class="form-control" required/>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label>Expéditeur</label>\n' +
-                '                                        <input name="expediteur[]" class="form-control" required />\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                            <div class="row">\n' +
-                '                                <div class="col-2">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <h6>Nombre total de colis</h6>\n' +
-                '                                        <select name="totalColis[]"\n' +
-                '                                                class="form-control">\n' +
-                '                                            <option></option>\n' +
-                '                                            <option>1</option>\n' +
-                '                                            <option>2</option>\n' +
-                '                                            <option>3</option>\n' +
-                '                                            <option>4</option>\n' +
-                '                                            <option>5</option>\n' +
-                '                                            <option>6</option>\n' +
-                '                                            <option>7</option>\n' +
-                '                                            <option>8</option>\n' +
-                '                                            <option>9</option>\n' +
-                '                                            <option>10</option>\n' +
-                '                                        </select>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col">\n' +
-                '                                    <h6>Type de colis</h6>\n' +
-                '                                    <div class="form-group row">\n' +
-                '                                        <label class="col-sm-6">Sécuripack</label>\n' +
-                '                                        <select name="typeColisSecuripack[]"\n' +
-                '                                                class="form-control col-sm-6">\n' +
-                '                                            <option></option>\n' +
-                '                                            <option value="extra grand">Extra grand</option>\n' +
-                '                                            <option>Grand</option>\n' +
-                '                                            <option value="Moyen">Moyen</option>\n' +
-                '                                            <option value="Petit">Petit</option>\n' +
-                '                                        </select>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="form-group row">\n' +
-                '                                        <label class="col-sm-6">Sac jute</label>\n' +
-                '                                        <select name="typeColisSacjute[]" class="form-control col-sm-6">\n' +
-                '                                            <option></option>\n' +
-                '                                            <option value="extra grand">Extra grand</option>\n' +
-                '                                            <option>Grand</option>\n' +
-                '                                            <option value="Moyen">Moyen</option>\n' +
-                '                                            <option value="Petit">Petit</option>\n' +
-                '                                        </select>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col-2">\n' +
-                '                                    <h6 for="nombre_colis">Nombre de colis</h6>\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <input type="number" name="nombreColisSecuripack[]" id="nombre_colis"\n' +
-                '                                               class="form-control"/>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <input type="number" min="0" name="nombreColisSacjute[]"\n' +
-                '                                               class="form-control"/>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col-2">\n' +
-                '                                    <h6>N° de scellé</h6>\n' +
-                '                                    <div class="form-group row">\n' +
-                '                                        <select name="numeroScelleSecuripack[]" class="form-control">\n' +
-                '                                            <option></option>\n' +
-                '                                            <option>1</option>\n' +
-                '                                            <option>2</option>\n' +
-                '                                            <option>3</option>\n' +
-                '                                            <option>4</option>\n' +
-                '                                            <option>5</option>\n' +
-                '                                            <option>6</option>\n' +
-                '                                            <option>7</option>\n' +
-                '                                            <option>8</option>\n' +
-                '                                            <option>9</option>\n' +
-                '                                            <option>10</option>\n' +
-                '                                        </select>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="form-group row">\n' +
-                '                                        <select name="numeroScelleSacjute[]" class="form-control">\n' +
-                '                                            <option></option>\n' +
-                '                                            <option>1</option>\n' +
-                '                                            <option>2</option>\n' +
-                '                                            <option>3</option>\n' +
-                '                                            <option>4</option>\n' +
-                '                                            <option>5</option>\n' +
-                '                                            <option>6</option>\n' +
-                '                                            <option>7</option>\n' +
-                '                                            <option>8</option>\n' +
-                '                                            <option>9</option>\n' +
-                '                                            <option>10</option>\n' +
-                '                                        </select>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col">\n' +
-                '                                    <h6>Montant annoncé</h6>\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <input type="number" min="0" name="montantAnnonceSecuripack[]" class="form-control">\n' +
-                '                                    </div>\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <input type="number" min="0" name="montantAnnonceSacjute[]" class="form-control">\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                            <br ><br >\n' +
-                '                        </div>';
-            $("#nouveau-colis").on("click", function () {
-                $(".colis").append(colisHTML);
-            })
+            $("#add").on("click", function () {
+                $('#table').append('<tr>\n' +
+                    '                        <td>\n' +
+                    '                            <select name="site[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                @foreach($sites as $site)\n' +
+                    '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                @endforeach\n' +
+                    '                            </select>\n' +
+                    '                        </td>\n' +
+                    '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
+                    '                        <td><select name="nature[]" class="form-control">\n' +
+                    '                                <option>envoi</option>\n' +
+                    '                                <option>tri</option>\n' +
+                    '                                <option>transite</option>\n' +
+                    '                                <option>approvisionnement</option>\n' +
+                    '                            </select></td>\n' +
+                    '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
+                    '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
+                    '                    </tr>');
+            });
         })
+    </script>
+    <script>
+        $(document).on('DOMNodeInserted', function () {
+            $("input[name='montant[]']").on("change", function () {
+                let montantTotal = 0;
+                $.each($("input[name='montant[]']"), function (i) {
+                    const montant = $("input[name='montant[]'").get(i).value;
+                    montantTotal += parseFloat(montant) ?? 0;
+                });
+                $("#totalMontant").val(montantTotal);
+
+            });
+            $("input[name='nbre_colis[]']").on("change", function () {
+                let totalColis = 0;
+                $.each($("input[name='nbre_colis[]']"), function (i) {
+                    const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                    totalColis += parseFloat(nbre) ?? 0;
+                });
+                $("#totalColis").val(totalColis);
+
+            });
+
+            $("select[name='site[]']").on("change", function () {
+                let index = 0;
+                const thisSite = this;
+                $.each($("select[name='site[]']"), function (i) {
+                    const site = $("select[name='site[]']").get(i);
+                    if (thisSite === site) {
+                        index = i;
+                    }
+                });
+                const site = sites.find(s => s.id === parseInt(this.value));
+                if (site) {
+                    console.log(site);
+                    $("input[name='client[]']").eq(index).val(site.clients.client_nom);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+        });
     </script>
 
 @endsection

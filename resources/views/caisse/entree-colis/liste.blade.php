@@ -30,7 +30,6 @@
                             <td>Date</td>
                             <td>Heure</td>
                             <td>Agent de régulation</td>
-                            <td>Observation</td>
                             <td>Actions</td>
                         </tr>
                     </thead>
@@ -39,22 +38,10 @@
                         <tr>
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->heure}}</td>
-                            <td>{{$coli->agentRegulations->nomPrenoms}}</td>
-                            <td>{{$coli->observation}}</td>
+                            <td>{{$coli->agents->nomPrenoms ?? "Donnée indisponible"}}</td>
                             <td>
-                                <div class="two-columns">
-                                    <div>
-                                        <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                    </div>
-                                    <div>
-                                        <form action="{{ route('caisse-entree-colis.destroy', $coli->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                        </form>
-                                    </div>
-                                </div>
-
+                                <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
+                                <a class="btn btn-danger btn-sm"></a>
                             </td>
                         </tr>
                     @endforeach
