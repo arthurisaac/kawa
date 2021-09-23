@@ -667,6 +667,18 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li><span></span><span>Sortie</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-sortie','no','no','no','yes','yes','no','','','1300','700')"
+                                                                target="_self" title="Nouveau">Nouveau</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-sortie-liste','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self" title="Liste">Liste</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>
