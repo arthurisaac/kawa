@@ -28,20 +28,26 @@
                     <thead>
                         <tr>
                             <td>Date</td>
-                            <td>Heure</td>
                             <td>Agent de régulation</td>
-                            <td>Actions</td>
+                            <td>Centre régional</td>
+                            <td>Centre</td>
+                            <td>Nbre Total colis</td>
+                            <td>Montant total</td>
+                            <td style="width: 50px;">Actions</td>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($colis as $coli)
                         <tr>
                             <td>{{$coli->date}}</td>
-                            <td>{{$coli->heure}}</td>
                             <td>{{$coli->agents->nomPrenoms ?? "Donnée indisponible"}}</td>
+                            <td>{{$coli->centre}}</td>
+                            <td>{{$coli->centre_regional}}</td>
+                            <td>{{$coli->totalColis}}</td>
+                            <td>{{$coli->totalMontant}}</td>
                             <td>
                                 <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
-                                <a class="btn btn-danger btn-sm"></a>
+                                <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->id}}', this)"></a>
                             </td>
                         </tr>
                     @endforeach
@@ -58,5 +64,33 @@
                 }
             });
         });
+    </script>
+    <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "caisse-sortie-colis/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("liste").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+
+
+            }
+
+        }
     </script>
 @endsection

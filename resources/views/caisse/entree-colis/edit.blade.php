@@ -45,10 +45,6 @@
                     <div class="col"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <div class="form-group row">
                             <label class="col-sm-4">Agent garde</label>
@@ -123,13 +119,13 @@
                             <td>
                                 <input type="hidden" name="ids[]" value="{{$item->id}}">
                                 <select name="site_edit[]" class="form-control">
-                                    <option>{{$item->site}}</option>
+                                    <option value="{{$item->site}}">{{$item->sites->site ?? "Donnée indisponible"}}</option>
                                     @foreach($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
                                     @endforeach
                                 </select>
                             </td>
-                            <td><input type="text" name="client_edit[]" value="{{$item->client}}" class="form-control"></td>
+                            <td><input type="text" name="client_edit[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
                             <td><input type="text" name="autre_edit[]" value="{{$item->autre}}" class="form-control"></td>
                             <td><select name="nature_edit[]" class="form-control">
                                     <option>{{$item->nature}}</option>
@@ -147,8 +143,8 @@
                     <tfoot>
                     <tr>
                         <td colspan="5" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
+                        <td><input type="number" name="totalColis" id="totalColis" value="{{$coli->totalColis}}" class="form-control"></td>
+                        <td><input type="number" name="totalMontant" id="totalMontant" value="{{$coli->totalMontant}}" class="form-control"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -201,7 +197,7 @@
                     '                                <option>transite</option>\n' +
                     '                                <option>approvisionnement</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
+                    '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');

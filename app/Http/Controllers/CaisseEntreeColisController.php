@@ -23,12 +23,10 @@ class CaisseEntreeColisController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::all();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         return view('/caisse/entree-colis.index',
-            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords'));
+            compact('centres', 'centres_regionaux', 'numero', 'sites'));
     }
 
     public function liste()
@@ -60,8 +58,6 @@ class CaisseEntreeColisController extends Controller
             'heure' => $request->get("heure"),
             'centre' => $request->get("centre"),
             'centre_regional' => $request->get("centre_regional"),
-            'agent' => $request->get("agentDeGarde"),
-            'chef' => $request->get("chefDeBord"),
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
         ]);
@@ -116,7 +112,8 @@ class CaisseEntreeColisController extends Controller
         $centres_regionaux = Centre_regional::all();
         $personnels = Personnel::all();
         $colis = CaisseEntreeColis::where('id', $id)->get();
-        $items = DB::table('caisse_entree_colis_items')->where('entree_colis', $id)->get();
+        //$items = DB::table('caisse_entree_colis_items')->where('entree_colis', $id)->get();
+        $items = CaisseEntreeColisItem::all()->where("entree_colis", $id);
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::all();
@@ -139,13 +136,10 @@ class CaisseEntreeColisController extends Controller
         $data->heure = $request->get("heure");
         $data->centre = $request->get("centre");
         $data->centre_regional = $request->get("centre_regional");
-        $data->agent = $request->get("agentDeGarde");
-        $data->chef = $request->get("chefDeBord");
 
         $data->save();
 
         $site = $request->get("site");
-        $client = $request->get("client");
         $autre = $request->get("autre");
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
@@ -157,7 +151,6 @@ class CaisseEntreeColisController extends Controller
                 $item = new CaisseEntreeColisItem([
                     "entree_colis" => $data->id,
                     "site" => $site[$i],
-                    "client" => $client[$i],
                     "autre" => $autre[$i],
                     "nature" => $nature[$i],
                     "scelle" => $scelle[$i],
@@ -169,7 +162,6 @@ class CaisseEntreeColisController extends Controller
         }
 
         $site_edit = $request->get("site_edit");
-        $client_edit = $request->get("client_edit");
         $autre_edit = $request->get("autre_edit");
         $nature_edit = $request->get("nature_edit");
         $scelle_edit = $request->get("scelle_edit");
@@ -181,7 +173,6 @@ class CaisseEntreeColisController extends Controller
             for ($i = 0; $i < count($nbre_colis_edit); $i++) {
                 $item = CaisseEntreeColisItem::find($ids[$i]);
                 $item->site = $site_edit[$i];
-                $item->client = $client_edit[$i];
                 $item->autre = $autre_edit[$i];
                 $item->nature = $nature_edit[$i];
                 $item->scelle = $scelle_edit[$i];

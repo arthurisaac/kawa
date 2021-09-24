@@ -43,38 +43,6 @@
                     <div class="col"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Agent garde</label>
-                            <select class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" required>
-                                <option></option>
-                                @foreach($agents as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chef de bord</label>
-                            <select class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" required>
-                                <option></option>
-                                @foreach($chefBords as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <div class="form-group row">
                             <label for="centre" class="col-sm-4">Centre</label>
@@ -133,7 +101,7 @@
                                 <option>transite</option>
                                 <option>approvisionnement</option>
                             </select></td>
-                        <td><input type="text" name="scelle[]" class="form-control"></td>
+                        <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                         <td><input type="text" name="montant[]" class="form-control"></td>
                     </tr>
@@ -195,7 +163,7 @@
                     '                                <option>transite</option>\n' +
                     '                                <option>approvisionnement</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>\n' +
+                    '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');

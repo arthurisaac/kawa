@@ -6,6 +6,7 @@ use App\Models\CaisseSortieColis;
 use App\Models\CaisseSortieColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_site;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -22,14 +23,17 @@ class CaisseSortieColisController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $personnels = Personnel::all();
+        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
+        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
+        $sites = Commercial_site::all();
+        $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         return view('/caisse/sortie-colis.index',
-            compact('centres', 'centres_regionaux', 'personnels'));
+            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords'));
     }
 
     public function liste()
     {
-        $colis = CaisseSortieColis::with('agentRegulations')->get();
+        $colis = CaisseSortieColis::all();
         return view('/caisse/sortie-colis.liste', compact('colis'));
     }
 
@@ -51,46 +55,42 @@ class CaisseSortieColisController extends Controller
      */
     public function store(Request $request)
     {
-        $store = new CaisseSortieColis([
-            'date' => $request->get('date'),
-            'heure' => $request->get('heure'),
-            'agentRegulation' => $request->get('agentRegulation'),
-            'observation' => $request->get('observation'),
+        $data = new CaisseSortieColis([
+            'date' => $request->get("date"),
+            'heure' => $request->get("heure"),
+            'centre' => $request->get("centre"),
+            'centre_regional' => $request->get("centre_regional"),
+            'agent' => $request->get("agentDeGarde"),
+            'chef' => $request->get("chefDeBord"),
+            'totalMontant' => $request->get("totalMontant"),
+            'totalColis' => $request->get("totalColis"),
         ]);
-        $store->save();
+        $data->save();
 
-        $totalColis = $request->get('totalColis');
-        $typeColisSecuripack = $request->get('typeColisSecuripack');
-        $typeColisSacjute = $request->get('typeColisSacjute');
-        $nombreColisSecuripack = $request->get('nombreColisSecuripack');
-        $nombreColisSacjute = $request->get('nombreColisSacjute');
-        $numeroScelleSecuripack = $request->get('numeroScelleSecuripack');
-        $numeroScelleSacjute = $request->get('numeroScelleSacjute');
-        $montantAnnonceSecuripack = $request->get('montantAnnonceSecuripack');
-        $montantAnnonceSacjute = $request->get('montantAnnonceSacjute');
-        $bordereau = $request->get('bordereau');
-        $expediteur = $request->get('expediteur');
+        $site = $request->get("site");
+        $autre = $request->get("autre");
+        $nature = $request->get("nature");
+        $scelle = $request->get("scelle");
+        $nbre_colis = $request->get("nbre_colis");
+        $montant = $request->get("montant");
 
-        for ($i = 0; $i < count($totalColis); $i++) {
-            if (!empty($totalColis[$i])) {
-                $colis = new CaisseSortieColisItem([
-                    'sortieColis' =>$store->id,
-                    'totalColis' => $totalColis[$i],
-                    'typeColisSecuripack' => $typeColisSecuripack[$i],
-                    'typeColisSacjute' => $typeColisSacjute[$i],
-                    'nombreColisSecuripack' => $nombreColisSecuripack[$i],
-                    'nombreColisSacjute' => $nombreColisSacjute[$i],
-                    'numeroScelleSecuripack' => $numeroScelleSecuripack[$i],
-                    'numeroScelleSacjute' => $numeroScelleSacjute[$i],
-                    'montantAnnonceSecuripack' => $montantAnnonceSecuripack[$i],
-                    'montantAnnonceSacjute' => $montantAnnonceSacjute[$i],
-                    'bordereau' => $bordereau[$i],
-                    'expediteur' => $expediteur[$i]
+        if (!empty($site) && !empty($nbre_colis)) {
+            for ($i = 0; $i < count($nbre_colis); $i++) {
+                $item = new CaisseSortieColisItem([
+                    "sortieColis" => $data->id,
+                    "site" => $site[$i],
+                    "autre" => $autre[$i],
+                    "nature" => $nature[$i],
+                    "scelle" => $scelle[$i],
+                    "nbre_colis" => $nbre_colis[$i],
+                    "montant" => $montant[$i],
                 ]);
-                $colis->save();
+                $item->save();
             }
         }
-        return redirect('/caisse-sortie-colis')->with('success', 'Service enregistré!');
+
+        return redirect()->back()->with('success', 'Enregistrement effectué!');
+
     }
 
     /**
@@ -130,52 +130,67 @@ class CaisseSortieColisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $coli = CaisseSortieColis::find($id);
-        $coli->date = $request->get("date");
-        $coli->heure = $request->get("heure");
-        $coli->agentRegulation = $request->get("agentRegulation");
-        $coli->observation = $request->get("observation");
-        $coli->save();
+        $data = CaisseSortieColis::find($id);
+        $data->date = $request->get("date");
+        $data->heure = $request->get("heure");
+        $data->centre = $request->get("centre");
+        $data->centre_regional = $request->get("centre_regional");
+        $data->agent = $request->get("agentDeGarde");
+        $data->chef = $request->get("chefDeBord");
 
-        $idItem = $request->get('idItem');
-        $totalColis = $request->get('totalColis');
-        $typeColisSecuripack = $request->get('typeColisSecuripack');
-        $typeColisSacjute = $request->get('typeColisSacjute');
-        $nombreColisSecuripack = $request->get('nombreColisSecuripack');
-        $nombreColisSacjute = $request->get('nombreColisSacjute');
-        $numeroScelleSecuripack = $request->get('numeroScelleSecuripack');
-        $numeroScelleSacjute = $request->get('numeroScelleSacjute');
-        $montantAnnonceSecuripack = $request->get('montantAnnonceSecuripack');
-        $montantAnnonceSacjute = $request->get('montantAnnonceSacjute');
-        $bordereau = $request->get("bordereau");
-        $expediteur = $request->get("expediteur");
+        $data->save();
 
-        for ($i = 0; $i < count($idItem); $i++) {
-            if (!empty($idItem[$i])) {
-                $item = CaisseSortieColisItem::find($idItem[$i]);
-                $item->totalColis = $totalColis[$i];
-                $item->typeColisSecuripack = $typeColisSecuripack[$i];
-                $item->typeColisSacjute = $typeColisSacjute[$i];
-                $item->nombreColisSecuripack = $nombreColisSecuripack[$i];
-                $item->nombreColisSacjute = $nombreColisSacjute[$i];
-                $item->numeroScelleSecuripack = $numeroScelleSecuripack[$i];
-                $item->numeroScelleSacjute = $numeroScelleSacjute[$i];
-                $item->montantAnnonceSecuripack = $montantAnnonceSecuripack[$i];
-                $item->montantAnnonceSacjute = $montantAnnonceSacjute[$i];
-                $item->bordereau = $bordereau[$i];
-                $item->expediteur = $expediteur[$i];
+        $site = $request->get("site");
+        $autre = $request->get("autre");
+        $nature = $request->get("nature");
+        $scelle = $request->get("scelle");
+        $nbre_colis = $request->get("nbre_colis");
+        $montant = $request->get("montant");
+
+        if (!empty($site) && !empty($nbre_colis)) {
+            for ($i = 0; $i < count($nbre_colis); $i++) {
+                $item = new CaisseSortieColisItem([
+                    "sortieColis" => $data->id,
+                    "site" => $site[$i],
+                    "autre" => $autre[$i],
+                    "nature" => $nature[$i],
+                    "scelle" => $scelle[$i],
+                    "nbre_colis" => $nbre_colis[$i],
+                    "montant" => $montant[$i],
+                ]);
                 $item->save();
             }
         }
 
-        return redirect('/caisse-sortie-colis-liste')->with('success', 'Service modifié avec succès!');
+        $site_edit = $request->get("site_edit");
+        $autre_edit = $request->get("autre_edit");
+        $nature_edit = $request->get("nature_edit");
+        $scelle_edit = $request->get("scelle_edit");
+        $nbre_colis_edit = $request->get("nbre_colis_edit");
+        $montant_edit = $request->get("montant_edit");
+        $ids = $request->get("ids");
+
+        if (!empty($site_edit) && !empty($nbre_colis_edit)) {
+            for ($i = 0; $i < count($nbre_colis_edit); $i++) {
+                $item = CaissesortieColisItem::find($ids[$i]);
+                $item->site = $site_edit[$i];
+                $item->autre = $autre_edit[$i];
+                $item->nature = $nature_edit[$i];
+                $item->scelle = $scelle_edit[$i];
+                $item->nbre_colis = $nbre_colis_edit[$i];
+                $item->montant = $montant_edit[$i];
+                $item->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Enregistrement effectué!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -186,6 +201,9 @@ class CaisseSortieColisController extends Controller
             $i = CaisseSortieColisItem::find($item->id);
             $i->delete();
         }
-        return redirect('/caisse-sortie-colis-liste')->with('success', 'Service supprimé avec succès!');
+        //return redirect('/caisse-sortie-colis-liste')->with('success', 'Service supprimé avec succès!');
+        return \response()->json([
+            "message" => "ok"
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Sortie de colis</h2></div>
+        <div><h2 class="heading">Sortie colis</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -28,33 +28,26 @@
                     <thead>
                         <tr>
                             <td>Date</td>
-                            <td>Heure</td>
                             <td>Agent de régulation</td>
-                            <td>Observation</td>
-                            <td>Actions</td>
+                            <td>Centre régional</td>
+                            <td>Centre</td>
+                            <td>Nbre Total colis</td>
+                            <td>Montant total</td>
+                            <td style="width: 50px;">Actions</td>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($colis as $coli)
                         <tr>
                             <td>{{$coli->date}}</td>
-                            <td>{{$coli->heure}}</td>
-                            <td>{{$coli->agentRegulations->nomPrenoms}}</td>
-                            <td>{{$coli->observation}}</td>
+                            <td>{{$coli->agents->nomPrenoms ?? "Donnée indisponible"}}</td>
+                            <td>{{$coli->centre}}</td>
+                            <td>{{$coli->centre_regional}}</td>
+                            <td>{{$coli->totalColis}}</td>
+                            <td>{{$coli->totalMontant}}</td>
                             <td>
-                                <div class="two-columns">
-                                    <div>
-                                        <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                    </div>
-                                    <div>
-                                        <form action="{{ route('caisse-sortie-colis.destroy', $coli->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                        </form>
-                                    </div>
-                                </div>
-
+                                <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
+                                <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->id}}', this)"></a>
                             </td>
                         </tr>
                     @endforeach
@@ -71,5 +64,33 @@
                 }
             });
         });
+    </script>
+    <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "caisse-sortie-colis/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("liste").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+
+
+            }
+
+        }
     </script>
 @endsection

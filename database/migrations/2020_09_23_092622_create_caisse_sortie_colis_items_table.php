@@ -16,17 +16,12 @@ class CreateCaisseSortieColisItemsTable extends Migration
         Schema::create('caisse_sortie_colis_items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('totalColis')->default(0);
-            $table->string('typeColisSecuripack')->nullable();
-            $table->string('typeColisSacjute')->nullable();
-            $table->integer('nombreColisSecuripack')->nullable();
-            $table->integer('nombreColisSacjute')->nullable();
-            $table->string('numeroScelleSecuripack')->nullable();
-            $table->string('numeroScelleSacjute')->nullable();
-            $table->integer('montantAnnonceSecuripack')->nullable();
-            $table->integer('montantAnnonceSacjute')->nullable();
-            $table->string('bordereau')->nullable();
-            $table->string('expediteur')->nullable();
+            $table->foreignId('site')->references('id')->on('commercial_sites')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("autre")->nullable();
+            $table->string("nature")->nullable();
+            $table->string("scelle")->nullable();
+            $table->integer("nbre_colis")->nullable();
+            $table->float("montant")->nullable();
             $table->foreignId('sortieColis')->references('id')->on('caisse_sortie_colis');
         });
     }

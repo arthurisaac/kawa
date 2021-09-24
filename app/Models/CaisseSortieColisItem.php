@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class CaisseSortieColisItem extends Model
 {
     protected $fillable = [
-        'sortieColis',
-        'totalColis',
-        'typeColisSecuripack',
-        'typeColisSacjute',
-        'nombreColisSecuripack',
-        'nombreColisSacjute',
-        'numeroScelleSecuripack',
-        'numeroScelleSacjute',
-        'montantAnnonceSecuripack',
-        'montantAnnonceSacjute',
-        'bordereau',
-        'expediteur',
+        "sortieColis",
+        "site",
+        "autre",
+        "nature",
+        "scelle",
+        "nbre_colis",
+        "montant",
     ];
+
+    public function sites()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
+            ->with("clients");
+    }
 }

@@ -11,20 +11,8 @@ class CaisseEntreeColis extends Model
         'heure',
         'centre',
         'centre_regional',
-        'agent',
-        'chef',
         'observation',
         'totalMontant',
         'totalColis',
     ];
-
-    public function agents()
-    {
-        return $this->belongsTo('App\Models\Personnel', 'agent', 'id');
-    }
-
-    public function chefs()
-    {
-        return $this->belongsTo('App\Models\Personnel', 'chef', 'id');
-    }
 }

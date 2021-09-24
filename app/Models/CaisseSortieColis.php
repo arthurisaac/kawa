@@ -9,12 +9,10 @@ class CaisseSortieColis extends Model
     protected $fillable = [
         'date',
         'heure',
-        'agentRegulation',
+        'centre',
+        'centre_regional',
         'observation',
+        'totalMontant',
+        'totalColis',
     ];
-
-    public function agentRegulations()
-    {
-        return $this->belongsTo('App\Models\Personnel', 'agentRegulation', 'id');
-    }
 }

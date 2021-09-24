@@ -17,8 +17,13 @@ class CreateCaisseSortieColisTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('date');
-            $table->time('heure');
-            $table->foreignId('agentRegulation')->references('id')->on('personnels');
+            $table->time('heure')->nullable();
+            $table->string('centre')->nullable();
+            $table->string('centre_regional')->nullable();
+            $table->integer('totalColis')->default(0);
+            $table->float('totalMontant')->default(0);
+            $table->foreignId('agent')->references('id')->on('personnels');
+            $table->foreignId('chef')->references('id')->on('personnels');
             $table->string('observation')->nullable();
         });
     }
