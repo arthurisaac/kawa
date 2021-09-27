@@ -145,8 +145,12 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>heure</label>
-                                        <input type="time" class="form-control" name="heure[]"/>
+                                        <label>Type opération</label>
+                                        <select class="form-control" name="type[]">
+                                            <option>Enlèvement</option>
+                                            <option>Dépôt</option>
+                                            <option>Enlèvement + Dépôt</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -222,8 +226,12 @@
                     '                                </div>\n' +
                     '                                <div class="col">\n' +
                     '                                    <div class="form-group">\n' +
-                    '                                        <label>heure</label>\n' +
-                    '                                        <input type="time" class="form-control" name="heure[]"/>\n' +
+                    '                                        <label>Type</label>\n' +
+                    '                                        <select class="form-control" name="type[]">\n' +
+                    '                                            <option>Enlèvement</option>\n' +
+                    '                                            <option>Dépôt</option>\n' +
+                    '                                            <option>Enlèvement + Dépôt</option>\n' +
+                    '                                        </select>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
                     '                                <div class="col">\n' +

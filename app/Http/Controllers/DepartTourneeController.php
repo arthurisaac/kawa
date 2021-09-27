@@ -79,7 +79,7 @@ class DepartTourneeController extends Controller
         $departTournee->save();
 
         $sites = $request->get('site');
-        $heures = $request->get('heure');
+        $types = $request->get('type');
         $tdf = $request->get('tdf');
         $caisse = $request->get('caisse');
 
@@ -88,7 +88,7 @@ class DepartTourneeController extends Controller
                 $siteDepartTournee = new SiteDepartTournee([
                     'idTourneeDepart' => $departTournee->id,
                     'site' => $sites[$i],
-                    'heure' => $heures[$i],
+                    'type' => $types[$i],
                     'tdf' => $tdf[$i],
                     'caisse' => $caisse[$i],
                 ]);
@@ -164,7 +164,7 @@ class DepartTourneeController extends Controller
         $departTournee->save();
 
         $sites_edit = $request->get('site_edit');
-        $heures_edit = $request->get('heure_edit');
+        $types_edit = $request->get('type_edit');
         $tdf_edit = $request->get('tdf_edit');
         $caisse_edit = $request->get('caisse_edit');
         $site_ids = $request->get('site_id');
@@ -173,7 +173,7 @@ class DepartTourneeController extends Controller
             if (!empty($sites_edit[$i]) && !empty($tdf_edit[$i])) {
                 $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
                 $siteDepartTournee->site = $sites_edit[$i];
-                $siteDepartTournee->heure = $heures_edit[$i];
+                $siteDepartTournee->type = $types_edit[$i];
                 $siteDepartTournee->tdf = $tdf_edit[$i];
                 $siteDepartTournee->caisse = $caisse_edit[$i];
                 $siteDepartTournee->save();
@@ -182,7 +182,7 @@ class DepartTourneeController extends Controller
 
         if ($request->get('site')) {
             $sites = $request->get('site');
-            $heures = $request->get('heure');
+            $types = $request->get('type');
             $tdf = $request->get('tdf');
             $caisse = $request->get('caisse');
             for ($i = 0; $i < count($sites); $i++) {
@@ -190,7 +190,7 @@ class DepartTourneeController extends Controller
                     $siteDepartTournee = new SiteDepartTournee([
                         'idTourneeDepart' => $departTournee->id,
                         'site' => $sites[$i],
-                        'heure' => $heures[$i],
+                        'type' => $types[$i],
                         'tdf' => $tdf[$i],
                         'caisse' => $caisse[$i],
                     ]);

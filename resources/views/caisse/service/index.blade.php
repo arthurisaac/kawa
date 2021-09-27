@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('main')
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">Service</h2></div>
         <br/>
@@ -22,6 +23,7 @@
             </div>
         @endif
 
+
         <form method="post" action="{{ route('caisse-service.store') }}">
         @csrf
             <div class="row">
@@ -41,14 +43,30 @@
                     </div>
                     <div class="form-group row">
                         <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7" required>
-                            <option>Choisir centre régional</option>
-                        </select>
+                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7" required></select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <br>
+            <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="charge-caisse-tab" data-toggle="tab" href="#charge-caisse" role="tab"
+                       aria-controls="charge-caisse" aria-selected="true">Chargé de caisse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="charge-caisse-adjointe-tab" data-toggle="tab" href="#charge-caisse-adjointe"
+                       role="tab"
+                       aria-controls="charge-caisse-adjointe" aria-selected="false">Chargé de caisse adjointe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="operatrice-caisse-tab" data-toggle="tab" href="#operatrice-caisse"
+                       role="tab"
+                       aria-controls="operatrice-caisse" aria-selected="false">Opératrice de caisse</a>
+                </li>
+            </ul>
+            <br>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="charge-caisse" role="tabpanel" aria-labelledby="charge-caisse-tab">
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
                             <h6>Chargé de caisse</h6>
@@ -88,6 +106,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane fade" id="charge-caisse-adjointe" role="tabpanel" aria-labelledby="charge-caisse-adjointe-tab">
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
                             <h6>Chargée de caisse adjointe</h6>
@@ -129,41 +149,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
-                <div class="col-6" id="operatriceRow">
-                    <div class="row" style="align-items: center;">
-                        <div class="col-4">
-                            <h6>Opératrice de caisse n°<span>1</span></h6>
-                            <input name="numeroOperatriceCaisse[]" type="hidden" value="1">
-                        </div>
-                        <div class="col-1">
-                            <hr class="burval-separator">
+                <div class="tab-pane fade" id="operatrice-caisse" role="tabpanel" aria-labelledby="operatrice-caisse-tab">
+                    <div class="row">
+                        <div class="col-6" id="operatriceRow">
+                            <div class="row" style="align-items: center;">
+                                <div class="col-4">
+                                    <h6>Opératrice de caisse n°<span>1</span></h6>
+                                    <input name="numeroOperatriceCaisse[]" type="hidden" value="1">
+                                </div>
+                                <div class="col-1">
+                                    <hr class="burval-separator">
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5">Nom et Prenom</label>
+                                        <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">
+                                            <option></option>
+                                            @foreach($personnels as $personnel)
+                                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-5">Numéro de box</label>
+                                        <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox"></select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col">
-                            <div class="form-group row">
-                                <label class="col-sm-5">Nom et Prenom</label>
-                                <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">
-                                    <option></option>
-                                    @foreach($personnels as $personnel)
-                                        <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5">Numéro de box</label>
-                                <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox"></select>
-                            </div>
+                            <br />
+                            <br />
+                            <button class="btn btn-primary btn-sm" type="button" id="ajouterOperatrice">Ajouter +</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <br />
-                    <br />
-                    <button class="btn btn-primary btn-sm" type="button" id="ajouterOperatrice">Ajouter +</button>
-                </div>
             </div>
+
             <div class="row">
                 <div class="col-4">
                     <button class="btn btn-primary btn-sm" type="submit">Valider</button>
