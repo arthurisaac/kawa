@@ -106,7 +106,13 @@ class ArriveeTourneeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departTournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournee = DepartTournee::with("sites")->find($id);
+        $convoyeurs = Convoyeur::all();
+        $personnels = Personnel::all();
+        $sites = SiteDepartTournee::with('sites')->where("idTourneeDepart", $id)->get();
+        $vidanges = VidangeGenerale::all();
+        return view('transport.arrivee-tournee.edit', compact('departTournees', 'tournee', 'convoyeurs', 'personnels', 'sites', 'vidanges'));
     }
 
     /**
@@ -118,7 +124,30 @@ class ArriveeTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $tournee = DepartTournee::find($id);
+        $tournee->kmArrivee = $request->get('kmArrivee');
+        $tournee->heureArrivee = $request->get('heureArrivee');
+        $tournee->save();
+
+        $sites = $request->get('site');
+        $type = $request->get('type');
+        $autre = $request->get('autre');
+        $site_ids = $request->get('site_id');
+        $bordereaux = $request->get('bordereau');
+        $montants = $request->get('montant');
+
+        for ($i = 0; $i < count($sites); $i++) {
+            if (!empty($sites[$i])) {
+                $site = SiteDepartTournee::find($site_ids[$i]);
+                $site->bordereau = $bordereaux[$i];
+                $site->montant = $montants[$i];
+                $site->type = $type[$i];
+                $site->autre = $autre[$i];
+                $site->save();
+            }
+        }
+        return redirect()->back()->with('success', 'Modification effectuée!');
     }
 
     /**

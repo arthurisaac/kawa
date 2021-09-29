@@ -15,42 +15,44 @@
             <br/>
         @endif
 
-        <form method="post" action="{{ route('arrivee-tournee.store') }}">
+        <form method="post" action="{{ route('arrivee-tournee.update', $tournee->id) }}">
             @csrf
+            @method("PATCH")
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>N°Tournée</label>
-                        <select class="form-control" name="numeroTournee" id="numeroTournee">
-                            <option>Selectionnez tournée</option>
-                            @foreach($departTournees as $departTournee)
-                                <option value="{{$departTournee->id}}">{{$departTournee->numeroTournee}}</option>
-                            @endforeach
-                        </select>
+                        <input class="form-control" name="numeroTournee" value="{{$tournee->numeroTournee}}"
+                               id="numeroTournee" readonly required/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="text" class="form-control" name="date" id="date" readonly/>
+                        <input type="text" class="form-control" name="date" value="{{$tournee->date}}" id="date"
+                               readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Véhicule</label>
-                        <input type="text" class="form-control" name="vehicule" id="vehicule" readonly/>
+                        <input type="text" class="form-control" name="vehicule"
+                               value="{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}" id="vehicule"
+                               readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Km départ</label>
-                        <input type="text" class="form-control" name="kmDepart" id="kmDepart" readonly/>
+                        <input type="text" class="form-control" name="kmDepart" value="{{$tournee->kmDepart}}"
+                               id="kmDepart" readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart" id="heureDepart" readonly/>
+                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}"
+                               id="heureDepart" readonly/>
                     </div>
                 </div>
             </div>
@@ -59,19 +61,22 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Convoyeur1</label>
-                        <input class="form-control" type="text" name="convoyeur1" id="convoyeur1" readonly>
+                        <input class="form-control" type="text" name="convoyeur1"
+                               value="{{$tournee->chauffeurs->nomPrenoms ?? ""}}" id="convoyeur1" readonly>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Convoyeur 2</label>
-                        <input class="form-control" type="text" name="convoyeur2" id="convoyeur2" readonly>
+                        <input class="form-control" type="text" name="convoyeur2" id="convoyeur2"
+                               value="{{$tournee->chefDeBords->nomPrenoms ?? ""}}" readonly>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Convoyeur 3</label>
-                        <input class="form-control" type="text" name="convoyeur3" id="convoyeur3" readonly>
+                        <input class="form-control" type="text" name="convoyeur3" id="convoyeur3"
+                               value="{{$tournee->agentDeGardes->nomPrenoms ?? ""}}" readonly>
                     </div>
                 </div>
             </div>
@@ -87,19 +92,37 @@
                     <td>Montant</td>
                 </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                @foreach($sites as $site)
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="site[]" value="{{$site->site}}" readonly/>
+                            <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
+                        </td>
+                        <td><select class="form-control" name="type[]">
+                                <option>{{$site->type}}</option>
+                                <option>Enlèvement</option>
+                                <option>Dépôt</option>
+                                <option>Enlèvement + Dépôt</option>
+                            </select></td>
+                        <td><textarea class="form-control" name="bordereau[]">{{$site->bordereau}}</textarea></td>
+                        <td><input type="text" class="form-control" name="autre[]" value="{{$site->autre}}" />    </td>
+                        <td><input type="text" class="form-control" min="0" name="montant[]" value="{{$site->montant}}"/></td>
+                    </tr>
+                @endforeach
+                </tbody>
             </table>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>Km arrivée</label>
-                        <input type="text" class="form-control" name="kmArrivee" id="kmArrivee"/>
+                        <input type="text" class="form-control" name="kmArrivee" value="{{$tournee->kmArrivee}}" id="kmArrivee" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Heure arrivée</label>
-                        <input type="time" class="form-control" name="heureArrivee" id="heureArrivee"/>
+                        <input type="time" class="form-control" name="heureArrivee" value="{{$tournee->heureArrivee}}" id="heureArrivee"/>
                     </div>
                 </div>
 
