@@ -308,7 +308,6 @@
             });
         });*/
 
-
     </script>
     <script>
         $(document).on('DOMNodeInserted', function () {
@@ -355,7 +354,6 @@
                         console.log("Site non trouvé :-(");
                     }
                 });
-
             });
 
             // Calculer count total à partir de Caisse
@@ -382,10 +380,6 @@
                 });
 
             });
-
-            /*$("#kmDepart").on("change", function () {
-                $("#coutTournee").val(cout * parseInt(this.value));
-            })*/
         });
     </script>
 @endsection

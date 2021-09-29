@@ -191,7 +191,7 @@
 
             function populateSites(sites) {
                 // console.log(sites);
-                $(".sitesListes div").remove();
+                $("#sitesListes > tbody").html("");
                 sites.map(s => {
 
                     let HTML_NODE = `<tr>
