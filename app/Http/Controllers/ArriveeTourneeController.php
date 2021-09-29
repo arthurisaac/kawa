@@ -57,6 +57,8 @@ class ArriveeTourneeController extends Controller
         $tournee->save();
 
         $sites = $request->get('site');
+        $type = $request->get('type');
+        $autre = $request->get('autre');
         $site_ids = $request->get('site_id');
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
@@ -66,44 +68,12 @@ class ArriveeTourneeController extends Controller
                 $site = SiteDepartTournee::find($site_ids[$i]);
                 $site->bordereau = $bordereaux[$i];
                 $site->montant = $montants[$i];
+                $site->type = $type[$i];
+                $site->autre = $autre[$i];
                 $site->save();
             }
         }
         return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');
-        /*$arriveeTournee = new ArriveeTournee([
-            'numeroTournee' => $request->get('numeroTournee'),
-            'convoyeur1' => $request->get('convoyeur1'),
-            'convoyeur2' => $request->get('convoyeur2'),
-            'convoyeur3' => $request->get('convoyeur3'),
-            'kmDepart' => $request->get('kmDepart'),
-            'heureDepart' => $request->get('heureDepart'),
-            'kmArrivee' => $request->get('kmArrivee'),
-            'heureArrivee' => $request->get('heureArrivee'),
-            'vidangeGenerale' => $request->get('vidangeGenerale'),
-            'visiteTechnique' => $request->get('visiteTechnique'),
-            'vidangeCourroie' => $request->get('vidangeCourroie'),
-            'patente' => $request->get('patente'),
-            'assuranceFin' => $request->get('assuranceFin'),
-            'assuranceHeurePont' => $request->get('assuranceHeurePont'),
-        ]);
-        $arriveeTournee->save();
-
-        $sites = $request->get('site');
-        $bords = $request->get('bord');
-        $montants = $request->get('montant');
-
-        for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($sites[$i])) {
-                $siteArriveeTournee = new SiteArriveeTournee([
-                    'idTourneeArrivee' => $arriveeTournee->id,
-                    'site' => $sites[$i],
-                    'bord' => $bords[$i],
-                    'montant' => $montants[$i],
-                ]);
-                $siteArriveeTournee->save();
-            }
-        }
-        return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');*/
     }
 
     /**

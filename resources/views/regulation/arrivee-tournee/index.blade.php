@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Arrivée tournée</h2></div>
+        <div><h2 class="heading">Régulation arrivée tournée</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -24,7 +24,8 @@
                         <select class="form-control" name="numeroTournee" id="numeroTournee">
                             <option>Selectionnez tournée</option>
                             @foreach($departTournees as $departTournee)
-                                <option value="{{$departTournee->id}}">{{$departTournee->numeroTournee}}</option>
+                                <option
+                                    value="{{$departTournee->tournees->id ?? $departTournee->noTournee}}">{{$departTournee->tournees->numeroTournee ?? $departTournee->noTournee}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -77,7 +78,30 @@
             </div>
             <br/>
 
-            <div class="row sitesListes"></div>
+            <div class="container">
+                <table class="table table-bordered" id="tableSite">
+                    <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Client</th>
+                        <th>Autre</th>
+                        <th>Nature</th>
+                        <th>Numéros scellé</th>
+                        <th>Nbre colis</th>
+                        <th>Montant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalColis" value="{{$departTournee->totalColis}}" id="totalColis" class="form-control"></td>
+                        <td><input type="number" name="totalMontant" value="{{$departTournee->totalMontant}}" id="totalMontant" class="form-control"></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -97,7 +121,8 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale" readonly/>
+                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
+                                       readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -145,26 +170,24 @@
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
-                const tournee = tournees.find(c => c.id === +this.value);
+                const tournee = tournees.find(c => c.tournees.id === +this.value);
                 const departSites = sites.filter(v => {
-                    return parseInt(v.idTourneeDepart) === parseInt(this.value);
+                    return parseInt(v.regulation_depart) === tournee.id ?? 0;
                 });
                 if (departSites) populateSites(departSites);
                 if (tournee) {
-                    $("#date").val(tournee.date);
-                    $("#vehicule").val(tournee.vehicules.immatriculation);
+                    $("#date").val(tournee.tournees.date);
+                    $("#vehicule").val(tournee.tournees.vehicules.immatriculation);
                     $("#kmDepart").val(tournee.kmDepart);
                     $("#kmArrivee").val(tournee.kmArrivee);
                     $("#heureArrivee").val(tournee.heureArrivee);
                     $("#heureDepart").val(tournee.heureDepart);
-                    setConvoyeur(1, tournee.agentDeGarde);
-                    setConvoyeur(2, tournee.chauffeur);
-                    setConvoyeur(3, tournee.chefDeBord);
-                    const vidange = vidanges.find(v => v.idVehicule === tournee.vehicules.id);
+                    setConvoyeur(1, tournee.tournees.agent_de_gardes.nomPrenoms);
+                    setConvoyeur(2, tournee.tournees.chauffeurs?.nomPrenoms);
+                    setConvoyeur(3, tournee.tournees.chef_de_bords?.nomPrenoms);
+                    const vidange = vidanges.find(v => v.idVehicule === tournee.tournees.vehicules.id);
                     if (vidange) {
                         $("#vidangeGenerale").val(vidange.prochainKm);
-                        console.log(vidange);
-
                     }
                 }
             });
@@ -180,50 +203,28 @@
             function populateSites(sites) {
                 // console.log(sites);
                 $(".sitesListes div").remove();
-                sites.map( s => {
+                sites.map(s => {
 
-                    let HTML_NODE = `<div class="col-12">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site</label>
-                                <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
-                                <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select class="form-control" name="type[]">
-                                    <option>${s?.type ?? ''}</option>
-                                    <option>Enlèvement</option>
-                                    <option>Dépôt</option>
-                                    <option>Enlèvement + Dépôt</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Bordereau</label>
-                                <textarea class="form-control" name="bordereau[]">${s?.bordereau ?? ''}</textarea>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Autre colis</label>
-                                <input type="text" class="form-control" name="autre[]" value="${s?.autre ?? ''}" />
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Montant</label>
-                                <input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant ?? ''}"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+                    let HTML_NODE = `<tr>
+                        <td>
+                            <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
+                            <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
+                        </td>
+                        <td><input type="text" name="client[]" class="form-control"></td>
+                        <td><input type="text" name="autre[]" class="form-control"></td>
+                        <td><select name="nature[]" class="form-control">
+                                <option>${s.nature}</option>
+                                <option>envoi</option>
+                                <option>tri</option>
+                                <option>transite</option>
+                                <option>approvisionnement</option>
+                            </select></td>
+                        <td><input type="text" name="numero_scelle[]" value="${s.numero_scelle}" class="form-control"></td>
+                        <td><input type="number" name="nbre_colis[]" value="${s.nbre_colis}" class="form-control"></td>
+                        <td><input type="text" name="montant[]" value="${s.montant}" class="form-control"></td>
+                    </tr>`;
 
-                    $(".sitesListes").append(HTML_NODE);
+                    $("#tableSite").append(HTML_NODE);
                 });
             }
 

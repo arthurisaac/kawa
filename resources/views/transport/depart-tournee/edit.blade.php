@@ -157,9 +157,12 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>heure</label>
+                                        <label>Type</label>
                                         <select type="time" class="form-control" name="type_edit[]">
-                                            <option>{{$site->heure}}</option>
+                                            <option>{{$site->type}}</option>
+                                            <option>Enlèvement</option>
+                                            <option>Dépôt</option>
+                                            <option>Enlèvement + Dépôt</option>
                                         </select>
                                     </div>
                                 </div>

@@ -719,6 +719,14 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li><span></span><span>Arrivée tournée</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-arrivee-tournee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Nouveau</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><span></span><span>Etat</span>
