@@ -481,6 +481,16 @@
                                         <li><span></span><a
                                                 href="javascript:popupwnd('arrivee-tournee','no','no','no','yes','yes','no','','','1000','500')"
                                                 target="_self" title="Arriv&#233;e tourn&#233;e">Arriv&#233;e&nbsp;tourn&#233;e</a>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('arrivee-tournee','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('arrivee-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Liste</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li><span></span><a
                                                 href="javascript:popupwnd('entretien-vehicule','no','no','no','yes','yes','no','','','1000','500')"

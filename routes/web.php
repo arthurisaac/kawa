@@ -80,6 +80,8 @@ Route::resource('depart-tournee', 'DepartTourneeController');
 Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
+Route::get('arrivee-tournee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'liste']);
+
 Route::resource('entretien-vehicule', 'EntretienVehiculeController');
 
 Route::resource('vidange-generale', 'VidangeGeneraleController');

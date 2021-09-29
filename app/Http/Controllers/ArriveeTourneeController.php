@@ -39,6 +39,17 @@ class ArriveeTourneeController extends Controller
         //
     }
 
+
+
+    public function liste()
+    {
+        $departTournee = DepartTournee::with('vehicules')
+            ->orderByDesc("created_at")
+            ->get();
+        return view('transport.arrivee-tournee.liste',
+            compact('departTournee'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
