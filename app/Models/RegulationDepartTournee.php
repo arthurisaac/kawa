@@ -12,6 +12,8 @@ class RegulationDepartTournee extends Model
         'noTournee',
         'totalMontant',
         'totalColis',
+        'kmArrivee',
+        'heureArrivee'
     ];
 
     public function tournees()

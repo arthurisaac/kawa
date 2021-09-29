@@ -46,7 +46,37 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = RegulationDepartTournee::find($request->get('idTournee'));
+        $data->totalMontant = $request->get("totalMontant");
+        $data->totalColis = $request->get("totalColis");
+        $data->kmArrivee = $request->get("kmArrivee");
+        $data->heureArrivee = $request->get("heureArrivee");
+        $data->save();
+
+        $sites_edit = $request->get('site');
+        $client_edit = $request->get('client');
+        $nature_edit = $request->get('nature');
+        $autre_edit = $request->get('autre');
+        $nbre_colis_edit = $request->get('nbre_colis');
+        $numero_scelle_edit = $request->get('numero_scelle');
+        $montant_edit = $request->get('montant');
+        $ids = $request->get('site_id');
+
+        for ($i = 0; $i < count($sites_edit); $i++) {
+            if (!empty($client_edit[$i]) && !empty($nbre_colis_edit[$i]) && !empty($montant_edit[$i])) {
+                $dataSite = RegulationDepartTourneeItem::find($ids[$i]);
+                $dataSite->client = $client_edit[$i] ?? "";
+                $dataSite->nature = $nature_edit[$i] ?? "";
+                $dataSite->nbre_colis = $nbre_colis_edit[$i] ?? 0;
+                $dataSite->autre = $autre_edit[$i] ?? 0;
+                $dataSite->numero_scelle = $numero_scelle_edit[$i] ?? "";
+                $dataSite->montant = $montant_edit[$i] ?? 0;
+
+                $dataSite->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Enregistré avec succès');
     }
 
     /**
@@ -80,7 +110,7 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
