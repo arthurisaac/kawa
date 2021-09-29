@@ -77,7 +77,18 @@
             </div>
             <br/>
 
-            <div class="row sitesListes"></div>
+            <table class="table table-bordered" id="sitesListes">
+                <thead>
+                <tr>
+                    <td>Site</td>
+                    <td>Type</td>
+                    <td>Bordereau</td>
+                    <td>Autre colis</td>
+                    <td>Montant</td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -97,7 +108,8 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale" readonly/>
+                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
+                                       readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -180,50 +192,25 @@
             function populateSites(sites) {
                 // console.log(sites);
                 $(".sitesListes div").remove();
-                sites.map( s => {
+                sites.map(s => {
 
-                    let HTML_NODE = `<div class="col-12">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Site</label>
+                    let HTML_NODE = `<tr>
+                        <td>
                                 <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select class="form-control" name="type[]">
+                        </td>
+                        <td><select class="form-control" name="type[]">
                                     <option>${s?.type ?? ''}</option>
                                     <option>Enlèvement</option>
                                     <option>Dépôt</option>
                                     <option>Enlèvement + Dépôt</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Bordereau</label>
-                                <textarea class="form-control" name="bordereau[]">${s?.bordereau ?? ''}</textarea>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Autre colis</label>
-                                <input type="text" class="form-control" name="autre[]" value="${s?.autre ?? ''}" />
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Montant</label>
-                                <input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant ?? ''}"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+                                </select></td>
+                        <td><textarea class="form-control" name="bordereau[]">${s?.bordereau ?? ''}</textarea></td>
+                        <td><input type="text" class="form-control" name="autre[]" value="${s?.autre ?? ''}" />    </td>
+                        <td><input type="text" class="form-control" min="0" name="montant[]" value="${s?.montant ?? ''}"/></td>
+                </tr>`;
 
-                    $(".sitesListes").append(HTML_NODE);
+                    $("#sitesListes").append(HTML_NODE);
                 });
             }
 
