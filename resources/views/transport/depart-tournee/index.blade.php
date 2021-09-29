@@ -27,7 +27,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label>N°Tournée:</label>
-                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly required/>
+                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly
+                               required/>
                     </div>
                 </div>
                 <div class="col">
@@ -127,62 +128,61 @@
 
             <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
             <br>
-            <div id="data">
-                @for($i=0; $i<2; $i++)
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Site {{$i}}</label>
-                                        <select class="form-control" name="site[]" id="site{{$i}}">
-                                            <option></option>
-                                            @foreach ($sites as $site)
-                                                <option value="{{$site->id}}">{{$site->site}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Type opération</label>
-                                        <select class="form-control" name="type[]">
-                                            <option>Enlèvement</option>
-                                            <option>Dépôt</option>
-                                            <option>Enlèvement + Dépôt</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>TDF</label>
-                                        <select class="form-control" name="tdf[]" disabled>
-                                            <option></option>
-                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                            <option value="oo_vb_intramuros">VB</option>
-                                            <option value="oo_vl_intramuros">VL</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Caisse</label>
-                                        <select class="form-control" name="caisse[]" disabled>
-                                            <option></option>
-                                            <option value="oo_mad">MAD</option>
-                                            <option value="oo_collecte">Collecte</option>
-                                            <option value="oo_cctv">CCTV</option>
-                                            <option value="oo_collecte_caisse">Collecte Caisse</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
+            <br>
+            <div >
+                <table id="data" class="table table-sm table-bordered">
+                    <thead>
+                    <th>Site</th>
+                    <th>Type opération</th>
+                    <th>TDF</th>
+                    <th>Caisse</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    @for($i=0; $i<2; $i++)
+                        <tr>
+                            <td>
+                                <select class="form-control" name="site[]" id="site{{$i}}">
+                                    <option></option>
+                                    @foreach ($sites as $site)
+                                        <option value="{{$site->id}}">{{$site->site}}</option>
+                                    @endforeach
+                                </select>
+
+                            </td>
+                            <td>
+                                <select class="form-control" name="type[]">
+                                    <option>Enlèvement</option>
+                                    <option>Dépôt</option>
+                                    <option>Enlèvement + Dépôt</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="tdf[]" disabled>
+                                    <option></option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="caisse[]" disabled>
+                                    <option></option>
+                                    <option value="oo_mad">MAD</option>
+                                    <option value="oo_collecte">Collecte</option>
+                                    <option value="oo_cctv">CCTV</option>
+                                    <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                </select>
+                            </td>
+                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                        </tr>
+                    @endfor
+                    </tbody>
+                </table>
+
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -210,59 +210,45 @@
             let index = 1;
             $("#add").on("click", function () {
                 index++;
-                $("#data").append(' <div class="row">\n' +
-                    '                        <div class="col">\n' +
-                    '                            <div class="row">\n' +
-                    '                                <div class="col">\n' +
-                    '                                    <div class="form-group">\n' +
-                    '                                        <label>Site ' + index + '</label>\n' +
-                    '                                        <select class="form-control" name="site[]" id="site{{$i}}">\n' +
-                    '                                            <option></option>\n' +
-                    '                                            @foreach ($sites as $site)\n' +
-                    '                                                <option value="{{$site->id}}">{{$site->site}}</option>\n' +
-                    '                                            @endforeach\n' +
-                    '                                        </select>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                                <div class="col">\n' +
-                    '                                    <div class="form-group">\n' +
-                    '                                        <label>Type</label>\n' +
-                    '                                        <select class="form-control" name="type[]">\n' +
-                    '                                            <option>Enlèvement</option>\n' +
-                    '                                            <option>Dépôt</option>\n' +
-                    '                                            <option>Enlèvement + Dépôt</option>\n' +
-                    '                                        </select>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                                <div class="col">\n' +
-                    '                                    <div class="form-group">\n' +
-                    '                                        <label>TDF</label>\n' +
-                    '                                        <select class="form-control" name="tdf[]" disabled>\n' +
-                    '                                            <option></option>\n' +
-                    '                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
-                    '                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
-                    '                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
-                    '                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
-                    '                                            <option value="oo_vb_intramuros">VB</option>\n' +
-                    '                                            <option value="oo_vl_intramuros">VL</option>\n' +
-                    '                                        </select>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                                <div class="col">\n' +
-                    '                                    <div class="form-group">\n' +
-                    '                                        <label>Caisse</label>\n' +
-                    '                                        <select class="form-control" name="caisse[]" disabled>\n' +
-                    '                                            <option></option>\n' +
-                    '                                            <option value="oo_mad">MAD</option>\n' +
-                    '                                            <option value="oo_collecte">Collecte</option>\n' +
-                    '                                            <option value="oo_cctv">CCTV</option>\n' +
-                    '                                            <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
-                    '                                        </select>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                            </div>\n' +
-                    '                        </div>\n' +
-                    '                    </div>');
+                $("#data").append('<tr>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="site[]" id="site{{$i}}">\n' +
+                    '                                    <option></option>\n' +
+                    '                                    @foreach ($sites as $site)\n' +
+                    '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                    @endforeach\n' +
+                    '                                </select>\n' +
+                    '\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="type[]">\n' +
+                    '                                    <option>Enlèvement</option>\n' +
+                    '                                    <option>Dépôt</option>\n' +
+                    '                                    <option>Enlèvement + Dépôt</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="tdf[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
+                    '                                    <option value="oo_vb_intramuros">VB</option>\n' +
+                    '                                    <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_mad">MAD</option>\n' +
+                    '                                    <option value="oo_collecte">Collecte</option>\n' +
+                    '                                    <option value="oo_cctv">CCTV</option>\n' +
+                    '                                    <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a><td>\n' +
+                    '                        </tr>');
             });
         });
     </script>
@@ -271,6 +257,11 @@
         let sites = {!! json_encode($sites) !!};
         let cout = 0;
         let site = null;
+
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("data").deleteRow(indexLigne);
+        }
 
         /* $("#vehicule").on("change", function () {
              $("#chauffeur option").remove();
