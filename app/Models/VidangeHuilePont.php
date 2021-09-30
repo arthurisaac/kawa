@@ -12,4 +12,9 @@ class VidangeHuilePont extends Model
         'kmActuel',
         'prochainKm',
     ];
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

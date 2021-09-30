@@ -496,6 +496,16 @@
                                                 href="javascript:popupwnd('entretien-vehicule','no','no','no','yes','yes','no','','','1000','500')"
                                                 target="_self"
                                                 title="Entretien v&#233;hicule">Entretien&nbsp;v&#233;hicule</a>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('entretien-vehicule','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Entretien&nbsp;v&#233;hicule">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('entretien-vehicule-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Entretien&nbsp;v&#233;hicule">Liste</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li><span></span><span>Etat&nbsp;tourn&#233;e</span>
                                             <ul>

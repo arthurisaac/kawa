@@ -6,7 +6,9 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangeCourroie;
+use App\Models\VidangeGenerale;
 use App\Models\VidangeHuilePont;
+use App\Models\VidangePatente;
 use App\Models\VidangeTransport;
 use App\Models\VidangeVignette;
 use App\Models\VidangeVisite;
@@ -41,6 +43,19 @@ class EntretienVehiculeController extends Controller
     public function create()
     {
         //
+    }
+
+
+    public function liste()
+    {
+        $vidangeGenerale = VidangeGenerale::all();
+        $vidangePonts = VidangeHuilePont::all();
+        $vidangeTransport = VidangeTransport::all();
+        $vidangeVisite = VidangeVisite::all();
+        $vidangeCourroie = VidangeCourroie::all();
+        $vidangeVignette = VidangeVignette::all();
+        $vidangePatentes = VidangePatente::all();
+        return view("transport.entretien-vehicule.liste", compact("vidangePonts", "vidangeGenerale", "vidangeTransport", "vidangeVisite", "vidangeCourroie", "vidangeVignette", "vidangePatentes"));
     }
 
     /**

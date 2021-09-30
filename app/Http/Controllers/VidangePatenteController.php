@@ -45,15 +45,13 @@ class VidangePatenteController extends Controller
     {
         $vignette = new VidangePatente([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_patente'),
             'dateRenouvellement' => $request->get('dateRenouvellement'),
             'prochainRenouvellement' => $request->get('prochainRenouvellement'),
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-patente')->with('success', 'Patente enregistrée!');
+        return redirect()->back()->with('success', 'Patente enregistrée!');
     }
 
     /**

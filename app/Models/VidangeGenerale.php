@@ -25,4 +25,9 @@ class VidangeGenerale extends Model
         'autresConsommables',
         'autresConsommablesMontant'
     ];
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

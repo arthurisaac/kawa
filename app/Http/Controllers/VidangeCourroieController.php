@@ -57,7 +57,7 @@ class VidangeCourroieController extends Controller
         ]);
         $vidange->save();
         //return redirect('/vidange-courroie')->with('success', 'Courroie enregistré!');
-        return redirect('/vidange-courroie')->with('success', 'Courroie enregistré!');
+        return redirect()->back()->with('success', 'Courroie enregistré!');
     }
 
     /**

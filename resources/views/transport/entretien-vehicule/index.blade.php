@@ -65,6 +65,10 @@
                        aria-controls="vidange-huile" aria-selected="false">Vidange huile de pont</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" id="patente-tab" data-toggle="tab" href="#patente" role="tab"
+                       aria-controls="patente" aria-selected="false">Vidange patente</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="courroie-tab" data-toggle="tab" href="#courroie" role="tab"
                        aria-controls="courroie" aria-selected="false">Courroie</a>
                 </li>
@@ -76,10 +80,6 @@
                     <a class="nav-link" id="carte-transport-tab" data-toggle="tab" href="#carte-transport" role="tab"
                        aria-controls="carte-transport" aria-selected="false">Carte de transport</a>
                 </li>
-                {{--<li class="nav-item">
-                    <a class="nav-link" id="vidange-patente-tab" data-toggle="tab" href="#vidange-patente" role="tab"
-                       aria-controls="vidange-patente" aria-selected="false">Patente</a>
-                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="vidange-visite-tab" data-toggle="tab" href="#vidange-visite" role="tab"
                        aria-controls="vidange-visite" aria-selected="false">Visite technique</a>
@@ -473,6 +473,38 @@
                         </form>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="patente" role="tabpanel" aria-labelledby="patente-tab">
+                    <div class="container">
+                        <form method="post" action="{{ route('vidange-patente.store') }}">
+                            @csrf
+                            <input type="hidden" name="idVehicule_patente" required>
+                            <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-md-4">Date de renouvellement</label>
+                                        <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4">Prochain renouvellement</label>
+                                        <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4">Montant</label>
+                                        <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant"/>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary btn-block btn-sm">Valider</button>
+                                    <br/>
+                                    <button type="reset" class="btn btn-danger btn-block btn-sm">Annuler</button>
+                                    <br/>
+                                </div>
+                            </div>
+                            <br/>
+                        </form>
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="vignette" role="tabpanel" arialabelledby="vignette-tab">
                     <div class="container">
                         <form method="post" action="{{ route('vidange-vignette.store') }}">
@@ -669,6 +701,7 @@
                 $("input[name='idVehicule_vignette']").val(this.value);
                 $("input[name='idVehicule_transport']").val(this.value);
                 $("input[name='idVehicule_visite']").val(this.value);
+                $("input[name='idVehicule_patente']").val(this.value);
             })
         })
     </script>

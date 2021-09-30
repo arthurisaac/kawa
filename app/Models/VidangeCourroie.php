@@ -16,4 +16,9 @@ class VidangeCourroie extends Model
         'courroieKm',
         'courroieFournisseur',
         'courroieMontant'];
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

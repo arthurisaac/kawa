@@ -12,4 +12,9 @@ class VidangeVignette extends Model
         'dateRenouvellement',
         'prochainRenouvellement',
         'montant'];
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

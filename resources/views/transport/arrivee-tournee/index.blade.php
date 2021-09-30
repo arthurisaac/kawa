@@ -115,19 +115,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Visite technique</label>
-                                <input type="number" class="form-control" name="visiteTechnique" readonly/>
+                                <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange Courroie</label>
-                                <input type="number" class="form-control" name="vidangeCourroie" readonly/>
+                                <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange Patente</label>
-                                <input type="number" class="form-control" name="patente" readonly/>
+                                <input type="text" class="form-control" name="vidangePatente" id="patente" readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -138,8 +138,8 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Assurance pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
+                                <label>{{--Assurance--}}Vidange pont</label>
+                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
                             </div>
                         </div>
                     </div>
@@ -154,6 +154,11 @@
         let personnels = {!!json_encode($personnels)!!};
         let sites = {!! json_encode($sites) !!};
         let vidanges = {!! json_encode($vidanges) !!};
+        let vidangePonts = {!! json_encode($vidangePonts) !!};
+        let vidangePatentes = {!! json_encode($vidangePatentes) !!};
+        let vidangeVisites = {!! json_encode($vidangeVisite) !!};
+        let vidangeCourroies = {!! json_encode($vidangeCourroie) !!};
+        //let vidangeVignettes = {!! json_encode($vidangeVignette) !!};
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -173,10 +178,26 @@
                     setConvoyeur(2, tournee.chauffeur);
                     setConvoyeur(3, tournee.chefDeBord);
                     const vidange = vidanges.find(v => v.idVehicule === tournee.vehicules.id);
+                    const vidangePont = vidangePonts.find(v => v.idVehicule === tournee.vehicules.id);
+                    const vidangePatente = vidangePatentes.find(v => v.idVehicule === tournee.vehicules.id);
+                    const vidangeVisite = vidangeVisites.find(v => v.idVehicule === tournee.vehicules.id);
+                    const vidangeCourroie = vidangeCourroies.find(v => v.idVehicule === tournee.vehicules.id);
+                    //const vidangeVignette = vidangeVignettes.find(v => v.idVehicule === tournee.vehicules.id);
+
                     if (vidange) {
                         $("#vidangeGenerale").val(vidange.prochainKm);
-                        console.log(vidange);
-
+                    }
+                    if (vidangeVisite) {
+                        $("#visiteTechnique").val(vidangeVisite.prochainRenouvellement);
+                    }
+                    if (vidangeCourroie) {
+                        $("#vidangeCourroie").val(vidangeCourroie.prochainKm);
+                    }
+                    if (vidangePatente) {
+                        $("#patente").val(vidangePatente.prochainRenouvellement);
+                    }
+                    if (vidangePont) {
+                        $("#vidangePont").val(vidangePont.prochainKm);
                     }
                 }
             });
@@ -193,7 +214,6 @@
                 // console.log(sites);
                 $("#sitesListes > tbody").html("");
                 sites.map(s => {
-
                     let HTML_NODE = `<tr>
                         <td>
                                 <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
