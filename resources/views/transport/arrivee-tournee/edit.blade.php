@@ -96,7 +96,7 @@
                 @foreach($sites as $site)
                     <tr>
                         <td>
-                            <input type="text" class="form-control" name="site[]" value="{{$site->site}}" readonly/>
+                            <input type="text" class="form-control" name="site[]" value="{{$site->sites->site ?? ""}}" readonly/>
                             <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
                         </td>
                         <td><select class="form-control" name="type[]">
