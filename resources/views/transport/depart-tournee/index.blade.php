@@ -261,6 +261,8 @@
         function supprimer(e) {
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("data").deleteRow(indexLigne);
+            siteChange();
+            tdfChange();
         }
 
         /* $("#vehicule").on("change", function () {
@@ -304,48 +306,10 @@
         $(document).on('DOMNodeInserted', function () {
 
             // Activer les champs TDF et Caisse
-            $("select[name='site[]']").on("change", function () {
-                let index = 0;
-                const thisSite = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='site[]']"), function (i) {
-                    const site = $("select[name='site[]']").get(i);
-                    if (thisSite === site) {
-                        index = i;
-                    }
-                });
-                const site = sites.find(s => s.id === parseInt(this.value));
-                if (site) {
-                    $("select[name='tdf[]']").eq(index).prop('disabled', false);
-                    $("select[name='caisse[]']").eq(index).prop('disabled', false);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-            });
+            $("select[name='site[]']").on("change", siteChange);
 
             // Calculer count total à partir de TDF
-            $("select[name='tdf[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='tdf[]']"), function (i) {
-                    const tdf = $("select[name='tdf[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const caisseInput = $("select[name='caisse[]']").get(i);
-                    if (site) {
-                        const montantTDF = site[this.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-            });
+            $("select[name='tdf[]']").on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
             $("select[name='caisse[]']").on("change", function () {
@@ -372,5 +336,47 @@
 
             });
         });
+    </script>
+    <script>
+        function siteChange() {
+            let index = 0;
+            const thisSite = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='site[]']"), function (i) {
+                const site = $("select[name='site[]']").get(i);
+                if (thisSite === site) {
+                    index = i;
+                }
+            });
+            const site = sites.find(s => s.id === parseInt(this.value));
+            if (site) {
+                $("select[name='tdf[]']").eq(index).prop('disabled', false);
+                $("select[name='caisse[]']").eq(index).prop('disabled', false);
+            } else {
+                console.log("Site non trouvé :-(");
+            }
+        }
+        function tdfChange() {
+            let coutTournee = 0;
+            const thisTDF = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='tdf[]']"), function (i) {
+                const tdf = $("select[name='tdf[]']").get(i);
+                if (thisTDF === tdf) {
+                    index = i;
+                }
+                const siteInput = $("select[name='site[]']").get(i);
+                const site = sites.find(s => s.id === parseInt(siteInput.value));
+                const caisseInput = $("select[name='caisse[]']").get(i);
+                if (site) {
+                    const montantTDF = site[this.value] ?? 0;
+                    const montantCaisse = site[caisseInput.value] ?? 0;
+                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                    $("#coutTournee").val(cout);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+        }
     </script>
 @endsection
