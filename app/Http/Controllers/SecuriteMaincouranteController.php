@@ -475,8 +475,6 @@ class SecuriteMaincouranteController extends Controller
     public function updatedepartCentre(Request $request, $id)
     {
         $departCentre = DepartCentre::find($id);
-        $departCentre->date = $request->get('date');
-        $departCentre->noTournee = $request->get('noTournee');
         $departCentre->heureDepart = $request->get('heureDepart');
         $departCentre->kmDepart = $request->get('kmDepart');
         $departCentre->observation = $request->get('observation');

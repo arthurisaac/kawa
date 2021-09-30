@@ -109,15 +109,15 @@
                     <div class="col-4">
                         <div class="form-group row">
                             <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                            <input type="time" name="dcHeureDepart" value="{{$centre->heureDepart}}" class="form-control col-sm-8"/>
+                            <input type="time" name="heureDepart" value="{{$centre->heureDepart}}" class="form-control col-sm-8"/>
                         </div>
                         <div class="form-group row">
                             <label for="km_depart" class="col-sm-4">Km départ</label>
-                            <input type="number" name="dcKmDepart" value="{{$centre->kmDepart}}" class="form-control col-sm-8"/>
+                            <input type="number" name="kmDepart" value="{{$centre->kmDepart}}" class="form-control col-sm-8"/>
                         </div>
                         <div class="form-group row">
                             <label for="km_depart" class="col-sm-4">Niveau carburant</label>
-                            <select name="dcNiveauCarburant" class="form-control col-sm-8">
+                            <select name="niveauCarburant" class="form-control col-sm-8">
                                 <option>{{$centre->niveauCarburant}}</option>
                                 <option>1/4</option>
                                 <option>2/4</option>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="observation" class="col-sm-4">Observation:</label>
-                            <textarea name="dcObservation" id="dcObservation"
+                            <textarea name="observation" id="dcObservation"
                                       class="form-control col-sm-8">{{$centre->observation}}</textarea>
                         </div>
 
