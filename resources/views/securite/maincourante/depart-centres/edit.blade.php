@@ -19,6 +19,11 @@
             </div>
         @endif
         <br>
+        <br>
+        <h2 class="heading">Départ centre</h2>
+        <a href="/maincourante-departcentreliste">Liste depart centre</a>
+        <br>
+        <br>
         <div class="container-fluid">
             <div class="row">
                 <div class="col">

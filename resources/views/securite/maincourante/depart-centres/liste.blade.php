@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <br>
         <br>
-        <table class="table table-bordered" id="listeDepartCentre">
+        <table class="table table-bordered" style="width: 100%;" id="listeDepartCentre">
             <thead>
             <tr>
                 <th>N°Tournée</th>

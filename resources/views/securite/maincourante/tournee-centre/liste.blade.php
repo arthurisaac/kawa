@@ -5,7 +5,7 @@
         <br>
         <div><h2 class="heading">Tournée centre</h2></div>
         <br>
-        <table class="table table-bordered" id="listeTourneeCentre">
+        <table class="table table-bordered" style="width: 100%;" id="listeTourneeCentre">
             <thead>
                 <tr>
                     <th>Date</th>

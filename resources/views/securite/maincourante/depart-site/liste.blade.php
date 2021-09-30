@@ -1,7 +1,7 @@
 @extends("base")
 
 @section("main")
-    <div class="container">
+    <div class="container-fluid">
         <br>
         <div><h2 class="heading">Départ site</h2></div>
         <br>
