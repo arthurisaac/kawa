@@ -355,6 +355,7 @@
             } else {
                 console.log("Site non trouvé :-(");
             }
+            tdfChange();
         }
         function tdfChange() {
             let coutTournee = 0;

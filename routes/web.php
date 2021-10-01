@@ -77,6 +77,7 @@ Route::resource('vehicule', 'VehiculeController');
 Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, 'liste']);
 
 Route::resource('depart-tournee', 'DepartTourneeController');
+Route::delete('depart-tournee-item/{id}', [\App\Http\Controllers\DepartTourneeController::class, 'destroyItem']);
 Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');

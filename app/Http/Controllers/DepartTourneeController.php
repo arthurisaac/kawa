@@ -221,4 +221,13 @@ class DepartTourneeController extends Controller
         ]);
         //return redirect('/depart-tournee-liste')->with('success', 'Tournée supprimée!');
     }
+
+    public function destroyItem($id)
+    {
+        $sitesDepart = SiteDepartTournee::find($id);
+        if ($sitesDepart) $sitesDepart->delete();
+        return response()->json([
+            'message' => 'Good!'
+        ]);
+    }
 }
