@@ -186,6 +186,7 @@
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
         </form>
     </div>
     <script>

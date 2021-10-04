@@ -45,11 +45,19 @@ class DepartTourneeController extends Controller
     }
 
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $departTournee = DepartTournee::with('vehicules')
             ->orderByDesc("created_at")
             ->get();
+        if (isset($debut) && isset($fin)) {
+            $departTournee = DepartTournee::with('vehicules')
+                ->whereBetween('date', [$debut, $fin])
+                ->orderByDesc("created_at")
+                ->get();
+        }
         return view('transport.depart-tournee.liste',
             compact('departTournee'));
     }
