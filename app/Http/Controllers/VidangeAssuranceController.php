@@ -46,15 +46,13 @@ class VidangeAssuranceController extends Controller
     {
         $vignette = new VidangeAssurance([
             'date' => $request->get('date'),
-            'idVehicule' => $request->get('idVehicule'),
-            'centre' => $request->get('centre'),
-            'centreRegional' => $request->get('centreRegional'),
+            'idVehicule' => $request->get('idVehicule_assurance'),
             'dateRenouvellement' => $request->get('dateRenouvellement'),
             'prochainRenouvellement' => $request->get('prochainRenouvellement'),
             'montant' => $request->get('montant'),
         ]);
         $vignette->save();
-        return redirect('/vidange-assurance')->with('success', 'Assurance enregistrée!');
+        return redirect()->back()->with('success', 'Assurance enregistrée!');
     }
 
     /**
@@ -95,10 +93,16 @@ class VidangeAssuranceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = VidangeAssurance::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return \response()->json([
+            "message" => "good"
+        ]);
     }
 }

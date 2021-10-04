@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class VidangeAssurance extends Model
 {
     protected $fillable = [
-    'date',
-    'idVehicule',
-    'centre',
-    'centreRegional',
-    'dateRenouvellement',
-    'prochainRenouvellement',
-    'montant'];
+        'date',
+        'idVehicule',
+        'dateRenouvellement',
+        'prochainRenouvellement',
+        'montant',
+    ];
+
+    public function vehicules()
+    {
+        return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
+    }
 }

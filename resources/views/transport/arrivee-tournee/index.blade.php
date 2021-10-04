@@ -136,7 +136,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Assurance fin</label>
-                                <input type="date" class="form-control" name="assuranceFin" readonly/>
+                                <input type="date" class="form-control" name="assuranceFin" id="assuranceFin" readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -162,6 +162,7 @@
         let vidangePatentes = {!! json_encode($vidangePatentes) !!};
         let vidangeVisites = {!! json_encode($vidangeVisite) !!};
         let vidangeCourroies = {!! json_encode($vidangeCourroie) !!};
+        let assurances = {!! json_encode($assurances) !!};
         //let vidangeVignettes = {!! json_encode($vidangeVignette) !!};
         let vidangeGlobale = 0;
         console.log(vidanges);
@@ -188,6 +189,7 @@
                     const vidangePatente = vidangePatentes.find(v => v.idVehicule === tournee.vehicules.id);
                     const vidangeVisite = vidangeVisites.find(v => v.idVehicule === tournee.vehicules.id);
                     const vidangeCourroie = vidangeCourroies.find(v => v.idVehicule === tournee.vehicules.id);
+                    const vidangeAssurance = assurances.find(v => v.idVehicule === tournee.vehicules.id);
                     //const vidangeVignette = vidangeVignettes.find(v => v.idVehicule === tournee.vehicules.id);
 
                     if (vidange) {
@@ -206,6 +208,9 @@
                     }
                     if (vidangePont) {
                         $("#vidangePont").val(vidangePont.prochainKm);
+                    }
+                    if (vidangeAssurance) {
+                        $("#assuranceFin").val(vidangeAssurance.prochainRenouvellement);
                     }
                 }
             });

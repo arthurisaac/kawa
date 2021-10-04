@@ -84,6 +84,10 @@
                     <a class="nav-link" id="vidange-visite-tab" data-toggle="tab" href="#vidange-visite" role="tab"
                        aria-controls="vidange-visite" aria-selected="false">Visite technique</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="assurance-tab" data-toggle="tab" href="#assurance" role="tab"
+                       aria-controls="assurance" aria-selected="false">Assurance</a>
+                </li>
             </ul>
             <br>
             <div class="tab-content">
@@ -594,8 +598,6 @@
                         <button type="submit" class="btn btn-primary btn-sm">Valider</button>
                     </form>
                 </div>
-                {{--<div class="tab-pane fade" id="vidange-patente" role="tabpanel"
-                     aria-labelledby="vidange-patente-tab"></div>--}}
                 <div class="tab-pane fade" id="vidange-visite" role="tabpanel"
                      aria-labelledby="vidange-visite-tab">
                     <form method="post" action="{{ route('vidange-visite.store') }}">
@@ -649,6 +651,41 @@
                         <button type="submit" class="btn btn-primary btn-sm">Valider</button>
                     </form>
                 </div>
+                <div class="tab-pane fade" id="assurance" role="tabpanel"
+                     aria-labelledby="assurance-tab">
+                    <form method="post" action="{{ route('vidange-assurance.store') }}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-4">
+
+                                <input type="hidden" name="idVehicule_assurance" required>
+                                <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Date de renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8" name="dateRenouvellement" required/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Prochain renouvellement</label>
+                                    <input type="date" class="form-control form-control-sm col-md-8" name="prochainRenouvellement" required/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4">Montant</label>
+                                    <input type="number" min="0" class="form-control form-control-sm col-md-8" name="montant" required/>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-sm">Valider</button>
+                                <br/>
+                                <button type="reset" class="btn btn-danger btn-block btn-sm">Annuler</button>
+                                <br/>
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                        </div>
+                        <br/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -677,6 +714,7 @@
                 $("input[name='idVehicule_transport']").val(this.value);
                 $("input[name='idVehicule_visite']").val(this.value);
                 $("input[name='idVehicule_patente']").val(this.value);
+                $("input[name='idVehicule_assurance']").val(this.value);
             })
         })
     </script>

@@ -54,6 +54,10 @@
                     <a class="nav-link" id="vidange-visite-tab" data-toggle="tab" href="#vidange-visite" role="tab"
                        aria-controls="vidange-visite" aria-selected="false">Visite technique</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="assurance-tab" data-toggle="tab" href="#assurance" role="tab"
+                       aria-controls="assurance" aria-selected="false">Assurance</a>
+                </li>
             </ul>
             <br>
             <div class="tab-content">
@@ -230,8 +234,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="vidange-visite" role="tabpanel"
-                     aria-labelledby="vidange-visite-tab">
+                <div class="tab-pane fade" id="vidange-visite" role="tabpanel" aria-labelledby="vidange-visite-tab">
                     <div class="container">
                         <table class="table table-bordered" id="listeVVT">
                             <thead>
@@ -251,6 +254,33 @@
                                     <td>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVVT('{{$vidange->id}}', this)"></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="assurance" role="tabpanel" aria-labelledby="assurance-tab">
+                    <div class="container">
+                        <table class="table table-bordered" id="listeA">
+                            <thead>
+                            <tr>
+                                <th>Véhicule</th>
+                                <th>Date</th>
+                                <th>Prochaine assurance</th>
+                                <th style="width: 25px; text-align: center;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($assurances as $assurance)
+                                <tr>
+                                    <td>{{$vidange->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                                    <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                                    <td style="text-align: center;">
+                                        <a class="btn btn-danger btn-sm"
+                                           onclick="supprimerVA('{{$vidange->id}}', this)"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -430,6 +460,29 @@
                 });
             }
         }
+
+        function supprimerVA(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "vidange-assurance/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function () {
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("listeA").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
     </script>
     <script>
         $(document).ready(function () {
@@ -464,6 +517,11 @@
                 }
             });
             $('#listePatente').DataTable({
+                "language": {
+                    "url": "French.json"
+                }
+            });
+            $('#listeA').DataTable({
                 "language": {
                     "url": "French.json"
                 }

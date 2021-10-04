@@ -8,6 +8,7 @@ use App\Models\DepartTournee;
 use App\Models\Personnel;
 use App\Models\SiteArriveeTournee;
 use App\Models\SiteDepartTournee;
+use App\Models\VidangeAssurance;
 use App\Models\VidangeCourroie;
 use App\Models\VidangeGenerale;
 use App\Models\VidangeHuilePont;
@@ -37,9 +38,10 @@ class ArriveeTourneeController extends Controller
         $vidangeVisite = VidangeVisite::all();
         $vidangeCourroie = VidangeCourroie::all();
         $vidangeVignette = VidangeVignette::all();
+        $assurances = VidangeAssurance::all();
 
         return view('transport.arrivee-tournee.index',
-            compact('departTournees', 'convoyeurs', 'personnels', 'sites', 'vidanges', 'vidangePonts', 'vidangeCourroie', 'vidangeVignette', 'vidangeVisite', 'vidangePatentes'));
+            compact('departTournees', 'convoyeurs', 'personnels', 'sites', 'vidanges', 'vidangePonts', 'vidangeCourroie', 'vidangeVignette', 'vidangeVisite', 'vidangePatentes', 'assurances'));
     }
 
     /**

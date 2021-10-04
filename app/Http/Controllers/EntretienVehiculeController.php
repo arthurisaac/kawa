@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Vehicule;
+use App\Models\VidangeAssurance;
 use App\Models\VidangeCourroie;
 use App\Models\VidangeGenerale;
 use App\Models\VidangeHuilePont;
@@ -31,8 +32,9 @@ class EntretienVehiculeController extends Controller
         $vidangeVisite = VidangeVisite::all();
         $vidangeCourroie = VidangeCourroie::all();
         $vidangeVignette = VidangeVignette::all();
+        $assurances = VidangeAssurance::all();
         return view('/transport/entretien-vehicule.index',
-            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie', 'vidangeVignette'));
+            compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie', 'vidangeVignette', 'assurances'));
     }
 
     /**
@@ -55,7 +57,8 @@ class EntretienVehiculeController extends Controller
         $vidangeCourroie = VidangeCourroie::all();
         $vidangeVignette = VidangeVignette::all();
         $vidangePatentes = VidangePatente::all();
-        return view("transport.entretien-vehicule.liste", compact("vidangePonts", "vidangeGenerale", "vidangeTransport", "vidangeVisite", "vidangeCourroie", "vidangeVignette", "vidangePatentes"));
+        $assurances = VidangeAssurance::all();
+        return view("transport.entretien-vehicule.liste", compact("vidangePonts", "vidangeGenerale", "vidangeTransport", "vidangeVisite", "vidangeCourroie", "vidangeVignette", "vidangePatentes", "assurances"));
     }
 
     /**
@@ -107,10 +110,16 @@ class EntretienVehiculeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = VidangeCourroie::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return \response()->json([
+            "message" => "good"
+        ]);
     }
 }
