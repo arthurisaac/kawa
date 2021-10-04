@@ -118,6 +118,7 @@
                                 <label>Visite technique</label>
                                 <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique"
                                        readonly/>
+                                <input type="hidden" name="visiteTechniqueID" id="visiteTechniqueID"/>
                             </div>
                         </div>
                         <div class="col">
@@ -125,25 +126,28 @@
                                 <label>Vidange Courroie</label>
                                 <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie"
                                        readonly/>
+                                <input type="hidden" name="vidangeCourroieID" id="vidangeCourroieID"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange Patente</label>
                                 <input type="text" class="form-control" name="vidangePatente" id="patente" readonly/>
+                                <input type="hidden" name="vidangePatenteID" id="vidangePatenteID"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Assurance fin</label>
                                 <input type="date" class="form-control" name="assuranceFin" id="assuranceFin" readonly/>
+                                <input type="hidden" name="assuranceFinID" id="assuranceFinID"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>{{--Assurance--}}Vidange pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont"
-                                       readonly/>
+                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
+                                <input type="hidden" name="vidangePontID" id="vidangePontID"/>
                             </div>
                         </div>
                     </div>
@@ -163,9 +167,12 @@
         let vidangeVisites = {!! json_encode($vidangeVisite) !!};
         let vidangeCourroies = {!! json_encode($vidangeCourroie) !!};
         let assurances = {!! json_encode($assurances) !!};
-        //let vidangeVignettes = {!! json_encode($vidangeVignette) !!};
         let vidangeGlobale = 0;
-        console.log(vidanges);
+        let vidangeTechniqueGlobale = 0;
+        let vidangeCourroieGlobale = 0;
+        let vidangePatenteGlobale = 0;
+        let vidangePontGlobale = 0;
+        let assuranceGlobale = 0;
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -198,19 +205,35 @@
                         vidangeGlobale = vidange;
                     }
                     if (vidangeVisite) {
-                        $("#visiteTechnique").val(vidangeVisite.prochainRenouvellement);
+                        const t1 = new Date(tournee.date);
+                        const t2 = new Date(vidangeVisite.prochainRenouvellement);
+                        let dateDiff = diffDate(t1, t2);
+                        const diffInDays = dateDiff.getUTCDate() - 1;
+                        t2.setDate(t2.getDate() - diffInDays);
+                        const conformDate = t2.toISOString().split('T')[0];
+                        $("#visiteTechnique").val(conformDate);
+                        $("#visiteTechniqueID").val(vidangeVisite.id);
+                        vidangeTechniqueGlobale = vidangeVisite;
                     }
                     if (vidangeCourroie) {
                         $("#vidangeCourroie").val(vidangeCourroie.prochainKm);
+                        $("#vidangeCourroieID").val(vidangeCourroie.id);
+                        vidangeCourroieGlobale = vidangeCourroie;
                     }
                     if (vidangePatente) {
                         $("#patente").val(vidangePatente.prochainRenouvellement);
+                        $("#vidangePatenteID").val(vidangePatente.id);
+                        vidangePatenteGlobale = vidangePatente;
                     }
                     if (vidangePont) {
                         $("#vidangePont").val(vidangePont.prochainKm);
+                        $("#vidangePontID").val(vidangePont);
+                        vidangePontGlobale = vidangePont;
                     }
                     if (vidangeAssurance) {
                         $("#assuranceFin").val(vidangeAssurance.prochainRenouvellement);
+                        $("#assuranceFinID").val(vidangeAssurance.id);
+                        assuranceGlobale = vidangeAssurance
                     }
                 }
             });
@@ -248,12 +271,18 @@
             }
 
             $("#kmArrivee").on("change", function () {
-                //console.log(this.value);
-                //console.log(vidangeGlobale.prochainKm);
                 const totalVidange = vidangeGlobale.prochainKm - parseInt(this.value);
                 $("#vidangeGenerale").val(totalVidange);
             });
 
         });
+
+        function diffDate(d1, d2) {
+            const t2 = d2.getTime();
+            const t1 = d1.getTime();
+            return new Date(t2 - t1);
+            // return diff.getUTCDate() - 1;
+            //return parseInt((t2-t1)/(24*3600*1000));
+        }
     </script>
 @endsection
