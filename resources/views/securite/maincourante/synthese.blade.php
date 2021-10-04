@@ -1,7 +1,9 @@
 @extends('base')
 
 @section('main')
-    <div class="burval-container">
+    <div class="container-fluid">
+        <br>
+        <br>
         <div><h2 class="heading">Liste Synthèse de Tournée</h2></div>
         <br/>
         @if ($errors->any())
@@ -23,6 +25,27 @@
 
         <br/>
         <div class="container-fluid">
+            <form action="#" method="get">
+                @csrf
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5">Date début</label>
+                            <input type="date" name="debut" class="form-control col-sm-7">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5">Date fin</label>
+                            <input type="date" name="fin" class="form-control col-sm-7">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm">Rechercher</button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </form>
             <table class="table table-bordered table-hover" id="listeMaincourante" style="width: 100%;">
                 <thead>
                 <tr>

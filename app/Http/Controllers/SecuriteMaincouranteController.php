@@ -56,12 +56,19 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.liste', compact('tournees'));
     }
 
-    public function synthesesListe()
+    public function synthesesListe(Request $request)
     {
-        //$tournees = DepartTournee::all();
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $tournees = DepartTournee::with('departCentre')
             ->with('arriveeCentre')
             ->get();
+        if (isset($debut) && isset($fin)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
 
         return view('/securite.maincourante.synthese', compact('tournees'));
     }
