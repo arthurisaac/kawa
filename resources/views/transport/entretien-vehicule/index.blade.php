@@ -66,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="patente-tab" data-toggle="tab" href="#patente" role="tab"
-                       aria-controls="patente" aria-selected="false">Vidange patente</a>
+                       aria-controls="patente" aria-selected="false">Patente</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="courroie-tab" data-toggle="tab" href="#courroie" role="tab"
@@ -332,31 +332,6 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <table class="table table-bordered" id="listeVHM">
-                                        <thead>
-                                        <tr>
-                                            <th>Véhicule</th>
-                                            <th>Total vidange</th>
-                                            <th>Prochaine vidange</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($vidangePonts as $vidange)
-                                            <tr>
-                                                <td>{{$vidange->idVehicule}}</td>
-                                                <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant + $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}</td>
-                                            <!--<td>{{date('Y-m-d H:i:s'), strtotime($vidange->date. ' + 5 days')}}</td>-->
-                                                <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
-                                                <td>
-                                                    <a class="btn btn-danger btn-sm"
-                                                       onclick="supprimerVHM('{{$vidange->id}}', this)"></a>
-                                                </td>
-                                            </tr>
-
-                                        @endforeach
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                             <br>

@@ -54,11 +54,19 @@ class ArriveeTourneeController extends Controller
 
 
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $departTournee = DepartTournee::with('vehicules')
             ->orderByDesc("created_at")
             ->get();
+        if (isset($debut) && isset($fin)) {
+            $departTournee = DepartTournee::with('vehicules')
+                ->whereBetween('date', [$debut, $fin])
+                ->orderByDesc("created_at")
+                ->get();
+        }
         return view('transport.arrivee-tournee.liste',
             compact('departTournee'));
     }
@@ -97,6 +105,16 @@ class ArriveeTourneeController extends Controller
                 $site->save();
             }
         }
+
+        // Vidange generale
+        if ($request->get("vidangeGeneraleID") && $request->get("vidangeGenerale")) {
+          $vidange = VidangeGenerale::find($request->get("vidangeGeneraleID"));
+          if ($vidange) {
+              $vidange->prochainKm = $request->get("vidangeGenerale");
+              $vidange->save();
+          }
+        }
+
         return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');
     }
 

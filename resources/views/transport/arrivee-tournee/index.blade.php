@@ -93,7 +93,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Km arrivée</label>
-                        <input type="text" class="form-control" name="kmArrivee" id="kmArrivee"/>
+                        <input type="number" class="form-control" name="kmArrivee" id="kmArrivee"/>
                     </div>
                 </div>
                 <div class="col">
@@ -110,18 +110,21 @@
                                 <label>Vidange générale</label>
                                 <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
                                        readonly/>
+                                <input type="hidden" name="vidangeGeneraleID" id="vidangeGeneraleID"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Visite technique</label>
-                                <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique" readonly/>
+                                <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique"
+                                       readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Vidange Courroie</label>
-                                <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie" readonly/>
+                                <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie"
+                                       readonly/>
                             </div>
                         </div>
                         <div class="col">
@@ -139,7 +142,8 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>{{--Assurance--}}Vidange pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
+                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont"
+                                       readonly/>
                             </div>
                         </div>
                     </div>
@@ -159,6 +163,8 @@
         let vidangeVisites = {!! json_encode($vidangeVisite) !!};
         let vidangeCourroies = {!! json_encode($vidangeCourroie) !!};
         //let vidangeVignettes = {!! json_encode($vidangeVignette) !!};
+        let vidangeGlobale = 0;
+        console.log(vidanges);
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -186,6 +192,8 @@
 
                     if (vidange) {
                         $("#vidangeGenerale").val(vidange.prochainKm);
+                        $("#vidangeGeneraleID").val(vidange.id);
+                        vidangeGlobale = vidange;
                     }
                     if (vidangeVisite) {
                         $("#visiteTechnique").val(vidangeVisite.prochainRenouvellement);
@@ -233,6 +241,13 @@
                     $("#sitesListes").append(HTML_NODE);
                 });
             }
+
+            $("#kmArrivee").on("change", function () {
+                //console.log(this.value);
+                //console.log(vidangeGlobale.prochainKm);
+                const totalVidange = vidangeGlobale.prochainKm - parseInt(this.value);
+                $("#vidangeGenerale").val(totalVidange);
+            });
 
         });
     </script>
