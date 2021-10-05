@@ -219,7 +219,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Date</th>
-                                <th>Prochaine vignette</th>
+                                <th>Prochaine date</th>
                                 <th style="width: 25px; text-align: center">Action</th>
                             </tr>
                             </thead>
@@ -232,6 +232,7 @@
                                     <td>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVCT('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-transport/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
                             @endforeach
