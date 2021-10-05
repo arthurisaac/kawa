@@ -55,7 +55,6 @@ class ArriveeTourneeController extends Controller
     }
 
 
-
     public function liste(Request $request)
     {
         $debut = $request->get("debut");
@@ -110,11 +109,29 @@ class ArriveeTourneeController extends Controller
 
         // Vidange generale
         if ($request->get("vidangeGeneraleID") && $request->get("vidangeGenerale")) {
-          $vidange = VidangeGenerale::find($request->get("vidangeGeneraleID"));
-          if ($vidange) {
-              $vidange->prochainKm = $request->get("vidangeGenerale");
-              $vidange->save();
-          }
+            $vidange = VidangeGenerale::find($request->get("vidangeGeneraleID"));
+            if ($vidange) {
+                $vidange->prochainKm = $request->get("vidangeGenerale");
+                $vidange->save();
+            }
+        }
+
+        // Vidange courroie
+        if ($request->get("vidangeCourroieID") && $request->get("vidangeCourroie")) {
+            $vidange = VidangeCourroie::find($request->get("vidangeCourroieID"));
+            if ($vidange) {
+                $vidange->prochainKm = $request->get("vidangeCourroie");
+                $vidange->save();
+            }
+        }
+
+        // Vidange pont
+        if ($request->get("vidangePontID") && $request->get("vidangePont")) {
+            $vidange = VidangeHuilePont::find($request->get("vidangePontID"));
+            if ($vidange) {
+                $vidange->prochainKm = $request->get("vidangePont");
+                $vidange->save();
+            }
         }
 
         return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');

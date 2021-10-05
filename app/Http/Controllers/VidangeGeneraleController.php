@@ -99,7 +99,9 @@ class VidangeGeneraleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicules = Vehicule::all();
+        $vidange = VidangeGenerale::find($id);
+        return view('transport.entretien-vehicule.vidange-generale.edit', compact('vehicules', 'vidange'));
     }
 
     /**
@@ -111,7 +113,25 @@ class VidangeGeneraleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vidangeGenerale = VidangeGenerale::find($id);
+        $vidangeGenerale->kmActuel = $request->get('kmActuel');
+        $vidangeGenerale->prochainKm = $request->get('prochainKm');
+        $vidangeGenerale->huileMoteur = $request->get('huileMoteur');
+        $vidangeGenerale->huileMoteurMarque = $request->get('huileMoteurMarque');
+        $vidangeGenerale->huileMoteurKm = $request->get('huileMoteurKm');
+        $vidangeGenerale->huileMoteurFournisseur = $request->get('huileMoteurFournisseur');
+        $vidangeGenerale->huileMoteurmontant = $request->get('huileMoteurmontant');
+        $vidangeGenerale->filtreHuile = $request->get('filtreHuile');
+        $vidangeGenerale->filtreHuileMontant = $request->get('filtreHuileMontant');
+        $vidangeGenerale->filtreGazoil = $request->get('filtreGazoil');
+        $vidangeGenerale->filtreGazoilMontant = $request->get('filtreGazoilMontant');
+        $vidangeGenerale->filtreAir = $request->get('filtreAir');
+        $vidangeGenerale->filtreAirMontant = $request->get('filtreAirMontant');
+        $vidangeGenerale->autresConsommables = $request->get('autresConsommables');
+        $vidangeGenerale->autresConsommablesMontant = $request->get('autresConsommablesMontant');
+
+        $vidangeGenerale->save();
+        return redirect()->back()->with('success', 'Enregistrement effectué!');
     }
 
     /**

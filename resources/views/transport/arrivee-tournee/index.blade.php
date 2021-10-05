@@ -270,9 +270,13 @@
                 });
             }
 
-            $("#kmArrivee").on("change", function () {
+            $("#kmArrivee").on("change", function (){
                 const totalVidange = vidangeGlobale.prochainKm - parseInt(this.value);
+                const totalVidangeCourroie = vidangeCourroieGlobale.prochainKm - parseInt(this.value);
+                const totalVidangePont = vidangePontGlobale.prochainKm - parseInt(this.value);
                 $("#vidangeGenerale").val(totalVidange);
+                $("#vidangeCourroie").val(totalVidangeCourroie);
+                $("#vidangePont").val(totalVidangePont);
             });
 
         });
