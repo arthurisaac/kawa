@@ -39,7 +39,7 @@ class VidangeCourroieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,7 +63,7 @@ class VidangeCourroieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,30 +74,43 @@ class VidangeCourroieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $vehicules = Vehicule::all();
+        $vidange = VidangeCourroie::find($id);
+        return view('transport.entretien-vehicule.vidange-courroie.edit', compact('vehicules', 'vidange'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $vidange = VidangeCourroie::find($id);
+        $vidange->kmActuel = $request->get('kmActuel');
+        $vidange->prochainKm = $request->get('prochainKm');
+        $vidange->courroie = $request->get('courroie');
+        $vidange->courroieMarque = $request->get('courroieMarque');
+        $vidange->courroieKm = $request->get('courroieKm');
+        $vidange->courroieFournisseur = $request->get('courroieFournisseur');
+        $vidange->courroieMontant = $request->get('courroieMontant');
+
+        $vidange->save();
+
+        return redirect()->back()->with('success', 'Courroie enregistré!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return JsonResponse
      */
     public function destroy($id)

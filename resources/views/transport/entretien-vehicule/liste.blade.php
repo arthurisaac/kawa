@@ -172,6 +172,7 @@
                                     <td>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVC('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-courroie/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
                             @endforeach
