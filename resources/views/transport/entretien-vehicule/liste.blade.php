@@ -21,6 +21,7 @@
                 {{ session()->get('success') }}
             </div><br/>
         @endif
+        <a href="/entretien-vehicule" class="btn btn-sm btn-info">Nouveau</a>
         <br>
         <br>
         <div class="container">
@@ -101,7 +102,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Total vidange</th>
-                                <th>Prochaine vidange</th>
+                                <th>Prochain km</th>
                                 <th style="width: 25px; text-align: center">Actions</th>
                             </tr>
                             </thead>
@@ -131,7 +132,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Date</th>
-                                <th>Prochain changement de patente</th>
+                                <th>Prochaine date</th>
                                 <th style="width: 25px; text-align: center">Action</th>
                             </tr>
                             </thead>
@@ -159,7 +160,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Total vidange</th>
-                                <th>Prochain changement de courroie</th>
+                                <th>Prochain km</th>
                                 <th  style="width: 25px; text-align: center">Actions</th>
                             </tr>
                             </thead>
@@ -189,7 +190,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Date</th>
-                                <th>Prochaine vignette</th>
+                                <th>Prochaine date</th>
                                 <th  style="width: 25px; text-align: center">Actions</th>
                             </tr>
                             </thead>
@@ -247,7 +248,7 @@
                             <tr>
                                 <th>Véhicule</th>
                                 <th>Date</th>
-                                <th>Prochaine visite</th>
+                                <th>Prochaine date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -276,7 +277,7 @@
                                 <th>ID</th>
                                 <th>Véhicule</th>
                                 <th>Date</th>
-                                <th>Prochaine assurance</th>
+                                <th>Prochaine date</th>
                                 <th style="width: 25px; text-align: center;">Action</th>
                             </tr>
                             </thead>

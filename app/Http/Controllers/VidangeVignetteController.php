@@ -93,7 +93,7 @@ class VidangeVignetteController extends Controller
         $vignette->montant = $request->get('montant');
 
         $vignette->save();
-        return redirect()->back()->with('success', 'Vignette enregistrée!');
+        return redirect("/entretien-vehicule")->with('success', 'Vignette enregistrée!');
     }
 
     /**

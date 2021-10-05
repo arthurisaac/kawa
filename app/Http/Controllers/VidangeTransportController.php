@@ -52,7 +52,7 @@ class VidangeTransportController extends Controller
         ]);
         $transport->save();
         //return redirect('/vidange-transport')->with('success', 'Carte de transport enregistrée!');
-        return redirect()->back()->with('success', 'Carte de transport enregistrée!');
+        return redirect("entretien-vehicule")->with('success', 'Carte de transport enregistrée!');
     }
 
     /**

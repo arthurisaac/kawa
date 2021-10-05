@@ -90,7 +90,7 @@ class VidangePatenteController extends Controller
         $vignette->dateRenouvellement = $request->get('dateRenouvellement');
         $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
         $vignette->save();
-        return redirect()->back()->with('success', 'Patente enregistrée!');
+        return redirect("/entretien-vehicule")->with('success', 'Patente enregistrée!');
     }
 
     /**

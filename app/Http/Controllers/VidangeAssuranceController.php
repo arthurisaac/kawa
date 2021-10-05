@@ -93,7 +93,8 @@ class VidangeAssuranceController extends Controller
         $vignette->montant = $request->get('montant');
 
         $vignette->save();
-        return redirect()->back()->with('success', 'Assurance enregistrée!');
+        //return redirect()->back()->with('success', 'Assurance enregistrée!');
+        return redirect("/entretien-vehicule")->with('success', 'Assurance enregistrée!');
     }
 
     /**

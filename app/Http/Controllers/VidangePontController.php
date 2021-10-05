@@ -97,7 +97,7 @@ class VidangePontController extends Controller
         $vidanges->kmActuel = $request->get('kmActuel');
         $vidanges->prochainKm = $request->get('prochainKm');
         $vidanges->save();
-        return redirect()->back()->with('success', 'Vidange pont enregistrée!');
+        return redirect("/entretien-vehicule")->with('success', 'Vidange pont enregistrée!');
     }
 
     /**

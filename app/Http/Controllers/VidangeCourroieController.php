@@ -104,7 +104,7 @@ class VidangeCourroieController extends Controller
 
         $vidange->save();
 
-        return redirect()->back()->with('success', 'Courroie enregistré!');
+        return redirect("/entretien-vehicule")->with('success', 'Courroie enregistré!');
     }
 
     /**

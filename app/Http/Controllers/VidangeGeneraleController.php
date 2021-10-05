@@ -131,7 +131,7 @@ class VidangeGeneraleController extends Controller
         $vidangeGenerale->autresConsommablesMontant = $request->get('autresConsommablesMontant');
 
         $vidangeGenerale->save();
-        return redirect()->back()->with('success', 'Enregistrement effectué!');
+        return redirect("/entretien-vehicule")->with('success', 'Enregistrement effectué!');
     }
 
     /**
