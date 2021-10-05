@@ -76,7 +76,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($vidangeCourroie as $vidange)
+                            @foreach ($vidangeGenerale as $vidange)
                                 <tr>
                                     <td>{{$vidange->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                                     <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant + $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}</td>
