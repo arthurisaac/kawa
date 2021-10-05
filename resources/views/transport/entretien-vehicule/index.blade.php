@@ -421,31 +421,6 @@
                             </div>
                             <br>
                             <br>
-                            <table class="table table-bordered" id="listeVC">
-                                <thead>
-                                <tr>
-                                    <th>Véhicule</th>
-                                    <th>Total vidange</th>
-                                    <th>Prochain changement de courroie</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($vidangeCourroie as $vidange)
-                                    <tr>
-                                        <td>{{$vidange->idVehicule}}</td>
-                                        <td>{{$vidange->huileMoteurmontant + $vidange->filtreHuileMontant +
-                            $vidange->filtreGazoilMontant + $vidange->filtreAirMontant }}
-                                        </td>
-                                        <td>{{date('d/m/Y', strtotime($vidange->date . " + 7 day"))}}</td>
-                                        <td>
-                                            <a class="btn btn-danger btn-sm"
-                                               onclick="supprimerVC('{{$vidange->id}}', this)"></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
 
                             <br>
                             <button type="submit" class="btn btn-primary btn-sm">Valider</button>
@@ -508,30 +483,6 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <table class="table table-bordered" id="listeVV">
-                                        <thead>
-                                        <tr>
-                                            <th>Véhicule</th>
-                                            <th>Date</th>
-                                            <th>Prochaine vignette</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($vidangeVignette as $vidange)
-                                            <tr>
-                                                <td>{{$vidange->idVehicule}}</td>
-                                                <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
-                                                <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
-                                                <td>
-                                                    <a class="btn btn-danger btn-sm"
-                                                       onclick="supprimerVV('{{$vidange->id}}', this)"></a>
-                                                </td>
-                                            </tr>
-
-                                        @endforeach
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                             <input type="hidden" name="idVehicule_vignette" required>
@@ -569,29 +520,6 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <table class="table table-bordered" id="listeVCT">
-                                    <thead>
-                                    <tr>
-                                        <th>Véhicule</th>
-                                        <th>Date</th>
-                                        <th>Prochaine vignette</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($vidangeTransport as $vidange)
-                                        <tr>
-                                            <td>{{$vidange->idVehicule}}</td>
-                                            <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
-                                            <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
-                                            <td>
-                                                <a class="btn btn-danger btn-sm"
-                                                   onclick="supprimerVCT('{{$vidange->id}}', this)"></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         <br>
@@ -621,29 +549,6 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <table class="table table-bordered" id="listeVVT">
-                                    <thead>
-                                    <tr>
-                                        <th>Véhicule</th>
-                                        <th>Date</th>
-                                        <th>Prochaine vignette</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($vidangeVisite as $vidange)
-                                        <tr>
-                                            <td>{{$vidange->idVehicule}}</td>
-                                            <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
-                                            <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
-                                            <td>
-                                                <a class="btn btn-danger btn-sm"
-                                                   onclick="supprimerVVT('{{$vidange->id}}', this)"></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         <br/>
