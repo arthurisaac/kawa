@@ -115,6 +115,7 @@
                                     <td style="text-align: center;">
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVHM('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-pont/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
 
@@ -143,6 +144,7 @@
                                     <td style="text-align: center">
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerPatente('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-patente/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -200,6 +202,7 @@
                                     <td>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVV('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-vignette/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
 
@@ -256,6 +259,7 @@
                                     <td>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="supprimerVVT('{{$vidange->id}}', this)"></a>
+                                        <a href="/vidange-visite/{{$vidange->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -268,6 +272,7 @@
                         <table class="table table-bordered" id="listeA">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Véhicule</th>
                                 <th>Date</th>
                                 <th>Prochaine assurance</th>
@@ -277,12 +282,14 @@
                             <tbody>
                             @foreach ($assurances as $assurance)
                                 <tr>
-                                    <td>{{$vidange->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                                    <td>{{date('d/m/Y', strtotime($vidange->date))}}</td>
-                                    <td>{{date('d/m/Y', strtotime($vidange->prochainRenouvellement))}}</td>
+                                    <td>{{$assurance->id}}</td>
+                                    <td>{{$assurance->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                                    <td>{{date('d/m/Y', strtotime($assurance->date))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($assurance->prochainRenouvellement))}}</td>
                                     <td style="text-align: center;">
                                         <a class="btn btn-danger btn-sm"
-                                           onclick="supprimerVA('{{$vidange->id}}', this)"></a>
+                                           onclick="supprimerVA('{{$assurance->id}}', this)"></a>
+                                        <a href="/vidange-assurance/{{$assurance->id}}/edit" class="btn btn-primary btn-sm"></a>
                                     </td>
                                 </tr>
                             @endforeach

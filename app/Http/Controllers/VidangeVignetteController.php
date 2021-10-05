@@ -74,7 +74,8 @@ class VidangeVignetteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vidange = VidangeVignette::find($id);
+        return view('transport.entretien-vehicule.vidange-vignette.edit', compact('vidange'));
     }
 
     /**
@@ -86,7 +87,13 @@ class VidangeVignetteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vignette = VidangeVignette::find($id);
+        $vignette->dateRenouvellement = $request->get('dateRenouvellement');
+        $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
+        $vignette->montant = $request->get('montant');
+
+        $vignette->save();
+        return redirect()->back()->with('success', 'Vignette enregistrée!');
     }
 
     /**

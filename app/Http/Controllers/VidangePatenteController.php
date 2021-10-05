@@ -73,7 +73,8 @@ class VidangePatenteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vidange = VidangePatente::find($id);
+        return view('transport.entretien-vehicule.vidange-patente.edit', compact('vidange'));
     }
 
     /**
@@ -85,7 +86,11 @@ class VidangePatenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vignette = VidangePatente::find($id);
+        $vignette->dateRenouvellement = $request->get('dateRenouvellement');
+        $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
+        $vignette->save();
+        return redirect()->back()->with('success', 'Patente enregistrée!');
     }
 
     /**

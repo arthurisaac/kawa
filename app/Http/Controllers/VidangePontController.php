@@ -80,7 +80,8 @@ class VidangePontController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vidange = VidangeHuilePont::find($id);
+        return view('transport.entretien-vehicule.vidange-pont.edit', compact('vidange'));
     }
 
     /**
@@ -92,7 +93,11 @@ class VidangePontController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vidanges = VidangeHuilePont::find($id);
+        $vidanges->kmActuel = $request->get('kmActuel');
+        $vidanges->prochainKm = $request->get('prochainKm');
+        $vidanges->save();
+        return redirect()->back()->with('success', 'Vidange pont enregistrée!');
     }
 
     /**
