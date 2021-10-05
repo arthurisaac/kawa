@@ -614,6 +614,7 @@
         $(document).ready(function () {
             $("#vehicule").on("change", function () {
                 $("input[name='idVehicule']").val(this.value);
+                $("input[name='idVehicule_generale']").val(this.value);
                 $("input[name='idVehicule_courroie']").val(this.value);
                 $("input[name='idVehicule_vignette']").val(this.value);
                 $("input[name='idVehicule_transport']").val(this.value);
