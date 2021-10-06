@@ -6,6 +6,7 @@ use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
+use App\Models\SiteDepartTournee;
 use Illuminate\Http\Request;
 
 class RegulationDepartTourneeController extends Controller
@@ -20,7 +21,7 @@ class RegulationDepartTourneeController extends Controller
         $date = date("Y/m/d");
         $heure = date("H:i");
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
-        $sites = Commercial_site::with('clients')->get();
+        $sites = SiteDepartTournee::with('sites')->get();
         return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites"));
     }
 

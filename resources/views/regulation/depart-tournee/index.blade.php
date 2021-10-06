@@ -117,7 +117,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {{--<tr>
                         <td>
                             <select name="site[]" class="form-control">
                                 <option></option>
@@ -137,11 +137,11 @@
                         <td><input type="text" name="numero_scelle[]" class="form-control"></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                         <td><input type="text" name="montant[]" class="form-control"></td>
-                    </tr>
+                    </tr>--}}
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td colspan="6" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
                         <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
                     </tr>
@@ -162,6 +162,8 @@
                 $("#chauffeur").val("");
                 $("#chefDeBord").val("");
                 $("#agentDeGarde").val("");
+                $("#totalColis").val("");
+                $("#totalMontant").val("");
                 $("#centre_regional option").remove();
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
@@ -184,8 +186,40 @@
                         }));
                     })
                 }
+                const departSites = sites.filter(v => {
+                    return parseInt(v.idTourneeDepart) === parseInt(this.value);
+                });
+                if (departSites) populateSites(departSites);
             });
         });
+
+        function populateSites(sites) {
+            // console.log(sites);
+            $("#tableSite > tbody").html("");
+            sites.map(s => {
+                let HTML_NODE = `<tr>
+                        <td>
+                                <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
+                                <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
+                        </td>
+                        <td><input type="text" class="form-control" name="site[]" value="${s.sites.clients.client_nom}" readonly/></td>
+                        <td><input type="text" name="client[]" class="form-control"></td>
+                        <td><input type="text" name="autre[]" class="form-control"></td>
+                        <td><select name="nature[]" class="form-control">
+                                <option>${s?.nature ?? ''}</option>
+                                <option>envoi</option>
+                                <option>tri</option>
+                                <option>transite</option>
+                                <option>approvisionnement</option>
+                            </select></td>
+                        <td><input type="text" name="numero_scelle[]" value="${s?.numero_scelle ?? ''}" class="form-control"></td>
+                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
+                        <td><input type="text" name="montant[]"  value="${s?.montant ?? ''}" class="form-control"></td>
+                </tr>`;
+
+                $("#tableSite").append(HTML_NODE);
+            });
+        }
     </script>
     <script>
         $(document).ready(function () {
