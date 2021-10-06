@@ -381,6 +381,7 @@
     <script>
         let tournees = {!! json_encode($tournees) !!};
         let sites = {!! json_encode($sites) !!};
+        let sitesTournees = {!! json_encode($sitesTournees) !!};
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
                 $("#vehicule").val("");
@@ -398,14 +399,28 @@
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
 
+                    // Filtrer les sites par centre
+                    /*
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;
                     });
-                    console.log(commerciaux);
                     commerciaux.map(({id, site, clients}) => {
                         $('#asSite').append($('<option>', {
                             value: id,
                             text: `${site} (${clients.client_nom})`
+                        }));
+                    })
+                    */
+
+                    // Filtrer les sites par tournee site
+                    const commercial_site = sitesTournees.filter(site => {
+                        return site.idTourneeDepart === tournee.id;
+                    });
+                    console.log(commercial_site);
+                    commercial_site.map(({sites}) => {
+                        $('#asSite').append($('<option>', {
+                            value: sites.id,
+                            text: `${sites.site} (${sites.clients.client_nom})`
                         }));
                     })
                 }

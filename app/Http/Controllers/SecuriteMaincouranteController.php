@@ -35,6 +35,7 @@ class SecuriteMaincouranteController extends Controller
         $centres_regionaux = Centre_regional::all();
         $sites = Commercial_site::with('clients')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $sitesTournees = SiteDepartTournee::with("sites")->get();
         $departCentres = DepartCentre::with('tournees')->get();
         $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
         $departSites = DepartSite::with('tournees')->get();
@@ -46,7 +47,7 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites', 'sitesTournees'));
     }
 
     public function liste()
