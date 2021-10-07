@@ -23,7 +23,7 @@
         @endif
 
 
-        <form action="{{ route('regulation-depart-tournee.update', $tournee->id) }}" method="post">
+        <form action="{{ route('regulation-arrivee-tournee.update', $tournee->id) }}" method="post">
             @csrf
             @method("PATCH")
             <div class="container-fluid">

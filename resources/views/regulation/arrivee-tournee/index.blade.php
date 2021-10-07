@@ -24,26 +24,31 @@
         @endif
 
 
-        <form action="{{ route('regulation-depart-tournee.store') }}" method="post">
+        <form action="{{ route('regulation-arrivee-tournee.store') }}" method="post">
             @csrf
+
+            <input type="hidden" name="idDepart" id="idDepart">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <div class="form-group row">
                             <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date_depart" id="date_depart" class="form-control col-sm-8" readonly/>
+                            <input type="text" name="date_depart" id="date_depart" class="form-control col-sm-8"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure_depart" id="heure_depart" class="form-control col-sm-8" readonly/>
+                            <input type="text" name="heure_depart" id="heure_depart" class="form-control col-sm-8"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label for="heure" class="col-sm-4">Heure d'arrivée</label>
-                            <input type="time" name="heure_arrivee_regulation" id="heure_arrivee_regulation" class="form-control col-sm-8"/>
+                            <input type="time" name="heure_arrivee_regulation" id="heure_arrivee_regulation"
+                                   class="form-control col-sm-8"/>
                         </div>
                     </div>
                     <div class="col"></div>
@@ -147,10 +152,12 @@
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalValeurColis" id="totalValeurColis" class="form-control border-0"></td>
+                        <td><input type="number" name="totalValeurColis" id="totalValeurColis"
+                                   class="form-control border-0"></td>
                         <td></td>
                         <td></td>
-                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre" class="form-control border-0"></td>
+                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre"
+                                   class="form-control border-0"></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control border-0"></td>
                     </tr>
@@ -167,6 +174,7 @@
         let sites = {!! json_encode($sites) !!};
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
+                $("#idDepart").val("");
                 $("#date_depart").val("");
                 $("#heure_depart").val("");
                 $("#heure_arrivee").val("");
@@ -176,6 +184,7 @@
                 $("#agentDeGarde").val("");
                 $("#totalColis").val("");
                 $("#totalMontant").val("");
+                $("#heure_arrivee_regulation").val("");
                 $("#centre_regional option").remove();
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
@@ -188,6 +197,8 @@
                     $("#centre_regional").val(tournee.centre_regional);
                     $("#date_depart").val(tournee.date);
                     $("#heure_depart").val(tournee.heureDepart);
+                    $("#heure_arrivee_regulation").val(tournee.heure_arrivee_regulation);
+                    $("#idDepart").val(tournee.id);
 
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;

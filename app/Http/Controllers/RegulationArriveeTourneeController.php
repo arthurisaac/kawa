@@ -63,7 +63,9 @@ class RegulationArriveeTourneeController extends Controller
         $valeur_colis = $request->get('valeur_colis');
         $numero = $request->get('numero');
         $valeur_autre = $request->get('valeur_autre');
-
+        $dt = DepartTournee::find($request->get("idDepart"));
+        $dt->heure_arrivee_regulation = $request->get("heure_arrivee_regulation");
+        $dt->save();
 
 
         for ($i = 0; $i < count($sites); $i++) {
