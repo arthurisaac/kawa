@@ -41,16 +41,16 @@
             @foreach($tournees as $tournee)
                 <tr>
                     <td>{{$tournee->id}}</td>
-                    <td>{{$tournee->tournees->centre_regional ?? ""}}</td>
-                    <td>{{$tournee->tournees->centre ?? ""}}</td>
+                    <td>{{$tournee->centre_regional ?? ""}}</td>
+                    <td>{{$tournee->centre ?? ""}}</td>
                     <td>{{$tournee->date}}</td>
-                    <td>{{$tournee->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->totalColis}}</td>
-                    <td>{{$tournee->totalMontant}}</td>
-                    <td>{{$tournee->tournees->chefDeBords->nomPrenoms ?? ""}} //
-                        {{$tournee->tournees->agentDeGardes->nomPrenoms ?? ""}} //
-                        {{$tournee->tournees->chauffeurs->nomPrenoms ?? ""}} //
+                    <td>{{$tournee->numeroTournee ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                    <td>{{$tournee->sites->sum("nbre_colis")}}</td>
+                    <td>{{$tournee->sites->sum("montant_regulation")}}</td>
+                    <td>{{$tournee->chefDeBords->nomPrenoms ?? ""}} //
+                        {{$tournee->agentDeGardes->nomPrenoms ?? ""}} //
+                        {{$tournee->chauffeurs->nomPrenoms ?? ""}} //
                     </td>
                     <td>
                         <a href="regulation-depart-tournee/{{$tournee->id}}/edit" class="btn btn-sm btn-primary"></a>
