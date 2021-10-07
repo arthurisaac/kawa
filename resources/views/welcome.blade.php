@@ -745,6 +745,10 @@
                                                                 href="javascript:popupwnd('regulation-arrivee-tournee','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Nouveau</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-arrivee-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Liste</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>

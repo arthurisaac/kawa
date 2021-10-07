@@ -65,7 +65,6 @@ class RegulationDepartTourneeController extends Controller
         $valeur_autre = $request->get('valeur_autre');
 
 
-
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
@@ -84,7 +83,7 @@ class RegulationDepartTourneeController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistré avec succès');
+        return redirect("/regulation-depart-tournee-liste")->with('success', 'Enregistré avec succès');
 
     }
 

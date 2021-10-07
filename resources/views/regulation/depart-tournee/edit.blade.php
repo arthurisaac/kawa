@@ -107,7 +107,7 @@
                         <th>Numéro</th>
                         <th>Autre colis</th>
                         <th>Valeur autre colis</th>
-                        <th>Numéros (autre)</th>
+                        <th>Numéros (autre colis)</th>
                         <th>Nombre total (colis + autre colis)</th>
                     </tr>
                     </thead>

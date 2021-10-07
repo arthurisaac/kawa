@@ -55,6 +55,7 @@ class RegulationArriveeTourneeController extends Controller
         $sites = $request->get('site');
         $client = $request->get('client');
         $autre = $request->get('autre');
+        $nature = $request->get('nature');
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
         $site_id = $request->get("site_id");
@@ -67,12 +68,11 @@ class RegulationArriveeTourneeController extends Controller
         $dt->heure_arrivee_regulation = $request->get("heure_arrivee_regulation");
         $dt->save();
 
-
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
-                //$dataSite->nature = $nature[$i] ?? "";
+                $dataSite->nature = $nature[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
@@ -86,7 +86,7 @@ class RegulationArriveeTourneeController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistré avec succès');
+        return redirect("/regulation-arrivee-tournee-liste")->with('success', 'Enregistré avec succès');
     }
 
     /**

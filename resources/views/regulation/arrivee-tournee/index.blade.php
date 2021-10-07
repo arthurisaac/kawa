@@ -124,6 +124,7 @@
                         <th>Valeur autre colis</th>
                         <th>Numéros (autre)</th>
                         <th>Nombre total (colis + autre colis)</th>
+                        <th>Nature</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -248,7 +249,14 @@
                         <td><input type="number" name="valeur_autre[]" class="form-control" value="${s.valeur_autre ?? ''}"></td>
                         <td><textarea name="numero_scelle[]" class="form-control">${s?.numero_scelle ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
-                </tr>`;
+                        <td><select name="nature[]" class="form-control">
+                                <option>${s?.nature ?? ''}</option>
+                                <option>envoi</option>
+                                <option>tri</option>
+                                <option>transite</option>
+                                <option>approvisionnement</option>
+                                </select></td>
+                        </tr>`;
 
                 $("#tableSite").append(HTML_NODE);
 

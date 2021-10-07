@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <br>
         <br>
-        <div><h2 class="heading">Départ tournée</h2></div>
+        <div><h2 class="heading">Arrivée tournée</h2></div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
