@@ -96,10 +96,10 @@ class RegulationDepartTourneeController extends Controller
      */
     public function edit($id)
     {
-        $tournee = RegulationDepartTournee::find($id);
+        $tournee = DepartTournee::find($id);
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
-        $sitesItems = RegulationDepartTourneeItem::all()->where("regulation_depart", "=", $id);
+        $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
         return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
     }
 
