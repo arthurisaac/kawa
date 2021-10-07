@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commercial_site;
 use App\Models\Convoyeur;
 use App\Models\DepartTournee;
 use App\Models\Personnel;
@@ -20,12 +21,17 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function index()
     {
-        $departTournees = RegulationDepartTournee::with('tournees')->get();
-        $convoyeurs = Convoyeur::all();
-        $personnels = Personnel::all();
-        $sites = RegulationDepartTourneeItem::with('sites')->get();
-        $vidanges = VidangeGenerale::all();
-        return view('regulation.arrivee-tournee.index', compact('departTournees', 'convoyeurs', 'personnels', 'sites', 'vidanges'));
+        $date = date("Y/m/d");
+        $heure = date("H:i");
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $sites = SiteDepartTournee::with('sites')->get();
+        return view('regulation.arrivee-tournee.index', compact("date", "heure", "tournees", "sites"));
+    }
+
+    public function liste()
+    {
+        $tournees = DepartTournee::with("sites")->get();
+        return view("regulation.depart-tournee.liste", compact("tournees"));
     }
 
     /**
@@ -46,31 +52,33 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = RegulationDepartTournee::find($request->get('idTournee'));
-        $data->totalMontant = $request->get("totalMontant");
-        $data->totalColis = $request->get("totalColis");
-        $data->kmArrivee = $request->get("kmArrivee");
-        $data->heureArrivee = $request->get("heureArrivee");
-        $data->save();
+        $sites = $request->get('site');
+        $client = $request->get('client');
+        $autre = $request->get('autre');
+        $nbre_colis = $request->get('nbre_colis');
+        $numero_scelle = $request->get('numero_scelle');
+        $site_id = $request->get("site_id");
 
-        $sites_edit = $request->get('site');
-        $client_edit = $request->get('client');
-        $nature_edit = $request->get('nature');
-        $autre_edit = $request->get('autre');
-        $nbre_colis_edit = $request->get('nbre_colis');
-        $numero_scelle_edit = $request->get('numero_scelle');
-        $montant_edit = $request->get('montant');
-        $ids = $request->get('site_id');
+        $colis = $request->get('colis');
+        $valeur_colis = $request->get('valeur_colis');
+        $numero = $request->get('numero');
+        $valeur_autre = $request->get('valeur_autre');
 
-        for ($i = 0; $i < count($sites_edit); $i++) {
-            if (!empty($client_edit[$i]) && !empty($nbre_colis_edit[$i]) && !empty($montant_edit[$i])) {
-                $dataSite = RegulationDepartTourneeItem::find($ids[$i]);
-                $dataSite->client = $client_edit[$i] ?? "";
-                $dataSite->nature = $nature_edit[$i] ?? "";
-                $dataSite->nbre_colis = $nbre_colis_edit[$i] ?? 0;
-                $dataSite->autre = $autre_edit[$i] ?? 0;
-                $dataSite->numero_scelle = $numero_scelle_edit[$i] ?? "";
-                $dataSite->montant = $montant_edit[$i] ?? 0;
+
+
+        for ($i = 0; $i < count($sites); $i++) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+                $dataSite = SiteDepartTournee::find($site_id[$i]);
+                $dataSite->client = $client[$i] ?? "";
+                //$dataSite->nature = $nature[$i] ?? "";
+                $dataSite->autre = $autre[$i] ?? "";
+                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
+                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
+                //$dataSite->montant_regulation = $montant[$i] ?? 0;
+                $dataSite->colis = $colis[$i];
+                $dataSite->valeur_colis = $valeur_colis[$i];
+                $dataSite->numero = $numero[$i];
+                $dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->save();
             }
@@ -98,7 +106,11 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tournee = DepartTournee::find($id);
+        $tournees = RegulationDepartTournee::all();
+        $sites = Commercial_site::with('clients')->get();
+        $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
+        return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
     }
 
     /**
@@ -110,7 +122,35 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $sites = $request->get('site');
+        $client = $request->get('client');
+        $autre = $request->get('autre');
+        $nbre_colis = $request->get('nbre_colis');
+        $numero_scelle = $request->get('numero_scelle');
 
+        $colis = $request->get('colis');
+        $valeur_colis = $request->get('valeur_colis');
+        $numero = $request->get('numero');
+        $valeur_autre = $request->get('valeur_autre');
+        $site_id = $request->get("site_id");
+
+        for ($i = 0; $i < count($sites); $i++) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+                $dataSite = SiteDepartTournee::find($site_id[$i]);
+                $dataSite->client = $client[$i] ?? "";
+                $dataSite->autre = $autre[$i] ?? "";
+                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
+                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
+                $dataSite->colis = $colis[$i];
+                $dataSite->valeur_colis = $valeur_colis[$i];
+                $dataSite->numero = $numero[$i];
+                $dataSite->valeur_autre = $valeur_autre[$i];
+
+                $dataSite->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Enregistré avec succès');
     }
 
     /**
