@@ -102,9 +102,14 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
+                        <th>Colis</th>
+                        <th>Valeur total colis</th>
+                        <th>Numéro</th>
+                        <th>Autre colis</th>
+                        <th>Valeur autre colis</th>
                         <th>Nature</th>
                         <th>Numéros scellé</th>
-                        <th>Nbre colis</th>
+                        <th>Nombre total colis</th>
                         <th>Montant</th>
                     </tr>
                     </thead>
@@ -121,6 +126,11 @@
                                 <input type="hidden" name="site_id[]" value="{{$site->id}}">
                             </td>
                             <td><input type="text" name="client[]" value="{{$site->client}}" class="form-control"></td>
+                            <td><input type="text" name="colis[]" value="{{$site->colis}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="valeur_colis[]" value="{{$site->valeur_colis}}" class="form-control"></td>
+                            <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
+                            <td><input type="text" name="autre[]" value="{{$site->autre}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="valeur_autre[]" value="{{$site->valeur_autre}}" class="form-control"></td>
                             <td><select name="nature[]" class="form-control">
                                     <option>{{$site->nature}}</option>
                                     <option>envoi</option>
@@ -130,15 +140,21 @@
                                 </select></td>
                             <td><input type="text" name="numero_scelle[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
-                            <td><input type="text" name="montant[]" value="{{$site->montant_regulation}}" class="form-control"></td>
+                            <td><input type="number" name="montant[]" value="{{$site->montant_regulation}}" class="form-control"></td>
                         </tr>
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" value="{{$sitesItems->sum("montant")}}" class="form-control"></td>
+                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalValeurColis" id="totalValeurColis" value="{{$sitesItems->sum("valeur_colis")}}" class="form-control border-0"></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre"  value="{{$sitesItems->sum("valeur_autre")}}" class="form-control border-0"></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
+                        <td><input type="number" name="totalMontant" id="totalMontant" value="{{$sitesItems->sum("montant_regulation")}}" class="form-control border-0"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -201,7 +217,22 @@
                     totalColis += parseFloat(nbre) ?? 0;
                 });
                 $("#totalColis").val(totalColis);
-
+            });
+            $("input[name='valeur_colis[]']").on("change", function () {
+                let totalValeurColis = 0;
+                $.each($("input[name='valeur_colis[]']"), function (i) {
+                    const nbre = $("input[name='valeur_colis[]'").get(i).value;
+                    totalValeurColis += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurColis").val(totalValeurColis);
+            });
+            $("input[name='valeur_autre[]']").on("change", function () {
+                let totalValeurAutre = 0;
+                $.each($("input[name='valeur_autre[]']"), function (i) {
+                    const nbre = $("input[name='valeur_autre[]'").get(i).value;
+                    totalValeurAutre += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurAutre").val(totalValeurAutre);
             });
 
         })

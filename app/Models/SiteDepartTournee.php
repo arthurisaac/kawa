@@ -8,7 +8,7 @@ class SiteDepartTournee extends Model
 {
     protected $fillable = [
         'site', 'type', 'tdf', 'idTourneeDepart', 'caisse', 'montant', 'autre',
-        'nature', 'client', 'nbre_colis', 'numero_scelle', 'montant_regulation'
+        'nature', 'client', 'nbre_colis', 'numero_scelle', 'montant_regulation', 'colis', 'valeur_colis', 'numero', 'valeur_autre'
     ];
 
     public function sites()

@@ -101,10 +101,14 @@
                         <tr>
                             <th>Site</th>
                             <th>Client</th>
-                            <th>Autre</th>
+                            <th>Colis</th>
+                            <th>Valeur total colis</th>
+                            <th>Numéro</th>
+                            <th>Autre colis</th>
+                            <th>Valeur autre</th>
                             <th>Nature</th>
                             <th>Numéros scellé</th>
-                            <th>Nbre colis</th>
+                            <th>Nbre total colis</th>
                             <th>Montant</th>
                         </tr>
                         </thead>
@@ -179,13 +183,22 @@
                             <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                         </td>
                         <td><input type="text" name="client[]" value="${s.sites.clients.client_nom}" class="form-control"></td>
-                        <td><input type="text" name="autre[]" value="${s.autre ?? ''}" class="form-control"></td>
+                        <td><input type="text" name="colis[]" value="${s.valeur_autre ?? ''}" class="form-control"></td>
+                        <td><input type="text" name="valeur_colis[]" value="${s.valeur_autre ?? ''}" class="form-control"></td>
+                        <td><input type="text" name="numero[]" value="${s.valeur_autre ?? ''}" class="form-control"></td>
+                        <td><select name="autre[]"  class="form-control">
+                            <option>${s.autre ?? ''}</option>
+                            <option>Devise étrangère</option>
+                            <option>Caisse</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="valeur_autre[]" value="${s.valeur_autre ?? ''}" class="form-control"></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>${s.nature}</option>
-                                <option>envoi</option>
-                                <option>tri</option>
-                                <option>transite</option>
-                                <option>approvisionnement</option>
+                                <option>Juste sac juste</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
                             </select></td>
                         <td><input type="text" name="numero_scelle[]" value="${s.numero_scelle}" class="form-control"></td>
                         <td><input type="number" name="nbre_colis[]" value="${s.nbre_colis}" class="form-control"></td>

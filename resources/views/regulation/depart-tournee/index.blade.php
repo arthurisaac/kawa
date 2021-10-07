@@ -1,7 +1,8 @@
 @extends('base')
 
 @section('main')
-    <div class="burval-container">
+    <div class="container-fluid">
+        <br>
         <div><h2 class="heading">Régulation départ tournée</h2></div>
         <br/>
         <br/>
@@ -99,7 +100,7 @@
                     <div class="col"></div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <br>
                 <br>
                 <table class="table table-bordered" id="tableSite">
@@ -107,10 +108,14 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
-                        <th>Autre</th>
+                        <th>Colis</th>
+                        <th>Valeur total colis</th>
+                        <th>Numéro</th>
+                        <th>Autre colis</th>
+                        <th>Valeur autre colis</th>
                         <th>Nature</th>
                         <th>Numéros scellé</th>
-                        <th>Nbre colis</th>
+                        <th>Nombre total colis</th>
                         <th>Montant</th>
                     </tr>
                     </thead>
@@ -139,7 +144,13 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalValeurColis" id="totalValeurColis" class="form-control border-0"></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre" class="form-control border-0"></td>
+                        <td></td>
+                        <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control border-0"></td>
                         <td><input type="number" name="totalMontant" id="totalMontant" class="form-control border-0"></td>
                     </tr>
@@ -201,15 +212,25 @@
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
-                        <td><input type="text" name="autre[]" class="form-control" value="${s.autre ?? ''}"></td>
+                        <td><input type="text" name="colis[]" value="${s.colis ?? ''}" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis[]" value="${s.valeur_colis ?? ''}" class="form-control"></td>
+                        <td><input type="text" name="numero[]" value="${s.numero ?? ''}" class="form-control"></td>
+                        <td>
+                            <select name="autre[]" class="form-control">
+                                <option>${s.autre ?? ''}</option>
+                                <option>Device étrangère</option>
+                                <option>Caisse</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="valeur_autre[]" class="form-control" value="${s.valeur_autre ?? ''}"></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>${s?.nature ?? ''}</option>
-                                <option>envoi</option>
-                                <option>tri</option>
-                                <option>transite</option>
-                                <option>approvisionnement</option>
+                                <option>Juste sac juste</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
                             </select></td>
-                        <td><input type="text" name="numero_scelle[]" value="${s?.numero_scelle ?? ''}" class="form-control"></td>
+                        <td><textarea name="numero_scelle[]" class="form-control">${s?.numero_scelle ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
                         <td><input type="text" name="montant[]"  value="${s?.montant_regulation ?? ''}" class="form-control"></td>
                 </tr>`;
@@ -231,6 +252,14 @@
                     totalColis += parseFloat(nbre) ?? 0;
                 });
                 $("#totalColis").val(totalColis);
+
+                // Calcul valeur colis
+                let totalValeurColis = 0;
+                $.each($("input[name='valeur_colis[]']"), function (i) {
+                    const nbre = $("input[name='valeur_colis[]'").get(i).value;
+                    totalValeurColis += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurColis").val(totalValeurColis);
 
             });
         }
@@ -274,7 +303,22 @@
                     totalColis += parseFloat(nbre) ?? 0;
                 });
                 $("#totalColis").val(totalColis);
-
+            });
+            $("input[name='valeur_colis[]']").on("change", function () {
+                let totalValeurColis = 0;
+                $.each($("input[name='valeur_colis[]']"), function (i) {
+                    const nbre = $("input[name='valeur_colis[]'").get(i).value;
+                    totalValeurColis += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurColis").val(totalValeurColis);
+            });
+            $("input[name='valeur_autre[]']").on("change", function () {
+                let totalValeurAutre = 0;
+                $.each($("input[name='valeur_autre[]']"), function (i) {
+                    const nbre = $("input[name='valeur_autre[]'").get(i).value;
+                    totalValeurAutre += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurAutre").val(totalValeurAutre);
             });
         });
     </script>

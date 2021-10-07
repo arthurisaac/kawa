@@ -59,6 +59,13 @@ class RegulationDepartTourneeController extends Controller
         $montant = $request->get('montant');
         $site_id = $request->get("site_id");
 
+        $colis = $request->get('colis');
+        $valeur_colis = $request->get('valeur_colis');
+        $numero = $request->get('numero');
+        $valeur_autre = $request->get('valeur_autre');
+
+
+
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
@@ -68,6 +75,10 @@ class RegulationDepartTourneeController extends Controller
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 $dataSite->montant_regulation = $montant[$i] ?? 0;
+                $dataSite->colis = $colis[$i];
+                $dataSite->valeur_colis = $valeur_colis[$i];
+                $dataSite->numero = $numero[$i];
+                $dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->save();
             }
@@ -119,6 +130,10 @@ class RegulationDepartTourneeController extends Controller
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
         $montant = $request->get('montant');
+        $colis = $request->get('colis');
+        $valeur_colis = $request->get('valeur_colis');
+        $numero = $request->get('numero');
+        $valeur_autre = $request->get('valeur_autre');
         $site_id = $request->get("site_id");
 
         for ($i = 0; $i < count($sites); $i++) {
@@ -130,6 +145,10 @@ class RegulationDepartTourneeController extends Controller
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 $dataSite->montant_regulation = $montant[$i] ?? 0;
+                $dataSite->colis = $colis[$i];
+                $dataSite->valeur_colis = $valeur_colis[$i];
+                $dataSite->numero = $numero[$i];
+                $dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->save();
             }
