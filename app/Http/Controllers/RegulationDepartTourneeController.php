@@ -52,11 +52,11 @@ class RegulationDepartTourneeController extends Controller
     {
         $sites = $request->get('site');
         $client = $request->get('client');
-        $nature = $request->get('nature');
+        //$nature = $request->get('nature');
         $autre = $request->get('autre');
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
-        $montant = $request->get('montant');
+        // $montant = $request->get('montant');
         $site_id = $request->get("site_id");
 
         $colis = $request->get('colis');
@@ -70,11 +70,11 @@ class RegulationDepartTourneeController extends Controller
             if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
-                $dataSite->nature = $nature[$i] ?? "";
+                //$dataSite->nature = $nature[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
-                $dataSite->montant_regulation = $montant[$i] ?? 0;
+                //$dataSite->montant_regulation = $montant[$i] ?? 0;
                 $dataSite->colis = $colis[$i];
                 $dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
@@ -125,11 +125,10 @@ class RegulationDepartTourneeController extends Controller
     {
         $sites = $request->get('site');
         $client = $request->get('client');
-        $nature = $request->get('nature');
         $autre = $request->get('autre');
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
-        $montant = $request->get('montant');
+
         $colis = $request->get('colis');
         $valeur_colis = $request->get('valeur_colis');
         $numero = $request->get('numero');
@@ -140,11 +139,9 @@ class RegulationDepartTourneeController extends Controller
             if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
-                $dataSite->nature = $nature[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
-                $dataSite->montant_regulation = $montant[$i] ?? 0;
                 $dataSite->colis = $colis[$i];
                 $dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];

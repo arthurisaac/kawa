@@ -113,10 +113,8 @@
                         <th>Numéro</th>
                         <th>Autre colis</th>
                         <th>Valeur autre colis</th>
-                        <th>Nature</th>
-                        <th>Numéros scellé</th>
-                        <th>Nombre total colis</th>
-                        <th>Montant</th>
+                        <th>Numéros (autre)</th>
+                        <th>Nombre total (colis + autre colis)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -150,9 +148,7 @@
                         <td></td>
                         <td><input type="number" name="totalValeurAutre" id="totalValeurAutre" class="form-control border-0"></td>
                         <td></td>
-                        <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control border-0"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control border-0"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -212,27 +208,26 @@
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
-                        <td><input type="text" name="colis[]" value="${s.colis ?? ''}" class="form-control"></td>
+                        <td><select name="colis[]" value="" class="form-control">
+                                <option>${s.colis ?? ''}</option>
+                                <option>Sac jute</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
+                                </select>
+                        </td>
                         <td><input type="number" name="valeur_colis[]" value="${s.valeur_colis ?? ''}" class="form-control"></td>
                         <td><input type="text" name="numero[]" value="${s.numero ?? ''}" class="form-control"></td>
                         <td>
                             <select name="autre[]" class="form-control">
-                                <option>${s.autre ?? ''}</option>
+                                <option>${s.autre ?? 'RAS'}</option>
                                 <option>Device étrangère</option>
                                 <option>Caisse</option>
                             </select>
                         </td>
                         <td><input type="number" name="valeur_autre[]" class="form-control" value="${s.valeur_autre ?? ''}"></td>
-                        <td><select name="nature[]" class="form-control">
-                                <option>${s?.nature ?? ''}</option>
-                                <option>Juste sac juste</option>
-                                <option>Keep safe</option>
-                                <option>Caisse</option>
-                                <option>Conteneur</option>
-                            </select></td>
                         <td><textarea name="numero_scelle[]" class="form-control">${s?.numero_scelle ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
-                        <td><input type="text" name="montant[]"  value="${s?.montant_regulation ?? ''}" class="form-control"></td>
                 </tr>`;
 
                 $("#tableSite").append(HTML_NODE);

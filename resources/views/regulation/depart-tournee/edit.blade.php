@@ -107,10 +107,8 @@
                         <th>Numéro</th>
                         <th>Autre colis</th>
                         <th>Valeur autre colis</th>
-                        <th>Nature</th>
-                        <th>Numéros scellé</th>
-                        <th>Nombre total colis</th>
-                        <th>Montant</th>
+                        <th>Numéros (autre)</th>
+                        <th>Nombre total (colis + autre colis)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -126,21 +124,19 @@
                                 <input type="hidden" name="site_id[]" value="{{$site->id}}">
                             </td>
                             <td><input type="text" name="client[]" value="{{$site->client}}" class="form-control"></td>
-                            <td><input type="text" name="colis[]" value="{{$site->colis}}" class="form-control"></td>
+                            <td><select name="colis[]" class="form-control">
+                                    <option>{{$site->colis}}</option>
+                                    <option>Sac jute</option>
+                                    <option>Keep safe</option>
+                                    <option>Caisse</option>
+                                    <option>Conteneur</option>
+                                </select></td>
                             <td><input type="number" min="0" name="valeur_colis[]" value="{{$site->valeur_colis}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
-                            <td><input type="text" name="autre[]" value="{{$site->autre}}" class="form-control"></td>
+                            <td><input type="text" name="autre[]" value="{{$site->autre ??  "RAS"}}" class="form-control"></td>
                             <td><input type="number" min="0" name="valeur_autre[]" value="{{$site->valeur_autre}}" class="form-control"></td>
-                            <td><select name="nature[]" class="form-control">
-                                    <option>{{$site->nature}}</option>
-                                    <option>envoi</option>
-                                    <option>tri</option>
-                                    <option>transite</option>
-                                    <option>approvisionnement</option>
-                                </select></td>
                             <td><input type="text" name="numero_scelle[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
-                            <td><input type="number" name="montant[]" value="{{$site->montant_regulation}}" class="form-control"></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -152,9 +148,7 @@
                         <td></td>
                         <td><input type="number" name="totalValeurAutre" id="totalValeurAutre"  value="{{$sitesItems->sum("valeur_autre")}}" class="form-control border-0"></td>
                         <td></td>
-                        <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" value="{{$sitesItems->sum("montant_regulation")}}" class="form-control border-0"></td>
                     </tr>
                     </tfoot>
                 </table>
