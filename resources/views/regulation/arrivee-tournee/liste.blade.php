@@ -53,7 +53,7 @@
                         {{$tournee->chauffeurs->nomPrenoms ?? ""}} //
                     </td>
                     <td>
-                        <a href="regulation-depart-tournee/{{$tournee->id}}/edit" class="btn btn-sm btn-primary"></a>
+                        <a href="regulation-arrivee-tournee/{{$tournee->id}}/edit" class="btn btn-sm btn-primary"></a>
                         <a href="" class="btn btn-sm btn-danger" onclick="supprimer('{{$tournee->id}}', this)"></a>
                     </td>
                 </tr>

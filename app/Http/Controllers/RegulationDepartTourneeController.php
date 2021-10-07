@@ -66,7 +66,7 @@ class RegulationDepartTourneeController extends Controller
 
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) ) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 //$dataSite->nature = $nature[$i] ?? "";
@@ -135,7 +135,7 @@ class RegulationDepartTourneeController extends Controller
         $site_id = $request->get("site_id");
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";

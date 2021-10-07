@@ -109,6 +109,7 @@
                         <th>Valeur autre colis</th>
                         <th>Numéros (autre)</th>
                         <th>Nombre total (colis + autre colis)</th>
+                        <th>Nature</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -137,6 +138,13 @@
                             <td><input type="number" min="0" name="valeur_autre[]" value="{{$site->valeur_autre}}" class="form-control"></td>
                             <td><input type="text" name="numero_scelle[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
+                            <td><select name="nature[]" class="form-control">
+                                    <option>{{$site->nature}}</option>
+                                    <option>envoi</option>
+                                    <option>tri</option>
+                                    <option>transite</option>
+                                    <option>approvisionnement</option>
+                                </select></td>
                         </tr>
                     @endforeach
                     </tbody>

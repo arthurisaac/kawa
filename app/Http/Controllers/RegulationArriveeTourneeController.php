@@ -31,7 +31,7 @@ class RegulationArriveeTourneeController extends Controller
     public function liste()
     {
         $tournees = DepartTournee::with("sites")->get();
-        return view("regulation.depart-tournee.liste", compact("tournees"));
+        return view("regulation.arrivee-tournee.liste", compact("tournees"));
     }
 
     /**
@@ -69,7 +69,7 @@ class RegulationArriveeTourneeController extends Controller
         $dt->save();
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->nature = $nature[$i] ?? "";
@@ -112,7 +112,7 @@ class RegulationArriveeTourneeController extends Controller
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
         $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
-        return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
+        return view('regulation.arrivee-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
     }
 
     /**
@@ -133,11 +133,12 @@ class RegulationArriveeTourneeController extends Controller
         $colis = $request->get('colis');
         $valeur_colis = $request->get('valeur_colis');
         $numero = $request->get('numero');
+        $nature = $request->get('nature');
         $valeur_autre = $request->get('valeur_autre');
         $site_id = $request->get("site_id");
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i]) && !empty($montant[$i])) {
+            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
@@ -146,6 +147,7 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->colis = $colis[$i];
                 $dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
+                $dataSite->nature = $nature[$i];
                 $dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->save();
