@@ -84,7 +84,7 @@
                         <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
-                        <th>Montant</th>
+                        {{--<th>Montant</th>--}}
                     </tr>
                     </thead>
                     <tbody>
@@ -120,7 +120,7 @@
                     <tr>
                         <td colspan="5" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
+                        {{--<td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>--}}
                     </tr>
                     </tfoot>
                 </table>
@@ -167,15 +167,8 @@
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
-                    '                        <td><select name="nature[]" class="form-control">\n' +
-                    '                                <option>envoi</option>\n' +
-                    '                                <option>tri</option>\n' +
-                    '                                <option>transite</option>\n' +
-                    '                                <option>approvisionnement</option>\n' +
-                    '                            </select></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');
             });
         })

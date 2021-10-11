@@ -77,10 +77,8 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Nature</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre colis</th>
-                        <th>Montant</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -101,22 +99,15 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                             </select></td>
-                        <td><select name="nature[]" class="form-control">
-                                <option>envoi</option>
-                                <option>tri</option>
-                                <option>transite</option>
-                                <option>approvisionnement</option>
-                            </select></td>
                         <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
-                        <td><input type="text" name="montant[]" class="form-control"></td>
                     </tr>
                     </tbody>
                     <tfoot>
                     <tr>
                         <td colspan="5" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>
+                        {{--<td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>--}}
                     </tr>
                     </tfoot>
                 </table>
@@ -168,15 +159,8 @@
                     '                                <option>Caisse</option>\n' +
                     '                                <option>Conteneur</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><select name="nature[]" class="form-control">\n' +
-                    '                                <option>envoi</option>\n' +
-                    '                                 <option>tri</option>\n' +
-                    '                                <option>transite</option>\n' +
-                    '                                <option>approvisionnement</option>\n' +
-                    '                            </select></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');
             });
         })
