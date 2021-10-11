@@ -107,10 +107,8 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
-                        <th>Montant</th>
                     </tr>
                     </thead>
                     <tbody>

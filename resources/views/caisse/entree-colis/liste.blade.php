@@ -31,7 +31,7 @@
                             <td>Centre régional</td>
                             <td>Centre</td>
                             <td>Nbre Total colis</td>
-                            <td>Montant total</td>
+                            {{--<td>Montant total</td>--}}
                             <td style="width: 50px;">Actions</td>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
                             <td>{{$coli->sites->sum("nbre_colis")}}</td>
-                            <td>{{$coli->sites->sum("montant")}}</td>
+                            {{--<td>{{$coli->sites->sum("montant")}}</td>--}}
                             <td>
                                 <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
                                 <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->id}}', this)"></a>
