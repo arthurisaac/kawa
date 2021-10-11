@@ -23,15 +23,15 @@ class CaisseEntreeColisController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::with("clients")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
-        return view('/caisse/entree-colis.index',
+        return view('caisse.entree-colis.index',
             compact('centres', 'centres_regionaux', 'numero', 'sites'));
     }
 
     public function liste()
     {
-        $colis = CaisseEntreeColis::all();
+        $colis = CaisseEntreeColis::with("sites")->get();
         return view('/caisse/entree-colis.liste', compact('colis'));
     }
 
@@ -64,7 +64,7 @@ class CaisseEntreeColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        $autre = $request->get("autre");
+        $colis = $request->get("colis");
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
@@ -75,7 +75,7 @@ class CaisseEntreeColisController extends Controller
                 $item = new CaisseEntreeColisItem([
                     "entree_colis" => $data->id,
                     "site" => $site[$i],
-                    "autre" => $autre[$i],
+                    "colis" => $colis[$i],
                     "nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
@@ -116,7 +116,7 @@ class CaisseEntreeColisController extends Controller
         $items = CaisseEntreeColisItem::all()->where("entree_colis", $id);
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::with("clients")->get();
         $coli = $colis[0];
         return view('/caisse/entree-colis.edit',
             compact('coli', 'centres', 'centres_regionaux', 'personnels', 'items', 'agents', 'chefBords', 'sites'));
@@ -162,7 +162,7 @@ class CaisseEntreeColisController extends Controller
         }
 
         $site_edit = $request->get("site_edit");
-        $autre_edit = $request->get("autre_edit");
+        $colis_edit = $request->get("colis_edit");
         $nature_edit = $request->get("nature_edit");
         $scelle_edit = $request->get("scelle_edit");
         $nbre_colis_edit = $request->get("nbre_colis_edit");
@@ -173,7 +173,7 @@ class CaisseEntreeColisController extends Controller
             for ($i = 0; $i < count($nbre_colis_edit); $i++) {
                 $item = CaisseEntreeColisItem::find($ids[$i]);
                 $item->site = $site_edit[$i];
-                $item->autre = $autre_edit[$i];
+                $item->colis = $colis_edit[$i];
                 $item->nature = $nature_edit[$i];
                 $item->scelle = $scelle_edit[$i];
                 $item->nbre_colis = $nbre_colis_edit[$i];

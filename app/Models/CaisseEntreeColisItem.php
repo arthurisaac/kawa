@@ -10,6 +10,7 @@ class CaisseEntreeColisItem extends Model
         "entree_colis",
         "site",
         "autre",
+        "colis",
         "nature",
         "scelle",
         "nbre_colis",

@@ -106,7 +106,7 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
-                        <th>Autre</th>
+                        <th>Colis</th>
                         <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
@@ -126,7 +126,13 @@
                                 </select>
                             </td>
                             <td><input type="text" name="client_edit[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
-                            <td><input type="text" name="autre_edit[]" value="{{$item->autre}}" class="form-control"></td>
+                            <td><select name="colis_edit[]" class="form-control">
+                                    <option>{{$item->colis}}</option>
+                                    <option>Sac jute</option>
+                                    <option>Keep safe</option>
+                                    <option>Caisse</option>
+                                    <option>Conteneur</option>
+                                </select></td>
                             <td><select name="nature_edit[]" class="form-control">
                                     <option>{{$item->nature}}</option>
                                     <option>envoi</option>
@@ -190,10 +196,16 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
+                    '                        <td><select name="colis[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                <option>Sac jute</option>\n' +
+                    '                                <option>Keep safe</option>\n' +
+                    '                                <option>Caisse</option>\n' +
+                    '                                <option>Conteneur</option>\n' +
+                    '                            </select></td>\n' +
                     '                        <td><select name="nature[]" class="form-control">\n' +
                     '                                <option>envoi</option>\n' +
-                    '                                <option>tri</option>\n' +
+                    '                                 <option>tri</option>\n' +
                     '                                <option>transite</option>\n' +
                     '                                <option>approvisionnement</option>\n' +
                     '                            </select></td>\n' +

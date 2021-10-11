@@ -132,11 +132,13 @@
             <div >
                 <table id="data" class="table table-sm table-bordered">
                     <thead>
-                    <th>Site</th>
-                    <th>Type opération</th>
-                    <th>TDF</th>
-                    <th>Caisse</th>
-                    <th></th>
+                    <tr>
+                        <th>Site</th>
+                        <th>Type opération</th>
+                        <th>TDF</th>
+                        <th>Caisse</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
                     @for($i=0; $i<2; $i++)

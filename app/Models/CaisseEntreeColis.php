@@ -15,4 +15,9 @@ class CaisseEntreeColis extends Model
         'totalMontant',
         'totalColis',
     ];
+
+    public function sites()
+    {
+        return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart');
+    }
 }

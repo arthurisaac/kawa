@@ -65,7 +65,7 @@
                     <div class="col"></div>
                     <div class="col"></div>
                 </div>
-            </div>
+             </div>
             <div class="container">
                 <br>
                 <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
@@ -76,9 +76,9 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
-                        <th>Autre</th>
+                        <th>Colis</th>
                         <th>Nature</th>
-                        <th>Numéros scellé</th>
+                        <th>Numéros scellé (Réference)</th>
                         <th>Nbre colis</th>
                         <th>Montant</th>
                     </tr>
@@ -94,7 +94,13 @@
                             </select>
                         </td>
                         <td><input type="text" name="client[]" class="form-control"></td>
-                        <td><input type="text" name="autre[]" class="form-control"></td>
+                        <td><select name="colis[]" class="form-control">
+                                <option></option>
+                                <option>Sac jute</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
+                            </select></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>envoi</option>
                                 <option>tri</option>
@@ -128,7 +134,6 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -156,10 +161,16 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
+                    '                        <td><select name="colis[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                <option>Sac jute</option>\n' +
+                    '                                <option>Keep safe</option>\n' +
+                    '                                <option>Caisse</option>\n' +
+                    '                                <option>Conteneur</option>\n' +
+                    '                            </select></td>\n' +
                     '                        <td><select name="nature[]" class="form-control">\n' +
                     '                                <option>envoi</option>\n' +
-                    '                                <option>tri</option>\n' +
+                    '                                 <option>tri</option>\n' +
                     '                                <option>transite</option>\n' +
                     '                                <option>approvisionnement</option>\n' +
                     '                            </select></td>\n' +
@@ -202,7 +213,6 @@
                 });
                 const site = sites.find(s => s.id === parseInt(this.value));
                 if (site) {
-                    console.log(site);
                     $("input[name='client[]']").eq(index).val(site.clients.client_nom);
                 } else {
                     console.log("Site non trouvé :-(");
