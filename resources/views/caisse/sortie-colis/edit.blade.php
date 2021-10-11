@@ -82,7 +82,7 @@
                     <tr>
                         <th>Site</th>
                         <th>Client</th>
-                        <th>Autre</th>
+                        <th>Colis</th>
                         <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
@@ -166,7 +166,13 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
+                    '                        <td><select name="autre[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                <option>Sac jute</option>\n' +
+                    '                                <option>Keep safe</option>\n' +
+                    '                                <option>Caisse</option>\n' +
+                    '                                <option>Conteneur</option>\n' +
+                    '                            </select></td>\n' +
                     '                        <td><select name="nature[]" class="form-control">\n' +
                     '                                <option>envoi</option>\n' +
                     '                                <option>tri</option>\n' +

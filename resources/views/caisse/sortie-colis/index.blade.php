@@ -98,7 +98,13 @@
                             </select>
                         </td>
                         <td><input type="text" name="client[]" class="form-control"></td>
-                        <td><input type="text" name="autre[]" class="form-control"></td>
+                        <td><<select name="autre[]" class="form-control">
+                                <option></option>
+                                <option>Sac jute</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
+                            </select></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>envoi</option>
                                 <option>tri</option>
