@@ -29,9 +29,14 @@ class CaisseEntreeColisController extends Controller
             compact('centres', 'centres_regionaux', 'numero', 'sites'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $colis = CaisseEntreeColis::with("sites")->get();
+        if (isset($debut) && isset($fin)) {
+            $colis = CaisseEntreeColis::with("sites")->whereBetween('date', [$debut, $fin])->get();
+        }
         return view('/caisse/entree-colis.liste', compact('colis'));
     }
 
@@ -68,7 +73,7 @@ class CaisseEntreeColisController extends Controller
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
-        $montant = $request->get("montant");
+        //$montant = $request->get("montant");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -79,13 +84,13 @@ class CaisseEntreeColisController extends Controller
                     "nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
-                    "montant" => $montant[$i],
+                    //"montant" => $montant[$i],
                 ]);
                 $item->save();
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistrement effectué!');
+        return redirect("caisse-entree-colis-liste")->with('success', 'Enregistrement effectué!');
 
     }
 
@@ -144,7 +149,7 @@ class CaisseEntreeColisController extends Controller
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
-        $montant = $request->get("montant");
+        //$montant = $request->get("montant");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -155,7 +160,7 @@ class CaisseEntreeColisController extends Controller
                     "nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
-                    "montant" => $montant[$i],
+                    //"montant" => $montant[$i],
                 ]);
                 $item->save();
             }
@@ -166,7 +171,7 @@ class CaisseEntreeColisController extends Controller
         $nature_edit = $request->get("nature_edit");
         $scelle_edit = $request->get("scelle_edit");
         $nbre_colis_edit = $request->get("nbre_colis_edit");
-        $montant_edit = $request->get("montant_edit");
+        //$montant_edit = $request->get("montant_edit");
         $ids = $request->get("ids");
 
         if (!empty($site_edit) && !empty($nbre_colis_edit)) {
@@ -177,12 +182,13 @@ class CaisseEntreeColisController extends Controller
                 $item->nature = $nature_edit[$i];
                 $item->scelle = $scelle_edit[$i];
                 $item->nbre_colis = $nbre_colis_edit[$i];
-                $item->montant = $montant_edit[$i];
+                //$item->montant = $montant_edit[$i];
                 $item->save();
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistrement effectué!');
+        //return redirect()->back()->with('success', 'Enregistrement effectué!');
+        return redirect("caisse-entree-colis-liste")->with('success', 'Enregistrement effectué!');
     }
 
     /**

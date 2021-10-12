@@ -19,6 +19,8 @@
         @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
+                <br>
+                <a href="/commercial-site-liste" class="btn btn-info btn-sm">Ouvrir la liste</a>
             </div>
         @endif
 

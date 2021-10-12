@@ -25,15 +25,20 @@ class CaisseSortieColisController extends Controller
         $centres_regionaux = Centre_regional::all();
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::with("clients")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         return view('/caisse/sortie-colis.index',
             compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $colis = CaisseSortieColis::all();
+        if (isset($debut) && isset($fin)) {
+            $colis = CaisseSortieColis::all()->whereBetween('date', [$debut, $fin]);
+        }
         return view('/caisse/sortie-colis.liste', compact('colis'));
     }
 
@@ -89,7 +94,7 @@ class CaisseSortieColisController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistrement effectué!');
+        return redirect("caisse-sortie-colis-liste")->with('success', 'Enregistrement effectué!');
 
     }
 
@@ -114,11 +119,12 @@ class CaisseSortieColisController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $personnels = Personnel::all();
-        $colis = CaisseSortieColis::where('id', $id)->with('agentRegulations')->get();
-        $items = DB::table('caisse_sortie_colis_items')->where('sortieColis', $id)->get();
-        $coli = $colis[0];
-        return view('/caisse/sortie-colis.edit', compact('coli', 'centres', 'centres_regionaux', 'personnels', 'items'));
+        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
+        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
+        $sites = Commercial_site::with("clients")->get();
+        $items = CaisseSortieColisItem::with("sites")->where("sortieColis", $id)->get();
+        $coli = CaisseSortieColis::find($id);
+        return view('/caisse/sortie-colis.edit', compact('coli', 'items', 'centres', 'centres_regionaux', 'agents', 'chefBords', 'sites'));
     }
 
     /**
@@ -145,7 +151,7 @@ class CaisseSortieColisController extends Controller
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
-        $montant = $request->get("montant");
+        //$montant = $request->get("montant");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -156,7 +162,7 @@ class CaisseSortieColisController extends Controller
                     "nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
-                    "montant" => $montant[$i],
+                    //"montant" => $montant[$i],
                 ]);
                 $item->save();
             }
@@ -183,7 +189,7 @@ class CaisseSortieColisController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Enregistrement effectué!');
+        return redirect("caisse-sortie-colis-liste")->with('success', 'Enregistrement effectué!');
     }
 
     /**

@@ -107,7 +107,7 @@ class CommercialSiteController extends Controller
             'oo_dispatching' => $request->get('oo_dispatching'),
         ]);
         $site->save();
-        return redirect('/commercial-site-liste')->with('success', 'Site enregistré!');
+        return redirect()->back()->with('success', 'Site enregistré!');
     }
 
     /**

@@ -86,7 +86,6 @@
                         <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
-                        <th>Montant</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -112,7 +111,6 @@
                                 </select></td>
                             <td><input type="text" name="scelle_edit[]" value="{{$item->scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis_edit[]" value="{{$item->nbre_colis}}" class="form-control"></td>
-                            <td><input type="text" name="montant_edit[]" value="{{$item->montant }}" class="form-control"></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -120,7 +118,6 @@
                     <tr>
                         <td colspan="5" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalColis" id="totalColis" value="{{$coli->totalColis}}" class="form-control"></td>
-                        <td><input type="number" name="totalMontant" id="totalMontant" value="{{$coli->totalMontant}}" class="form-control"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -181,7 +178,6 @@
                     '                            </select></td>\n' +
                     '                        <td><input type="text" name="scelle[]" class="form-control"></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="montant[]" class="form-control"></td>\n' +
                     '                    </tr>');
             });
         })

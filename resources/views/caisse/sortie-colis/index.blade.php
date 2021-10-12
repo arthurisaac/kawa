@@ -81,7 +81,6 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Autre colis</th>
-                        <th>Nature</th>
                         <th>Numéros scellé</th>
                         <th>Nbre colis</th>
                         {{--<th>Montant</th>--}}
@@ -98,22 +97,16 @@
                             </select>
                         </td>
                         <td><input type="text" name="client[]" class="form-control"></td>
-                        <td><<select name="autre[]" class="form-control">
+                        <td><select name="autre[]" class="form-control">
                                 <option></option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                             </select></td>
-                        <td><select name="nature[]" class="form-control">
-                                <option>envoi</option>
-                                <option>tri</option>
-                                <option>transite</option>
-                                <option>approvisionnement</option>
-                            </select></td>
                         <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
-                        <td><input type="text" name="montant[]" class="form-control"></td>
+                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}
                     </tr>
                     </tbody>
                     <tfoot>
@@ -166,7 +159,13 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><input type="text" name="autre[]" class="form-control"></td>\n' +
+                    '                        <td><select name="autre[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                <option>Sac jute</option>\n' +
+                    '                                <option>Keep safe</option>\n' +
+                    '                                <option>Caisse</option>\n' +
+                    '                                <option>Conteneur</option>\n' +
+                    '                            </select></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                    </tr>');
@@ -193,7 +192,6 @@
                 $("#totalColis").val(totalColis);
 
             });
-
             $("select[name='site[]']").on("change", function () {
                 let index = 0;
                 const thisSite = this;
