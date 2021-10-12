@@ -174,7 +174,7 @@ class CommercialClientController extends Controller
         }
 
 
-        return redirect('/commercial-client-liste')->with('success', 'Client enregistré!');
+        return redirect()->back()->with('success', 'Client enregistré!');
     }
 
     /**
