@@ -22,6 +22,9 @@
         @endif
 
         <br/>
+        <a href="/commercial-site" class="btn btn-info btn-sm">Nouveau</a>
+        <br>
+        <br>
         <table id="table_client_information" class="table table-bordered table-hover" style="width: 100%;">
             <thead>
             <tr>
