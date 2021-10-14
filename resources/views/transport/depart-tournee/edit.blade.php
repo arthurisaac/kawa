@@ -205,6 +205,7 @@
                         <br/>
                         <button class="btn btn-primary">Enregistrer</button>
                         <button class="btn btn-danger" type="button" onclick="window.history.back()">Annuler</button>
+                        <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
                     </div>
                 </div>
             </div>
