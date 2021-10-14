@@ -111,7 +111,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
                         {{--<td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>--}}
                     </tr>
