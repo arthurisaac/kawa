@@ -75,8 +75,8 @@
                         <td>{{$tournee->centre_regional}}</td>
                         <td>{{$tournee->numeroTournee}}</td>
                         <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                        <td></td>
-                        <td>{{$tournee->departCentre->kmDepart ?? ""}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
+                        <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
+                        <td>{{$tournee->departCentre->kmDepart ?? "Pas de données"}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
                         <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
                         <td>{{$tournee->arriveeCentre->dateArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
