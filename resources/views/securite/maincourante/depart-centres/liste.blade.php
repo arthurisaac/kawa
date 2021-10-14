@@ -77,9 +77,9 @@
                     error: function (xhr) {
                         alert("Une erreur s'est produite");
                     }
+                }).done(function () {
+                    // TODO hide loader
                 });
-
-
             }
 
         }

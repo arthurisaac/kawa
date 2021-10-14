@@ -594,6 +594,8 @@
                 const dcObservation = $("textarea[name=dcObservation]").val();
                 const asNumeroBordereau = $("textarea[name=asNumeroBordereau]").val();
                 const dcNiveauCarburant = $("select[name=dcNiveauCarburant]").val();
+
+                $("#dcSubmit").attr("disabled", "true");
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -620,8 +622,11 @@
                             }
                         }
                     }
-                })
+                }).done(function () {
+                    $("#dcSubmit").attr("disabled", "false");
+                });
             });
+
 
             $("#asSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
@@ -663,6 +668,7 @@
                 //const asMontantAnnonce = $("input[name=asMontantAnnonce]").val();
                 //const asNatureColis = $("input[name=asNatureColis]").val();
 
+                $("#asSubmit").attr("disabled", "true");
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -698,6 +704,9 @@
                         }
                     }
                 })
+                    .done(function () {
+                        $("#asSubmit").attr("disabled", "false");
+                    });
             });
 
             $("#dsSubmit").on("click", function () {
@@ -705,6 +714,7 @@
                 const noTournee = $("#noTournee").val();
                 const site = $("select[name=asSite]").val();
 
+                $("#dsSubmit").attr("disabled", "true");
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -723,11 +733,15 @@
                         }
                     }
                 })
+                    .done(function () {
+                        $("#dsSubmit").attr("disabled", "false");
+                    });
             });
 
             $("#acSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
                 const noTournee = $("#noTournee").val();
+                $("#acSubmit").attr("disabled", "true");
 
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
@@ -746,6 +760,9 @@
                         console.log(response);
                     }
                 })
+                    .done(function () {
+                        $("#acSubmit").attr("disabled", "false");
+                    });
             });
 
             $("#tcSubmit").on("click", function () {
