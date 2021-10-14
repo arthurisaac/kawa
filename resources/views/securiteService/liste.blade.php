@@ -21,6 +21,10 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+        <br>
+        <a href="/securite-service-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <br>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <table class="table table-bordered table-hover" id="liste">

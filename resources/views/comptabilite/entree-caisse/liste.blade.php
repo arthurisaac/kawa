@@ -21,7 +21,9 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
+        <a href="/comptabilite-entree-caisse-liste" class="btn btn-sm btn-primary">Ajouter</a>
+        <br>
+        <br>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered" style="width: 100%;" id="liste">

@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <a href="/depart-tournee" class="btn btn-info btn-sm" style="margin-left: 20px">Nouveau départ tournée</a>
+        <a href="/depart-tournee" class="btn btn-info btn-sm">Nouveau départ tournée</a>
         <br>
         <br>
         <form action="#" method="get">

@@ -22,6 +22,10 @@
             </div>
         @endif
 
+        <br>
+        <a href="/arrivee-tournee-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <br>
+        <br>
         <table class="table table-bordered" style="width: 100%;" id="liste">
             <thead>
             <tr>
