@@ -593,7 +593,7 @@
                 const dcKmDepart = $("input[name=dcKmDepart]").val();
                 const dcObservation = $("textarea[name=dcObservation]").val();
                 const asNumeroBordereau = $("textarea[name=asNumeroBordereau]").val();
-                const dcNiveauCarburant = $("input[name=dcNiveauCarburant]").val();
+                const dcNiveauCarburant = $("select[name=dcNiveauCarburant]").val();
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",

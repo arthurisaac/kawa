@@ -1,7 +1,7 @@
 @extends("base")
 
 @section("main")
-    <div class="container">
+    <div class="container-fluid">
         <br>
         <h2 class="heading">Arrivée site</h2>
         <a href="/maincourante-arriveesiteliste">Liste arrivée site</a>
