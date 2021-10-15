@@ -60,6 +60,7 @@ class ArriveeTourneeController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
         $departTournee = DepartTournee::with('vehicules')
+            ->with('arriveeSites')
             ->orderByDesc("created_at")
             ->get();
         if (isset($debut) && isset($fin)) {
