@@ -4,7 +4,7 @@
     <div class="container">
         <br>
         <h2 class="heading">Arrivee centre</h2>
-        <a href="/maincourante-arriveecentre">Liste arrivée centre</a>
+        <a href="/maincourante-arriveecentreliste">Liste arrivée centre</a>
         <br>
         @if ($errors->any())
             <div class="alert alert-danger">
