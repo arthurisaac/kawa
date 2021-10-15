@@ -49,48 +49,53 @@
             <table class="table table-bordered table-hover" id="listeMaincourante" style="width: 100%;">
                 <thead>
                 <tr>
-                    <td>ID</td>
-                    <td>Date</td>
+                    <td style="display: none;">ID</td>
                     <td>Centre Régional</td>
                     <td>Centre</td>
+                    <td>Date</td>
                     <td>N°Tournée</td>
                     <td>Véhicule</td>
-                    <td>Départ centre</td>
                     <td>Km départ</td>
-                    <td>Carburant départ</td>
-                    <td>Arrivée centre</td>
                     <td>Km arrivée</td>
-                    <td>Carburant arrivée</td>
+                    <td>Départ centre</td>
+                    <td>Arrivée centre</td>
                     <td>Km parcouru</td>
                     <td>Temps tournée</td>
-                    <td>Action</td>
+                    <td>Carburant départ</td>
+                    <td>Carburant arrivée</td>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($tournees as $tournee)
                     <tr>
-                        <td>{{$tournee->id}}</td>
-                        <td>{{$tournee->date}}</td>
-                        <td>{{$tournee->centre}}</td>
+                        <td style="display: none;">{{$tournee->id}}</td>
                         <td>{{$tournee->centre_regional}}</td>
+                        <td>{{$tournee->centre}}</td>
+                        <td>{{$tournee->date}}</td>
                         <td>{{$tournee->numeroTournee}}</td>
                         <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
                         <td>{{$tournee->departCentre->kmDepart ?? "Pas de données"}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
-                        <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
-                        <td>{{$tournee->arriveeCentre->dateArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
+                        <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
+                        <td>{{$tournee->arriveeCentre->heureArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                         <td>
                             <?php
-                                $date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
-                                $date2 = new DateTime($tournee->date);
-                                $interval = $date1->diff($date2);
-                                echo $interval->days;
+                            /*$date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
+                            $date2 = new DateTime($tournee->date);
+                            $interval = $date1->diff($date2);
+                            echo $interval->days;*/
+                            $date = $tournee->date ?? "2021-12-01";
+                            $depart = $tournee->departCentre->heureDepart ?? "00:00:00";
+                            $arrivee = $tournee->arriveeCentre->heureArrivee ?? "00:00:00";
+                            $start = date_create("$date $depart");
+                            $end = date_create("$date $arrivee");
+                            $diff=date_diff($end,$start);
+                            echo str_pad($diff->h, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->i, 2, '0', STR_PAD_LEFT);
                             ?>
                         </td>
-                        <td></td>
+                        <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
+                        <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
                     </tr>
                 @endforeach
                 </tbody>
