@@ -35,8 +35,8 @@
                 <td>Centre régional</td>
                 <td>Centre</td>
                 <td>Date</td>
+                <td>N° Tournée</td>
                 <td>Heure</td>
-                {{--<td>N° Tournée</td>--}}
                 <td>Site</td>
                 <td>Client</td>
                 <td>Type op</td>
@@ -53,11 +53,11 @@
                     <td>{{$arriveeSite->tournees->centre_regional ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->heureArrivee ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->sites->clients->client_nom ?? ""}}</td>
                     <td>{{$arriveeSite->operation ?? ""}}</td>
-                    {{--<td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>--}}
                     <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tempsOperation}}</td>
