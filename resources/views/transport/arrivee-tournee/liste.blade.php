@@ -76,7 +76,7 @@
                     <td>{{$depart->arriveeSites->sites->site ?? ""}}</td>
                     <td>{{$depart->arriveeSites->sites->clients->client_nom ?? ""}}</td>
                     <td> {{$depart->heureArrivee}}</td>
-                    <td>{{$depart->type}}</td>
+                    <td>{{$depart->operation}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
                     <td>{{$depart->chauffeurs->nomPrenoms}} // {{$depart->chefDeBords->nomPrenoms}} // {{$depart->agentDeGardes->nomPrenoms}}</td>
                     <td>{{$depart->arriveeSites->tempsOperation ?? ""}}</td>

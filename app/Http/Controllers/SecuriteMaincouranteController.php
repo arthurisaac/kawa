@@ -74,9 +74,15 @@ class SecuriteMaincouranteController extends Controller
         return view('/securite.maincourante.synthese', compact('tournees'));
     }
 
-    public function arriveeSiteListe()
+    public function arriveeSiteListe(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $arriveeSites = ArriveeSite::all();
+        if (isset($debut) && isset($fin)) {
+            $arriveeSites = ArriveeSite::with("tournees")
+                ->whereBetween('dateArrivee', [$debut, $fin])->get();
+        }
 
         return view('/securite.maincourante.arrivee-site.liste',
             compact('arriveeSites'));
