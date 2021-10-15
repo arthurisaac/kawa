@@ -32,16 +32,16 @@
             <thead>
             <tr>
                 <td>N°</td>
-                <td>Site</td>
-                <td>Client</td>
-                <td>Date</td>
-                <td>N° Tournée</td>
-                <td>Véhicule</td>
-                <td>Chef de bord</td>
-                <td>Agent de garde</td>
-                <td>Chauffeur</td>
                 <td>Centre régional</td>
                 <td>Centre</td>
+                <td>Date</td>
+                <td>Heure</td>
+                {{--<td>N° Tournée</td>--}}
+                <td>Site</td>
+                <td>Client</td>
+                <td>Type op</td>
+                <td>Véhicule</td>
+                <td>Equipage</td>
                 <td>Temps op.</td>
                 <td>Actions</td>
             </tr>
@@ -50,16 +50,16 @@
             @foreach ($arriveeSites as $arriveeSite)
                 <tr>
                     <td style="width: 20px; text-align: center">{{$arriveeSite->id}}</td>
+                    <td>{{$arriveeSite->tournees->centre_regional ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->heureArrivee ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->sites->clients->client_nom ?? ""}}</td>
-                    <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->operation ?? ""}}</td>
+                    {{--<td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>--}}
                     <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->centre_regional ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tempsOperation}}</td>
                     <td style="width: 30px; text-align: center;">
                         <a href="/maincourante-arriveesiteliste/{{$arriveeSite->id}}/edit" class="btn btn-sm btn-primary"></a>
