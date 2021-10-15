@@ -103,56 +103,58 @@
                     </div>
                 </div>
 
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <br>
+            <div class="row">
                 <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
-                                       readonly/>
-                                <input type="hidden" name="vidangeGeneraleID" id="vidangeGeneraleID"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Visite technique</label>
-                                <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique"
-                                       readonly/>
-                                <input type="hidden" name="visiteTechniqueID" id="visiteTechniqueID"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange Courroie</label>
-                                <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie"
-                                       readonly/>
-                                <input type="hidden" name="vidangeCourroieID" id="vidangeCourroieID"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange Patente</label>
-                                <input type="text" class="form-control" name="vidangePatente" id="patente" readonly/>
-                                <input type="hidden" name="vidangePatenteID" id="vidangePatenteID"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Assurance fin</label>
-                                <input type="date" class="form-control" name="assuranceFin" id="assuranceFin" readonly/>
-                                <input type="hidden" name="assuranceFinID" id="assuranceFinID"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>{{--Assurance--}}Vidange pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
-                                <input type="hidden" name="vidangePontID" id="vidangePontID"/>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label>Vidange générale</label>
+                        <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
+                               readonly/>
+                        <input type="hidden" name="vidangeGeneraleID" id="vidangeGeneraleID"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Visite technique</label>
+                        <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique"
+                               readonly/>
+                        <input type="hidden" name="visiteTechniqueID" id="visiteTechniqueID"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Vidange Courroie</label>
+                        <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie"
+                               readonly/>
+                        <input type="hidden" name="vidangeCourroieID" id="vidangeCourroieID"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Vidange Patente</label>
+                        <input type="text" class="form-control" name="vidangePatente" id="patente" readonly/>
+                        <input type="hidden" name="vidangePatenteID" id="vidangePatenteID"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Assurance fin</label>
+                        <input type="date" class="form-control" name="assuranceFin" id="assuranceFin" readonly/>
+                        <input type="hidden" name="assuranceFinID" id="assuranceFinID"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>{{--Assurance--}}Vidange pont</label>
+                        <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
+                        <input type="hidden" name="vidangePontID" id="vidangePontID"/>
                     </div>
                 </div>
             </div>
+            <br>
 
             <button type="submit" class="btn btn-primary">Valider</button>
         </form>

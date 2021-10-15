@@ -125,49 +125,48 @@
                         <input type="time" class="form-control" name="heureArrivee" value="{{$tournee->heureArrivee}}" id="heureArrivee"/>
                     </div>
                 </div>
-
+            </div>
+            <br>
+            <div class="row">
                 <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange générale</label>
-                                <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
-                                       readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Visite technique</label>
-                                <input type="number" class="form-control" name="visiteTechnique" readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange Courroie</label>
-                                <input type="number" class="form-control" name="vidangeCourroie" readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Vidange Patente</label>
-                                <input type="number" class="form-control" name="patente" readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Assurance fin</label>
-                                <input type="date" class="form-control" name="assuranceFin" readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Assurance pont</label>
-                                <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label>Vidange générale</label>
+                        <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
+                               readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Visite technique</label>
+                        <input type="number" class="form-control" name="visiteTechnique" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Vidange Courroie</label>
+                        <input type="number" class="form-control" name="vidangeCourroie" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Vidange Patente</label>
+                        <input type="number" class="form-control" name="patente" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Assurance fin</label>
+                        <input type="date" class="form-control" name="assuranceFin" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Assurance pont</label>
+                        <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
                     </div>
                 </div>
             </div>
+            <br>
 
             <button type="submit" class="btn btn-primary">Valider</button>
             <a href="/arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>

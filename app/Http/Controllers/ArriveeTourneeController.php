@@ -134,7 +134,7 @@ class ArriveeTourneeController extends Controller
             }
         }
 
-        return redirect('/arrivee-tournee')->with('success', 'Tournée enregistrée!');
+        return redirect('/arrivee-tournee-liste')->with('success', 'Tournée enregistrée!');
     }
 
     /**
