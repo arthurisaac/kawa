@@ -81,7 +81,7 @@
                         <td>{{$tournee->arriveeCentre->dateArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
-                        <td>{{($tournee->departCentre->kmDepart ?? 0) - ($tournee->arriveeCentre->kmArrive ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
+                        <td>{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                         <td>
                             <?php
                                 $date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
