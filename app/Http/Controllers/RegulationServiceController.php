@@ -53,8 +53,8 @@ class RegulationServiceController extends Controller
             'chargeeRegulationHPS' => $request->get('chargeeRegulationHPS'),
             'chargeeRegulationHFS' => $request->get('chargeeRegulationHFS'),
             'chargeeRegulationAdjointe' => $request->get('chargeeRegulationAdjointe'),
-            'chargeeRegulationAdjointHPS' => $request->get('chargeeRegulationAdjointHPS'),
-            'chargeeRegulationAdjointHFS' => $request->get('chargeeRegulationAdjointHFS'),
+            'chargeeRegulationAdjointeHPS' => $request->get('chargeeRegulationAdjointeHPS'),
+            'chargeeRegulationAdjointeHFS' => $request->get('chargeeRegulationAdjointeHFS'),
         ]);
         $service->save();
         return redirect('/regulation-service-liste')->with('success', 'Service enregistré!');
@@ -82,10 +82,10 @@ class RegulationServiceController extends Controller
         $personnels = Personnel::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $services = RegulationService::find($id)->with('chargeCaisses')->with('chargeCaisseAdjoints')->get();
-        $service = $services[0];
+        $service = RegulationService::with('chargeRegulations')->with('chargeRegulationAdjointes')->find($id);
+        //$service = $services[0];
         return view('/regulation.service.edit',
-            compact('personnels', 'centres', 'centres_regionaux', 'service'));
+            compact('personnels', 'centres', 'centres_regionaux', 'service', 'id'));
     }
 
     /**
@@ -98,15 +98,14 @@ class RegulationServiceController extends Controller
     public function update(Request $request, $id)
     {
         $service = RegulationService::find($id);
-        $service->date = $request->get('date');
         $service->centre = $request->get('centre');
         $service->centreRegional = $request->get('centreRegional');
         $service->chargeeRegulation = $request->get('chargeeRegulation');
         $service->chargeeRegulationHPS = $request->get('chargeeRegulationHPS');
         $service->chargeeRegulationHFS = $request->get('chargeeRegulationHFS');
-        $service->chargeeRegulationAdjoint = $request->get('chargeeRegulationAdjoint');
-        $service->chargeeRegulationAdjointHPS = $request->get('chargeeRegulationAdjointHPS');
-        $service->chargeeRegulationAdjointHFS = $request->get('chargeeRegulationAdjointHFS');
+        $service->chargeeRegulationAdjointe = $request->get('chargeeRegulationAdjointe');
+        $service->chargeeRegulationAdjointeHPS = $request->get('chargeeRegulationAdjointeHPS');
+        $service->chargeeRegulationAdjointeHFS = $request->get('chargeeRegulationAdjointeHFS');
         $service->save();
         return redirect('/regulation-service-liste')->with('success', 'Service enregistré!');
     }

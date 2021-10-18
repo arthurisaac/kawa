@@ -52,11 +52,11 @@
                             <td>{{$service->chargeeRegulationAdjointHPS}}</td>
                             <td>{{$service->chargeeRegulationAdjointHFS}}</td>
                             <td>
-                                <a href="{{ route('regulation-service.edit',$service->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('regulation-service.edit',$service->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('regulation-service.destroy', $service->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </td>
                         </tr>
