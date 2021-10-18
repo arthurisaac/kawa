@@ -14,4 +14,9 @@ class RegulationStockEntree extends Model
         "libelle",
         "fournisseur",
     ];
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\RegulationStockEntreeItem', 'stock_entree');
+    }
 }

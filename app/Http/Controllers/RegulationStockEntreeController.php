@@ -30,7 +30,7 @@ class RegulationStockEntreeController extends Controller
 
     public function liste()
     {
-        $stocks = RegulationStockEntree::all();
+        $stocks = RegulationStockEntree::with('items')->get();
         return view("regulation.stock.entree.liste", compact('stocks'));
     }
 
@@ -82,7 +82,7 @@ class RegulationStockEntreeController extends Controller
             }
         }
 
-        return redirect()->back()->with("success", "Enregistré avec succès");
+        return redirect("/regulation-stock-entree-liste")->with("success", "Enregistré avec succès");
     }
 
     /**
@@ -169,7 +169,7 @@ class RegulationStockEntreeController extends Controller
             }
         }
 
-        return redirect()->back()->with("success", "Enregistré avec succès");
+        return redirect("/regulation-stock-entree-liste")->with("success", "Enregistré avec succès");
     }
 
     /**

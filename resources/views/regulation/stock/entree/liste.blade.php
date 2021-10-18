@@ -21,12 +21,17 @@
             </div>
         @endif
 
+        <br>
+        <a href="/regulation-stock-entree-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <br>
+        <br>
         <table class="table table-bordered" id="liste">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Date appro</th>
+                <th>Date</th>
                 <th>Centre</th>
+                <th>Centre regional</th>
                 <th>Libelle</th>
                 <th>Fournisseur</th>
                 <th>Qté entendue</th>
@@ -39,13 +44,14 @@
             @foreach($stocks as $stock)
                 <tr>
                     <td>{{$stock->id}}</td>
+                    <td>{{$stock->date}}</td>
                     <td>{{$stock->centre}}</td>
                     <td>{{$stock->centre_regional}}</td>
                     <td>{{$stock->libelle}}</td>
                     <td>{{$stock->fournisseur}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$stock->items->sum('qte_attendu')}}</td>
+                    <td>{{$stock->items->sum('qte_livree')}}</td>
+                    <td>{{$stock->items->sum('reste')}}</td>
                     <td>
                         <a href="regulation-stock-entree/{{$stock->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$stock->id}}', this)"></a>

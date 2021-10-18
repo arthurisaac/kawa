@@ -112,6 +112,15 @@
                     <td><input type="number" min="0" class="form-control" name="reste[]"/></td>
                 </tr>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td><input type="text" class="form-control" name="totalAttendu" id="totalAttendu"/></td>
+                    <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
             </table>
 
             <br>
@@ -162,6 +171,25 @@
                     const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
                     $("input[name='reste[]'").eq(i).val(reste);
                 });
+            });
+
+
+            $("input[name='qte_attendu[]']").on("change", function () {
+                let totalQteAttendu = 0;
+                $.each($("input[name='qte_attendu[]']"), function (i) {
+                    const nbre = $("input[name='qte_attendu[]'").get(i).value;
+                    totalQteAttendu += parseFloat(nbre) ?? 0;
+                });
+                $("#totalAttendu").val(totalQteAttendu);
+            });
+
+            $("input[name='qte_livree[]']").on("change", function () {
+                let totalQteAttendu = 0;
+                $.each($("input[name='qte_livree[]']"), function (i) {
+                    const nbre = $("input[name='qte_livree[]'").get(i).value;
+                    totalQteAttendu += parseFloat(nbre) ?? 0;
+                });
+                $("#totalLivree").val(totalQteAttendu);
             });
         });
     </script>

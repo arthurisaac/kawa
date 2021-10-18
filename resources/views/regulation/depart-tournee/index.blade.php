@@ -172,7 +172,7 @@
                 $("#centre_regional option").remove();
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
-                if (tournee) {
+            if (tournee) {
                     $("#vehicule").val(tournee.vehicules.immatriculation);
                     $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
                     $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
