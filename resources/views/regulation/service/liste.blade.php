@@ -49,8 +49,8 @@
                             <td>{{$service->chargeeRegulationHPS}}</td>
                             <td>{{$service->chargeeRegulationHFS}}</td>
                             <td>{{$service->chargeRegulationAdjointes->nomPrenoms}}</td>
-                            <td>{{$service->chargeeRegulationAdjointHPS}}</td>
-                            <td>{{$service->chargeeRegulationAdjointHFS}}</td>
+                            <td>{{$service->chargeeRegulationAdjointeHPS}}</td>
+                            <td>{{$service->chargeeRegulationAdjointeHFS}}</td>
                             <td>
                                 <a href="{{ route('regulation-service.edit',$service->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('regulation-service.destroy', $service->id)}}" method="post">
