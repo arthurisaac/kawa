@@ -74,7 +74,7 @@
                                 <label for="fonctionchargeeRegulation" class="col-sm-5">Fonction</label>
                                 <input type="text" name="fonctionchargeeRegulation" id="fonctionchargeeRegulation" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="display: none;">
                                 <label for="matriculechargeeRegulation" class="col-sm-5">Matricule</label>
                                 <input type="text" name="matriculechargeeRegulation" id="matriculechargeeRegulation" class="form-control col-sm-7"/>
                             </div>
@@ -113,7 +113,7 @@
                                 <label for="fonctionchargeeRegulationAdjoint" class="col-sm-5">Fonction</label>
                                 <input type="text" name="fonctionchargeeRegulationAdjoint" id="fonctionchargeeRegulationAdjoint" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="display: none;">
                                 <label for="matriculechargeeRegulationAdjoint" class="col-sm-5">Matricule</label>
                                 <input type="text" name="matriculechargeeRegulationAdjoint" id="matriculechargeeRegulationAdjoint" class="form-control col-sm-7"/>
                             </div>
@@ -172,7 +172,7 @@
                 if (personnel) {
                     $("#nomchargeeRegulationAdjoint").val(personnel.nomPrenoms);
                     $("#fonctionchargeeRegulationAdjoint").val(personnel.fonction);
-                    $("#matriculeOperatrice").val(personnel.matricule);
+                    $("#matriculechargeeRegulationAdjoint").val(personnel.matricule);
                 }
             });
 

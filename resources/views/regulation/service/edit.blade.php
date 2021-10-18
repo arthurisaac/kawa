@@ -78,7 +78,7 @@
                                 <label for="fonctionchargeeRegulation" class="col-sm-5">Fonction</label>
                                 <input type="text" value="{{$service->chargeRegulations->fonction ?? ""}}" name="fonctionchargeeRegulation" id="fonctionchargeeRegulation" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="display: none">
                                 <label for="matriculechargeeRegulation" class="col-sm-5">Matricule</label>
                                 <input type="text" value="{{$service->chargeRegulations->matricule ?? ""}}" name="matriculechargeeRegulation" id="matriculechargeeRegulation" class="form-control col-sm-7"/>
                             </div>
@@ -117,7 +117,7 @@
                                 <label for="fonctionchargeeRegulationAdjoint" class="col-sm-5">Fonction</label>
                                 <input type="text" value="{{$service->chargeRegulationAdjointes->fonction ?? ''}}" name="fonctionchargeeRegulationAdjoint" id="fonctionchargeeRegulationAdjoint" class="form-control col-sm-7"/>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="display: none;">
                                 <label for="matriculechargeeRegulationAdjoint" class="col-sm-5">Matricule</label>
                                 <input type="text" value="{{$service->chargeRegulationAdjointes->matricule ?? ''}}" name="matriculechargeeRegulationAdjoint" id="matriculechargeeRegulationAdjoint" class="form-control col-sm-7"/>
                             </div>
@@ -215,6 +215,29 @@
                 $("#operatriceRow").append(customHTML);
             });
         });
+    </script>
+    <script>
+        let personnels =  {!! json_encode($personnels) !!};
+        $(document).ready(function() {
+            $("#chargeeRegulationAdjoint").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#nomchargeeRegulationAdjoint").val(personnel.nomPrenoms);
+                    $("#fonctionchargeeRegulationAdjoint").val(personnel.fonction);
+                    $("#matriculechargeeRegulationAdjoint").val(personnel.matricule);
+                }
+            });
+
+            $("#chargeeRegulation").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#nomchargeeRegulation").val(personnel.nomPrenoms);
+                    $("#fonctionchargeeRegulation").val(personnel.fonction);
+                    $("#matriculechargeeRegulation").val(personnel.matricule);
+                }
+            });
+        });
+
     </script>
 
 @endsection
