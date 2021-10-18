@@ -3,6 +3,9 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Service</h2></div>
+        <a href="/regulation-service-liste">Liste</a>
+        <br>
+        <br>
         <br/>
         <br/>
         @if ($errors->any())
