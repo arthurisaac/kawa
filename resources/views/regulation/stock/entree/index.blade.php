@@ -96,6 +96,7 @@
             <table class="table table-bordered" style="width: 100%" id="table">
                 <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Qté attendue</th>
                     <th>Qté livrée</th>
                     <th>N° début</th>
@@ -106,6 +107,7 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td><input type="date" class="form-control" name="date[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="qte_attendu[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="qte_livree[]"/></td>
                     <td><input type="text" class="form-control" name="no_debut[]"/></td>
@@ -116,7 +118,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td><input type="text" class="form-control" name="totalAttendu" id="totalAttendu"/></td>
+                    <td></td>
                     <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
                     <td></td>
                     <td></td>
@@ -148,26 +150,18 @@
             });
             $("#totalLivree").val(totalQteAttendu);
         }
-        function qteAttendu() {
-            let totalQteAttendu = 0;
-            $.each($("input[name='qte_attendu[]']"), function (i) {
-                const nbre = $("input[name='qte_attendu[]'").get(i).value;
-                totalQteAttendu += parseFloat(nbre) ?? 0;
-            });
-            $("#totalAttendu").val(totalQteAttendu);
-        }
 
         function supprimer(e) {
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("table").deleteRow(indexLigne);
             qteLivreeReste();
             qteLivree2();
-            qteAttendu();
         }
 
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
+                    '                    <td><input type="date" class="form-control" name="date[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_attendu[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_livree[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="no_debut[]"/></td>\n' +
@@ -202,8 +196,6 @@
     <script>
         $(document).on('DOMNodeInserted', function () {
             $("input[name='qte_livree[]']").on("change", qteLivreeReste);
-
-            $("input[name='qte_attendu[]']").on("change", qteAttendu);
 
             $("input[name='qte_livree[]']").on("change", qteLivree2);
         });

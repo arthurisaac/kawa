@@ -63,6 +63,7 @@ class RegulationStockEntreeController extends Controller
         $data->save();
 
         $qte_attendu = $request->get("qte_attendu");
+        $date = $request->get("date");
         $qte_livree = $request->get("qte_livree");
         $no_debut = $request->get("no_debut");
         $no_fin = $request->get("no_fin");
@@ -73,6 +74,7 @@ class RegulationStockEntreeController extends Controller
                 $item = new RegulationStockEntreeItem([
                     "stock_entree" => $data->id,
                     "qte_attendu" => $qte_attendu[$i],
+                    "date" => $date[$i],
                     "qte_livree" => $qte_livree[$i],
                     "debut" => $no_debut[$i],
                     "fin" => $no_fin[$i],
@@ -150,6 +152,7 @@ class RegulationStockEntreeController extends Controller
         }*/
 
         $qte_attendu = $request->get("qte_attendu");
+        $date = $request->get("date");
         $qte_livree = $request->get("qte_livree");
         $no_debut = $request->get("no_debut");
         $no_fin = $request->get("no_fin");
@@ -161,6 +164,7 @@ class RegulationStockEntreeController extends Controller
                 if (empty($ids[$i])) {
                     $item = new RegulationStockEntreeItem([
                         "stock_entree" => $id,
+                        "date" => $date[$i],
                         "qte_attendu" => $qte_attendu[$i],
                         "qte_livree" => $qte_livree[$i],
                         "debut" => $no_debut[$i],
@@ -170,7 +174,9 @@ class RegulationStockEntreeController extends Controller
                     $item->save();
                 } else {
                     $item = RegulationStockEntreeItem::find($ids[$i]);
+                    $item->date = $qte_attendu[$i];
                     $item->qte_attendu = $qte_attendu[$i];
+                    $item->date = $date[$i];
                     $item->qte_livree = $qte_livree[$i];
                     $item->debut = $no_debut[$i];
                     $item->fin = $no_fin[$i];

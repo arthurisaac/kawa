@@ -15,5 +15,6 @@ class RegulationStockEntreeItem extends Model
         "reste",
         "autre",
         "colis",
+        "date",
     ];
 }

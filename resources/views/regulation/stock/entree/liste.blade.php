@@ -34,7 +34,6 @@
                 <th>Centre regional</th>
                 <th>Libelle</th>
                 <th>Fournisseur</th>
-                <th>Qté entendue</th>
                 <th>Qté livrée</th>
                 <th>Reste</th>
                 <th>Actions</th>
@@ -49,7 +48,6 @@
                     <td>{{$stock->centre_regional}}</td>
                     <td>{{$stock->libelle}}</td>
                     <td>{{$stock->fournisseur}}</td>
-                    <td>{{$stock->items->sum('qte_attendu')}}</td>
                     <td>{{$stock->items->sum('qte_livree')}}</td>
                     <td>{{$stock->items->sum('reste')}}</td>
                     <td>
