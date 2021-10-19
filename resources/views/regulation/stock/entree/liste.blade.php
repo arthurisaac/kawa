@@ -22,7 +22,7 @@
         @endif
 
         <br>
-        <a href="/regulation-stock-entree-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <a href="/regulation-stock-entree" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
         <table class="table table-bordered" id="liste">

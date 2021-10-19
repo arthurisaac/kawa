@@ -104,6 +104,7 @@
                     <th>N° début</th>
                     <th>N° Fin</th>
                     <th>Reste</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -115,6 +116,7 @@
                         <td><input type="text" class="form-control" name="no_debut_edit[]" value="{{$item->debut}}"/></td>
                         <td><input type="text" class="form-control" name="no_fin_edit[]" value="{{$item->fin}}"/></td>
                         <td><input type="number" min="0" class="form-control" name="reste_edit[]" value="{{$item->reste}}"/></td>
+                        <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -122,6 +124,7 @@
                 <tr>
                     <td><input type="text" class="form-control" name="totalAttendu" id="totalAttendu"/></td>
                     <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -163,6 +166,7 @@
                     '                    <td><input type="text" class="form-control" name="no_debut[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="no_fin[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="reste[]"/></td>\n' +
+                    '                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                </tr>');
             });
         })

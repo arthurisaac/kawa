@@ -101,6 +101,7 @@
                     <th>N° début</th>
                     <th>N° Fin</th>
                     <th>Reste</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -110,12 +111,14 @@
                     <td><input type="text" class="form-control" name="no_debut[]"/></td>
                     <td><input type="text" class="form-control" name="no_fin[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="reste[]"/></td>
+                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td><input type="text" class="form-control" name="totalAttendu" id="totalAttendu"/></td>
                     <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -128,6 +131,40 @@
         </form>
     </div>
     <script>
+        function qteLivreeReste() {
+
+            $.each($("input[name='qte_livree[]']"), function (i) {
+                const qte_livree = $("input[name='qte_livree[]'").get(i).value;
+                const qte_attendu = $("input[name='qte_attendu[]'").get(i).value;
+                const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
+                $("input[name='reste[]'").eq(i).val(reste);
+            });
+        }
+        function qteLivree2() {
+            let totalQteAttendu = 0;
+            $.each($("input[name='qte_livree[]']"), function (i) {
+                const nbre = $("input[name='qte_livree[]'").get(i).value;
+                totalQteAttendu += parseFloat(nbre) ?? 0;
+            });
+            $("#totalLivree").val(totalQteAttendu);
+        }
+        function qteAttendu() {
+            let totalQteAttendu = 0;
+            $.each($("input[name='qte_attendu[]']"), function (i) {
+                const nbre = $("input[name='qte_attendu[]'").get(i).value;
+                totalQteAttendu += parseFloat(nbre) ?? 0;
+            });
+            $("#totalAttendu").val(totalQteAttendu);
+        }
+
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            qteLivreeReste();
+            qteLivree2();
+            qteAttendu();
+        }
+
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
@@ -136,6 +173,7 @@
                     '                    <td><input type="text" class="form-control" name="no_debut[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="no_fin[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="reste[]"/></td>\n' +
+                    '                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                </tr>');
             });
         })
@@ -163,34 +201,11 @@
     </script>
     <script>
         $(document).on('DOMNodeInserted', function () {
-            $("input[name='qte_livree[]']").on("change", function () {
+            $("input[name='qte_livree[]']").on("change", qteLivreeReste);
 
-                $.each($("input[name='qte_livree[]']"), function (i) {
-                    const qte_livree = $("input[name='qte_livree[]'").get(i).value;
-                    const qte_attendu = $("input[name='qte_attendu[]'").get(i).value;
-                    const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
-                    $("input[name='reste[]'").eq(i).val(reste);
-                });
-            });
+            $("input[name='qte_attendu[]']").on("change", qteAttendu);
 
-
-            $("input[name='qte_attendu[]']").on("change", function () {
-                let totalQteAttendu = 0;
-                $.each($("input[name='qte_attendu[]']"), function (i) {
-                    const nbre = $("input[name='qte_attendu[]'").get(i).value;
-                    totalQteAttendu += parseFloat(nbre) ?? 0;
-                });
-                $("#totalAttendu").val(totalQteAttendu);
-            });
-
-            $("input[name='qte_livree[]']").on("change", function () {
-                let totalQteAttendu = 0;
-                $.each($("input[name='qte_livree[]']"), function (i) {
-                    const nbre = $("input[name='qte_livree[]'").get(i).value;
-                    totalQteAttendu += parseFloat(nbre) ?? 0;
-                });
-                $("#totalLivree").val(totalQteAttendu);
-            });
+            $("input[name='qte_livree[]']").on("change", qteLivree2);
         });
     </script>
 @endsection
