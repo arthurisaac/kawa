@@ -224,7 +224,6 @@
                     '                                <option>TAG vert</option>\n' +
                     '                                <option>TAG jaune</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><input type="number" min="0" class="form-control" name="qte_prevu[]"/></td>\n' +
                     '                        <td><input type="number" min="0" class="form-control" name="qte_sortie[]" /></td>\n' +
                     '                        <td><input type="text" class="form-control" name="debut[]"/></td>\n' +
                     '                        <td><input type="text" class="form-control" name="fin[]"/></td>\n' +

@@ -23,9 +23,14 @@ class RegulationStockSortieController extends Controller
         return view("regulation.stock.sortie.index", compact('centres_regionaux', 'centres'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $stocks = RegulationStockSortie::all();
+        if (isset($debut) && isset($fin)) {
+            $stocks = RegulationStockSortie::all()->whereBetween('date', [$debut, $fin])->get();
+        }
         return view("regulation.stock.sortie.liste", compact('stocks'));
     }
 
