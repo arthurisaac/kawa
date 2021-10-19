@@ -69,7 +69,7 @@ class RegulationStockSortieController extends Controller
         $reference = $request->get("reference");
         $libelle = $request->get("libelle");
 
-        if (!empty($qte_prevu) && !empty($qte_sortie)) {
+        if (!empty($qte_sortie)) {
             for ($i = 0; $i < count($qte_prevu); $i++) {
                 $item = new RegulationStockSortieItem([
                     "stock_sortie" => $data->id,
