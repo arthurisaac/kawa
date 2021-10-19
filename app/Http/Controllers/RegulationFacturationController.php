@@ -155,16 +155,17 @@ class RegulationFacturationController extends Controller
                     $item->save();
                 } else {
                     $item = RegulationFacturationItem::find($ids[$i]);
-
-                    $item->facturation = $data->id;
-                    $item->libelle = $libelle[$i];
-                    $item->qte = $qte[$i];
-                    $item->pu = $pu{$i};
-                    $item->reference = $reference[$i];
-                    $item->debut = $debut[$i];
-                    $item->fin = $fin[$i];
-                    $item->montant = $montant[$i];
-                    $item->save();
+                    if ($item) {
+                        $item->facturation = $data->id;
+                        $item->libelle = $libelle[$i];
+                        $item->qte = $qte[$i];
+                        $item->pu = $pu{$i};
+                        $item->reference = $reference[$i];
+                        $item->debut = $debut[$i];
+                        $item->fin = $fin[$i];
+                        $item->montant = $montant[$i];
+                        $item->save();
+                    }
                 }
             }
         }
