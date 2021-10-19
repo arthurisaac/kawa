@@ -48,7 +48,7 @@ class RegulationStockSortieController extends Controller
     public function store(Request $request)
     {
         $data = new RegulationStockSortie([
-            "date" => date('Y-m-d'),
+            "date" => $request->get("date_sortie"),
             "centre" => $request->get("centre"),
             "centre_regional" => $request->get("centre_regional"),
             "service" => $request->get("service"),
@@ -57,6 +57,7 @@ class RegulationStockSortieController extends Controller
         $data->save();
 
         $qte_prevu = $request->get("qte_prevu");
+        $date = $request->get("date");
         $qte_sortie = $request->get("qte_sortie");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
@@ -67,6 +68,7 @@ class RegulationStockSortieController extends Controller
             for ($i = 0; $i < count($qte_prevu); $i++) {
                 $item = new RegulationStockSortieItem([
                     "stock_sortie" => $data->id,
+                    "date" => $date[$i],
                     "qte_prevu" => $qte_prevu[$i],
                     "qte_sortie" => $qte_sortie[$i],
                     "debut" => $debut[$i],
@@ -102,7 +104,7 @@ class RegulationStockSortieController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $stock = RegulationStockSortie::find($id);
+        $stock = RegulationStockSortie::with('items')->find($id);
         $items = RegulationStockSortieItem::all()->where('stock_sortie', '=', $id);
         return view("regulation.stock.sortie.edit", compact('stock', 'items', 'centres', 'centres_regionaux'));
     }
@@ -118,34 +120,50 @@ class RegulationStockSortieController extends Controller
     {
         $data = RegulationStockSortie::find($id);
         $data->date = $request->get("date");
-        $data->numero = $request->get("numero");
+        $data->receveur = $request->get("receveur");
         $data->centre = $request->get("centre");
         $data->centre_regional = $request->get("centre_regional");
-        $data->libelle = $request->get("libelle");
         $data->service = $request->get("service");
         $data->save();
 
+        $date_item = $request->get("date_item");
         $qte_prevu = $request->get("qte_prevu");
         $qte_sortie = $request->get("qte_sortie");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $reste = $request->get("reste");
+        $reference = $request->get("reference");
+        $libelle = $request->get("libelle");
+        $item_id = $request->get("item_ids");
 
-        if (!empty($qte_prevu) && !empty($qte_sortie)) {
-            for ($i = 0; $i < count($qte_prevu); $i++) {
-                $item = new RegulationStockSortieItem([
-                    "stock_sortie" => $data->id,
-                    "qte_prevu" => $qte_prevu[$i],
-                    "qte_sortie" => $qte_sortie[$i],
-                    "debut" => $debut[$i],
-                    "fin" => $fin[$i],
-                    "reste" => $reste[$i],
-                ]);
-                $item->save();
+        if (!empty($item_id)) {
+            for ($i = 0; $i < count($item_id); $i++) {
+                if (empty($item_id[$i])) {
+                    $item = new RegulationStockSortieItem([
+                        "stock_sortie" => $data->id,
+                        "date" => $date_item[$i],
+                        "qte_prevu" => $qte_prevu[$i],
+                        "qte_sortie" => $qte_sortie[$i],
+                        "debut" => $debut[$i],
+                        "fin" => $fin[$i],
+                        "reference" => $reference[$i],
+                        "libelle" => $libelle[$i],
+                    ]);
+                    $item->save();
+                } else {
+                    $item = RegulationStockSortieItem::find($item_id[$i]);
+                    $item->date = $date_item[$i];
+                    $item->qte_prevu = $qte_prevu[$i];
+                    $item->qte_sortie = $qte_sortie[$i];
+                    $item->debut = $debut[$i];
+                    $item->fin = $fin[$i];
+                    $item->reference = $reference[$i];
+                    $item->libelle = $libelle[$i];
+                    $item->save();
+                }
             }
         }
 
-        $qte_prevu_edit = $request->get("qte_prevu_edit");
+        /*$qte_prevu_edit = $request->get("qte_prevu_edit");
         $qte_sortie_edit = $request->get("qte_sortie_edit");
         $debut_edit = $request->get("debut_edit");
         $fin_edit = $request->get("fin_edit");
@@ -162,7 +180,7 @@ class RegulationStockSortieController extends Controller
                 $item->reste = $reste_edit[$i];
                 $item->save();
             }
-        }
+        }*/
 
         return redirect()->back()->with("success", "Enregistré avec succès");
     }
@@ -176,6 +194,17 @@ class RegulationStockSortieController extends Controller
     public function destroy($id)
     {
         $data = RegulationStockSortie::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return response()->json([
+            "message" => "OK"
+        ]);
+    }
+
+    public function destroyItem($id)
+    {
+        $data = RegulationStockSortieItem::find($id);
         if ($data) {
             $data->delete();
         }

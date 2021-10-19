@@ -13,4 +13,9 @@ class RegulationStockSortie extends Model
         "service",
         "receveur",
     ];
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\RegulationStockSortieItem', 'stock_sortie');
+    }
 }

@@ -56,7 +56,7 @@
                 <th>Centre régional</th>
                 <th>Centre</th>
                 <th>Service</th>
-                <th>Recevoir</th>
+                <th>Receveur</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -68,7 +68,7 @@
                     <td>{{$stock->centre_regional}}</td>
                     <td>{{$stock->centre}}</td>
                     <td>{{$stock->service}}</td>
-                    <td>{{$stock->recevoir}}</td>
+                    <td>{{$stock->receveur}}</td>
                     <td>
                         <a href="regulation-stock-sortie/{{$stock->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$stock->id}}', this)"></a>

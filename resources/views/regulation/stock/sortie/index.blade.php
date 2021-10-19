@@ -28,7 +28,7 @@
                 <div class="col-6">
                     <div class="form-group row">
                         <label for="date_appro" class="col-4">Date sortie</label>
-                        <input type="date" id="date" name="date" value="{{date('Y-m-d')}}"
+                        <input type="date" id="date" name="date_sortie" value="{{date('Y-m-d')}}"
                                class="form-control col-8" required readonly/>
                     </div>
                     <div class="form-group row">
@@ -80,12 +80,13 @@
                     <th>N° début</th>
                     <th>N° Fin</th>
                     <th>Référence</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td><input type="date" class="form-control" name="date[]"/></td>
-                    <td><select id="libelle" name="libelle" class="form-control" required>
+                    <td><select id="libelle" name="libelle[]" class="form-control" required>
                             <option>bordereau de transport</option>
                             <option>bordereau de collecte</option>
                             <option>cahier de maintenance</option>
@@ -113,12 +114,13 @@
                     <td><input type="text" class="form-control" name="debut[]"/></td>
                     <td><input type="text" class="form-control" name="fin[]"/></td>
                     <td><input type="text" class="form-control" name="reference[]"/></td>
+                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td colspan="3" style="font-weight: bold; text-transform: uppercase;"> Total</td>
-                    <td><input type="number" class="form-control" value="totalSortie"  id="totalSortie" /> </td>
+                    <td><input type="number" class="form-control" name="totalSortie"  id="totalSortie" /> </td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -131,11 +133,16 @@
         </form>
     </div>
     <script>
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+        }
+
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
                     '                    <td><input type="date" class="form-control" name="date[]"/></td>\n' +
-                    '                    <td><select id="libelle" name="libelle" class="form-control" required>\n' +
+                    '                    <td><select id="libelle" name="libelle[]" class="form-control" required>\n' +
                     '                            <option>bordereau de transport</option>\n' +
                     '                            <option>bordereau de collecte</option>\n' +
                     '                            <option>cahier de maintenance</option>\n' +
@@ -163,6 +170,7 @@
                     '                    <td><input type="text" class="form-control" name="debut[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="fin[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="reference[]"/></td>\n' +
+                    '                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                </tr>');
             });
         })
