@@ -85,7 +85,7 @@ class RegulationStockSortieController extends Controller
             }
         }
 
-        return redirect("/regulation-stock-stock-liste")->with("success", "Enregistré avec succès");
+        return redirect("/regulation-stock-sortie-liste")->with("success", "Enregistré avec succès");
     }
 
     /**
