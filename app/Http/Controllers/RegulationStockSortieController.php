@@ -61,7 +61,6 @@ class RegulationStockSortieController extends Controller
         ]);
         $data->save();
 
-        $qte_prevu = $request->get("qte_prevu");
         $date = $request->get("date");
         $qte_sortie = $request->get("qte_sortie");
         $debut = $request->get("debut");
@@ -70,7 +69,7 @@ class RegulationStockSortieController extends Controller
         $libelle = $request->get("libelle");
 
         if (!empty($qte_sortie)) {
-            for ($i = 0; $i < count($qte_prevu); $i++) {
+            for ($i = 0; $i < count($qte_sortie); $i++) {
                 $item = new RegulationStockSortieItem([
                     "stock_sortie" => $data->id,
                     "date" => $date[$i],
