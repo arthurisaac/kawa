@@ -2,7 +2,9 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Sortie stock</h2></div>
+        <h2>Sortie stock</h2>
+        <a href="/regulation-stock-sortie-liste" class="btn btn-link">Liste</a>
+        <br/>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">

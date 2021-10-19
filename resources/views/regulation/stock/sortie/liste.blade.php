@@ -57,6 +57,8 @@
                 <th>Centre</th>
                 <th>Service</th>
                 <th>Receveur</th>
+                <th>Libelle</th>
+                <th>Quantité sortie</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -69,6 +71,12 @@
                     <td>{{$stock->centre}}</td>
                     <td>{{$stock->service}}</td>
                     <td>{{$stock->receveur}}</td>
+                    <td>
+                        @foreach($stock->items as $item)
+                            {{$item->libelle}} //
+                        @endforeach
+                    </td>
+                    <td>{{$stock->items->sum("qte_sortie")}}</td>
                     <td>
                         <a href="regulation-stock-sortie/{{$stock->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$stock->id}}', this)"></a>

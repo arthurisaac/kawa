@@ -155,7 +155,6 @@ class RegulationStockSortieController extends Controller
                 } else {
                     $item = RegulationStockSortieItem::find($item_id[$i]);
                     $item->date = $date_item[$i];
-                    $item->qte_prevu = $qte_prevu[$i];
                     $item->qte_sortie = $qte_sortie[$i];
                     $item->debut = $debut[$i];
                     $item->fin = $fin[$i];
@@ -185,7 +184,7 @@ class RegulationStockSortieController extends Controller
             }
         }*/
 
-        return redirect()->back()->with("success", "Enregistré avec succès");
+        return redirect("/regulation-stock-sortie-liste")->with("success", "Enregistré avec succès");
     }
 
     /**
