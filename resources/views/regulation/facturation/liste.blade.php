@@ -46,7 +46,7 @@
                             <td>{{$regulation->centre}}</td>
                             <td>{{$regulation->date}}</td>
                             <td>{{$regulation->type}}</td>
-                            <td>{{$regulation->clients->client_nom ?? "Donnee indisponible"}}</td>
+                            <td>{{$regulation->clients->client_nom ?? "Donnee indisponibl"}}</td>
                             <td>{{$regulation->montantTotal}}</td>
                             <td>
                                 <a href="{{ route('regulation-facturation.edit',$regulation->id)}}"

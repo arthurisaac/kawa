@@ -302,6 +302,7 @@ Route::get('regulation-confirmation-liste', [\App\Http\Controllers\RegulationCon
 
 Route::resource('regulation-facturation', 'RegulationFacturationController');
 Route::get('regulation-facturation-liste', [\App\Http\Controllers\RegulationFacturationController::class, 'liste']);
+Route::delete('regulation-facturation-item/{id}', [\App\Http\Controllers\RegulationFacturationController::class, 'destroyItem']);
 
 Route::get('regulation-etat-securipack-utilise', [\App\Http\Controllers\RegulationEtatController::class, 'securipackUtilise']);
 Route::get('regulation-etat-securipack-vendu', [\App\Http\Controllers\RegulationEtatController::class, 'securipackVendu']);

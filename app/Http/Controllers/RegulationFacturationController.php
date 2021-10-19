@@ -188,4 +188,15 @@ class RegulationFacturationController extends Controller
             "message" => "good"
         ]);
     }
+
+    public function destroyItem($id)
+    {
+        $data = RegulationFacturationItem::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return response()->json([
+            "message" => "good"
+        ]);
+    }
 }

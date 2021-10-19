@@ -103,6 +103,7 @@
                     <th>N° début</th>
                     <th>N° fin</th>
                     <th>Montant</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -122,6 +123,7 @@
                     <td><input type="text" class="form-control" name="debut[]"/></td>
                     <td><input type="text" class="form-control" name="fin[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="montant[]"/></td>
+                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -155,6 +157,7 @@
                     '                    <td><input type="text" class="form-control" name="debut[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="fin[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="montant[]"/></td>\n' +
+                    '                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                </tr>');
             });
         })
@@ -181,6 +184,11 @@
         });
     </script>
     <script>
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            totalMontant();
+        }
         function totalMontant() {
             let total = 0;
 

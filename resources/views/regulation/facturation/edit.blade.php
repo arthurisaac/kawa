@@ -106,6 +106,7 @@
                     <th>N° début</th>
                     <th>N° fin</th>
                     <th>Montant</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -128,6 +129,7 @@
                         <td><input type="text" class="form-control" name="debut[]" value="{{$item->debut}}"/></td>
                         <td><input type="text" class="form-control" name="fin[]" value="{{$item->fin}}"/></td>
                         <td><input type="number" min="0" class="form-control" name="montant[]" value="{{$item->qte * $item->pu}}"/></td>
+                        <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$item->id}}', this)"></a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -219,6 +221,33 @@
                     totalMontant();
                 }
             });
+        }
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/regulation-facturation-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function () {
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("table").deleteRow(indexLigne);
+                        totalMontant();
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            totalMontant();
         }
         $(document).ready(function () {
             totalMontant();
