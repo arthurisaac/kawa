@@ -18,4 +18,9 @@ class RegulationFacturation extends Model
         'type',
     ];
 
+    public function items()
+    {
+        return $this->hasMany('App\Models\RegulationFacturationItem', 'facturation');
+    }
+
 }

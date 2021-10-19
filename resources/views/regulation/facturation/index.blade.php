@@ -2,7 +2,8 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Facturation</h2></div>
+        <h2>Facturation</h2>
+        <a href="/regulation-facturation-liste" class="btn btn-link btn-sm">Liste</a>
         <br/>
         <br/>
         @if ($errors->any())
@@ -126,7 +127,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="6">Total</td>
-                    <td><input type="number" min="0" class="form-control" name="montantTotal"/></td>
+                    <td><input type="number" min="0" class="form-control" name="montantTotal" id="montantTotal"/></td>
                 </tr>
                 </tfoot>
             </table>
@@ -139,7 +140,15 @@
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
-                    '                    <td><input type="text" class="form-control" name="libelle[]"/></td>\n' +
+                    '                    <td><select type="text" class="form-control" name="libelle[]">\n' +
+                    '                            <option>Securipack grand</option>\n' +
+                    '                            <option>Securipack moyen</option>\n' +
+                    '                            <option>Securipack petit</option>\n' +
+                    '                            <option>Sacs jutes grand</option>\n' +
+                    '                            <option>Sacs jutes moyen</option>\n' +
+                    '                            <option>Sacs jutes petit</option>\n' +
+                    '                            <option>Scellé</option>\n' +
+                    '                        </select></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="pu[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="reference[]"/></td>\n' +
@@ -169,6 +178,41 @@
                     }));
                 })
             });
+        });
+    </script>
+    <script>
+        function totalMontant() {
+            let total = 0;
+
+            $.each($("input[name='montant[]']"), function (i) {
+                const montant = $("input[name='montant[]'").get(i).value;
+                total += parseFloat(montant) ?? 0;
+            });
+            $("#montantTotal").val(total);
+        }
+        function changePU() {
+            $.each($("input[name='pu[]']"), function (i) {
+                const qte = $("input[name='qte[]'").get(i).value;
+                const pu = $("input[name='pu[]'").get(i).value;
+                const total = (parseFloat(pu) ?? 0) * (parseFloat(qte) ?? 0);
+                $("input[name='montant[]'").eq(i).val(total);
+            });
+            totalMontant();
+        }
+        function changeQte() {
+            $.each($("input[name='pu[]']"), function (i) {
+                const qte = $("input[name='qte[]'").get(i).value;
+                const pu = $("input[name='pu[]'").get(i).value;
+                if (pu && qte) {
+                    const total = (parseFloat(pu) ?? 0) * (parseFloat(qte) ?? 0);
+                    $("input[name='montant[]'").eq(i).val(total);
+                    totalMontant();
+                }
+            });
+        }
+        $(document).on('DOMNodeInserted', function () {
+            $("input[name='pu[]']").on("change", changePU);
+            $("input[name='qte[]']").on("change", changeQte);
         });
     </script>
 

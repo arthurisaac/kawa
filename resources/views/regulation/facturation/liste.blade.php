@@ -23,10 +23,6 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <a href="/regulation-facturation-liste" class="btn btn-info btn-sm">Nouveau</a>
-        <br>
-        <br>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -53,7 +49,7 @@
                             <td>{{$regulation->client}}</td>
                             <td>{{$regulation->montantTotal}}</td>
                             <td>
-                                <a href="{{ route('personnel.edit',$regulation->id)}}"
+                                <a href="{{ route('regulation-facturation.edit',$regulation->id)}}"
                                    class="btn btn-primary btn-sm"></a>
                                 <a class="btn btn-danger btn-sm"
                                         onclick="supprimer('{{$regulation->id}}', this)"></a>
