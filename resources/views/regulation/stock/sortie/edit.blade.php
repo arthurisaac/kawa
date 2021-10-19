@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <label for="service" class="col-4">Service</label>
                         <select id="service" name="service" class="form-control col-8" required>
-                            <option></option>
+                            <option>{{$stock->service}}</option>
                             <option>Informatique</option>
                             <option>Sécurité</option>
                             <option>Caisse</option>
@@ -77,7 +77,6 @@
                 <tr>
                     <th>Date</th>
                     <th>Libellé</th>
-                    <th>Qté prévu</th>
                     <th>Qté sortie</th>
                     <th>N° début</th>
                     <th>N° Fin</th>
@@ -114,7 +113,6 @@
                                 <option>TAG vert</option>
                                 <option>TAG jaune</option>
                             </select></td>
-                        <td><input type="number" min="0" class="form-control" name="qte_prevu[]" value="{{$item->qte_prevu}}"/></td>
                         <td><input type="number" min="0" class="form-control" name="qte_sortie[]" value="{{$item->qte_sortie}}"/></td>
                         <td><input type="text" class="form-control" name="debut[]" value="{{$item->debut}}"/></td>
                         <td><input type="text" class="form-control" name="fin[]" value="{{$item->fin}}"/></td>
@@ -125,7 +123,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3" style="font-weight: bold; text-transform: uppercase;"> Total</td>
+                    <td colspan="2" style="font-weight: bold; text-transform: uppercase;"> Total</td>
                     <td><input type="number" class="form-control" name="totalSortie"  id="totalSortie" value="{{$stock->items->sum('qte_sortie')}}" /> </td>
                     <td></td>
                     <td></td>

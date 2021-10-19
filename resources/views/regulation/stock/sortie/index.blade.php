@@ -75,7 +75,6 @@
                 <tr>
                     <th>Date</th>
                     <th>Libellé</th>
-                    <th>Qté prévu</th>
                     <th>Qté sortie</th>
                     <th>N° début</th>
                     <th>N° Fin</th>
@@ -109,7 +108,6 @@
                             <option>TAG vert</option>
                             <option>TAG jaune</option>
                         </select></td>
-                    <td><input type="number" min="0" class="form-control" name="qte_prevu[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="qte_sortie[]"/></td>
                     <td><input type="text" class="form-control" name="debut[]"/></td>
                     <td><input type="text" class="form-control" name="fin[]"/></td>
@@ -119,7 +117,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3" style="font-weight: bold; text-transform: uppercase;"> Total</td>
+                    <td colspan="2" style="font-weight: bold; text-transform: uppercase;"> Total</td>
                     <td><input type="number" class="form-control" name="totalSortie"  id="totalSortie" /> </td>
                     <td></td>
                     <td></td>
@@ -136,6 +134,15 @@
         function supprimer(e) {
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("table").deleteRow(indexLigne);
+        }
+        function changeQte() {
+            let totalQte = 0;
+
+            $.each($("input[name='qte_sortie[]']"), function (i) {
+                const qte_sortie = $("input[name='qte_sortie[]'").get(i).value;
+                totalQte += parseFloat(qte_sortie) ?? 0;
+            });
+            $("#totalSortie").val(totalQte);
         }
 
         $(document).ready(function () {
@@ -198,13 +205,14 @@
     </script>
     <script>
         $(document).on('DOMNodeInserted', function () {
-            $("input[name='qte_sortie[]']").on("change", function () {
+            $("input[name='qte_sortie[]']").on("change", changeQte);
 
-                $.each($("input[name='qte_sortie[]']"), function (i) {
-                    const qte_sortie = $("input[name='qte_sortie[]'").get(i).value;
-                    const qte_prevu = $("input[name='qte_prevu[]'").get(i).value;
+            $("input[name='qte_sortie_edit[]']").on("change", function () {
+                $.each($("input[name='qte_sortie_edit[]']"), function (i) {
+                    const qte_sortie = $("input[name='qte_sortie_edit[]'").get(i).value;
+                    const qte_prevu = $("input[name='qte_prevu_edit[]'").get(i).value;
                     const reste = parseFloat(qte_prevu ?? 0) - parseFloat(qte_sortie ?? 0);
-                    $("input[name='reste[]'").eq(i).val(reste);
+                    $("input[name='reste_edit[]'").eq(i).val(reste);
                 });
             });
         });
