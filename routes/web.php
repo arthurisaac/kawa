@@ -320,7 +320,7 @@ Route::get('regulation-stock-entree-liste', [\App\Http\Controllers\RegulationSto
 Route::delete('regulation-stock-entree-item/{id}', [\App\Http\Controllers\RegulationStockEntreeController::class, 'destroyItem']);
 
 Route::resource('regulation-stock-sortie', 'RegulationStockSortieController');
-Route::get('regulation-stock-stock-liste', [\App\Http\Controllers\RegulationStockSortieController::class, 'liste']);
+Route::get('regulation-stock-sortie-liste', [\App\Http\Controllers\RegulationStockSortieController::class, 'liste']);
 Route::delete('regulation-stock-sortie-item/{id}', [\App\Http\Controllers\RegulationStockSortieController::class, 'destroyItem']);
 
 
