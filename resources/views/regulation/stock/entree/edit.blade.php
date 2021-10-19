@@ -111,12 +111,12 @@
                 @foreach($items as $item)
                     <tr>
                         <input type="hidden" value="{{$item->id}}" name="item_ids[]">
-                        <td><input type="number" min="0" class="form-control" name="qte_attendu_edit[]" value="{{$item->qte_attendu}}"/></td>
-                        <td><input type="number" min="0" class="form-control" name="qte_livree_edit[]" value="{{$item->qte_livree}}"/></td>
-                        <td><input type="text" class="form-control" name="no_debut_edit[]" value="{{$item->debut}}"/></td>
-                        <td><input type="text" class="form-control" name="no_fin_edit[]" value="{{$item->fin}}"/></td>
-                        <td><input type="number" min="0" class="form-control" name="reste_edit[]" value="{{$item->reste}}"/></td>
-                        <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                        <td><input type="number" min="0" class="form-control" name="qte_attendu[]" value="{{$item->qte_attendu}}"/></td>
+                        <td><input type="number" min="0" class="form-control" name="qte_livree[]" value="{{$item->qte_livree}}"/></td>
+                        <td><input type="text" class="form-control" name="no_debut[]" value="{{$item->debut}}"/></td>
+                        <td><input type="text" class="form-control" name="no_fin[]" value="{{$item->fin}}"/></td>
+                        <td><input type="number" min="0" class="form-control" name="reste[]" value="{{$item->reste}}"/></td>
+                        <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$item->id}}', this)"></a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -159,8 +159,11 @@
     </script>
     <script>
         $(document).ready(function () {
+            qteLivree2();
+            qteAttendu();
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
+                    '                    <input type="hidden" name="item_ids[]">\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_attendu[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_livree[]"/></td>\n' +
                     '                    <td><input type="text" class="form-control" name="no_debut[]"/></td>\n' +
@@ -172,35 +175,69 @@
         })
     </script>
     <script>
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/regulation-stock-entree-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("table").deleteRow(indexLigne);
+                    },
+                    error: function () {
+                        alert("Une erreur s'est produite");
+                    }
+                });
+            }
+        }
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            qteLivreeReste();
+            qteLivree2();
+            qteAttendu();
+        }
+        function qteLivreeReste() {
+
+            $.each($("input[name='qte_livree[]']"), function (i) {
+                const qte_livree = $("input[name='qte_livree[]'").get(i).value;
+                const qte_attendu = $("input[name='qte_attendu[]'").get(i).value;
+                const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
+                $("input[name='reste[]'").eq(i).val(reste);
+            });
+        }
+        function qteLivree2() {
+            let totalQteAttendu = 0;
+            $.each($("input[name='qte_livree[]']"), function (i) {
+                const nbre = $("input[name='qte_livree[]'").get(i).value;
+                totalQteAttendu += parseFloat(nbre) ?? 0;
+            });
+            $("#totalLivree").val(totalQteAttendu);
+        }
+        function qteAttendu() {
+            let totalQteAttendu = 0;
+            $.each($("input[name='qte_attendu[]']"), function (i) {
+                const nbre = $("input[name='qte_attendu[]'").get(i).value;
+                totalQteAttendu += parseFloat(nbre) ?? 0;
+            });
+            $("#totalAttendu").val(totalQteAttendu);
+        }
+    </script>
+    <script>
         $(document).on('DOMNodeInserted', function () {
-            $("input[name='qte_livree[]']").on("change", function () {
+            $("input[name='qte_livree[]']").on("change", qteLivreeReste);
 
-                $.each($("input[name='qte_livree[]']"), function (i) {
-                    const qte_livree = $("input[name='qte_livree[]'").get(i).value;
-                    const qte_attendu = $("input[name='qte_attendu[]'").get(i).value;
-                    const reste = parseFloat(qte_attendu ?? 0) - parseFloat(qte_livree ?? 0);
-                    $("input[name='reste[]'").eq(i).val(reste);
-                });
-            });
+            $("input[name='qte_attendu[]']").on("change", qteAttendu);
 
-
-            $("input[name='qte_attendu[]']").on("change", function () {
-                let totalQteAttendu = 0;
-                $.each($("input[name='qte_attendu[]']"), function (i) {
-                    const nbre = $("input[name='qte_attendu[]'").get(i).value;
-                    totalQteAttendu += parseFloat(nbre) ?? 0;
-                });
-                $("#totalAttendu").val(totalQteAttendu);
-            });
-
-            $("input[name='qte_livree[]']").on("change", function () {
-                let totalQteAttendu = 0;
-                $.each($("input[name='qte_livree[]']"), function (i) {
-                    const nbre = $("input[name='qte_livree[]'").get(i).value;
-                    totalQteAttendu += parseFloat(nbre) ?? 0;
-                });
-                $("#totalLivree").val(totalQteAttendu);
-            });
+            $("input[name='qte_livree[]']").on("change", qteLivree2);
         });
     </script>
 @endsection

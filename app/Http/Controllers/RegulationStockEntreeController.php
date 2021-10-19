@@ -130,7 +130,7 @@ class RegulationStockEntreeController extends Controller
         $data->fournisseur = $request->get("fournisseur");
         $data->save();
 
-        $qte_attendu_edit = $request->get("qte_attendu_edit");
+        /*$qte_attendu_edit = $request->get("qte_attendu_edit");
         $qte_livree_edit = $request->get("qte_livree_edit");
         $no_debut_edit = $request->get("no_debut_edit");
         $no_fin_edit = $request->get("no_fin_edit");
@@ -147,25 +147,37 @@ class RegulationStockEntreeController extends Controller
                 $item->reste = $reste_edit[$i];
                 $item->save();
             }
-        }
+        }*/
 
         $qte_attendu = $request->get("qte_attendu");
         $qte_livree = $request->get("qte_livree");
         $no_debut = $request->get("no_debut");
         $no_fin = $request->get("no_fin");
         $reste = $request->get("reste");
+        $ids = $request->get("item_ids");
 
         if (!empty($qte_attendu) && !empty($qte_livree)) {
-            for ($i = 0; $i < count($qte_attendu); $i++) {
-                $item = new RegulationStockEntreeItem([
-                    "stock_entree" => $id,
-                    "qte_attendu" => $qte_attendu[$i],
-                    "qte_livree" => $qte_livree[$i],
-                    "debut" => $no_debut[$i],
-                    "fin" => $no_fin[$i],
-                    "reste" => $reste[$i],
-                ]);
-                $item->save();
+            for ($i = 0; $i < count($ids); $i++) {
+                if (empty($ids[$i])) {
+                    $item = new RegulationStockEntreeItem([
+                        "stock_entree" => $id,
+                        "qte_attendu" => $qte_attendu[$i],
+                        "qte_livree" => $qte_livree[$i],
+                        "debut" => $no_debut[$i],
+                        "fin" => $no_fin[$i],
+                        "reste" => $reste[$i],
+                    ]);
+                    $item->save();
+                } else {
+                    $item = RegulationStockEntreeItem::find($ids[$i]);
+                    $item->qte_attendu = $qte_attendu[$i];
+                    $item->qte_livree = $qte_livree[$i];
+                    $item->debut = $no_debut[$i];
+                    $item->fin = $no_fin[$i];
+                    $item->reste = $reste[$i];
+                    $item->save();
+                }
+
             }
         }
 
@@ -181,6 +193,17 @@ class RegulationStockEntreeController extends Controller
     public function destroy($id)
     {
         $data = RegulationStockEntree::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return response()->json([
+            "message" => "donnee supprimee"
+        ]);
+    }
+
+    public function destroyItem($id)
+    {
+        $data = RegulationStockEntreeItem::find($id);
         if ($data) {
             $data->delete();
         }
