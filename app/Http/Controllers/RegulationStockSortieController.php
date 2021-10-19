@@ -20,8 +20,7 @@ class RegulationStockSortieController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $numero = DB::table('regulation_stock_sorties')->max('id') + 1 . '-' . date('Y-m-d');
-        return view("regulation.stock.sortie.index", compact('centres_regionaux', 'centres', 'numero'));
+        return view("regulation.stock.sortie.index", compact('centres_regionaux', 'centres'));
     }
 
     public function liste()
@@ -49,12 +48,11 @@ class RegulationStockSortieController extends Controller
     public function store(Request $request)
     {
         $data = new RegulationStockSortie([
-            "date" => $request->get("date"),
-            "numero" => $request->get("numero"),
+            "date" => date('Y-m-d'),
             "centre" => $request->get("centre"),
             "centre_regional" => $request->get("centre_regional"),
-            "libelle" => $request->get("libelle"),
             "service" => $request->get("service"),
+            "receveur" => $request->get("receveur"),
         ]);
         $data->save();
 
@@ -62,7 +60,8 @@ class RegulationStockSortieController extends Controller
         $qte_sortie = $request->get("qte_sortie");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $reste = $request->get("reste");
+        $reference = $request->get("reference");
+        $libelle = $request->get("libelle");
 
         if (!empty($qte_prevu) && !empty($qte_sortie)) {
             for ($i = 0; $i < count($qte_prevu); $i++) {
@@ -72,13 +71,14 @@ class RegulationStockSortieController extends Controller
                     "qte_sortie" => $qte_sortie[$i],
                     "debut" => $debut[$i],
                     "fin" => $fin[$i],
-                    "reste" => $reste[$i],
+                    "reference" => $reference[$i],
+                    "libelle" => $libelle[$i],
                 ]);
                 $item->save();
             }
         }
 
-        return redirect()->back()->with("success", "Enregistré avec succès");
+        return redirect("/regulation-stock-stock-liste")->with("success", "Enregistré avec succès");
     }
 
     /**

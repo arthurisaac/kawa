@@ -32,8 +32,60 @@
                                class="form-control col-8" required readonly/>
                     </div>
                     <div class="form-group row">
-                        <label for="libelle" class="col-4">Libellé</label>
-                        <select id="libelle" name="libelle" class="form-control col-8" required>
+                        <label for="centre" class="col-4">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col-8" required>
+                            <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-4">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-4">Receveur</label>
+                        <input id="receveur" name="receveur" class="form-control col-8" required />
+                    </div>
+                    <div class="form-group row">
+                        <label for="service" class="col-4">Service</label>
+                        <select id="service" name="service" class="form-control col-8" required>
+                            <option></option>
+                            <option>Informatique</option>
+                            <option>Sécurité</option>
+                            <option>Caisse</option>
+                            <option>DAB</option>
+                            <option>Comptabilite</option>
+                            <option>Regulation</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <br/>
+
+            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+            <br>
+            <br>
+            <table class="table table-bordered" style="width: 100%" id="table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Libellé</th>
+                    <th>Qté prévu</th>
+                    <th>Qté sortie</th>
+                    <th>N° début</th>
+                    <th>N° Fin</th>
+                    <th>Référence</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="date" class="form-control" name="date[]"/></td>
+                    <td><select id="libelle" name="libelle" class="form-control" required>
                             <option>bordereau de transport</option>
                             <option>bordereau de collecte</option>
                             <option>cahier de maintenance</option>
@@ -55,59 +107,23 @@
                             <option>TAG bleu</option>
                             <option>TAG vert</option>
                             <option>TAG jaune</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Centre Régional</label>
-                        <select name="centre" id="centre" class="form-control col-8" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-4">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
-                            <option></option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="service" class="col-4">Service</label>
-                        <input id="service" name="service" class="form-control col-8" required />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Numero</label>
-                        <input type="text" name="numero" id="numero" value="{{$numero}}" class="form-control col-8  " required />
-                    </div>
-                </div>
-            </div>
-            <br/>
-
-            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
-            <br>
-            <br>
-            <table class="table table-bordered" style="width: 100%" id="table">
-                <thead>
-                <tr>
-                    <th>Qté prévu</th>
-                    <th>Qté sortie</th>
-                    <th>N° début</th>
-                    <th>N° Fin</th>
-                    <th>Reste</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
+                        </select></td>
                     <td><input type="number" min="0" class="form-control" name="qte_prevu[]"/></td>
                     <td><input type="number" min="0" class="form-control" name="qte_sortie[]"/></td>
                     <td><input type="text" class="form-control" name="debut[]"/></td>
                     <td><input type="text" class="form-control" name="fin[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="reste[]"/></td>
+                    <td><input type="text" class="form-control" name="reference[]"/></td>
                 </tr>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-transform: uppercase;"> Total</td>
+                    <td><input type="number" class="form-control" value="totalSortie"  id="totalSortie" /> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
             </table>
 
             <br>
@@ -118,11 +134,35 @@
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
+                    '                    <td><input type="date" class="form-control" name="date[]"/></td>\n' +
+                    '                    <td><select id="libelle" name="libelle" class="form-control" required>\n' +
+                    '                            <option>bordereau de transport</option>\n' +
+                    '                            <option>bordereau de collecte</option>\n' +
+                    '                            <option>cahier de maintenance</option>\n' +
+                    '                            <option>cahier d’appro</option>\n' +
+                    '                            <option>securipack extra</option>\n' +
+                    '                            <option>securipack grand</option>\n' +
+                    '                            <option>securipack moyen</option>\n' +
+                    '                            <option>securipack petit</option>\n' +
+                    '                            <option>pochette</option>\n' +
+                    '                            <option>scellé DAB</option>\n' +
+                    '                            <option>scellé caisse</option>\n' +
+                    '                            <option>coiffe 10000</option>\n' +
+                    '                            <option>coiffe 5000</option>\n' +
+                    '                            <option>coiffe 2000</option>\n' +
+                    '                            <option>coiffe 1000</option>\n' +
+                    '                            <option>coiffe 500</option>\n' +
+                    '                            <option>sac jute grand</option>\n' +
+                    '                            <option>sac jute moyen</option>\n' +
+                    '                            <option>TAG bleu</option>\n' +
+                    '                            <option>TAG vert</option>\n' +
+                    '                            <option>TAG jaune</option>\n' +
+                    '                        </select></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_prevu[]"/></td>\n' +
                     '                    <td><input type="number" min="0" class="form-control" name="qte_sortie[]"/></td>\n' +
-                    '                    <td><input type="text" class="form-control" name="no_debut[]"/></td>\n' +
-                    '                    <td><input type="text" class="form-control" name="no_fin[]"/></td>\n' +
-                    '                    <td><input type="number" min="0" class="form-control" name="reste[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="debut[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="fin[]"/></td>\n' +
+                    '                    <td><input type="text" class="form-control" name="reference[]"/></td>\n' +
                     '                </tr>');
             });
         })

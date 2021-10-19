@@ -319,8 +319,8 @@ Route::resource('regulation-stock-entree', 'RegulationStockEntreeController');
 Route::get('regulation-stock-entree-liste', [\App\Http\Controllers\RegulationStockEntreeController::class, 'liste']);
 Route::delete('regulation-stock-entree-item/{id}', [\App\Http\Controllers\RegulationStockEntreeController::class, 'destroyItem']);
 
-Route::resource('regulation-stock-sortie', 'RegulationStockEntreeController');
-Route::get('regulation-stock-stock-liste', [\App\Http\Controllers\RegulationStockEntreeController::class, 'liste']);
+Route::resource('regulation-stock-sortie', 'RegulationStockSortieController');
+Route::get('regulation-stock-stock-liste', [\App\Http\Controllers\RegulationStockSortieController::class, 'liste']);
 
 
 /*

@@ -12,7 +12,8 @@ class RegulationStockSortieItem extends Model
         "qte_sortie",
         "debut",
         "fin",
-        "reste",
+        "reference",
+        "libelle",
         "autre",
     ];
 }
