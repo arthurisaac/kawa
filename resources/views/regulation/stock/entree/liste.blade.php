@@ -34,8 +34,7 @@
                 <th>Centre regional</th>
                 <th>Libelle</th>
                 <th>Fournisseur</th>
-                <th>Qté livrée</th>
-                <th>Reste</th>
+                <th>Quantité en stock</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -49,7 +48,6 @@
                     <td>{{$stock->libelle}}</td>
                     <td>{{$stock->fournisseur}}</td>
                     <td>{{$stock->items->sum('qte_livree')}}</td>
-                    <td>{{$stock->items->sum('reste')}}</td>
                     <td>
                         <a href="regulation-stock-entree/{{$stock->id}}/edit" class="btn btn-primary btn-sm"></a>
                         <a class="btn btn-danger btn-sm" onclick="supprimer('{{$stock->id}}', this)"></a>
