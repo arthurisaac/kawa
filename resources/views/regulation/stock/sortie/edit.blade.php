@@ -49,8 +49,15 @@
                     </div>
                     <div class="form-group row">
                         <label for="service" class="col-4">Service</label>
-                        <input id="service" name="service" value="{{$stock->service}}" class="form-control col-8"
-                               required/>
+                        <select id="service" name="service" class="form-control col-8" required>
+                            <option></option>
+                            <option>Informatique</option>
+                            <option>Sécurité</option>
+                            <option>Caisse</option>
+                            <option>DAB</option>
+                            <option>Comptabilite</option>
+                            <option>Regulation</option>
+                        </select>
                     </div>
                     <div class="form-group row">
                         <label for="receveur" class="col-4">Receveur</label>
