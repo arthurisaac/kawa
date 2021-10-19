@@ -73,7 +73,6 @@ class RegulationStockSortieController extends Controller
                 $item = new RegulationStockSortieItem([
                     "stock_sortie" => $data->id,
                     "date" => $date[$i],
-                    "qte_prevu" => $qte_prevu[$i],
                     "qte_sortie" => $qte_sortie[$i],
                     "debut" => $debut[$i],
                     "fin" => $fin[$i],
