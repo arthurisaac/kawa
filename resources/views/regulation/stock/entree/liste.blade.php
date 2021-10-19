@@ -76,7 +76,7 @@
                         const indexLigne = $(e).closest('tr').get(0).rowIndex;
                         document.getElementById("liste").deleteRow(indexLigne);
                     },
-                    error: function (xhr) {
+                    error: function () {
                         alert("Une erreur s'est produite");
                     }
                 });
