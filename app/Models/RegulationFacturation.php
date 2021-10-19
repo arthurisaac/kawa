@@ -23,4 +23,9 @@ class RegulationFacturation extends Model
         return $this->hasMany('App\Models\RegulationFacturationItem', 'facturation');
     }
 
+    public function clients()
+    {
+        return $this->belongsTo('App\Models\Commercial_client', 'client');
+    }
+
 }

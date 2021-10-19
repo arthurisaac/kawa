@@ -33,7 +33,7 @@ class RegulationFacturationController extends Controller
      */
     public function liste()
     {
-        $regulations = RegulationFacturation::all();
+        $regulations = RegulationFacturation::with('clients')->get();
         return view('.regulation.facturation.liste', compact('regulations'));
     }
 
