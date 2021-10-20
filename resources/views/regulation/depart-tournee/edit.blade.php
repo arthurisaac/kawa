@@ -104,9 +104,9 @@
                         <th>Client</th>
                         <th>Colis</th>
                         <th>Valeur colis (XOF)</th>
-                        <th>Devise étrangère (Dollar)</th>
-                        <th>Devise étrangère (Euro)</th>
-                        <th>Pierre précieuse</th>
+                        <th>Valeur devise étrangère (Dollar)</th>
+                        <th>Valeur devise étrangère (Euro)</th>
+                        <th>Valeur pierre précieuse</th>
                         <th>Numéro</th>
                         <th>Nombre total de colis</th>
                     </tr>
