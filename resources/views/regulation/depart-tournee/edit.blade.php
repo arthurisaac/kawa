@@ -145,9 +145,6 @@
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalValeurColis" id="totalValeurColis" value="{{$sitesItems->sum("valeur_colis")}}" class="form-control border-0"></td>
                         <td></td>
-                        <td></td>
-                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre"  value="{{$sitesItems->sum("valeur_autre")}}" class="form-control border-0"></td>
-                        <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
                     </tr>
                     </tfoot>

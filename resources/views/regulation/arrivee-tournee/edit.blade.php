@@ -106,9 +106,7 @@
                         <th>Valeur total colis</th>
                         <th>Numéro</th>
                         <th>Autre colis</th>
-                        <th>Valeur autre colis</th>
-                        <th>Numéros (autre)</th>
-                        <th>Nombre total (colis + autre colis)</th>
+                        <th>Nombre total colis</th>
                         <th>Nature</th>
                     </tr>
                     </thead>
@@ -135,8 +133,6 @@
                             <td><input type="number" min="0" name="valeur_colis[]" value="{{$site->valeur_colis}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
                             <td><input type="text" name="autre[]" value="{{$site->autre ??  "RAS"}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="valeur_autre[]" value="{{$site->valeur_autre}}" class="form-control"></td>
-                            <td><input type="text" name="numero_scelle[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
                             <td><select name="nature[]" class="form-control">
                                     <option>{{$site->nature}}</option>
@@ -154,8 +150,7 @@
                         <td><input type="number" name="totalValeurColis" id="totalValeurColis" value="{{$sitesItems->sum("valeur_colis")}}" class="form-control border-0"></td>
                         <td></td>
                         <td></td>
-                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre"  value="{{$sitesItems->sum("valeur_autre")}}" class="form-control border-0"></td>
-                        <td></td>
+
                         <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
                     </tr>
                     </tfoot>

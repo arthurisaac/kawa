@@ -111,9 +111,6 @@
                         <th>Colis</th>
                         <th>Valeur total colis</th>
                         <th>Numéro</th>
-                        <th>Autre colis</th>
-                        <th>Valeur autre colis</th>
-                        <th>Numéros (autre colis)</th>
                         <th>Nombre total (colis + autre colis)</th>
                     </tr>
                     </thead>
@@ -145,9 +142,7 @@
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalValeurColis" id="totalValeurColis" class="form-control border-0"></td>
                         <td></td>
-                        <td></td>
-                        <td><input type="number" name="totalValeurAutre" id="totalValeurAutre" class="form-control border-0"></td>
-                        <td></td>
+
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control border-0"></td>
                     </tr>
                     </tfoot>
@@ -218,15 +213,7 @@
                         </td>
                         <td><input type="number" name="valeur_colis[]" value="${s.valeur_colis ?? ''}" class="form-control"></td>
                         <td><input type="text" name="numero[]" value="${s.numero ?? ''}" class="form-control"></td>
-                        <td>
-                            <select name="autre[]" class="form-control">
-                                <option>${s.autre ?? 'RAS'}</option>
-                                <option>Device étrangère</option>
-                                <option>Caisse</option>
-                            </select>
-                        </td>
-                        <td><input type="number" name="valeur_autre[]" class="form-control" value="${s.valeur_autre ?? ''}"></td>
-                        <td><textarea name="numero_scelle[]" class="form-control">${s?.numero_scelle ?? ''}</textarea></td>
+
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
                 </tr>`;
 
