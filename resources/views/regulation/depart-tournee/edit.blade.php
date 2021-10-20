@@ -131,12 +131,12 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
-                            <td><input type="number" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof}}" class="form-control"></td>
-                            <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar}}" class="form-control"></td>
-                            <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro}}" class="form-control"></td>
-                            <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse}}" class="form-control"></td>
+                            <td><input type="number" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof ?? 0}}" class="form-control"></td>
+                            <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar ?? 0}}" class="form-control"></td>
+                            <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro ?? 0}}" class="form-control"></td>
+                            <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
-                            <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
+                            <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis ?? 0}}" class="form-control"></td>
                         </tr>
                     @endforeach
                     </tbody>
