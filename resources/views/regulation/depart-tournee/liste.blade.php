@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <br>
         <br>
-        <div><h2 class="heading">Arrivée tournée</h2></div>
+        <div><h2 class="heading">Départ tournée</h2></div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -23,7 +23,7 @@
         @endif
 
         <br>
-        <a href="/depart-tournee-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <a href="/regulation-depart-tournee" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
         <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -76,7 +76,6 @@
             });
         });
     </script>
-
     <script>
         function supprimer(id, e) {
             if (confirm("Confirmer la suppression?")) {

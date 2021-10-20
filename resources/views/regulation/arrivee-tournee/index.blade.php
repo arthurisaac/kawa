@@ -123,7 +123,6 @@
                         <th>Devise étrangère (Euro)</th>
                         <th>Pierre précieuse</th>
                         <th>Numéro</th>
-                        <th>Autre colis</th>
                         <th>Nombre total</th>
                         <th>Nature</th>
                     </tr>
@@ -142,7 +141,6 @@
                                    readonly></td>
                         <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
                                    readonly></td>
-                        <td></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                         <td></td>
@@ -227,13 +225,6 @@
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? '0'}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
-                        <td>
-                            <select name="autre[]" class="form-control">
-                                <option>${s.autre ?? 'RAS'}</option>
-                                <option>Device étrangère</option>
-                                <option>Caisse</option>
-                            </select>
-                        </td>
 
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? '0'}" class="form-control"></td>
                         <td><select name="nature[]" class="form-control">

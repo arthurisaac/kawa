@@ -148,6 +148,7 @@
                         </td>
                         <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control" readonly></td>
                         <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control" readonly></td>
+                        <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                     </tr>
                     </tfoot>

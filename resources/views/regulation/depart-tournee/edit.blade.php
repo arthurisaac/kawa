@@ -149,9 +149,16 @@
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalValeurColis" id="totalValeurColis" value="{{$sitesItems->sum("valeur_colis")}}" class="form-control border-0"></td>
+                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control" readonly></td>
+                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control" readonly>
+                        </td>
+                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control" readonly></td>
+                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control" readonly></td>
                         <td></td>
-                        <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -195,12 +202,21 @@
             });
             $("#totalValeurPierre").val(total);
         }
+        function changeNombreColis() {
+            let totalColis = 0;
+            $.each($("input[name='nbre_colis[]']"), function (i) {
+                const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                totalColis += parseFloat(nbre) ?? 0;
+            });
+            $("#totalColis").val(totalColis);
+        }
     </script>
     <script>
         changeDollar();
         changeEuro();
         changePierre();
         changeXOF();
+        changeNombreColis();
         let tournees = {!! json_encode($tournees) !!};
         let sites = {!! json_encode($sites) !!};
         $(document).ready(function () {
