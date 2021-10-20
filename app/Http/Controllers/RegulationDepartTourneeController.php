@@ -26,9 +26,16 @@ class RegulationDepartTourneeController extends Controller
     }
 
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $tournees = DepartTournee::with("sites")->get();
+        if (isset($debut) && isset($fin)) {
+            $tournees = DepartTournee::with("sites")
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
         return view("regulation.depart-tournee.liste", compact("tournees"));
     }
 

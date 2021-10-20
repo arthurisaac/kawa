@@ -28,9 +28,16 @@ class RegulationArriveeTourneeController extends Controller
         return view('regulation.arrivee-tournee.index', compact("date", "heure", "tournees", "sites"));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $tournees = DepartTournee::with("sites")->get();
+        if (isset($debut) && isset($fin)) {
+            $tournees = DepartTournee::with("sites")
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
         return view("regulation.arrivee-tournee.liste", compact("tournees"));
     }
 
