@@ -220,13 +220,13 @@
                                 <option>Conteneur</option>
                                 </select>
                         </td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? '0'}" class="form-control"></td>
-                        <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
+                        <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
 
-                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? '0'}" class="form-control"></td>
+                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>${s?.nature ?? ''}</option>
                                 <option>envoi</option>

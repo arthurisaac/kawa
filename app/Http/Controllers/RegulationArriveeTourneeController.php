@@ -87,17 +87,17 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->nature = $nature[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
-                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
+                $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
                 $dataSite->colis = $colis[$i];
                 $dataSite->numero = $numero[$i];
                 //$dataSite->valeur_autre = $valeur_autre[$i];
 
-                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
+                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
+                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
+                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }
@@ -165,17 +165,17 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
-                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
+                $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 $dataSite->colis = $colis[$i];
                 //$dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];
 
-                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
+                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
+                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
+                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }

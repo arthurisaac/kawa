@@ -78,10 +78,10 @@
                     <td>{{$tournee->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->sites->sum("nbre_colis")}}</td>
-                    <td>{{$tournee->sites->sum("valeur_colis_xof")}}</td>
-                    <td>{{$tournee->sites->sum("device_etrangere_dollar")}}</td>
-                    <td>{{$tournee->sites->sum("device_etrangere_euro")}}</td>
-                    <td>{{$tournee->sites->sum("pierre_precieuse")}}</td>
+                    <td>{{$tournee->sites->sum("valeur_colis_xof_arrivee")}}</td>
+                    <td>{{$tournee->sites->sum("device_etrangere_dollar_arrivee")}}</td>
+                    <td>{{$tournee->sites->sum("device_etrangere_euro_arrivee")}}</td>
+                    <td>{{$tournee->sites->sum("pierre_precieuse_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("montant_regulation")}}</td>
                     <td>{{$tournee->chefDeBords->nomPrenoms ?? ""}} //
                         {{$tournee->agentDeGardes->nomPrenoms ?? ""}} //

@@ -78,7 +78,7 @@ class RegulationDepartTourneeController extends Controller
 
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($nbre_colis[$i])) {
+            if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 //$dataSite->client = $client[$i] ?? "";
                 //$dataSite->nature = $nature[$i] ?? "";
@@ -157,7 +157,7 @@ class RegulationDepartTourneeController extends Controller
         $pierre_precieuse = $request->get('pierre_precieuse');
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($nbre_colis[$i])) {
+            if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 //$dataSite->client = $client[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
