@@ -169,9 +169,48 @@
         </form>
 
     </div>
+
+    <script>
+        function changeXOF() {
+            let total = 0;
+            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
+                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurXOF").val(total);
+        }
+        function changeDollar() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurDollar").val(total);
+        }
+        function changeEuro() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurEuro").val(total);
+        }
+        function changePierre() {
+            let total = 0;
+            $.each($("input[name='pierre_precieuse[]']"), function (i) {
+                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurPierre").val(total);
+        }
+    </script>
     <script>
         let tournees = {!! json_encode($tournees) !!};
         let sites = {!! json_encode($sites) !!};
+        changeDollar();
+        changeEuro();
+        changePierre();
+        changeXOF();
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
                 $("#vehicule").val("");
@@ -239,6 +278,10 @@
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
             });
+            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
+            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
+            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
+            $("input[name='pierre_precieuse[]']").on("change", changePierre);
 
         })
     </script>

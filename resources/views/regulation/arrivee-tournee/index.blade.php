@@ -133,12 +133,15 @@
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalValeurColis" id="totalValeurColis"
-                                   class="form-control border-0"></td>
+                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control" readonly></td>
+                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control" readonly>
+                        </td>
+                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control" readonly></td>
+                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control" readonly></td>
                         <td></td>
                         <td></td>
-
-                        <td><input type="number" name="totalColis" id="totalColis" class="form-control border-0"></td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -207,7 +210,7 @@
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
-                        <td><select name="colis[]" value="" class="form-control">
+                        <td><select name="colis[]" class="form-control">
                                 <option>${s.colis ?? ''}</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
@@ -215,10 +218,10 @@
                                 <option>Conteneur</option>
                                 </select>
                         </td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? ''}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? ''}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? ''}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? ''}" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? '0'}" class="form-control"></td>
+                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? '0'}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
                         <td>
                             <select name="autre[]" class="form-control">
@@ -322,6 +325,38 @@
                     totalValeurAutre += parseFloat(nbre) ?? 0;
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
+            });
+            $("input[name='valeur_colis_xof[]']").on("change", function () {
+                let total = 0;
+                $.each($("input[name='valeur_colis_xof[]']"), function (i) {
+                    const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                    total += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurXOF").val(total);
+            });
+            $("input[name='device_etrangere_dollar[]']").on("change", function () {
+                let total = 0;
+                $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
+                    const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
+                    total += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurDollar").val(total);
+            });
+            $("input[name='device_etrangere_euro[]']").on("change", function () {
+                let total = 0;
+                $.each($("input[name='device_etrangere_euro[]']"), function (i) {
+                    const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
+                    total += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurEuro").val(total);
+            });
+            $("input[name='pierre_precieuse[]']").on("change", function () {
+                let total = 0;
+                $.each($("input[name='pierre_precieuse[]']"), function (i) {
+                    const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
+                    total += parseFloat(nbre) ?? 0;
+                });
+                $("#totalValeurPierre").val(total);
             });
         });
     </script>
