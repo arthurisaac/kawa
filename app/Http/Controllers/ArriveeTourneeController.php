@@ -97,6 +97,10 @@ class ArriveeTourneeController extends Controller
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
 
+        $valeur_colis_xof = $request->get('device_etrangere_euro');
+        $device_etrangere_dollar = $request->get('device_etrangere_euro');
+        $device_etrangere_euro = $request->get('device_etrangere_euro');
+
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $site = SiteDepartTournee::find($site_ids[$i]);
@@ -104,6 +108,11 @@ class ArriveeTourneeController extends Controller
                 $site->montant = $montants[$i];
                 $site->type = $type[$i];
                 $site->autre = $autre[$i];
+                $site->valeur_colis_xof = $autre[$i];
+
+                $sites->valeur_colis_xof = $valeur_colis_xof;
+                $sites->device_etrangere_dollar = $device_etrangere_dollar;
+                $sites->device_etrangere_euro = $device_etrangere_euro;
                 $site->save();
             }
         }

@@ -118,7 +118,9 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Valeur total colis</th>
+                        <th>Valeur colis (XOF)</th>
+                        <th>Devise étrangère (Dollar)</th>
+                        <th>Devise étrangère (Euro)</th>
                         <th>Numéro</th>
                         <th>Autre colis</th>
                         <th>Nombre total</th>
@@ -126,27 +128,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--<tr>
-                        <td>
-                            <select name="site[]" class="form-control">
-                                <option></option>
-                                @foreach($sites as $site)
-                                    <option value="{{$site->id}}">{{$site->site}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td><input type="text" name="client[]" class="form-control"></td>
-                        <td><input type="text" name="autre[]" class="form-control"></td>
-                        <td><select name="nature[]" class="form-control">
-                                <option>envoi</option>
-                                <option>tri</option>
-                                <option>transite</option>
-                                <option>approvisionnement</option>
-                            </select></td>
-                        <td><input type="text" name="numero_scelle[]" class="form-control"></td>
-                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>
-                        <td><input type="text" name="montant[]" class="form-control"></td>
-                    </tr>--}}
                     </tbody>
                     <tfoot>
                     <tr>
@@ -233,8 +214,10 @@
                                 <option>Conteneur</option>
                                 </select>
                         </td>
-                        <td><input type="number" name="valeur_colis[]" value="${s.valeur_colis ?? ''}" class="form-control"></td>
-                        <td><input type="text" name="numero[]" value="${s.numero ?? ''}" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? ''}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? ''}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? ''}" class="form-control"></td>
+                        <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
                         <td>
                             <select name="autre[]" class="form-control">
                                 <option>${s.autre ?? 'RAS'}</option>

@@ -109,7 +109,9 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Valeur total colis</th>
+                        <th>Valeur colis (XOF)</th>
+                        <th>Devise étrangère (Dollar)</th>
+                        <th>Devise étrangère (Euro)</th>
                         <th>Numéro</th>
                         <th>Nombre total (colis + autre colis)</th>
                     </tr>
@@ -211,8 +213,10 @@
                                 <option>Conteneur</option>
                                 </select>
                         </td>
-                        <td><input type="number" name="valeur_colis[]" value="${s.valeur_colis ?? ''}" class="form-control"></td>
-                        <td><input type="text" name="numero[]" value="${s.numero ?? ''}" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? ''}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? ''}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? ''}" class="form-control"></td>
+                        <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
 
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
                 </tr>`;
