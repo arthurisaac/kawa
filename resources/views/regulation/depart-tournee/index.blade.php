@@ -114,7 +114,7 @@
                         <th>Devise étrangère (Euro)</th>
                         <th>Pierre précieuse</th>
                         <th>Numéro</th>
-                        <th>Nombre total (colis + autre colis)</th>
+                        <th>Nombre total de colis</th>
                     </tr>
                     </thead>
                     <tbody>

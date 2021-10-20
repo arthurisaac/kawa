@@ -123,7 +123,7 @@
                         <th>Devise étrangère (Euro)</th>
                         <th>Pierre précieuse</th>
                         <th>Numéro</th>
-                        <th>Nombre total</th>
+                        <th>Nombre total colis</th>
                         <th>Nature</th>
                     </tr>
                     </thead>
