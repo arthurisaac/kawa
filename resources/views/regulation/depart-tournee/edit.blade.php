@@ -115,10 +115,10 @@
                     @foreach($sitesItems as $site)
                         <tr>
                             <td>
-                                <input type="text" name="site[]" class="form-control" readonly />
-                                <input type="hidden" name="site_id[]" value="{{$site->site}}">
+                                <input type="text" name="site[]" class="form-control" value="{{$site->sites->site ?? 'Indisponible'}}" readonly />
+                                <input type="hidden" name="site_id[]" value="{{$site->id}}">
                             </td>
-                            <td><input type="text" name="client[]" value="{{$site->client}}" class="form-control" readonly /></td>
+                            <td><input type="text" name="client[]" value="{{$site->sites->clients->client_nom ?? ''}}" class="form-control" readonly /></td>
                             <td><select name="colis[]" class="form-control">
                                     <option>{{$site->colis}}</option>
                                     <option>Sac jute</option>
