@@ -219,7 +219,7 @@
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? ''}" class="form-control"></td>
                         <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? ''}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
-
+ 9
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>
                 </tr>`;
 

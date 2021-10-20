@@ -59,8 +59,8 @@ class RegulationArriveeTourneeController extends Controller
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
 
-        $valeur_colis_xof = $request->get('device_etrangere_euro');
-        $device_etrangere_dollar = $request->get('device_etrangere_euro');
+        $valeur_colis_xof = $request->get('valeur_colis_xof');
+        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
         $device_etrangere_euro = $request->get('device_etrangere_euro');
         $pierre_precieuse = $request->get('pierre_precieuse');
 
@@ -87,10 +87,10 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->numero = $numero[$i];
                 //$dataSite->valeur_autre = $valeur_autre[$i];
 
-                $dataSite->valeur_colis_xof = $valeur_colis_xof;
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar;
-                $dataSite->device_etrangere_euro = $device_etrangere_euro;
-                $dataSite->pierre_precieuse = $pierre_precieuse;
+                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
+                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
+                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
+                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }
@@ -139,8 +139,9 @@ class RegulationArriveeTourneeController extends Controller
         $autre = $request->get('autre');
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
-        $valeur_colis_xof = $request->get('device_etrangere_euro');
-        $device_etrangere_dollar = $request->get('device_etrangere_euro');
+
+        $valeur_colis_xof = $request->get('valeur_colis_xof');
+        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
         $device_etrangere_euro = $request->get('device_etrangere_euro');
         $pierre_precieuse = $request->get('pierre_precieuse');
 
@@ -164,11 +165,11 @@ class RegulationArriveeTourneeController extends Controller
                 //$dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];
-                $dataSite->valeur_autre = $valeur_autre[$i];
-                $dataSite->valeur_colis_xof = $valeur_colis_xof;
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar;
-                $dataSite->device_etrangere_euro = $device_etrangere_euro;
-                $dataSite->pierre_precieuse = $pierre_precieuse;
+
+                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
+                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
+                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
+                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }
