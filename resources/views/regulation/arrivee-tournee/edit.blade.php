@@ -94,7 +94,7 @@
                     <div class="col"></div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <br>
                 <br>
                 <table class="table table-bordered" id="tableSite">

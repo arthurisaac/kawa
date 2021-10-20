@@ -94,7 +94,7 @@
                     <div class="col"></div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <br>
                 <br>
                 <table class="table table-bordered" id="tableSite">
@@ -108,7 +108,6 @@
                         <th>Devise étrangère (Euro)</th>
                         <th>Pierre précieuse</th>
                         <th>Numéro</th>
-                        <th>Autre colis</th>
                         <th>Valeur autre colis</th>
                         <th>Numéros (autre colis)</th>
                         <th>Nombre total (colis + autre colis)</th>
@@ -139,7 +138,6 @@
                             <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro}}" class="form-control"></td>
                             <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
-                            <td><input type="text" name="autre[]" value="{{$site->autre ??  "RAS"}}" class="form-control"></td>
                             <td><input type="number" min="0" name="valeur_autre[]" value="{{$site->valeur_autre}}" class="form-control"></td>
                             <td><input type="text" name="numero_scelle[]" value="{{$site->numero_scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
@@ -154,7 +152,6 @@
                         </td>
                         <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control" readonly></td>
                         <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control" readonly></td>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
