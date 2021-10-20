@@ -112,6 +112,7 @@
                         <th>Valeur colis (XOF)</th>
                         <th>Devise étrangère (Dollar)</th>
                         <th>Devise étrangère (Euro)</th>
+                        <th>Pierre précieuse</th>
                         <th>Numéro</th>
                         <th>Nombre total (colis + autre colis)</th>
                     </tr>
@@ -216,6 +217,7 @@
                         <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? ''}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? ''}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? ''}" class="form-control"></td>
+                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? ''}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
 
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? ''}" class="form-control"></td>

@@ -106,6 +106,7 @@
                         <th>Valeur colis (XOF)</th>
                         <th>Devise étrangère (Dollar)</th>
                         <th>Devise étrangère (Euro)</th>
+                        <th>Pierre précieuse</th>
                         <th>Numéro</th>
                         <th>Autre colis</th>
                         <th>Nombre total colis</th>
@@ -135,6 +136,7 @@
                             <td><input type="number" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof}}" class="form-control"></td>
                             <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar}}" class="form-control"></td>
                             <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro}}" class="form-control"></td>
+                            <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse}}" class="form-control"></td>
                             <td><input type="number" min="0" name="valeur_colis[]" value="{{$site->valeur_colis}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
                             <td><input type="text" name="autre[]" value="{{$site->autre ??  "RAS"}}" class="form-control"></td>
