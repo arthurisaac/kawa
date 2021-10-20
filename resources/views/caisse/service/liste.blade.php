@@ -48,18 +48,18 @@
                             <td>{{$service->date}}</td>
                             <td>{{$service->centre}}</td>
                             <td>{{$service->centreRegional}}</td>
-                            <td>{{$service->chargeCaisses->nomPrenoms}}</td>
+                            <td>{{$service->chargeCaisses->nomPrenoms ?? ""}}</td>
                             <td>{{$service->chargeCaisseHPS}}</td>
                             <td>{{$service->chargeCaisseHFS}}</td>
-                            <td>{{$service->chargeCaisseAdjoints->nomPrenoms}}</td>
+                            <td>{{$service->chargeCaisseAdjoints->nomPrenoms ?? ""}}</td>
                             <td>{{$service->chargeCaisseAdjointHPS}}</td>
                             <td>{{$service->chargeCaisseAdjointHFS}}</td>
                             <td>
-                                <a href="{{ route('caisse-service.edit',$service->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('caisse-service.edit',$service->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('caisse-service.destroy', $service->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </td>
                         </tr>

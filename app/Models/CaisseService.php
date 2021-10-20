@@ -25,6 +25,6 @@ class CaisseService extends Model
 
     public function chargeCaisseAdjoints()
     {
-        return $this->belongsTo('App\Personnel', 'chargeCaisseAdjoint', 'id');
+        return $this->belongsTo('App\Models\Personnel', 'chargeCaisseAdjoint', 'id');
     }
 }
