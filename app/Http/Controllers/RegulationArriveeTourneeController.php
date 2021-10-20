@@ -82,7 +82,7 @@ class RegulationArriveeTourneeController extends Controller
         $dt->save();
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i])) {
+            if (!empty($nbre_colis[$i]) ) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->nature = $nature[$i] ?? "";
@@ -158,11 +158,10 @@ class RegulationArriveeTourneeController extends Controller
         //$valeur_colis = $request->get('valeur_colis');
         $numero = $request->get('numero');
         $nature = $request->get('nature');
-        $valeur_autre = $request->get('valeur_autre');
         $site_id = $request->get("site_id");
 
         for ($i = 0; $i < count($sites); $i++) {
-            if (!empty($client[$i]) && !empty($nbre_colis[$i]) && !empty($nbre_colis[$i])) {
+            if (!empty($nbre_colis[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->client = $client[$i] ?? "";
                 $dataSite->autre = $autre[$i] ?? "";
