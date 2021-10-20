@@ -108,7 +108,6 @@
                         <th>Devise étrangère (Euro)</th>
                         <th>Pierre précieuse</th>
                         <th>Numéro</th>
-                        <th>Autre colis</th>
                         <th>Nombre total colis</th>
                         <th>Nature</th>
                     </tr>
@@ -137,10 +136,8 @@
                             <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar}}" class="form-control"></td>
                             <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro}}" class="form-control"></td>
                             <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="valeur_colis[]" value="{{$site->valeur_colis}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
-                            <td><input type="text" name="autre[]" value="{{$site->autre ??  "RAS"}}" class="form-control"></td>
-                            <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
+                            <td><input type="number"  min="0" name="nbre_colis[]" value="{{$site->nbre_colis}}" class="form-control"></td>
                             <td><select name="nature[]" class="form-control">
                                     <option>{{$site->nature}}</option>
                                     <option>envoi</option>
@@ -154,11 +151,18 @@
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalValeurColis" id="totalValeurColis" value="{{$sitesItems->sum("valeur_colis")}}" class="form-control border-0"></td>
+                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
+                                   readonly>
+                        </td>
+                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
+                                   readonly></td>
                         <td></td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                         <td></td>
-
-                        <td><input type="number" name="totalColis" id="totalColis" value="{{$sitesItems->sum("nbre_colis")}}"  class="form-control border-0"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -203,6 +207,15 @@
             });
             $("#totalValeurPierre").val(total);
         }
+
+        function changeNombreColis() {
+            let totalColis = 0;
+            $.each($("input[name='nbre_colis[]']"), function (i) {
+                const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                totalColis += parseFloat(nbre) ?? 0;
+            });
+            $("#totalColis").val(totalColis);
+        }
     </script>
     <script>
         let tournees = {!! json_encode($tournees) !!};
@@ -211,6 +224,7 @@
         changeEuro();
         changePierre();
         changeXOF();
+        changeNombreColis();
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
                 $("#vehicule").val("");
