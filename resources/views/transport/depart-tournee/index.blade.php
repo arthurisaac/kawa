@@ -136,7 +136,9 @@
                         <th>Site</th>
                         <th>Type opération</th>
                         <th>TDF</th>
+                        <th>Montant TDF</th>
                         <th>Caisse</th>
+                        <th>Montant Caisse</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -170,6 +172,7 @@
                                     <option value="oo_vl_intramuros">VL</option>
                                 </select>
                             </td>
+                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>
                             <td>
                                 <select class="form-control" name="caisse[]" disabled>
                                     <option></option>
@@ -179,6 +182,7 @@
                                     <option value="oo_collecte_caisse">Collecte Caisse</option>
                                 </select>
                             </td>
+                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>
                             <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
                         </tr>
                     @endfor
@@ -241,8 +245,9 @@
                     '                                    <option value="oo_vl_intramuros">VL</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled /></td>\n' +
                     '                            <td>\n' +
-                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled/>\n' +
                     '                                    <option></option>\n' +
                     '                                    <option value="oo_mad">MAD</option>\n' +
                     '                                    <option value="oo_collecte">Collecte</option>\n' +
@@ -250,6 +255,7 @@
                     '                                    <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>\n' +
                     '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a><td>\n' +
                     '                        </tr>');
             });
@@ -307,7 +313,6 @@
     </script>
     <script>
         $(document).on('DOMNodeInserted', function () {
-
             // Activer les champs TDF et Caisse
             $("select[name='site[]']").on("change", siteChange);
 
@@ -315,29 +320,7 @@
             $("select[name='tdf[]']").on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
-            $("select[name='caisse[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='caisse[]']"), function (i) {
-                    const tdf = $("select[name='caisse[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    if (site) {
-                        const montantCaisse = site[this.value] ?? 0;
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-            });
+            $("select[name='caisse[]']").on("change", caisseChange);
         });
     </script>
     <script>
@@ -377,10 +360,35 @@
                     const montantCaisse = site[caisseInput.value] ?? 0;
                     let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
                     $("#coutTournee").val(cout);
+                    $("input[name='montant_tdf[]']").eq(i).val(montantTDF);
                 } else {
                     console.log("Site non trouvé :-(");
                 }
             });
+        }
+        function caisseChange() {
+            let coutTournee = 0;
+            const thisTDF = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='caisse[]']"), function (i) {
+                const tdf = $("select[name='caisse[]']").get(i);
+                if (thisTDF === tdf) {
+                    index = i;
+                }
+                const siteInput = $("select[name='site[]']").get(i);
+                const site = sites.find(s => s.id === parseInt(siteInput.value));
+                const tdfInput = $("select[name='tdf[]']").get(i);
+                if (site) {
+                    const montantCaisse = site[this.value] ?? 0;
+                    const montantTDF = site[tdfInput.value] ?? 0;
+                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                    $("#coutTournee").val(cout);
+                    $("input[name='montant_caisse[]']").eq(i).val(montantCaisse);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+
         }
     </script>
 @endsection
