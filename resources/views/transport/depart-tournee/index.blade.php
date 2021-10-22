@@ -245,9 +245,9 @@
                     '                                    <option value="oo_vl_intramuros">VL</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
-                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled /></td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
                     '                            <td>\n' +
-                    '                                <select class="form-control" name="caisse[]" disabled/>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
                     '                                    <option></option>\n' +
                     '                                    <option value="oo_mad">MAD</option>\n' +
                     '                                    <option value="oo_collecte">Collecte</option>\n' +
@@ -256,7 +256,7 @@
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>\n' +
-                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a><td>\n' +
+                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                        </tr>');
             });
         });
