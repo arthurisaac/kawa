@@ -216,6 +216,25 @@
             });
             $("#totalColis").val(totalColis);
         }
+
+        function changeColis() {
+            let index = 0;
+            const thisColisInput = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='site[]']"), function (i) {
+                const site = $("select[name='site[]']").get(i);
+                if (thisColisInput === site) {
+                    index = i;
+                }
+            });
+            $("input[name='valeur_colis_xof[]']").eq(index).prop('disabled', true);
+            $("input[name='device_etrangere_dollar[]']").eq(index).prop('disabled', true);
+            $("input[name='device_etrangere_euro[]']").eq(index).prop('disabled', true);
+            $("input[name='pierre_precieuse[]']").eq(index).prop('disabled', true);
+            $("textarea[name='numero[]']").eq(index).prop('disabled', true);
+            $("input[name='nbre_colis[]']").eq(index).prop('disabled', true);
+            $("select[name='nature[]']").eq(index).prop('disabled', true);
+        }
     </script>
     <script>
         let tournees = {!! json_encode($tournees) !!};
@@ -225,6 +244,7 @@
         changePierre();
         changeXOF();
         changeNombreColis();
+        changeColis();
         $(document).ready(function () {
             $("#noTournee").on("change", function () {
                 $("#vehicule").val("");

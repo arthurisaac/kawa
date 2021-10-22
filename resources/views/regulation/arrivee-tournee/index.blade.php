@@ -187,13 +187,13 @@
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;
                     });
-                    console.log(commerciaux);
                     commerciaux.map(({id, site, clients}) => {
                         $('#asSite').append($('<option>', {
                             value: id,
                             text: `${site} (${clients.client_nom})`
                         }));
-                    })
+                    });
+                    changeColis();
                 }
                 const departSites = sites.filter(v => {
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
@@ -214,6 +214,7 @@
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
                         <td><select name="colis[]" class="form-control">
                                 <option>${s.colis ?? ''}</option>
+                                <option>RAS</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
@@ -330,6 +331,7 @@
             $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
+            $("select[name='colis[]']").on("change", changeColis);
         });
     </script>
     <script>
@@ -376,6 +378,25 @@
                 totalColis += parseFloat(nbre) ?? 0;
             });
             $("#totalColis").val(totalColis);
+        }
+
+        function changeColis() {
+            let index = 0;
+            const thisColisInput = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='site[]']"), function (i) {
+                const site = $("select[name='site[]']").get(i);
+                if (thisColisInput === site) {
+                    index = i;
+                }
+            });
+            $("input[name='valeur_colis_xof[]']").eq(index).prop('disabled', true);
+            $("input[name='device_etrangere_dollar[]']").eq(index).prop('disabled', true);
+            $("input[name='device_etrangere_euro[]']").eq(index).prop('disabled', true);
+            $("input[name='pierre_precieuse[]']").eq(index).prop('disabled', true);
+            $("textarea[name='numero[]']").eq(index).prop('disabled', true);
+            $("input[name='nbre_colis[]']").eq(index).prop('disabled', true);
+            $("select[name='nature[]']").eq(index).prop('disabled', true);
         }
     </script>
 @endsection
