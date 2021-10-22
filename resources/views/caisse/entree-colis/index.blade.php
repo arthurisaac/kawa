@@ -113,9 +113,19 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalColis" id="totalColis" class="form-control"></td>
-                        {{--<td><input type="number" name="totalMontant" id="totalMontant" class="form-control"></td>--}}
+                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
+                                   readonly>
+                        </td>
+                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
+                                   readonly></td>
+                        <td></td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -167,6 +177,10 @@
                     '                                <option>Caisse</option>\n' +
                     '                                <option>Conteneur</option>\n' +
                     '                            </select></td>\n' +
+                    '                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                    </tr>');
@@ -210,7 +224,57 @@
                     console.log("Site non trouvé :-(");
                 }
             });
+            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
+            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
+            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
+            $("input[name='pierre_precieuse[]']").on("change", changePierre);
         });
+    </script>
+    <script>
+        function changeXOF() {
+            let total = 0;
+            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
+                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurXOF").val(total);
+        }
+
+        function changeDollar() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurDollar").val(total);
+        }
+
+        function changeEuro() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurEuro").val(total);
+        }
+
+        function changePierre() {
+            let total = 0;
+            $.each($("input[name='pierre_precieuse[]']"), function (i) {
+                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurPierre").val(total);
+        }
+
+        function changeNombreColis() {
+            let totalColis = 0;
+            $.each($("input[name='nbre_colis[]']"), function (i) {
+                const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                totalColis += parseFloat(nbre) ?? 0;
+            });
+            $("#totalColis").val(totalColis);
+        }
     </script>
 
 @endsection
