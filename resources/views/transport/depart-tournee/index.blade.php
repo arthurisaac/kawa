@@ -247,6 +247,7 @@
                     '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
                     '                            <td>\n' +
                     '                                <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                    <option></option>\n' +
                     '                                    <option value="oo_mad">MAD</option>\n' +
                     '                                    <option value="oo_collecte">Collecte</option>\n' +
                     '                                    <option value="oo_cctv">CCTV</option>\n' +
