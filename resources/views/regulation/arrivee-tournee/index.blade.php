@@ -389,7 +389,6 @@
                 if (thisColisInput === colis) {
                     index = i;
                 }
-                console.log(colis.value)
                 if (colis.value === "RAS" ) {
                     $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
                     $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
