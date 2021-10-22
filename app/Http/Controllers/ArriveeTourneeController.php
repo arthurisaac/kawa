@@ -92,18 +92,34 @@ class ArriveeTourneeController extends Controller
 
         $sites = $request->get('site');
         $type = $request->get('type');
-        $autre = $request->get('autre');
+        //$autre = $request->get('autre');
         $site_ids = $request->get('site_id');
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
+
+
+        $colis = $request->get('colis');
+        $valeur_colis_xof = $request->get('valeur_colis_xof');
+        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
+        $device_etrangere_euro = $request->get('device_etrangere_euro');
+        $pierre_precieuse = $request->get('pierre_precieuse');
+        $numero = $request->get('numero');
+        $nbre_colis = $request->get('nbre_colis');
 
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $site = SiteDepartTournee::find($site_ids[$i]);
                 $site->bordereau = $bordereaux[$i] ?? "";
-                $site->montant = $montants[$i] ?? "";
+                $site->montant = $montants[$i] ?? 0;
                 $site->type = $type[$i] ?? "";
-                $site->autre = $autre[$i] ?? "";
+
+                $site->colis = $colis[$i] ?? "";
+                $site->numero = $numero[$i] ?? "";
+                $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
+                $site->valeur_colis_xof_arrivee = $valeur_colis_xof[$i] ?? null;
+                $site->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i] ?? null;
+                $site->device_etrangere_euro_arrivee = $device_etrangere_euro[$i] ?? null;
+                $site->pierre_precieuse_arrivee = $pierre_precieuse[$i] ?? null;
 
                 $site->save();
             }
@@ -184,18 +200,34 @@ class ArriveeTourneeController extends Controller
 
         $sites = $request->get('site');
         $type = $request->get('type');
-        $autre = $request->get('autre');
+        //$autre = $request->get('autre');
         $site_ids = $request->get('site_id');
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
 
+        $colis = $request->get('colis');
+        $valeur_colis_xof = $request->get('valeur_colis_xof');
+        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
+        $device_etrangere_euro = $request->get('device_etrangere_euro');
+        $pierre_precieuse = $request->get('pierre_precieuse');
+        $numero = $request->get('numero');
+        $nbre_colis = $request->get('nbre_colis');
+
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $site = SiteDepartTournee::find($site_ids[$i]);
-                $site->bordereau = $bordereaux[$i];
-                $site->montant = $montants[$i];
-                $site->type = $type[$i];
-                $site->autre = $autre[$i];
+                $site->bordereau = $bordereaux[$i] ?? null;
+                $site->montant = $montants[$i] ?? 0;
+                $site->type = $type[$i] ?? null;
+
+                $site->colis = $colis[$i] ?? "";
+                $site->numero_arrivee = $numero[$i] ?? "";
+                $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
+                $site->valeur_colis_xof_arrivee = $valeur_colis_xof[$i] ?? null;
+                $site->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i] ?? null;
+                $site->device_etrangere_euro_arrivee = $device_etrangere_euro[$i] ?? null;
+                $site->pierre_precieuse_arrivee = $pierre_precieuse[$i] ?? null;
+
                 $site->save();
             }
         }

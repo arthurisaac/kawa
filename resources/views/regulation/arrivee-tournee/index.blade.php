@@ -127,8 +127,6 @@
                         <th>Nature</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
@@ -219,8 +217,7 @@
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
-                                </select>
-                        </td>
+                                </select></td>
                         <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
