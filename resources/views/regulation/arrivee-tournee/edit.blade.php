@@ -221,19 +221,30 @@
             let index = 0;
             const thisColisInput = this;
             // Trouver l'index du champs actuel
-            $.each($("select[name='site[]']"), function (i) {
-                const site = $("select[name='site[]']").get(i);
-                if (thisColisInput === site) {
+            $.each($("select[name='colis[]']"), function (i) {
+                const colis = $("select[name='colis[]']").get(i);
+                if (thisColisInput === colis) {
                     index = i;
                 }
+                if (colis.value === "RAS" ) {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
+                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                } else {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
+                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                }
             });
-            $("input[name='valeur_colis_xof[]']").eq(index).prop('disabled', true);
-            $("input[name='device_etrangere_dollar[]']").eq(index).prop('disabled', true);
-            $("input[name='device_etrangere_euro[]']").eq(index).prop('disabled', true);
-            $("input[name='pierre_precieuse[]']").eq(index).prop('disabled', true);
-            $("textarea[name='numero[]']").eq(index).prop('disabled', true);
-            $("input[name='nbre_colis[]']").eq(index).prop('disabled', true);
-            $("select[name='nature[]']").eq(index).prop('disabled', true);
+
         }
     </script>
     <script>
