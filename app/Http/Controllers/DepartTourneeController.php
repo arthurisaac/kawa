@@ -95,10 +95,10 @@ class DepartTourneeController extends Controller
             if (!empty($sites[$i])) {
                 $siteDepartTournee = new SiteDepartTournee([
                     'idTourneeDepart' => $departTournee->id,
-                    'site' => $sites[$i],
-                    'type' => $types[$i],
-                    'tdf' => $tdf[$i],
-                    'caisse' => $caisse[$i],
+                    'site' => $sites[$i] ?? '1',
+                    'type' => $types[$i] ?? '',
+                    'tdf' => $tdf[$i] ?? '',
+                    'caisse' => $caisse[$i] ?? '',
                 ]);
                 $siteDepartTournee->save();
             }
@@ -180,10 +180,10 @@ class DepartTourneeController extends Controller
         for ($i = 0; $i < count($site_ids); $i++) {
             if (!empty($sites_edit[$i]) && !empty($tdf_edit[$i])) {
                 $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
-                $siteDepartTournee->site = $sites_edit[$i];
-                $siteDepartTournee->type = $types_edit[$i];
-                $siteDepartTournee->tdf = $tdf_edit[$i];
-                $siteDepartTournee->caisse = $caisse_edit[$i];
+                $siteDepartTournee->site = $sites_edit[$i] ?? '1';
+                $siteDepartTournee->type = $types_edit[$i] ?? '';
+                $siteDepartTournee->tdf = $tdf_edit[$i] ?? '';
+                $siteDepartTournee->caisse = $caisse_edit[$i] ?? '';
                 $siteDepartTournee->save();
             }
         }
