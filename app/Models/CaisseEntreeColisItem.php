@@ -15,6 +15,7 @@ class CaisseEntreeColisItem extends Model
         "scelle",
         "nbre_colis",
         "montant",
+        'valeur_colis_xof_entree', 'device_etrangere_dollar_entree', 'device_etrangere_euro_entree', 'pierre_precieuse_entree',
     ];
 
     public function sites()

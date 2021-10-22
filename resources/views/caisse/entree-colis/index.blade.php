@@ -66,7 +66,7 @@
                     <div class="col"></div>
                 </div>
              </div>
-            <div class="container">
+            <div class="container-fluid">
                 <br>
                 <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
                 <br>
@@ -77,8 +77,12 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
+                        <th>Valeur colis (XOF)</th>
+                        <th>Valeur devise étrangère (Dollar)</th>
+                        <th>Valeur devise étrangère (Euro)</th>
+                        <th>Valeur pierre précieuse</th>
                         <th>Numéros scellé (Réference)</th>
-                        <th>Nbre colis</th>
+                        <th>Nbre total colis</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -99,6 +103,10 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                             </select></td>
+                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>
+                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>
                         <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                     </tr>
