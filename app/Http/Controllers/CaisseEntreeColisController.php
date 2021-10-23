@@ -7,6 +7,7 @@ use App\Models\CaisseEntreeColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_site;
+use App\Models\DepartTournee;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,8 +26,9 @@ class CaisseEntreeColisController extends Controller
         $centres_regionaux = Centre_regional::all();
         $sites = Commercial_site::with("clients")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         return view('caisse.entree-colis.index',
-            compact('centres', 'centres_regionaux', 'numero', 'sites'));
+            compact('centres', 'centres_regionaux', 'numero', 'sites', 'tournees'));
     }
 
     public function liste(Request $request)
@@ -65,6 +67,7 @@ class CaisseEntreeColisController extends Controller
             'centre_regional' => $request->get("centre_regional"),
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
+            'noTournee' => $request->get("noTournee"),
         ]);
         $data->save();
 
@@ -124,15 +127,15 @@ class CaisseEntreeColisController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $personnels = Personnel::all();
-        $colis = CaisseEntreeColis::where('id', $id)->get();
+        $colis = CaisseEntreeColis::with('sites')->find($id);
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         //$items = DB::table('caisse_entree_colis_items')->where('entree_colis', $id)->get();
         $items = CaisseEntreeColisItem::all()->where("entree_colis", $id);
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::with("clients")->get();
-        $coli = $colis[0];
         return view('/caisse/entree-colis.edit',
-            compact('coli', 'centres', 'centres_regionaux', 'personnels', 'items', 'agents', 'chefBords', 'sites'));
+            compact('colis', 'centres', 'centres_regionaux', 'personnels', 'items', 'agents', 'chefBords', 'sites', 'tournees'));
     }
 
     /**

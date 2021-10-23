@@ -14,7 +14,17 @@ class CaisseEntreeColis extends Model
         'observation',
         'totalMontant',
         'totalColis',
+        'noTournee',
     ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')
+            ->with('vehicules')
+            ->with('agentDeGardes')
+            ->with('chauffeurs')
+            ->with('chefDeBords');
+    }
 
     public function sites()
     {
