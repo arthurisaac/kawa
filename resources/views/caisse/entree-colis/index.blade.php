@@ -135,8 +135,6 @@
                 <table class="table table-bordered" id="table">
                     <thead>
                     <tr>
-                        <th>Site</th>
-                        <th>Client</th>
                         <th>Colis</th>
                         <th>Valeur colis (XOF)</th>
                         <th>Valeur devise étrangère (Dollar)</th>
@@ -144,19 +142,12 @@
                         <th>Valeur pierre précieuse</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre total colis</th>
+                        <th>Site</th>
+                        <th>Client</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>
-                            <select name="site[]" class="form-control">
-                                <option></option>
-                                @foreach($sites as $site)
-                                    <option value="{{$site->id}}">{{$site->site}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td><input type="text" name="client[]" class="form-control"></td>
                         <td><select name="colis[]" class="form-control">
                                 <option></option>
                                 <option>Sac jute</option>
@@ -170,11 +161,20 @@
                         <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>
                         <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
+                        <td>
+                            <select name="site[]" class="form-control">
+                                <option></option>
+                                @foreach($sites as $site)
+                                    <option value="{{$site->id}}">{{$site->site}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td><input type="text" name="client[]" class="form-control"></td>
                     </tr>
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
+                        <td style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
                                    readonly></td>
                         <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
@@ -186,6 +186,8 @@
                                    readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                     </tfoot>
@@ -287,14 +289,6 @@
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
                     '                        <td>\n' +
-                    '                            <select name="site[]" class="form-control">\n' +
-                    '                                <option></option>\n' +
-                    '                                @foreach($sites as $site)\n' +
-                    '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
-                    '                                @endforeach\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                        <td><select name="colis[]" class="form-control">\n' +
                     '                                <option></option>\n' +
                     '                                <option>Sac jute</option>\n' +
@@ -308,6 +302,14 @@
                     '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
+                    '                            <select name="site[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                @foreach($sites as $site)\n' +
+                    '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                @endforeach\n' +
+                    '                            </select>\n' +
+                    '                        </td>\n' +
+                    '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                    </tr>');
             });
         })

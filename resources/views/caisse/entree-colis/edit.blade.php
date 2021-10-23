@@ -370,15 +370,7 @@
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
-                    '                        <input type="hidden" name="ids[]" /><td>\n' +
-                    '                            <select name="site[]" class="form-control">\n' +
-                    '                                <option></option>\n' +
-                    '                                @foreach($sites as $site)\n' +
-                    '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
-                    '                                @endforeach\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <input type="hidden" name="ids[]" />' +
                     '                        <td><select name="colis[]" class="form-control">\n' +
                     '                                <option></option>\n' +
                     '                                <option>Sac jute</option>\n' +
@@ -392,6 +384,15 @@
                     '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
+                    '                       <td>\n' +
+                    '                            <select name="site[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                @foreach($sites as $site)\n' +
+                    '                                    <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                @endforeach\n' +
+                    '                            </select>\n' +
+                    '                        </td>\n' +
+                    '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                    </tr>>');
             });
         })
