@@ -7,6 +7,7 @@ use App\Models\CaisseSortieColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_site;
+use App\Models\DepartTournee;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -27,8 +28,9 @@ class CaisseSortieColisController extends Controller
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::with("clients")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         return view('/caisse/sortie-colis.index',
-            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords'));
+            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords', 'tournees'));
     }
 
     public function liste(Request $request)
@@ -69,6 +71,7 @@ class CaisseSortieColisController extends Controller
             'chef' => $request->get("chefDeBord"),
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
+            'noTournee' => $request->get("noTournee"),
         ]);
         $data->save();
 
@@ -123,8 +126,9 @@ class CaisseSortieColisController extends Controller
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::with("clients")->get();
         $items = CaisseSortieColisItem::with("sites")->where("sortieColis", $id)->get();
-        $coli = CaisseSortieColis::find($id);
-        return view('/caisse/sortie-colis.edit', compact('coli', 'items', 'centres', 'centres_regionaux', 'agents', 'chefBords', 'sites'));
+        $colis = CaisseSortieColis::with('sites')->find($id);
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        return view('/caisse/sortie-colis.edit', compact('colis', 'items', 'centres', 'centres_regionaux', 'agents', 'chefBords', 'sites', 'tournees'));
     }
 
     /**
@@ -137,12 +141,13 @@ class CaisseSortieColisController extends Controller
     public function update(Request $request, $id)
     {
         $data = CaisseSortieColis::find($id);
-        $data->date = $request->get("date");
-        $data->heure = $request->get("heure");
-        $data->centre = $request->get("centre");
-        $data->centre_regional = $request->get("centre_regional");
-        $data->agent = $request->get("agentDeGarde");
-        $data->chef = $request->get("chefDeBord");
+        $data->noTournee = $request->get("noTournee");
+        //$data->date = $request->get("date");
+        //$data->heure = $request->get("heure");
+        //$data->centre = $request->get("centre");
+        //$data->centre_regional = $request->get("centre_regional");
+        //$data->agent = $request->get("agentDeGarde");
+        //$data->chef = $request->get("chefDeBord");
 
         $data->save();
 

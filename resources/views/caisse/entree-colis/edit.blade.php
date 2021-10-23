@@ -176,13 +176,13 @@
                     <div class="col">
                         <div class="form-group row">
                             <label for="centre" class="col-sm-4">Centre regional</label>
-                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$colis->tournees->centre}}" readonly/>
+                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$colis->tournees->centre ?? ''}}" readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label for="centre_regional" class="col-sm-4">Centre</label>
-                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$colis->tournees->centre}}" readonly/>
+                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$colis->tournees->centre ?? ''}}" readonly/>
                         </div>
                     </div>
                     <div class="col"></div>

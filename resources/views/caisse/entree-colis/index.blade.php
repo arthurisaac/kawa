@@ -187,6 +187,52 @@
     </div>
 
     <script>
+        function changeXOF() {
+            let total = 0;
+            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
+                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurXOF").val(total);
+        }
+
+        function changeDollar() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurDollar").val(total);
+        }
+
+        function changeEuro() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurEuro").val(total);
+        }
+
+        function changePierre() {
+            let total = 0;
+            $.each($("input[name='pierre_precieuse[]']"), function (i) {
+                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurPierre").val(total);
+        }
+
+        function changeNombreColis() {
+            let totalColis = 0;
+            $.each($("input[name='nbre_colis[]']"), function (i) {
+                const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                totalColis += parseFloat(nbre) ?? 0;
+            });
+            $("#totalColis").val(totalColis);
+        }
+    </script>
+    <script>
         let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
         let sites = {!! json_encode($sites) !!};
@@ -297,52 +343,6 @@
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
         });
-    </script>
-    <script>
-        function changeXOF() {
-            let total = 0;
-            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
-                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurXOF").val(total);
-        }
-
-        function changeDollar() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurDollar").val(total);
-        }
-
-        function changeEuro() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurEuro").val(total);
-        }
-
-        function changePierre() {
-            let total = 0;
-            $.each($("input[name='pierre_precieuse[]']"), function (i) {
-                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurPierre").val(total);
-        }
-
-        function changeNombreColis() {
-            let totalColis = 0;
-            $.each($("input[name='nbre_colis[]']"), function (i) {
-                const nbre = $("input[name='nbre_colis[]'").get(i).value;
-                totalColis += parseFloat(nbre) ?? 0;
-            });
-            $("#totalColis").val(totalColis);
-        }
     </script>
 
 @endsection

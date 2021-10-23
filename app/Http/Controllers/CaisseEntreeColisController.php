@@ -152,6 +152,7 @@ class CaisseEntreeColisController extends Controller
         $data->heure = $request->get("heure");
         $data->centre = $request->get("centre");
         $data->centre_regional = $request->get("centre_regional");
+        $data->noTournee = $request->get("noTournee");
 
         $data->save();
 

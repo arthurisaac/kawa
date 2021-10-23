@@ -27,43 +27,89 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group row">
-                            <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date" id="date" value="{{date("Y-m-d")}}"
-                                   class="form-control col-sm-8"/>
+                            <label for="date" class="col-sm-4">Date</label>
+                            <input type="text" name="date" id="date" value="{{date("Y-m-d")}}" class="form-control col-sm-8"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure départ</label>
+                            <label for="heure" class="col-sm-4">Heure</label>
                             <input type="text" name="heure" id="heure" value="{{date("H:i")}}"
-                                   class="form-control col-sm-8"/>
+                                   class="form-control col-sm-8" readonly/>
                         </div>
                     </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <div class="form-group row">
-                            <label for="centre" class="col-sm-4">Centre</label>
-                            <select name="centre" id="centre" class="form-control col-8" required>
+                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>
+                            <select class="form-control col-sm-8" name="noTournee" id="noTournee">
                                 <option></option>
-                                @foreach ($centres as $centre)
-                                    <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                @foreach($tournees as $tournee)
+                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-group row">
-                            <label for="centre_regional" class="col-sm-4">Centre régional</label>
-                            <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
+                        <div class="form-group row" >
+                            <label class="col-sm-4">Véhicule</label>
+                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
+                            {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
                                 <option></option>
-                            </select>
+                                @foreach($vehicules as $vehicule)
+                                    <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                @endforeach
+                            </select>--}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label class="col-sm-4">Chef de bord</label>
+                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
+                            {{--<select class="form-control col-sm-8" name="chefDeBord">
+                                <option></option>
+                                @foreach($chefBords as $chef)
+                                    <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                @endforeach
+                            </select>--}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label class="col-sm-4">Agent garde</label>
+                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
+                            {{--<select class="form-control col-sm-8" name="agentDeGarde">
+                                <option></option>
+                                @foreach($agents as $agent)
+                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                @endforeach
+                            </select>--}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label class="col-sm-4">Chauffeur:</label>
+                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
+                            {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
+                                <option></option>
+                            </select>--}}
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="centre" class="col-sm-4">Centre regional</label>
+                            <input name="centre" id="centre" class="form-control col-sm-8" readonly/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="centre_regional" class="col-sm-4">Centre</label>
+                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>
                         </div>
                     </div>
                     <div class="col"></div>
@@ -128,6 +174,7 @@
         let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
         let sites = {!! json_encode($sites) !!};
+        let tournees = {!! json_encode($tournees) !!};
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
@@ -143,6 +190,23 @@
                         text: centre_regional
                     }));
                 })
+            });
+            $("#noTournee").on("change", function () {
+                $("#vehicule").val("");
+                $("#chauffeur").val("");
+                $("#chefDeBord").val("");
+                $("#agentDeGarde").val("");
+                $("#centre_regional option").remove();
+
+                const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
+                if (tournee) {
+                    $("#vehicule").val(tournee.vehicules.immatriculation);
+                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
+                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
+                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    $("#centre").val(tournee.centre);
+                    $("#centre_regional").val(tournee.centre_regional);
+                }
             });
         });
     </script>
