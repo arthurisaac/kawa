@@ -197,7 +197,6 @@ class CaisseSortieColisController extends Controller
                     $item = CaisseSortieColisItem::find($ids[$i]);
                     $item->site = $site[$i];
                     $item->colis = $colis[$i];
-                    $item->nature = $nature[$i];
                     $item->scelle = $scelle[$i];
                     $item->nbre_colis = $nbre_colis[$i];
 

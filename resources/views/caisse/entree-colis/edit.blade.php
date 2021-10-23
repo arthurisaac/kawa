@@ -217,6 +217,7 @@
                         <th>Valeur pierre précieuse</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre total colis</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -245,6 +246,7 @@
                             <td><input type="number" min="0" name="pierre_precieuse[]"  value="{{$item->pierre_precieuse_entree ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="scelle[]" value="{{$item->scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis ?? 0}}" class="form-control"></td>
+                            <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                             {{--<td><input type="text" name="montant_edit[]" value="{{$item->montant }}" class="form-control"></td>--}}
                         </tr>
                     @endforeach
@@ -320,6 +322,16 @@
             $("#totalColis").val(totalColis);
 
         }
+
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            changeXOF();
+            changeDollar();
+            changeEuro();
+            changePierre();
+            changeNombreColis();
+        }
     </script>
     <script>
         let centres = {!! json_encode($centres) !!};
@@ -393,6 +405,7 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n\n' +
                     '                    </tr>>');
             });
         })

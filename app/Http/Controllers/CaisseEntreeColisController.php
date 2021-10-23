@@ -79,12 +79,12 @@ class CaisseEntreeColisController extends Controller
         $nbre_colis = $request->get("nbre_colis");
         $valeur_colis_xof_entree = $request->get("valeur_colis_xof");
         $device_etrangere_dollar_entree = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro_entree = $request->get("device_etrangere_dollar");
+        $device_etrangere_euro_entree = $request->get("device_etrangere_euro");
         $pierre_precieuse_entree = $request->get("pierre_precieuse");
         //$montant = $request->get("montant");
 
-        if (!empty($site) && !empty($nbre_colis)) {
-            for ($i = 0; $i < count($nbre_colis); $i++) {
+        if (!empty($site)) {
+            for ($i = 0; $i < count($site); $i++) {
                 $item = new CaisseEntreeColisItem([
                     "entree_colis" => $data->id,
                     "site" => $site[$i] ?? 1,
@@ -170,7 +170,7 @@ class CaisseEntreeColisController extends Controller
         //$montant = $request->get("montant");
         $ids = $request->get("ids");
 
-        if (!empty($site) && !empty($nbre_colis)) {
+        if (!empty($site)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
                 if (empty($ids[$i])) {
                     $item = new CaisseEntreeColisItem([
@@ -191,7 +191,6 @@ class CaisseEntreeColisController extends Controller
                     $item = CaisseEntreeColisItem::find($ids[$i]);
                     $item->site = $site[$i];
                     $item->colis = $colis[$i];
-                    $item->nature = $nature[$i];
                     $item->scelle = $scelle[$i];
                     $item->nbre_colis = $nbre_colis[$i];
 

@@ -144,6 +144,7 @@
                         <th>Nbre total colis</th>
                         <th>Site</th>
                         <th>Client</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -170,6 +171,7 @@
                             </select>
                         </td>
                         <td><input type="text" name="client[]" class="form-control"></td>
+                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                     </tr>
                     </tbody>
                     <tfoot>
@@ -244,6 +246,15 @@
             });
             $("#totalColis").val(totalColis);
         }
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            changeXOF();
+            changeDollar();
+            changeEuro();
+            changePierre();
+            changeNombreColis();
+        }
     </script>
     <script>
         let centres = {!! json_encode($centres) !!};
@@ -310,6 +321,7 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                    </tr>');
             });
         })
