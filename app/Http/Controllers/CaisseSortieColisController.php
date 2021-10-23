@@ -164,7 +164,7 @@ class CaisseSortieColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        $nature = $request->get("nature");
+        //$nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
 
@@ -182,7 +182,7 @@ class CaisseSortieColisController extends Controller
                     $item = new CaisseSortieColisItem([
                         "sortieColis" => $data->id,
                         "site" => $site[$i],
-                        "nature" => $nature[$i],
+                        //"nature" => $nature[$i],
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
                         'colis' => $colis[$i],

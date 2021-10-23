@@ -74,7 +74,7 @@ class CaisseEntreeColisController extends Controller
 
         $site = $request->get("site");
         $colis = $request->get("colis");
-        $nature = $request->get("nature");
+        //$nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
         $valeur_colis_xof_entree = $request->get("valeur_colis_xof");
@@ -87,15 +87,15 @@ class CaisseEntreeColisController extends Controller
             for ($i = 0; $i < count($nbre_colis); $i++) {
                 $item = new CaisseEntreeColisItem([
                     "entree_colis" => $data->id,
-                    "site" => $site[$i],
-                    "colis" => $colis[$i],
-                    "nature" => $nature[$i],
-                    "scelle" => $scelle[$i],
-                    "nbre_colis" => $nbre_colis[$i],
-                    'valeur_colis_xof_entree' => $valeur_colis_xof_entree[$i],
-                    'device_etrangere_dollar_entree' => $device_etrangere_dollar_entree[$i],
-                    'device_etrangere_euro_entree' => $device_etrangere_euro_entree[$i],
-                    'pierre_precieuse_entree' => $pierre_precieuse_entree[$i],
+                    "site" => $site[$i] ?? 1,
+                    "colis" => $colis[$i] ?? '',
+                    ///"nature" => $nature[$i],
+                    "scelle" => $scelle[$i] ?? "",
+                    "nbre_colis" => $nbre_colis[$i] ?? 0,
+                    'valeur_colis_xof_entree' => $valeur_colis_xof_entree[$i] ?? 0,
+                    'device_etrangere_dollar_entree' => $device_etrangere_dollar_entree[$i] ?? 0,
+                    'device_etrangere_euro_entree' => $device_etrangere_euro_entree[$i] ?? 0,
+                    'pierre_precieuse_entree' => $pierre_precieuse_entree[$i] ??0,
                     //"montant" => $montant[$i],
                 ]);
                 $item->save();
@@ -159,8 +159,6 @@ class CaisseEntreeColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        $autre = $request->get("autre");
-        $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
 
@@ -179,7 +177,6 @@ class CaisseEntreeColisController extends Controller
                         "entree_colis" => $data->id,
                         "site" => $site[$i],
                         "colis" => $colis[$i],
-                        "nature" => $nature[$i],
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
 
