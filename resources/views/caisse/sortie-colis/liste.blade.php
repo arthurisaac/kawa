@@ -60,6 +60,7 @@
                             <td>Total device etrangere (XOF)</td>
                             <td>Total device etrangere (Dollar)</td>
                             <td>Total device etrangere (EURO)</td>
+                            <td>Equipage</td>
                             {{--<td>Montant total</td>--}}
                             <td style="width: 50px;">Actions</td>
                         </tr>
@@ -71,10 +72,11 @@
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
                             <td>{{$coli->items->sum('nbre_colis')}}</td>
-                            <td>{{$coli->sites->sum("valeur_colis_xof_arrivee")}}</td>
-                            <td>{{$coli->sites->sum("device_etrangere_dollar_arrivee")}}</td>
-                            <td>{{$coli->sites->sum("device_etrangere_euro_arrivee")}}</td>
-                            <td>{{$coli->sites->sum("pierre_precieuse_arrivee")}}</td>
+                            <td>{{$coli->sites->sum("valeur_colis_xof_sortie")}}</td>
+                            <td>{{$coli->sites->sum("device_etrangere_dollar_sortie")}}</td>
+                            <td>{{$coli->sites->sum("device_etrangere_euro_sortie")}}</td>
+                            <td>{{$coli->sites->sum("pierre_precieuse_sortie")}}</td>
+                            <td></td>
                             {{--<td>{{$coli->totalMontant}}</td>--}}
                             <td>
                                 <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
