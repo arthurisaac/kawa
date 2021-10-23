@@ -146,6 +146,7 @@
                         <th>Nbre colis</th>
                         <th>Site</th>
                         <th>Client</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -174,6 +175,7 @@
                                 </select>
                             </td>
                             <td><input type="text" name="client[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
+                            <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -191,6 +193,7 @@
                                    readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -247,6 +250,16 @@
                 totalColis += parseFloat(nbre) ?? 0;
             });
             $("#totalColis").val(totalColis);
+        }
+
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+            changeXOF();
+            changeDollar();
+            changeEuro();
+            changePierre();
+            changeNombreColis();
         }
     </script>
     <script>
@@ -321,6 +334,7 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
+                    '                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
                     '                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}\n' +
                     '                    </tr>');
             });
