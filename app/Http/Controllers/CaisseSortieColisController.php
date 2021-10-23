@@ -72,15 +72,21 @@ class CaisseSortieColisController extends Controller
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
             'noTournee' => $request->get("noTournee"),
+            'receveur' => $request->get("receveur"),
         ]);
         $data->save();
 
         $site = $request->get("site");
         $autre = $request->get("autre");
-        $nature = $request->get("nature");
+        //$nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
-        $montant = $request->get("montant");
+        //$montant = $request->get("montant");
+        $colis =  $request->get("colis");
+        $valeur_colis_xof = $request->get("valeur_colis_xof");
+        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
+        $device_etrangere_euro = $request->get("device_etrangere_dollar");
+        $pierre_precieuse = $request->get("pierre_precieuse_entree");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -88,10 +94,15 @@ class CaisseSortieColisController extends Controller
                     "sortieColis" => $data->id,
                     "site" => $site[$i],
                     "autre" => $autre[$i],
-                    "nature" => $nature[$i],
+                    //"nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
-                    "montant" => $montant[$i],
+                    //"montant" => $montant[$i],
+                    'colis' => $colis[$i],
+                    'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
+                    'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
+                    'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
+                    'pierre_precieuse_sortie' => $pierre_precieuse[$i],
                 ]);
                 $item->save();
             }
@@ -142,6 +153,7 @@ class CaisseSortieColisController extends Controller
     {
         $data = CaisseSortieColis::find($id);
         $data->noTournee = $request->get("noTournee");
+        $data->receveur = $request->get("receveur");
         //$data->date = $request->get("date");
         //$data->heure = $request->get("heure");
         //$data->centre = $request->get("centre");
@@ -152,47 +164,55 @@ class CaisseSortieColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        $autre = $request->get("autre");
         $nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
+
+        $colis =  $request->get("colis");
+        $valeur_colis_xof = $request->get("valeur_colis_xof");
+        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
+        $device_etrangere_euro = $request->get("device_etrangere_dollar");
+        $pierre_precieuse = $request->get("pierre_precieuse");
         //$montant = $request->get("montant");
+        $ids = $request->get("ids");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
-                $item = new CaisseSortieColisItem([
-                    "sortieColis" => $data->id,
-                    "site" => $site[$i],
-                    "autre" => $autre[$i],
-                    "nature" => $nature[$i],
-                    "scelle" => $scelle[$i],
-                    "nbre_colis" => $nbre_colis[$i],
-                    //"montant" => $montant[$i],
-                ]);
-                $item->save();
+                if (empty($ids[$i])) {
+                    $item = new CaisseSortieColisItem([
+                        "sortieColis" => $data->id,
+                        "site" => $site[$i],
+                        "nature" => $nature[$i],
+                        "scelle" => $scelle[$i],
+                        "nbre_colis" => $nbre_colis[$i],
+                        'colis' => $colis[$i],
+                        'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
+                        'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
+                        'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
+                        'pierre_precieuse_sortie' => $pierre_precieuse[$i],
+                        //"montant" => $montant[$i],
+                    ]);
+                    $item->save();
+                } else {
+                    $item = CaisseSortieColisItem::find($ids[$i]);
+                    $item->site = $site[$i];
+                    $item->colis = $colis[$i];
+                    $item->nature = $nature[$i];
+                    $item->scelle = $scelle[$i];
+                    $item->nbre_colis = $nbre_colis[$i];
+
+                    $item->colis = $colis[$i];
+                    $item->valeur_colis_xof_sortie = $valeur_colis_xof[$i];
+                    $item->device_etrangere_dollar_sortie = $device_etrangere_dollar[$i];
+                    $item->device_etrangere_euro_sortie = $device_etrangere_euro[$i];
+                    $item->pierre_precieuse_sortie = $pierre_precieuse[$i];
+                    $item->save();
+                }
+
+
             }
         }
 
-        $site_edit = $request->get("site_edit");
-        $autre_edit = $request->get("autre_edit");
-        $nature_edit = $request->get("nature_edit");
-        $scelle_edit = $request->get("scelle_edit");
-        $nbre_colis_edit = $request->get("nbre_colis_edit");
-        $montant_edit = $request->get("montant_edit");
-        $ids = $request->get("ids");
-
-        if (!empty($site_edit) && !empty($nbre_colis_edit)) {
-            for ($i = 0; $i < count($nbre_colis_edit); $i++) {
-                $item = CaissesortieColisItem::find($ids[$i]);
-                $item->site = $site_edit[$i];
-                $item->autre = $autre_edit[$i];
-                $item->nature = $nature_edit[$i];
-                $item->scelle = $scelle_edit[$i];
-                $item->nbre_colis = $nbre_colis_edit[$i];
-                $item->montant = $montant_edit[$i];
-                $item->save();
-            }
-        }
 
         return redirect("caisse-sortie-colis-liste")->with('success', 'Enregistrement effectué!');
     }

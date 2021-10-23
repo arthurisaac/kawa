@@ -117,8 +117,19 @@
                     <div class="col"></div>
                     <div class="col"></div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-4">Receveur</label>
+                            <input type="text" name="receveur" id="receveur" value="{{$colis->receveur}}" class="form-control col-sm-8"/>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <br>
                 <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
                 <br>
@@ -126,44 +137,62 @@
                 <table class="table table-bordered" id="table">
                     <thead>
                     <tr>
+                        <th>Colis</th>
+                        <th>Valeur colis (XOF)</th>
+                        <th>Valeur devise étrangère (Dollar)</th>
+                        <th>Valeur devise étrangère (Euro)</th>
+                        <th>Valeur pierre précieuse</th>
+                        <th>Numéros scellé (Réference)</th>
+                        <th>Nbre colis</th>
                         <th>Site</th>
                         <th>Client</th>
-                        <th>Colis</th>
-                        <th>Nature</th>
-                        <th>Numéros scellé</th>
-                        <th>Nbre colis</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($items as $item)
                         <tr>
+                            <td><select name="colis[]" class="form-control">
+                                    <option>{{$item->colis}}</option>
+                                    <option>Sac jute</option>
+                                    <option>Keep safe</option>
+                                    <option>Caisse</option>
+                                    <option>Conteneur</option>
+                                </select></td>
+                            <td><input type="number" name="valeur_colis_xof[]" value="{{$item->valeur_colis_xof_sortie}}" class="form-control" /></td>
+                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="{{$item->device_etrangere_dollar_sortie}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="{{$item->device_etrangere_euro_sortie}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="pierre_precieuse[]" value="{{$item->pierre_precieuse_sortie}}" class="form-control"></td>
+                            <td><input type="text" name="scelle[]" value="{{$item->scelle}}" class="form-control"></td>
+                            <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis}}" class="form-control"></td>
                             <td>
                                 <input type="hidden" name="ids[]" value="{{$item->id}}">
-                                <select name="site_edit[]" class="form-control">
+                                <select name="site[]" class="form-control">
                                     <option value="{{$item->site}}">{{$item->sites->site ?? "Donnée indisponible"}}</option>
                                     @foreach($sites as $site)
                                         <option value="{{$site->id}}">{{$site->site}}</option>
                                     @endforeach
                                 </select>
                             </td>
-                            <td><input type="text" name="client_edit[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
-                            <td><input type="text" name="autre_edit[]" value="{{$item->autre}}" class="form-control"></td>
-                            <td><select name="nature_edit[]" class="form-control">
-                                    <option>{{$item->nature}}</option>
-                                    <option>envoi</option>
-                                    <option>tri</option>
-                                    <option>transite</option>
-                                    <option>approvisionnement</option>
-                                </select></td>
-                            <td><input type="text" name="scelle_edit[]" value="{{$item->scelle}}" class="form-control"></td>
-                            <td><input type="number" name="nbre_colis_edit[]" value="{{$item->nbre_colis}}" class="form-control"></td>
+                            <td><input type="text" name="client[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
                         </tr>
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalColis" id="totalColis" value="{{$colis->sites->sum('nbre_colis')}}" class="form-control"></td>
+                        <td style="vertical-align: center;">TOTAL</td>
+                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
+                                   readonly>
+                        </td>
+                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
+                                   readonly></td>
+                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
+                                   readonly></td>
+                        <td></td>
+                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -175,11 +204,62 @@
     </div>
 
     <script>
+        function changeXOF() {
+            let total = 0;
+            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
+                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurXOF").val(total);
+        }
+
+        function changeDollar() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurDollar").val(total);
+        }
+
+        function changeEuro() {
+            let total = 0;
+            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
+                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurEuro").val(total);
+        }
+
+        function changePierre() {
+            let total = 0;
+            $.each($("input[name='pierre_precieuse[]']"), function (i) {
+                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
+                total += parseFloat(nbre) ?? 0;
+            });
+            $("#totalValeurPierre").val(total);
+        }
+
+        function changeNombreColis() {
+            let totalColis = 0;
+            $.each($("input[name='nbre_colis[]']"), function (i) {
+                const nbre = $("input[name='nbre_colis[]'").get(i).value;
+                totalColis += parseFloat(nbre) ?? 0;
+            });
+            $("#totalColis").val(totalColis);
+        }
+    </script>
+    <script>
         let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
         let sites = {!! json_encode($sites) !!};
         let tournees = {!! json_encode($tournees) !!};
         $(document).ready(function () {
+            changeNombreColis();
+            changeDollar();
+            changeEuro();
+            changePierre();
+            changeXOF();
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
                 //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
@@ -217,7 +297,21 @@
     <script>
         $(document).ready(function () {
             $("#add").on("click", function () {
-                $('#table').append('<tr>\n' +
+                $('#table').append(' <tr>\n' +
+                    '                        <input type="hidden" name="ids[]">\n' +
+                    '                        <td><select name="colis[]" class="form-control">\n' +
+                    '                                <option></option>\n' +
+                    '                                <option>Sac jute</option>\n' +
+                    '                                <option>Keep safe</option>\n' +
+                    '                                <option>Caisse</option>\n' +
+                    '                                <option>Conteneur</option>\n' +
+                    '                            </select></td>\n' +
+                    '                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
+                    '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
+                    '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td>\n' +
                     '                            <select name="site[]" class="form-control">\n' +
                     '                                <option></option>\n' +
@@ -227,21 +321,7 @@
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><select name="autre[]" class="form-control">\n' +
-                    '                                <option></option>\n' +
-                    '                                <option>Sac jute</option>\n' +
-                    '                                <option>Keep safe</option>\n' +
-                    '                                <option>Caisse</option>\n' +
-                    '                                <option>Conteneur</option>\n' +
-                    '                            </select></td>\n' +
-                    '                        <td><select name="nature[]" class="form-control">\n' +
-                    '                                <option>envoi</option>\n' +
-                    '                                <option>tri</option>\n' +
-                    '                                <option>transite</option>\n' +
-                    '                                <option>approvisionnement</option>\n' +
-                    '                            </select></td>\n' +
-                    '                        <td><input type="text" name="scelle[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
+                    '                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}\n' +
                     '                    </tr>');
             });
         })
@@ -284,6 +364,10 @@
                     console.log("Site non trouvé :-(");
                 }
             });
+            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
+            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
+            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
+            $("input[name='pierre_precieuse[]']").on("change", changePierre);
         });
     </script>
 

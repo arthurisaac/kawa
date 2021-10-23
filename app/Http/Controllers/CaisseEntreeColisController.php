@@ -176,10 +176,15 @@ class CaisseEntreeColisController extends Controller
                     $item = new CaisseEntreeColisItem([
                         "entree_colis" => $data->id,
                         "site" => $site[$i],
-                        "autre" => $autre[$i],
+                        "colis" => $colis[$i],
                         "nature" => $nature[$i],
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
+
+                        'valeur_colis_xof_entree' => $valeur_colis_xof[$i],
+                        'device_etrangere_dollar_entree' => $device_etrangere_dollar[$i],
+                        'device_etrangere_euro_entree' => $device_etrangere_euro[$i],
+                        'pierre_precieuse_entree' => $pierre_precieuse[$i],
                         //"montant" => $montant[$i],
                     ]);
                     $item->save();
