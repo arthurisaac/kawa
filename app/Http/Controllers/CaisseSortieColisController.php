@@ -67,8 +67,6 @@ class CaisseSortieColisController extends Controller
             'heure' => $request->get("heure"),
             'centre' => $request->get("centre"),
             'centre_regional' => $request->get("centre_regional"),
-            'agent' => $request->get("agentDeGarde"),
-            'chef' => $request->get("chefDeBord"),
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
             'noTournee' => $request->get("noTournee"),
@@ -77,11 +75,8 @@ class CaisseSortieColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        $autre = $request->get("autre");
-        //$nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
-        //$montant = $request->get("montant");
         $colis =  $request->get("colis");
         $valeur_colis_xof = $request->get("valeur_colis_xof");
         $device_etrangere_dollar = $request->get("device_etrangere_dollar");
@@ -93,11 +88,8 @@ class CaisseSortieColisController extends Controller
                 $item = new CaisseSortieColisItem([
                     "sortieColis" => $data->id,
                     "site" => $site[$i],
-                    "autre" => $autre[$i],
-                    //"nature" => $nature[$i],
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
-                    //"montant" => $montant[$i],
                     'colis' => $colis[$i],
                     'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
                     'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
@@ -164,7 +156,6 @@ class CaisseSortieColisController extends Controller
         $data->save();
 
         $site = $request->get("site");
-        //$nature = $request->get("nature");
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
 
@@ -173,7 +164,6 @@ class CaisseSortieColisController extends Controller
         $device_etrangere_dollar = $request->get("device_etrangere_dollar");
         $device_etrangere_euro = $request->get("device_etrangere_dollar");
         $pierre_precieuse = $request->get("pierre_precieuse");
-        //$montant = $request->get("montant");
         $ids = $request->get("ids");
 
         if (!empty($site) && !empty($nbre_colis)) {
@@ -182,7 +172,6 @@ class CaisseSortieColisController extends Controller
                     $item = new CaisseSortieColisItem([
                         "sortieColis" => $data->id,
                         "site" => $site[$i],
-                        //"nature" => $nature[$i],
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
                         'colis' => $colis[$i],
@@ -190,7 +179,6 @@ class CaisseSortieColisController extends Controller
                         'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
                         'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
                         'pierre_precieuse_sortie' => $pierre_precieuse[$i],
-                        //"montant" => $montant[$i],
                     ]);
                     $item->save();
                 } else {

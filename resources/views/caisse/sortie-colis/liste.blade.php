@@ -76,7 +76,9 @@
                             <td>{{$coli->sites->sum("device_etrangere_dollar_sortie")}}</td>
                             <td>{{$coli->sites->sum("device_etrangere_euro_sortie")}}</td>
                             <td>{{$coli->sites->sum("pierre_precieuse_sortie")}}</td>
-                            <td></td>
+                            <td>{{$coli->tournees->chefDeBords->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->agentDeGardes->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>
                             {{--<td>{{$coli->totalMontant}}</td>--}}
                             <td>
                                 <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
