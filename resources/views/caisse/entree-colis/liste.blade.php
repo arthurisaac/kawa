@@ -67,8 +67,7 @@
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
-                            <td>{{$coli->sites->sum("nbre_colis")}}</td>
-                            {{--<td>{{$coli->sites->sum("montant")}}</td>--}}
+                            <td>{{$coli->items->sum('nbre_colis')}}</td>
                             <td>
                                 <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
                                 <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->id}}', this)"></a>
@@ -94,7 +93,7 @@
             if (confirm("Confirmer la suppression?")) {
                 const token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: "caisse-sortie-colis/" + id,
+                    url: "caisse-entree-colis/" + id,
                     type: 'DELETE',
                     dataType: "JSON",
                     data: {

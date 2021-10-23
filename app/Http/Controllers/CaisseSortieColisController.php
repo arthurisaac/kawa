@@ -37,7 +37,7 @@ class CaisseSortieColisController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $colis = CaisseSortieColis::all();
+        $colis = CaisseSortieColis::with("items")->get();
         if (isset($debut) && isset($fin)) {
             $colis = CaisseSortieColis::all()->whereBetween('date', [$debut, $fin]);
         }

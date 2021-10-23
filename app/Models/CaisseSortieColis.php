@@ -31,4 +31,11 @@ class CaisseSortieColis extends Model
     {
         return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart');
     }
+
+
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\CaisseSortieColisItem', 'sortieColis');
+    }
 }

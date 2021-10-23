@@ -31,4 +31,9 @@ class CaisseEntreeColis extends Model
     {
         return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart');
     }
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\CaisseEntreeColisItem', 'entree_colis');
+    }
 }

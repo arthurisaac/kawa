@@ -370,8 +370,7 @@
         $(document).ready(function () {
             $("#add").on("click", function () {
                 $('#table').append('<tr>\n' +
-                    '                        <input type="hidden" name="ids[]" />\n' +
-                    '                        <td>\n' +
+                    '                        <input type="hidden" name="ids[]" /><td>\n' +
                     '                            <select name="site[]" class="form-control">\n' +
                     '                                <option></option>\n' +
                     '                                @foreach($sites as $site)\n' +
@@ -387,15 +386,13 @@
                     '                                <option>Caisse</option>\n' +
                     '                                <option>Conteneur</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><select name="nature[]" class="form-control">\n' +
-                    '                                <option>envoi</option>\n' +
-                    '                                 <option>tri</option>\n' +
-                    '                                <option>transite</option>\n' +
-                    '                                <option>approvisionnement</option>\n' +
-                    '                            </select></td>\n' +
+                    '                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
-                    '                    </tr>');
+                    '                    </tr>>');
             });
         })
     </script>
@@ -410,7 +407,7 @@
                 $("#totalMontant").val(montantTotal);
 
             });
-            $("input[name='nbre_colis[]']").on("change", );
+            $("input[name='nbre_colis[]']").on("change", changeNombreColis);
 
             $("select[name='site[]']").on("change", function () {
                 let index = 0;

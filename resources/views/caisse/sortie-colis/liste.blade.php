@@ -66,7 +66,7 @@
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
-                            <td>{{$coli->totalColis}}</td>
+                            <td>{{$coli->items->sum('nbre_colis')}}</td>
                             {{--<td>{{$coli->totalMontant}}</td>--}}
                             <td>
                                 <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>

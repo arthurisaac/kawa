@@ -35,7 +35,7 @@ class CaisseEntreeColisController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $colis = CaisseEntreeColis::with("sites")->get();
+        $colis = CaisseEntreeColis::with("items")->get();
         if (isset($debut) && isset($fin)) {
             $colis = CaisseEntreeColis::with("sites")->whereBetween('date', [$debut, $fin])->get();
         }
@@ -80,7 +80,7 @@ class CaisseEntreeColisController extends Controller
         $valeur_colis_xof_entree = $request->get("valeur_colis_xof");
         $device_etrangere_dollar_entree = $request->get("device_etrangere_dollar");
         $device_etrangere_euro_entree = $request->get("device_etrangere_dollar");
-        $pierre_precieuse_entree = $request->get("pierre_precieuse_entree");
+        $pierre_precieuse_entree = $request->get("pierre_precieuse");
         //$montant = $request->get("montant");
 
         if (!empty($site) && !empty($nbre_colis)) {
@@ -168,7 +168,7 @@ class CaisseEntreeColisController extends Controller
         $valeur_colis_xof = $request->get("valeur_colis_xof");
         $device_etrangere_dollar = $request->get("device_etrangere_dollar");
         $device_etrangere_euro = $request->get("device_etrangere_dollar");
-        $pierre_precieuse = $request->get("pierre_precieuse_entree");
+        $pierre_precieuse = $request->get("pierre_precieuse");
         //$montant = $request->get("montant");
         $ids = $request->get("ids");
 
@@ -247,7 +247,7 @@ class CaisseEntreeColisController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -258,6 +258,7 @@ class CaisseEntreeColisController extends Controller
             $i = CaisseEntreeColisItem::find($item->id);
             $i->delete();
         }
-        return redirect('/caisse-entree-colis-liste')->with('success', 'Service supprimé avec succès!');
+        return \response()->json(["message" => "ok"]);
+        //return redirect('/caisse-entree-colis-liste')->with('success', 'Service supprimé avec succès!');
     }
 }
