@@ -68,6 +68,7 @@ class CaisseEntreeColisController extends Controller
             'totalMontant' => $request->get("totalMontant"),
             'totalColis' => $request->get("totalColis"),
             'noTournee' => $request->get("noTournee"),
+            'remettant' => $request->get("remettant"),
         ]);
         $data->save();
 
@@ -153,6 +154,7 @@ class CaisseEntreeColisController extends Controller
         $data->centre = $request->get("centre");
         $data->centre_regional = $request->get("centre_regional");
         $data->noTournee = $request->get("noTournee");
+        $data->remettant = $request->get("remettant");
 
         $data->save();
 

@@ -115,6 +115,17 @@
                     <div class="col"></div>
                     <div class="col"></div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-4">Remettant ( Agent de régulation)</label>
+                            <input type="text" name="remettant" id="remettant" value="" class="form-control col-sm-8"/>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
             </div>
             <div class="container-fluid">
                 <br>
