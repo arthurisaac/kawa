@@ -513,9 +513,9 @@
                 index++;
                 $("#data").append('<tr>\n' +
                     '                            <td>\n' +
-                    '                                <select class="form-control" name="site[]" id="site{{$i}}">\n' +
+                    '                                <select class="form-control" name="site[]" id="site">\n' +
                     '                                    <option></option>\n' +
-                    '                                    @foreach ($sites as $site)\n' +
+                    '                                    @foreach ($commercial_sites as $site)\n' +
                     '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select>\n' +
