@@ -155,7 +155,7 @@
                     <input type="hidden" name="site_id[]" value="{{$site->id}}">
                     <tr>
                         <td>
-                            <select class="form-control" name="site_edit[]" id="site{{$site->id}}">
+                            <select class="form-control" name="site[]" id="site{{$site->id}}">
                                 <option
                                     value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
                                 @foreach ($commercial_sites as $commercial)
@@ -164,7 +164,7 @@
                             </select>
                         </td>
                         <td>
-                            <select type="time" class="form-control" name="type_edit[]">
+                            <select type="time" class="form-control" name="type[]">
                                 <option>{{$site->type}}</option>
                                 <option>Enlèvement</option>
                                 <option>Dépôt</option>
@@ -172,7 +172,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="form-control" name="tdf_edit[]">
+                            <select class="form-control" name="tdf[]">
                                 <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? $site->tdf }}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
@@ -182,18 +182,17 @@
                                 <option value="oo_vl_intramuros">VL</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_tdf[]"  class="form-control"></td>
+                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? $site->tdf }}"  class="form-control"></td>
                         <td>
-                            <select class="form-control" name="caisse_edit[]">
-                                <option
-                                    value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
+                            <select class="form-control" name="caisse[]">
+                                <option value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
                                 <option value="oo_mad">MAD</option>
                                 <option value="oo_collecte">Collecte</option>
                                 <option value="oo_cctv">CCTV</option>
                                 <option value="oo_collecte_caisse">Collecte Caisse</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_caisse[]" class="form-control"></td>
+                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"] ?? $site->caisse}}" class="form-control"></td>
                         <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
                     </tr>
 
@@ -214,6 +213,26 @@
     </div>
 
     <script>
+        function siteChange() {
+            let index = 0;
+            const thisSite = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='site[]']"), function (i) {
+                const site = $("select[name='site[]']").get(i);
+                if (thisSite === site) {
+                    index = i;
+                }
+            });
+            const site = sites.find(s => s.id === parseInt(this.value));
+            if (site) {
+                $("select[name='tdf[]']").eq(index).prop('disabled', false);
+                $("select[name='caisse[]']").eq(index).prop('disabled', false);
+            } else {
+                console.log("Site non trouvé :-(");
+            }
+            tdfChange();
+        }
+
         function tdfChange() {
             let coutTournee = 0;
             const thisTDF = this;
@@ -231,30 +250,14 @@
                     const montantCaisse = site[caisseInput.value] ?? 0;
                     let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
                     $("#coutTournee").val(cout);
+                    $("input[name='montant_tdf[]']").eq(i).val(montantTDF);
                 } else {
                     console.log("Site non trouvé :-(");
                 }
             });
-
-            $.each($("select[name='tdf_edit[]']"), function (i) {
-                const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                const siteInput = $("select[name='site_edit[]']").get(i);
-                const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                if (site) {
-                    const montantTDF = site[tdfInput.value] ?? 0;
-                    const montantCaisse = site[caisseInput.value] ?? 0;
-                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                    $("#coutTournee").val(cout);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-            });
-
         }
 
-        function tdfCaisse() {
+        function caisseChange() {
             let coutTournee = 0;
             const thisTDF = this;
             // Trouver l'index du champs actuel
@@ -271,26 +274,12 @@
                     const montantTDF = site[tdfInput.value] ?? 0;
                     let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
                     $("#coutTournee").val(cout);
+                    $("input[name='montant_caisse[]']").eq(i).val(montantCaisse);
                 } else {
                     console.log("Site non trouvé :-(");
                 }
             });
 
-            $.each($("select[name='caisse_edit[]']"), function (i) {
-                const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                const siteInput = $("select[name='site_edit[]']").get(i);
-                const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                if (site) {
-                    const montantTDF = site[tdfInput.value] ?? 0;
-                    const montantCaisse = site[caisseInput.value] ?? 0;
-                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                    $("#coutTournee").val(cout);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-            });
         }
 
         function supprimer(id, e) {
@@ -329,31 +318,13 @@
         let sites = {!! json_encode($commercial_sites) !!};
         $(document).on('DOMNodeInserted', function () {
             // Activer les champs TDF et Caisse
-            $("select[name='site[]']").on("change", function () {
-                let index = 0;
-                const thisSite = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='site[]']"), function (i) {
-                    const site = $("select[name='site[]']").get(i);
-                    if (thisSite === site) {
-                        index = i;
-                    }
-                });
-                const site = sites.find(s => s.id === parseInt(this.value));
-                if (site) {
-                    $("select[name='tdf[]']").eq(index).prop('disabled', false);
-                    $("select[name='caisse[]']").eq(index).prop('disabled', false);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-                tdfChange();
-            });
+            $("select[name='site[]']").on("change", siteChange);
 
             // Calculer count total à partir de TDF
             $("select[name='tdf[]']").on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
-            $("select[name='caisse[]']").on("change", tdfCaisse);
+            $("select[name='caisse[]']").on("change", caisseChange);
 
         });
     </script>
@@ -376,8 +347,11 @@
                 })
             });
 
+            $("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
+
+
             // Remplacer montant tdf par text du select
-            $.each($("select[name='tdf_edit[]']"), function (i) {
+            /*$.each($("select[name='tdf_edit[]']"), function (i) {
                 const tdfInput = $("select[name='tdf_edit[]']").get(i);
                 console.log(tdfInput.value);
                 switch (tdfInput.value) {
@@ -403,9 +377,6 @@
                         console.log("aucun tdf");
                 }
             });
-
-            $("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
-
 
             // Activer les champs TDF et Caisse edit
             $("select[name='site_edit[]']").on("change", function () {
@@ -506,7 +477,7 @@
                         console.log("Site non trouvé :-(");
                     }
                 });
-            });
+            });*/
         });
     </script>
     <script>
