@@ -225,6 +225,7 @@
                     '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select>\n' +
+                    '\n' +
                     '                            </td>\n' +
                     '                            <td>\n' +
                     '                                <select class="form-control" name="type[]">\n' +

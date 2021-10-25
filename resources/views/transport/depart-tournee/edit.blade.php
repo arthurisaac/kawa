@@ -511,44 +511,47 @@
             let index = 0;
             $("#add").on("click", function () {
                 index++;
-                $("#data").append(' <tr>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="site[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                @foreach ($commercial_sites as $commercial)\n' +
-                    '                                    <option value="{{$commercial->id}}">{{$commercial->site}}</option>\n' +
-                    '                                @endforeach\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select type="time" class="form-control" name="type[]">\n' +
-                    '                                <option>Enlèvement</option>\n' +
-                    '                                <option>Dépôt</option>\n' +
-                    '                                <option>Enlèvement + Dépôt</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="tdf[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
-                    '                                <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
-                    '                                <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
-                    '                                <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
-                    '                                <option value="oo_vb_intramuros">VB</option>\n' +
-                    '                                <option value="oo_vl_intramuros">VL</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="caisse[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                <option value="oo_mad">MAD</option>\n' +
-                    '                                <option value="oo_collecte">Collecte</option>\n' +
-                    '                                <option value="oo_cctv">CCTV</option>\n' +
-                    '                                <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td><a class="btn btn-danger btn-sm" onclick="supprimerLigne(this)"></a></td>\n' +
-                    '                    </tr>');
+                $("#data").append('<tr>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="site[]" id="site{{$i}}">\n' +
+                    '                                    <option></option>\n' +
+                    '                                    @foreach ($sites as $site)\n' +
+                    '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                    @endforeach\n' +
+                    '                                </select>\n' +
+                    '\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="type[]">\n' +
+                    '                                    <option>Enlèvement</option>\n' +
+                    '                                    <option>Dépôt</option>\n' +
+                    '                                    <option>Enlèvement + Dépôt</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="tdf[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
+                    '                                    <option value="oo_vb_intramuros">VB</option>\n' +
+                    '                                    <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_mad">MAD</option>\n' +
+                    '                                    <option value="oo_collecte">Collecte</option>\n' +
+                    '                                    <option value="oo_cctv">CCTV</option>\n' +
+                    '                                    <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>\n' +
+                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
+                    '                        </tr>');
             });
         });
     </script>

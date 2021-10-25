@@ -208,8 +208,6 @@
                 <table class="table table-bordered" id="table">
                     <thead>
                     <tr>
-                        <th>Site</th>
-                        <th>Client</th>
                         <th>Colis</th>
                         <th>Valeur colis (XOF)</th>
                         <th>Valeur devise étrangère (Dollar)</th>
@@ -217,6 +215,8 @@
                         <th>Valeur pierre précieuse</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre total colis</th>
+                        <th>Site</th>
+                        <th>Client</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -253,7 +253,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
+                        <td style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
                                    readonly></td>
                         <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
@@ -265,6 +265,8 @@
                                    readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                     </tfoot>
