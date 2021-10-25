@@ -188,11 +188,10 @@
                     @endfor
                     </tbody>
                 </table>
-
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-            <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
+            <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+            <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
         </form>
     </div>
     <script>
@@ -266,49 +265,6 @@
         let sites = {!! json_encode($sites) !!};
         let cout = 0;
         let site = null;
-
-        function supprimer(e) {
-            const indexLigne = $(e).closest('tr').get(0).rowIndex;
-            document.getElementById("data").deleteRow(indexLigne);
-            siteChange();
-            tdfChange();
-        }
-
-        /* $("#vehicule").on("change", function () {
-             $("#chauffeur option").remove();
-             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
-             if (vehicule) {
-                 $('#chauffeur').append($('<option>', {
-                     value: vehicule.chauffeur_titulaires.id,
-                     text: vehicule.chauffeur_titulaires.nomPrenoms
-                 }));
-                 $('#chauffeur').append($('<option>', {
-                     value: vehicule.chauffeur_suppleants.id,
-                     text: vehicule.chauffeur_suppleants.nomPrenoms
-                 }));
-             }
-         });*/
-
-        /*$("select[name='type[]']").on("change", function () {
-            cout = 0;
-            let i = -1;
-            $.each($("select[name='type[]']"), function () {
-                i++;
-                const type = $("select[name='type[]']").get(i);
-                const site = $("select[name='site[]']").get(i);
-                if (type.value && site.value) {
-
-                    const site1 = sites.find(s => s.id === parseInt(site.value));
-                    if (site1) {
-                        const prix = site1[type.value];
-                        console.log(prix);
-                        if (!isNaN(prix)) cout += parseInt(prix);
-                        $("#coutTournee").val(cout);
-                    }
-                }
-
-            });
-        });*/
 
     </script>
     <script>
@@ -389,6 +345,12 @@
                 }
             });
 
+        }
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("data").deleteRow(indexLigne);
+            siteChange();
+            tdfChange();
         }
     </script>
 @endsection

@@ -173,7 +173,7 @@
                         </td>
                         <td>
                             <select class="form-control" name="tdf_edit[]">
-                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? "" }}</option>
+                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? $site->tdf }}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                 <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -182,7 +182,7 @@
                                 <option value="oo_vl_intramuros">VL</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"]}}"  class="form-control"></td>
+                        <td><input type="number" name="montant_tdf[]"  class="form-control"></td>
                         <td>
                             <select class="form-control" name="caisse_edit[]">
                                 <option
@@ -193,7 +193,7 @@
                                 <option value="oo_collecte_caisse">Collecte Caisse</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"]}}" class="form-control"></td>
+                        <td><input type="number" name="montant_caisse[]" class="form-control"></td>
                         <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
                     </tr>
 
@@ -252,6 +252,45 @@
                 }
             });
 
+        }
+
+        function tdfCaisse() {
+            let coutTournee = 0;
+            const thisTDF = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='caisse[]']"), function (i) {
+                const tdf = $("select[name='caisse[]']").get(i);
+                if (thisTDF === tdf) {
+                    index = i;
+                }
+                const siteInput = $("select[name='site[]']").get(i);
+                const site = sites.find(s => s.id === parseInt(siteInput.value));
+                const tdfInput = $("select[name='tdf[]']").get(i);
+                if (site) {
+                    const montantCaisse = site[this.value] ?? 0;
+                    const montantTDF = site[tdfInput.value] ?? 0;
+                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                    $("#coutTournee").val(cout);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
+
+            $.each($("select[name='caisse_edit[]']"), function (i) {
+                const tdfInput = $("select[name='tdf_edit[]']").get(i);
+                const caisseInput = $("select[name='caisse_edit[]']").get(i);
+                const siteInput = $("select[name='site_edit[]']").get(i);
+                const site = sites.find(s => s.id === parseInt(siteInput.value));
+
+                if (site) {
+                    const montantTDF = site[tdfInput.value] ?? 0;
+                    const montantCaisse = site[caisseInput.value] ?? 0;
+                    let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
+                    $("#coutTournee").val(cout);
+                } else {
+                    console.log("Site non trouvé :-(");
+                }
+            });
         }
 
         function supprimer(id, e) {
@@ -314,44 +353,7 @@
             $("select[name='tdf[]']").on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
-            $("select[name='caisse[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='caisse[]']"), function (i) {
-                    const tdf = $("select[name='caisse[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    if (site) {
-                        const montantCaisse = site[this.value] ?? 0;
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='caisse_edit[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                    const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-            });
+            $("select[name='caisse[]']").on("change", tdfCaisse);
 
         });
     </script>
