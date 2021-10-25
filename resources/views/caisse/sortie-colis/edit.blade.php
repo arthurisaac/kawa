@@ -175,7 +175,7 @@
                                 </select>
                             </td>
                             <td><input type="text" name="client[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
-                            <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$site->id}}',this)"></a></td>
+                            <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$item->id}}',this)"></a></td>
                         </tr>
                     @endforeach
                     </tbody>

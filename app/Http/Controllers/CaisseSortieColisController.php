@@ -80,8 +80,8 @@ class CaisseSortieColisController extends Controller
         $colis =  $request->get("colis");
         $valeur_colis_xof = $request->get("valeur_colis_xof");
         $device_etrangere_dollar = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro = $request->get("device_etrangere_dollar");
-        $pierre_precieuse = $request->get("pierre_precieuse_entree");
+        $device_etrangere_euro = $request->get("device_etrangere_euro");
+        $pierre_precieuse = $request->get("pierre_precieuse");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {

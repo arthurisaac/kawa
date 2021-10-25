@@ -52,6 +52,7 @@
                 <table class="table table-bordered" style="width: 100%;" id="liste">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Date</th>
                             <th>Centre régional</th>
                             <th>Centre</th>
@@ -69,6 +70,7 @@
                     <tbody>
                     @foreach ($colis as $coli)
                         <tr>
+                            <td>{{$coli->id}}</td>
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
@@ -98,7 +100,8 @@
             $('#liste').DataTable({
                 "language": {
                     "url": "French.json"
-                }
+                },
+                "order": [[ 0, "desc" ]]
             });
         });
     </script>

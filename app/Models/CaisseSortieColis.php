@@ -33,7 +33,6 @@ class CaisseSortieColis extends Model
     }
 
 
-
     public function items()
     {
         return $this->hasMany('App\Models\CaisseSortieColisItem', 'sortieColis');
