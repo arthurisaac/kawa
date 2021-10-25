@@ -142,9 +142,11 @@
                 <thead>
                 <tr>
                     <td>Site</td>
-                    <td>Type</td>
-                    <td>TDF</td>
-                    <td>Caisse</td>
+                    <th>Type opération</th>
+                    <th>TDF</th>
+                    <th>Montant TDF</th>
+                    <th>Caisse</th>
+                    <th>Montant Caisse</th>
                     <td></td>
                 </tr>
                 </thead>
@@ -153,7 +155,6 @@
                     <input type="hidden" name="site_id[]" value="{{$site->id}}">
                     <tr>
                         <td>
-
                             <select class="form-control" name="site_edit[]" id="site{{$site->id}}">
                                 <option
                                     value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
@@ -172,7 +173,7 @@
                         </td>
                         <td>
                             <select class="form-control" name="tdf_edit[]">
-                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? 0}}</option>
+                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? "" }}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                 <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -181,6 +182,7 @@
                                 <option value="oo_vl_intramuros">VL</option>
                             </select>
                         </td>
+                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"]}}"  class="form-control"></td>
                         <td>
                             <select class="form-control" name="caisse_edit[]">
                                 <option
@@ -191,6 +193,7 @@
                                 <option value="oo_collecte_caisse">Collecte Caisse</option>
                             </select>
                         </td>
+                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"]}}" class="form-control"></td>
                         <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
                     </tr>
 
@@ -200,13 +203,11 @@
 
 
             <div class="row">
-                <div class="col-4">
-                    <div class="col">
-                        <br/>
-                        <button class="btn btn-primary">Enregistrer</button>
-                        <button class="btn btn-danger" type="button" onclick="window.history.back()">Annuler</button>
-                        <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
-                    </div>
+                <div class="col">
+                    <br/>
+                    <button class="btn btn-sm btn-primary">Enregistrer</button>
+                    <button class="btn btn-sm btn-danger" type="button" onclick="window.history.back()">Annuler</button>
+                    <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Ouvrir la liste</a>
                 </div>
             </div>
         </form>
