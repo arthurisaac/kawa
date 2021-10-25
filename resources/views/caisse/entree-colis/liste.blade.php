@@ -61,6 +61,7 @@
                             <td>Total device etrangere (XOF)</td>
                             <td>Total device etrangere (Dollar)</td>
                             <td>Total device etrangere (EURO)</td>
+                            <th>Remettant</th>
                             <td>Equipage</td>
                             {{--<td>Montant total</td>--}}
                             <td style="width: 50px;">Actions</td>
@@ -73,10 +74,11 @@
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
                             <td>{{$coli->items->sum('nbre_colis')}}</td>
-                            <td>{{$coli->sites->sum("valeur_colis_xof_entree")}}</td>
-                            <td>{{$coli->sites->sum("device_etrangere_dollar_entree")}}</td>
-                            <td>{{$coli->sites->sum("device_etrangere_euro_entree")}}</td>
-                            <td>{{$coli->sites->sum("pierre_precieuse_entree")}}</td>
+                            <td>{{$coli->items->sum("valeur_colis_xof_entree")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_dollar_entree")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_euro_entree")}}</td>
+                            <td>{{$coli->items->sum("pierre_precieuse_entree")}}</td>
+                            <td>{{$coli->remettant}}</td>
                             <td>{{$coli->tournees->chefDeBords->nomPrenoms ?? ""}} //
                                 {{$coli->tournees->agentDeGardes->nomPrenoms ?? ""}} //
                                 {{$coli->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>

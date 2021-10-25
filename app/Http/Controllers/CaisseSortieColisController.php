@@ -224,4 +224,13 @@ class CaisseSortieColisController extends Controller
             "message" => "ok"
         ]);
     }
+
+    public function destroyItem($id)
+    {
+        $coli = CaisseSortieColisItem::find($id);
+        $coli->delete();
+        return \response()->json([
+            "message" => "ok"
+        ]);
+    }
 }

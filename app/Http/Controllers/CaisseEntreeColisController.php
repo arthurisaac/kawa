@@ -257,4 +257,12 @@ class CaisseEntreeColisController extends Controller
         return \response()->json(["message" => "ok"]);
         //return redirect('/caisse-entree-colis-liste')->with('success', 'Service supprimé avec succès!');
     }
+
+    public function destroyItem($id)
+    {
+        $coli = CaisseEntreeColisItem::find($id);
+        $coli->delete();
+        return \response()->json(["message" => "ok"]);
+        //return redirect('/caisse-entree-colis-liste')->with('success', 'Service supprimé avec succès!');
+    }
 }

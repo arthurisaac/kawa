@@ -175,7 +175,7 @@
                                 </select>
                             </td>
                             <td><input type="text" name="client[]" value="{{$item->sites->clients->client_nom ?? "Donnée indisponible"}}" class="form-control"></td>
-                            <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
+                            <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$site->id}}',this)"></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -260,6 +260,30 @@
             changeEuro();
             changePierre();
             changeNombreColis();
+        }
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/caisse-sortie-colis-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        supprimer(e);
+                    },
+                    error: function (err) {
+                        console.error(err.responseJSON.message);
+                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+            }
         }
     </script>
     <script>

@@ -246,7 +246,7 @@
                             <td><input type="number" min="0" name="pierre_precieuse[]"  value="{{$item->pierre_precieuse_entree ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="scelle[]" value="{{$item->scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis ?? 0}}" class="form-control"></td>
-                            <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
+                            <td><a class="btn btn-danger btn-sm" onclick="supprimerItem('{{$item->id}}',this)"></a></td>
                             {{--<td><input type="text" name="montant_edit[]" value="{{$item->montant }}" class="form-control"></td>--}}
                         </tr>
                     @endforeach
@@ -331,6 +331,30 @@
             changeEuro();
             changePierre();
             changeNombreColis();
+        }
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/caisse-entree-colis-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        supprimer(e);
+                    },
+                    error: function (err) {
+                        console.error(err.responseJSON.message);
+                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+            }
         }
     </script>
     <script>
