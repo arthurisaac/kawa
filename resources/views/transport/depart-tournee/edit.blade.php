@@ -156,8 +156,7 @@
                     <tr>
                         <td>
                             <select class="form-control" name="site[]" id="site{{$site->id}}">
-                                <option
-                                    value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
+                                <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
                                 @foreach ($commercial_sites as $commercial)
                                     <option value="{{$commercial->id}}">{{$commercial->site}}</option>
                                 @endforeach
@@ -173,7 +172,7 @@
                         </td>
                         <td>
                             <select class="form-control" name="tdf[]">
-                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? $site->tdf }}</option>
+                                <option value="{{$site->tdf}}_edit">{{$site->tdf}}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                 <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -185,7 +184,7 @@
                         <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? $site->tdf }}"  class="form-control"></td>
                         <td>
                             <select class="form-control" name="caisse[]">
-                                <option value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
+                                <option value="{{$site->caisse}}_edit">{{$site->caisse}}</option>
                                 <option value="oo_mad">MAD</option>
                                 <option value="oo_collecte">Collecte</option>
                                 <option value="oo_cctv">CCTV</option>
@@ -199,7 +198,6 @@
                 @endforeach
                 </tbody>
             </table>
-
 
             <div class="row">
                 <div class="col">
@@ -317,6 +315,56 @@
     <script>
         let sites = {!! json_encode($commercial_sites) !!};
         $(document).on('DOMNodeInserted', function () {
+            caisseChange();
+
+            $.each($("select[name='tdf[]']"), function (i) {
+                const tdfInput = $("select[name='tdf[]']").get(i);
+                switch (tdfInput.value) {
+                    case "oo_vb_extamuros_bitume_edit":
+                        $("select[name='tdf[]']").eq(i).val("oo_vb_extamuros_bitume");
+                        break;
+                    case "oo_vb_extramuros_piste_edit":
+                        $("select[name='tdf[]']").eq(i).val("oo_vb_extramuros_piste");
+                        break;
+                    case "oo_vl_extramuros_bitume_edit":
+                        $("select[name='tdf[]']").eq(i).val("oo_vl_extramuros_bitume");
+                        break;
+                    case "oo_vl_extramuros_piste_edit":
+                        $("select[name='tdf[]']").eq(i).val("oo_vl_extramuros_piste");
+                        break;
+                    case "oo_vb_intramuros_edit":
+                        $("select[name='tdf[]']").eq(i).val("oo_vb_intramuros");
+                        break;
+                    case "oo_vl_intramuros_edit":
+                        $("select[name='oo_vl_intramuros[]']").eq(i).val("oo_vl_intramuros");
+                        break;
+                    default:
+                        //console.log("aucun tdf");
+                        break;
+                }
+            });
+
+            $.each($("select[name='caisse[]']"), function (i) {
+                const caisseInput = $("select[name='caisse[]']").get(i);
+                switch (caisseInput.value) {
+                    case "oo_mad_edit":
+                        $("select[name='caisse[]']").eq(i).val("oo_mad");
+                        break;
+                    case "oo_collecte_edit":
+                        $("select[name='caisse[]']").eq(i).val("oo_collecte");
+                        break;
+                    case "oo_cctv_edit":
+                        $("select[name='caisse[]']").eq(i).val("oo_cctv");
+                        break;
+                    case "oo_collecte_caisse_edit":
+                        $("select[name='caisse[]']").eq(i).val("oo_collecte_caisse");
+                        break;
+                    default:
+                        //console.log("aucun tdf");
+                        break;
+                }
+            });
+
             // Activer les champs TDF et Caisse
             $("select[name='site[]']").on("change", siteChange);
 
@@ -347,8 +395,7 @@
                 })
             });
 
-            $("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
-
+            //$("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
 
             // Remplacer montant tdf par text du select
             /*$.each($("select[name='tdf_edit[]']"), function (i) {
@@ -486,6 +533,7 @@
             $("#add").on("click", function () {
                 index++;
                 $("#data").append('<tr>\n' +
+                    '                            <input type="hidden" name="site_id[]">\n' +
                     '                            <td>\n' +
                     '                                <select class="form-control" name="site[]" id="site">\n' +
                     '                                    <option></option>\n' +

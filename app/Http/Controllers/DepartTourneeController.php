@@ -171,7 +171,7 @@ class DepartTourneeController extends Controller
         $departTournee->centre_regional = $request->get('centre_regional');
         $departTournee->save();
 
-        $sites_edit = $request->get('site_edit');
+        /*$sites_edit = $request->get('site_edit');
         $types_edit = $request->get('type_edit');
         $tdf_edit = $request->get('tdf_edit');
         $caisse_edit = $request->get('caisse_edit');
@@ -186,15 +186,16 @@ class DepartTourneeController extends Controller
                 $siteDepartTournee->caisse = $caisse_edit[$i] ?? '';
                 $siteDepartTournee->save();
             }
-        }
+        }*/
 
         if ($request->get('site')) {
             $sites = $request->get('site');
             $types = $request->get('type');
             $tdf = $request->get('tdf');
             $caisse = $request->get('caisse');
-            for ($i = 0; $i < count($sites); $i++) {
-                if (!empty($sites[$i])) {
+            $site_ids = $request->get('site_id');
+            for ($i = 0; $i < count($site_ids); $i++) {
+                if (empty($site_ids[$i])) {
                     $siteDepartTournee = new SiteDepartTournee([
                         'idTourneeDepart' => $departTournee->id,
                         'site' => $sites[$i],
@@ -202,6 +203,13 @@ class DepartTourneeController extends Controller
                         'tdf' => $tdf[$i],
                         'caisse' => $caisse[$i],
                     ]);
+                    $siteDepartTournee->save();
+                } else {
+                    $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
+                    $siteDepartTournee->site = $sites[$i] ?? '1';
+                    $siteDepartTournee->type = $types[$i] ?? '';
+                    $siteDepartTournee->tdf = $tdf[$i] ?? '';
+                    $siteDepartTournee->caisse = $caisse[$i] ?? '';
                     $siteDepartTournee->save();
                 }
             }
