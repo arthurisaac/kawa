@@ -159,12 +159,12 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
-                            <td><input type="number" name="valeur_colis_xof[]" value="{{$item->valeur_colis_xof_sortie}}" class="form-control" /></td>
-                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="{{$item->device_etrangere_dollar_sortie}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="{{$item->device_etrangere_euro_sortie}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="pierre_precieuse[]" value="{{$item->pierre_precieuse_sortie}}" class="form-control"></td>
+                            <td><input type="number" name="valeur_colis_xof[]" value="{{$item->valeur_colis_xof_sortie ?? 0}}" class="form-control" /></td>
+                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="{{$item->device_etrangere_dollar_sortie ?? 0}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="{{$item->device_etrangere_euro_sortie ?? 0}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="pierre_precieuse[]" value="{{$item->pierre_precieuse_sortie ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="scelle[]" value="{{$item->scelle}}" class="form-control"></td>
-                            <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis}}" class="form-control"></td>
+                            <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis ?? 0}}" class="form-control"></td>
                             <td>
                                 <input type="hidden" name="ids[]" value="{{$item->id}}">
                                 <select name="site[]" class="form-control">
