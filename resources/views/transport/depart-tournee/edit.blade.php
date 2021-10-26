@@ -181,7 +181,7 @@
                                 <option value="oo_vl_intramuros">VL</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? $site->tdf }}"  class="form-control"></td>
+                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"  class="form-control"></td>
                         <td>
                             <select class="form-control" name="caisse[]">
                                 <option value="{{$site->caisse}}_edit">{{$site->caisse}}</option>
@@ -191,7 +191,7 @@
                                 <option value="oo_collecte_caisse">Collecte Caisse</option>
                             </select>
                         </td>
-                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"] ?? $site->caisse}}" class="form-control"></td>
+                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"] ?? 0}}" class="form-control"></td>
                         <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
                     </tr>
 
@@ -314,53 +314,62 @@
     </script>
     <script>
         let sites = {!! json_encode($commercial_sites) !!};
-        $(document).on('DOMNodeInserted', function () {
-            caisseChange();
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
-            $.each($("select[name='tdf[]']"), function (i) {
-                const tdfInput = $("select[name='tdf[]']").get(i);
+        $(document).on('DOMNodeInserted', function () {
+
+            const tdf = $("select[name='tdf[]']");
+            $.each(tdf, function (i) {
+                console.log(tdf.get(i).value);
+            });
+            $.each(tdf, function (i) {
+                const tdfInput = tdf.get(i);
                 switch (tdfInput.value) {
                     case "oo_vb_extamuros_bitume_edit":
-                        $("select[name='tdf[]']").eq(i).val("oo_vb_extamuros_bitume");
+                        //tdf.eq(i).val("oo_vb_extamuros_bitume");
+                        $("select[name='tdf[]'] option[value=oo_vb_extamuros_bitume]").eq(i).attr('selected','selected');
                         break;
                     case "oo_vb_extramuros_piste_edit":
-                        $("select[name='tdf[]']").eq(i).val("oo_vb_extramuros_piste");
+                        $("select[name='tdf[]'] option[value=oo_vb_extramuros_piste]").eq(i).attr('selected','selected');
                         break;
                     case "oo_vl_extramuros_bitume_edit":
-                        $("select[name='tdf[]']").eq(i).val("oo_vl_extramuros_bitume");
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_bitume]").eq(i).attr('selected','selected');
                         break;
                     case "oo_vl_extramuros_piste_edit":
-                        $("select[name='tdf[]']").eq(i).val("oo_vl_extramuros_piste");
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_piste]").eq(i).attr('selected','selected');
                         break;
                     case "oo_vb_intramuros_edit":
-                        $("select[name='tdf[]']").eq(i).val("oo_vb_intramuros");
+                        $("select[name='tdf[]'] option[value=oo_vb_intramuros]").eq(i).attr('selected','selected');
                         break;
                     case "oo_vl_intramuros_edit":
-                        $("select[name='oo_vl_intramuros[]']").eq(i).val("oo_vl_intramuros");
+                        $("select[name='tdf[]'] option[value=oo_vl_intramuros]").eq(i).attr('selected','selected');
                         break;
                     default:
+                        //tdf.eq(i).val("");
                         //console.log("aucun tdf");
                         break;
                 }
             });
 
-            $.each($("select[name='caisse[]']"), function (i) {
-                const caisseInput = $("select[name='caisse[]']").get(i);
+            const caisse = $("select[name='caisse[]']");
+            $.each(caisse, function (i) {
+                const caisseInput = caisse.get(i);
                 switch (caisseInput.value) {
                     case "oo_mad_edit":
-                        $("select[name='caisse[]']").eq(i).val("oo_mad");
+                        caisse.eq(i).val("oo_mad");
                         break;
                     case "oo_collecte_edit":
-                        $("select[name='caisse[]']").eq(i).val("oo_collecte");
+                        caisse.eq(i).val("oo_collecte");
                         break;
                     case "oo_cctv_edit":
-                        $("select[name='caisse[]']").eq(i).val("oo_cctv");
+                        caisse.eq(i).val("oo_cctv");
                         break;
                     case "oo_collecte_caisse_edit":
-                        $("select[name='caisse[]']").eq(i).val("oo_collecte_caisse");
+                        caisse.eq(i).val("oo_collecte_caisse");
                         break;
                     default:
-                        //console.log("aucun tdf");
+                        //caisse.eq(i).val("");
                         break;
                 }
             });
@@ -369,17 +378,10 @@
             $("select[name='site[]']").on("change", siteChange);
 
             // Calculer count total à partir de TDF
-            $("select[name='tdf[]']").on("change", tdfChange);
+            tdf.on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
-            $("select[name='caisse[]']").on("change", caisseChange);
-
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            let centres = {!! json_encode($centres) !!};
-            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+            caisse.on("change", caisseChange);
 
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
@@ -394,137 +396,11 @@
                     }));
                 })
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
 
-            //$("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
-
-            // Remplacer montant tdf par text du select
-            /*$.each($("select[name='tdf_edit[]']"), function (i) {
-                const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                console.log(tdfInput.value);
-                switch (tdfInput.value) {
-                    case "oo_vb_extamuros_bitume_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extamuros_bitume");
-                        break;
-                    case "oo_vb_extramuros_piste_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extramuros_piste");
-                        break;
-                    case "oo_vl_extramuros_bitume_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_bitume");
-                        break;
-                    case "oo_vl_extramuros_piste_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_piste");
-                        break;
-                    case "oo_vb_intramuros_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_intramuros");
-                        break;
-                    case "oo_vb_intramuros_edit":
-                        $("select[name='oo_vl_intramuros[]']").eq(i).val("oo_vl_intramuros");
-                        break;
-                    default:
-                        console.log("aucun tdf");
-                }
-            });
-
-            // Activer les champs TDF et Caisse edit
-            $("select[name='site_edit[]']").on("change", function () {
-                let index = 0;
-                const thisSite = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='site_edit[]']"), function (i) {
-                    const site = $("select[name='site_edit[]']").get(i);
-                    if (thisSite === site) {
-                        index = i;
-                    }
-                });
-                const site = sites.find(s => s.id === parseInt(this.value));
-                if (site) {
-                    $("select[name='tdf_edit[]']").eq(index).prop('disabled', false);
-                    $("select[name='caisse_edit[]']").eq(index).prop('disabled', false);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-            });
-
-            // Calculer count total à partir de TDF
-            $("select[name='tdf_edit[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='tdf_edit[]']"), function (i) {
-                    const tdf = $("select[name='tdf_edit[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                    if (site) {
-                        const montantTDF = site[this.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='tdf[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    const caisseInput = $("select[name='caisse[]']").get(i);
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-            });
-
-            // Calculer count total à partir de Caisse
-            $("select[name='caisse_edit[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='caisse_edit[]']"), function (i) {
-                    const tdf = $("select[name='caisse_edit[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                    if (site) {
-                        const montantCaisse = site[this.value] ?? 0;
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='caisse[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    const caisseInput = $("select[name='caisse[]']").get(i);
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-            });*/
         });
     </script>
     <script>
