@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label>Coût tournée</label>
                         <input type="number" class="form-control" min="0" value="0" name="coutTournee"
-                               id="coutTournee"/>
+                               id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
                     </div>
                 </div>
             </div>

@@ -99,8 +99,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Coût tournée</label>
-                        <input type="number" class="form-control" min="0" name="coutTournee"
-                               value="{{$tournee->coutTournee}}" id="coutTournee"/>
+                        <input type="number" class="form-control form-control-lg" min="0" name="coutTournee"
+                               value="{{$tournee->coutTournee}}" id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
                     </div>
                 </div>
             </div>
