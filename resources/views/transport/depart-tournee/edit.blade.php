@@ -184,7 +184,7 @@
                         <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"  class="form-control"></td>
                         <td>
                             <select class="form-control" name="caisse[]">
-                                <option value="{{$site->caisse}}_edit">{{$site->caisse}}</option>
+                                <option value="{{$site->caisse ? $site->caisse . '_edit' : ''}}">{{$site->caisse}}</option>
                                 <option value="oo_mad">MAD</option>
                                 <option value="oo_collecte">Collecte</option>
                                 <option value="oo_cctv">CCTV</option>
@@ -367,6 +367,9 @@
                         break;
                     case "oo_collecte_caisse_edit":
                         caisse.eq(i).val("oo_collecte_caisse");
+                        break;
+                    case "_edit":
+                        caisse.eq(i).val("");
                         break;
                     default:
                         //caisse.eq(i).val("");

@@ -206,11 +206,13 @@ class DepartTourneeController extends Controller
                     $siteDepartTournee->save();
                 } else {
                     $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
-                    $siteDepartTournee->site = $sites[$i] ?? '1';
-                    $siteDepartTournee->type = $types[$i] ?? '';
-                    $siteDepartTournee->tdf = $tdf[$i] ?? '';
-                    $siteDepartTournee->caisse = $caisse[$i] ?? '';
-                    $siteDepartTournee->save();
+                    if ($siteDepartTournee) {
+                        $siteDepartTournee->site = $sites[$i] ?? '1';
+                        $siteDepartTournee->type = $types[$i] ?? '';
+                        $siteDepartTournee->tdf = $tdf[$i] ?? '';
+                        $siteDepartTournee->caisse = $caisse[$i] ?? '';
+                        $siteDepartTournee->save();
+                    }
                 }
             }
         }

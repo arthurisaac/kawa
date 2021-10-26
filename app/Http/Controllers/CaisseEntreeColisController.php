@@ -189,16 +189,18 @@ class CaisseEntreeColisController extends Controller
                     $item->save();
                 } else {
                     $item = CaisseEntreeColisItem::find($ids[$i]);
-                    $item->site = $site[$i];
-                    $item->colis = $colis[$i];
-                    $item->scelle = $scelle[$i];
-                    $item->nbre_colis = $nbre_colis[$i];
+                    if ($item) {
+                        $item->site = $site[$i];
+                        $item->colis = $colis[$i];
+                        $item->scelle = $scelle[$i];
+                        $item->nbre_colis = $nbre_colis[$i];
 
-                    $item->valeur_colis_xof_entree = $valeur_colis_xof[$i];
-                    $item->device_etrangere_dollar_entree = $device_etrangere_dollar[$i];
-                    $item->device_etrangere_euro_entree = $device_etrangere_euro[$i];
-                    $item->pierre_precieuse_entree = $pierre_precieuse[$i];
-                    $item->save();
+                        $item->valeur_colis_xof_entree = $valeur_colis_xof[$i];
+                        $item->device_etrangere_dollar_entree = $device_etrangere_dollar[$i];
+                        $item->device_etrangere_euro_entree = $device_etrangere_euro[$i];
+                        $item->pierre_precieuse_entree = $pierre_precieuse[$i];
+                        $item->save();
+                    }
                 }
 
 
