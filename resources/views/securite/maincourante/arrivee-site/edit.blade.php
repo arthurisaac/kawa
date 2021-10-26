@@ -185,6 +185,7 @@
                                                class="form-control"/></td>
                                     <td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}"
                                                class="form-control"/></td>
+                                    <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -199,6 +200,7 @@
                                 <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>
                                 <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
+                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -229,11 +231,42 @@
                     '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    '                                        <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>\n' +
                     '                                    </tr>')
             });
         });
     </script>
     <script>
+        function supprimerLigne(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("arriveeSiteColisButton").deleteRow(indexLigne);
+        }
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "<?php echo e(csrf_token()); ?>";
+                $.ajax({
+                    url: "/maincourante-arriveesiteitem/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.reload(true);
+                        supprimerLigne(e);
+                    },
+                    error: function (err) {
+                        console.error(err.responseJSON.message);
+                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+            }
+        }
+
         $(document).ready(function () {
             $('#listeArriveeSite').DataTable({
                 "language": {

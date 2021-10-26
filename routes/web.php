@@ -53,6 +53,7 @@ Route::patch('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMa
 Route::get('maincourante-arriveesiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeSiteListe']);
 Route::get('maincourante-arriveesiteliste/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editArriveeSite']);
 Route::delete('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteArriveeSite']);
+Route::delete('maincourante-arriveesiteitem/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteArriveeSiteItem']);
 Route::patch('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'updateArriveeColis']);
 
 Route::get('maincourante-departsiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departSiteListe']);
