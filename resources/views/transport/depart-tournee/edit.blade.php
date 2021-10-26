@@ -103,7 +103,7 @@
                                value="{{$tournee->coutTournee}}" id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
                     </div>
                 </div>
-            </div>
+                    </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
