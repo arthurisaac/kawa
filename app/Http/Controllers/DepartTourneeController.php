@@ -196,14 +196,17 @@ class DepartTourneeController extends Controller
             $site_ids = $request->get('site_id');
             for ($i = 0; $i < count($site_ids); $i++) {
                 if (empty($site_ids[$i])) {
-                    $siteDepartTournee = new SiteDepartTournee([
-                        'idTourneeDepart' => $departTournee->id,
-                        'site' => $sites[$i],
-                        'type' => $types[$i],
-                        'tdf' => $tdf[$i],
-                        'caisse' => $caisse[$i],
-                    ]);
-                    $siteDepartTournee->save();
+                    if (isset($sites[$i])) {
+                        $siteDepartTournee = new SiteDepartTournee([
+                            'idTourneeDepart' => $departTournee->id,
+                            'site' => $sites[$i],
+                            'type' => $types[$i] ?? '',
+                            'tdf' => $tdf[$i] ?? '',
+                            'caisse' => $caisse[$i] ?? '',
+                        ]);
+                        $siteDepartTournee->save();
+                    }
+
                 } else {
                     $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
                     if ($siteDepartTournee) {

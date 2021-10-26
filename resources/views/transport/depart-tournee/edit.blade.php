@@ -172,7 +172,7 @@
                         </td>
                         <td>
                             <select class="form-control" name="tdf[]">
-                                <option value="{{$site->tdf}}_edit">{{$site->tdf}}</option>
+                                <option value="{{$site->tdf ? $site->tdf . '_edit' : ''}}">{{$site->tdf}}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                 <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
