@@ -59,11 +59,10 @@
                 <td>N° Tournée</td>
                 <td>Véhicule</td>
                 <td>Nbre Total colis</td>
-                <td>Total valeur colis</td>
                 <td>Total device etrangere (XOF)</td>
                 <td>Total device etrangere (Dollar)</td>
                 <td>Total device etrangere (EURO)</td>
-                <td>Montant total</td>
+                <td>Total pierre precieuse/td>
                 <td>Equipage</td>
                 <td>Action</td>
             </tr>
@@ -82,7 +81,6 @@
                     <td>{{$tournee->sites->sum("device_etrangere_dollar")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_euro")}}</td>
                     <td>{{$tournee->sites->sum("pierre_precieuse")}}</td>
-                    <td>{{$tournee->sites->sum("montant_regulation")}}</td>
                     <td>{{$tournee->chefDeBords->nomPrenoms ?? ""}} //
                         {{$tournee->agentDeGardes->nomPrenoms ?? ""}} //
                         {{$tournee->chauffeurs->nomPrenoms ?? ""}} //

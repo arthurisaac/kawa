@@ -70,9 +70,9 @@
                     <td>{{$depart->centre_regional}}</td>
                     <td>{{$depart->numeroTournee}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
-                    <td>{{$depart->tournees->chefDeBords->nomPrenoms ?? ""}} //
-                        {{$depart->tournees->agentDeGardes->nomPrenoms ?? ""}} //
-                        {{$depart->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>
+                    <td>{{$depart->chefDeBords->nomPrenoms ?? ""}} //
+                        {{$depart->agentDeGardes->nomPrenoms ?? ""}} //
+                        {{$depart->chauffeurs->nomPrenoms ?? ""}} //</td>
                     <td>{{$depart->coutTournee}}</td>
                     <td  style="width: 70px;">
 

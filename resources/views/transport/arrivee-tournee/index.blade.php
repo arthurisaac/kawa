@@ -90,7 +90,7 @@
                     <th>Valeur pierre précieuse</th>
                     <th>Numéro</th>
                     <th>Nombre total colis</th>
-                    <td>Montant</td>
+                    <td style="display: none;">Montant</td>
                 </tr>
                 </thead>
             </table>
@@ -283,7 +283,7 @@
                         <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}"/></td>
+                        <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
                 </tr>`;
 
                     $("#sitesListes").append(HTML_NODE);
