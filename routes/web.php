@@ -146,6 +146,7 @@ Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class,
 
 Route::resource('caisse-service', 'CaisseServiceController');
 Route::get('caisse-service-liste', [\App\Http\Controllers\CaisseServiceController::class, 'liste']);
+Route::delete('caisse-service-item/{id}', [\App\Http\Controllers\CaisseServiceController::class, 'destroyItem']);
 Route::resource('ctv', 'CaisseCtvController');
 Route::get('ctv-liste', [\App\Http\Controllers\CaisseCtvController::class, 'liste']);
 Route::resource('caisse-entree-colis', 'CaisseEntreeColisController');

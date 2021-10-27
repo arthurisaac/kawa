@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="centre" class="col-sm-5">Centre</label>
                         <select name="centre" id="centre" class="form-control col-sm-7" required>
-                            <option>Choisir centre</option>
+                            <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                             @endforeach
@@ -185,7 +185,7 @@
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
                                         </select></td>
-                                    <td><a class="btn btn-sm btn-danger"></a></td>
+                                    <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -207,13 +207,20 @@
 
     </div>
     <script>
+        function supprimerLigne(e) {
+            console.log("ok");
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+        }
+    </script>
+    <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
+                //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -252,7 +259,7 @@
                     '                                                <option value="{{$i}}">{{$i}}</option>\n' +
                     '                                            @endfor\n' +
                     '                                        </select></td>\n' +
-                    '                                    <td><a class="btn btn-sm btn-danger"></a></td>\n' +
+                    '                                    <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>\n' +
                     '                                </tr>');
 
             });
