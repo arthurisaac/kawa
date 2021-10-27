@@ -25,12 +25,12 @@
 
 
         <form method="post" action="{{ route('caisse-service.store') }}">
-        @csrf
+            @csrf
             <div class="row">
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" required />
+                        <input type="date" name="date" class="form-control col-sm-7" required/>
                     </div>
                     <div class="form-group row">
                         <label for="centre" class="col-sm-5">Centre</label>
@@ -43,7 +43,8 @@
                     </div>
                     <div class="form-group row">
                         <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7" required></select>
+                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7"
+                                required></select>
                     </div>
                 </div>
             </div>
@@ -54,11 +55,6 @@
                        aria-controls="charge-caisse" aria-selected="true">Chargé de caisse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="charge-caisse-adjointe-tab" data-toggle="tab" href="#charge-caisse-adjointe"
-                       role="tab"
-                       aria-controls="charge-caisse-adjointe" aria-selected="false">Chargé de caisse adjointe</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="operatrice-caisse-tab" data-toggle="tab" href="#operatrice-caisse"
                        role="tab"
                        aria-controls="operatrice-caisse" aria-selected="false">Opératrice de caisse</a>
@@ -66,7 +62,8 @@
             </ul>
             <br>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="charge-caisse" role="tabpanel" aria-labelledby="charge-caisse-tab">
+                <div class="tab-pane fade show active" id="charge-caisse" role="tabpanel"
+                     aria-labelledby="charge-caisse-tab">
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
                             <h6>Chargé de caisse</h6>
@@ -80,17 +77,20 @@
                                 <select type="text" name="chargeCaisse" id="chargeCaisse" class="form-control col-sm-7">
                                     <option></option>
                                     @foreach($personnels as $personnel)
-                                        <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                            | {{$personnel->nomPrenoms}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group row">
                                 <label for="nomChargeCaisse" class="col-sm-5">Nom et Prenom(s)</label>
-                                <input type="text" name="nomChargeCaisse" id="nomChargeCaisse" class="form-control col-sm-7"/>
+                                <input type="text" name="nomChargeCaisse" id="nomChargeCaisse"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="fonctionChargeCaisse" class="col-sm-5">Fonction</label>
-                                <input type="text" name="fonctionChargeCaisse" id="fonctionChargeCaisse" class="form-control col-sm-7"/>
+                                <input type="text" name="fonctionChargeCaisse" id="fonctionChargeCaisse"
+                                       class="form-control col-sm-7"/>
                             </div>
                             {{--<div class="form-group row">
                                 <label for="matriculeChargeCaisse" class="col-sm-5">Matricule</label>
@@ -98,16 +98,16 @@
                             </div>--}}
                             <div class="form-group row">
                                 <label for="chargeCaisseHPS" class="col-sm-5">Heure de prise de service</label>
-                                <input type="time" name="chargeCaisseHPS" id="chargeCaisseHPS" class="form-control col-sm-7"/>
+                                <input type="time" name="chargeCaisseHPS" id="chargeCaisseHPS"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="chargeCaisseHFS" class="col-sm-5">Heure de fin de service</label>
-                                <input type="time" name="chargeCaisseHFS" id="chargeCaisseHFS" class="form-control col-sm-7"/>
+                                <input type="time" name="chargeCaisseHFS" id="chargeCaisseHFS"
+                                       class="form-control col-sm-7"/>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="charge-caisse-adjointe" role="tabpanel" aria-labelledby="charge-caisse-adjointe-tab">
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
                             <h6>Chargée de caisse adjointe</h6>
@@ -118,20 +118,24 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="chargeCaisseAdjoint" class="col-sm-5">Matricule</label>
-                                <select type="text" name="chargeCaisseAdjoint" id="chargeCaisseAdjoint" class="form-control col-sm-7">
+                                <select type="text" name="chargeCaisseAdjoint" id="chargeCaisseAdjoint"
+                                        class="form-control col-sm-7">
                                     <option></option>
                                     @foreach($personnels as $personnel)
-                                        <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
+                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                            | {{$personnel->nomPrenoms}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group row">
                                 <label for="nomChargeCaisseAdjoint" class="col-sm-5">Nom et Prenom(s)</label>
-                                <input type="text" name="nomChargeCaisseAdjoint" id="nomChargeCaisseAdjoint" class="form-control col-sm-7"/>
+                                <input type="text" name="nomChargeCaisseAdjoint" id="nomChargeCaisseAdjoint"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="fonctionChargeCaisseAdjoint" class="col-sm-5">Fonction</label>
-                                <input type="text" name="fonctionChargeCaisseAdjoint" id="fonctionChargeCaisseAdjoint" class="form-control col-sm-7"/>
+                                <input type="text" name="fonctionChargeCaisseAdjoint" id="fonctionChargeCaisseAdjoint"
+                                       class="form-control col-sm-7"/>
                             </div>
                             {{--<div class="form-group row">
                                 <label for="matriculeChargeCaisseAdjoint" class="col-sm-5">Matricule</label>
@@ -139,49 +143,55 @@
                             </div>--}}
                             <div class="form-group row">
                                 <label for="chargeCaisseAdjointHPS" class="col-sm-5">Heure de prise de service</label>
-                                <input type="time" name="chargeCaisseAdjointHPS" id="chargeCaisseAdjointHPS" class="form-control col-sm-7"/>
+                                <input type="time" name="chargeCaisseAdjointHPS" id="chargeCaisseAdjointHPS"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="chargeCaisseAdjointHFS" class="col-sm-5">Heure de fin de service</label>
-                                <input type="time" name="chargeCaisseAdjointHFS" id="chargeCaisseAdjointHFS" class="form-control col-sm-7"/>
+                                <input type="time" name="chargeCaisseAdjointHFS" id="chargeCaisseAdjointHFS"
+                                       class="form-control col-sm-7"/>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="operatrice-caisse" role="tabpanel" aria-labelledby="operatrice-caisse-tab">
+                <div class="tab-pane fade" id="operatrice-caisse" role="tabpanel"
+                     aria-labelledby="operatrice-caisse-tab">
+
+                    <button class="btn btn-primary btn-sm" type="button" id="ajouterOperatrice">Ajouter +</button>
+                    <br>
+                    <br>
                     <div class="row">
-                        <div class="col-6" id="operatriceRow">
-                            <div class="row" style="align-items: center;">
-                                <div class="col-4">
-                                    <h6>Opératrice de caisse n°<span>1</span></h6>
-                                    <input name="numeroOperatriceCaisse[]" type="hidden" value="1">
-                                </div>
-                                <div class="col-1">
-                                    <hr class="burval-separator">
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-5">Nom et Prenom</label>
-                                        <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">
+                        <table class="table table-striped table-bordered" id="table">
+                            <thead>
+                            <th></th>
+                            <th>Nom & Prenom</th>
+                            <th>Box</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            @for($i = 0; $i < 10; $i++)
+                                <tr>
+                                    <td><input name="numeroOperatriceCaisse[]" type="hidden" value="1"></td>
+                                    <td><select name="operatriceCaisse[]" class="form-control">
                                             <option></option>
                                             @foreach($personnels as $personnel)
                                                 <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
                                             @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-5">Numéro de box</label>
-                                        <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox"></select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <br />
-                            <br />
-                            <button class="btn btn-primary btn-sm" type="button" id="ajouterOperatrice">Ajouter +</button>
-                        </div>
+                                        </select></td>
+                                    <td><select name="operatriceCaisseBox[]"
+                                                class="form-control numeroBox">
+                                            @for($i = 1; $i <= 10; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select></td>
+                                    <td><a class="btn btn-sm btn-danger"></a></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                        <div class="col-6" id="operatriceRow"></div>
+
                     </div>
                 </div>
             </div>
@@ -221,55 +231,36 @@
 
     <script>
         $(document).ready(function () {
-            for (let i = 1; i <= 10; i++ ) {
+            for (let i = 1; i <= 10; i++) {
                 $('.numeroBox').append($('<option>', {text: i, value: i}));
             }
 
             let operatrice = 1;
-            $("#ajouterOperatrice").on("click", function() {
+            $("#ajouterOperatrice").on("click", function () {
                 operatrice++;
-                const customHTML = '<div class="row" style="align-items: center;">\n' +
-                    '                        <div class="col-4">\n' +
-                    '                            <h6>Opératrice de caisse n°<span>'+operatrice+'</span></h6>\n' +
-                    '                        </div><input name="numeroOperatriceCaisse[]" type="hidden" value="'+operatrice+'">\n' +
-                    '                        <div class="col-1">\n' +
-                    '                            <hr class="burval-separator">\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col">\n' +
-                    '                            <div class="form-group row">\n' +
-                    '                                <label class="col-sm-5">Nom et Prenom</label>\n' +
-                    '                                <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">\n' +
-                    '                                    <option></option>\n' +
-                    '                                    @foreach($personnels as $personnel)\n' +
-                    '                                        <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>\n' +
-                    '                                    @endforeach\n' +
-                    '                                </select>\n' +
-                    '                            </div>\n' +
-                    '                            <div class="form-group row">\n' +
-                    '                                <label class="col-sm-5">Numéro de box</label>\n' +
-                    '                                <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox">' +
-                    '                               <option value=1>1</option>' +
-                    '                               <option value=2>2</option>' +
-                    '                               <option value=3>3</option>' +
-                    '                               <option value=4>4</option>' +
-                    '                               <option value=5>5</option>' +
-                    '                               <option value=6>6</option>' +
-                    '                               <option value=7>7</option>' +
-                    '                               <option value=8>8</option>' +
-                    '                               <option value=9>9</option>' +
-                    '                               <option value=10>10</option>' +
-                    '                               </select>\n' +
-                    '                            </div>\n' +
-                    '                        </div>\n' +
-                    '                    </div>';
+                $("#table").append('<tr>\n' +
+                    '                                    <td><input name="numeroOperatriceCaisse[]" type="hidden" value="1"></td>\n' +
+                    '                                    <td><select name="operatriceCaisse[]" class="form-control">\n' +
+                    '                                            <option></option>\n' +
+                    '                                            @foreach($personnels as $personnel)\n' +
+                    '                                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>\n' +
+                    '                                            @endforeach\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><select name="operatriceCaisseBox[]"\n' +
+                    '                                                class="form-control numeroBox">\n' +
+                    '                                            @for($i = 1; $i <= 10; $i++)\n' +
+                    '                                                <option value="{{$i}}">{{$i}}</option>\n' +
+                    '                                            @endfor\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><a class="btn btn-sm btn-danger"></a></td>\n' +
+                    '                                </tr>');
 
-                $("#operatriceRow").append(customHTML);
             });
         });
     </script>
     <script>
         let personnels =  {!! json_encode($personnels) !!};
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#chargeCaisseAdjoint").on("change", function () {
                 const personnel = personnels.find(p => p.id === parseInt(this.value));
                 if (personnel) {
