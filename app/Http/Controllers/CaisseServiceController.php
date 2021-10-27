@@ -68,7 +68,7 @@ class CaisseServiceController extends Controller
                 $operatrice = new CaisseServiceOperatrice([
                     'caisseService' => $service->id,
                     'operatriceCaisse' => $operatriceCaisse[$i],
-                    'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i],
+                    'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i] ?? 0,
                     'operatriceCaisseBox' => $numeroDeBox[$i]
                 ]);
                 $operatrice->save();
@@ -146,7 +146,7 @@ class CaisseServiceController extends Controller
             if (!empty($idOperatriceCaisse[$i])) {
                 $operatrice = CaisseServiceOperatrice::find($idOperatriceCaisse[$i]);
                 $operatrice->operatriceCaisse = $operatriceCaisse[$i];
-                $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i];
+                $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i] ?? 0;
                 $operatrice->operatriceCaisseBox = $numeroDeBox[$i];
                 $operatrice->save();
             }
