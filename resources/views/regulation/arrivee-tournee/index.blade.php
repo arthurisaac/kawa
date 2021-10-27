@@ -127,8 +127,6 @@
                         <th>Nature</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
                     <tfoot>
                     <tr>
                         <td colspan="3" style="vertical-align: center;">TOTAL</td>
@@ -187,18 +185,18 @@
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;
                     });
-                    console.log(commerciaux);
                     commerciaux.map(({id, site, clients}) => {
                         $('#asSite').append($('<option>', {
                             value: id,
                             text: `${site} (${clients.client_nom})`
                         }));
-                    })
+                    });
                 }
                 const departSites = sites.filter(v => {
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
                 });
                 if (departSites) populateSites(departSites);
+                changeColis();
             });
         });
 
@@ -214,12 +212,12 @@
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
                         <td><select name="colis[]" class="form-control">
                                 <option>${s.colis ?? ''}</option>
+                                <option>RAS</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
-                                </select>
-                        </td>
+                                </select></td>
                         <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
@@ -330,6 +328,7 @@
             $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
+            $("select[name='colis[]']").on("change", changeColis);
         });
     </script>
     <script>
@@ -376,6 +375,36 @@
                 totalColis += parseFloat(nbre) ?? 0;
             });
             $("#totalColis").val(totalColis);
+        }
+
+        function changeColis() {
+            let index = 0;
+            const thisColisInput = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='colis[]']"), function (i) {
+                const colis = $("select[name='colis[]']").get(i);
+                if (thisColisInput === colis) {
+                    index = i;
+                }
+                if (colis.value === "RAS" ) {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
+                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                } else {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
+                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                }
+            });
+
         }
     </script>
 @endsection

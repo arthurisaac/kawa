@@ -68,7 +68,7 @@ class CaisseServiceController extends Controller
                 $operatrice = new CaisseServiceOperatrice([
                     'caisseService' => $service->id,
                     'operatriceCaisse' => $operatriceCaisse[$i],
-                    'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i],
+                    'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i] ?? 0,
                     'operatriceCaisseBox' => $numeroDeBox[$i]
                 ]);
                 $operatrice->save();
@@ -83,9 +83,16 @@ class CaisseServiceController extends Controller
         //
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $services = CaisseService::with('chargeCaisses')->with('chargeCaisseAdjoints')->get();
+        if (isset($debut) && isset($fin)) {
+            $services = CaisseService::with('chargeCaisses')
+                ->whereBetween('date', [$debut, $fin])
+                ->with('chargeCaisseAdjoints')->get();
+        }
         return view('/caisse/service.liste',
             compact('services'));
     }
@@ -139,7 +146,7 @@ class CaisseServiceController extends Controller
             if (!empty($idOperatriceCaisse[$i])) {
                 $operatrice = CaisseServiceOperatrice::find($idOperatriceCaisse[$i]);
                 $operatrice->operatriceCaisse = $operatriceCaisse[$i];
-                $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i];
+                $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i] ?? 0;
                 $operatrice->operatriceCaisseBox = $numeroDeBox[$i];
                 $operatrice->save();
             }
@@ -151,12 +158,24 @@ class CaisseServiceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
+        $caisse = CaisseServiceOperatrice::all()->where("caisseService", "=", $id);
+        foreach ($caisse as $item)
+            $item->delete();
         $service = CaisseService::find($id);
         $service->delete();
+        //return \response()->json(["message" => "ok"]);
         return redirect('/caisse-service-liste')->with('success', 'Service supprimé!');
+    }
+
+    public function destroyItem($id)
+    {
+        $service = CaisseServiceOperatrice::find($id);
+        $service->delete();
+        //return redirect('/caisse-service-liste')->with('success', 'Service supprimé!');
+        return \response()->json(["message" => "ok"]);
     }
 }

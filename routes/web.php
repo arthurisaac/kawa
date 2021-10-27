@@ -53,6 +53,7 @@ Route::patch('maincourante-departcentre/{id}', [\App\Http\Controllers\SecuriteMa
 Route::get('maincourante-arriveesiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'arriveeSiteListe']);
 Route::get('maincourante-arriveesiteliste/{id}/edit', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'editArriveeSite']);
 Route::delete('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteArriveeSite']);
+Route::delete('maincourante-arriveesiteitem/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'deleteArriveeSiteItem']);
 Route::patch('maincourante-arriveesiteliste/{id}', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'updateArriveeColis']);
 
 Route::get('maincourante-departsiteliste', [\App\Http\Controllers\SecuriteMaincouranteController::class, 'departSiteListe']);
@@ -145,12 +146,15 @@ Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class,
 
 Route::resource('caisse-service', 'CaisseServiceController');
 Route::get('caisse-service-liste', [\App\Http\Controllers\CaisseServiceController::class, 'liste']);
+Route::delete('caisse-service-item/{id}', [\App\Http\Controllers\CaisseServiceController::class, 'destroyItem']);
 Route::resource('ctv', 'CaisseCtvController');
 Route::get('ctv-liste', [\App\Http\Controllers\CaisseCtvController::class, 'liste']);
 Route::resource('caisse-entree-colis', 'CaisseEntreeColisController');
 Route::get('caisse-entree-colis-liste', [\App\Http\Controllers\CaisseEntreeColisController::class, 'liste']);
+Route::delete('caisse-entree-colis-item/{id}', [\App\Http\Controllers\CaisseEntreeColisController::class, 'destroyItem']);
 Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
 Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
+Route::delete('caisse-sortie-colis-item/{id}', [\App\Http\Controllers\CaisseSortieColisController::class, 'destroyItem']);
 Route::resource('caisse-video-surveillance', 'CaisseVideoSurveillanceController');
 Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideoSurveillanceController::class, 'liste']);
 

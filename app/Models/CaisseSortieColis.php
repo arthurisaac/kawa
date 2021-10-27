@@ -14,5 +14,27 @@ class CaisseSortieColis extends Model
         'observation',
         'totalMontant',
         'totalColis',
+        'noTournee',
+        'receveur',
     ];
+
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id')
+            ->with('vehicules')
+            ->with('agentDeGardes')
+            ->with('chauffeurs')
+            ->with('chefDeBords');
+    }
+
+    public function sites()
+    {
+        return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart');
+    }
+
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\CaisseSortieColisItem', 'sortieColis');
+    }
 }

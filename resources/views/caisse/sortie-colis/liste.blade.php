@@ -52,10 +52,18 @@
                 <table class="table table-bordered" style="width: 100%;" id="liste">
                     <thead>
                         <tr>
-                            <td>Date</td>
-                            <td>Centre régional</td>
-                            <td>Centre</td>
-                            <td>Nbre Total colis</td>
+                            <th>No</th>
+                            <th>Date</th>
+                            <th>Centre régional</th>
+                            <th>Centre</th>
+                            <th>Nbre Total colis</th>
+                            <th>Receveur</th>
+                            <th>Total valeur colis</th>
+                            <th>Total device etrangere (XOF)</th>
+                            <th>Total device etrangere (Dollar)</th>
+                            <th>Total device etrangere (EURO)</th>
+                            <th>No Tournee</th>
+                            <th>Equipage</th>
                             {{--<td>Montant total</td>--}}
                             <td style="width: 50px;">Actions</td>
                         </tr>
@@ -63,10 +71,20 @@
                     <tbody>
                     @foreach ($colis as $coli)
                         <tr>
+                            <td>{{$coli->id}}</td>
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
-                            <td>{{$coli->totalColis}}</td>
+                            <td>{{$coli->items->sum('nbre_colis')}}</td>
+                            <td>{{$coli->receveur}}</td>
+                            <td>{{$coli->items->sum("valeur_colis_xof_sortie")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_dollar_sortie")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_euro_sortie")}}</td>
+                            <td>{{$coli->items->sum("pierre_precieuse_sortie")}}</td>
+                            <td>{{$coli->tournees->numeroTournee ?? ''}}</td>
+                            <td>{{$coli->tournees->chefDeBords->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->agentDeGardes->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>
                             {{--<td>{{$coli->totalMontant}}</td>--}}
                             <td>
                                 <a href="{{ route('caisse-sortie-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
@@ -84,7 +102,8 @@
             $('#liste').DataTable({
                 "language": {
                     "url": "French.json"
-                }
+                },
+                "order": [[ 0, "desc" ]]
             });
         });
     </script>

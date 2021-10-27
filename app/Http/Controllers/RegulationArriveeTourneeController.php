@@ -91,13 +91,13 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
                 $dataSite->colis = $colis[$i];
-                $dataSite->numero = $numero[$i];
+                $dataSite->numero = $numero[$i] ?? "";
                 //$dataSite->valeur_autre = $valeur_autre[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i] ?? null;
+                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i] ?? null;
+                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i] ?? null;
+                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i] ?? null;
 
                 $dataSite->save();
             }

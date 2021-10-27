@@ -57,6 +57,13 @@
                             <td>Centre régional</td>
                             <td>Centre</td>
                             <td>Nbre Total colis</td>
+                            <th>Remettant</th>
+                            <td>Total valeur colis</td>
+                            <td>Total device etrangere (XOF)</td>
+                            <td>Total device etrangere (Dollar)</td>
+                            <td>Total device etrangere (EURO)</td>
+                            <td>No Tournée</td>
+                            <td>Equipage</td>
                             {{--<td>Montant total</td>--}}
                             <td style="width: 50px;">Actions</td>
                         </tr>
@@ -67,8 +74,16 @@
                             <td>{{$coli->date}}</td>
                             <td>{{$coli->centre}}</td>
                             <td>{{$coli->centre_regional}}</td>
-                            <td>{{$coli->sites->sum("nbre_colis")}}</td>
-                            {{--<td>{{$coli->sites->sum("montant")}}</td>--}}
+                            <td>{{$coli->items->sum('nbre_colis')}}</td>
+                            <td>{{$coli->remettant}}</td>
+                            <td>{{$coli->items->sum("valeur_colis_xof_entree")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_dollar_entree")}}</td>
+                            <td>{{$coli->items->sum("device_etrangere_euro_entree")}}</td>
+                            <td>{{$coli->items->sum("pierre_precieuse_entree")}}</td>
+                            <td>{{$coli->tournees->numeroTournee ?? ''}}</td>
+                            <td>{{$coli->tournees->chefDeBords->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->agentDeGardes->nomPrenoms ?? ""}} //
+                                {{$coli->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>
                             <td>
                                 <a href="{{ route('caisse-entree-colis.edit',$coli->id)}}" class="btn btn-primary btn-sm"></a>
                                 <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->id}}', this)"></a>
@@ -94,7 +109,7 @@
             if (confirm("Confirmer la suppression?")) {
                 const token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: "caisse-sortie-colis/" + id,
+                    url: "caisse-entree-colis/" + id,
                     type: 'DELETE',
                     dataType: "JSON",
                     data: {

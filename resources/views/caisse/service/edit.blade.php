@@ -177,40 +177,37 @@
                 <div class="col"></div>
             </div>
             <div class="row">
-                <div class="col-6" id="operatriceRow">
+                <table class="table table-striped table-bordered" id="table">
+                    <thead>
+                    <th>No</th>
+                    <th>Nom & Prenom</th>
+                    <th>Box</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
                     @foreach($operatriceCaisses as $operatriceCaisse)
-                        <div class="row" style="align-items: center;">
-                            <div class="col-4">
-                                <h6>Opératrice de caisse n°<span>{{$operatriceCaisse->numeroOperatriceCaisse}}</span>
-                                </h6>
-                                <input name="numeroOperatriceCaisse[]" type="hidden"
-                                       value="{{$operatriceCaisse->numeroOperatriceCaisse}}">
-                                <input name="idOperatriceCaisse[]" type="hidden" value="{{$operatriceCaisse->id}}">
-                            </div>
-                            <div class="col-1">
-                                <hr class="burval-separator">
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Nom et Prenom</label>
-                                    <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">
-                                        <option
-                                            value="{{$operatriceCaisse->operatrice->id}}">{{$operatriceCaisse->operatrice->nomPrenoms}}</option>
-                                        @foreach($personnels as $personnel)
-                                            <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Numéro de box</label>
-                                    <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox">
-                                        <option>{{$operatriceCaisse->operatriceCaisseBox}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        <input name="idOperatriceCaisse[]" type="hidden" value="{{$operatriceCaisse->id}}">
+                        <tr>
+                            <td>{{$operatriceCaisse->id}}</td>
+                            <td><select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">
+                                    <option
+                                        value="{{$operatriceCaisse->operatrice->id}}">{{$operatriceCaisse->operatrice->nomPrenoms}}</option>
+                                    @foreach($personnels as $personnel)
+                                        <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
+                                    @endforeach
+                                </select></td>
+                            <td><select name="operatriceCaisseBox[]"
+                                        class="form-control numeroBox">
+                                    <option>{{$operatriceCaisse->operatriceCaisseBox}}</option>
+                                    @for($i = 1; $i <= 10; $i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select></td>
+                            <td><a class="btn btn-sm btn-danger" onclick="supprimer('{{$operatriceCaisse->id}}',this)"></a></td>
+                        </tr>
                     @endforeach
-                </div>
+                    </tbody>
+                </table>
                 <div class="col">
                     <br/>
                     <br/>
@@ -228,13 +225,42 @@
 
     </div>
     <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/caisse-service-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function () {
+                        supprimerLigne(e);
+                    },
+                    error: function (err) {
+                        console.error(err.responseJSON.message);
+                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+            }
+        }
+        function supprimerLigne(e) {
+            console.log("ok");
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("table").deleteRow(indexLigne);
+        }
+    </script>
+    <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -259,42 +285,23 @@
             let operatrice = 1;
             $("#ajouterOperatrice").on("click", function () {
                 operatrice++;
-                const customHTML = '<div class="row" style="align-items: center;">\n' +
-                    '                        <div class="col-4">\n' +
-                    '                            <h6>Opératrice de caisse n°<span>' + operatrice + '</span></h6>\n' +
-                    '                        </div><input name="numeroOperatriceCaisse[]" type="hidden" value="' + operatrice + '">\n' +
-                    '                        <div class="col-1">\n' +
-                    '                            <hr class="burval-separator">\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col">\n' +
-                    '                            <div class="form-group row">\n' +
-                    '                                <label class="col-sm-5">Nom et Prenom</label>\n' +
-                    '                                <select type="text" name="operatriceCaisse[]" class="form-control col-sm-7">\n' +
-                    '                                    <option></option>\n' +
-                    '                                    @foreach($personnels as $personnel)\n' +
-                    '                                        <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>\n' +
-                    '                                    @endforeach\n' +
-                    '                                </select>\n' +
-                    '                            </div>\n' +
-                    '                            <div class="form-group row">\n' +
-                    '                                <label class="col-sm-5">Numéro de box</label>\n' +
-                    '                                <select name="operatriceCaisseBox[]" class="form-control col-sm-7 numeroBox">' +
-                    '                               <option value=1>1</option>' +
-                    '                               <option value=2>2</option>' +
-                    '                               <option value=3>3</option>' +
-                    '                               <option value=4>4</option>' +
-                    '                               <option value=5>5</option>' +
-                    '                               <option value=6>6</option>' +
-                    '                               <option value=7>7</option>' +
-                    '                               <option value=8>8</option>' +
-                    '                               <option value=9>9</option>' +
-                    '                               <option value=10>10</option>' +
-                    '                               </select>\n' +
-                    '                            </div>\n' +
-                    '                        </div>\n' +
-                    '                    </div>';
+                $("#table").append('<tr>\n' +
+                    '                                    <td><input name="numeroOperatriceCaisse[]" type="hidden" value="1"></td>\n' +
+                    '                                    <td><select name="operatriceCaisse[]" class="form-control">\n' +
+                    '                                            <option></option>\n' +
+                    '                                            @foreach($personnels as $personnel)\n' +
+                    '                                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>\n' +
+                    '                                            @endforeach\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><select name="operatriceCaisseBox[]"\n' +
+                    '                                                class="form-control numeroBox">\n' +
+                    '                                            @for($i = 1; $i <= 10; $i++)\n' +
+                    '                                                <option value="{{$i}}">{{$i}}</option>\n' +
+                    '                                            @endfor\n' +
+                    '                                        </select></td>\n' +
+                    '                                    <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>\n' +
+                    '                                </tr>');
 
-                $("#operatriceRow").append(customHTML);
             });
         });
     </script>

@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label>Coût tournée</label>
                         <input type="number" class="form-control" min="0" value="0" name="coutTournee"
-                               id="coutTournee"/>
+                               id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
                     </div>
                 </div>
             </div>
@@ -188,11 +188,10 @@
                     @endfor
                     </tbody>
                 </table>
-
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-            <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
+            <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+            <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
         </form>
     </div>
     <script>
@@ -245,9 +244,9 @@
                     '                                    <option value="oo_vl_intramuros">VL</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
-                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled /></td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
                     '                            <td>\n' +
-                    '                                <select class="form-control" name="caisse[]" disabled/>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
                     '                                    <option></option>\n' +
                     '                                    <option value="oo_mad">MAD</option>\n' +
                     '                                    <option value="oo_collecte">Collecte</option>\n' +
@@ -256,7 +255,7 @@
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>\n' +
-                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a><td>\n' +
+                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
                     '                        </tr>');
             });
         });
@@ -266,49 +265,6 @@
         let sites = {!! json_encode($sites) !!};
         let cout = 0;
         let site = null;
-
-        function supprimer(e) {
-            const indexLigne = $(e).closest('tr').get(0).rowIndex;
-            document.getElementById("data").deleteRow(indexLigne);
-            siteChange();
-            tdfChange();
-        }
-
-        /* $("#vehicule").on("change", function () {
-             $("#chauffeur option").remove();
-             const vehicule = vehicules.find(v => v.id === parseInt(this.value));
-             if (vehicule) {
-                 $('#chauffeur').append($('<option>', {
-                     value: vehicule.chauffeur_titulaires.id,
-                     text: vehicule.chauffeur_titulaires.nomPrenoms
-                 }));
-                 $('#chauffeur').append($('<option>', {
-                     value: vehicule.chauffeur_suppleants.id,
-                     text: vehicule.chauffeur_suppleants.nomPrenoms
-                 }));
-             }
-         });*/
-
-        /*$("select[name='type[]']").on("change", function () {
-            cout = 0;
-            let i = -1;
-            $.each($("select[name='type[]']"), function () {
-                i++;
-                const type = $("select[name='type[]']").get(i);
-                const site = $("select[name='site[]']").get(i);
-                if (type.value && site.value) {
-
-                    const site1 = sites.find(s => s.id === parseInt(site.value));
-                    if (site1) {
-                        const prix = site1[type.value];
-                        console.log(prix);
-                        if (!isNaN(prix)) cout += parseInt(prix);
-                        $("#coutTournee").val(cout);
-                    }
-                }
-
-            });
-        });*/
 
     </script>
     <script>
@@ -389,6 +345,12 @@
                 }
             });
 
+        }
+        function supprimer(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("data").deleteRow(indexLigne);
+            siteChange();
+            tdfChange();
         }
     </script>
 @endsection

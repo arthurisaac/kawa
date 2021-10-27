@@ -56,7 +56,7 @@
                 <td>Centre</td>
                 <td>N°Tournée</td>
                 <td>Véhicule</td>
-                <td>Chauffeur</td>
+                <td>Equipage</td>
                 <td>Coût tournée</td>
                 <td>Action</td>
             </tr>
@@ -70,7 +70,9 @@
                     <td>{{$depart->centre_regional}}</td>
                     <td>{{$depart->numeroTournee}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
-                    <td>{{$depart->chauffeurs->nomPrenoms ?? 'Peronnel non disponible ' . $depart->chauffeur}}</td>
+                    <td>{{$depart->chefDeBords->nomPrenoms ?? ""}} //
+                        {{$depart->agentDeGardes->nomPrenoms ?? ""}} //
+                        {{$depart->chauffeurs->nomPrenoms ?? ""}} //</td>
                     <td>{{$depart->coutTournee}}</td>
                     <td  style="width: 70px;">
 

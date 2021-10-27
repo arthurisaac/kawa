@@ -99,11 +99,11 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Coût tournée</label>
-                        <input type="number" class="form-control" min="0" name="coutTournee"
-                               value="{{$tournee->coutTournee}}" id="coutTournee"/>
+                        <input type="number" class="form-control form-control-lg" min="0" name="coutTournee"
+                               value="{{$tournee->coutTournee}}" id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
                     </div>
                 </div>
-            </div>
+                    </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -142,9 +142,11 @@
                 <thead>
                 <tr>
                     <td>Site</td>
-                    <td>Type</td>
-                    <td>TDF</td>
-                    <td>Caisse</td>
+                    <th>Type opération</th>
+                    <th>TDF</th>
+                    <th>Montant TDF</th>
+                    <th>Caisse</th>
+                    <th>Montant Caisse</th>
                     <td></td>
                 </tr>
                 </thead>
@@ -153,17 +155,15 @@
                     <input type="hidden" name="site_id[]" value="{{$site->id}}">
                     <tr>
                         <td>
-
-                            <select class="form-control" name="site_edit[]" id="site{{$site->id}}">
-                                <option
-                                    value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
+                            <select class="form-control" name="site[]" id="site{{$site->id}}">
+                                <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
                                 @foreach ($commercial_sites as $commercial)
                                     <option value="{{$commercial->id}}">{{$commercial->site}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
-                            <select type="time" class="form-control" name="type_edit[]">
+                            <select type="time" class="form-control" name="type[]">
                                 <option>{{$site->type}}</option>
                                 <option>Enlèvement</option>
                                 <option>Dépôt</option>
@@ -171,8 +171,8 @@
                             </select>
                         </td>
                         <td>
-                            <select class="form-control" name="tdf_edit[]">
-                                <option value="{{$site->tdf}}_edit">{{$site->sites["$site->tdf"] ?? 0}}</option>
+                            <select class="form-control" name="tdf[]">
+                                <option value="{{$site->tdf ? $site->tdf . '_edit' : ''}}">{{$site->tdf}}</option>
                                 <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                 <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                                 <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -181,16 +181,17 @@
                                 <option value="oo_vl_intramuros">VL</option>
                             </select>
                         </td>
+                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"  class="form-control"></td>
                         <td>
-                            <select class="form-control" name="caisse_edit[]">
-                                <option
-                                    value="{{$site->caisse}}">{{$site->sites["$site->caisse"] ?? $site->caisse}}</option>
+                            <select class="form-control" name="caisse[]">
+                                <option value="{{$site->caisse ? $site->caisse . '_edit' : ''}}">{{$site->caisse}}</option>
                                 <option value="oo_mad">MAD</option>
                                 <option value="oo_collecte">Collecte</option>
                                 <option value="oo_cctv">CCTV</option>
                                 <option value="oo_collecte_caisse">Collecte Caisse</option>
                             </select>
                         </td>
+                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"] ?? 0}}" class="form-control"></td>
                         <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
                     </tr>
 
@@ -198,21 +199,38 @@
                 </tbody>
             </table>
 
-
             <div class="row">
-                <div class="col-4">
-                    <div class="col">
-                        <br/>
-                        <button class="btn btn-primary">Enregistrer</button>
-                        <button class="btn btn-danger" type="button" onclick="window.history.back()">Annuler</button>
-                        <a href="/depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
-                    </div>
+                <div class="col">
+                    <br/>
+                    <button class="btn btn-sm btn-primary">Enregistrer</button>
+                    <button class="btn btn-sm btn-danger" type="button" onclick="window.history.back()">Annuler</button>
+                    <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Ouvrir la liste</a>
                 </div>
             </div>
         </form>
     </div>
 
     <script>
+        function siteChange() {
+            let index = 0;
+            const thisSite = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='site[]']"), function (i) {
+                const site = $("select[name='site[]']").get(i);
+                if (thisSite === site) {
+                    index = i;
+                }
+            });
+            const site = sites.find(s => s.id === parseInt(this.value));
+            if (site) {
+                $("select[name='tdf[]']").eq(index).prop('disabled', false);
+                $("select[name='caisse[]']").eq(index).prop('disabled', false);
+            } else {
+                console.log("Site non trouvé :-(");
+            }
+            tdfChange();
+        }
+
         function tdfChange() {
             let coutTournee = 0;
             const thisTDF = this;
@@ -230,22 +248,31 @@
                     const montantCaisse = site[caisseInput.value] ?? 0;
                     let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
                     $("#coutTournee").val(cout);
+                    $("input[name='montant_tdf[]']").eq(i).val(montantTDF);
                 } else {
                     console.log("Site non trouvé :-(");
                 }
             });
+        }
 
-            $.each($("select[name='tdf_edit[]']"), function (i) {
-                const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                const siteInput = $("select[name='site_edit[]']").get(i);
+        function caisseChange() {
+            let coutTournee = 0;
+            const thisTDF = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='caisse[]']"), function (i) {
+                const tdf = $("select[name='caisse[]']").get(i);
+                if (thisTDF === tdf) {
+                    index = i;
+                }
+                const siteInput = $("select[name='site[]']").get(i);
                 const site = sites.find(s => s.id === parseInt(siteInput.value));
-
+                const tdfInput = $("select[name='tdf[]']").get(i);
                 if (site) {
+                    const montantCaisse = site[this.value] ?? 0;
                     const montantTDF = site[tdfInput.value] ?? 0;
-                    const montantCaisse = site[caisseInput.value] ?? 0;
                     let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
                     $("#coutTournee").val(cout);
+                    $("input[name='montant_caisse[]']").eq(i).val(montantCaisse);
                 } else {
                     console.log("Site non trouvé :-(");
                 }
@@ -287,77 +314,77 @@
     </script>
     <script>
         let sites = {!! json_encode($commercial_sites) !!};
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
         $(document).on('DOMNodeInserted', function () {
-            // Activer les champs TDF et Caisse
-            $("select[name='site[]']").on("change", function () {
-                let index = 0;
-                const thisSite = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='site[]']"), function (i) {
-                    const site = $("select[name='site[]']").get(i);
-                    if (thisSite === site) {
-                        index = i;
-                    }
-                });
-                const site = sites.find(s => s.id === parseInt(this.value));
-                if (site) {
-                    $("select[name='tdf[]']").eq(index).prop('disabled', false);
-                    $("select[name='caisse[]']").eq(index).prop('disabled', false);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-                tdfChange();
+
+            const tdf = $("select[name='tdf[]']");
+            $.each(tdf, function (i) {
+                console.log(tdf.get(i).value);
             });
+            $.each(tdf, function (i) {
+                const tdfInput = tdf.get(i);
+                switch (tdfInput.value) {
+                    case "oo_vb_extamuros_bitume_edit":
+                        //tdf.eq(i).val("oo_vb_extamuros_bitume");
+                        $("select[name='tdf[]'] option[value=oo_vb_extamuros_bitume]").eq(i).attr('selected','selected');
+                        break;
+                    case "oo_vb_extramuros_piste_edit":
+                        $("select[name='tdf[]'] option[value=oo_vb_extramuros_piste]").eq(i).attr('selected','selected');
+                        break;
+                    case "oo_vl_extramuros_bitume_edit":
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_bitume]").eq(i).attr('selected','selected');
+                        break;
+                    case "oo_vl_extramuros_piste_edit":
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_piste]").eq(i).attr('selected','selected');
+                        break;
+                    case "oo_vb_intramuros_edit":
+                        $("select[name='tdf[]'] option[value=oo_vb_intramuros]").eq(i).attr('selected','selected');
+                        break;
+                    case "oo_vl_intramuros_edit":
+                        $("select[name='tdf[]'] option[value=oo_vl_intramuros]").eq(i).attr('selected','selected');
+                        break;
+                    default:
+                        //tdf.eq(i).val("");
+                        //console.log("aucun tdf");
+                        break;
+                }
+            });
+
+            const caisse = $("select[name='caisse[]']");
+            $.each(caisse, function (i) {
+                const caisseInput = caisse.get(i);
+                switch (caisseInput.value) {
+                    case "oo_mad_edit":
+                        caisse.eq(i).val("oo_mad");
+                        break;
+                    case "oo_collecte_edit":
+                        caisse.eq(i).val("oo_collecte");
+                        break;
+                    case "oo_cctv_edit":
+                        caisse.eq(i).val("oo_cctv");
+                        break;
+                    case "oo_collecte_caisse_edit":
+                        caisse.eq(i).val("oo_collecte_caisse");
+                        break;
+                    case "_edit":
+                        caisse.eq(i).val("");
+                        break;
+                    default:
+                        //caisse.eq(i).val("");
+                        break;
+                }
+            });
+
+            // Activer les champs TDF et Caisse
+            $("select[name='site[]']").on("change", siteChange);
 
             // Calculer count total à partir de TDF
-            $("select[name='tdf[]']").on("change", tdfChange);
+            tdf.on("change", tdfChange);
 
             // Calculer count total à partir de Caisse
-            $("select[name='caisse[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='caisse[]']"), function (i) {
-                    const tdf = $("select[name='caisse[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    if (site) {
-                        const montantCaisse = site[this.value] ?? 0;
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='caisse_edit[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                    const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-            });
-
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            let centres = {!! json_encode($centres) !!};
-            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+            caisse.on("change", caisseChange);
 
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
@@ -372,138 +399,11 @@
                     }));
                 })
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
 
-            // Remplacer montant tdf par text du select
-            $.each($("select[name='tdf_edit[]']"), function (i) {
-                const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                console.log(tdfInput.value);
-                switch (tdfInput.value) {
-                    case "oo_vb_extamuros_bitume_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extamuros_bitume");
-                        break;
-                    case "oo_vb_extramuros_piste_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_extramuros_piste");
-                        break;
-                    case "oo_vl_extramuros_bitume_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_bitume");
-                        break;
-                    case "oo_vl_extramuros_piste_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vl_extramuros_piste");
-                        break;
-                    case "oo_vb_intramuros_edit":
-                        $("select[name='tdf_edit[]']").eq(i).val("oo_vb_intramuros");
-                        break;
-                    case "oo_vb_intramuros_edit":
-                        $("select[name='oo_vl_intramuros[]']").eq(i).val("oo_vl_intramuros");
-                        break;
-                    default:
-                        console.log("aucun tdf");
-                }
-            });
-
-            $("select[name='oo_vl_intramuros[]']").eq(0).val("oo_vl_intramuros");
-
-
-            // Activer les champs TDF et Caisse edit
-            $("select[name='site_edit[]']").on("change", function () {
-                let index = 0;
-                const thisSite = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='site_edit[]']"), function (i) {
-                    const site = $("select[name='site_edit[]']").get(i);
-                    if (thisSite === site) {
-                        index = i;
-                    }
-                });
-                const site = sites.find(s => s.id === parseInt(this.value));
-                if (site) {
-                    $("select[name='tdf_edit[]']").eq(index).prop('disabled', false);
-                    $("select[name='caisse_edit[]']").eq(index).prop('disabled', false);
-                } else {
-                    console.log("Site non trouvé :-(");
-                }
-            });
-
-            // Calculer count total à partir de TDF
-            $("select[name='tdf_edit[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='tdf_edit[]']"), function (i) {
-                    const tdf = $("select[name='tdf_edit[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const caisseInput = $("select[name='caisse_edit[]']").get(i);
-                    if (site) {
-                        const montantTDF = site[this.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='tdf[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    const caisseInput = $("select[name='caisse[]']").get(i);
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-            });
-
-            // Calculer count total à partir de Caisse
-            $("select[name='caisse_edit[]']").on("change", function () {
-                let coutTournee = 0;
-                const thisTDF = this;
-                // Trouver l'index du champs actuel
-                $.each($("select[name='caisse_edit[]']"), function (i) {
-                    const tdf = $("select[name='caisse_edit[]']").get(i);
-                    if (thisTDF === tdf) {
-                        index = i;
-                    }
-                    const siteInput = $("select[name='site_edit[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-                    const tdfInput = $("select[name='tdf_edit[]']").get(i);
-                    if (site) {
-                        const montantCaisse = site[this.value] ?? 0;
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-
-                $.each($("select[name='caisse[]']"), function (i) {
-                    const tdfInput = $("select[name='tdf[]']").get(i);
-                    const caisseInput = $("select[name='caisse[]']").get(i);
-                    const siteInput = $("select[name='site[]']").get(i);
-                    const site = sites.find(s => s.id === parseInt(siteInput.value));
-
-                    if (site) {
-                        const montantTDF = site[tdfInput.value] ?? 0;
-                        const montantCaisse = site[caisseInput.value] ?? 0;
-                        let cout = coutTournee += (parseFloat(montantTDF) ?? 0) + (parseFloat(montantCaisse) ?? 0);
-                        $("#coutTournee").val(cout);
-                    } else {
-                        console.log("Site non trouvé :-(");
-                    }
-                });
-            });
         });
     </script>
     <script>
@@ -511,44 +411,48 @@
             let index = 0;
             $("#add").on("click", function () {
                 index++;
-                $("#data").append(' <tr>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="site[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                @foreach ($commercial_sites as $commercial)\n' +
-                    '                                    <option value="{{$commercial->id}}">{{$commercial->site}}</option>\n' +
-                    '                                @endforeach\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select type="time" class="form-control" name="type[]">\n' +
-                    '                                <option>Enlèvement</option>\n' +
-                    '                                <option>Dépôt</option>\n' +
-                    '                                <option>Enlèvement + Dépôt</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="tdf[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
-                    '                                <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
-                    '                                <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
-                    '                                <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
-                    '                                <option value="oo_vb_intramuros">VB</option>\n' +
-                    '                                <option value="oo_vl_intramuros">VL</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td>\n' +
-                    '                            <select class="form-control" name="caisse[]">\n' +
-                    '                                <option></option>\n' +
-                    '                                <option value="oo_mad">MAD</option>\n' +
-                    '                                <option value="oo_collecte">Collecte</option>\n' +
-                    '                                <option value="oo_cctv">CCTV</option>\n' +
-                    '                                <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
-                    '                            </select>\n' +
-                    '                        </td>\n' +
-                    '                        <td><a class="btn btn-danger btn-sm" onclick="supprimerLigne(this)"></a></td>\n' +
-                    '                    </tr>');
+                $("#data").append('<tr>\n' +
+                    '                            <input type="hidden" name="site_id[]">\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="site[]" id="site">\n' +
+                    '                                    <option></option>\n' +
+                    '                                    @foreach ($commercial_sites as $site)\n' +
+                    '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                    @endforeach\n' +
+                    '                                </select>\n' +
+                    '\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="type[]">\n' +
+                    '                                    <option>Enlèvement</option>\n' +
+                    '                                    <option>Dépôt</option>\n' +
+                    '                                    <option>Enlèvement + Dépôt</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="tdf[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>\n' +
+                    '                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
+                    '                                    <option value="oo_vb_intramuros">VB</option>\n' +
+                    '                                    <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
+                    '                            <td>\n' +
+                    '                                <select class="form-control" name="caisse[]" disabled>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    <option value="oo_mad">MAD</option>\n' +
+                    '                                    <option value="oo_collecte">Collecte</option>\n' +
+                    '                                    <option value="oo_cctv">CCTV</option>\n' +
+                    '                                    <option value="oo_collecte_caisse">Collecte Caisse</option>\n' +
+                    '                                </select>\n' +
+                    '                            </td>\n' +
+                    '                            <td><input type="number" class="form-control" name="montant_caisse[]" disabled/></td>\n' +
+                    '                            <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>\n' +
+                    '                        </tr>');
             });
         });
     </script>

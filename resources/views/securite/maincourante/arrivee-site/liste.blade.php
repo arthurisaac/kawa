@@ -54,7 +54,7 @@
                     <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->heureArrivee ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->tournees->heureDepart ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->sites->clients->client_nom ?? ""}}</td>
                     <td>{{$arriveeSite->operation ?? ""}}</td>

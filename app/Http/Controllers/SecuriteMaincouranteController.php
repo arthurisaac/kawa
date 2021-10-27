@@ -562,6 +562,18 @@ class SecuriteMaincouranteController extends Controller
         }
     }
 
+    public function deleteArriveeSiteItem(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = ArriveeSiteColis::find($id);
+            $data->delete();
+            return \response()->json([
+                'message' => 'supprimé'
+            ]);
+        }
+    }
+
     public function deleteArriveeCentre(Request $request, $id)
     {
 
