@@ -2,7 +2,8 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Arrivée tournée</h2></div>
+        <h2>Arrivée tournée</h2>
+        <a href="/caisse-service-liste" class="btn btn-info btn-sm">Liste</a>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">

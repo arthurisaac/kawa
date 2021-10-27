@@ -63,7 +63,7 @@
                             <div class="form-group row">
                                 <label for="chargeCaisse" class="col-sm-5">Matricule</label>
                                 <select type="text" name="chargeCaisse" id="chargeCaisse" class="form-control col-sm-7" required>
-                                    <option value="{{$service->chargeCaisses->id}}">{{$service->chargeCaisses->matricule}}</option>
+                                    <option value="{{$service->chargeCaisse}}">{{$service->chargeCaisses->matricule ?? ""}}</option>
                                     @foreach($personnels as $personnel)
                                         <option value="{{$personnel->id}}">{{$personnel->matricule}}</option>
                                     @endforeach
@@ -72,22 +72,22 @@
                             <div class="form-group row">
                                 <label for="nomChargeCaisse" class="col-sm-5">Nom et Prenom(s)</label>
                                 <input type="text" name="nomChargeCaisse" id="nomChargeCaisse"
-                                       class="form-control col-sm-7" value="{{$service->chargeCaisses->nomPrenoms}}"/>
+                                       class="form-control col-sm-7" value="{{$service->chargeCaisses->nomPrenoms ?? ""}}"/>
                             </div>
                             <div class="form-group row">
                                 <label for="fonctionChargeCaisse" class="col-sm-5">Fonction</label>
                                 <input type="text" name="fonctionChargeCaisse" id="fonctionChargeCaisse"
-                                       class="form-control col-sm-7" value="{{$service->chargeCaisses->Fonction}}"/>
+                                       class="form-control col-sm-7" value="{{$service->chargeCaisses->Fonction ?? ""}}"/>
                             </div>
                             <div class="form-group row">
                                 <label for="chargeCaisseHPS" class="col-sm-5">Heure de prise de service</label>
                                 <input type="time" name="chargeCaisseHPS" id="chargeCaisseHPS"
-                                       class="form-control col-sm-7" value="{{$service->chargeCaisseHPS}}"/>
+                                       class="form-control col-sm-7" value="{{$service->chargeCaisseHPS ?? ""}}"/>
                             </div>
                             <div class="form-group row">
                                 <label for="chargeCaisseHFS" class="col-sm-5">Heure de fin de service</label>
                                 <input type="time" name="chargeCaisseHFS" id="chargeCaisseHFS"
-                                       class="form-control col-sm-7" value="{{$service->chargeCaisseHFS}}"/>
+                                       class="form-control col-sm-7" value="{{$service->chargeCaisseHFS ?? ""}}"/>
                             </div>
                         </div>
                     </div>
@@ -114,11 +114,11 @@
                                     <label for="nomChargeCaisseAdjoint" class="col-sm-5">Nom et Prenom(s)</label>
                                     <input type="text" name="nomChargeCaisseAdjoint" id="nomChargeCaisseAdjoint"
                                            class="form-control col-sm-7"
-                                           value="{{$service->chargeCaisseAdjoints->nomPrenoms}}"/>
+                                           value="{{$service->chargeCaisseAdjoints->nomPrenoms ?? ""}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="fonctionChargeCaisseAdjoint" class="col-sm-5">Fonction</label>
-                                    <input type="text" value="{{$service->chargeCaisseAdjoints->fonction}}"
+                                    <input type="text" value="{{$service->chargeCaisseAdjoints->fonction ?? ""}}"
                                            name="fonctionChargeCaisseAdjoint" id="fonctionChargeCaisseAdjoint"
                                            class="form-control col-sm-7"/>
                                 </div>

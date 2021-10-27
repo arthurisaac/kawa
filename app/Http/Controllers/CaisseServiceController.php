@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CaisseService;
 use App\Models\CaisseServiceOperatrice;
+use App\Models\CaisseVideoSurveillance;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_client;
@@ -109,9 +110,8 @@ class CaisseServiceController extends Controller
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $services = CaisseService::find($id)->with('chargeCaisses')->with('chargeCaisseAdjoints')->get();
-        $service = $services[0];
-        $operatriceCaisses = CaisseServiceOperatrice::with('operatrice')->get();
+        $service = CaisseService::with('chargeCaisses')->with('chargeCaisseAdjoints')->find($id);
+        $operatriceCaisses = CaisseServiceOperatrice::with('operatrice')->where("caisseService", $id)->get();
         return view('/caisse/service.edit',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'service', 'operatriceCaisses'));
     }
@@ -164,7 +164,15 @@ class CaisseServiceController extends Controller
     {
         $caisse = CaisseServiceOperatrice::all()->where("caisseService", "=", $id);
         foreach ($caisse as $item)
-            $item->delete();
+        {
+            if ($item) {
+                $videoSurveillance = CaisseVideoSurveillance::all()->where("operatrice", "=", $item->id);
+                foreach ($videoSurveillance as $video) {
+                    $video->delete();
+                }
+                $item->delete();
+            }
+        }
         $service = CaisseService::find($id);
         $service->delete();
         //return \response()->json(["message" => "ok"]);

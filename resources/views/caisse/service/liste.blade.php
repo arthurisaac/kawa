@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <a href="/caisse-service-liste" class="btn btn-info btn-sm">Nouveau</a>
+        <a href="/caisse-service" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
         <br>
@@ -54,6 +54,7 @@
                 <table class="table table-bordered" style="width: 100%;" id="liste">
                     <thead>
                     <tr>
+                        <td>ID</td>
                         <td>Date</td>
                         <td>Centre</td>
                         <td>Centre Régional</td>
@@ -69,6 +70,7 @@
                     <tbody>
                     @foreach ($services as $service)
                         <tr>
+                            <td>{{$service->id}}</td>
                             <td>{{$service->date}}</td>
                             <td>{{$service->centre}}</td>
                             <td>{{$service->centreRegional}}</td>
@@ -99,7 +101,8 @@
             $('#liste').DataTable({
                 "language": {
                     "url": "French.json"
-                }
+                },
+                "order": [[ 0, "desc" ]]
             });
         });
     </script>
