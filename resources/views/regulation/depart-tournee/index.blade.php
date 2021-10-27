@@ -209,20 +209,18 @@
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
-                        <td><select name="colis[]" value="" class="form-control">
+                        <td><select name="colis[]" class="form-control">
                                 <option>${s.colis ?? ''}</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
-                                </select>
-                        </td>
+                                </select></td>
                         <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? '0'}" class="form-control"></td>
                         <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? '0'}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
- 9
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? '0'}" class="form-control"></td>
                 </tr>`;
 

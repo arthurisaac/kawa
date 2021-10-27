@@ -247,9 +247,6 @@
                 else
                     $("#convoyeur" + numero).val(convoyeur)
             }
-
-            function populateSites(sites) {
-                // console.log(sites);
                 $("#sitesListes > tbody").html("");
                 sites.map(s => {
                     let HTML_NODE = `<tr>

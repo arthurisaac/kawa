@@ -106,7 +106,20 @@
                                 <option>Enlèvement + Dépôt</option>
                             </select></td>
                         <td><textarea class="form-control" name="bordereau[]">{{$site->bordereau}}</textarea></td>
-                        <td><input type="text" class="form-control" name="autre[]" value="{{$site->autre}}" />    </td>
+                        <td><input type="text" name="client[]" value="{{$site->client}}" class="form-control"></td>
+                        <td><select name="colis[]" class="form-control">
+                                <option>{{$site->colis}}</option>
+                                <option>Sac jute</option>
+                                <option>Keep safe</option>
+                                <option>Caisse</option>
+                                <option>Conteneur</option>
+                            </select></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof_arrivee ?? 0}}" class="form-control"></td>
+                        <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar_arrivee ?? 0}}" class="form-control"></td>
+                        <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro_arrivee ?? 0}}" class="form-control"></td>
+                        <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse_arrivee ?? 0}}" class="form-control"></td>
+                        <td><input type="text" name="numero[]" value="{{$site->numero_arrivee}}" class="form-control"></td>
+                        <td><input type="number"  min="0" name="nbre_colis[]" value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
                         <td><input type="text" class="form-control" min="0" name="montant[]" value="{{$site->montant}}"/></td>
                     </tr>
                 @endforeach
