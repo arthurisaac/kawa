@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use App\Models\DepartTournee;
 use App\Models\SecuriteMateriel;
 use App\Models\SecuriteMaterielBeneficiaire;
@@ -19,9 +21,11 @@ class SecuriteMaterielController extends Controller
      */
     public function index()
     {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
-        return view('securite/materiel.index', compact('personnels', 'tournees'));
+        return view('securite/materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
     }
 
     /**
@@ -67,6 +71,8 @@ class SecuriteMaterielController extends Controller
             'operateurRadioMatricule' => $request->get('operateurRadioMatricule'),
             'operateurRadioHeurePrise' => $request->get('operateurRadioHeurePrise'),
             'operateurRadioHeureFin' => $request->get('operateurRadioHeureFin'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional')
         ]);
         $saisie->save();
 
@@ -209,6 +215,8 @@ class SecuriteMaterielController extends Controller
         $materiel->operateurRadioMatricule = $request->get('operateurRadioMatricule');
         $materiel->operateurRadioHeurePrise = $request->get('operateurRadioHeurePrise');
         $materiel->operateurRadioHeureFin = $request->get('operateurRadioHeureFin');
+        $materiel->centre_regional = $request->get('centre_regional');
+        $materiel->centre = $request->get('centre');
         $materiel->save();
         return redirect('/materiel-liste')->with('success', 'Matériel enregistré!');
     }

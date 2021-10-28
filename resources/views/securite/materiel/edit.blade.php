@@ -27,10 +27,29 @@
         @method('PATCH')
 
         <div class="row">
-            <div class="col-3">
+            <div class="col">
                 <div class="form-group row">
                     <label class="col-2">Date</label>
                     <input type="date" class="form-control col" name="date" value="{{$materiel->date}}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="centre">Centre Régional</label>
+                    <select name="centre" id="centre" class="form-control" required>
+                        <option>{{$materiel->centre}}</option>
+                        @foreach ($centres as $centre)
+                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="centre_regional">Centre</label>
+                    <select id="centre_regional" name="centre_regional" class="form-control" required>
+                        <option>{{$materiel->centre_regional}}</option>
+                    </select>
                 </div>
             </div>
         </div>

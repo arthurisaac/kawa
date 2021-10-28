@@ -18,7 +18,9 @@ class SecuriteMateriel extends Model
         'operateurRadio',
         'operateurRadioMatricule',
         'operateurRadioHeurePrise',
-        'operateurRadioHeureFin'
+        'operateurRadioHeureFin',
+        'centre',
+        'centre_regional'
     ];
 
     public function cbs()

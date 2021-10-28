@@ -108,6 +108,7 @@
                     <div class="form-group">
                         <label for="centre">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control" required>
+                            <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                             @endforeach

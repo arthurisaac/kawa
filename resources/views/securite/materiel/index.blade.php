@@ -26,13 +26,33 @@
             @csrf
 
             <div class="row">
-                <div class="col-3">
-                    <div class="form-group row">
-                        <label class="col-2">Date</label>
-                        <input type="date" class="form-control col" name="date">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" name="date" value="{{date('Y-m-d')}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control" required>
+                            <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="centre_regional">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control" required>
+                            <option></option>
+                        </select>
                     </div>
                 </div>
             </div>
+            <br>
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="equipages-tab" data-toggle="tab" href="#equipages" role="tab"
@@ -590,8 +610,25 @@
     </div>
     <script>
         let personnels =  {!! json_encode($personnels) !!};
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
 
         $(document).ready(function () {
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
+
             $("#cbMatricule").on("change", function () {
                 const personnel = personnels.find(p => p.id === parseInt(this.value));
                 if (personnel) {
