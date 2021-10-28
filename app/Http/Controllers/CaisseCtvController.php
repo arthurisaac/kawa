@@ -55,37 +55,37 @@ class CaisseCtvController extends Controller
     public function store(Request $request)
     {
         $ctv = new CaisseCtv([
-           'date' => $request->get('date'),
-           'operatriceCaisse' => $request->get('operatriceCaisse'),
-           'numeroBox' => $request->get('numeroBox'),
-           'heurePriseBox' => $request->get('heurePriseBox'),
-           'heureFinBox' => $request->get('heureFinBox'),
-           'tournee' => $request->get('tournee'),
-           'bordereau' => $request->get('bordereau'),
-           'convoyeurGarde' => $request->get('convoyeurGarde'),
-           'regulatrice' => $request->get('regulatrice'),
-           'securipack' => $request->get('securipack'),
-           'sacjute' => $request->get('sacjute'),
-           'nombreColis' => $request->get('nombreColis'),
-           'numeroScelleColis' => $request->get('numeroScelleColis'),
-           'montantAnnonce' => $request->get('montantAnnonce'),
-           'client' => $request->get('client'),
-           'site' => $request->get('site'),
-           'expediteur' => $request->get('expediteur'),
-           'destinataire' => $request->get('destinataire'),
-           'montantReconnu' => $request->get('montantReconnu'),
-           'ecartConstate' => $request->get('ecartConstate'),
-           'montantFinal' => $request->get('montantFinal'),
-           'billetsCalcules' => $request->get('billetsCalcules'),
-           'billetsCalculesMontant' => $request->get('billetsCalculesMontant'),
-           'billetsSansValeurs' => $request->get('billetsSansValeurs'),
-           'billetsSansValeursMontant' => $request->get('billetsSansValeursMontant'),
-           'billetsUsages' => $request->get('billetsUsages'),
-           'billetsUsagesMontant' => $request->get('billetsUsagesMontant'),
-           'fauxBillets' => $request->get('fauxBillets'),
-           'fauxBilletsMontant' => $request->get('fauxBilletsMontant'),
-           'billetsDeparailles' => $request->get('billetsDeparailles'),
-           'billetsDeparaillesMontant' => $request->get('billetsDeparaillesMontant'),
+            'date' => $request->get('date'),
+            'operatriceCaisse' => $request->get('operatriceCaisse'),
+            'numeroBox' => $request->get('numeroBox'),
+            'heurePriseBox' => $request->get('heurePriseBox'),
+            'heureFinBox' => $request->get('heureFinBox'),
+            'tournee' => $request->get('tournee'),
+            'bordereau' => $request->get('bordereau'),
+            'convoyeurGarde' => $request->get('convoyeurGarde'),
+            'regulatrice' => $request->get('regulatrice'),
+            'securipack' => $request->get('securipack'),
+            'sacjute' => $request->get('sacjute'),
+            'nombreColis' => $request->get('nombreColis'),
+            'numeroScelleColis' => $request->get('numeroScelleColis'),
+            'montantAnnonce' => $request->get('montantAnnonce'),
+            'client' => $request->get('client'),
+            'site' => $request->get('site'),
+            'expediteur' => $request->get('expediteur'),
+            'destinataire' => $request->get('destinataire'),
+            'montantReconnu' => $request->get('montantReconnu'),
+            'ecartConstate' => $request->get('ecartConstate'),
+            'montantFinal' => $request->get('montantFinal'),
+            'billetsCalcules' => $request->get('billetsCalcules'),
+            'billetsCalculesMontant' => $request->get('billetsCalculesMontant'),
+            'billetsSansValeurs' => $request->get('billetsSansValeurs'),
+            'billetsSansValeursMontant' => $request->get('billetsSansValeursMontant'),
+            'billetsUsages' => $request->get('billetsUsages'),
+            'billetsUsagesMontant' => $request->get('billetsUsagesMontant'),
+            'fauxBillets' => $request->get('fauxBillets'),
+            'fauxBilletsMontant' => $request->get('fauxBilletsMontant'),
+            'billetsDeparailles' => $request->get('billetsDeparailles'),
+            'billetsDeparaillesMontant' => $request->get('billetsDeparaillesMontant'),
         ]);
         $ctv->save();
 
@@ -129,9 +129,16 @@ class CaisseCtvController extends Controller
         //
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
-        $ctvs = CaisseCtv::all();
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $ctvs = CaisseCtv::with('operatrices')->get();
+        if (isset($debut) && isset($fin)) {
+            $ctvs = CaisseCtv::with('operatrices')
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
         return view('/caisse/ctv.liste',
             compact('ctvs'));
     }
@@ -139,7 +146,7 @@ class CaisseCtvController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -159,7 +166,7 @@ class CaisseCtvController extends Controller
         $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
         $billetage = $billetages[0];
         return view('/caisse/ctv.edit',
-            compact('ctv','personnels', 'centres', 'centres_regionaux',
+            compact('ctv', 'personnels', 'centres', 'centres_regionaux',
                 'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'billetage'));
     }
 
@@ -167,7 +174,7 @@ class CaisseCtvController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
