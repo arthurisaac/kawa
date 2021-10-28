@@ -21,9 +21,15 @@ class CaisseVideoSurveillanceController extends Controller
             compact('operatrices'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $surveillances = CaisseVideoSurveillance::all();
+        if (isset($debut) && isset($fin)) {
+            $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])
+                ->get();
+        }
         return view('/caisse/video-surveillance.liste',
             compact('surveillances'));
     }

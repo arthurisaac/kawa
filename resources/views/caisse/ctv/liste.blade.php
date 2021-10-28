@@ -101,11 +101,11 @@
                             <td>{{$ctv->ecartConstate}}</td>
                             <td>{{$ctv->montantFinal}}</td>
                             <td>
-                                <a href="{{ route('ctv.edit',$ctv->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('ctv.edit',$ctv->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('ctv.destroy', $ctv->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </td>
                         </tr>

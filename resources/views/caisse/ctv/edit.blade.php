@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label for="operatriceCaisse" class="col-sm-5">Operatrice de saise</label>
                         <select name="operatriceCaisse" id="operatriceCaisse" class="form-control col-sm-7" required>
-                            <option>{{$ctv->operatriceCaisse}}</option>
+                            <option value="{{$ctv->operatriceCaisse}}">{{$ctv->operatrices->operatrice->nomPrenoms ?? "Information non disponible"}}</option>
                             @foreach ($operatrices as $operatrice)
                                 <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
                             @endforeach
@@ -522,7 +522,6 @@
                         <div class="col"></div>
                     </div><br />
                 </div>
-
             </div>
 
             <div class="row">

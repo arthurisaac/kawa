@@ -157,11 +157,10 @@ class CaisseCtvController extends Controller
         $centres_regionaux = Centre_regional::all();
         $tournees = DepartTournee::all();
         $sites = Commercial_site::all();
-        // $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
         $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
-        $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
         $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
-        $ctv = CaisseCtv::find($id);
+        $ctv = CaisseCtv::with('operatrices')->find($id);
+        // $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
         //$billetage = DB::table('caisse_billetages')->where('ctv', $id)->get();
         $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
         $billetage = $billetages[0];
