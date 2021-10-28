@@ -31,9 +31,16 @@ class SecuriteServiceController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $securiteServices = SecuriteService::with('personnes')->get();
+        if (isset($debut) && isset($fin)) {
+            $securiteServices = SecuriteService::with('personnes')
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
         return view('securiteService.liste', compact('securiteServices'));
     }
 

@@ -27,8 +27,7 @@ class CaisseVideoSurveillanceController extends Controller
         $fin = $request->get("fin");
         $surveillances = CaisseVideoSurveillance::all();
         if (isset($debut) && isset($fin)) {
-            $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])
-                ->get();
+            $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])->get();
         }
         return view('/caisse/video-surveillance.liste',
             compact('surveillances'));
