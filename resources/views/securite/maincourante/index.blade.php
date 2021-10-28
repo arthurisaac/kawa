@@ -142,7 +142,7 @@
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8"/>
+                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8" value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="km_depart" class="col-sm-4">Km départ</label>
@@ -205,16 +205,16 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
-                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8"/>
+                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8" value="{{date('Y-m-d')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
-                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8"/>
+                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8" value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
                                     <input type="time" name="asDebutOperation" id="asDebutOperation"
-                                           class="form-control col-sm-8"/>
+                                           class="form-control col-sm-8" value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
@@ -305,8 +305,8 @@
                                         <input type="date" class="form-control col-sm-6" name="departSite">
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-6">Destination</label>
-                                        <input type="text" class="form-control col-sm-6" name="destination">
+                                        <label class="col-sm-6">Prochaine destination</label>
+                                        <select class="form-control col-sm-6" name="destination" id="prochaineDestination"></select>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Observation</label>
@@ -337,7 +337,7 @@
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label class="col-sm-5">Heure arrivée</label>
-                                    <input type="time" name="heureArrivee" class="form-control col-sm-7"/>
+                                    <input type="time" name="heureArrivee" class="form-control col-sm-7" value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Km arrivé</label>
@@ -352,7 +352,7 @@
                                         <option>3/4</option>
                                     </select>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" style="display: none;">
                                     <label class="col-sm-5">Fin de tournée</label>
                                     <select name="finTournee" class="form-control col-sm-7">
                                         <option></option>
@@ -362,7 +362,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Date arrivée centre</label>
-                                    <input type="date" name="dateArrivee" class="form-control col-sm-7"/>
+                                    <input type="date" name="dateArrivee" class="form-control col-sm-7" value="{{date('Y-m-d')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Observation</label>
@@ -420,6 +420,10 @@
                     commercial_site.map(({sites}) => {
                         $('#asSite').append($('<option>', {
                             value: sites.id,
+                            text: `${sites.site} (${sites.clients.client_nom})`
+                        }));
+                        $('#prochaineDestination').append($('<option>', {
+                            value: sites.site,
                             text: `${sites.site} (${sites.clients.client_nom})`
                         }));
                     })
