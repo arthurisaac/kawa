@@ -142,7 +142,7 @@
                                             class="form-control col-sm-7">
                                         <option></option>
                                         @foreach($personnels as $personnel)
-                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}</option>
+                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}  | {{$personnel->nomPrenoms}}</option>
                                         @endforeach
                                     </select>
                                 </div>
