@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('main')
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">CTV</h2></div>
         <br/>
