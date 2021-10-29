@@ -288,7 +288,7 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-6">Heure de départ</label>
-                                    <input type="time" name="heureDepart" class="form-control col-sm-6"/>
+                                    <input type="time" name="heureDepart" class="form-control col-sm-6" value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
@@ -304,7 +304,7 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-6">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-6" name="departSite">
+                                        <input type="date" class="form-control col-sm-6" name="departSite" value="{{date('Y-m-d')}}">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Prochaine destination</label>
