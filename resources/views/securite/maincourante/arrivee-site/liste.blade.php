@@ -43,6 +43,7 @@
                 <td>Véhicule</td>
                 <td>Equipage</td>
                 <td>Temps op.</td>
+                <td>Nbre de colis pris</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -54,13 +55,14 @@
                     <td>{{$arriveeSite->tournees->centre ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->date ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
-                    <td>{{$arriveeSite->tournees->heureDepart ?? "Donnée indisponible"}}</td>
+                    <td>{{$arriveeSite->finOperation ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->sites->site ?? "Non précisé"}}</td>
                     <td>{{$arriveeSite->sites->clients->client_nom ?? ""}}</td>
                     <td>{{$arriveeSite->operation ?? ""}}</td>
                     <td>{{$arriveeSite->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->agentDeGardes->nomPrenoms ?? "Donnée indisponible"}} // {{$arriveeSite->tournees->chauffeurs->nomPrenoms ?? "Donnée indisponible"}}</td>
                     <td>{{$arriveeSite->tempsOperation}}</td>
+                    <td>{{$arriveeSite->nombre_colis}}</td>
                     <td style="width: 30px; text-align: center;">
                         <a href="/maincourante-arriveesiteliste/{{$arriveeSite->id}}/edit" class="btn btn-sm btn-primary"></a>
                         <button class="btn btn-sm btn-danger" onclick="supprimer('{{$arriveeSite->id}}', this)"></button>
