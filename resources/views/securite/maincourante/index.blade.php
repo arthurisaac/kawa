@@ -709,6 +709,8 @@
                             $("textarea[name=asObservation]").val("");
                             if (confirm("Enregistré avec succès! Ouvrir la liste de arrivée site ?")) {
                                 window.location.replace("maincourante-arriveesiteliste");
+                            } else {
+                                window.location.reload();
                             }
                         }
                     }
