@@ -1965,7 +1965,46 @@
                 </div>
             @endif
 
-            @if (in_array('ssb', (array)$services))
+                <div class="element">
+                    <!--SSB-->
+                    <nav id="wb_MenuBar13">
+                        <div id="MenuBar13">
+                            <ul style="display:none;">
+                                <li><span></span><span><a
+                                            href="javascript:popupwnd('parametres','no','no','no','yes','yes','no','','','1000','500')"
+                                            target="_self" title="Paramètre">PARAMETRES</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <script>
+                            const cmMenuBar13 =
+                                {
+                                    mainFolderLeft: '',
+                                    mainFolderRight: '',
+                                    mainItemLeft: '',
+                                    mainItemRight: '',
+                                    folderLeft: '',
+                                    folderRight: '',
+                                    itemLeft: '',
+                                    itemRight: '',
+                                    mainSpacing: 0,
+                                    subSpacing: 0,
+                                    delay: 100,
+                                    offsetHMainAdjust: [0, 0],
+                                    offsetSubAdjust: [0, 0]
+                                };
+                            const cmMenuBar13HSplit = [_cmNoClick, '<td class="MenuBar13MenuSplitLeft"><div></div></td>' +
+                            '<td class="MenuBar13MenuSplitText"><div></div></td>' +
+                            '<td class="MenuBar13MenuSplitRight"><div></div></td>'];
+                            const cmMenuBar13MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar13HorizontalSplit">|</td></tr></table></div>'];
+                            const cmMenuBar13MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar13MainSplitText"><div></div></td>'];
+                            document.addEventListener('DOMContentLoaded', function (event) {
+                                cmDrawFromText('MenuBar13', 'hbr', cmMenuBar13, 'MenuBar13');
+                            });
+                        </script>
+                    </nav>
+                </div>
+            {{--@if (in_array('ssb', (array)$services))
                 <div class="element">
                     <!--SSB-->
                     <nav id="wb_MenuBar13">
@@ -2025,7 +2064,7 @@
                         </script>
                     </nav>
                 </div>
-            @endif
+            @endif--}}
 
                 @if (count((array)$services) == 0)
                     <div class="row">

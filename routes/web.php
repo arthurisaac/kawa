@@ -363,3 +363,13 @@ Route::get('ssb-commercial-liste', [\App\Http\Controllers\SsbCommercialControlle
 
 Route::resource('ssb-site', 'SsbSiteController');
 Route::get('ssb-site-liste', [\App\Http\Controllers\SsbSiteController::class, 'liste']);
+
+/*
+ * Parametre
+ */
+Route::get('parametres', [\App\Http\Controllers\OptionSelectController::class, 'index']);
+
+Route::get('parametres-option-niveau-caburant', [\App\Http\Controllers\OptionSelectController::class, 'optionCarburant']);
+Route::post('parametres-option-niveau-caburant', [\App\Http\Controllers\OptionSelectController::class, 'storeCarburant']);
+Route::delete('parametres-option-niveau-caburant/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyCarburant']);
+

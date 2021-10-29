@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group row" >
+                    <div class="form-group row">
                         <label class="col-sm-4">Véhicule</label>
                         <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
                         {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
@@ -142,7 +142,8 @@
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8" value="{{date('H:i')}}"/>
+                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8"
+                                           value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="km_depart" class="col-sm-4">Km départ</label>
@@ -152,10 +153,9 @@
                                     <label for="km_depart" class="col-sm-4">Niveau carburant</label>
                                     <select name="dcNiveauCarburant" class="form-control col-sm-8">
                                         <option></option>
-                                        <option>1/4</option>
-                                        <option>2/4</option>
-                                        <option>3/4</option>
-                                        <option>4/4</option>
+                                        @foreach($optionNiveauCarburant as $option)
+                                            <option>{{$option->option}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group row">
@@ -205,11 +205,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
-                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8" value="{{date('Y-m-d')}}"/>
+                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8"
+                                           value="{{date('Y-m-d')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
-                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8" value="{{date('H:i')}}"/>
+                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8"
+                                           value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
@@ -306,7 +308,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Prochaine destination</label>
-                                        <select class="form-control col-sm-6" name="destination" id="prochaineDestination"></select>
+                                        <select class="form-control col-sm-6" name="destination"
+                                                id="prochaineDestination"></select>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Observation</label>
@@ -337,7 +340,8 @@
                             <div class="col-4">
                                 <div class="form-group row">
                                     <label class="col-sm-5">Heure arrivée</label>
-                                    <input type="time" name="heureArrivee" class="form-control col-sm-7" value="{{date('H:i')}}"/>
+                                    <input type="time" name="heureArrivee" class="form-control col-sm-7"
+                                           value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Km arrivé</label>
@@ -347,9 +351,9 @@
                                     <label class="col-sm-5">Niveau carburant</label>
                                     <select name="niveauCarburant" class="form-control col-sm-7">
                                         <option></option>
-                                        <option>1/4</option>
-                                        <option>2/4</option>
-                                        <option>3/4</option>
+                                        @foreach($optionNiveauCarburant as $option)
+                                            <option>{{$option->option}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group row" style="display: none;">
@@ -362,7 +366,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Date arrivée centre</label>
-                                    <input type="date" name="dateArrivee" class="form-control col-sm-7" value="{{date('Y-m-d')}}"/>
+                                    <input type="date" name="dateArrivee" class="form-control col-sm-7"
+                                           value="{{date('Y-m-d')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Observation</label>

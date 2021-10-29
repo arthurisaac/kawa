@@ -12,6 +12,7 @@ use App\Models\DepartCentre;
 use App\Models\DepartSite;
 use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
+use App\Models\OptionNiveauCarburant;
 use App\Models\SiteDepartTournee;
 use App\Models\TourneeCentre;
 use App\Models\Vehicule;
@@ -41,13 +42,14 @@ class SecuriteMaincouranteController extends Controller
         $departSites = DepartSite::with('tournees')->get();
         $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->get();
         $arriveeCentres = ArriveeCentre::with('tournees')->get();
+        $optionNiveauCarburant = OptionNiveauCarburant::all();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
             ->get();
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites', 'sitesTournees'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites', 'sitesTournees', 'optionNiveauCarburant'));
     }
 
     public function liste()
