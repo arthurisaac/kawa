@@ -252,9 +252,10 @@
                 else
                     $("#convoyeur" + numero).val(convoyeur)
             }
-                $("#sitesListes > tbody").html("");
-                sites.map(s => {
-                    let HTML_NODE = `<tr>
+
+            $("#sitesListes > tbody").html("");
+            sites.map(s => {
+                let HTML_NODE = `<tr>
                         <td>
                                 <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
                                 <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
@@ -283,10 +284,10 @@
                         <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
                 </tr>`;
 
-                    $("#sitesListes").append(HTML_NODE);
-                });
+                $("#sitesListes").append(HTML_NODE);
+            });
 
-                $("#sitesListes").append(`<tbody>
+            $("#sitesListes").append(`<tbody>
                 <tr>
                     <td colspan="4" style="vertical-align: center;">TOTAL</td>
                     <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
@@ -303,13 +304,12 @@
                     <td><input type="number" name="totalMontant" id="totalMontant" class="form-control" readonly></td>
                 </tr>
                 </tbody>`);
-                changeXOF();
-                changeDollar();
-                changeEuro();
-                changePierre();
-                changeNombreColis();
-                changeMontant();
-            }
+            changeXOF();
+            changeDollar();
+            changeEuro();
+            changePierre();
+            changeNombreColis();
+            changeMontant();
 
             $("#kmArrivee").on("change", function () {
                 const totalVidange = vidangeGlobale.prochainKm - parseInt(this.value);
@@ -319,7 +319,6 @@
                 $("#vidangeCourroie").val(totalVidangeCourroie);
                 $("#vidangePont").val(totalVidangePont);
             });
-
         });
 
         function diffDate(d1, d2) {
