@@ -124,10 +124,9 @@
                             <label for="km_depart" class="col-sm-4">Niveau carburant</label>
                             <select name="niveauCarburant" class="form-control col-sm-8">
                                 <option>{{$centre->niveauCarburant}}</option>
-                                <option>1/4</option>
-                                <option>2/4</option>
-                                <option>3/4</option>
-                                <option>4/4</option>
+                                @foreach($optionNiveauCarburant as $option)
+                                    <option>{{$option->option}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group row">

@@ -364,7 +364,8 @@ class SecuriteMaincouranteController extends Controller
     public function editDepartCentre(Request $request, $id)
     {
         $centre = DepartCentre::all()->find($id);
-        return view('securite.maincourante.depart-centres.edit', compact('centre'));
+        $optionNiveauCarburant = OptionNiveauCarburant::all();
+        return view('securite.maincourante.depart-centres.edit', compact('centre', 'optionNiveauCarburant'));
     }
 
     public function editArriveeSite(Request $request, $id)
