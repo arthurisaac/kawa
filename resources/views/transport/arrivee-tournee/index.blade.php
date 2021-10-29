@@ -253,39 +253,41 @@
                     $("#convoyeur" + numero).val(convoyeur)
             }
 
-            $("#sitesListes > tbody").html("");
-            sites.map(s => {
-                let HTML_NODE = `<tr>
-                        <td>
-                                <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
-                                <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
-                        </td>
-                        <td><select class="form-control" name="type[]">
-                                    <option>${s?.type ?? ''}</option>
-                                    <option>Enlèvement</option>
-                                    <option>Dépôt</option>
-                                    <option>Enlèvement + Dépôt</option>
-                                </select></td>
-                        <td><textarea class="form-control" name="bordereau[]">${s?.bordereau ?? ''}</textarea></td>
-                        <td><select name="colis[]" class="form-control">
-                                <option>${s.colis ?? ''}</option>
-                                <option>RAS</option>
-                                <option>Sac jute</option>
-                                <option>Keep safe</option>
-                                <option>Caisse</option>
-                                <option>Conteneur</option>
-                                </select></td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
-                        <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
-                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
-                </tr>`;
+            function populateSites() {
+                $("#sitesListes > tbody").html("");
+                sites.map(s => {
+                    let HTML_NODE = `<tr>
+                            <td>
+                                    <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
+                                    <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
+                            </td>
+                            <td><select class="form-control" name="type[]">
+                                        <option>${s?.type ?? ''}</option>
+                                        <option>Enlèvement</option>
+                                        <option>Dépôt</option>
+                                        <option>Enlèvement + Dépôt</option>
+                                    </select></td>
+                            <td><textarea class="form-control" name="bordereau[]">${s?.bordereau ?? ''}</textarea></td>
+                            <td><select name="colis[]" class="form-control">
+                                    <option>${s.colis ?? ''}</option>
+                                    <option>RAS</option>
+                                    <option>Sac jute</option>
+                                    <option>Keep safe</option>
+                                    <option>Caisse</option>
+                                    <option>Conteneur</option>
+                                    </select></td>
+                            <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
+                            <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
+                            <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
+                    </tr>`;
 
-                $("#sitesListes").append(HTML_NODE);
-            });
+                    $("#sitesListes").append(HTML_NODE);
+                });
+            }
 
             $("#sitesListes").append(`<tbody>
                 <tr>
@@ -301,7 +303,6 @@
                                readonly></td>
                     <td></td>
                     <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
-                    <td><input type="number" name="totalMontant" id="totalMontant" class="form-control" readonly></td>
                 </tr>
                 </tbody>`);
             changeXOF();
