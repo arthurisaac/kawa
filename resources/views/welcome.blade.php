@@ -219,10 +219,10 @@
                                                                 href="javascript:popupwnd('maincourante-synthese','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Synthèse de tournée</a>
                                                         </li>
-                                                        <li><span></span><a
+                                                        {{--<li><span></span><a
                                                                 href="javascript:popupwnd('maincourante-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                                 target="_self" title="Liste">Liste MainCourante</a>
-                                                        </li>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><a
@@ -455,7 +455,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Etat&nbsp;tourn&#233;e</span>
+                                        {{--<li><span></span><span>Etat&nbsp;tourn&#233;e</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('etat-bordereau-tournee-sur-periode','no','no','no','yes','yes','no','','','1000','500')"
@@ -493,7 +493,7 @@
                                                         target="_self">Fond&nbsp;transport&#233;/p&#233;riode</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li>--}}
 
                                         <li><span></span><span>Etat</span>
                                             <ul>
