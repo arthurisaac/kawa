@@ -547,43 +547,6 @@
                                             </ul>
                                         </li>
 
-                                        <li><span></span><span>Conteneur</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Nouveau">Nouveau</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Liste">Liste</a>
-                                                </li>
-                                                <li><span></span><span>Recherche</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/rechercher-etat.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Etat">Etat</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/recherche-par-type.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Type">Type</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/etat.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self"
-                                                                title="D&#233;taill&#233;">D&#233;taill&#233;</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><span></span><span>Bordereau</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Etat bordereau">Etat&nbsp;bordereau</a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                         <li><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><a
@@ -755,6 +718,44 @@
                                                                 target="_self">Scell&#233;&nbsp;utilis&#233;</a>
                                                         </li>
                                                     </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li><span></span><span>Conteneur</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Nouveau">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste</a>
+                                                </li>
+                                                <li><span></span><span>Recherche</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/rechercher-etat.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Etat">Etat</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/recherche-par-type.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Type">Type</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/etat.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self"
+                                                                title="D&#233;taill&#233;">D&#233;taill&#233;</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><span></span><span>Bordereau</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('etat-bordereau','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Etat bordereau">Etat&nbsp;bordereau</a>
                                                 </li>
                                             </ul>
                                         </li>
