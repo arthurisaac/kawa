@@ -357,58 +357,6 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                {{--TODO--}}
-                                                {{--<li><span></span><span>Caisse</span>
-                                                    <ul>
-                                                        <li><span></span><span>Recherche</span>
-                                                            <ul>
-                                                                <li><span></span><span>GDF</span>
-                                                                    <ul>
-                                                                        <li><span></span><a
-                                                                                href="javascript:displaylightbox('./caissecentrale/colis/recherche/solde.html',{})"
-                                                                                target="_self" title="Solde GDF">Solde&nbsp;GDF</a>
-                                                                        </li>
-                                                                        <li><span></span><a
-                                                                                href="javascript:displaylightbox('./caissecentrale/colis/recherche/fonds-sortis.html',{})"
-                                                                                target="_self">Fonds&nbsp;sortis</a>
-                                                                        </li>
-                                                                        <li><span></span><a
-                                                                                href="javascript:displaylightbox('./caissecentrale/colis/recherche/fonds-entree.html',{})"
-                                                                                target="_self"
-                                                                                title="Fonds entr&#233;es">Fonds&nbsp;entr&#233;es</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/date-proprio-operatrice.html',{})"
-                                                                        target="_self"
-                                                                        title="Date/Site/Op&#233;ratrice">Date/Site/Op&#233;ratrice</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/operatrice.html',{})"
-                                                                        target="_self" title="Par op&#233;ratrice">Par&nbsp;op&#233;ratrice</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/proprio-de-site.html',{})"
-                                                                        target="_self"
-                                                                        title="Par site">Par&nbsp;site</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/parclientdate.html',{})"
-                                                                        target="_self">Par&nbsp;client/date</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/parclient.html',{})"
-                                                                        target="_self">Par&nbsp;client</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:displaylightbox('./caissecentrale/colis/recherche/pardate.html',{})"
-                                                                        target="_self">Par&nbsp;date</a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>--}}
                                             </ul>
                                         </li>
                                     </ul>
@@ -930,6 +878,35 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li><span></span><span>Param&#232;trage</span>
+                                            <ul>
+                                                {{--<li><span></span><span>Tarification</span></li>--}}
+                                                <li><span></span><span>Carte&nbsp;carburant</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carte-carburant','no','no','no','yes','yes','no','','','1300','700')"
+                                                                target="_self">Creation&nbsp;carte</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carte-carburant-liste','no','no','no','yes','yes','no','','','1300','700')"
+                                                                target="_self">Liste&nbsp;des&nbsp;cartes</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li><span></span><a>Carburant</a>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carb-chargement-ticket-create','no','no','no','yes','yes','no','','','1300','700')"
+                                                                target="_self">Chargement&nbsp;carte</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1300','700')"
+                                                                target="_self">Liste&nbsp;chargement</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -1021,35 +998,7 @@
                             <ul style="display:none;">
                                 <li><span></span><span>COMPTABILITE</span>
                                     <ul>
-                                        <li><span></span><span>Param&#232;trage</span>
-                                            <ul>
-                                                {{--<li><span></span><span>Tarification</span></li>--}}
-                                                <li><span></span><span>Carte&nbsp;carburant</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('carte-carburant','no','no','no','yes','yes','no','','','1300','700')"
-                                                                target="_self">Creation&nbsp;carte</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('carte-carburant-liste','no','no','no','yes','yes','no','','','1300','700')"
-                                                                target="_self">Liste&nbsp;des&nbsp;cartes</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><a>Carburant</a>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('carb-chargement-ticket-create','no','no','no','yes','yes','no','','','1300','700')"
-                                                                target="_self">Chargement&nbsp;carte</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1300','700')"
-                                                                target="_self">Liste&nbsp;chargement</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
+
                                         <li><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><a
