@@ -822,6 +822,70 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li><span></span><span>Carburant</span>
+                                    <ul>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Carte&nbsp;carb/Chargement/ticket</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carb-chargement','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Carte&nbsp;carb/Chargement</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carb-ticket','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Carte&nbsp;carb/ticket</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carb-vehicule','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Etat&nbsp;carburant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
+                                        </li>
+                                        <li><span></span><span>Etat&nbsp;g&#233;n&#233;ral</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                        target="_self">Carte&nbsp;carburant</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
+                                                        target="_self">V&#233;hicule</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
+                                    <ul>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Ticket&nbsp;carburant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">carburant&nbsp;comptant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Pr&#233;vision&nbsp;carburant</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <script>
@@ -1153,82 +1217,6 @@
                             <ul style="display:none;">
                                 <li><span></span><span>LOGISTIQUE</span>
                                     <ul>
-                                        {{--<li><span></span><span>V&#233;hicules</span>
-                                            <ul>
-                                                <li><span></span><span>Parc&nbsp;auto</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./logistique/parc-auto-nouveau.html','no','no','no','yes','yes','no','','','1000','50')"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./logistique/parc-auto-liste.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>Etat&nbsp;d'entretien</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('entretien-vehicule','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Entretien/v&#233;hicule">Entretien/v&#233;hicule</a>
-                                                        </li>
-                                                        <li><span></span><span>Rechercher</span>
-                                                            <ul>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self"
-                                                                        title="Par date">Par&nbsp;date</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self"
-                                                                        title="Par vidange">Par&nbsp;vidange</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par courroie">Par&nbsp;courroie</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par v&#233;hicule">Par&nbsp;v&#233;hicule</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par visite technique">Par&nbsp;visite&nbsp;technique</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self"
-                                                                        title="Par patente">Par&nbsp;patente</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par vignette">Par&nbsp;vignette</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par huile de pont">Par&nbsp;huile&nbsp;de&nbsp;pont</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par carte de transport">Par&nbsp;carte&nbsp;de&nbsp;transport</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self"
-                                                                        title="Par carte de stationnement">Par&nbsp;carte&nbsp;de&nbsp;stationnement</a>
-                                                                </li>
-                                                                <li><span></span><a
-                                                                        href="javascript:popupwnd('./logistique/entretien-rechercher.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                        target="_self" title="Par assurance">Par&nbsp;assurance</a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>--}}
                                         <li><span></span><span>Achat</span>
                                             <ul>
                                                 <li><span></span><span>Fournisseur</span>
@@ -1560,49 +1548,7 @@
                                                 </li>--}}
                                             </ul>
                                         </li>
-                                        {{-- TODO
-                                        <li><span></span><span>Intervention&nbsp;v&#233;hicules</span>
-                                            <ul>
-                                                <li><span></span><span>Panne</span>
-                                                    <ul>
-                                                        <li><span></span><span>D&#233;faillance&nbsp;constat&#233;e</span>
-                                                            <ul>
-                                                                <li><span></span><span>Nouveau</span></li>
-                                                                <li><span></span><span>Liste</span></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><span></span><span>D&#233;faillance&nbsp;effectu&#233;e</span>
-                                                            <ul>
-                                                                <li><span></span><span>Nouveau</span></li>
-                                                                <li><span></span><span>Liste</span></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>D&#233;pense</span>
-                                                    <ul>
-                                                        <li><span></span><span>Nouveau</span></li>
-                                                        <li><span></span><span>Liste</span></li>
-                                                        <li><span></span><span>Autres&nbsp;d&#233;penses</span>
-                                                            <ul>
-                                                                <li><span></span><span>Nouveau</span></li>
-                                                                <li><span></span><span>Liste</span></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><span>Recherche</span>
-                                                    <ul>
-                                                        <li><span></span><span>Panne/v&#233;hicule</span></li>
-                                                        <li><span></span><span>Recherche&nbsp;d&#233;penses</span></li>
-                                                        <li>
-                                                            <span></span><span>Recherche&nbsp;autres&nbsp;d&#233;penses</span>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>--}}
-                                        <li><span></span><span>Carburant</span>
+                                        {{--<li><span></span><span>Carburant</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1200','600')"
@@ -1663,26 +1609,6 @@
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self">Pr&#233;vision&nbsp;carburant</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        {{--<li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:displaylightbox('./tournee/carburanttournee/ticket-carburant.html',{})"
-                                                        target="_self">Ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:displaylightbox('./tournee/carburanttournee/liste-ticket-carburant.html',{})"
-                                                        target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:displaylightbox('./tournee/carburanttournee/carburant-comptant.html',{})"
-                                                        target="_self">Carburant&nbsp;comptant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:displaylightbox('./tournee/carburanttournee/liste-ticket-comptant.html',{})"
-                                                        target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
                                                 </li>
                                             </ul>
                                         </li>--}}
