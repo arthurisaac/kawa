@@ -546,30 +546,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">carburant&nbsp;comptant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Pr&#233;vision&nbsp;carburant</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+
                                         <li><span></span><span>Conteneur</span>
                                             <ul>
                                                 <li><span></span><a
@@ -815,7 +792,68 @@
                 </div>
             @endif
 
-            @if (in_array('virgile', (array)$services))
+            @if (in_array('transport', (array)$services))
+                <div class="element">
+                    <!--VIRGILE-->
+                    <nav id="wb_MenuBar7">
+                        <div id="MenuBar7">
+                            <ul style="display:none;">
+                                <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
+                                    <ul>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Ticket&nbsp;carburant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">carburant&nbsp;comptant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
+                                        </li>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
+                                                target="_self">Pr&#233;vision&nbsp;carburant</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <script>
+                            const cmMenuBar7 =
+                                {
+                                    mainFolderLeft: '',
+                                    mainFolderRight: '',
+                                    mainItemLeft: '',
+                                    mainItemRight: '',
+                                    folderLeft: '',
+                                    folderRight: '',
+                                    itemLeft: '',
+                                    itemRight: '',
+                                    mainSpacing: 0,
+                                    subSpacing: 0,
+                                    delay: 100,
+                                    offsetHMainAdjust: [0, 0],
+                                    offsetSubAdjust: [0, 0]
+                                };
+                            const cmMenuBar7HSplit = [_cmNoClick, '<td class="MenuBar7MenuSplitLeft"><div></div></td>' +
+                            '<td class="MenuBar7MenuSplitText"><div></div></td>' +
+                            '<td class="MenuBar7MenuSplitRight"><div></div></td>'];
+                            const cmMenuBar7MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar7HorizontalSplit">|</td></tr></table></div>'];
+                            const cmMenuBar7MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar7MainSplitText"><div></div></td>'];
+                            document.addEventListener('DOMContentLoaded', function (event) {
+                                cmDrawFromText('MenuBar7', 'hbr', cmMenuBar7, 'MenuBar7');
+                            });
+                        </script>
+                    </nav>
+                </div>
+            @endif
+            {{--@if (in_array('virgile', (array)$services))
                 <div class="element">
                     <!--VIRGILE-->
                     <nav id="wb_MenuBar7">
@@ -862,7 +900,7 @@
                         </script>
                     </nav>
                 </div>
-            @endif
+            @endif--}}
 
             @if (in_array('comptabilité', (array)$services))
                 <div class="element">
@@ -1908,8 +1946,10 @@
                                             </ul>
                                         </li>
                                         <li><span></span>
-                                            <span><a href="javascript:popupwnd('achat-suivi','no','no','no','yes','no','no','','','1000','800')"
-                                                    target="_self" title="Suivi des commandes">Etat suivi des commandes</a></span>
+                                            <span><a
+                                                    href="javascript:popupwnd('achat-suivi','no','no','no','yes','no','no','','','1000','800')"
+                                                    target="_self"
+                                                    title="Suivi des commandes">Etat suivi des commandes</a></span>
                                         </li>
                                         <li><span></span><span>Rechercher</span>
                                             <ul>
@@ -1965,45 +2005,45 @@
                 </div>
             @endif
 
-                <div class="element">
-                    <!--SSB-->
-                    <nav id="wb_MenuBar13">
-                        <div id="MenuBar13">
-                            <ul style="display:none;">
-                                <li><span></span><span><a
-                                            href="javascript:popupwnd('parametres','no','no','no','yes','yes','no','','','1000','500')"
-                                            target="_self" title="Paramètre">PARAMETRES</a></span>
-                                </li>
-                            </ul>
-                        </div>
-                        <script>
-                            const cmMenuBar13 =
-                                {
-                                    mainFolderLeft: '',
-                                    mainFolderRight: '',
-                                    mainItemLeft: '',
-                                    mainItemRight: '',
-                                    folderLeft: '',
-                                    folderRight: '',
-                                    itemLeft: '',
-                                    itemRight: '',
-                                    mainSpacing: 0,
-                                    subSpacing: 0,
-                                    delay: 100,
-                                    offsetHMainAdjust: [0, 0],
-                                    offsetSubAdjust: [0, 0]
-                                };
-                            const cmMenuBar13HSplit = [_cmNoClick, '<td class="MenuBar13MenuSplitLeft"><div></div></td>' +
-                            '<td class="MenuBar13MenuSplitText"><div></div></td>' +
-                            '<td class="MenuBar13MenuSplitRight"><div></div></td>'];
-                            const cmMenuBar13MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar13HorizontalSplit">|</td></tr></table></div>'];
-                            const cmMenuBar13MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar13MainSplitText"><div></div></td>'];
-                            document.addEventListener('DOMContentLoaded', function (event) {
-                                cmDrawFromText('MenuBar13', 'hbr', cmMenuBar13, 'MenuBar13');
-                            });
-                        </script>
-                    </nav>
-                </div>
+            <div class="element">
+                <!--SSB-->
+                <nav id="wb_MenuBar13">
+                    <div id="MenuBar13">
+                        <ul style="display:none;">
+                            <li><span></span><span><a
+                                        href="javascript:popupwnd('parametres','no','no','no','yes','yes','no','','','1000','500')"
+                                        target="_self" title="Paramètre">PARAMETRES</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <script>
+                        const cmMenuBar13 =
+                            {
+                                mainFolderLeft: '',
+                                mainFolderRight: '',
+                                mainItemLeft: '',
+                                mainItemRight: '',
+                                folderLeft: '',
+                                folderRight: '',
+                                itemLeft: '',
+                                itemRight: '',
+                                mainSpacing: 0,
+                                subSpacing: 0,
+                                delay: 100,
+                                offsetHMainAdjust: [0, 0],
+                                offsetSubAdjust: [0, 0]
+                            };
+                        const cmMenuBar13HSplit = [_cmNoClick, '<td class="MenuBar13MenuSplitLeft"><div></div></td>' +
+                        '<td class="MenuBar13MenuSplitText"><div></div></td>' +
+                        '<td class="MenuBar13MenuSplitRight"><div></div></td>'];
+                        const cmMenuBar13MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar13HorizontalSplit">|</td></tr></table></div>'];
+                        const cmMenuBar13MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar13MainSplitText"><div></div></td>'];
+                        document.addEventListener('DOMContentLoaded', function (event) {
+                            cmDrawFromText('MenuBar13', 'hbr', cmMenuBar13, 'MenuBar13');
+                        });
+                    </script>
+                </nav>
+            </div>
             {{--@if (in_array('ssb', (array)$services))
                 <div class="element">
                     <!--SSB-->
@@ -2066,57 +2106,57 @@
                 </div>
             @endif--}}
 
-                @if (count((array)$services) == 0)
-                    <div class="row">
+            @if (count((array)$services) == 0)
+                <div class="row">
 
-                        <div class="element">
-                            COMMERCIAL
-                        </div>
-                        <div class="element">
-                            SECURITE
-                        </div>
-
-                        <div class="element">
-                            CAISSE CENTRALE
-                        </div>
-
-                        <div class="element">
-                            TRANSPORT
-                        </div>
-
-                        <div class="element">
-                            REGULATION
-                        </div>
-
-                        <div class="element">
-                            VIRGILE
-                        </div>
-
-                        <div class="element">
-                            COMPTABILITE
-                        </div>
-                        <div class="element">
-                            LOGISTIQUE
-                        </div>
-
-                        <div class="element">
-                            RH
-                        </div>
-
-                        <div class="element">
-                            INFORMATIQUE
-                        </div>
-
-                        <div class="element">
-                            ACHAT
-                        </div>
-
-                        <div class="element">
-                            SSB
-                        </div>
-
+                    <div class="element">
+                        COMMERCIAL
                     </div>
-                @endif
+                    <div class="element">
+                        SECURITE
+                    </div>
+
+                    <div class="element">
+                        CAISSE CENTRALE
+                    </div>
+
+                    <div class="element">
+                        TRANSPORT
+                    </div>
+
+                    <div class="element">
+                        REGULATION
+                    </div>
+
+                    <div class="element">
+                        VIRGILE
+                    </div>
+
+                    <div class="element">
+                        COMPTABILITE
+                    </div>
+                    <div class="element">
+                        LOGISTIQUE
+                    </div>
+
+                    <div class="element">
+                        RH
+                    </div>
+
+                    <div class="element">
+                        INFORMATIQUE
+                    </div>
+
+                    <div class="element">
+                        ACHAT
+                    </div>
+
+                    <div class="element">
+                        SSB
+                    </div>
+
+                </div>
+            @endif
         </div>
     </div>
 </body>
