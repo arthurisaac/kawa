@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Départ tournée</h2></div>
+        <div><h2 class="heading">LISTE DES SITES DESSERVIS</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,7 +21,6 @@
             </div>
         @endif
 
-        <a href="/depart-tournee" class="btn btn-info btn-sm">Nouveau départ tournée</a>
         <br>
         <br>
         <div class="row">
@@ -29,7 +28,7 @@
                 <form action="#" method="get">
                     @csrf
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-7">
                             <div class="form-group row">
                                 <label for="" class="col-sm-5">Date début</label>
                                 <input type="date" name="debut" class="form-control col-sm-7">
@@ -37,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-7">
                             <div class="form-group row">
                                 <label for="" class="col-sm-5">Date fin</label>
                                 <input type="date" name="fin" class="form-control col-sm-7">
@@ -58,34 +57,38 @@
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
-                <td>Création</td>
-                <td>Date</td>
-                <td>Centre régional</td>
-                <td>Centre</td>
-                <td>N°Tournée</td>
-                <td>Véhicule</td>
-                <td>Equipage</td>
-                <td>Km départ</td>
-                <td>Heure départ</td>
-                <td>Coût tournée</td>
-                <td>Action</td>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Centre régional</th>
+                <th>Centre</th>
+                <th>N°Tournée</th>
+                <th>Véhicule</th>
+                <th>Km départ</th>
+                <th>Heure départ</th>
+                <th>Coût tournée</th>
+                <th>TDF</th>
+                <th>Montant TDF</th>
+                <th>Caisse</th>
+                <th>Montant caisse</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($departTournee as $depart)
                 <tr>
-                    <td>{{$depart->created_at}}</td>
+                    <td>{{$depart->id}}</td>
                     <td>{{$depart->date}}</td>
                     <td>{{$depart->centre}}</td>
                     <td>{{$depart->centre_regional}}</td>
                     <td>{{$depart->numeroTournee}}</td>
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
-                    <td>{{$depart->chefDeBords->nomPrenoms ?? ""}} //
-                        {{$depart->agentDeGardes->nomPrenoms ?? ""}} //
-                        {{$depart->chauffeurs->nomPrenoms ?? ""}} //</td>
                     <td>{{$depart->kmDepart}}</td>
                     <td>{{$depart->heureDepart}}</td>
                     <td>{{$depart->coutTournee}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td  style="width: 70px;">
 
                         <div>

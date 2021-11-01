@@ -62,6 +62,23 @@ class DepartTourneeController extends Controller
             compact('departTournee'));
     }
 
+    public function listeDesservi(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $departTournee = DepartTournee::with('vehicules')
+            ->orderByDesc("created_at")
+            ->get();
+        if (isset($debut) && isset($fin)) {
+            $departTournee = DepartTournee::with('vehicules')
+                ->whereBetween('date', [$debut, $fin])
+                ->orderByDesc("created_at")
+                ->get();
+        }
+        return view('transport.desservi.liste',
+            compact('departTournee'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

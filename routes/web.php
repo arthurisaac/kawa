@@ -80,6 +80,7 @@ Route::get('vehicule-liste', [\App\Http\Controllers\VehiculeController::class, '
 Route::resource('depart-tournee', 'DepartTourneeController');
 Route::delete('depart-tournee-item/{id}', [\App\Http\Controllers\DepartTourneeController::class, 'destroyItem']);
 Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
+Route::get('site-desservi-liste', [\App\Http\Controllers\DepartTourneeController::class, 'listeDesservi']);
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::get('arrivee-tournee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'liste']);
