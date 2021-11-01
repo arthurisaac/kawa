@@ -52,14 +52,19 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-lg-right">TOTAL SITES DESSERVIS {{count($siteDepartTournee)}}</h3>
+                        <h3 class="text-lg-right">TOTAL SITES DESSERVIS : {{count($siteDepartTournee)}}</h3>
                     </div>
                 </div>
-               {{-- <div class="row">
+                <div class="row">
                     <div class="col">
-                        <h3 class="text-lg-right">COUT TOUNREE {{$siteDepartTournee->sum('coutTournee')}}</h3>
+                        <h3 class="text-lg-right">NOMBRE DE TOURNEE : {{count($tournees)}}</h3>
                     </div>
-                </div>--}}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-lg-right">COUT TOUNREE : {{$totalTournee}}</h3>
+                    </div>
+                </div>
             </div>
         </div>
 

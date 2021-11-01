@@ -66,6 +66,9 @@ class DepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+
+        $totalTournee = DepartTournee::all()->sum('coutTournee');
+        $tournees = DepartTournee::all()->get('id');
         $siteDepartTournee = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
@@ -74,7 +77,7 @@ class DepartTourneeController extends Controller
                 ->orderByDesc("created_at")
                 ->get();
         }
-        return view('transport.desservi.liste', compact('siteDepartTournee'));
+        return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
 
     /**
