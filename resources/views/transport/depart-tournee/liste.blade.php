@@ -51,7 +51,10 @@
                 </form>
             </div>
             <div class="col">
-                 <h3 class="text-lg-right">TOTAL: {{$departTournee->sum('coutTournee')}}</h3>
+                 <h3 class="text-lg-right">COUT TOTAL TOURNES: {{$departTournee->sum('coutTournee')}}</h3>
+            </div>
+            <div class="col">
+                 <h3 class="text-lg-right">NOMBRE DE TOURNES: {{count($departTournee)}}</h3>
             </div>
         </div>
 

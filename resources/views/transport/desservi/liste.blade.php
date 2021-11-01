@@ -52,17 +52,17 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-lg-right">TOTAL SITES DESSERVIS : {{count($siteDepartTournee)}}</h3>
+                        <h5 class="text-lg-right text-secondary">TOTAL SITES DESSERVIS : {{count($siteDepartTournee)}}</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-lg-right">NOMBRE DE TOURNEE : {{count($tournees)}}</h3>
+                        <h5 class="text-lg-right text-secondary">NOMBRE DE TOURNEE : {{count($tournees)}}</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-lg-right">COUT TOUNREE : {{$totalTournee}}</h3>
+                        <h5 class="text-lg-right text-secondary">COUT TOUNREE : {{$totalTournee}}</h5>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                         <div>
                             <a href="{{ route('depart-tournee.edit',$site->idTourneeDepart)}}"
                                class="btn btn-primary btn-sm"></a>
-                            <button class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}', this)"></button>
+                            {{--<button class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}', this)"></button>--}}
                         </div>
                     </td>
                 </tr>
