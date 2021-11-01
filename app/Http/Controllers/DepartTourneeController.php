@@ -68,7 +68,7 @@ class DepartTourneeController extends Controller
         $fin = $request->get("fin");
 
         $totalTournee = DepartTournee::all()->sum('coutTournee');
-        $tournees = DepartTournee::all()->get('id');
+        $tournees = DepartTournee::all();
         $siteDepartTournee = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
