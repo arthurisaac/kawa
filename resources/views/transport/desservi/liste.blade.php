@@ -49,88 +49,99 @@
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <h3 class="text-lg-right">TOTAL: {{$departTournee->sum('coutTournee')}}</h3>
-            </div>
         </div>
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Centre régional</th>
-                <th>Centre</th>
-                <th>N°Tournée</th>
-                <th>Véhicule</th>
-                <th>Km départ</th>
-                <th>Heure départ</th>
+                <td>N°</td>
+                <td>Centre régional</td>
+                <td>Centre</td>
+                <td>Date</td>
+                <td>N° Tournée</td>
+                <td>Heure</td>
+                <td>Site</td>
+                <td>Client</td>
+                <td>Type op</td>
+                <td>Véhicule</td>
                 <th>TDF</th>
                 <th>Montant TDF</th>
                 <th>Caisse</th>
                 <th>Montant caisse</th>
-                <th>Action</th>
+                <td>Actions</td>
             </tr>
             </thead>
             <tbody>
-            @foreach ($departTournee as $depart)
+            @foreach ($siteDepartTournee as $site)
                 <tr>
-                    <td>{{$depart->id}}</td>
-                    <td>{{$depart->date}}</td>
-                    <td>{{$depart->centre}}</td>
-                    <td>{{$depart->centre_regional}}</td>
-                    <td>{{$depart->numeroTournee}}</td>
-                    <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
-                    <td>{{$depart->kmDepart}}</td>
-                    <td>{{$depart->heureDepart}}</td>
+                    <td style="width: 20px; text-align: center">{{$site->id}}</td>
+                    <td>{{$site->tournees->centre_regional ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->tournees->centre ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->tournees->date ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->finOperation ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->sites->site ?? "Non précisé"}}</td>
+                    <td>{{$site->sites->clients->client_nom ?? ""}}</td>
+                    <td>{{$site->operation ?? ""}}</td>
+                    <td>{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>
-                        @foreach($depart->sites as $site)
-                            @switch($site->tdf)
-                                @case('oo_vb_extamuros_bitume')
-                                    VB extramuros bitume
-                                    @break
-                                @case('oo_vb_extramuros_piste')
-                                    VB extramuros piste
-                                    @break
-                                @case('oo_vl_extramuros_bitume')
-                                    VL extramuros bitume
-                                    @break
-                                @case('oo_vl_extramuros_piste')
-                                    VL extramuros piste
-                                    @break
-                                @case('oo_vb_intramuros')
-                                    VB intramuros
-                                    @break
-                                @case('oo_vl_intramuros')
-                                    VL intramuros
-                                    @break
-                                @default
-                                    RAS
+                        @switch($site->tdf)
+                            @case('oo_vb_extamuros_bitume')
+                            VB extramuros bitume
+                            @break
+                            @case('oo_vb_extramuros_piste')
+                            VB extramuros piste
+                            @break
+                            @case('oo_vl_extramuros_bitume')
+                            VL extramuros bitume
+                            @break
+                            @case('oo_vl_extramuros_piste')
+                            VL extramuros piste
+                            @break
+                            @case('oo_vb_intramuros')
+                            VB intramuros
+                            @break
+                            @case('oo_vl_intramuros')
+                            VL intramuros
+                            @break
+                            @default
+                            RAS
 
-                            @endswitch
-                            //
-                        @endforeach
+                        @endswitch
                     </td>
                     <td>
-                        @foreach($depart->sites as $site)
-                            {{$site->sites["$site->tdf"]}} //
-                        @endforeach
+                        {{$site->sites["$site->tdf"]}}
                     </td>
                     <td>
-                        @foreach($depart->sites as $site)
-                            {{$site->caisse}} //
-                        @endforeach
+                        @switch($site->caisse)
+                            @case('oo_mad')
+                            MAD
+                            @break
+                            @case('oo_vb_extramuros_piste')
+                            VB extramuros piste
+                            @break
+                            @case('oo_collecte')
+                            Collecte
+                            @break
+                            @case('oo_cctv')
+                            CCTV
+                            @break
+                            @case('oo_collecte_caisse')
+                            Collecte caisse
+                            @default
+                            RAS
+
+                        @endswitch
                     </td>
                     <td>
-                        @foreach($depart->sites as $site)
-                            {{$site->sites["$site->caisse"]}} //
-                        @endforeach
+                        {{$site->sites["$site->caisse"]}}
                     </td>
                     <td style="width: 70px;">
 
                         <div>
-                            <a href="{{ route('depart-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm"></a>
-                            <button class="btn btn-danger btn-sm" onclick="supprimer('{{$depart->id}}', this)"></button>
+                            <a href="{{ route('depart-tournee.edit',$site->idTourneeDepart)}}"
+                               class="btn btn-primary btn-sm"></a>
+                            <button class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}', this)"></button>
                         </div>
                     </td>
                 </tr>
@@ -153,7 +164,7 @@
                 if (confirm("Confirmer la suppression?")) {
                     const token = "{{ csrf_token() }}";
                     $.ajax({
-                        url: "depart-tournee/" + id,
+                        url: "depart-tournee-item/" + id,
                         type: 'DELETE',
                         dataType: "JSON",
                         data: {
@@ -170,8 +181,6 @@
                             console.error(err.responseJSON.message);
                             alert(err.responseJSON.message ?? "Une erreur s'est produite");
                         }
-                    }).done(function () {
-                        // TODO hide loader
                     });
                 }
             }

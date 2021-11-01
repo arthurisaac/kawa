@@ -66,16 +66,15 @@ class DepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $departTournee = DepartTournee::with('vehicules')
+        $siteDepartTournee = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
         if (isset($debut) && isset($fin)) {
-            $departTournee = DepartTournee::with('vehicules')
-                ->whereBetween('date', [$debut, $fin])
+            $siteDepartTournee = SiteDepartTournee::with('sites')
                 ->orderByDesc("created_at")
                 ->get();
         }
-        return view('transport.desservi.liste', compact('departTournee'));
+        return view('transport.desservi.liste', compact('siteDepartTournee'));
     }
 
     /**
