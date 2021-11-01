@@ -49,6 +49,18 @@
                     </div>
                 </form>
             </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-lg-right">TOTAL SITES DESSERVIS {{count($siteDepartTournee)}}</h3>
+                    </div>
+                </div>
+               {{-- <div class="row">
+                    <div class="col">
+                        <h3 class="text-lg-right">COUT TOUNREE {{$siteDepartTournee->sum('coutTournee')}}</h3>
+                    </div>
+                </div>--}}
+            </div>
         </div>
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
@@ -59,7 +71,7 @@
                 <td>Centre</td>
                 <td>Date</td>
                 <td>N° Tournée</td>
-                <td>Heure</td>
+                <td>Heure départ</td>
                 <td>Site</td>
                 <td>Client</td>
                 <td>Type op</td>
@@ -79,10 +91,10 @@
                     <td>{{$site->tournees->centre ?? "Donnée indisponible"}}</td>
                     <td>{{$site->tournees->date ?? "Donnée indisponible"}}</td>
                     <td>{{$site->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
-                    <td>{{$site->finOperation ?? "Donnée indisponible"}}</td>
+                    <td>{{$site->tournees->heureDepart ?? "Donnée indisponible"}}</td>
                     <td>{{$site->sites->site ?? "Non précisé"}}</td>
                     <td>{{$site->sites->clients->client_nom ?? ""}}</td>
-                    <td>{{$site->operation ?? ""}}</td>
+                <td>{{$site->type ?? ""}}</td>
                     <td>{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>
                         @switch($site->tdf)
