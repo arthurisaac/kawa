@@ -85,7 +85,30 @@
                     <td>{{$depart->heureDepart}}</td>
                     <td>
                         @foreach($depart->sites as $site)
-                            {{$site->tdf}} //
+                            @switch($site->tdf)
+                                @case('oo_vb_extamuros_bitume')
+                                    VB extramuros bitume
+                                    @break
+                                @case('oo_vb_extramuros_piste')
+                                    VB extramuros piste
+                                    @break
+                                @case('oo_vl_extramuros_bitume')
+                                    VL extramuros bitume
+                                    @break
+                                @case('oo_vl_extramuros_piste')
+                                    VL extramuros piste
+                                    @break
+                                @case('oo_vb_intramuros')
+                                    VB intramuros
+                                    @break
+                                @case('oo_vl_intramuros')
+                                    VL intramuros
+                                    @break
+                                @default
+                                    RAS
+
+                            @endswitch
+                            //
                         @endforeach
                     </td>
                     <td>
