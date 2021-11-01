@@ -75,8 +75,7 @@ class DepartTourneeController extends Controller
                 ->orderByDesc("created_at")
                 ->get();
         }
-        return view('transport.desservi.liste',
-            compact('departTournee'));
+        return view('transport.desservi.liste', compact('departTournee'));
     }
 
     /**

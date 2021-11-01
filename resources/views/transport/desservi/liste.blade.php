@@ -50,7 +50,7 @@
                 </form>
             </div>
             <div class="col">
-                 <h3 class="text-lg-right">TOTAL: {{$departTournee->sum('coutTournee')}}</h3>
+                <h3 class="text-lg-right">TOTAL: {{$departTournee->sum('coutTournee')}}</h3>
             </div>
         </div>
 
@@ -65,7 +65,6 @@
                 <th>Véhicule</th>
                 <th>Km départ</th>
                 <th>Heure départ</th>
-                <th>Coût tournée</th>
                 <th>TDF</th>
                 <th>Montant TDF</th>
                 <th>Caisse</th>
@@ -84,12 +83,27 @@
                     <td>{{strtoupper($depart->vehicules->immatriculation) ?? 'vehicule supprimé ' . $depart->idVehicule}}</td>
                     <td>{{$depart->kmDepart}}</td>
                     <td>{{$depart->heureDepart}}</td>
-                    <td>{{$depart->coutTournee}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td  style="width: 70px;">
+                    <td>
+                        @foreach($depart->sites as $site)
+                            {{$site->tdf}} //
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($depart->sites as $site)
+                            {{$site->sites["$site->tdf"]}} //
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($depart->sites as $site)
+                            {{$site->caisse}} //
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($depart->sites as $site)
+                            {{$site->sites["$site->caisse"]}} //
+                        @endforeach
+                    </td>
+                    <td style="width: 70px;">
 
                         <div>
                             <a href="{{ route('depart-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm"></a>
@@ -107,7 +121,7 @@
                     "language": {
                         "url": "French.json"
                     },
-                    "order": [[ 0, "desc" ]]
+                    "order": [[0, "desc"]]
                 });
             });
         </script>

@@ -130,8 +130,6 @@
                             console.error(err.responseJSON.message);
                             alert(err.responseJSON.message ?? "Une erreur s'est produite");
                         }
-                    }).done(function () {
-                        // TODO hide loader
                     });
                 }
             }
