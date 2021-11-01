@@ -97,7 +97,7 @@
                         </td>
                         <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
                         <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->chauffeurs->nomPrenoms}} // {{$tournee->chefDeBords->nomPrenoms}} // {{$tournee->agentDeGardes->nomPrenoms}}</td>
+                        <td>{{$tournee->chauffeurs->nomPrenoms ?? ''}} // {{$tournee->chefDeBords->nomPrenoms ?? ''}} // {{$tournee->agentDeGardes->nomPrenoms ?? ''}}</td>
                     </tr>
                 @endforeach
                 </tbody>
