@@ -57,7 +57,8 @@
                 <td>N°Tournée</td>
                 <td>Véhicule</td>
                 <td>Equipage</td>
-                <td>Montant collecté</td>
+                <td>Km arrivée</td>
+                <td>Heure arrivée</td>
                 <td>Action</td>
             </tr>
             </thead>
@@ -73,7 +74,8 @@
                     <td>{{$depart->chefDeBords->nomPrenoms ?? ""}} //
                         {{$depart->agentDeGardes->nomPrenoms ?? ""}} //
                         {{$depart->chauffeurs->nomPrenoms ?? ""}} //</td>
-                    <td>{{$depart->sites->sum("montant")}}</td>
+                    <td>{{$depart->kmArrivee}}</td>
+                    <td>{{$depart->heureArrivee}}</td>
                     <td  style="width: 70px;">
                         <div>
                             <a href="{{ route('arrivee-tournee.edit',$depart->id)}}" class="btn btn-primary btn-sm"></a>

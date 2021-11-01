@@ -175,6 +175,34 @@
                             <ul style="display:none;">
                                 <li><span></span><span>SECURITE</span>
                                     <ul>
+                                        <li><span></span><a
+                                                href="javascript:popupwnd('maincourante','no','no','no','yes','yes','no','','','1000','600')"
+                                                target="_self" title="Main courante">Main&nbsp;courante</a>
+                                        </li>
+                                        <li><span></span><span>Liste main courante</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('maincourante-departcentreliste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste départ centre</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('maincourante-arriveesiteliste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste arrivée site</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('maincourante-departsiteliste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste départ site</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('maincourante-arriveecentreliste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste arrivée centre</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('maincourante-synthese','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Synthèse de tournée</a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li><span></span><span>S&#233;curit&#233;</span>
                                             <ul>
                                                 <li><span></span><a
@@ -189,40 +217,6 @@
                                                                 href="javascript:popupwnd('securite-service-liste','no','no','no','yes','yes','no','','','1000','600')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('maincourante','no','no','no','yes','yes','no','','','1000','600')"
-                                                        target="_self" title="Main courante">Main&nbsp;courante</a>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Nouveau">Nouveau</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-departcentreliste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste départ centre</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-arriveesiteliste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste arrivée site</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-departsiteliste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste départ site</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-arriveecentreliste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste arrivée centre</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-synthese','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Synthèse de tournée</a>
-                                                        </li>
-                                                        {{--<li><span></span><a
-                                                                href="javascript:popupwnd('maincourante-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Liste">Liste MainCourante</a>
-                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><a
@@ -1927,45 +1921,47 @@
                 </div>
             @endif
 
-            <div class="element">
-                <!--SSB-->
-                <nav id="wb_MenuBar13">
-                    <div id="MenuBar13">
-                        <ul style="display:none;">
-                            <li><span></span><span><a
-                                        href="javascript:popupwnd('parametres','no','no','no','yes','yes','no','','','1000','500')"
-                                        target="_self" title="Paramètre">PARAMETRES</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <script>
-                        const cmMenuBar13 =
-                            {
-                                mainFolderLeft: '',
-                                mainFolderRight: '',
-                                mainItemLeft: '',
-                                mainItemRight: '',
-                                folderLeft: '',
-                                folderRight: '',
-                                itemLeft: '',
-                                itemRight: '',
-                                mainSpacing: 0,
-                                subSpacing: 0,
-                                delay: 100,
-                                offsetHMainAdjust: [0, 0],
-                                offsetSubAdjust: [0, 0]
-                            };
-                        const cmMenuBar13HSplit = [_cmNoClick, '<td class="MenuBar13MenuSplitLeft"><div></div></td>' +
-                        '<td class="MenuBar13MenuSplitText"><div></div></td>' +
-                        '<td class="MenuBar13MenuSplitRight"><div></div></td>'];
-                        const cmMenuBar13MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar13HorizontalSplit">|</td></tr></table></div>'];
-                        const cmMenuBar13MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar13MainSplitText"><div></div></td>'];
-                        document.addEventListener('DOMContentLoaded', function (event) {
-                            cmDrawFromText('MenuBar13', 'hbr', cmMenuBar13, 'MenuBar13');
-                        });
-                    </script>
-                </nav>
-            </div>
+            @if (session('user'))
+                <div class="element">
+                    <!--SSB-->
+                    <nav id="wb_MenuBar13">
+                        <div id="MenuBar13">
+                            <ul style="display:none;">
+                                <li><span></span><span><a
+                                            href="javascript:popupwnd('parametres','no','no','no','yes','yes','no','','','1000','500')"
+                                            target="_self" title="Paramètre">PARAMETRES</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <script>
+                            const cmMenuBar13 =
+                                {
+                                    mainFolderLeft: '',
+                                    mainFolderRight: '',
+                                    mainItemLeft: '',
+                                    mainItemRight: '',
+                                    folderLeft: '',
+                                    folderRight: '',
+                                    itemLeft: '',
+                                    itemRight: '',
+                                    mainSpacing: 0,
+                                    subSpacing: 0,
+                                    delay: 100,
+                                    offsetHMainAdjust: [0, 0],
+                                    offsetSubAdjust: [0, 0]
+                                };
+                            const cmMenuBar13HSplit = [_cmNoClick, '<td class="MenuBar13MenuSplitLeft"><div></div></td>' +
+                            '<td class="MenuBar13MenuSplitText"><div></div></td>' +
+                            '<td class="MenuBar13MenuSplitRight"><div></div></td>'];
+                            const cmMenuBar13MainVSplit = [_cmNoClick, '<div><table width="15" cellspacing="0"><tr><td class="MenuBar13HorizontalSplit">|</td></tr></table></div>'];
+                            const cmMenuBar13MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar13MainSplitText"><div></div></td>'];
+                            document.addEventListener('DOMContentLoaded', function (event) {
+                                cmDrawFromText('MenuBar13', 'hbr', cmMenuBar13, 'MenuBar13');
+                            });
+                        </script>
+                    </nav>
+                </div>
+            @endif
             {{--@if (in_array('ssb', (array)$services))
                 <div class="element">
                     <!--SSB-->
