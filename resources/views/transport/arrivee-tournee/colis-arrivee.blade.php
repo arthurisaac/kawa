@@ -98,6 +98,7 @@
                 <th>Site</th>
                 <th>Type</th>
                 <th>Colis</th>
+                <th>Bordereau</th>
                 <th>N° Tournée</th>
                 <th>colis (XOF)</th>
                 <th>Devise Dollar</th>
@@ -117,6 +118,7 @@
                     <td>{{$colis->sites->site ?? ''}}</td>
                     <td>{{$colis->type ?? ''}}</td>
                     <td>{{$colis->colis ?? ''}}</td>
+                    <td>{{$colis->bordereau ?? ''}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
                     <td>{{$colis->valeur_colis_xof_arrivee}}</td>
                     <td>{{$colis->device_etrangere_dollar_arrivee}}</td>
