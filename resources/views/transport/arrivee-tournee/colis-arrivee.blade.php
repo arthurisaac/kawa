@@ -52,7 +52,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total colis: {{count($colisArrivees)}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total sites: {{count($colisArrivees)}}</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -85,6 +85,9 @@
                 <td>Centre régional</td>
                 <td>Centre</td>
                 <td>Date</td>
+                <td>Site</td>
+                <td>Type</td>
+                <td>Colis</td>
                 <td>N° Tournée</td>
                 <td>Valeur colis (XOF)</td>
                 <td>Valeur devise étrangère (Dollar)</td>
@@ -101,6 +104,9 @@
                     <td>{{$colis->tournees->centre_regional ?? ''}}</td>
                     <td>{{$colis->tournees->centre ?? ''}}</td>
                     <td>{{$colis->tournees->date ?? ''}}</td>
+                    <td>{{$colis->sites->site ?? ''}}</td>
+                    <td>{{$colis->type ?? ''}}</td>
+                    <td>{{$colis->colis ?? ''}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
                     <td>{{$colis->valeur_colis_xof_arrivee}}</td>
                     <td>{{$colis->device_etrangere_dollar_arrivee}}</td>
