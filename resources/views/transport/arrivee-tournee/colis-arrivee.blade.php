@@ -57,17 +57,22 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total XOF: {{$colisArrivees->sum("valeur_colis_xof")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total XOF: {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total dollar: {{$colisArrivees->sum("device_etrangere_dollar")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total dollar: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total euro: {{$colisArrivees->sum("device_etrangere_euro")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total euro: {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-lg-right text-secondary">Total nombre de colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
                     </div>
                 </div>
             </div>
@@ -97,11 +102,11 @@
                     <td>{{$colis->tournees->centre ?? ''}}</td>
                     <td>{{$colis->tournees->date ?? ''}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
-                    <td>{{$colis->valeur_colis_xof}}</td>
-                    <td>{{$colis->device_etrangere_dollar}}</td>
-                    <td>{{$colis->device_etrangere_euro}}</td>
-                    <td>{{$colis->pierre_precieuse}}</td>
-                    <td>{{$colis->nbre_colis}}</td>
+                    <td>{{$colis->valeur_colis_xof_arrivee}}</td>
+                    <td>{{$colis->device_etrangere_dollar_arrivee}}</td>
+                    <td>{{$colis->device_etrangere_euro_arrivee}}</td>
+                    <td>{{$colis->pierre_precieuse_arrivee}}</td>
+                    <td>{{$colis->nbre_colis_arrivee}}</td>
                     <td><a href="{{ route('arrivee-tournee.edit',$colis->idTourneeDepart)}}" class="btn btn-primary btn-sm"></a></td>
                 </tr>
             @endforeach
