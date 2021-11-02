@@ -86,7 +86,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total nombre de colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
                     </div>
                 </div>
             </div>
