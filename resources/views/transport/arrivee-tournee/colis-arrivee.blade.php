@@ -66,7 +66,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total XOF: {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
