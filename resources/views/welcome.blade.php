@@ -436,6 +436,10 @@
                                                         href="javascript:popupwnd('arrivee-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">Liste</a>
                                                 </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('colis-arrivee-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Colis arrivée tournée</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><span></span><a
@@ -453,45 +457,6 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        {{--<li><span></span><span>Etat&nbsp;tourn&#233;e</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-tournee-sur-periode','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Tourn&#233;e sur p&#233;riode">Tourn&#233;e&nbsp;sur&nbsp;p&#233;riode</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-sur-periode','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self"
-                                                        title="Sur p&#233;riode">Sur&nbsp;p&#233;riode</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-rentabilite-tournee','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Rentabilit&#233; de tourn&#233;e">Rentabilit&#233;&nbsp;de&nbsp;tourn&#233;e</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-par-site','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Par site">Par&nbsp;site</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-par-client','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Par client">Par&nbsp;client</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-par-vehicule','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self"
-                                                        title="Par v&#233;hicule">Par&nbsp;v&#233;hicule</a>
-                                                </li>
-                                                <!--<li><span></span><span>V&#233;hicule/Site</span></li>-->
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-par-convoyeur','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Par&nbsp;convoyeur</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-bordereau-fond-transporte','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Fond&nbsp;transport&#233;/p&#233;riode</a>
-                                                </li>
-                                            </ul>
-                                        </li>--}}
 
                                         <li><span></span><span>Etat</span>
                                             <ul>

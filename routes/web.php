@@ -84,6 +84,7 @@ Route::get('site-desservi-liste', [\App\Http\Controllers\DepartTourneeController
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::get('arrivee-tournee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'liste']);
+Route::get('colis-arrivee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'listeColisArrivee']);
 
 Route::resource('entretien-vehicule', 'EntretienVehiculeController');
 Route::get('entretien-vehicule-liste', [\App\Http\Controllers\EntretienVehiculeController::class, 'liste']);

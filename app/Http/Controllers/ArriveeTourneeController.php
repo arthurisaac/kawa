@@ -73,6 +73,15 @@ class ArriveeTourneeController extends Controller
             compact('departTournee'));
     }
 
+    public function listeColisArrivee(Request $request)
+    {
+        $colisArrivees = SiteDepartTournee::with('sites')
+            ->orderByDesc("created_at")
+            ->get();
+        return view('transport.arrivee-tournee.colis-arrivee',
+            compact('colisArrivees'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
