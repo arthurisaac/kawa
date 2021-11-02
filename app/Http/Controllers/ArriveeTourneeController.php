@@ -75,9 +75,17 @@ class ArriveeTourneeController extends Controller
 
     public function listeColisArrivee(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $colisArrivees = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
+        if (isset($debut) && isset($fin)) {
+            $colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
+                ->whereBetween('created_at', [$debut, $fin]) //TODO
+                ->orderByDesc("created_at")
+                ->get();
+        }
         return view('transport.arrivee-tournee.colis-arrivee',
             compact('colisArrivees'));
     }
