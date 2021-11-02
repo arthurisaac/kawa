@@ -77,6 +77,8 @@ class ArriveeTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+
+        $totalTournee = DepartTournee::all()->sum('coutTournee');
         $colisArrivees = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
@@ -87,7 +89,7 @@ class ArriveeTourneeController extends Controller
                 ->get();
         }
         return view('transport.arrivee-tournee.colis-arrivee',
-            compact('colisArrivees'));
+            compact('colisArrivees', 'totalTournee'));
     }
 
     /**

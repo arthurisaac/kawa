@@ -61,7 +61,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total tournées: {{count($colisArrivees)}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total tournées: {{$totalTournee}}</h6>
                     </div>
                 </div>
                 <div class="row">
