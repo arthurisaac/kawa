@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="burval-container">
-    <div><h2 class="heading">Ticket carburant</h2></div>
+    <div><h2 class="heading">APPRO CARBURANT</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -21,13 +21,28 @@
             <div class="col">
                 <div class="form-group row">
                     <label class="col-sm-5">Date</label>
-                    <input type="date" class="form-control col-sm-7" name="date"/>
+                    <input type="date" class="form-control col-sm-7" name="date" value="{{date('Y-m-d')}}"/>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-5">Heure</label>
-                    <input type="time" class="form-control col-sm-7" name="heure"/>
+                    <input type="time" class="form-control col-sm-7" name="heure" value="{{date('H:i')}}"/>
                 </div>
                 <div class="form-group row">
+                    <label for="centre" class="col-sm-5">Centre Régional</label>
+                    <select name="centre" id="centre" class="form-control col-sm-7" required>
+                        <option></option>
+                        @foreach ($centres as $centre)
+                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="centre_regional" class="col-sm-5">Centre</label>
+                    <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group row" style="display: none">
                     <label class="col-sm-5">Lieu</label>
                     <input type="text" class="form-control col-sm-7" name="lieu"/>
                 </div>
@@ -62,7 +77,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group row">
+                <div class="form-group row"  style="display: none">
                     <label class="col-sm-5">Solde</label>
                     <input type="number" class="form-control col-sm-7" name="solde"/>
                 </div>
@@ -71,7 +86,7 @@
                     <input type="number" class="form-control col-sm-7" name="soldePrecedent"/>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-5">Utilisation</label>
+                    <label class="col-sm-5"  style="display: none">Utilisation</label>
                     <select class="form-control form-control-sm col-md-7" name="utilisation">
                         <option value="Vidange">Vidange</option>
                         <option value="Carburant">Carburant</option>
@@ -79,11 +94,11 @@
                         <option value="Lubrifiant">Lubrifiant</option>
                     </select>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row"  style="display: none">
                     <label class="col-sm-5">Kilometrage</label>
                     <input type="number" class="form-control col-sm-7" name="kilometrage"/>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row"  style="display: none">
                     <label class="col-sm-5">Litrage</label>
                     <input type="number" class="form-control col-sm-7" name="litrage"/>
                 </div>
@@ -98,4 +113,24 @@
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
+        $("#centre").on("change", function () {
+            $("#centre_regional option").remove();
+            const centre = centres.find(c => c.centre === this.value);
+            const regions = centres_regionaux.filter(region => {
+                return region.id_centre === centre.id;
+            });
+            regions.map(({centre_regional}) => {
+                $('#centre_regional').append($('<option>', {
+                    value: centre_regional,
+                    text: centre_regional
+                }));
+            })
+        });
+    })
+</script>
 @endsection

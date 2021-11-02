@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CarburantCarte;
 use App\Models\CarburantTicket;
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,8 +21,10 @@ class CarburantTicketController extends Controller
     {
         $vehicules = Vehicule::all();
         $cartes = CarburantCarte::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         return view('/transport/ticket-carburant.index',
-            compact('vehicules','cartes'));
+            compact('vehicules','cartes', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -65,6 +69,8 @@ class CarburantTicketController extends Controller
             'utilisation' => $request->get('utilisation'),
             'kilometrage' => $request->get('kilometrage'),
             'litrage' => $request->get('litrage'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
         ]);
         $carburant->save();
         return redirect('/ticket-carburant')->with('success', 'Ticket carburant enregistré!');

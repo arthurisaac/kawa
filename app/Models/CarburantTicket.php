@@ -17,6 +17,8 @@ class CarburantTicket extends Model
         'soldePrecedent',
         'utilisation',
         'kilometrage',
-        'litrage'
+        'litrage',
+        'centre',
+        'centre_regional',
     ];
 }
