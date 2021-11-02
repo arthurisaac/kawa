@@ -25,7 +25,7 @@
         <br>
         <div class="row">
             <div class="col">
-                <form action="#" method="get">
+                <!--<form action="#" method="get">
                     @csrf
                     <div class="row">
                         <div class="col-7">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col"></div>
                     </div>
-                </form>
+                </form>-->
             </div>
             <div class="col">
                 <div class="row">
@@ -94,10 +94,10 @@
                 <td>Type</td>
                 <td>Colis</td>
                 <td>N° Tournée</td>
-                <td>Valeur colis (XOF)</td>
-                <td>Valeur devise étrangère (Dollar)</td>
-                <td>Valeur devise étrangère (Euro)</td>
-                <td>Valeur pierre précieuse</td>
+                <td>colis (XOF)</td>
+                <td>Devise Dollar</td>
+                <td>Devise Euro</td>
+                <td>Devise pierre précieuse</td>
                 <td>Nombre de colis</td>
                 <td>Actions</td>
             </tr>
