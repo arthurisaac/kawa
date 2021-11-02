@@ -71,12 +71,12 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total valeur dollar: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Devise étrangère(dollar): {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total euro: {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Devise étrangère(euro): {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
