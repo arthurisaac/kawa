@@ -57,12 +57,17 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <h6 class="text-lg-right text-secondary">Total tournées: {{count($colisArrivees)}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
                         <h6 class="text-lg-right text-secondary">Total XOF: {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total dollar: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
+                        <h6 class="text-lg-right text-secondary">Total valeur dollar: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -86,20 +91,20 @@
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
-                <td>N°</td>
-                <td>Centre régional</td>
-                <td>Centre</td>
-                <td>Date</td>
-                <td>Site</td>
-                <td>Type</td>
-                <td>Colis</td>
-                <td>N° Tournée</td>
-                <td>colis (XOF)</td>
-                <td>Devise Dollar</td>
-                <td>Devise Euro</td>
-                <td>Devise pierre précieuse</td>
-                <td>Nombre de colis</td>
-                <td>Actions</td>
+                <th>N°</th>
+                <th>Centre régional</th>
+                <th>Centre</th>
+                <th>Date</th>
+                <th>Site</th>
+                <th>Type</th>
+                <th>Colis</th>
+                <th>N° Tournée</th>
+                <th>colis (XOF)</th>
+                <th>Devise Dollar</th>
+                <th>Devise Euro</th>
+                <th>Devise pierre précieuse (XOF)</th>
+                <th>Nombre de colis</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
