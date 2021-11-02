@@ -1,6 +1,9 @@
 @extends('base')
 
 @section('main')
+    <style>
+        .dataTables_filter, .dataTables_info { display: none; }
+    </style>
     <div class="burval-container">
         <div><h2 class="heading">COLIS ARRIVES TOURNEE</h2></div>
         <br/>
@@ -25,6 +28,7 @@
         <br>
         <div class="row">
             <div class="col">
+                <input type="text" id="CustomSearchTextField" />
                 <!--<form action="#" method="get">
                     @csrf
                     <div class="row">
@@ -103,7 +107,7 @@
                 <th>colis (XOF)</th>
                 <th>Devise Dollar</th>
                 <th>Devise Euro</th>
-                <th>Devise pierre précieuse (XOF)</th>
+                <th>Pierre précieuse (XOF)</th>
                 <th>Nombre de colis</th>
                 <th>Actions</th>
             </tr>
@@ -133,12 +137,15 @@
 
         <script>
             $(document).ready(function () {
-                $('#table').DataTable({
+                let oTable = $('#table').DataTable({
                     "language": {
                         "url": "French.json"
                     },
                     "order": [[0, "desc"]]
                 });
+                $('#CustomSearchTextField').keyup(function(){
+                    oTable.search($(this).val()).draw() ;
+                })
             });
         </script>
         <script>
