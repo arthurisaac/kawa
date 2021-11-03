@@ -150,9 +150,9 @@
                     },
                     "order": [[0, "desc"]]
                 });
-                /*$('#CustomSearchTextField').keyup(function(){
+                $('#CustomSearchTextField').keyup(function(){
                     oTable.search($(this).val()).draw() ;
-                })*/
+                })
             });
         </script>
         <script>
