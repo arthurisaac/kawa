@@ -16,6 +16,7 @@ use App\Models\VidangePatente;
 use App\Models\VidangeTransport;
 use App\Models\VidangeVignette;
 use App\Models\VidangeVisite;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -83,10 +84,14 @@ class ArriveeTourneeController extends Controller
             ->orderByDesc("created_at")
             ->get();
         if (isset($debut) && isset($fin)) {
-            $colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
-                ->whereBetween('created_at', [$debut, $fin]) //TODO
-                ->orderByDesc("created_at")
-                ->get();
+            //$colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
+                //->whereBetween('created_at', [$debut, $fin])
+                //->orderByDesc("created_at")
+                //->get();
+
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
         }
         return view('transport.arrivee-tournee.colis-arrivee',
             compact('colisArrivees', 'tournees'));

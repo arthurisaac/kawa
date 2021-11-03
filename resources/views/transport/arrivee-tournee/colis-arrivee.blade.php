@@ -71,7 +71,7 @@
             </div>
             <div class="col">
 
-                <!--<form action="#" method="get">
+                <form action="#" method="get">
                     @csrf
                     <div class="row">
                         <div class="col-7">
@@ -93,7 +93,7 @@
                         </div>
                         <div class="col"></div>
                     </div>
-                </form>-->
+                </form>
             </div>
         </div>
 
