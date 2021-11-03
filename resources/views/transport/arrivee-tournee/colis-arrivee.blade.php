@@ -1,9 +1,9 @@
 @extends('base')
 
 @section('main')
-    <style>
+    {{--<style>
         .dataTables_filter, .dataTables_info { display: none; }
-    </style>
+    </style>--}}
     <div class="burval-container">
         <div><h2 class="heading">COLIS ARRIVES TOURNEE</h2></div>
         <br/>
@@ -63,11 +63,11 @@
                         <h6 class="text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
                     </div>
                 </div>
-                <div class="row">
+                {{--<div class="row">
                     <div class="col">
                         <input type="text" id="CustomSearchTextField" class="form-control col-5" />
                     </div>
-                </div>
+                </div>--}}
             </div>
             <div class="col">
 
@@ -144,15 +144,16 @@
 
         <script>
             $(document).ready(function () {
-                let oTable = $('#table').DataTable({
+                //let oTable = $('#table').DataTable({
+                $('#table').DataTable({
                     "language": {
                         "url": "French.json"
                     },
                     "order": [[0, "desc"]]
                 });
-                $('#CustomSearchTextField').keyup(function(){
+                /*$('#CustomSearchTextField').keyup(function(){
                     oTable.search($(this).val()).draw() ;
-                })
+                })*/
             });
         </script>
         <script>
