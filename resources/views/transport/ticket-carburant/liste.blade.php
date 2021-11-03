@@ -15,6 +15,40 @@
     <br/>
     @endif
 
+    <a href="/ticket-carburant" class="btn btn-sm btn-primary">Ajouter</a>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <form action="#" method="get">
+                @csrf
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5">Date début</label>
+                            <input type="date" name="debut" class="form-control col-sm-7">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5">Date fin</label>
+                            <input type="date" name="fin" class="form-control col-sm-7">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm">Rechercher</button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h6 class="float-right">Montant total : {{$carburants->sum("soldePrecedent")}}</h6>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <table class="table table-bordered" style="width: 100%" id="liste">
@@ -26,11 +60,8 @@
                     <th>Numero Ticket</th>
                     <th>N° Carte Carburant</th>
                     <th>Immatriculation</th>
-                    <th>Solde</th>
-                    <th>Solde Précédent</th>
-                    <th>Utilisation</th>
+                    <th>Montant</th>
                     <th>Kilometrage</th>
-                    <th>litrage</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,12 +72,9 @@
                     <td>{{$carburant->lieu}}</td>
                     <td>{{$carburant->numeroTicket}}</td>
                     <td>{{$carburant->numeroCarteCarburant}}</td>
-                    <td>{{$carburant->idVehicule}}</td>
-                    <td>{{$carburant->solde}}</td>
+                    <td>{{$carburant->vehicules->immatriculation ?? ""}}</td>
                     <td>{{$carburant->soldePrecedent}}</td>
-                    <td>{{$carburant->utilisation}}</td>
                     <td>{{$carburant->kilometrage}}</td>
-                    <td>{{$carburant->litrage}}</td>
                 </tr>
                 @endforeach
                 </tbody>
