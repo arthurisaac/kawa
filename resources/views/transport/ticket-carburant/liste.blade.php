@@ -61,7 +61,6 @@
                     <th>N° Carte Carburant</th>
                     <th>Immatriculation</th>
                     <th>Montant</th>
-                    <th>Kilometrage</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,7 +73,6 @@
                     <td>{{$carburant->numeroCarteCarburant}}</td>
                     <td>{{$carburant->vehicules->immatriculation ?? ""}}</td>
                     <td>{{$carburant->soldePrecedent}}</td>
-                    <td>{{$carburant->kilometrage}}</td>
                 </tr>
                 @endforeach
                 </tbody>

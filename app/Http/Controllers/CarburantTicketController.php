@@ -39,7 +39,7 @@ class CarburantTicketController extends Controller
 
         $carburants = CarburantTicket::all();
         if (isset($debut) && isset($fin)) {
-            $carburants = CarburantTicket::whereBetween('created_at', [$debut, $fin])->get();
+            $carburants = CarburantTicket::whereBetween('date', [$debut, $fin])->get();
         }
         return view('/transport/ticket-carburant.liste',
             compact('carburants'));
