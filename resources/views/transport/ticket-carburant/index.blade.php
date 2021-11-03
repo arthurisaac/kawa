@@ -82,11 +82,11 @@
                     <input type="number" class="form-control col-sm-7" name="solde"/>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-5">Solde précedent</label>
+                    <label class="col-sm-5">Montant</label>
                     <input type="number" class="form-control col-sm-7" name="soldePrecedent"/>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-5"  style="display: none">Utilisation</label>
+                <div class="form-group row" style="display: none">
+                    <label class="col-sm-5"  >Utilisation</label>
                     <select class="form-control form-control-sm col-md-7" name="utilisation">
                         <option value="Vidange">Vidange</option>
                         <option value="Carburant">Carburant</option>
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="col-2">
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                     <br>
                     <input type="number" class="form-control col-sm-7" name="total" readonly/>
                 </div>
