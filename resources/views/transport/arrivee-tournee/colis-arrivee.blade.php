@@ -28,7 +28,49 @@
         <br>
         <div class="row">
             <div class="col">
-                <input type="text" id="CustomSearchTextField" />
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Total sites: {{count($colisArrivees)}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Total tournées: {{count($tournees)}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Devise étrangère(dollar): {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Devise étrangère(euro): {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Pierre précieuse(xof): {{$colisArrivees->sum("pierre_precieuse_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" id="CustomSearchTextField" class="form-control col-5" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
                 <!--<form action="#" method="get">
                     @csrf
                     <div class="row">
@@ -53,43 +95,6 @@
                     </div>
                 </form>-->
             </div>
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total sites: {{count($colisArrivees)}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Total tournées: {{count($tournees)}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Devise étrangère(dollar): {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Devise étrangère(euro): {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Pierre précieuse(xof): {{$colisArrivees->sum("pierre_precieuse_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-lg-right text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
@@ -100,6 +105,7 @@
                 <th>Centre</th>
                 <th>Date</th>
                 <th>Site</th>
+                <th>Client</th>
                 <th>Type</th>
                 <th>Colis</th>
                 <th>Bordereau</th>
@@ -120,6 +126,7 @@
                     <td>{{$colis->tournees->centre ?? ''}}</td>
                     <td>{{$colis->tournees->date ?? ''}}</td>
                     <td>{{$colis->sites->site ?? ''}}</td>
+                    <td>{{$colis->sites->clients->client_nom ?? ''}}</td>
                     <td>{{$colis->type ?? ''}}</td>
                     <td>{{$colis->colis ?? ''}}</td>
                     <td>{{$colis->bordereau ?? ''}}</td>
