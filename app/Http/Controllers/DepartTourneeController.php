@@ -8,6 +8,7 @@ use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\SiteDepartTournee;
 use App\Models\Vehicule;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -73,9 +74,12 @@ class DepartTourneeController extends Controller
             ->orderByDesc("created_at")
             ->get();
         if (isset($debut) && isset($fin)) {
-            $siteDepartTournee = SiteDepartTournee::with('sites')
+            /*$siteDepartTournee = SiteDepartTournee::with('sites')
                 ->orderByDesc("created_at")
-                ->get();
+                ->get();*/
+            $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
         }
         return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
