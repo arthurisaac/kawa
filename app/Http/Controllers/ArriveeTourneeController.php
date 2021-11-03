@@ -92,6 +92,7 @@ class ArriveeTourneeController extends Controller
             $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
+            $tournees = DepartTournee::whereBetween('date', [$debut, $fin])->get();
         }
         return view('transport.arrivee-tournee.colis-arrivee',
             compact('colisArrivees', 'tournees'));

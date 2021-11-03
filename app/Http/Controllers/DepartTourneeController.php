@@ -80,6 +80,7 @@ class DepartTourneeController extends Controller
             $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
+            $tournees = DepartTournee::with('tournees')->whereBetween('date', [$debut, $fin]);
         }
         return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
