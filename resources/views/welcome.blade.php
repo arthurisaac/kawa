@@ -776,30 +776,6 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">carburant&nbsp;comptant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-comptant-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Liste&nbsp;carburant&nbsp;comptant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('carburant-prevision','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Pr&#233;vision&nbsp;carburant</a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                         <!-- Compabilite -->
                                         <li><span></span><span>Carburant</span>
                                             <ul>
@@ -816,28 +792,8 @@
                                                         target="_self">Carte&nbsp;carb/ticket</a>
                                                 </li>
                                                 <li><span></span><a
-                                                        href="javascript:popupwnd('carb-vehicule','no','no','no','yes','yes','no','','','1200','600')"
-                                                        target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
-                                                </li>
-                                                <li><span></span><a
                                                         href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
                                                         target="_self">Etat&nbsp;carburant</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
-                                                        target="_self">Etat&nbsp;carburant/v&#233;hicule</a>
-                                                </li>
-                                                <li><span></span><span>Etat&nbsp;g&#233;n&#233;ral</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
-                                                                target="_self">Carte&nbsp;carburant</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('etat-carburant','no','no','no','yes','yes','no','','','1200','600')"
-                                                                target="_self">V&#233;hicule</a>
-                                                        </li>
-                                                    </ul>
                                                 </li>
                                             </ul>
                                         </li>
