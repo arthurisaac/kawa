@@ -73,7 +73,7 @@ class CarburantTicketController extends Controller
             'centre_regional' => $request->get('centre_regional'),
         ]);
         $carburant->save();
-        return redirect('/ticket-carburant')->with('success', 'Ticket carburant enregistré!');
+        return redirect('/ticket-carburant-liste')->with('success', 'Ticket carburant enregistré!');
     }
 
     /**
