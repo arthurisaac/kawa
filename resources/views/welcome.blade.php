@@ -737,7 +737,7 @@
                                             </ul>
                                         </li>
                                         <!-- Compabilite -->
-                                        <li><span></span><span>Carburant</span>
+                                        {{--<li><span></span><span>Carburant</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('carb-chargement-ticket','no','no','no','yes','yes','no','','','1200','600')"
@@ -756,7 +756,7 @@
                                                         target="_self">Etat&nbsp;carburant</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li>--}}
                                         <li><span></span><span>Param&#232;trage</span>
                                             <ul>
                                                 {{--<li><span></span><span>Tarification</span></li>--}}
