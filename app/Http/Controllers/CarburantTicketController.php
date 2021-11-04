@@ -32,9 +32,15 @@ class CarburantTicketController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+
         $carburants = CarburantTicket::all();
+        if (isset($debut) && isset($fin)) {
+            $carburants = CarburantTicket::whereBetween('date', [$debut, $fin])->get();
+        }
         return view('/transport/ticket-carburant.liste',
             compact('carburants'));
     }

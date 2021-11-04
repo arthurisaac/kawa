@@ -50,6 +50,7 @@ class DepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+
         $departTournee = DepartTournee::with('vehicules')
             ->orderByDesc("created_at")
             ->get();
