@@ -712,11 +712,11 @@
                             <ul style="display:none;">
                                 <li><span></span><span>CARBURANT</span>
                                     <ul>
-                                        <li><span></span><span>Carburant&nbsp;tourn&#233;e</span>
+                                        <li><span></span><span>Appro carte carburant</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Appro carburant</a>
+                                                        target="_self">Nouveau</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
