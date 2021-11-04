@@ -118,6 +118,10 @@ class CarburantTicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = CarburantTicket::find($id);
+        if ($data) $data->delete();
+        return response()->json([
+            'message' => 'Good!'
+        ]);
     }
 }
