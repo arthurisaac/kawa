@@ -716,11 +716,11 @@
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ticket-carburant','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Ticket&nbsp;carburant</a>
+                                                        target="_self">Appro carburant</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ticket-carburant-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self">Liste&nbsp;ticket&nbsp;carburant</a>
+                                                        target="_self">Liste appro carburant</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('carburant-comptant','no','no','no','yes','yes','no','','','1000','500')"
