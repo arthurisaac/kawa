@@ -147,42 +147,29 @@
                                    class="form-control col-sm-8"/>
                         </div>
 
-                        <div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row" style="display: none;">
-                                        <label class="col-sm-6">Heure de départ</label>
-                                        <input type="time" name="asHeure" class="form-control col-sm-6" value="{{date('H:i')}}"/>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label id="km_depart" class="col-sm-6">Kilométrage arrivée</label>
-                                        <input type="number" name="asKm" value="{{$site->asKm}}" id="kmDepart" class="form-control col-sm-6"/>
-                                    </div>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-6" name="asDepartSite" value="{{$site->asDepartSite}}">
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Prochaine destination</label>
-                                        <select class="form-control col-sm-6" name="asDestination" id="prochaineDestination">
-                                            <option>{{$site->asDestination}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Observation</label>
-                                        <textarea class="form-control col-sm-6" name="asObservation">{{$site->asObservation}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                            </div>
-                            <br/>
+                        <br>
+                        <div class="form-group row" style="display: none;">
+                            <label class="col-sm-6">Heure de départ</label>
+                            <input type="time" name="asHeure" class="form-control col-sm-6" value="{{date('H:i')}}"/>
+                        </div>
+                        <div class="form-group row">
+                            <label id="km_depart" class="col-sm-4">Kilométrage arrivée</label>
+                            <input type="number" name="asKm" value="{{$site->asKm}}" id="kmDepart" class="form-control col"/>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4">Date départ site</label>
+                            <input type="date" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4">Prochaine destination</label>
+                            <select class="form-control col" name="asDestination" id="prochaineDestination">
+                                <option>{{$site->asDestination}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4">Observation</label>
+                            <textarea class="form-control col" name="asObservation">{{$site->asObservation}}</textarea>
                         </div>
                     </div>
                     <div class="col">

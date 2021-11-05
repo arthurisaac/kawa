@@ -689,7 +689,7 @@
                 const asNbColis = $("input[name=asNbColis]").val();
 
                 const asObservation = $("textarea[name=asObservation]").val();
-                const asDestination = $("input[name=asDestination]").val();
+                const asDestination = $("select[name=asDestination]").val();
                 const asDepartSite = $("input[name=asDepartSite]").val();
                 const asKm = $("input[name=asKm]").val();
                 const asHeure = $("input[name=asHeure]").val();
