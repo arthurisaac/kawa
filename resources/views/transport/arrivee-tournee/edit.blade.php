@@ -206,7 +206,8 @@
             <br>
 
             <button type="submit" class="btn btn-primary">Valider</button>
-            <a href="/arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
+            <a href="/arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir arrivée tourée</a>
+            <a href="/colis-arrivee-liste" class="btn btn-outline-info" style="margin-left: 20px">Ouvrir colis arrivée tourée</a>
         </form>
     </div>
 
