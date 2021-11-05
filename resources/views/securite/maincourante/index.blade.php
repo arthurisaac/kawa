@@ -36,7 +36,7 @@
                         <select class="form-control col-sm-8" name="noTournee" id="noTournee">
                             <option></option>
                             @foreach($tournees as $tournee)
-                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}} // {{$tournee->vehicules->code}}</option>
                             @endforeach
                         </select>
                     </div>
