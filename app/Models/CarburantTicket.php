@@ -21,6 +21,7 @@ class CarburantTicket extends Model
         'centre',
         'centre_regional',
     ];
+
     public function vehicules()
     {
         return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');

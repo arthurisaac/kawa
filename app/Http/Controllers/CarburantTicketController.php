@@ -101,7 +101,13 @@ class CarburantTicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $carburant = CarburantTicket::find($id);
+        $vehicules = Vehicule::all();
+        $cartes = CarburantCarte::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('transport.ticket-carburant.edit',
+            compact('vehicules','cartes', 'centres', 'centres_regionaux', 'id', 'carburant'));
     }
 
     /**
@@ -113,7 +119,24 @@ class CarburantTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $carburant = CarburantTicket::find($id);
+        if ($carburant) {
+            $carburant->date = $request->get('date');
+            $carburant->heure = $request->get('heure');
+            $carburant->lieu = $request->get('lieu');
+            $carburant->numeroTicket = $request->get('numeroTicket');
+            $carburant->numeroCarteCarburant = $request->get('numeroCarteCarburant');
+            $carburant->idVehicule = $request->get('idVehicule');
+            $carburant->solde = $request->get('solde');
+            $carburant->soldePrecedent = $request->get('soldePrecedent');
+            $carburant->utilisation = $request->get('utilisation');
+            $carburant->kilometrage = $request->get('kilometrage');
+            $carburant->litrage = $request->get('litrage');
+            $carburant->centre = $request->get('centre');
+            $carburant->centre_regional = $request->get('centre_regional');
+        }
+        $carburant->save();
+        return redirect('/ticket-carburant-liste')->with('success', 'Ticket carburant enregistré!');
     }
 
     /**
@@ -124,8 +147,8 @@ class CarburantTicketController extends Controller
      */
     public function destroy($id)
     {
-        $carburant = CarburantTicket::find($id);
-        if ($carburant) $carburant->delete();
+        $data = CarburantTicket::find($id);
+        if ($data) $data->delete();
         return response()->json([
             'message' => 'Good!'
         ]);
