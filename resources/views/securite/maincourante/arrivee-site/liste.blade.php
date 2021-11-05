@@ -3,7 +3,11 @@
 @section("main")
     <div class="container-fluid">
         <br>
+        <br>
         <div><h2 class="heading">Arrivée site</h2></div>
+        <br>
+        <a href="/maincourante" class="btn btn-sm btn-info">Nouveau</a>
+        <br>
         <form action="#" method="get">
             @csrf
             <div class="row">

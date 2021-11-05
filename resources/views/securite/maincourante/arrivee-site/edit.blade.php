@@ -7,6 +7,7 @@
         <a href="/maincourante-arriveesiteliste">Liste arrivée site</a>
         <br>
         <br>
+        <br>
         @if ($site->tournees)
         <div class="container-fluid">
             <div class="row">
@@ -20,13 +21,13 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee}}" readonly />
+                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee}} || {{$site->tournees->vehicules->code ?? ""}}" readonly />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Véhicule</label>
-                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$site->tournees->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
+                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}" readonly/>
                         {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
                             <option></option>
                             @foreach($vehicules as $vehicule)
