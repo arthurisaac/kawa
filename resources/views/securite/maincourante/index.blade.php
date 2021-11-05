@@ -116,10 +116,10 @@
                 <a class="nav-link" id="arrivee-site-tab" data-toggle="tab" href="#arrivee-site" role="tab"
                    aria-controls="arrivee-site" aria-selected="false">Arrivée site</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" id="depart-site-tab" data-toggle="tab" href="#depart-site" role="tab"
                    aria-controls="depart-site" aria-selected="false">Départ site</a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 <a class="nav-link" id="arrivee-centre-tab" data-toggle="tab" href="#arrivee-centre" role="tab"
                    aria-controls="arrivee-centre" aria-selected="false">Arrivée centre</a>
@@ -268,6 +268,43 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <br>
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Heure de départ</label>
+                                        <input type="time" name="asHeure" class="form-control col-sm-6" value="{{date('H:i')}}"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label id="km_depart" class="col-sm-6">Kilométrage arrivée</label>
+                                        <input type="number" name="asKm" id="kmDepart" class="form-control col-sm-6"/>
+                                    </div>
+                                </div>
+                                <div class="col"></div>
+                                <div class="col"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Date départ site</label>
+                                        <input type="date" class="form-control col-sm-6" name="asDepartSite" value="{{date('Y-m-d')}}">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Prochaine destination</label>
+                                        <select class="form-control col-sm-6" name="asDestination"
+                                                id="prochaineDestination"></select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-6">Observation</label>
+                                        <textarea class="form-control col-sm-6" name="asObservation"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col"></div>
+                                <div class="col"></div>
+                            </div>
+                            <br/>
                         </div>
 
                         <br/>
@@ -650,6 +687,12 @@
                 const tempsOperation = $("input[name=asTempsOperation]").val();
                 const asNbColis = $("input[name=asNbColis]").val();
 
+                const asObservation = $("input[name=asObservation]").val();
+                const asDestination = $("input[name=asDestination]").val();
+                const asDepartSite = $("input[name=asDepartSite]").val();
+                const asKm = $("input[name=asKm]").val();
+                const asHeure = $("input[name=asHeure]").val();
+
                 const asColis = [];
                 const asNumColis = [];
                 const asNumBordereau = [];
@@ -697,6 +740,11 @@
                         asNumBordereau,
                         asMontantAnnonce,
                         asNatureColis,
+                        asObservation,
+                        asDestination,
+                        asDepartSite,
+                        asKm,
+                        asHeure,
                         _token: _token
                     },
                     success: function (response) {

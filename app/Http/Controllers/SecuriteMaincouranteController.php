@@ -154,6 +154,10 @@ class SecuriteMaincouranteController extends Controller
             'finOperation' => $request->get('finOperation'),
             'tempsOperation' => $request->get('tempsOperation'),
             'nombre_colis' => $request->get('asNbColis'),
+            'asObservation' => $request->get('asObservation'),
+            'asDestination' => $request->get('asDestination'),
+            'asDepartSite' => $request->get('asDepartSite'),
+            'asKm' => $request->get('asKm'),
             /*'noBordereau' => $request->get('noBordereau'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrivee' => $request->get('kmArrivee'),
@@ -411,6 +415,10 @@ class SecuriteMaincouranteController extends Controller
         $arrivee->finOperation = $request->get('asFinOperation');
         $arrivee->tempsOperation = $request->get('asTempsOperation');
         $arrivee->nombre_colis = $request->get('asNbColis');
+        $arrivee->asObservation = $request->get('asObservation');
+        $arrivee->asDestination = $request->get('asDestination');
+        $arrivee->asDepartSite = $request->get('asDepartSite');
+        $arrivee->asKm = $request->get('asKm');
         $arrivee->save();
 
         $asColis_edit = $request->get('asColis_edit');
