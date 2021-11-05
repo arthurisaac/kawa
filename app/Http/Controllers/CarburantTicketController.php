@@ -36,10 +36,19 @@ class CarburantTicketController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+        $q = $request->get('q');
 
         $carburants = CarburantTicket::all();
         if (isset($debut) && isset($fin)) {
             $carburants = CarburantTicket::whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($q)) {
+            $carburants = CarburantTicket::where('centre', $q)
+                ->orWhere('centre_regional', 'like', '%' . $q . '%')
+                ->orWhere('numeroTicket', 'like', '%' . $q . '%')
+                ->orWhere('numeroCarteCarburant', 'like', '%' . $q . '%')
+                ->orWhere('soldePrecedent', 'like', '%' . $q . '%')
+                ->get();
         }
         return view('/transport/ticket-carburant.liste',
             compact('carburants'));
