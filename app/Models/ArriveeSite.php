@@ -18,7 +18,8 @@ class ArriveeSite extends Model
         'nombre_colis',
         'asObservation',
         'asDestination',
-        'asDepartSite'
+        'asDepartSite',
+        'asKm',
         /*'heureArrivee',
         'kmArrivee',
         'observation',
