@@ -1,9 +1,9 @@
 @extends('base')
 
 @section('main')
-    {{--<style>
+    <style>
         .dataTables_filter, .dataTables_info { display: none; }
-    </style>--}}
+    </style>
     <div class="burval-container">
         <div><h2 class="heading">COLIS ARRIVES TOURNEE</h2></div>
         <br/>
@@ -97,6 +97,21 @@
             </div>
         </div>
 
+        <form action="#" method="get">
+            @csrf
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-4">
+                    <div class="form-group row">
+                        <label class="col">Rechercher</label>
+                        <input type="text" name="q" id="searchInput" class="form-control col-sm-8">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary btn-sm">Rechercher</button>
+                </div>
+            </div>
+        </form>
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
