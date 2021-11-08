@@ -96,20 +96,21 @@ class ArriveeTourneeController extends Controller
             $tournees = DepartTournee::whereBetween('date', [$debut, $fin])->get();
         }
         if (isset($q)) {
-            $tournees = DepartTournee::where()
+            $tournees = DepartTournee::where('numeroTournee', 'like', '%' . $q . '%')
                 ->orWhere('centre', 'like', '%' . $q . '%')
                 ->orWhere('centre_regional', 'like', '%' . $q . '%')
                 ->orWhere('kmDepart', 'like', '%' . $q . '%')
                 ->orWhere('coutTournee', 'like', '%' . $q . '%')
                 ->orWhere('date', 'like', '%' . $q . '%')
                 ->get();
-            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($q) {
+
+           /* $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($q) {
                 $query->where('centre', 'like', '%' . $q . '%');
                 $query->where('centre_regional', 'like', '%' . $q . '%');
                 $query->where('kmDepart', 'like', '%' . $q . '%');
                 $query->where('coutTournee', 'like', '%' . $q . '%');
                 $query->where('date', 'like', '%' . $q . '%');
-            })->get();
+            })->get();*/
         }
         return view('transport.arrivee-tournee.colis-arrivee',
             compact('colisArrivees', 'tournees'));
