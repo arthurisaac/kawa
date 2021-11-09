@@ -1012,7 +1012,7 @@
                                                 </li>--}}
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Entr&#233;e&nbsp;de&nbsp;caisse</span>
+                                        <li><span></span><span>Caisse</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('comptabilite-entree-caisse','no','no','no','yes','yes','no','','','1000','500')"
@@ -1024,7 +1024,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Sortie&nbsp;de&nbsp;caisse</span>
+                                        {{--<li><span></span><span>Sortie&nbsp;de&nbsp;caisse</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('comptabilite-sortie-caisse','no','no','no','yes','yes','no','','','1200','500')"
@@ -1034,10 +1034,10 @@
                                                         href="javascript:popupwnd('comptabilite-sortie-caisse-liste','no','no','no','yes','yes','no','','','1200','500')"
                                                         target="_self">Liste</a>
                                                 </li>
-                                                {{--<li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Validation</a>
-                                                </li>--}}
+                                                --}}{{--<li><span></span><a href="javascript:displaylightbox('',{})" target="_self">Validation</a>
+                                                </li>--}}{{--
                                             </ul>
-                                        </li>
+                                        </li>--}}
                                         <li><span></span><span>Incident</span>
                                             <ul>
                                                 <li><span></span><a
