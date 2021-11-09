@@ -57,6 +57,9 @@
                     <div class="col">
                         <h3 class="text-lg-right">Total temps parcouru: <span id="tempsTotal"></span></h3>
                     </div>
+                    <div class="col">
+                        <h3 class="text-lg-right">Total km parcouru: <span id="tempsTotal"></span></h3>
+                    </div>
                 </div>
 
             </div>
@@ -93,7 +96,7 @@
                         <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
                         <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
                         <td>{{$tournee->arriveeCentre->heureArrivee ?? "Donnée indisponible"}}</td>
-                        <td>{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
+                        <td class="km">{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
                         <td class="temps">
                             <?php
                             /*$date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
@@ -150,6 +153,20 @@
             $("#tempsTotal").html(sum);
         }
 
+        function calculerKmTotal() {
+            let sum = 0;
+            $('tr').each(function () {
+                //find the combat elements in the current row and sum it
+                $(this).find('.km').each(function () {
+                    const temps = $(this).text();
+                    if (!isNaN(temps) && temps.length !== 0) {
+                        sum += parseFloat(temps);
+                    }
+                });
+            });
+            $("#tempsTotal").html(sum);
+        }
+
         $(document).ready(function () {
             $('#listeMaincourante').DataTable({
                 "language": {
@@ -158,6 +175,7 @@
             }).on( 'search.dt', function () {
                 calculerTotal();
                 calculerTempsTotal();
+                calculerKmTotal()
             } );
         });
     </script>
