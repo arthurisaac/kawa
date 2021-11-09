@@ -68,6 +68,7 @@ class DepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+        $q = $request->get("q");
 
         $totalTournee = DepartTournee::all()->sum('coutTournee');
         $tournees = DepartTournee::all();
@@ -75,13 +76,29 @@ class DepartTourneeController extends Controller
             ->orderByDesc("created_at")
             ->get();
         if (isset($debut) && isset($fin)) {
-            /*$siteDepartTournee = SiteDepartTournee::with('sites')
-                ->orderByDesc("created_at")
-                ->get();*/
             $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
             $tournees = DepartTournee::with('tournees')->whereBetween('date', [$debut, $fin]);
+        }
+        if (isset($q)) {
+            $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($q) {
+                $query->where('numeroTournee', 'like', '%' . $q . '%');
+                $query->where('date', 'like', '%' . $q . '%');
+                $query->where('centre', 'like', '%' . $q . '%');
+                $query->where('centre_regional', 'like', '%' . $q . '%');
+                $query->where('heureDepart', 'like', '%' . $q . '%');
+                $query->where('kmDepart', 'like', '%' . $q . '%');
+            })->get();
+            $tournees = DepartTournee::with('tournees')
+                ->where('numeroTournee', 'like', '%' . $q . '%')
+                ->where('date', 'like', '%' . $q . '%')
+                ->orWhere('coutTournee', 'like', '%' . $q . '%')
+                ->orWhere('kmDepart', 'like', '%' . $q . '%')
+                ->orWhere('heureDepart', 'like', '%' . $q . '%')
+                ->orWhere('centre', 'like', '%' . $q . '%')
+                ->orWhere('centre_regional', 'like', '%' . $q . '%')
+                ->get();
         }
         return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
