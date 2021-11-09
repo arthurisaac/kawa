@@ -30,6 +30,24 @@
         <br>
         <div class="row">
             <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-lg-right text-secondary">Total sites desservis
+                            : {{count($siteDepartTournee)}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-lg-right text-secondary">Total tournées : {{count($tournees)}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-lg-right text-secondary">Cout tournée: {{$totalTournee}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
                 <form action="#" method="get">
                     @csrf
                     <div class="row">
@@ -53,23 +71,6 @@
                         <div class="col"></div>
                     </div>
                 </form>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="text-lg-right text-secondary">TOTAL SITES DESSERVIS : {{count($siteDepartTournee)}}</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h5 class="text-lg-right text-secondary">NOMBRE DE TOURNEE : {{count($tournees)}}</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h5 class="text-lg-right text-secondary">COUT TOUNREE : {{$totalTournee}}</h5>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -122,7 +123,7 @@
                     <td>{{$site->tournees->heureDepart ?? "Donnée indisponible"}}</td>
                     <td>{{$site->sites->site ?? "Non précisé"}}</td>
                     <td>{{$site->sites->clients->client_nom ?? ""}}</td>
-                <td>{{$site->type ?? ""}}</td>
+                    <td>{{$site->type ?? ""}}</td>
                     <td>{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>
                         @switch($site->tdf)
@@ -146,7 +147,6 @@
                             @break
                             @default
                             RAS
-
                         @endswitch
                     </td>
                     <td>
@@ -177,7 +177,6 @@
                         {{$site->sites["$site->caisse"]}}
                     </td>
                     <td style="width: 70px;">
-
                         <div>
                             <a href="{{ route('depart-tournee.edit',$site->idTourneeDepart)}}"
                                class="btn btn-primary btn-sm"></a>

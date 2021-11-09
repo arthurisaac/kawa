@@ -109,7 +109,7 @@
                             $start = date_create("$date $depart");
                             $end = date_create("$date $arrivee");
                             $diff=date_diff($end,$start);
-                            echo str_pad($diff->h, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->i, 2, '0', STR_PAD_LEFT);
+                            echo str_pad($diff->h, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->i, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->s, 2, '0', STR_PAD_LEFT);
                             ?>
                         </td>
                         <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
@@ -124,6 +124,10 @@
 
     </div>
     <script>
+        const pad = function (num) {
+            return ("0" + num).slice(-2);
+        };
+
         function calculerTotal() {
             $('tr').each(function () {
                 /*let sum = 0
@@ -140,17 +144,24 @@
         }
 
         function calculerTempsTotal() {
-            let sum = 0;
+            let totalSeconds = 0;
             $('tr').each(function () {
                 //find the combat elements in the current row and sum it
                 $(this).find('.temps').each(function () {
-                    const temps = $(this).text();
-                    if (!isNaN(temps) && temps.length !== 0) {
-                        sum += parseFloat(temps);
-                    }
+                    let currentDuration = $(this).text();
+                    currentDuration = currentDuration.split(":");
+                    const hrs = parseInt(currentDuration[0], 10);
+                    const min = parseInt(currentDuration[1], 10);
+                    const sec = parseInt(currentDuration[2], 10);
+                    const currDurationSec = sec + (60 * min) + (60 * 60 * hrs);
+                    totalSeconds +=currDurationSec;
                 });
             });
-            $("#tempsTotal").html(sum);
+            const hours = Math.floor(totalSeconds / 3600);
+            totalSeconds %= 3600;
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            $("#tempsTotal").html(pad(hours)+":"+pad(minutes)+":"+pad(seconds));
         }
 
         function calculerKmTotal() {
