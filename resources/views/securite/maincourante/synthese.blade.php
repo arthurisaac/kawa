@@ -27,6 +27,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
+                    <div class="col">
+                        <h3 class="text-left">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="text-leftt">Total temps parcouru: <span id="tempsTotal"></span></h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="text-left">Total km parcouru: <span id="kmTotal"></span></h3>
+                    </div>
+                </div>
+                <div class="col">
                     <form action="#" method="get">
                         @csrf
                         <div class="row">
@@ -49,17 +60,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="col">
-                    <div class="col">
-                        <h3 class="text-lg-right">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h3>
-                    </div>
-                    <div class="col">
-                        <h3 class="text-lg-right">Total temps parcouru: <span id="tempsTotal"></span></h3>
-                    </div>
-                    <div class="col">
-                        <h3 class="text-lg-right">Total km parcouru: <span id="kmTotal"></span></h3>
-                    </div>
                 </div>
 
             </div>
