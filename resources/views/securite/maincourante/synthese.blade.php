@@ -58,7 +58,7 @@
                         <h3 class="text-lg-right">Total temps parcouru: <span id="tempsTotal"></span></h3>
                     </div>
                     <div class="col">
-                        <h3 class="text-lg-right">Total km parcouru: <span id="tempsTotal"></span></h3>
+                        <h3 class="text-lg-right">Total km parcouru: <span id="kmTotal"></span></h3>
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@
                     }
                 });
             });
-            $("#tempsTotal").html(sum);
+            $("#kmTotal").html(sum);
         }
 
         $(document).ready(function () {
