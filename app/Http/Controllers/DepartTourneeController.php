@@ -90,8 +90,7 @@ class DepartTourneeController extends Controller
                 $query->where('heureDepart', 'like', '%' . $q . '%');
                 $query->where('kmDepart', 'like', '%' . $q . '%');
             })->get();
-            $tournees = DepartTournee::with('tournees')
-                ->where('numeroTournee', 'like', '%' . $q . '%')
+            $tournees = DepartTournee::where('numeroTournee', 'like', '%' . $q . '%')
                 ->where('date', 'like', '%' . $q . '%')
                 ->orWhere('coutTournee', 'like', '%' . $q . '%')
                 ->orWhere('kmDepart', 'like', '%' . $q . '%')
