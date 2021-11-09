@@ -52,7 +52,10 @@
                 </div>
                 <div class="col">
                     <div class="col">
-                        <h3 class="text-lg-right">TOTAL: <span id="montantTotal">{{count($tournees)}}</span></h3>
+                        <h3 class="text-lg-right">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="text-lg-right">Total temps parcouru: <span id="tempsTotal"></span></h3>
                     </div>
                 </div>
 
@@ -91,7 +94,7 @@
                         <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
                         <td>{{$tournee->arriveeCentre->heureArrivee ?? "Donnée indisponible"}}</td>
                         <td>{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
-                        <td>
+                        <td class="temps">
                             <?php
                             /*$date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
                             $date2 = new DateTime($tournee->date);
@@ -133,6 +136,20 @@
             });
         }
 
+        function calculerTempsTotal() {
+            let sum = 0;
+            $('tr').each(function () {
+                //find the combat elements in the current row and sum it
+                $(this).find('.temps').each(function () {
+                    const temps = $(this).text();
+                    if (!isNaN(temps) && temps.length !== 0) {
+                        sum += parseFloat(temps);
+                    }
+                });
+            });
+            $("#tempsTotal").html(sum);
+        }
+
         $(document).ready(function () {
             $('#listeMaincourante').DataTable({
                 "language": {
@@ -140,6 +157,7 @@
                 }
             }).on( 'search.dt', function () {
                 calculerTotal();
+                calculerTempsTotal();
             } );
         });
     </script>
