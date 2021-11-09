@@ -12,6 +12,8 @@ class ComptabiliteEntreeCaisse extends Model
         'motif',
         'deposant',
         'service',
-
+        'centre',
+        'centre_regional',
+        'mouvement'
     ];
 }

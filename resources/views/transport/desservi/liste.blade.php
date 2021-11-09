@@ -32,18 +32,18 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h5 class="text-lg-right text-secondary">Total sites desservis
+                        <h5 class="text-lg-right text-danger">Total sites desservis
                             : {{count($siteDepartTournee)}}</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h5 class="text-lg-right text-secondary">Total tournées : {{count($tournees)}}</h5>
+                        <h5 class="text-lg-right text-danger">Total tournées : {{count($tournees)}}</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h5 class="text-lg-right text-secondary">Cout tournée: {{$totalTournee}}</h5>
+                        <h5 class="text-lg-right text-danger">Cout tournée: {{$totalTournee}}</h5>
                     </div>
                 </div>
             </div>

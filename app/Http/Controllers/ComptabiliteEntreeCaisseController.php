@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use App\Models\ComptabiliteEntreeCaisse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,7 +17,9 @@ class ComptabiliteEntreeCaisseController extends Controller
      */
     public function index()
     {
-        return view('/comptabilite/entree-caisse.index');
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('/comptabilite/entree-caisse.index', compact('centres_regionaux', 'centres'));
     }
 
     /**
@@ -23,9 +27,46 @@ class ComptabiliteEntreeCaisseController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
+        $mouvement = $request->get('mouvement');
+        $service = $request->get('service');
+        $deposant = $request->get('deposant');
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+
         $entreeCaisses = ComptabiliteEntreeCaisse::all();
+
+        if (!isset($debut) && !isset($fin) && isset($mouvement) && $mouvement != "ras") {
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->get();
+        }
+        if (!isset($debut) && !isset($fin) && !isset($mouvement) && isset($service)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('service', 'like', '%' . $service . '%')->get();
+        }
+        if (!isset($debut) && !isset($fin) && !isset($mouvement) && isset($deposant)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('deposant', 'like', '%' . $deposant . '%')->get();
+        }
+        if (isset($debut) && isset($fin) && !isset($mouvement)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($debut) && isset($fin) && isset($mouvement)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($mouvement) && isset($service)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->where('service', $service)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($mouvement) && isset($service) && isset($deposant)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->where('service', $service)
+                ->where('deposant', $deposant)
+                ->get();
+        }
         return view('/comptabilite/entree-caisse.liste', compact('entreeCaisses'));
     }
 
@@ -38,14 +79,17 @@ class ComptabiliteEntreeCaisseController extends Controller
     public function store(Request $request)
     {
         $caisse = new ComptabiliteEntreeCaisse([
+            'mouvement' => $request->get('mouvement'),
             'date' => $request->get('date'),
             'somme' => $request->get('somme'),
             'motif' => $request->get('motif'),
             'deposant' => $request->get('deposant'),
             'service' => $request->get('service'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
         ]);
         $caisse->save();
-        return redirect('/comptabilite-entree-caisse')->with('success', 'Entrée caisse enregistrée!');
+        return redirect('/comptabilite-entree-caisse-liste')->with('success', 'Entrée caisse enregistrée!');
     }
 
     /**
@@ -68,7 +112,9 @@ class ComptabiliteEntreeCaisseController extends Controller
     public function edit($id)
     {
         $entreeCaisse = ComptabiliteEntreeCaisse::find($id);
-        return view('/comptabilite/entree-caisse.edit', compact('entreeCaisse'));
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('/comptabilite/entree-caisse.edit', compact('entreeCaisse', 'centres', 'centres_regionaux'));
 
     }
 
@@ -87,6 +133,9 @@ class ComptabiliteEntreeCaisseController extends Controller
         $caisse->motif = $request->get('motif');
         $caisse->deposant = $request->get('deposant');
         $caisse->service = $request->get('service');
+        $caisse->mouvement = $request->get('mouvement');
+        $caisse->centre = $request->get('centre');
+        $caisse->centre_regional = $request->get('centre_regional');
         $caisse->save();
         return redirect('/comptabilite-entree-caisse-liste')->with('success', 'Entrée caisse enregistrée!');
     }
