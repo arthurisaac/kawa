@@ -25,27 +25,38 @@
 
         <br/>
         <div class="container-fluid">
-            <form action="#" method="get">
-                @csrf
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5">Date début</label>
-                            <input type="date" name="debut" class="form-control col-sm-7">
+            <div class="row">
+                <div class="col">
+                    <form action="#" method="get">
+                        @csrf
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-5">Date début</label>
+                                    <input type="date" name="debut" class="form-control col-sm-7">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5">Date fin</label>
-                            <input type="date" name="fin" class="form-control col-sm-7">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-5">Date fin</label>
+                                    <input type="date" name="fin" class="form-control col-sm-7">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary btn-sm">Rechercher</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary btn-sm">Rechercher</button>
-                    </div>
-                    <div class="col"></div>
+                    </form>
                 </div>
-            </form>
+                <div class="col">
+                    <div class="col">
+                        <h3 class="text-lg-right">TOTAL: <span id="montantTotal">{{count($tournees)}}</span></h3>
+                    </div>
+                </div>
+
+            </div>
             <table class="table table-bordered table-hover" id="listeMaincourante" style="width: 100%;">
                 <thead>
                 <tr>
@@ -107,12 +118,29 @@
 
     </div>
     <script>
+        function calculerTotal() {
+            $('tr').each(function () {
+                /*let sum = 0
+                //find the combat elements in the current row and sum it
+                $(this).find('.combat').each(function () {
+                    var combat = $(this).text();
+                    if (!isNaN(combat) && combat.length !== 0) {
+                        sum += parseFloat(combat);
+                    }
+                });*/
+                const rowCount = $('#listeMaincourante tr').length;
+                $("#montantTotal").html(+rowCount - 1);
+            });
+        }
+
         $(document).ready(function () {
             $('#listeMaincourante').DataTable({
                 "language": {
                     "url": "French.json"
                 }
-            });
+            }).on( 'search.dt', function () {
+                calculerTotal();
+            } );
         });
     </script>
     <script>
