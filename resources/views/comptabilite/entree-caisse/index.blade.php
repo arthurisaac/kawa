@@ -53,20 +53,35 @@
                         <input type="date" class="form-control col-sm-7" name="date" value="{{date('Y-m-d')}}" required />
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Somme</label>
-                        <input type="number" class="form-control col-sm-7" name="somme" required />
+                        <label for="somme" class="col-sm-5">Somme</label>
+                        <input type="number" min="0" value="0" class="form-control col-sm-7" name="somme" id="somme" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Motif</label>
                         <textarea class="form-control col-sm-7" name="motif" required ></textarea>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Déposant</label>
+                        <label class="col-sm-5">Déposant / Receveur</label>
                         <input class="form-control col-sm-7" name="deposant" required />
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Service</label>
                         <input class="form-control col-sm-7" name="service" required />
+                    </div>
+                    <div class="form-group row">
+                        <label for="justification" class="col-sm-5">Justification</label>
+                        <select class="form-control col-sm-7" name="justification" id="justification" disabled>
+                            <option>Justifié</option>
+                            <option>Non justifié</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="montant_justifie" class="col-sm-5">Montant justifié</label>
+                        <input type="number" class="form-control col-sm-7" name="montant_justifie" id="montant_justifie" disabled  />
+                    </div>
+                    <div class="form-group row">
+                        <label for="montant_non_justifie" class="col-sm-5">Montant non justifié</label>
+                        <input type="number" value="0" class="form-control col-sm-7" name="montant_non_justifie" id="montant_non_justifie" disabled />
                     </div>
 
                 </div>
@@ -95,6 +110,29 @@
                         text: centre_regional
                     }));
                 })
+            });
+
+            $("#mouvement").on("change", function () {
+                console.log(this.value);
+                if (this.value === 'Entrée') {
+                    console.log('disable');
+                    $("#justification").attr('disabled', true);
+                    $("#montant_justifie").attr('disabled', true);
+                    $("#montant_non_justifie").attr('disabled', true);
+                } else {
+                    $("#justification").removeAttr('disabled');
+                    $("#montant_justifie").removeAttr('disabled');
+                    $("#montant_non_justifie").removeAttr('disabled');
+                }
+
+            });
+
+            $("#montant_justifie").on("change", function () {
+                const somme = $('input[name=somme]').val();
+                console.log(somme);
+                const total = parseFloat(somme ?? 0) - parseFloat(this.value ?? 0);
+                $("#montant_non_justifie").val(total)
+
             });
         })
     </script>

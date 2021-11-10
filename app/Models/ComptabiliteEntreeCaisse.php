@@ -14,6 +14,9 @@ class ComptabiliteEntreeCaisse extends Model
         'service',
         'centre',
         'centre_regional',
-        'mouvement'
+        'mouvement',
+        'justification',
+        'montant_justifie',
+        'montant_non_justifie',
     ];
 }

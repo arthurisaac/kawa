@@ -21,7 +21,8 @@
             </div>
         @endif
 
-        <form class="form-horizontal" method="post" action="{{ route('comptabilite-entree-caisse.update', $entreeCaisse->id) }}">
+        <form class="form-horizontal" method="post"
+              action="{{ route('comptabilite-entree-caisse.update', $entreeCaisse->id) }}">
             @method('PATCH')
             @csrf
 
@@ -52,23 +53,46 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" class="form-control col-sm-7" name="date" value="{{$entreeCaisse->date}}" required />
+                        <input type="date" class="form-control col-sm-7" name="date" value="{{$entreeCaisse->date}}"
+                               required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Somme</label>
-                        <input type="number" class="form-control col-sm-7" name="somme" value="{{$entreeCaisse->somme}}" required />
+                        <input type="number" class="form-control col-sm-7" name="somme" value="{{$entreeCaisse->somme}}"
+                               required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Motif</label>
-                        <textarea class="form-control col-sm-7" name="motif" required >{{$entreeCaisse->motif}}</textarea>
+                        <textarea class="form-control col-sm-7" name="motif"
+                                  required>{{$entreeCaisse->motif}}</textarea>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Déposant</label>
-                        <input class="form-control col-sm-7" name="deposant" value="{{$entreeCaisse->deposant}}" required />
+                        <input class="form-control col-sm-7" name="deposant" value="{{$entreeCaisse->deposant}}"
+                               required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Service</label>
-                        <input class="form-control col-sm-7" name="service" value="{{$entreeCaisse->service}}" required />
+                        <input class="form-control col-sm-7" name="service" value="{{$entreeCaisse->service}}"
+                               required/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="justification" class="col-sm-5">Justification</label>
+                        <select class="form-control col-sm-7" name="justification" id="justification" required>
+                            <option>{{$entreeCaisse->justification}}</option>
+                            <option>Justifié</option>
+                            <option>Non justifié</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="montant_justifie" class="col-sm-5">Montant justifié</label>
+                        <input type="number" class="form-control col-sm-7" name="montant_justifie" id="montant_justifie"
+                               value="{{$entreeCaisse->montant_justifie}}" required/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="montant_non_justifie" class="col-sm-5">Montant non justifié</label>
+                        <input type="number" class="form-control col-sm-7" name="montant_non_justifie"
+                               id="montant_non_justifie" value="{{$entreeCaisse->montant_non_justifie}}" required/>
                     </div>
 
                 </div>
@@ -81,7 +105,7 @@
 
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let centres = {!! json_encode($centres) !!};
             let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
@@ -97,6 +121,30 @@
                         text: centre_regional
                     }));
                 })
+            });
+
+
+            $("#mouvement").on("change", function () {
+                console.log(this.value);
+                if (this.value === 'Entrée') {
+                    console.log('disable');
+                    $("#justification").attr('disabled', true);
+                    $("#montant_justifie").attr('disabled', true);
+                    $("#montant_non_justifie").attr('disabled', true);
+                } else {
+                    $("#justification").removeAttr('disabled');
+                    $("#montant_justifie").removeAttr('disabled');
+                    $("#montant_non_justifie").removeAttr('disabled');
+                }
+
+            });
+
+            $("#montant_justifie").on("change", function () {
+                const somme = $('input[name=somme]').val();
+                console.log(somme);
+                const total = parseFloat(somme ?? 0) - parseFloat(this.value ?? 0);
+                $("#montant_non_justifie").val(total)
+
             });
         })
     </script>

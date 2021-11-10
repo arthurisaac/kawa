@@ -87,6 +87,9 @@ class ComptabiliteEntreeCaisseController extends Controller
             'service' => $request->get('service'),
             'centre' => $request->get('centre'),
             'centre_regional' => $request->get('centre_regional'),
+            'justification' => $request->get('justification'),
+            'montant_justifie' => $request->get('montant_justifie'),
+            'montant_non_justifie' => $request->get('montant_non_justifie'),
         ]);
         $caisse->save();
         return redirect('/comptabilite-entree-caisse-liste')->with('success', 'Entrée caisse enregistrée!');
@@ -136,6 +139,9 @@ class ComptabiliteEntreeCaisseController extends Controller
         $caisse->mouvement = $request->get('mouvement');
         $caisse->centre = $request->get('centre');
         $caisse->centre_regional = $request->get('centre_regional');
+        $caisse->justification = $request->get('justification');
+        $caisse->montant_justifie = $request->get('montant_justifie');
+        $caisse->montant_non_justifie = $request->get('montant_non_justifie');
         $caisse->save();
         return redirect('/comptabilite-entree-caisse-liste')->with('success', 'Entrée caisse enregistrée!');
     }

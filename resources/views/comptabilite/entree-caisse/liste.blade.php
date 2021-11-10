@@ -26,7 +26,9 @@
         <br>
         <div class="row">
             <div class="col">
-                <h5 class="text-left text-danger">Total: {{$entreeCaisses->sum('somme')}}</h5>
+                <h5 class="text-left text-danger">Total: {{$entreeCaisses->sum('somme')}}</h5><br>
+                <h5 class="text-left text-danger">Total entrée: <span id="totalEntree"></span></h5>
+                <h5 class="text-left text-danger">Total sortie: <span id="totalSortie"></span></h5><br>
             </div>
             <div class="col"></div>
             <div class="col">
@@ -91,11 +93,11 @@
                     @foreach ($entreeCaisses as $entreeCaisse)
                         <tr>
                             <td>{{$entreeCaisse->id}}</td>
-                            <td>{{$entreeCaisse->mouvement}}</td>
+                            <td class="mouvement">{{$entreeCaisse->mouvement}}</td>
                             <td>{{$entreeCaisse->date}}</td>
                             <td>{{$entreeCaisse->centre}}</td>
                             <td>{{$entreeCaisse->centre_regional}}</td>
-                            <td>{{$entreeCaisse->somme}}</td>
+                            <td class="somme">{{$entreeCaisse->somme}}</td>
                             <td>{{$entreeCaisse->motif}}</td>
                             <td>{{$entreeCaisse->deposant}}</td>
                             <td>{{$entreeCaisse->service}}</td>
@@ -122,12 +124,39 @@
         </div>
     </div>
     <script>
+        function totalEntree(){
+            let entree = 0;
+            let sortie = 0;
+            $('tr').each(function () {
+                const row = $(this);
+                row.find('.somme').each(function () {
+                    const somme = $(this).text();
+                    console.log('somme', somme);
+                    row.find('.mouvement').each(function () {
+                        console.log('mouvement', $(this).text());
+                        if ($(this).text() === 'Entrée') {
+                            if (!isNaN(somme) && somme.length !== 0) {
+                                entree += parseFloat(somme);
+                            }
+                        } else if ($(this).text() === 'Sortie') {
+                            if (!isNaN(somme) && somme.length !== 0) {
+                                sortie += parseFloat(somme);
+                            }
+                        }
+                    });
+                });
+            });
+            $("#totalEntree").html(entree);
+            $("#totalSortie").html(sortie);
+        }
         $(document).ready(function () {
             $('#liste').DataTable({
                 "language": {
                     "url": "French.json"
                 }
             });
+
+            totalEntree();
         });
     </script>
 @endsection
