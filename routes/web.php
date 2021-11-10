@@ -271,6 +271,7 @@ Route::get('comptabilite-reglement-fature-liste', [\App\Http\Controllers\Comptab
 
 Route::resource('comptabilite-entree-caisse', 'ComptabiliteEntreeCaisseController');
 Route::get('comptabilite-entree-caisse-liste', [\App\Http\Controllers\ComptabiliteEntreeCaisseController::class, 'liste']);
+Route::get('comptabilite-entree-caisse-liste-justifs', [\App\Http\Controllers\ComptabiliteEntreeCaisseController::class, 'listeJustifs']);
 
 Route::resource('comptabilite-sortie-caisse', 'ComptabiliteSortieCaisseController');
 Route::get('comptabilite-sortie-caisse-liste', [\App\Http\Controllers\ComptabiliteSortieCaisseController::class, 'liste']);

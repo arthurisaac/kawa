@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Caisse</h2></div>
+        <div><h2 class="heading">Liste des justifs</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -26,8 +26,7 @@
         <br>
         <div class="row">
             <div class="col">
-                <h5 class="text-left text-danger">Total entrée: <span id="totalEntree"></span></h5>
-                <h5 class="text-left text-danger">Total sortie: <span id="totalSortie"></span></h5><br>
+                <h5 class="text-left text-danger">Total: {{$entreeCaisses->sum('somme')}}</h5>
             </div>
             <div class="col"></div>
             <div class="col">
@@ -77,14 +76,13 @@
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Mouvement</td>
-                            <td>Date</td>
                             <td>Centre</td>
                             <td>Centre régional</td>
-                            <td>Somme</td>
-                            <td>Motif</td>
-                            <td>Déposant</td>
-                            <td>Service</td>
+                            <td>Date</td>
+                            <td>Receveur</td>
+                            <td>Somme sortie</td>
+                            <td>Montant justifié</td>
+                            <td>Montant non justifié</td>
                             <td>Actions</td>
                         </tr>
                     </thead>
@@ -92,14 +90,13 @@
                     @foreach ($entreeCaisses as $entreeCaisse)
                         <tr>
                             <td>{{$entreeCaisse->id}}</td>
-                            <td class="mouvement">{{$entreeCaisse->mouvement}}</td>
-                            <td>{{$entreeCaisse->date}}</td>
                             <td>{{$entreeCaisse->centre}}</td>
                             <td>{{$entreeCaisse->centre_regional}}</td>
+                            <td>{{$entreeCaisse->date}}</td>
+                            <td>{{$entreeCaisse->deposant}} {{$entreeCaisse->mouvement}}</td>
                             <td class="somme">{{$entreeCaisse->somme}}</td>
-                            <td>{{$entreeCaisse->motif}}</td>
-                            <td>{{$entreeCaisse->deposant}}</td>
-                            <td>{{$entreeCaisse->service}}</td>
+                            <td>{{$entreeCaisse->montant_justifie}}</td>
+                            <td>{{$entreeCaisse->montant_non_justifie}}</td>
                             <td>
                                 <div class="two-columns">
                                     <div>
@@ -113,7 +110,6 @@
                                         </form>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
                     @endforeach
@@ -152,10 +148,9 @@
             $('#liste').DataTable({
                 "language": {
                     "url": "French.json"
-                }
+                },
+                "order": [[ 0, "desc" ]]
             });
-
-            totalEntree();
         });
     </script>
 @endsection

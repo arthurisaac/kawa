@@ -70,6 +70,48 @@ class ComptabiliteEntreeCaisseController extends Controller
         return view('/comptabilite/entree-caisse.liste', compact('entreeCaisses'));
     }
 
+
+    public function listeJustifs(Request $request)
+    {
+        $mouvement = 'Sortie';
+        $service = $request->get('service');
+        $deposant = $request->get('deposant');
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+
+        $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->get();
+
+        if (!isset($debut) && !isset($fin) && isset($service)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('service', 'like', '%' . $service . '%')
+                ->where('mouvement', $mouvement)
+                ->get();
+        }
+        if (!isset($debut) && !isset($fin) && isset($deposant)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('deposant', 'like', '%' . $deposant . '%')
+                ->where('mouvement', $mouvement)
+                ->get();
+        }
+        if (isset($debut) && isset($fin)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->where('service', $service)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($deposant)) {
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
+                ->where('mouvement', $mouvement)
+                ->where('service', $service)
+                ->where('deposant', $deposant)
+                ->get();
+        }
+        return view('comptabilite.entree-caisse.liste-justifs', compact('entreeCaisses'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

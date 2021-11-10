@@ -998,17 +998,6 @@
                                                         href="javascript:popupwnd('comptabilite-reglement-fature-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                         target="_self">Liste</a>
                                                 </li>
-                                                {{-- TODO --}}
-                                                {{--<li><span></span><span>Recherche</span>
-                                                    <ul>
-                                                        <li><span></span><a href="javascript:displaylightbox('',{})"
-                                                                            target="_self">Par&nbsp;date</a>
-                                                        </li>
-                                                        <li><span></span><a href="javascript:displaylightbox('',{})"
-                                                                            target="_self">Par&nbsp;client</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>--}}
                                             </ul>
                                         </li>
                                         <li><span></span><span>Caisse</span>
@@ -1020,6 +1009,10 @@
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('comptabilite-entree-caisse-liste','no','no','no','yes','yes','no','','','1200','500')"
                                                         target="_self">Liste</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('comptabilite-entree-caisse-liste-justifs','no','no','no','yes','yes','no','','','1200','500')"
+                                                        target="_self">Liste des justifs</a>
                                                 </li>
                                             </ul>
                                         </li>
