@@ -171,6 +171,7 @@ class SecuriteMaincouranteController extends Controller
         $asNumBordereau = $request->get('asNumBordereau');
         $asMontantAnnonce = $request->get('asMontantAnnonce');
         $asNatureColis = $request->get('asNatureColis');
+        $asNombreColis = $request->get('asNombreColis');
 
         for ($i = 0; $i < count($asColis); $i++) {
             if (!empty($asColis[$i])) {
@@ -182,6 +183,7 @@ class SecuriteMaincouranteController extends Controller
                     'bordereau' => $asNumBordereau[$i] ?? null,
                     'montant' => $asMontantAnnonce[$i] ?? null,
                     'nature' => $asNatureColis[$i] ?? null,
+                    'nombre_colis' => $asNombreColis[$i] ?? null,
                 ]);
                 $as->save();
             }
@@ -426,6 +428,7 @@ class SecuriteMaincouranteController extends Controller
         $asNumBordereau_edit = $request->get('asNumBordereau_edit');
         $asMontantAnnonce_edit = $request->get('asMontantAnnonce_edit');
         $asNatureColis_edit = $request->get('asNatureColis_edit');
+        $asNombreColis_edit = $request->get('asNombreColis_edit');
         $ids = $request->get('colis_id');
 
         if ($request->get('asNumColis_edit')) {
@@ -438,6 +441,7 @@ class SecuriteMaincouranteController extends Controller
                     $as->bordereau = $asNumBordereau_edit[$i];
                     $as->montant = $asMontantAnnonce_edit[$i];
                     $as->nature = $asNatureColis_edit[$i];
+                    $as->nombre_colis = $asNombreColis_edit[$i];
                     $as->save();
                 }
             }

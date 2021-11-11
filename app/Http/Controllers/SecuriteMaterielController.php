@@ -38,7 +38,7 @@ class SecuriteMaterielController extends Controller
         $materiels = SecuriteMateriel::with('cbs')->with('tournees')->get();
         $remettants = SecuriteMaterielRemettant::with('materiels')->get();
         $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
-        return view('securite/materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
+        return view('securite.materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
     }
 
     /**

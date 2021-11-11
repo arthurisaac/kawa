@@ -252,6 +252,7 @@
                                         <th>N° Colis</th>
                                         <th>N° Bordereau</th>
                                         <th>Montant annoncé</th>
+                                        <th>Nombre de colis</th>
                                         <th>Nature colis</th>
                                     </tr>
                                     </thead>
@@ -267,6 +268,7 @@
                                         <td><input type="number" name="asNumColis[]" class="form-control"/></td>
                                         <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>
                                         <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
+                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/></td>
                                         <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                     </tr>
                                     </tbody>
@@ -517,6 +519,7 @@
                     '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
                     '                                    </tr>')
             });
@@ -580,7 +583,7 @@
                 url: "{{ route('deleteDepartSite') }}",
                 type: "GET",
                 data: {'id': id},
-                success: function (data) {
+                success: function () {
                     alert('Enregistrement supprimé');
                     window.location.reload();
                 }
@@ -699,8 +702,8 @@
                 const asNumBordereau = [];
                 const asMontantAnnonce = [];
                 const asNatureColis = [];
+                const asNombreColis = [];
                 $('select[name^="asColis"]').each(function (i) {
-                    console.log(i);
                     asColis.push($(this).val())
                 });
                 $('input[name^="asNumColis"]').each(function () {
@@ -714,6 +717,9 @@
                 });
                 $('input[name^="asNatureColis"]').each(function () {
                     asNatureColis.push($(this).val())
+                });
+                $('input[name^="asNombreColis"]').each(function () {
+                    asNombreColis.push($(this).val())
                 });
                 //const asColis = $("input[name=asColis]").val();
                 //const asNumColis = $("input[name=asNumColis]").val();
@@ -741,6 +747,7 @@
                         asNumBordereau,
                         asMontantAnnonce,
                         asNatureColis,
+                        asNombreColis,
                         asObservation,
                         asDestination,
                         asDepartSite,

@@ -13,5 +13,6 @@ class ArriveeSiteColis extends Model
         'bordereau',
         'montant',
         'nature',
+        'nombre_colis',
     ];
 }

@@ -187,6 +187,7 @@
                                 <th>N° Colis</th>
                                 <th>N° Bordereau</th>
                                 <th>Montant annoncé</th>
+                                <th>Nombre de colis</th>
                                 <th>Nature colis</th>
                             </tr>
                             </thead>
@@ -209,6 +210,8 @@
                                     <td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}"
                                                class="form-control"/></td>
                                     <td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}"
+                                               class="form-control"/></td>
+                                    <td><input type="text" name="asNombreColis_edit[]" value="{{$colis->asNombreColis}}"
                                                class="form-control"/></td>
                                     <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
                                 </tr>

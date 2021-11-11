@@ -179,6 +179,7 @@
                                 <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
                                 <option value="oo_vb_intramuros">VB</option>
                                 <option value="oo_vl_intramuros">VL</option>
+                                <option value="oo_ass_appro">Assistance appro DAB</option>
                             </select>
                         </td>
                         <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"  class="form-control"></td>
@@ -343,6 +344,9 @@
                     case "oo_vl_intramuros_edit":
                         $("select[name='tdf[]'] option[value=oo_vl_intramuros]").eq(i).attr('selected','selected');
                         break;
+                    case "oo_ass_appro_edit":
+                        $("select[name='tdf[]'] option[value=oo_ass_appro]").eq(i).attr('selected','selected');
+                        break;
                     default:
                         //tdf.eq(i).val("");
                         //console.log("aucun tdf");
@@ -436,6 +440,7 @@
                     '                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>\n' +
                     '                                    <option value="oo_vb_intramuros">VB</option>\n' +
                     '                                    <option value="oo_vl_intramuros">VL</option>\n' +
+                    '                                    <option value="oo_ass_appro">Assistance appro DAB</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
