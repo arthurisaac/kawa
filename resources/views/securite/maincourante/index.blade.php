@@ -36,7 +36,8 @@
                         <select class="form-control col-sm-8" name="noTournee" id="noTournee">
                             <option></option>
                             @foreach($tournees as $tournee)
-                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}} // {{$tournee->vehicules->code ?? ""}}</option>
+                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}
+                                    // {{$tournee->vehicules->code ?? ""}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -266,9 +267,15 @@
                                             </select>
                                         </td>
                                         <td><input type="number" name="asNumColis[]" class="form-control"/></td>
-                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>
+                                        <td><select name="asNumBordereau[]" class="form-control">
+                                                <option></option>
+                                                @foreach($optionBordereau as $option)
+                                                    <option>$option->numero</option>
+                                                @endforeach
+                                            </select></td>
                                         <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
-                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/></td>
+                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/>
+                                        </td>
                                         <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                     </tr>
                                     </tbody>
@@ -281,7 +288,8 @@
                                 <div class="col" style="display: none;">
                                     <div class="form-group row">
                                         <label class="col-sm-6">Heure de départ</label>
-                                        <input type="time" name="asHeure" class="form-control col-sm-6" value="{{date('H:i')}}"/>
+                                        <input type="time" name="asHeure" class="form-control col-sm-6"
+                                               value="{{date('H:i')}}"/>
                                     </div>
 
                                 </div>
@@ -292,7 +300,8 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-4">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-8" name="asDepartSite" value="{{date('Y-m-d')}}">
+                                        <input type="date" class="form-control col-sm-8" name="asDepartSite"
+                                               value="{{date('Y-m-d')}}">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-4">Prochaine destination</label>
@@ -328,7 +337,8 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label class="col-sm-6">Heure de départ</label>
-                                    <input type="time" name="heureDepart" class="form-control col-sm-6" value="{{date('H:i')}}"/>
+                                    <input type="time" name="heureDepart" class="form-control col-sm-6"
+                                           value="{{date('H:i')}}"/>
                                 </div>
                                 <div class="form-group row">
                                     <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
@@ -344,7 +354,8 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-6">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-6" name="departSite" value="{{date('Y-m-d')}}">
+                                        <input type="date" class="form-control col-sm-6" name="departSite"
+                                               value="{{date('Y-m-d')}}">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-6">Prochaine destination</label>
@@ -517,7 +528,12 @@
                     '                                            </select>\n' +
                     '                                        </td>\n' +
                     '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
-                    '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
+                    '                                        <td><select name="asNumBordereau[]" class="form-control">\n' +
+                    '                                                <option></option>\n' +
+                    '                                                @foreach($optionBordereau as $option)\n' +
+                    '                                                    <option>$option->numero</option>\n' +
+                    '                                                @endforeach\n' +
+                    '                                            </select></td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +

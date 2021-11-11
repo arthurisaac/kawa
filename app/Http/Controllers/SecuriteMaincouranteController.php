@@ -12,6 +12,7 @@ use App\Models\DepartCentre;
 use App\Models\DepartSite;
 use App\Models\DepartSiteColis;
 use App\Models\DepartTournee;
+use App\Models\OptionBordereau;
 use App\Models\OptionNiveauCarburant;
 use App\Models\SiteDepartTournee;
 use App\Models\TourneeCentre;
@@ -43,13 +44,14 @@ class SecuriteMaincouranteController extends Controller
         $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->get();
         $arriveeCentres = ArriveeCentre::with('tournees')->get();
         $optionNiveauCarburant = OptionNiveauCarburant::all();
+        $optionBordereau = OptionBordereau::all();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
             ->get();
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
-                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites', 'sitesTournees', 'optionNiveauCarburant'));
+                'departSites', 'arriveeCentres', 'tourneeCentres', 'sitesDepartTournees', 'date', 'sites', 'sitesTournees', 'optionNiveauCarburant', 'optionBordereau'));
     }
 
     public function liste()
@@ -379,7 +381,8 @@ class SecuriteMaincouranteController extends Controller
         $site = ArriveeSite::with('sites')->find($id);
         $arriveeColis = ArriveeSiteColis::all()->where('arrivee_site', '=', $id);
         $sites = Commercial_site::all();
-        return view('securite.maincourante.arrivee-site.edit', compact('site', 'sites', 'arriveeColis'));
+        $optionBordereau = OptionBordereau::all();
+        return view('securite.maincourante.arrivee-site.edit', compact('site', 'sites', 'arriveeColis', 'optionBordereau'));
     }
 
     public function editDepartSite(Request $request, $id)

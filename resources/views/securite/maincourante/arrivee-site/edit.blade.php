@@ -205,8 +205,13 @@
                                     </td>
                                     <td><input type="number" name="asNumColis_edit[]" value="{{$colis->num_colis}}"
                                                class="form-control"/></td>
-                                    <td><input type="text" name="asNumBordereau_edit[]" value="{{$colis->bordereau}}"
-                                               class="form-control"/></td>
+                                    <td><select name="asNumBordereau_edit[]"
+                                               class="form-control">
+                                            <option>{{$colis->bordereau}}</option>
+                                            @foreach($optionBordereau as $option)
+                                                <option>$option->numero</option>
+                                            @endforeach
+                                        </select></td>
                                     <td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}"
                                                class="form-control"/></td>
                                     <td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}"
@@ -256,7 +261,9 @@
                     '                                            </select>\n' +
                     '                                        </td>\n' +
                     '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
-                    '                                        <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>\n' +
+                    '                                        <td>@foreach($optionBordereau as $option)\n' +
+                    '                                                    <option>$option->numero</option>\n' +
+                    '                                                @endforeach</td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
                     '                                        <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>\n' +
