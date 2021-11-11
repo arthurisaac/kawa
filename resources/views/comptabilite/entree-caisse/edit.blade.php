@@ -100,6 +100,9 @@
                     <button class="btn btn-block btn-primary btn-sm" type="submit">Valider</button>
                     <button class="btn btn-block btn-danger btn-sm" type="reset">Annuler</button>
                 </div>
+                <div class="col">
+                    <a href="/comptabilite-entree-caisse-liste-justifs" class="btn btn-sm btn-outline-info">Ouvrir liste justifs</a>
+                </div>
             </div>
         </form>
 

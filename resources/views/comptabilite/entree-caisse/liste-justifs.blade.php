@@ -26,7 +26,9 @@
         <br>
         <div class="row">
             <div class="col">
-                <h5 class="text-left text-danger">Total: {{$entreeCaisses->sum('somme')}}</h5>
+                <h5 class="text-left text-danger">Total sortie: {{$entreeCaisses->sum('somme')}}</h5>
+                <h5 class="text-left text-danger">Total montant justifé: {{$entreeCaisses->sum('montant_justifie')}}</h5>
+                <h5 class="text-left text-danger">Total montant non justifié: {{$entreeCaisses->sum('montant_non_justifie')}}</h5>
             </div>
             <div class="col"></div>
             <div class="col">
@@ -39,14 +41,6 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-5">Date fin</label>
                         <input type="date" name="fin" class="form-control col">
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5" for="mouvement">Mouvement</label>
-                        <select id="mouvement" name="mouvement" class="form-control col-sm-7">
-                            <option></option>
-                            <option>Entrée</option>
-                            <option>Sortie</option>
-                        </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5" for="service">Service</label>
@@ -93,7 +87,7 @@
                             <td>{{$entreeCaisse->centre}}</td>
                             <td>{{$entreeCaisse->centre_regional}}</td>
                             <td>{{$entreeCaisse->date}}</td>
-                            <td>{{$entreeCaisse->deposant}} {{$entreeCaisse->mouvement}}</td>
+                            <td>{{$entreeCaisse->deposant}}</td>
                             <td class="somme">{{$entreeCaisse->somme}}</td>
                             <td>{{$entreeCaisse->montant_justifie}}</td>
                             <td>{{$entreeCaisse->montant_non_justifie}}</td>
