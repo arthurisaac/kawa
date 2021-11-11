@@ -154,6 +154,11 @@
                                    id="oo_tdf_vl"
                                    value="{{$site->oo_vl_intramuros}}">
                         </div>
+                        <div class="form-group row">
+                            <label for="oo_ass_appro" class="col-sm-6">Assistance appro dab</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm"
+                                   name="oo_ass_appro" value="{{$site->oo_ass_appro}}" id="oo_ass_appro">
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="atm-c" role="tabpanel" aria-labelledby="atm-tab">

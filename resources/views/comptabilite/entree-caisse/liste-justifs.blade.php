@@ -47,14 +47,14 @@
                         <input id="service" name="service" class="form-control col-sm-7" />
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5" for="deposant">Déposant</label>
+                        <label class="col-sm-5" for="deposant">Receveur</label>
                         <input id="deposant" name="deposant" class="form-control col-sm-7" />
                     </div>
 
                     <div class="row">
                         <div class="col"></div>
                         <div class="col">
-                            <button class="btn btn-primary btn-sm text-right" style="margin-left: 10px;">Rechercher</button>
+                             <button class="btn btn-primary btn-sm text-right" style="margin-left: 10px;">Rechercher</button>
                         </div>
                     </div>
 

@@ -57,6 +57,7 @@ class Commercial_site extends Model
         'oo_garde_fond',
         'oo_comptage',
         'oo_dispatching',
+        'oo_ass_appro',
     ];
 
 

@@ -145,10 +145,15 @@
                                        name="oo_vb_intramuros">
                             </div>
                             <div class="form-group row">
-                                <label for="cb_tdf_vb" class="col-sm-6">VL (INTRAMUROS)</label>
+                                <label for="oo_tdf_vl" class="col-sm-6">VL (INTRAMUROS)</label>
                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                        name="oo_vl_intramuros"
                                        id="oo_tdf_vl">
+                            </div>
+                            <div class="form-group row">
+                                <label for="oo_ass_appro" class="col-sm-6">Assistance appro dab</label>
+                                <input type="number" class="col-sm-6 form-control form-control-sm"
+                                       name="oo_ass_appro" id="oo_ass_appro">
                             </div>
                         </div>
                         <div class="col"></div>
