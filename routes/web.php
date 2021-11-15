@@ -81,6 +81,7 @@ Route::resource('depart-tournee', 'DepartTourneeController');
 Route::delete('depart-tournee-item/{id}', [\App\Http\Controllers\DepartTourneeController::class, 'destroyItem']);
 Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
 Route::get('site-desservi-liste', [\App\Http\Controllers\DepartTourneeController::class, 'listeDesservi']);
+Route::get('ca-liste', [\App\Http\Controllers\DepartTourneeController::class, 'listeCA']);
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::get('arrivee-tournee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'liste']);

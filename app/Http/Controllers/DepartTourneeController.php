@@ -102,6 +102,28 @@ class DepartTourneeController extends Controller
         return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
 
+    public function listeCA(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $q = $request->get("q");
+        $client = $request->get("client");
+        $site = $request->get("site");
+
+        $totalTournee = DepartTournee::all()->sum('coutTournee');
+        $sites = SiteDepartTournee::with('sites')
+            ->orderByDesc("created_at")
+            ->get();
+        if (isset($debut) && isset($fin)) {
+            $sites = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+            $totalTournee = DepartTournee::with('tournees')->whereBetween('date', [$debut, $fin])->sum('coutTournee');
+        }
+
+        return view('transport.depart-tournee.liste-ca', compact('sites', 'totalTournee'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
