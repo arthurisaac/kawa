@@ -61,6 +61,6 @@ class DepartTournee extends Model
 
     public function sites()
     {
-        return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart');
+        return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart')->with('sites');
     }
 }

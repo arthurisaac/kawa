@@ -24,16 +24,64 @@
         <div class="row">
             <div class="col">
                 <h6 class="text-danger">Chiffre d'affaire : <span>{{$totalTournee}}</span></h6>
-                <h6 class="text-danger">Nombre de site : <span>{{count($sites)}}</span></h6>
+                <h6 class="text-danger">Nombre de passage : <span>{{count($sites)}}</span></h6>
             </div>
             <div class="col"></div>
         </div>
         <br>
         <form action="#" method="get">
+            @csrf
             <div class="row">
                 <div class="col">
-
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option></option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-5">Clients</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option></option>
+                            @foreach ($clients as $client)
+                                <option value="{{$client->id}}">{{ $client->client_nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date fin</label>
+                        <input type="date" name="fin" class="form-control col-sm-7">
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"><button class="btn btn-primary btn-sm" type="submit">Rechercher</button></div>
             </div>
         </form>
 
@@ -78,6 +126,23 @@
                 "language": {
                     "url": "French.json"
                 }
+            });
+
+            let centres = {!! json_encode($centres) !!};
+            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
             });
         });
     </script>
