@@ -24,6 +24,8 @@
             <h2>Paramètre options</h2>
             <br>
             <a href="/parametres-option-niveau-caburant" class="btn btn-light btn-sm">Option niveau carburant</a>
+            <br>
+            <a href="/parametres-option-bordereau" class="btn btn-light btn-sm">Option bordereau</a>
         </div>
 
     </div>

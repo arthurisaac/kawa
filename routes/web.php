@@ -376,3 +376,7 @@ Route::get('parametres-option-niveau-caburant', [\App\Http\Controllers\OptionSel
 Route::post('parametres-option-niveau-caburant', [\App\Http\Controllers\OptionSelectController::class, 'storeCarburant']);
 Route::delete('parametres-option-niveau-caburant/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyCarburant']);
 
+Route::get('parametres-option-bordereau', [\App\Http\Controllers\OptionSelectController::class, 'optionBordereau']);
+Route::post('parametres-option-bordereau', [\App\Http\Controllers\OptionSelectController::class, 'storeBordereau']);
+Route::delete('parametres-option-bordereau/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyBordereau']);
+
