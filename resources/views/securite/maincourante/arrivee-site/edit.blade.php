@@ -236,7 +236,7 @@
                                         @foreach($optionBordereau as $option)
                                             <option>{{$option->numero}}</option>
                                         @endforeach
-                                    </select></td>/td>
+                                    </select></td>
                                 <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                 <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
