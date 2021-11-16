@@ -346,4 +346,32 @@
 
         });
     </script>
+    <script>
+        $(document).on('DOMNodeInserted', function () {
+            $("input[name='asNombreColis[]']").on("change", function() {
+                let total = 0;
+                $.each($("input[name='asNombreColis[]']"), function (i) {
+                    const nombre = $("input[name='asNombreColis[]']").get(i);
+                    total += parseInt(nombre.value ?? 0)
+                });
+                $.each($("input[name='asNombreColis_edit[]']"), function (i) {
+                    const nombre = $("input[name='asNombreColis_edit[]']").get(i);
+                    total += parseInt(nombre.value ?? 0)
+                });
+                $('#asNbColis').val(total);
+            });
+            $("input[name='asNombreColis_edit[]']").on("change", function() {
+                let total = 0;
+                $.each($("input[name='asNombreColis_edit[]']"), function (i) {
+                    const nombre = $("input[name='asNombreColis_edit[]']").get(i);
+                    total += parseInt(nombre.value ?? 0)
+                });
+                $.each($("input[name='asNombreColis[]']"), function (i) {
+                    const nombre = $("input[name='asNombreColis[]']").get(i);
+                    total += parseInt(nombre.value ?? 0)
+                });
+                $('#asNbColis').val(total);
+            });
+        });
+    </script>
 @endsection
