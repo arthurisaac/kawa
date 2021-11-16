@@ -160,6 +160,23 @@ class DepartTourneeController extends Controller
             }
 
         }
+        if (isset($site)) {
+            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
+                $query->where('site', 'like', '%' . $site . '%');
+            })->get();
+            $totalTournee = 0;
+            $siteParTournees = DepartTournee::with('sites')
+                ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
+                ->where('commercial_sites.site', '=', $site)
+                ->groupBy('depart_tournees.id')
+                ->get(['coutTournee']);
+
+            foreach ($siteParTournees as $tournee) {
+                $totalTournee += $tournee["coutTournee"] ?? 0;
+            }
+
+        }
 
         return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients', 'sites_com'));
     }

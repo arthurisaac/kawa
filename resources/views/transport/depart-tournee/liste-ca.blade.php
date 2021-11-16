@@ -67,10 +67,10 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="client" class="col-5">Site comm</label>
-                        <select id="client" name="client" class="form-control col">
+                        <label for="site" class="col-5">Site</label>
+                        <select id="site" name="site" class="form-control col">
                             <option></option>
-                            @foreach ($site_com as $site)
+                            @foreach ($sites_com as $site)
                                 <option value="{{$site->id}}">{{ $site->site }}</option>
                             @endforeach
                         </select>
@@ -121,7 +121,7 @@
                     <td>{{$site->tournees->date}}</td>
                     <td>{{$site->tournees->heureDepart}}</td>
                     <td>{{$site->sites->clients->client_nom ?? ""}}</td>
-                    <td>{{$site->site ?? ""}}</td>
+                    <td>{{$site->sites->site ?? ""}}</td>
                     <td>{{$site->type ?? ""}}</td>
                     <td>{{$site->tournees->coutTournee}}</td>
                 </tr>
