@@ -230,7 +230,13 @@
                                     </select>
                                 </td>
                                 <td><input type="number" name="asNumColis[]" class="form-control"/></td>
-                                <td><input type="text" name="asNumBordereau[]" class="form-control"/></td>
+                                <td><td><select name="asNumBordereau[]"
+                                                class="form-control">
+                                        <option>{{$colis->bordereau}}</option>
+                                        @foreach($optionBordereau as $option)
+                                            <option>{{$option->numero}}</option>
+                                        @endforeach
+                                    </select></td>/td>
                                 <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                 <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
@@ -253,21 +259,25 @@
         $(document).ready(function () {
             $("#arriveeSiteColisButton").on("click", function () {
                 $("#tableASColis").append('<tr>\n' +
-                    '                                        <td>\n' +
-                    '                                            <select name="asColis[]" class="form-control">\n' +
-                    '                                                <option>Keep Safe</option>\n' +
-                    '                                                <option>Sac juste</option>\n' +
-                    '                                                <option>Pierres précieuses</option>\n' +
-                    '                                            </select>\n' +
-                    '                                        </td>\n' +
-                    '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
-                    '                                        <td>@foreach($optionBordereau as $option)\n' +
-                    '                                                    <option>{{$option->numero}}</option>\n' +
-                    '                                                @endforeach</td>\n' +
-                    '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
-                    '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
-                    '                                        <td><a class="btn btn-sm btn-danger" onclick="supprimerLigne(this)"></a></td>\n' +
-                    '                                    </tr>')
+                    '                                <td>\n' +
+                    '                                    <select name="asColis[]" class="form-control">\n' +
+                    '                                        <option>Keep Safe</option>\n' +
+                    '                                        <option>Sac juste</option>\n' +
+                    '                                        <option>Pierres précieuses</option>\n' +
+                    '                                    </select>\n' +
+                    '                                </td>\n' +
+                    '                                <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                <td><td><select name="asNumBordereau[]"\n' +
+                    '                                                class="form-control">\n' +
+                    '                                        <option>{{$colis->bordereau}}</option>\n' +
+                    '                                        @foreach($optionBordereau as $option)\n' +
+                    '                                            <option>{{$option->numero}}</option>\n' +
+                    '                                        @endforeach\n' +
+                    '                                    </select></td>/td>\n' +
+                    '                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    '                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    '                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
+                    '                            </tr>')
             });
         });
     </script>
