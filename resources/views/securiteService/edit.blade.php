@@ -93,15 +93,19 @@
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="equipe-1-tab" data-toggle="tab" href="#equipe1" role="tab"
-                       aria-controls="depart-centre" aria-selected="true">Equipe 1</a>
+                       aria-controls="depart-centre" aria-selected="true">PC Sécurité (matin)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="equipe-2-tab" data-toggle="tab" href="#equipe2" role="tab"
-                       aria-controls="arrivee-site" aria-selected="false">Equipe 2</a>
+                       aria-controls="arrivee-site" aria-selected="false">PC Sécurité (soir)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="equipe-3-tab" data-toggle="tab" href="#equipe3" role="tab"
-                       aria-controls="depart-site" aria-selected="false">Equipe 3</a>
+                       aria-controls="depart-site" aria-selected="false">PC Centrale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="equipe-4-tab" data-toggle="tab" href="#equipe4" role="tab"
+                       aria-controls="equipe4" aria-selected="false">PC Centrale (matin)</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -198,13 +202,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="equipe2" role="tabpanel" aria-labelledby="equipe-1-tab">
+                <div class="tab-pane fade" id="equipe2" role="tabpanel" aria-labelledby="equipe-2-tab">
                     <div class="container">
                         <br />
                         <h3>EQUIPE 2</h3>
                         <div class="row" style="align-items: center;">
                             <div class="col-2">
-                                <label>Opérateur radio n° 1</label>
+                                <label>Opérateur</label>
                             </div>
                             <div class="col">
                                 <div class="form-group row">
@@ -245,52 +249,9 @@
                             </div>
                         </div>
                         <br/>
-
-                        <div class="row" style="align-items: center;">
-                            <div class="col-2">
-                                <label>Opérateur radio n° 2</label>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="eop22Matricule" class="col-sm-3">Matricule</label>
-                                    <select type="text" name="eop22" id="eop22Matricule"
-                                            class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop22}}</option>
-                                        @foreach($personnels as $personnel)
-                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                | {{$personnel->nomPrenoms}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Nom" id="eop22Nom"/>
-                                </div>
-                                {{--<div class="form-group row">
-                                    <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Prenom" id="eop22Prenom"/>
-                                </div>--}}
-                                <div class="form-group row">
-                                    <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Fonction" id="eop22Fonction"/>
-                                </div>
-                                {{--<div class="form-group row">
-                                    <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Matricule" id="eop22Matricule"/>
-                                </div>--}}
-                                <div class="form-group row">
-                                    <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop22" value="{{$securiteService->hps_eop22}}" id="hps_eop22"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop22" value="{{$securiteService->hfs_eop22}}" id="hfs_eop22"/>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="equipe3" role="tabpanel" aria-labelledby="equipe-1-tab">
+                <div class="tab-pane fade" id="equipe3" role="tabpanel" aria-labelledby="equipe-3-tab">
 
                     <div class="container">
                         <br />
@@ -385,6 +346,52 @@
                         <br/>
                     </div>
 
+                </div>
+                <div class="tab-pane fade" id="equipe4" role="tabpanel" aria-labelledby="equipe-4-tab">
+                    <div class="container">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-2">
+                                <label>Opérateur</label>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="eop22Matricule" class="col-sm-3">Matricule</label>
+                                    <select type="text" name="eop22" id="eop22Matricule"
+                                            class="form-control col-sm-4">
+                                        <option>{{$securiteService->eop22}}</option>
+                                        @foreach($personnels as $personnel)
+                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                | {{$personnel->nomPrenoms}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Nom </label>
+                                    <input type="text" class="editbox col-md-4" name="eop22Nom" id="eop22Nom"/>
+                                </div>
+                                {{--<div class="form-group row">
+                                    <label class="col-md-3">Prénom</label>
+                                    <input type="text" class="editbox col-md-4" name="eop22Prenom" id="eop22Prenom"/>
+                                </div>--}}
+                                <div class="form-group row">
+                                    <label class="col-md-3">Fonction</label>
+                                    <input type="text" class="editbox col-md-4" name="eop22Fonction" id="eop22Fonction"/>
+                                </div>
+                                {{--<div class="form-group row">
+                                    <label class="col-md-3">Matricule</label>
+                                    <input type="text" class="editbox col-md-4" name="eop22Matricule" id="eop22Matricule"/>
+                                </div>--}}
+                                <div class="form-group row">
+                                    <label class="col-md-3">Heure de prise de service</label>
+                                    <input type="time" class="editbox col-md-4" name="hps_eop22" value="{{$securiteService->hps_eop22}}" id="hps_eop22"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Heure de fin de service</label>
+                                    <input type="time" class="editbox col-md-4" name="hfs_eop22" value="{{$securiteService->hfs_eop22}}" id="hfs_eop22"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br />
