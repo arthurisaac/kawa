@@ -230,7 +230,7 @@
                                     </select>
                                 </td>
                                 <td><input type="number" name="asNumColis[]" class="form-control"/></td>
-                                <td><td><select name="asNumBordereau[]"
+                                <td><select name="asNumBordereau[]"
                                                 class="form-control">
                                         <option>{{$colis->bordereau}}</option>
                                         @foreach($optionBordereau as $option)
