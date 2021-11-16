@@ -102,7 +102,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="chargeeRegulationAdjoint" class="col-sm-5">Matricule</label>
-                                <select type="text" name="chargeeRegulationAdjointe" id="chargeeRegulationAdjoint" class="form-control col-sm-7" required>
+                                <select type="text" name="chargeeRegulationAdjointe" id="chargeeRegulationAdjoint" class="form-control col-sm-7">
                                     <option value="{{$service->chargeeRegulationAdjointe}}">{{$service->chargeRegulationAdjointes->matricule ?? "Donnée indisponible"}} | {{$service->chargeRegulationAdjointes->nomPrenoms ?? "___"}}</option>
                                     @foreach($personnels as $personnel)
                                         <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>
