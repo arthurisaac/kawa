@@ -238,8 +238,7 @@
                                         @endforeach
                                     </select></td>
                                 <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
-                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}"
-                                           class="form-control"/></td>
+                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                 <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                             </tr>
@@ -269,13 +268,13 @@
                     '                                    </select>\n' +
                     '                                </td>\n' +
                     '                                <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
-                    '                                <td><td><select name="asNumBordereau[]"\n' +
+                    '                                <td><select name="asNumBordereau[]"\n' +
                     '                                                class="form-control">\n' +
                     '                                        <option>{{$colis->bordereau}}</option>\n' +
                     '                                        @foreach($optionBordereau as $option)\n' +
                     '                                            <option>{{$option->numero}}</option>\n' +
                     '                                        @endforeach\n' +
-                    '                                    </select></td>/td>\n' +
+                    '                                    </select></td>\n' +
                     '                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>\n' +
                     '                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
