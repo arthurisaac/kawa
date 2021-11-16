@@ -238,6 +238,8 @@
                                         @endforeach
                                     </select></td>
                                 <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
+                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}"
+                                           class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                 <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                             </tr>
@@ -275,6 +277,7 @@
                     '                                        @endforeach\n' +
                     '                                    </select></td>/td>\n' +
                     '                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    '                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>\n' +
                     '                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
                     '                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
                     '                            </tr>')

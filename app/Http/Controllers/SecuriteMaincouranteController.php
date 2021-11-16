@@ -455,6 +455,7 @@ class SecuriteMaincouranteController extends Controller
         $asNumBordereau = $request->get('asNumBordereau');
         $asMontantAnnonce = $request->get('asMontantAnnonce');
         $asNatureColis = $request->get('asNatureColis');
+        $asNombreColis = $request->get('asNombreColis');
 
         for ($i = 0; $i < count($asNumColis); $i++) {
             if (!empty($asNumColis[$i])) {
@@ -465,6 +466,7 @@ class SecuriteMaincouranteController extends Controller
                     'bordereau' => $asNumBordereau[$i],
                     'montant' => $asMontantAnnonce[$i],
                     'nature' => $asNatureColis[$i],
+                    'nombre_colis' => $asNombreColis[$i],
                 ]);
                 $as->save();
             }
@@ -557,7 +559,6 @@ class SecuriteMaincouranteController extends Controller
 
     public function deleteDepartCentre(Request $request, $id)
     {
-
         if ($request->ajax()) {
             $data = DepartCentre::find($id);
             $data->delete();
