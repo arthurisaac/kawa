@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control col">
-                            <option></option>
+                            <option>{{$centre}}</option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
                             @endforeach
@@ -47,7 +47,7 @@
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
-                            <option></option>
+                            <option>{{$centre_regional}}</option>
                             @foreach ($centres_regionaux as $centre)
                                 <option value="{{$centre->centre}}">{{ $centre->centre_regional }}</option>
                             @endforeach
@@ -58,7 +58,7 @@
                     <div class="form-group row">
                         <label for="client" class="col-5">Clients</label>
                         <select id="client" name="client" class="form-control col">
-                            <option></option>
+                            <option>{{$client}}</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}">{{ $client->client_nom }}</option>
                             @endforeach
@@ -69,7 +69,7 @@
                     <div class="form-group row">
                         <label for="site" class="col-5">Site</label>
                         <select id="site" name="site" class="form-control col">
-                            <option></option>
+                            <option>{{$site}}</option>
                             @foreach ($sites_com as $site)
                                 <option value="{{$site->id}}">{{ $site->site }}</option>
                             @endforeach
@@ -81,13 +81,13 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-7">
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col-sm-7">
+                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
                     </div>
                 </div>
                 <div class="col"></div>

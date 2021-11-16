@@ -531,7 +531,7 @@
                     '                                        <td><select name="asNumBordereau[]" class="form-control">\n' +
                     '                                                <option></option>\n' +
                     '                                                @foreach($optionBordereau as $option)\n' +
-                    '                                                    <option>$option->numero</option>\n' +
+                    '                                                    <option>{{$option->numero}}</option>\n' +
                     '                                                @endforeach\n' +
                     '                                            </select></td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +

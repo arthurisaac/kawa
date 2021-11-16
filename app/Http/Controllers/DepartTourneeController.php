@@ -177,7 +177,8 @@ class DepartTourneeController extends Controller
 
         }
 
-        return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients', 'sites_com'));
+        return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients', 'sites_com',
+        'site', 'client', 'debut', 'fin', 'centre', 'centre_regional'));
     }
 
     /**

@@ -209,7 +209,7 @@
                                                class="form-control">
                                             <option>{{$colis->bordereau}}</option>
                                             @foreach($optionBordereau as $option)
-                                                <option>$option->numero</option>
+                                                <option>{{$option->numero}}</option>
                                             @endforeach
                                         </select></td>
                                     <td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}"
@@ -262,7 +262,7 @@
                     '                                        </td>\n' +
                     '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
                     '                                        <td>@foreach($optionBordereau as $option)\n' +
-                    '                                                    <option>$option->numero</option>\n' +
+                    '                                                    <option>{{$option->numero}}</option>\n' +
                     '                                                @endforeach</td>\n' +
                     '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
