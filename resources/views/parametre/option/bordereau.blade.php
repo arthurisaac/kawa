@@ -29,7 +29,7 @@
                     <form action="/parametres-option-bordereau" method="post">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-4">Niveau carburant</label>
+                            <label class="col-4">Numéro bordereau</label>
                             <input type="text" name="option" id="option" class="col-8 form-control">
                         </div>
                         <div class="form-group">
@@ -49,7 +49,7 @@
                         <tbody>
                         @foreach($options as $option)
                             <tr>
-                                <td>{{$option->option}}</td>
+                                <td>{{$option->numero}}</td>
                                 <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$option->id}}', this)"></a></td>
                             </tr>
                         @endforeach
