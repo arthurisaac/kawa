@@ -52,7 +52,7 @@ class OptionSelectController extends Controller
     public function storeBordereau(Request $request)
     {
         $data = new OptionBordereau([
-            'option' => $request->get('option')
+            'numero' => $request->get('option')
         ]);
         $data->save();
         return redirect()->back()->with('success', 'Enregistré avec succès');
