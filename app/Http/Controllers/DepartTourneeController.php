@@ -115,6 +115,7 @@ class DepartTourneeController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $clients = Commercial_client::orderBy('client_nom')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
@@ -160,7 +161,7 @@ class DepartTourneeController extends Controller
 
         }
 
-        return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients'));
+        return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients', 'sites_com'));
     }
 
     /**

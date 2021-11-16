@@ -65,7 +65,17 @@
                         </select>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-5">Site comm</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option></option>
+                            @foreach ($site_com as $site)
+                                <option value="{{$site->id}}">{{ $site->site }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col">

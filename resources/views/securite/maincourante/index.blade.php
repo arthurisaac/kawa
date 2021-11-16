@@ -270,7 +270,7 @@
                                         <td><select name="asNumBordereau[]" class="form-control">
                                                 <option></option>
                                                 @foreach($optionBordereau as $option)
-                                                    <option>$option->numero</option>
+                                                    <option>{{$option->numero}}</option>
                                                 @endforeach
                                             </select></td>
                                         <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
