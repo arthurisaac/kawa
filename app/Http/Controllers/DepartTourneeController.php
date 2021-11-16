@@ -107,7 +107,6 @@ class DepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $q = $request->get("q");
         $client = $request->get("client");
         $site = $request->get("site");
 
@@ -162,13 +161,13 @@ class DepartTourneeController extends Controller
         }
         if (isset($site)) {
             $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
-                $query->where('site', 'like', '%' . $site . '%');
+                $query->where('id', 'like', '%' . $site . '%');
             })->get();
             $totalTournee = 0;
             $siteParTournees = DepartTournee::with('sites')
                 ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
-                ->where('commercial_sites.site', '=', $site)
+                ->where('commercial_sites.id', '=', $site)
                 ->groupBy('depart_tournees.id')
                 ->get(['coutTournee']);
 
