@@ -160,7 +160,7 @@
 
                         <div class="form-group row">
                             <label class="col-sm-4">Date départ site</label>
-                            <input type="datetime-local" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
+                            <input type="" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4">Prochaine destination</label>
@@ -216,7 +216,7 @@
                                     <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
                                 </tr>
                             @endforeach
-                            <tr>
+                            {{--<tr>
                                 <td>
                                     <select name="asColis[]" class="form-control">
                                         <option>Keep Safe</option>
@@ -235,7 +235,7 @@
                                 <td><input type="text" name="asNombreColis[]" class="form-control"/></td>
                                 <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
                                 <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
-                            </tr>
+                            </tr>--}}
                             </tbody>
                         </table>
                     </div>
