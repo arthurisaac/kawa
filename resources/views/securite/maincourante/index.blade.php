@@ -741,7 +741,7 @@
                 //const asMontantAnnonce = $("input[name=asMontantAnnonce]").val();
                 //const asNatureColis = $("input[name=asNatureColis]").val();
 
-                $("#asSubmit").attr("disabled", "true");
+                //$("#asSubmit").attr("disabled", "true");
                 $.ajax({
                     url: "{{ route('maincourante.store') }}",
                     type: "POST",
@@ -786,8 +786,7 @@
                     }
                 })
                     .done(function () {
-                        //$("#asSubmit").attr("disabled", "false");
-                        $("#asSubmit").removeAttr("disabled");
+                        //$("#asSubmit").removeAttr("disabled");
                     });
             });
 
