@@ -160,7 +160,7 @@
 
                         <div class="form-group row">
                             <label class="col-sm-4">Date départ site</label>
-                            <input type="date" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
+                            <input type="datetime-local" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4">Prochaine destination</label>
