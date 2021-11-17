@@ -211,8 +211,8 @@
                                             @endforeach
                                         </select></td>
                                     <td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}" class="form-control"/></td>
+                                    <td><input type="number" min="0" name="asNombreColis_edit[]" value="{{$colis->nombre_colis}}" class="form-control"/></td>
                                     <td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}" class="form-control"/></td>
-                                    <td><input type="text" name="asNombreColis_edit[]" value="{{$colis->nombre_colis}}" class="form-control"/></td>
                                     <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
                                 </tr>
                             @endforeach
