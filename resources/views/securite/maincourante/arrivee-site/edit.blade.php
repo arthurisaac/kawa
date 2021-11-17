@@ -145,7 +145,7 @@
                         <div class="form-group row">
                             <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
                             <input type="number" name="asNbColis" id="asNbColis" value="{{$site->nombre_colis}}"
-                                   class="form-control col-sm-8"/>
+                                   class="form-control col-sm-8" disabled/>
                         </div>
 
                         <br>
