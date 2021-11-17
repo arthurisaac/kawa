@@ -321,8 +321,7 @@
 
                         <br/>
                         <div class="form-group">
-                            <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer
-                            </button>
+                            <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -693,7 +692,6 @@
                 });
             });
 
-
             $("#asSubmit").on("click", function () {
                 const _token = $("input[name=_token]").val();
 
@@ -725,7 +723,7 @@
                 $('input[name^="asNumColis"]').each(function () {
                     asNumColis.push($(this).val())
                 });
-                $('input[name^="asNumBordereau"]').each(function () {
+                $('select[name^="asNumBordereau"]').each(function () {
                     asNumBordereau.push($(this).val())
                 });
                 $('input[name^="asMontantAnnonce"]').each(function () {

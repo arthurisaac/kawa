@@ -160,6 +160,8 @@ class SecuriteMaincouranteController extends Controller
             'asDestination' => $request->get('asDestination'),
             'asDepartSite' => $request->get('asDepartSite'),
             'asKm' => $request->get('asKm'),
+            'bordereau' => $request->get('asNumBordereau'),
+            'num_colis' => $request->get('asNumColis'),
             /*'noBordereau' => $request->get('noBordereau'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrivee' => $request->get('kmArrivee'),
@@ -450,12 +452,12 @@ class SecuriteMaincouranteController extends Controller
             }
         }
 
-        $asColis = $request->get('asColis');
-        $asNumColis = $request->get('asNumColis');
-        $asNumBordereau = $request->get('asNumBordereau');
-        $asMontantAnnonce = $request->get('asMontantAnnonce');
-        $asNatureColis = $request->get('asNatureColis');
-        $asNombreColis = $request->get('asNombreColis');
+        $asColis = $request->get('colis');
+        $asNumColis = $request->get('num_colis');
+        $asNumBordereau = $request->get('bordereau');
+        $asMontantAnnonce = $request->get('montant');
+        $asNatureColis = $request->get('nature');
+        $asNombreColis = $request->get('nombre_colis');
 
         for ($i = 0; $i < count($asNumColis); $i++) {
             if (!empty($asNumColis[$i])) {
