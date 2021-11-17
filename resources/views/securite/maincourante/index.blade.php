@@ -300,8 +300,8 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-4">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-8" name="asDepartSite"
-                                               value="{{date('Y-m-d')}}">
+                                        <input type="datetime-local" class="form-control col-sm-8" name="asDepartSite"
+                                               value="{{date('Y-m-d\TH:i')}}">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-4">Prochaine destination</label>
