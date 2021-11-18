@@ -554,6 +554,10 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li><span></span><a
+                                                            href="javascript:popupwnd('regulation-stock-appro','no','no','no','yes','yes','no','','','1200','600')"
+                                                            target="_self" title="Liste">Liste</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>

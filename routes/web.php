@@ -332,6 +332,7 @@ Route::resource('regulation-stock-sortie', 'RegulationStockSortieController');
 Route::get('regulation-stock-sortie-liste', [\App\Http\Controllers\RegulationStockSortieController::class, 'liste']);
 Route::delete('regulation-stock-sortie-item/{id}', [\App\Http\Controllers\RegulationStockSortieController::class, 'destroyItem']);
 
+Route::get('regulation-stock-appro', [\App\Http\Controllers\RegulationStockSortieController::class, 'listeAppro']);
 
 /*
  * VIRGILOMETREIE

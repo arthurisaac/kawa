@@ -34,6 +34,10 @@ class RegulationStockSortieController extends Controller
         return view("regulation.stock.sortie.liste", compact('stocks'));
     }
 
+    public function listeAppro(Request $request) {
+        return view('regulation.stock.liste');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
