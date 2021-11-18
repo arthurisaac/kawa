@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\RegulationFacturationItem;
+use App\Models\RegulationStockEntreeItem;
 use App\Models\RegulationStockSortie;
 use App\Models\RegulationStockSortieItem;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,8 +37,47 @@ class RegulationStockSortieController extends Controller
         return view("regulation.stock.sortie.liste", compact('stocks'));
     }
 
-    public function listeAppro(Request $request) {
-        return view('regulation.stock.liste');
+    public function listeAppro(Request $request)
+    {
+        $libelles = array(
+            "bordereau de transport",
+            "bordereau de collecte",
+            "cahier de maintenance",
+            "cahier d’appro",
+            "securipack extra",
+            "securipack grand",
+            "securipack moyen",
+            "securipack petit",
+            "pochette",
+            "scellé DAB",
+            "scellé caisse",
+            "coiffe 10000",
+            "coiffe 5000",
+            "coiffe 2000",
+            "coiffe 1000",
+            "coiffe 500",
+            "sac jute grand",
+            "sac jute moyen",
+            "TAG bleu",
+            "TAG vert",
+        );
+        $stocks = array();
+        foreach ($libelles as $libelle) {
+            $factures = RegulationFacturationItem::where('libelle', 'like', $libelle)->sum('qte');
+            $sorties = RegulationStockSortieItem::where('libelle', 'like', $libelle)->sum('qte_sortie');
+            $appro = RegulationStockEntreeItem::whereHas('stocks', function (Builder $query) use ($libelle) {
+                $query->where('libelle', 'like', $libelle);
+            })->sum('qte_livree');
+            array_push($stocks, [
+                "libelle" => $libelle,
+                "appro" => $appro,
+                "facture" => $factures,
+                "sortie" => $sorties,
+                "restant" => $appro - ($factures + $sorties)
+                //"restant" => $factures + $sorties
+            ]);
+        }
+        return view('regulation.stock.liste', compact('stocks'));
     }
 
     /**

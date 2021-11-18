@@ -17,4 +17,8 @@ class RegulationStockEntreeItem extends Model
         "colis",
         "date",
     ];
+    public function stocks()
+    {
+        return $this->belongsTo('App\Models\RegulationStockEntree', 'stock_entree', 'id');
+    }
 }

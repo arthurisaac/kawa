@@ -28,7 +28,7 @@
         <table class="table table-bordered" id="liste">
             <thead>
             <tr>
-                <th>N°</th>
+                <th>Libellé</th>
                 <th>Appro stock</th>
                 <th>stock sortir Burval</th>
                 <th>Stock sortie facture</th>
@@ -36,6 +36,15 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($stocks as $stock)
+                <tr>
+                    <td>{{$stock['libelle']}}</td>
+                    <td>{{$stock['appro']}}</td>
+                    <td>{{$stock['facture']}}</td>
+                    <td>{{$stock['sortie']}}</td>
+                    <td>{{$stock['restant']}}</td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
