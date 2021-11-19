@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Stock appro</h2></div>
+        <div><h2 class="heading">ETAT DE STOCK</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -42,7 +42,7 @@
                     <td>{{$stock['appro']}}</td>
                     <td>{{$stock['sortie']}}</td>
                     <td>{{$stock['facture']}}</td>
-                    <td>{{$stock['restant']}}</td>
+                    <td class="text-danger" style="font-size: 18px;">{{$stock['restant']}}</td>
                 </tr>
             @endforeach
             </tbody>
