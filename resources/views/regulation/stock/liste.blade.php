@@ -40,8 +40,8 @@
                 <tr>
                     <td>{{$stock['libelle']}}</td>
                     <td>{{$stock['appro']}}</td>
-                    <td>{{$stock['facture']}}</td>
                     <td>{{$stock['sortie']}}</td>
+                    <td>{{$stock['facture']}}</td>
                     <td>{{$stock['restant']}}</td>
                 </tr>
             @endforeach
