@@ -32,7 +32,7 @@
                 <th>Appro stock</th>
                 <th>stock sortir Burval</th>
                 <th>Stock sortie facture</th>
-                <th>Stock restant</th>
+                <th>Quantité en stock</th>
             </tr>
             </thead>
             <tbody>
