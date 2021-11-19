@@ -323,6 +323,7 @@ Route::get('regulation-depart-tournee-liste', [\App\Http\Controllers\RegulationD
 
 Route::resource('regulation-arrivee-tournee', 'RegulationArriveeTourneeController');
 Route::get('regulation-arrivee-tournee-liste', [\App\Http\Controllers\RegulationArriveeTourneeController::class, 'liste']);
+Route::get('regulation-arrivee-colis', [\App\Http\Controllers\RegulationArriveeTourneeController::class, 'listeColisArrivee']);
 
 Route::resource('regulation-stock-entree', 'RegulationStockEntreeController');
 Route::get('regulation-stock-entree-liste', [\App\Http\Controllers\RegulationStockEntreeController::class, 'liste']);

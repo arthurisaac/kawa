@@ -608,6 +608,10 @@
                                                                 href="javascript:popupwnd('regulation-arrivee-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Liste</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-arrivee-colis','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Colis arrivée</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>

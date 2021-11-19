@@ -10,14 +10,16 @@ use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
 use App\Models\SiteDepartTournee;
 use App\Models\VidangeGenerale;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RegulationArriveeTourneeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -41,10 +43,46 @@ class RegulationArriveeTourneeController extends Controller
         return view("regulation.arrivee-tournee.liste", compact("tournees"));
     }
 
+    public function listeColisArrivee(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $q = $request->get('q');
+
+        $tournees = DepartTournee::all();
+        $colisArrivees = SiteDepartTournee::with('sites')
+            ->where('colis', '!=', 'RAS')
+            ->orderByDesc("created_at")
+            ->get();
+        if (isset($debut) && isset($fin)) {
+            //$colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
+            //->whereBetween('created_at', [$debut, $fin])
+            //->orderByDesc("created_at")
+            //->get();
+
+            $colisArrivees = SiteDepartTournee::where('colis', '!=', 'RAS')->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+            $tournees = DepartTournee::where('colis', '!=', 'RAS')->whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($q)) {
+            $tournees = DepartTournee::where('numeroTournee', 'like', '%' . $q . '%')
+                ->orWhere('centre', 'like', '%' . $q . '%')
+                ->orWhere('centre_regional', 'like', '%' . $q . '%')
+                ->orWhere('kmDepart', 'like', '%' . $q . '%')
+                ->orWhere('coutTournee', 'like', '%' . $q . '%')
+                ->orWhere('date', 'like', '%' . $q . '%')
+                ->get();
+
+        }
+        return view('regulation.arrivee-tournee.colis-arrivee',
+            compact('colisArrivees', 'tournees'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -54,8 +92,8 @@ class RegulationArriveeTourneeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -110,7 +148,7 @@ class RegulationArriveeTourneeController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -121,7 +159,7 @@ class RegulationArriveeTourneeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -135,9 +173,9 @@ class RegulationArriveeTourneeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -188,7 +226,7 @@ class RegulationArriveeTourneeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
