@@ -194,6 +194,11 @@ class RegulationFacturationController extends Controller
     {
         $data = RegulationFacturationItem::find($id);
         if ($data) {
+            $items = RegulationFacturationItem::where("facturation", $id)->get();
+            foreach ($items as $item) {
+                $fact = RegulationFacturationItem::find($item->id);
+                $fact->delete();
+            }
             $data->delete();
         }
         return response()->json([
