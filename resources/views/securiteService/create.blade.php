@@ -250,7 +250,6 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="equipe3" role="tabpanel" aria-labelledby="equipe-3-tab">
-
                     <div class="container">
                         <br />
                         <h3>EQUIPE 3</h3>
@@ -343,11 +342,11 @@
                         </div>
                         <br/>
                     </div>
-
                 </div>
-                <div class="tab-pane fade" id="equipe3" role="tabpanel" aria-labelledby="equipe-4-tab">
-                    <br>
+                <div class="tab-pane fade" id="equipe4" role="tabpanel" aria-labelledby="equipe-4-tab">
                     <div class="container">
+                        <br />
+                        <h3>EQUIPE 4</h3>
                         <div class="row" style="align-items: center;">
                             <div class="col-2">
                                 <label>Opérateur</label>

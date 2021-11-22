@@ -349,6 +349,8 @@
                 </div>
                 <div class="tab-pane fade" id="equipe4" role="tabpanel" aria-labelledby="equipe-4-tab">
                     <div class="container">
+                        <br />
+                        <h3>EQUIPE 4</h3>
                         <div class="row" style="align-items: center;">
                             <div class="col-2">
                                 <label>Opérateur</label>
