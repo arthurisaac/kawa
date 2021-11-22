@@ -72,10 +72,10 @@
                             <td>{{$service->date}}</td>
                             <td>{{$service->centre}}</td>
                             <td>{{$service->centreRegional}}</td>
-                            <td>{{$service->chargeRegulations->nomPrenoms}}</td>
+                            <td>{{$service->chargeRegulations->nomPrenoms ?? ""}}</td>
                             <td>{{$service->chargeeRegulationHPS}}</td>
                             <td>{{$service->chargeeRegulationHFS}}</td>
-                            <td>{{$service->chargeRegulationAdjointes->nomPrenoms}}</td>
+                            <td>{{$service->chargeRegulationAdjointes->nomPrenoms ? ""}}</td>
                             <td>{{$service->chargeeRegulationAdjointeHPS}}</td>
                             <td>{{$service->chargeeRegulationAdjointeHFS}}</td>
                             <td>

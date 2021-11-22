@@ -243,6 +243,11 @@ class RegulationStockSortieController extends Controller
     {
         $data = RegulationStockSortie::find($id);
         if ($data) {
+            $items = RegulationStockSortieItem::where("stock_sortie", $id)->get();
+            foreach ($items as $item) {
+                $sortie = RegulationStockSortieItem::find($item->id);
+                $sortie->delete();
+            }
             $data->delete();
         }
         return response()->json([

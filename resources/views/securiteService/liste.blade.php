@@ -66,7 +66,7 @@
                             <td>{{$service->date}}</td>
                             <td>{{$service->centre}}</td>
                             <td>{{$service->centreRegional}}</td>
-                            <td>{{$service->personnes->nomPrenoms}}</td>
+                            <td>{{$service->personnes->nomPrenoms ?? ""}}</td>
                             <td>
                                 <div class="row">
                                     <div class="col">

@@ -200,6 +200,11 @@ class RegulationStockEntreeController extends Controller
     {
         $data = RegulationStockEntree::find($id);
         if ($data) {
+            $items = RegulationStockEntreeItem::where("stock_sortie", $id)->get();
+            foreach ($items as $item) {
+                $sortie = RegulationStockEntreeItem::find($item->id);
+                $sortie->delete();
+            }
             $data->delete();
         }
         return response()->json([
