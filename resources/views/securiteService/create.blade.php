@@ -99,11 +99,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="equipe-3-tab" data-toggle="tab" href="#equipe3" role="tab"
-                       aria-controls="depart-site" aria-selected="false">PC Centrale</a>
+                       aria-controls="depart-site" aria-selected="false">PC Centrale (matin)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="equipe-4-tab" data-toggle="tab" href="#equipe4" role="tab"
-                       aria-controls="equipe4" aria-selected="false">PC Centrale (matin)</a>
+                       aria-controls="equipe4" aria-selected="false">PC Centrale (soir)</a>
                 </li>
             </ul>
             <div class="tab-content">

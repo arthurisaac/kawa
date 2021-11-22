@@ -200,10 +200,10 @@
             });
         });
 
-        function populateSites(sites) {
+        function populateSites(sitesChoisis) {
             // console.log(sites);
             $("#tableSite > tbody").html("");
-            sites.map(s => {
+            sitesChoisis.map(s => {
                 let HTML_NODE = `<tr>
                         <td>
                                 <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>

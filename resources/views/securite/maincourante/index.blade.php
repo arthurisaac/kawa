@@ -471,7 +471,7 @@
                     const commercial_site = sitesTournees.filter(site => {
                         return site.idTourneeDepart === tournee.id;
                     });
-                    console.log(commercial_site);
+                    $("#asSite option").remove();
                     commercial_site.map(({sites}) => {
                         $('#asSite').append($('<option>', {
                             value: sites.id,
