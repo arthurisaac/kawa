@@ -447,10 +447,10 @@
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
                 if (tournee) {
-                    $("#vehicule").val(tournee.vehicules.immatriculation);
-                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
-                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
-                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    $("#vehicule").val(tournee.vehicules.immatriculation ?? '');
+                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms ?? '');
+                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms ?? '');
+                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms ?? '');
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
 
