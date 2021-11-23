@@ -58,6 +58,7 @@ class Commercial_site extends Model
         'oo_comptage',
         'oo_dispatching',
         'oo_ass_appro',
+        'oo_dnf',
     ];
 
 

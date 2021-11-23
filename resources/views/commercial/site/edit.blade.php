@@ -159,6 +159,11 @@
                             <input type="number" class="col-sm-6 form-control form-control-sm"
                                    name="oo_ass_appro" value="{{$site->oo_ass_appro}}" id="oo_ass_appro">
                         </div>
+                        <div class="form-group row">
+                            <label for="oo_dnf" class="col-sm-6">Dépôt non facturé</label>
+                            <input type="number" class="col-sm-6 form-control form-control-sm"
+                                   name="oo_dnf" id="oo_dnf" value="{{$site->oo_dnf}}">
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="atm-c" role="tabpanel" aria-labelledby="atm-tab">

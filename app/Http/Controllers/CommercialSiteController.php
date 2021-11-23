@@ -106,6 +106,7 @@ class CommercialSiteController extends Controller
             'oo_comptage' => $request->get('oo_comptage'),
             'oo_dispatching' => $request->get('oo_dispatching'),
             'oo_ass_appro' => $request->get('oo_ass_appro'),
+            'oo_dnf' => $request->get('oo_dnf'),
         ]);
         $site->save();
         return redirect()->back()->with('success', 'Site enregistré!');
@@ -199,6 +200,7 @@ class CommercialSiteController extends Controller
         $site->oo_comptage = $request->get('oo_comptage');
         $site->oo_dispatching = $request->get('oo_dispatching');
         $site->oo_ass_appro = $request->get('oo_ass_appro');
+        $site->oo_dnf = $request->get('oo_dnf');
         $site->save();
         return redirect('/commercial-site-liste')->with('success', 'Site modifié avec succès!');
 

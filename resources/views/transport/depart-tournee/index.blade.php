@@ -172,6 +172,7 @@
                                     <option value="oo_vb_intramuros">VB</option>
                                     <option value="oo_vl_intramuros">VL</option>
                                     <option value="oo_ass_appro">Assistance appro DAB</option>
+                                    <option value="oo_dnf">Dépôt non facturé</option>
                                 </select>
                             </td>
                             <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>
@@ -245,6 +246,7 @@
                     '                                    <option value="oo_vb_intramuros">VB</option>\n' +
                     '                                    <option value="oo_vl_intramuros">VL</option>\n' +
                     '                                    <option value="oo_ass_appro">Assistance Appro DAB</option>\n' +
+                    '                                    <option value="oo_dnf">Dépôt non facturé</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td><input type="number" class="form-control" name="montant_tdf[]" disabled/></td>\n' +
