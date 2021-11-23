@@ -40,37 +40,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="operatriceCaisse" class="col-sm-5">Operatrice de saise</label>
-                        <select name="operatriceCaisse" id="operatriceCaisse" class="form-control col-sm-7" required>
-                            <option></option>
-                            @foreach ($operatrices as $operatrice)
-                                <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="heurePrise" class="col-sm-5">Heure de prise de Box</label>
+                        <label for="heurePrise" class="col-sm-5">Heure de prise de service</label>
                         <input type="time" name="heurePriseBox" class="form-control col-sm-7" REQUIRED/>
                     </div>
                 </div>
                 <div class="col">
+
                     <div class="form-group row">
-                        <label for="numeroBox" class="col-sm-5">Numero de Box</label>
-                        <select name="numeroBox" id="numeroBox" class="form-control col-sm-7" REQUIRED>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="heureFin" class="col-sm-5">Heure de fin de Box</label>
+                        <label for="heureFin" class="col-sm-5">Heure de fin de service</label>
                         <input type="time" name="heureFinBox" id="heureFinBox" class="form-control col-sm-7"/>
                     </div>
                 </div>
@@ -79,8 +56,12 @@
 
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="bordereau-tab" data-toggle="tab" href="#bordereau" role="tab"
-                       aria-controls="bordereau" aria-selected="true">BORDEREAU</a>
+                    <a class="nav-link active" id="operatrice-tab" data-toggle="tab" href="#operatrice" role="tab"
+                       aria-controls="operatrice" aria-selected="true">OPERATRICE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="bordereau-tab" data-toggle="tab" href="#bordereau" role="tab"
+                       aria-controls="bordereau" aria-selected="false">BORDEREAU</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="colis-tab" data-toggle="tab" href="#colis"
@@ -95,7 +76,48 @@
             </ul>
             <br>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="bordereau" role="tabpanel"
+                <div class="tab-pane fade show active" id="operatrice" role="tabpanel"
+                     aria-labelledby="operatrice-tab">
+                    <h6>Operatrice de tri</h6>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-sm" id="add">Ajouter</button>
+                    <br>
+                    <br>
+                    <table class="table table-bordered" id="mTable">
+                        <thead>
+                        <tr>
+                            <th>Opératrice</th>
+                            <th>Numéro de box</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><select name="operatrice[]" class="form-control col-sm-7" required>
+                                    <option></option>
+                                    @foreach ($operatrices as $operatrice)
+                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
+                                    @endforeach
+                                </select></td>
+                            <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></td>
+                            <td><button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne(this)"></button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane fade show" id="bordereau" role="tabpanel"
                      aria-labelledby="bordereau-tab">
                     <h6>Bordereau</h6>
                     <div class="row" style="align-items: center;">
@@ -607,31 +629,57 @@
         });
     </script>
     <script>
-        let personnels = {!! json_encode($personnels) !!};
+        function supprimerLigne(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("mTable").deleteRow(indexLigne);
+        }
 
-        $(document).ready(function() {
-            $(document).ready(function () {
-                $("#regulatrice").on("change", function () {
-                    const personnel = personnels.find(p => p.id === parseInt(this.value));
-                    //console.log(personnel);
-                    if (personnel) {
-                        //$("#regulatriceNomPrenoms").val(personnel.nomPrenoms);
-                        $("#regulatriceFonction").val(personnel.fonction);
-                        $("#regulatriceMatricule").val(personnel.matricule);
-                        //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
-                    }
-                });
-                $("#convoyeurGarde").on("change", function () {
-                    const personnel = personnels.find(p => p.id === parseInt(this.value));
-                    console.log(personnel);
-                    if (personnel) {
-                        //$("#regulatriceNomPrenoms").val(personnel.nomPrenoms);
-                        $("#convoyeurGardeFonction").val(personnel.fonction);
-                        $("#convoyeurGardeMatricule").val(personnel.matricule);
-                        //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
-                    }
-                });
+        let personnels = {!! json_encode($personnels) !!};
+        $(document).ready(function () {
+            $("#regulatrice").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                //console.log(personnel);
+                if (personnel) {
+                    //$("#regulatriceNomPrenoms").val(personnel.nomPrenoms);
+                    $("#regulatriceFonction").val(personnel.fonction);
+                    $("#regulatriceMatricule").val(personnel.matricule);
+                    //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
+                }
             });
-        })
+            $("#convoyeurGarde").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                console.log(personnel);
+                if (personnel) {
+                    //$("#regulatriceNomPrenoms").val(personnel.nomPrenoms);
+                    $("#convoyeurGardeFonction").val(personnel.fonction);
+                    $("#convoyeurGardeMatricule").val(personnel.matricule);
+                    //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
+                }
+            });
+            //$("#mTable > tbody").html("");
+            $("#add").on("click", function () {
+                $("#mTable").append(' <tr>\n' +
+                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
+                    '                                    <option></option>\n' +
+                    '                                    @foreach ($operatrices as $operatrice)\n' +
+                    '                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>\n' +
+                    '                                    @endforeach\n' +
+                    '                                </select></td>\n' +
+                    '                            <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>\n' +
+                    '                                    <option value="1">1</option>\n' +
+                    '                                    <option value="2">2</option>\n' +
+                    '                                    <option value="3">3</option>\n' +
+                    '                                    <option value="4">4</option>\n' +
+                    '                                    <option value="5">5</option>\n' +
+                    '                                    <option value="6">6</option>\n' +
+                    '                                    <option value="7">7</option>\n' +
+                    '                                    <option value="8">8</option>\n' +
+                    '                                    <option value="9">9</option>\n' +
+                    '                                    <option value="10">10</option>\n' +
+                    '                                </select></td>\n' +
+                    '                            <td><button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne(this)"></button></td>\n' +
+                    '                        </tr>');
+            });
+        });
     </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CaisseBilletage;
 use App\Models\CaisseCtv;
+use App\Models\CaisseCTVOperatrice;
 use App\Models\CaisseServiceOperatrice;
 use App\Models\Centre;
 use App\Models\Centre_regional;
@@ -120,6 +121,20 @@ class CaisseCtvController extends Controller
         ]);
         $billetage->save();
 
+        $operatrices = $request->get('operatrice');
+        $numeros = $request->get('numero');
+        if (isset($operatrices)) {
+            for ($i = 0; $i < count($operatrices); $i++)
+                if (!empty($operatrice)) {
+                    $data = new CaisseCTVOperatrice([
+                        'ctv' => $ctv->id,
+                        'operatrice' => $operatrices[$i],
+                        'numero' => $numeros[$i] ?? 0
+                    ]);
+                    $data->save();
+                }
+        }
+
         return redirect('/ctv-liste')->with('success', 'CTV enregistré!');
     }
 
@@ -158,6 +173,7 @@ class CaisseCtvController extends Controller
         $tournees = DepartTournee::all();
         $sites = Commercial_site::all();
         $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $operatricesCTV = CaisseCTVOperatrice::with('operatrices')->where('ctv', $id)->get();
         $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         $ctv = CaisseCtv::with('operatrices')->find($id);
         // $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
@@ -166,7 +182,7 @@ class CaisseCtvController extends Controller
         $billetage = $billetages[0];
         return view('/caisse/ctv.edit',
             compact('ctv', 'personnels', 'centres', 'centres_regionaux',
-                'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'billetage'));
+                'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'billetage', 'operatricesCTV'));
     }
 
     /**
@@ -242,6 +258,33 @@ class CaisseCtvController extends Controller
         $billetage->br_nb5 = $request->get('br_nb5');
         $billetage->br_nb1 = $request->get('br_nb1');
         $billetage->save();
+
+        $operatrices = $request->get('operatrice');
+        $numeros = $request->get('numero');
+        $ids = $request->get('ids');
+        if (isset($operatrices)) {
+
+            for ($i = 0; $i < count($operatrices); $i++) {
+                if (empty($ids[$i])) {
+                    if (empty($operatrice)) {
+                        $data = new CaisseCTVOperatrice([
+                            'ctv' => $id,
+                            'operatrice' => $operatrices[$i],
+                            'numero' => $numeros[$i] ?? 0
+                        ]);
+                        $data->save();
+                    }
+                } else {
+                    $data = CaisseCTVOperatrice::find($ids[$i]);
+                    if ($data) {
+                        $data->operatrice = $operatrices[$i];
+                        $data->numero = $numeros[$i];
+                        $data->save();
+                    }
+                }
+            }
+
+        }
 
         return redirect('/ctv-liste')->with('success', 'CTV mis à jour!');
     }
