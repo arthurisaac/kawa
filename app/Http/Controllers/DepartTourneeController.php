@@ -27,10 +27,10 @@ class DepartTourneeController extends Controller
         $centres_regionaux = Centre_regional::all();
         $departTournee = DepartTournee::all();
         $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
-        $sites = Commercial_site::all();
-        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $chauffeurs = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
+        $sites = Commercial_site::orderBy('site')->get();
+        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
+        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
+        $chauffeurs = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
         $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         return view('transport.depart-tournee.index',
             compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num', 'centres', 'centres_regionaux'));
