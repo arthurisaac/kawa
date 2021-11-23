@@ -560,7 +560,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>
+                                        {{--<li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('regulation-confirmation','no','no','no','yes','yes','no','','','1200','600')"
@@ -571,7 +571,7 @@
                                                         target="_self">Liste</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li>--}}
                                         <li><span></span><span>Facturation</span>
                                             <ul>
                                                 <li><span></span><a
@@ -616,7 +616,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><span></span><span>Etat</span>
+                                        {{--<li><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><span>Securipack</span>
                                                     <ul>
@@ -643,45 +643,15 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li>
-
-                                        <li><span></span><span>Conteneur</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Nouveau">Nouveau</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="Liste">Liste</a>
-                                                </li>
-                                                <li><span></span><span>Recherche</span>
-                                                    <ul>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/rechercher-etat.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Etat">Etat</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/recherche-par-type.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self" title="Type">Type</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('./tournee/conteneur/etat.html','no','no','no','yes','yes','no','','','1000','500')"
-                                                                target="_self"
-                                                                title="D&#233;taill&#233;">D&#233;taill&#233;</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><span></span><span>Bordereau</span>
+                                        </li>--}}
+                                        {{--<li><span></span><span>Bordereau</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('etat-bordereau','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="Etat bordereau">Etat&nbsp;bordereau</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li>--}}
                                     </ul>
                                 </li>
                             </ul>
@@ -1042,18 +1012,7 @@
                                                 </li>--}}{{--
                                             </ul>
                                         </li>--}}
-                                        <li><span></span><span>Incident</span>
-                                            <ul>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('comptabilite-degradation','no','no','no','yes','yes','no','','','1200','500')"
-                                                        target="_self">D&#233;gradation</a>
-                                                </li>
-                                                <li><span></span><a
-                                                        href="javascript:popupwnd('comptabilite-degradation-liste','no','no','no','yes','yes','no','','','1200','500')"
-                                                        target="_self">Liste&nbsp;d&#233;gradation</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+
                                     </ul>
                                 </li>
                             </ul>
@@ -1648,6 +1607,47 @@
                                                         href="javascript:popupwnd('informatique-fournisseur-liste','no','no','no','yes','yes','no','','','1000','800')"
                                                         target="_self" title="Liste">Liste</a>
                                                 </li>
+                                            </ul>
+                                        </li>
+                                        <li><span></span><span>Conteneur</span>
+                                            <ul>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('conteneur','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Nouveau">Nouveau</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('conteneur-liste','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="Liste">Liste</a>
+                                                </li>
+                                                <li><span></span><span>Incident</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('comptabilite-degradation','no','no','no','yes','yes','no','','','1200','500')"
+                                                                target="_self">D&#233;gradation</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('comptabilite-degradation-liste','no','no','no','yes','yes','no','','','1200','500')"
+                                                                target="_self">Liste&nbsp;d&#233;gradation</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                {{--<li><span></span><span>Recherche</span>
+                                                    <ul>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/rechercher-etat.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Etat">Etat</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/recherche-par-type.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self" title="Type">Type</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('./tournee/conteneur/etat.html','no','no','no','yes','yes','no','','','1000','500')"
+                                                                target="_self"
+                                                                title="D&#233;taill&#233;">D&#233;taill&#233;</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>--}}
                                             </ul>
                                         </li>
                                     </ul>
