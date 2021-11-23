@@ -196,6 +196,7 @@
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
                 });
                 if (departSites) populateSites(departSites);
+                changeColis();
             });
         });
 
@@ -211,6 +212,7 @@
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
                         <td><select name="colis[]" class="form-control">
                                 <option>${s.colis ?? ''}</option>
+                                <option value="RAS">RAS</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
@@ -319,6 +321,7 @@
             $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
+            $("select[name='colis[]']").on("change", changeColis);
         });
     </script>
     <script>
@@ -361,6 +364,35 @@
                 totalColis += parseFloat(nbre) ?? 0;
             });
             $("#totalColis").val(totalColis);
+        }
+        function changeColis() {
+            let index = 0;
+            const thisColisInput = this;
+            // Trouver l'index du champs actuel
+            $.each($("select[name='colis[]']"), function (i) {
+                const colis = $("select[name='colis[]']").get(i);
+                if (thisColisInput === colis) {
+                    index = i;
+                }
+                if (colis.value === "RAS" ) {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
+                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                } else {
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
+                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
+                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                }
+            });
+
         }
     </script>
 @endsection
