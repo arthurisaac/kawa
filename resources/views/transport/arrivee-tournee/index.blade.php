@@ -187,6 +187,7 @@
                 const departSites = sites.filter(v => {
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
                 });
+                console.log(departSites);
                 if (departSites) populateSites(departSites);
                 if (tournee) {
                     $("#date").val(tournee.date);
@@ -253,7 +254,7 @@
                     $("#convoyeur" + numero).val(convoyeur)
             }
 
-            function populateSites() {
+            function populateSites(sites) {
                 $("#sitesListes > tbody").html("");
                 sites.map(s => {
                     let HTML_NODE = `<tr>
