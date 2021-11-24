@@ -312,36 +312,7 @@
                                        id="destinataire" name="destinataire" required/>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group row">
-                                <label for="client" class="col-sm-5">Client</label>
-                                <select class="form-control col-sm-7" id="client" name="client" required>
-                                    <option>{{$ctv->client}}</option>
-                                    @foreach ($clients as $client)
-                                        <option value="{{$client->id}}"> {{$client->client_nom}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group row">
-                                <label for="site" class="col-sm-5">Site</label>
-                                <select class="form-control col-sm-7" id="site" name="site" required>
-                                    <option>{{$ctv->site}}</option>
-                                    @foreach ($sites as $site)
-                                        <option value="{{$site->id}}"> {{$site->site}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group row">
-                                <label for="expediteur" class="col-sm-5">Expediteur</label>
-                                <input type="text" value="{{$ctv->expediteur}}" class="form-control col-sm-7"
-                                       id="expediteur" name="expediteur" required/>
-                            </div>
-                            <div class="form-group row">
-                                <label for="caisse_desti" class="col-sm-5">Destinataire</label>
-                                <input type="text" value="{{$ctv->destinataire}}" class="form-control col-sm-7"
-                                       id="destinataire" name="destinataire" required/>
-                            </div>
-                        </div>
+                        <div class="col"></div>
                         <div class="col"></div>
                     </div>
                 </div>

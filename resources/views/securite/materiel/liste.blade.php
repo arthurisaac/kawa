@@ -63,22 +63,22 @@
                 <tbody>
                 @foreach ($materiels as $materiel)
                 <tr>
-                    <td>{{$materiel->tournees->numeroTournee}}</td>
+                    <td>{{$materiel->tournees->numeroTournee ?? 'Donnée indisponible'}}</td>
                     <td>{{$materiel->date}}</td>
-                    <td></td>
+                    <td>{{$materiel->tournees->centre ?? 'Donnée indisponible'}}</td>
                     <td>{{$materiel->vehiculeVB}}</td>
                     <td>{{$materiel->vehiculeVL}}</td>
-                    <td>{{$materiel->cbs->nomPrenoms}}</td>
+                    <td>{{$materiel->cbs->nomPrenoms ?? 'Donnée indisponible'}}</td>
                     <td>
                         <div class="row">
                             <div class="col">
-                                <a href="{{ route('materiel.edit',$materiel->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('materiel.edit',$materiel->id)}}" class="btn btn-primary btn-sm"></a>
                             </div>
                             <div class="col">
                                 <form action="{{ route('materiel.destroy', $materiel->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </div>
                         </div>
