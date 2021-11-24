@@ -86,9 +86,9 @@ class RegulationDepartTourneeController extends Controller
                 $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
                 $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
-                $dataSite->colis = $colis[$i];
+                $dataSite->colis = $colis[$i] ?? 0;
                 //$dataSite->valeur_colis = $valeur_colis[$i];
-                $dataSite->numero = $numero[$i];
+                $dataSite->numero = $numero[$i] ?? 0;
                 //$dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
