@@ -60,6 +60,22 @@
                 <div class="col"></div>
                 <div class="col"></div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="heurePrise" class="col-sm-5">Heure de prise de service</label>
+                        <input type="time" name="heurePriseBox" value="{{$ctv->heurePriseBox}}" class="form-control col-sm-7" REQUIRED/>
+                    </div>
+                </div>
+                <div class="col">
+
+                    <div class="form-group row">
+                        <label for="heureFin" class="col-sm-5">Heure de fin de service</label>
+                        <input type="time" name="heureFinBox" value="{{$ctv->heureFinBox}}" id="heureFinBox" class="form-control col-sm-7"/>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div><br />
             <br/>
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -253,15 +269,14 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="numeroScelleColis" class="col-sm-5">Numero de scellé</label>
-                                <input type="number" value={{$ctv->numeroScelleColis}} name="numeroScelleColis"
+                                <input type="number" value="{{$ctv->numeroScelleColis}}" name="numeroScelleColis"
                                        id="numeroScelleColis" class="form-control col-sm-7"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" value={{$ctv->montantAnnonce}} name="montantAnnonce"
-                                       id="montantAnnonce" class="form-control col-sm-7"/>
+                                <input type="number" value={{$ctv->montantAnnonce}} name="montantAnnonce" id="montantAnnonce" class="form-control col-sm-7"/>
                             </div>
                         </div>
                     </div>
@@ -824,6 +839,14 @@
                     $("#convoyeurGardeMatricule").val(personnel.matricule);
                     //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
                 }
+            });
+            $("#montantAnnonce").on('change', function() {
+                const montantReconnu = $("#montantReconnu").val();
+                $("#ecartConstate").val(parseFloat(this.value ?? 0) - parseFloat(montantReconnu ?? 0))
+            });
+            $("#montantReconnu").on('change', function() {
+                const montantAnnonce = $("#montantAnnonce").val();
+                $("#ecartConstate").val(parseFloat(montantAnnonce ?? 0) - parseFloat(this.value ?? 0))
             });
             $("#add").on("click", function () {
                 $("#mTable").append(' <tr>\n' +

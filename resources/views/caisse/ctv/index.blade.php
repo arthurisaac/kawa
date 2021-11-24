@@ -260,7 +260,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" name="montantAnnonce" id="montantAnnonce" class="form-control col-sm-7"/>
+                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7"/>
                             </div>
                         </div>
                     </div><br />
@@ -699,6 +699,14 @@
                     '                                </select></td>\n' +
                     '                            <td><button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne(this)"></button></td>\n' +
                     '                        </tr>');
+            });
+            $("#montantAnnonce").on('change', function() {
+                const montantReconnu = $("#montantReconnu").val();
+                $("#ecartConstate").val(parseFloat(this.value ?? 0) - parseFloat(montantReconnu ?? 0))
+            });
+            $("#montantReconnu").on('change', function() {
+                const montantAnnonce = $("#montantAnnonce").val();
+                $("#ecartConstate").val(parseFloat(montantAnnonce ?? 0) - parseFloat(this.value ?? 0))
             });
         });
     </script>

@@ -68,8 +68,6 @@
                         <td>Montant annoncé</td>
                         <td>Client</td>
                         <td>Site</td>
-                        <td>Expediteur</td>
-                        <td>Destinataire</td>
                         <td>Montant Reconnu</td>
                         <td>Ecart constaté</td>
                         <td>Montant Final</td>
@@ -93,10 +91,8 @@
                             <td>{{$ctv->nombreColis}}</td>
                             <td>{{$ctv->numeroScelleColis}}</td>--}}
                             <td>{{$ctv->montantAnnonce}}</td>
-                            <td>{{$ctv->client}}</td>
-                            <td>{{$ctv->site}}</td>
-                            <td>{{$ctv->expediteur}}</td>
-                            <td>{{$ctv->destinataire}}</td>
+                            <td>{{$ctv->clients->client_nom ?? ''}}</td>
+                            <td>{{$ctv->sites->site ?? ''}}</td>
                             <td>{{$ctv->montantReconnu}}</td>
                             <td>{{$ctv->ecartConstate}}</td>
                             <td>{{$ctv->montantFinal}}</td>
