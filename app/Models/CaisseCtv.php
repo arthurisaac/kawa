@@ -38,6 +38,8 @@ class CaisseCtv extends Model
         'fauxBilletsMontant',
         'billetsDeparailles',
         'billetsDeparaillesMontant',
+        'centre',
+        'centre_regional'
     ];
 
     public function operatrices()

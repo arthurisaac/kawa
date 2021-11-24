@@ -30,6 +30,28 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
+                        <label for="centre" class="col-5">Centre regional</label>
+                        <select name="centre" id="centre" class="form-control col-7" required>
+                            <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-7" required>
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
                         <label class="col-sm-5">Date</label>
                         <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control col-sm-7" required/>
                     </div>
@@ -176,7 +198,7 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prénoms</label>
-                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice" required>
+                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice">
                                             <option></option>
                                             @foreach ($personnels as $personnel)
                                                 <option value="{{$personnel->id}}"> {{$personnel->nomPrenoms}}</option>
@@ -447,15 +469,15 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                <input type="number" min="0" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" required/>
+                                <input type="number" min="0" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" min="0" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" required/>
+                                <input type="number" min="0" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0"/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7" required/>
+                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -527,8 +549,6 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
-
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
                     return region.id_centre === centre.id;

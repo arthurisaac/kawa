@@ -53,8 +53,8 @@
                     <thead>
                     <tr>
                         <td>date</td>
-                        <td>Operatrice</td>
-                        <td>Numero de box</td>
+                        <td>Centre régional</td>
+                        <td>Centre</td>
                         <td>Heure prise box</td>
                         <td>Heure fin box</td>
                         {{--<td>Tournee</td>
@@ -80,8 +80,8 @@
                     @foreach ($ctvs as $ctv)
                         <tr>
                             <td>{{$ctv->date}}</td>
-                            <td>{{$ctv->operatriceCaisse}}</td>
-                            <td>{{$ctv->numeroBox}}</td>
+                            <td>{{$ctv->centre_regional}}</td>
+                            <td>{{$ctv->centre}}</td>
                             <td>{{$ctv->heurePriseBox}}</td>
                             <td>{{$ctv->heureFinBox}}</td>
                             {{--<td>{{$ctv->tournee}}</td>
@@ -101,7 +101,7 @@
                             <td>{{$ctv->ecartConstate}}</td>
                             <td>{{$ctv->montantFinal}}</td>
                             <td>
-                                <a href="{{ route('ctv.edit',$ctv->id)}}" class="btn btn-primary btn-sm"></a>
+                                <a href="{{ route('ctv.edit', $ctv->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('ctv.destroy', $ctv->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')

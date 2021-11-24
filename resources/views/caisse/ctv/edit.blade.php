@@ -31,54 +31,33 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} required/>
+                        <label for="centre" class="col-5">Centre regional</label>
+                        <select name="centre" id="centre" class="form-control col-7" required>
+                            <option>{{$ctv->centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-7" required>
+                            <option>{{$ctv->centre_regional}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col"></div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="operatriceCaisse" class="col-sm-5">Operatrice de saise</label>
-                        <select name="operatriceCaisse" id="operatriceCaisse" class="form-control col-sm-7" required>
-                            <option
-                                value="{{$ctv->operatriceCaisse}}">{{$ctv->operatrices->operatrice->nomPrenoms ?? "Information non disponible"}}</option>
-                            @foreach ($operatrices as $operatrice)
-                                <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="heurePrise" class="col-sm-5">Heure de prise de Box</label>
-                        <input type="time" value={{$ctv->heurePriseBox}} name="heurePriseBox"
-                               class="form-control col-sm-7" required/>
+                        <label class="col-sm-5">Date</label>
+                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} required/>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="numeroBox" class="col-sm-5">Numero de Box</label>
-                        <select name="numeroBox" id="numeroBox" class="form-control col-sm-7" required>
-                            <option>{{$ctv->numeroBox}}</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="heureFin" class="col-sm-5">Heure de fin de Box</label>
-                        <input type="time" value={{$ctv->heureFinBox}} name="heureFinBox" id="heureFinBox"
-                               class="form-control col-sm-7"/>
-                    </div>
-                </div>
+                <div class="col"></div>
                 <div class="col"></div>
             </div>
             <br/>
@@ -125,10 +104,9 @@
                                 <input type="hidden" name="ids" value="{{$operatrice->id}}">
                                 <td><select name="operatrice[]" class="form-control col-sm-7"
                                             required>
-                                        <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenom ?? ''}}</option>
-                                        @foreach ($operatrices as $operatrice)
-                                            <option
-                                                value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
+                                        <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? ''}}</option>
+                                        @foreach ($operatrices as $caisseOperatrice)
+                                            <option value="{{$caisseOperatrice->id}}"> {{$caisseOperatrice->operatrice->nomPrenoms}}</option>
                                         @endforeach
                                     </select></td>
                                 <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
@@ -687,8 +665,6 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
-
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
                     return region.id_centre === centre.id;

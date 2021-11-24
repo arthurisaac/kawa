@@ -57,6 +57,8 @@ class CaisseCtvController extends Controller
     {
         $ctv = new CaisseCtv([
             'date' => $request->get('date'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
             'operatriceCaisse' => $request->get('operatriceCaisse'),
             'numeroBox' => $request->get('numeroBox'),
             'heurePriseBox' => $request->get('heurePriseBox'),
@@ -125,10 +127,10 @@ class CaisseCtvController extends Controller
         $numeros = $request->get('numero');
         if (isset($operatrices)) {
             for ($i = 0; $i < count($operatrices); $i++)
-                if (!empty($operatrice)) {
+                if (!empty($operatrices[$i])) {
                     $data = new CaisseCTVOperatrice([
                         'ctv' => $ctv->id,
-                        'operatrice' => $operatrices[$i],
+                        'operatrice' => $operatrices[$i] ?? null,
                         'numero' => $numeros[$i] ?? 0
                     ]);
                     $data->save();
@@ -178,7 +180,7 @@ class CaisseCtvController extends Controller
         $ctv = CaisseCtv::with('operatrices')->find($id);
         // $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
         //$billetage = DB::table('caisse_billetages')->where('ctv', $id)->get();
-        $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
+        $billetages = CaisseBilletage::where('ctv', $id)->get();
         $billetage = $billetages[0];
         return view('/caisse/ctv.edit',
             compact('ctv', 'personnels', 'centres', 'centres_regionaux',
@@ -196,6 +198,8 @@ class CaisseCtvController extends Controller
     {
         $ctv = CaisseCtv::find($id);
         $ctv->date = $request->get('date');
+        $ctv->centre = $request->get('centre_regional');
+        $ctv->centre_regional = $request->get('centre');
         $ctv->operatriceCaisse = $request->get('operatriceCaisse');
         $ctv->numeroBox = $request->get('numeroBox');
         $ctv->heurePriseBox = $request->get('heurePriseBox');
@@ -292,9 +296,17 @@ class CaisseCtvController extends Controller
     public function destroy($id)
     {
         $ctv = CaisseCtv::find($id);
-        $billetages = CaisseBilletage::find(1)->where('ctv', $id)->get();
-        $billetages[0]->delete();
-        $ctv->delete();
+        $billetages = CaisseBilletage::where('ctv', $id)->get();
+        $operatrices = CaisseCTVOperatrice::where('ctv', $id)->get();
+        foreach ($billetages as $billetage) {
+            $billet = CaisseBilletage::find($billetage->id);
+            if ($billet) $billet->delete();
+        }
+        foreach ($operatrices as $operatrice) {
+            $data = CaisseCTVOperatrice::find($operatrice->id);
+            if ($data) $data->delete();
+        }
+        if ($ctv) $ctv->delete();
         return redirect('/ctv-liste')->with('success', 'Enregistrement supprimé avec succès!');
     }
 }
