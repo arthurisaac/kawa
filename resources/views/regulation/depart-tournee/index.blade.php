@@ -211,19 +211,19 @@
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
                         <td><select name="colis[]" class="form-control">
-                                <option>${s.colis ?? ''}</option>
+                                <option>${s.colis ?? 'RAS'}</option>
                                 <option value="RAS">RAS</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                                 </select></td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? '0'}" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? 0}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? 0}" class="form-control"></td>
+                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? 0}" class="form-control"></td>
+                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? 0}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
-                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? '0'}" class="form-control"></td>
+                        <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? 0}" class="form-control"></td>
                 </tr>`;
 
                 $("#tableSite").append(HTML_NODE);
@@ -375,21 +375,21 @@
                     index = i;
                 }
                 if (colis.value === "RAS" ) {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
-                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', "readonly");
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', "readonly");
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', "readonly");
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', "readonly");
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', "readonly");
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', "readonly");
+                    $("select[name='nature[]']").eq(i).prop('readonly', "readonly");
                 } else {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
-                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', false);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', false);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', false);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });
 

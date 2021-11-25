@@ -58,9 +58,9 @@ class RegulationDepartTourneeController extends Controller
     public function store(Request $request)
     {
         $sites = $request->get('site');
-        $client = $request->get('client');
+        //$client = $request->get('client');
         //$nature = $request->get('nature');
-        $autre = $request->get('autre');
+        //$autre = $request->get('autre');
         $nbre_colis = $request->get('nbre_colis');
         $numero_scelle = $request->get('numero_scelle');
         // $montant = $request->get('montant');
@@ -76,19 +76,18 @@ class RegulationDepartTourneeController extends Controller
         $device_etrangere_euro = $request->get('device_etrangere_euro');
         $pierre_precieuse = $request->get('pierre_precieuse');
 
-
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 //$dataSite->client = $client[$i] ?? "";
                 //$dataSite->nature = $nature[$i] ?? "";
-                $dataSite->autre = $autre[$i] ?? "";
-                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
-                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
+                //$dataSite->autre = $autre[$i];
+                $dataSite->nbre_colis = $nbre_colis[$i];
+                $dataSite->numero_scelle = $numero_scelle[$i];
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
-                $dataSite->colis = $colis[$i] ?? 0;
+                $dataSite->colis = $colis[$i];
                 //$dataSite->valeur_colis = $valeur_colis[$i];
-                $dataSite->numero = $numero[$i] ?? 0;
+                $dataSite->numero = $numero[$i];
                 //$dataSite->valeur_autre = $valeur_autre[$i];
 
                 $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
@@ -100,7 +99,7 @@ class RegulationDepartTourneeController extends Controller
             }
         }
 
-        return redirect("/regulation-depart-tournee-liste")->with('success', 'Enregistré avec succès');
+        //return redirect("/regulation-depart-tournee-liste")->with('success', 'Enregistré avec succès');
 
     }
 
