@@ -560,7 +560,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        {{--<li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>
+                                        <li><span></span><span>Confirmation&nbsp;reception&nbsp;client</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('regulation-confirmation','no','no','no','yes','yes','no','','','1200','600')"
@@ -571,7 +571,7 @@
                                                         target="_self">Liste</a>
                                                 </li>
                                             </ul>
-                                        </li>--}}
+                                        </li>
                                         <li><span></span><span>Facturation</span>
                                             <ul>
                                                 <li><span></span><a

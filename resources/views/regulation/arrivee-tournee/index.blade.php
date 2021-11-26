@@ -211,7 +211,7 @@
                         </td>
                         <td><input type="text" name="client[]" class="form-control" value="${s.sites.clients.client_nom}" readonly></td>
                         <td><select name="colis[]" class="form-control">
-                                <option>${s.colis_arrivee ?? ''}</option>
+                                <option>${s.colis_arrivee ?? 'RAS'}</option>
                                 <option>RAS</option>
                                 <option>Sac jute</option>
                                 <option>Keep safe</option>
