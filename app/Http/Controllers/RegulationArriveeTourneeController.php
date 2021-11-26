@@ -180,11 +180,11 @@ class RegulationArriveeTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //$client = $request->get('client');
+        //$autre = $request->get('autre');
+        //$numero_scelle = $request->get('numero_scelle');
         $sites = $request->get('site');
-        $client = $request->get('client');
-        $autre = $request->get('autre');
         $nbre_colis = $request->get('nbre_colis');
-        $numero_scelle = $request->get('numero_scelle');
 
         $valeur_colis_xof = $request->get('valeur_colis_xof');
         $device_etrangere_dollar = $request->get('device_etrangere_dollar');
@@ -193,8 +193,8 @@ class RegulationArriveeTourneeController extends Controller
 
 
 
-        $colis = $request->get('colis');
         //$valeur_colis = $request->get('valeur_colis');
+        $colis = $request->get('colis');
         $numero = $request->get('numero');
         $nature = $request->get('nature');
         $site_id = $request->get("site_id");
@@ -204,7 +204,6 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
                 $dataSite->colis_arrivee = $colis[$i];
-                //$dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];
 
