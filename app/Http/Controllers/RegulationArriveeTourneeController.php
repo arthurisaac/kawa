@@ -98,22 +98,23 @@ class RegulationArriveeTourneeController extends Controller
     public function store(Request $request)
     {
         $sites = $request->get('site');
-        $client = $request->get('client');
-        $autre = $request->get('autre');
+        $site_id = $request->get("site_id");
         $nature = $request->get('nature');
         $nbre_colis = $request->get('nbre_colis');
-        $numero_scelle = $request->get('numero_scelle');
+        $numero = $request->get('numero');
+
 
         $valeur_colis_xof = $request->get('valeur_colis_xof');
         $device_etrangere_dollar = $request->get('device_etrangere_dollar');
         $device_etrangere_euro = $request->get('device_etrangere_euro');
         $pierre_precieuse = $request->get('pierre_precieuse');
-
-        $site_id = $request->get("site_id");
-
         $colis = $request->get('colis');
+
+        //$client = $request->get('client');
+        //$autre = $request->get('autre');
+        //$numero_scelle = $request->get('numero_scelle');
         //$valeur_colis = $request->get('valeur_colis');
-        $numero = $request->get('numero');
+
         //$valeur_autre = $request->get('valeur_autre');
         $dt = DepartTournee::find($request->get("idDepart"));
         $dt->heure_arrivee_regulation = $request->get("heure_arrivee_regulation");
@@ -122,20 +123,20 @@ class RegulationArriveeTourneeController extends Controller
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i]) ) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
-                $dataSite->client = $client[$i] ?? "";
-                $dataSite->nature = $nature[$i] ?? "";
-                $dataSite->autre = $autre[$i] ?? "";
-                $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
-                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
+                //$dataSite->client = $client[$i];
+                //$dataSite->autre = $autre[$i];
+                //$dataSite->numero_scelle = $numero_scelle[$i];
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
-                $dataSite->colis = $colis[$i];
-                $dataSite->numero = $numero[$i] ?? "";
                 //$dataSite->valeur_autre = $valeur_autre[$i];
+                $dataSite->nbre_colis_arrivee = $nbre_colis[$i];
+                $dataSite->nature = $nature[$i];
+                $dataSite->colis_arrivee = $colis[$i];
+                $dataSite->numero = $numero[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i] ?? null;
-                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i] ?? null;
-                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i] ?? null;
-                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i] ?? null;
+                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
+                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
+                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
+                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }
@@ -201,11 +202,8 @@ class RegulationArriveeTourneeController extends Controller
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
-                $dataSite->client = $client[$i] ?? "";
-                $dataSite->autre = $autre[$i] ?? "";
                 $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
-                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
-                $dataSite->colis = $colis[$i];
+                $dataSite->colis_arrivee = $colis[$i];
                 //$dataSite->valeur_colis = $valeur_colis[$i];
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];

@@ -8,13 +8,14 @@ use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
 use App\Models\SiteDepartTournee;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RegulationDepartTourneeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -42,7 +43,7 @@ class RegulationDepartTourneeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -52,24 +53,24 @@ class RegulationDepartTourneeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        $sites = $request->get('site');
         //$client = $request->get('client');
         //$nature = $request->get('nature');
         //$autre = $request->get('autre');
-        $nbre_colis = $request->get('nbre_colis');
-        $numero_scelle = $request->get('numero_scelle');
+        //$numero_scelle = $request->get('numero_scelle');
         // $montant = $request->get('montant');
-        $site_id = $request->get("site_id");
-
-        $colis = $request->get('colis');
         //$valeur_colis = $request->get('valeur_colis');
-        $numero = $request->get('numero');
         //$valeur_autre = $request->get('valeur_autre');
+
+        $sites = $request->get('site');
+        $nbre_colis = $request->get('nbre_colis');
+        $site_id = $request->get("site_id");
+        $colis = $request->get('colis');
+        $numero = $request->get('numero');
 
         $valeur_colis_xof = $request->get('valeur_colis_xof');
         $device_etrangere_dollar = $request->get('device_etrangere_dollar');
@@ -82,13 +83,13 @@ class RegulationDepartTourneeController extends Controller
                 //$dataSite->client = $client[$i] ?? "";
                 //$dataSite->nature = $nature[$i] ?? "";
                 //$dataSite->autre = $autre[$i];
-                $dataSite->nbre_colis = $nbre_colis[$i];
-                $dataSite->numero_scelle = $numero_scelle[$i];
+                //$dataSite->numero_scelle = $numero_scelle[$i];
                 //$dataSite->montant_regulation = $montant[$i] ?? 0;
-                $dataSite->colis = $colis[$i];
                 //$dataSite->valeur_colis = $valeur_colis[$i];
-                $dataSite->numero = $numero[$i];
                 //$dataSite->valeur_autre = $valeur_autre[$i];
+                $dataSite->numero = $numero[$i];
+                $dataSite->nbre_colis = $nbre_colis[$i];
+                $dataSite->colis = $colis[$i];
 
                 $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
                 $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
@@ -99,7 +100,7 @@ class RegulationDepartTourneeController extends Controller
             }
         }
 
-        //return redirect("/regulation-depart-tournee-liste")->with('success', 'Enregistré avec succès');
+        return redirect("/regulation-depart-tournee-liste")->with('success', 'Enregistré avec succès');
 
     }
 
@@ -107,7 +108,7 @@ class RegulationDepartTourneeController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -118,7 +119,7 @@ class RegulationDepartTourneeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -132,22 +133,22 @@ class RegulationDepartTourneeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
         $sites = $request->get('site');
-        $client = $request->get('client');
-        $autre = $request->get('autre');
-        $nbre_colis = $request->get('nbre_colis');
-        $numero_scelle = $request->get('numero_scelle');
+        //$client = $request->get('client');
+        //$autre = $request->get('autre');
+        //$numero_scelle = $request->get('numero_scelle');
 
-        $colis = $request->get('colis');
         //$valeur_colis = $request->get('valeur_colis');
-        $numero = $request->get('numero');
         //$valeur_autre = $request->get('valeur_autre');
+        $nbre_colis = $request->get('nbre_colis');
+        $colis = $request->get('colis');
+        $numero = $request->get('numero');
         $site_id = $request->get("site_id");
 
         $valeur_colis_xof = $request->get('valeur_colis_xof');
@@ -159,13 +160,13 @@ class RegulationDepartTourneeController extends Controller
             if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 //$dataSite->client = $client[$i] ?? "";
-                $dataSite->autre = $autre[$i] ?? "";
-                $dataSite->nbre_colis = $nbre_colis[$i] ?? 0;
-                $dataSite->numero_scelle = $numero_scelle[$i] ?? "";
-                $dataSite->colis = $colis[$i];
+                //$dataSite->autre = $autre[$i];
+                //$dataSite->numero_scelle = $numero_scelle[$i] ?? "";
                 //$dataSite->valeur_colis = $valeur_colis[$i];
-                $dataSite->numero = $numero[$i] ?? "";
                 //$dataSite->valeur_autre = $valeur_autre[$i];
+                $dataSite->nbre_colis = $nbre_colis[$i];
+                $dataSite->colis = $colis[$i];
+                $dataSite->numero = $numero[$i];
 
                 $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
                 $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
@@ -183,7 +184,7 @@ class RegulationDepartTourneeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

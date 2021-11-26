@@ -206,21 +206,22 @@
                     index = i;
                 }
                 if (colis.value === "RAS" ) {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
-                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', true);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', true);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', true);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', true);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
+                    $("select[name='nature[]']").eq(i).prop('readonly', true);
                 } else {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
-                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
+                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', false);
+                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', false);
+                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', false);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });
 
