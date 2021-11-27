@@ -29,7 +29,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="sites" class="col-sm-5">N°Bordereau</label>
-                        <select id="sites" class="form-control col-sm-7" required>
+                        <select id="sites" name="bordereau" class="form-control col-sm-7" required>
                             @foreach($sites as $site)
                                 <option value="{{$site->id}}">{{$site->bordereau}}</option>
                             @endforeach
@@ -70,12 +70,12 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-5">Scellé</label>
-                        <input type="text" class="form-control col-sm-7" required>
+                        <label for="scelle" class="col-sm-5">Scellé</label>
+                        <input name="scelle" id="scelle" type="text" class="form-control col-sm-7">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Expéditeur</label>
-                        <input type="text" class="form-control col-sm-7" required>
+                        <input type="text" id="expediteur" class="form-control col-sm-7">
                     </div>
                 </div>
                 <div class="col"></div>
@@ -91,11 +91,11 @@
                         <input type="text" class="form-control col-sm-7" id="nomDestinaire" required/>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Date de reception</label>
-                        <input name="date" type="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>
+                        <label for="date" class="col-sm-5">Date de reception</label>
+                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Lieu</label>
+                        <label for="lieu" class="col-sm-5">Lieu</label>
                         <input name="lieu" type="text" class="form-control col-sm-7" id="lieu" required/>
                     </div>
                 </div>
@@ -127,7 +127,9 @@
                     $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
                     $("#nbre_colis").val(site?.nbre_colis);
                     $("#client").val(site?.sites?.clients?.client_nom);
+                    $("#expediteur").val(site?.sites?.clients?.client_nom);
                     $("#nomDestinaire").val(site?.sites?.site);
+                    $("#scelle").val(site?.numero);
                 }
             });
         });

@@ -29,35 +29,40 @@
                     <tr>
                         <td>ID</td>
                         <td>N°Bordereau</td>
-                        <td>Destination</td>
-                        <td>Montant</td>
+                        <td>Device etrangere (XOF)</td>
+                        <td>Device etrangere (Dollar)</td>
+                        <td>Device etrangere (EURO)</td>
+                        <td>Pierre précieuse</td>
                         <td>Scellé</td>
                         <td>Expéditeur</td>
                         <td>Client</td>
                         <td>Nom destinataire</td>
                         <td>Date de reception</td>
                         <td>Lieu</td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($regulations as $regulation)
                         <tr>
                             <td>{{$regulation->id}}</td>
-                            <td>{{$regulation->bordereau}}</td>
-                            <td>{{$regulation->destination}}</td>
-                            <td>{{$regulation->montant}}</td>
-                            <td>{{$regulation->scelle}}</td>
-                            <td>{{$regulation->expediteur}}</td>
-                            <td>{{$regulation->client}}</td>
-                            <td>{{$regulation->destinataire}}</td>
+                            <td>{{$regulation->site->bordereau ?? ''}}</td>
+                            <td>{{$regulation->site->valeur_colis_xof_arrivee ?? ''}}</td>
+                            <td>{{$regulation->site->device_etrangere_dollar_arrivee ?? ''}}</td>
+                            <td>{{$regulation->site->device_etrangere_euro_arrivee ?? ''}}</td>
+                            <td>{{$regulation->site->pierre_precieuse_arrivee ?? ''}}</td>
+                            <td>{{$regulation->site->numero ?? ''}}</td>
+                            <td>{{$regulation->site->sites->clients->client_nom ?? ''}}</td>
+                            <td>{{$regulation->site->sites->clients->client_nom ?? ''}}</td>
+                            <td>{{$regulation->site->sites->site ?? 'Destinataire inconnu'}}</td>
                             <td>{{$regulation->dateReception}}</td>
                             <td>{{$regulation->lieu}}</td>
                             <td>
-                                <a href="{{ route('regulation-confirmation.edit',$regulation->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ route('regulation-confirmation.edit',$regulation->id)}}" class="btn btn-primary btn-sm"></a>
                                 <form action="{{ route('regulation-confirmation.destroy', $regulation->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"></button>
                                 </form>
                             </td>
                         </tr>

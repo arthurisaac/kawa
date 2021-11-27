@@ -26,7 +26,12 @@ class RegulationConfirmationClient extends Model
         'created_at',
         'updated_at',
         'dateReception',
-
     ];
+
+    public function site()
+    {
+        return $this->belongsTo('App\Models\SiteDepartTournee', 'bordereau', 'id')
+            ->with('sites')->with('tournees');
+    }
 
 }
