@@ -27,7 +27,6 @@ class RegulationConfirmationClient extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'dateReception',
     ];
 
     public function site()

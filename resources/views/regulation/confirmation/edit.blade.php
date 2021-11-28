@@ -39,19 +39,19 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Numéro tournée</label>
-                        <input type="text" class="form-control col-sm-7" id="numeroTournee" value="{{$regulation->site->tournees->numeroTournee}}" readonly>
+                        <input type="text" class="form-control col-sm-7" id="numeroTournee" value="{{$regulation->site->tournees->numeroTournee ?? ''}}" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Centre</label>
-                        <input type="text" class="form-control col-sm-7" id="centre" readonly>
+                        <input type="text" class="form-control col-sm-7" id="centre" value="{{$regulation->site->tournees->centre ?? ''}}" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Centre régional</label>
-                        <input type="text" class="form-control col-sm-7" id="centre_regional" readonly>
+                        <input type="text" class="form-control col-sm-7" id="centre_regional" value="{{$regulation->site->tournees->centre_regional ?? ''}}" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Nombre de colis</label>
-                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis}}" id="nbre_colis">
+                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis_arrivee ?? ''}}" id="nbre_colis">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Device etrangere (XOF)</label>
