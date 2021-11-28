@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Nombre de colis</label>
-                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis}}" id="nbre_colis" name="montant">
+                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis}}" id="nbre_colis">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Device etrangere (XOF)</label>
@@ -78,6 +78,18 @@
                     <div class="form-group row">
                         <label class="col-sm-5">Expéditeur</label>
                         <input type="text" id="expediteur"  value="{{$regulation->site->sites->clients->client_nom ?? ''}}" class="form-control col-sm-7">
+                    </div>
+                    <div class="form-group row">
+                        <label for="confirmation" class="col-sm-5">Confirmation</label>
+                        <select name="confirmation" id="confirmation" class="form-control col-sm-7">
+                            <option>{{$regulation->confirmation}}</option>
+                            <option>conforme</option>
+                            <option>non conforme</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="remarque" class="col-sm-5">Remarque</label>
+                        <textarea name="remarque" id="remarque" class="form-control col-sm-7">{{$regulation->remarque}}</textarea>
                     </div>
                 </div>
                 <div class="col"></div>

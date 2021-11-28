@@ -45,6 +45,8 @@ class RegulationConfirmationController extends Controller
     {
         $data = new RegulationConfirmationClient([
             'bordereau' => $request->get('bordereau'),
+            'confirmation' => $request->get('confirmation'),
+            'remarque' => $request->get('remarque'),
             'dateReception' => $request->get('date'),
             'lieu' => $request->get('lieu')
         ]);
@@ -94,6 +96,8 @@ class RegulationConfirmationController extends Controller
         $data->bordereau = $request->get('bordereau');
         $data->dateReception = $request->get('date');
         $data->lieu = $request->get('lieu');
+        $data->confirmation = $request->get('confirmation');
+        $data->remarque = $request->get('remarque');
         $data->save();
         return redirect("/regulation-confirmation-liste")->with('success', 'Enregistré avec succès');
     }

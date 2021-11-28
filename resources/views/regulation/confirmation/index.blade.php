@@ -48,8 +48,8 @@
                         <input type="text" class="form-control col-sm-7" id="centre_regional" readonly>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Nombre de colis</label>
-                        <input type="number" class="form-control col-sm-7" id="nbre_colis" name="montant">
+                        <label for="nbre_colis" class="col-sm-5">Nombre de colis</label>
+                        <input type="text" class="form-control col-sm-7" id="nbre_colis" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Device etrangere (XOF)</label>
@@ -76,6 +76,17 @@
                     <div class="form-group row">
                         <label class="col-sm-5">Expéditeur</label>
                         <input type="text" id="expediteur" class="form-control col-sm-7">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5">Confirmation</label>
+                        <select name="confirmation" class="form-control col-sm-7">
+                            <option>conforme</option>
+                            <option>non conforme</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5">Remarque</label>
+                        <textarea name="remarque" class="form-control col-sm-7"> </textarea>
                     </div>
                 </div>
                 <div class="col"></div>
@@ -125,7 +136,7 @@
                     $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
                     $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
                     $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
-                    $("#nbre_colis").val(site?.nbre_colis);
+                    $("#nbre_colis").val(site?.nbre_colis_arrivee);
                     $("#client").val(site?.sites?.clients?.client_nom);
                     $("#expediteur").val(site?.sites?.clients?.client_nom);
                     $("#nomDestinaire").val(site?.sites?.site);

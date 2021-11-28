@@ -18,6 +18,8 @@ class RegulationConfirmationClient extends Model
         'destinataire',
         'dateReception',
         'lieu',
+        'remarque',
+        'confirmation',
 
     ];
 
