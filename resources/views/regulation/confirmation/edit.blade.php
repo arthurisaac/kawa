@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Nombre de colis</label>
-                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis_arrivee ?? ''}}" id="nbre_colis">
+                        <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis_arrivee ?? ''}}" id="nbre_colis" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Device etrangere (XOF)</label>
@@ -73,11 +73,11 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="scelle" class="col-sm-5">Scellé</label>
-                        <input name="scelle" id="scelle" value="{{$regulation->site->numero ?? ''}}" type="text" class="form-control col-sm-7">
+                        <input name="scelle" id="scelle" value="{{$regulation->site->numero ?? ''}}" type="text" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Expéditeur</label>
-                        <input type="text" id="expediteur"  value="{{$regulation->site->sites->clients->client_nom ?? ''}}" class="form-control col-sm-7">
+                        <input type="text" id="expediteur"  value="{{$regulation->site->sites->clients->client_nom ?? ''}}" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
                         <label for="confirmation" class="col-sm-5">Confirmation</label>
@@ -98,19 +98,19 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="client" class="col-sm-5">CLIENT</label>
-                        <input type="text" name="client" class="form-control col-sm-7" id="client" value="{{$regulation->site->sites->site ?? ''}}" />
+                        <input type="text" name="client" class="form-control col-sm-7" id="client" value="{{$regulation->site->sites->site ?? ''}}" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="nomDestinaire" class="col-sm-5">Nom destinataire</label>
-                        <input type="text" class="form-control col-sm-7" id="nomDestinaire" value="{{$regulation->site->sites->clients->client_nom ?? ''}}" required/>
+                        <input type="text" class="form-control col-sm-7" id="nomDestinaire" value="{{$regulation->site->sites->clients->client_nom ?? ''}}" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="date" class="col-sm-5">Date de reception</label>
-                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{$regulation->dateReception}}" required/>
+                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{$regulation->dateReception}}" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="lieu" class="col-sm-5">Lieu</label>
-                        <input name="lieu" type="text" class="form-control col-sm-7" id="lieu" value="{{$regulation->lieu}}" required/>
+                        <input name="lieu" type="text" class="form-control col-sm-7" id="lieu" value="{{$regulation->lieu}}" readonly/>
                     </div>
                 </div>
                 <div class="col"></div>
