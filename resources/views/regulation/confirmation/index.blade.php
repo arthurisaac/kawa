@@ -71,11 +71,11 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="scelle" class="col-sm-5">Scellé</label>
-                        <input name="scelle" id="scelle" type="text" class="form-control col-sm-7">
+                        <input name="scelle" id="scelle" type="text" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Expéditeur</label>
-                        <input type="text" id="expediteur" class="form-control col-sm-7">
+                        <input type="text" id="expediteur" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Confirmation</label>
@@ -95,15 +95,15 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="client" class="col-sm-5">CLIENT</label>
-                        <input type="text" name="client" class="form-control col-sm-7" id="client" />
+                        <input type="text" name="client" class="form-control col-sm-7" id="client" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="nomDestinaire" class="col-sm-5">Nom destinataire</label>
-                        <input type="text" class="form-control col-sm-7" id="nomDestinaire" required/>
+                        <input type="text" class="form-control col-sm-7" id="nomDestinaire" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="date" class="col-sm-5">Date de reception</label>
-                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>
+                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" readonly/>
                     </div>
                     <div class="form-group row">
                         <label for="lieu" class="col-sm-5">Lieu</label>
