@@ -94,7 +94,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="date" class="col-sm-5">Date de reception</label>
-                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{$regulation->date}}" required/>
+                        <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{$regulation->dateReception}}" required/>
                     </div>
                     <div class="form-group row">
                         <label for="lieu" class="col-sm-5">Lieu</label>
