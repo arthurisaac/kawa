@@ -38,7 +38,7 @@ class CaisseCtvController extends Controller
             ->orderBy('personnels.nomPrenoms', 'desc')
             ->get();
         return view('/caisse.ctv.index',
-            compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'convoyeurs', 'regulatrices'));
+            compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'convoyeurs', 'regulatrices'));
     }
 
     /**
