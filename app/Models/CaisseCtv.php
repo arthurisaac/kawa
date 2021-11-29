@@ -47,6 +47,16 @@ class CaisseCtv extends Model
         return $this->belongsTo('App\Models\CaisseServiceOperatrice', 'operatriceCaisse', 'id')->with("operatrice");
     }
 
+    public function convoyeurs()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'convoyeurGarde', 'id');
+    }
+
+    public function regulatrices()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'regulatrice', 'id');
+    }
+
     public function clients()
     {
         return $this->belongsTo('App\Models\Commercial_client', 'client', 'id');

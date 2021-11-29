@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CaisseServiceOperatrice;
 use App\Models\CaisseVideoSurveillance;
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,16 +18,18 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function index()
     {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
         return view('/caisse/video-surveillance.index',
-            compact('operatrices'));
+            compact('operatrices', 'centres', 'centres_regionaux'));
     }
 
     public function liste(Request $request)
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $surveillances = CaisseVideoSurveillance::all();
+        $surveillances = CaisseVideoSurveillance::orderBy('id', 'desc')->get();
         if (isset($debut) && isset($fin)) {
             $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])->get();
         }
@@ -64,9 +68,13 @@ class CaisseVideoSurveillanceController extends Controller
             'erreur' => $request->get('erreur'),
             'absence' => $request->get('absence'),
             'commentaire' => $request->get('commentaire'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
+            'numero_bord' => $request->get('numero_bord'),
+            'remarque' => $request->get('remarque'),
         ]);
         $video->save();
-        return redirect('/caisse-video-surveillance')->with('success', 'Enregistrement effectué!');
+        return redirect('/caisse-video-surveillance-liste')->with('success', 'Enregistrement effectué!');
     }
 
     /**
@@ -88,10 +96,12 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function edit($id)
     {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
         $video = CaisseVideoSurveillance::find($id);
         $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
         return view('/caisse/video-surveillance.edit',
-            compact('operatrices', 'video'));
+            compact('operatrices', 'video', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -116,6 +126,10 @@ class CaisseVideoSurveillanceController extends Controller
         $caisse->erreur = $request->get('erreur');
         $caisse->absence = $request->get('absence');
         $caisse->commentaire = $request->get('commentaire');
+        $caisse->centre = $request->get('centre');
+        $caisse->centre_regional = $request->get('centre_regional');
+        $caisse->numero_bord = $request->get('numero_bord');
+        $caisse->remarque = $request->get('remarque');
         $caisse->save();
         return redirect('/caisse-video-surveillance-liste')->with('success', 'Enregistrement effectué!');
     }

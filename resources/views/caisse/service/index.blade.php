@@ -30,7 +30,7 @@
                 <div class="col-4">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" required/>
+                        <input type="date" name="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>
                     </div>
                     <div class="form-group row">
                         <label for="centre" class="col-sm-5">Centre</label>

@@ -171,7 +171,7 @@
                                         <label class="col-sm-5">Nom et prenoms</label>
                                         <select type="text" name="convoyeurGarde" id="convoyeurGarde" class="form-control col-sm-7">
                                             <option></option>
-                                            @foreach ($gardes as $garde)
+                                            @foreach ($convoyeurs as $garde)
                                                 <option value="{{$garde->id}}"> {{$garde->nomPrenoms}}</option>
                                             @endforeach
                                         </select>
@@ -200,7 +200,7 @@
                                         <label class="col-sm-5">Nom et prénoms</label>
                                         <select class="form-control col-sm-7" name="regulatrice" id="regulatrice">
                                             <option></option>
-                                            @foreach ($personnels as $personnel)
+                                            @foreach ($regulatrices as $personnel)
                                                 <option value="{{$personnel->id}}"> {{$personnel->nomPrenoms}}</option>
                                             @endforeach
                                         </select>
@@ -258,10 +258,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group row">
-                                <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7"/>
-                            </div>
+
                         </div>
                     </div><br />
                     <div class="row">
@@ -467,6 +464,10 @@
                     </div>
                     <div class="row">
                         <div class="col">
+                            <div class="form-group row">
+                                <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
+                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7"/>
+                            </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
                                 <input type="number" min="0" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>

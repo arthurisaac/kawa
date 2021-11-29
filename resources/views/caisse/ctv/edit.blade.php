@@ -180,8 +180,8 @@
                                         <label class="col-sm-5">Nom et prenoms</label>
                                         <select type="text" name="convoyeurGarde" id="convoyeurGarde"
                                                 class="form-control col-sm-7">
-                                            <option>{{$ctv->convoyeurGarde}}</option>
-                                            @foreach ($gardes as $garde)
+                                            <option value="{{$ctv->convoyeurGarde}}">{{$ctv->convoyeurs->nomPrenoms ?? ''}}</option>
+                                            @foreach ($convoyeurs as $garde)
                                                 <option value="{{$garde->id}}"> {{$garde->nomPrenoms}}</option>
                                             @endforeach
                                         </select>
@@ -189,18 +189,18 @@
                                     <div class="form-group row">
                                         <label class="col-sm-5">Fonction</label>
                                         <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction"
-                                               class="form-control col-sm-7"/>
+                                               class="form-control col-sm-7" value="{{$ctv->convoyeurs->fonction ?? ''}}"/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-5">Matricule</label>
                                         <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule"
-                                               class="form-control col-sm-7"/>
+                                               class="form-control col-sm-7" value="{{$ctv->convoyeurs->matricule ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="row" style="align-items: center;">
+                        <div class="row" style="align-items: center;">
                                 <div class="col-4">
                                     <h6>Régulatrice</h6>
                                 </div>
@@ -212,8 +212,8 @@
                                         <label class="col-sm-5">Nom et prénoms</label>
                                         <select class="form-control col-sm-7" name="regulatrice" id="regulatrice"
                                                 required>
-                                            <option>{{$ctv->regulatrice}}</option>
-                                            @foreach ($personnels as $personnel)
+                                            <option value="{{$ctv->regulatrice}}">{{$ctv->regulatrices->nomPrenoms ?? ''}}</option>
+                                            @foreach ($regulatrices as $personnel)
                                                 <option value="{{$personnel->id}}"> {{$personnel->nomPrenoms}}</option>
                                             @endforeach
                                         </select>
@@ -221,12 +221,12 @@
                                     <div class="form-group row">
                                         <label class="col-sm-5">Fonction</label>
                                         <input type="text" name="regulatriceFonction" id="regulatriceFonction"
-                                               class="form-control col-sm-7"/>
+                                               class="form-control col-sm-7" value="{{$ctv->regulatrices->fonction ?? ''}}"/>
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_matre" class="col-sm-5">Matricule</label>
                                         <input type="text" name="regulatriceMatricule" id="regulatriceMatricule"
-                                               class="form-control col-sm-7"/>
+                                               class="form-control col-sm-7" value="{{$ctv->regulatrices->matricule ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -274,10 +274,6 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group row">
-                                <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" value={{$ctv->montantAnnonce}} name="montantAnnonce" id="montantAnnonce" class="form-control col-sm-7"/>
-                            </div>
                         </div>
                     </div>
                     <br/>
@@ -544,9 +540,12 @@
                             </table>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col">
+                            <div class="form-group row">
+                                <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
+                                <input type="number" value={{$ctv->montantAnnonce}} name="montantAnnonce" id="montantAnnonce" class="form-control col-sm-7"/>
+                            </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
                                 <input type="number" value="{{$ctv->montantReconnu}}" min="0" name="montantReconnu"
@@ -554,7 +553,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" value="{{$ctv->ecartConstate}}" min="0" name="ecartConstate"
+                                <input type="number" value="{{$ctv->montantAnnonce - $ctv->montantReconnu}}" min="0" name="ecartConstate"
                                        id="ecartConstate" class="form-control col-sm-7" required/>
                             </div>
                             <div class="form-group row">

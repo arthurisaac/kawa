@@ -25,16 +25,20 @@ class CaisseCtvController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::all();
+        $personnels = Personnel::orderBy('nomPrenoms')->get();
+        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->get();
+        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->get();
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $tournees = DepartTournee::all();
         $sites = Commercial_site::all();
-        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
-        $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
-        return view('/caisse/ctv.index',
-            compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'gardes'));
+        $operatrices = CaisseServiceOperatrice::with('operatrice')
+            ->join('personnels', 'personnels.id', '=', 'caisse_service_operatrices.operatriceCaisse', 'left')
+            ->orderBy('personnels.nomPrenoms', 'desc')
+            ->get();
+        return view('/caisse.ctv.index',
+            compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'convoyeurs', 'regulatrices'));
     }
 
     /**
@@ -168,7 +172,9 @@ class CaisseCtvController extends Controller
      */
     public function edit($id)
     {
-        $personnels = Personnel::all();
+        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->get();
+        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->get();
+        $personnels = Personnel::orderBy('nomPrenoms')->get();
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
@@ -176,15 +182,16 @@ class CaisseCtvController extends Controller
         $sites = Commercial_site::all();
         $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
         $operatricesCTV = CaisseCTVOperatrice::with('operatrices')->where('ctv', $id)->get();
-        $gardes = DB::table('personnels')->where('transport', '=', 'Garde')->get();
-        $ctv = CaisseCtv::with('operatrices')->find($id);
-        // $operatrices = CaisseServiceOperatrice::where('id', $id)->with('operatrice')->get();
-        //$billetage = DB::table('caisse_billetages')->where('ctv', $id)->get();
+        $ctv = CaisseCtv::with('operatrices')
+            ->with('convoyeurs')
+            ->with('regulatrices')
+            ->find($id);
+
         $billetages = CaisseBilletage::where('ctv', $id)->get();
         $billetage = $billetages[0];
-        return view('/caisse/ctv.edit',
-            compact('ctv', 'personnels', 'centres', 'centres_regionaux',
-                'clients', 'tournees', 'sites', 'operatrices', 'gardes', 'billetage', 'operatricesCTV'));
+        return view('/caisse.ctv.edit',
+            compact('ctv', 'centres', 'centres_regionaux',
+                'clients', 'tournees', 'sites', 'operatrices', 'convoyeurs', 'regulatrices', 'billetage', 'operatricesCTV', 'personnels'));
     }
 
     /**

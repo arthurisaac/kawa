@@ -19,5 +19,15 @@ class CaisseVideoSurveillance extends Model
         'erreur',
         'absence',
         'commentaire',
+        'centre',
+        'centre_regional',
+        'numero_bord',
+        'remarque',
     ];
+
+
+    public function operatrices()
+    {
+        return $this->belongsTo('App\Models\CaisseServiceOperatrice', 'operatrice', 'id')->with("operatrice");
+    }
 }

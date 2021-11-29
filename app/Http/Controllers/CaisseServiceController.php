@@ -22,11 +22,12 @@ class CaisseServiceController extends Controller
      */
     public function index()
     {
-        $personnels = DB::table('personnels')->where('caisse', '!=', null)->get();
+        //$personnels = DB::table('personnels')->where('caisse', '!=', null)->get();
+        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->get();
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        return view('/caisse/service.index',
+        return view('/caisse.service.index',
             compact('personnels', 'centres', 'centres_regionaux', 'clients'));
     }
 
@@ -106,13 +107,13 @@ class CaisseServiceController extends Controller
      */
     public function edit($id)
     {
-        $personnels = Personnel::all();
+        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->get();
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $service = CaisseService::with('chargeCaisses')->with('chargeCaisseAdjoints')->find($id);
         $operatriceCaisses = CaisseServiceOperatrice::with('operatrice')->where("caisseService", $id)->get();
-        return view('/caisse/service.edit',
+        return view('/caisse.service.edit',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'service', 'operatriceCaisses'));
     }
 

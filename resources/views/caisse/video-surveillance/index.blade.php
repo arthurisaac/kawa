@@ -28,7 +28,7 @@
                 <div class="col-3">
                     <div class="form-group row">
                         <label class="col-sm-4">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-8" required>
+                        <input type="date" name="date" class="form-control col-sm-8" value="{{date('Y-m-d')}}" required>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4">Heure début</label>
@@ -51,6 +51,23 @@
                             <option>8</option>
                             <option>9</option>
                             <option>10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group row">
+                        <label for="centre" class="col-sm-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col-sm-7" required>
+                            <option></option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="centre_regional col-sm-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
+                            <option></option>
                         </select>
                     </div>
                 </div>
@@ -130,6 +147,12 @@
                         <input type="number" name="numeroScelle" class="form-control col-sm-6">
                     </div>
                 </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="numero_bord" class="col-sm-5">N˚bord</label>
+                        <input type="text" id="numero_bord" name="numero_bord" class="form-control col-sm-7" />
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-6">
@@ -203,6 +226,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-4">
+                    <div class="form-group row">
+                        <label for="remarque" class="col-5">Remarque</label>
+                        <textarea id="remarque" name="remarque" class="form-control col-7"></textarea>
+                    </div>
+                </div>
             </div>
             <br/>
             <div class="row">
@@ -223,6 +252,8 @@
 
         <script>
             let operatrices = {!! json_encode($operatrices) !!};
+            let centres = {!! json_encode($centres) !!};
+            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
             $(document).ready(function () {
                 $("#operatrice").on("change", function () {
                     const operatrice = operatrices.find(p => p.id === parseInt(this.value));
@@ -230,6 +261,19 @@
                         $("#nomOperatrice").val(operatrice.operatrice.nomPrenoms);
                         $("#matriculeOperatrice").val(operatrice.operatrice.matricule);
                     }
+                });
+                $("#centre").on("change", function () {
+                    $("#centre_regional option").remove();
+                    const centre = centres.find(c => c.centre === this.value);
+                    const regions = centres_regionaux.filter(region => {
+                        return region.id_centre === centre.id;
+                    });
+                    regions.map(({centre_regional}) => {
+                        $('#centre_regional').append($('<option>', {
+                            value: centre_regional,
+                            text: centre_regional
+                        }));
+                    })
                 });
             });
         </script>

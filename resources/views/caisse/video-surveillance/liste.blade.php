@@ -52,6 +52,9 @@
                     <thead>
                     <tr>
                         <td>Date</td>
+                        <td>Centre</td>
+                        <td>Centre régionale</td>
+                        <td>Opératrice</td>
                         <td>Heure début</td>
                         <td>Heure fin</td>
                         <td>Numéro de box</td>
@@ -69,6 +72,9 @@
                     @foreach ($surveillances as $surveillance)
                         <tr>
                             <td>{{$surveillance->date}}</td>
+                            <td>{{$surveillance->centre}}</td>
+                            <td>{{$surveillance->centre_regional}}</td>
+                            <td>{{$surveillance->operatrices->operatrice->nomPrenoms ?? ''}}</td>
                             <td>{{$surveillance->heureDebut}}</td>
                             <td>{{$surveillance->heureFin}}</td>
                             <td>{{$surveillance->numeroBox}}</td>

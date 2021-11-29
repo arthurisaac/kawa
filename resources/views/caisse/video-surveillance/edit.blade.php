@@ -56,6 +56,23 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-3">
+                    <div class="form-group row">
+                        <label for="centre" class="col-sm-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col-sm-7" required>
+                            <option>{{$video->centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="centre_regional col-sm-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
+                            <option>{{$video->centre_regional}}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row" style="align-items: center;">
                 <div class="col">
@@ -70,7 +87,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-5">Nom</label>
                                 <select type="text" name="operatrice" id="operatrice" class="form-control col-sm-7" required>
-                                    <option value="{{$video->operatrice}}">{{$video->operatrice}}</option>
+                                    <option value="{{$video->operatrice}}">{{$video->operatrices->operatrice->nomPrenoms ?? ''}}</option>
                                     @foreach ($operatrices as $operatrice)
                                         <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
                                     @endforeach
@@ -78,11 +95,11 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Nom et Prenom(s)</label>
-                                <input type="text" name="nomOperatrice" id="nomOperatrice" class="form-control col-sm-7"/>
+                                <input type="text" name="nomOperatrice" id="nomOperatrice" value="{{$video->operatrices->operatrice->nomPrenoms ?? ''}}" class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Matricule</label>
-                                <input type="text" name="matriculeOperatrice" id="matriculeOperatrice" class="form-control col-sm-7"/>
+                                <input type="text" name="matriculeOperatrice" id="matriculeOperatrice" value="{{$video->operatrices->operatrice->matricule ?? ''}}" class="form-control col-sm-7"/>
                             </div>
                         </div>
                     </div>
@@ -126,6 +143,12 @@
                     <div class="form-group row">
                         <label class="col-sm-6">Numéro de scellé</label>
                         <input type="number" name="numeroScelle" value="{{$video->numeroScelle}}" class="form-control col-sm-6">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="numero_bord" class="col-sm-5">N˚bord</label>
+                        <input type="text" id="numero_bord" name="numero_bord" value="{{$video->numero_bord}}" class="form-control col-sm-7" />
                     </div>
                 </div>
             </div>
@@ -198,6 +221,12 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group row">
+                        <label for="remarque" class="col-5">Remarque</label>
+                        <textarea id="remarque" name="remarque" class="form-control col-7">{{$video->remarque}}</textarea>
                     </div>
                 </div>
             </div>
