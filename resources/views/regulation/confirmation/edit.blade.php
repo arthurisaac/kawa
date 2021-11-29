@@ -76,10 +76,6 @@
                         <input name="scelle" id="scelle" value="{{$regulation->site->numero ?? ''}}" type="text" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Expéditeur</label>
-                        <input type="text" id="expediteur"  value="{{$regulation->site->sites->clients->client_nom ?? ''}}" class="form-control col-sm-7" readonly>
-                    </div>
-                    <div class="form-group row">
                         <label for="confirmation" class="col-sm-5">Confirmation</label>
                         <select name="confirmation" id="confirmation" class="form-control col-sm-7">
                             <option>{{$regulation->confirmation}}</option>
