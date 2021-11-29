@@ -33,16 +33,15 @@
                     <tr>
                         <td>ID</td>
                         <td>N°Bordereau</td>
-                        <td>Device etrangere (XOF)</td>
+                        <td>Montant</td>
                         <td>Device etrangere (Dollar)</td>
                         <td>Device etrangere (EURO)</td>
                         <td>Pierre précieuse</td>
                         <td>Scellé</td>
-                        <td>Expéditeur</td>
                         <td>Client</td>
                         <td>Nom destinataire</td>
                         <td>Date de reception</td>
-                        <td>Lieu</td>
+                        <td>Destinataire/Banque</td>
                         <td></td>
                     </tr>
                     </thead>
@@ -57,8 +56,7 @@
                             <td>{{$regulation->site->pierre_precieuse_arrivee ?? ''}}</td>
                             <td>{{$regulation->site->numero ?? ''}}</td>
                             <td>{{$regulation->site->sites->clients->client_nom ?? ''}}</td>
-                            <td>{{$regulation->site->sites->clients->client_nom ?? ''}}</td>
-                            <td>{{$regulation->site->sites->site ?? 'Destinataire inconnu'}}</td>
+                            <td>{{$regulation->site->sites->site ?? 'inconnu'}}</td>
                             <td>{{$regulation->dateReception}}</td>
                             <td>{{$regulation->lieu}}</td>
                             <td>

@@ -101,7 +101,7 @@
                         <input type="text" name="client" class="form-control col-sm-7" id="client" value="{{$regulation->site->sites->site ?? ''}}" readonly/>
                     </div>
                     <div class="form-group row">
-                        <label for="nomDestinaire" class="col-sm-5">Nom destinataire</label>
+                        <label for="nomDestinaire" class="col-sm-5">Expéditeur (site)</label>
                         <input type="text" class="form-control col-sm-7" id="nomDestinaire" value="{{$regulation->site->sites->clients->client_nom ?? ''}}" readonly/>
                     </div>
                     <div class="form-group row">
@@ -109,7 +109,7 @@
                         <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{$regulation->dateReception}}" readonly/>
                     </div>
                     <div class="form-group row">
-                        <label for="lieu" class="col-sm-5">Lieu</label>
+                        <label for="lieu" class="col-sm-5">Destinataire/Banque</label>
                         <input name="lieu" type="text" class="form-control col-sm-7" id="lieu" value="{{$regulation->lieu}}" readonly/>
                     </div>
                 </div>

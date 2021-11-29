@@ -52,7 +52,7 @@
                         <input type="text" class="form-control col-sm-7" id="nbre_colis" readonly>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (XOF)</label>
+                        <label class="col-sm-5">Montant</label>
                         <input type="number" class="form-control col-sm-7" id="valeur_colis_xof" readonly>
                     </div>
                     <div class="form-group row">
@@ -72,10 +72,6 @@
                     <div class="form-group row">
                         <label for="scelle" class="col-sm-5">Scellé</label>
                         <input name="scelle" id="scelle" type="text" class="form-control col-sm-7" readonly>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Expéditeur</label>
-                        <input type="text" id="expediteur" class="form-control col-sm-7" readonly>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-5">Confirmation</label>
@@ -98,7 +94,7 @@
                         <input type="text" name="client" class="form-control col-sm-7" id="client" readonly/>
                     </div>
                     <div class="form-group row">
-                        <label for="nomDestinaire" class="col-sm-5">Nom destinataire</label>
+                        <label for="nomDestinaire" class="col-sm-5">Expéditeur (site)</label>
                         <input type="text" class="form-control col-sm-7" id="nomDestinaire" readonly/>
                     </div>
                     <div class="form-group row">
@@ -106,7 +102,7 @@
                         <input name="date" id="date" type="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" readonly/>
                     </div>
                     <div class="form-group row">
-                        <label for="lieu" class="col-sm-5">Lieu</label>
+                        <label for="lieu" class="col-sm-5">Destinataire/Banque</label>
                         <input name="lieu" type="text" class="form-control col-sm-7" id="lieu" required/>
                     </div>
                 </div>
