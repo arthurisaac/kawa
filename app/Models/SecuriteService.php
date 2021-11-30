@@ -43,4 +43,34 @@ class SecuriteService extends Model
     {
         return $this->belongsTo('App\Models\Personnel', 'chargeDeSecurite', 'id');
     }
+
+    public function eop11s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop11', 'id');
+    }
+
+    public function eop12s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop12', 'id');
+    }
+
+    public function eop21s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop21', 'id');
+    }
+
+    public function eop31s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop31', 'id');
+    }
+
+    public function eop32s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop32', 'id');
+    }
+
+    public function eop22s()
+    {
+        return $this->belongsTo('App\Models\Personnel', 'eop22', 'id');
+    }
 }

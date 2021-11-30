@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('main')
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <h2>Service</h2>
         <a href="/securite-service-liste" class="btn btn-info btn-sm">Liste</a><br />
@@ -26,7 +27,7 @@
 
             <div class="form-group row">
                 <label class="col-md-2">Date</label>
-                <input type="date" class="editbox col-md-4" name="date" value="{{$securiteService->date}}" required/>
+                <input type="date" class="form-control col-md-4" name="date" value="{{$securiteService->date}}" required/>
             </div>
             <div class="form-group row">
                 <label class="col-md-2">Centre</label>
@@ -62,29 +63,29 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite"
+                        <input type="text" class="form-control col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite"
                                value="{{$securiteService->chargeDeSecurites->nomPrenoms}}"/>
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Prénom</label>
-                        <input type="text" class="editbox col-md-4" name="prenomChargeDeSecurite" required/>
+                        <input type="text" class="form-control col-md-4" name="prenomChargeDeSecurite" required/>
                     </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Fonction</label>
-                        <input type="text" class="editbox col-md-4" name="fonctionChargeDeSecurite"
+                        <input type="text" class="form-control col-md-4" name="fonctionChargeDeSecurite"
                                value="{{$securiteService->chargeDeSecurites->fonction}}" id="fonctionChargeDeSecurite"/>
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
-                        <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite" required/>
+                        <input type="text" class="form-control col-md-4" name="matriculeChargeDeSecurite" required/>
                     </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="hps_cs" value="{{$securiteService->hps_cs}}" required/>
+                        <input type="time" class="form-control col-md-4" name="hps_cs" value="{{$securiteService->hps_cs}}" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="hfs_cs" value="{{$securiteService->hfs_cs}}" required/>
+                        <input type="time" class="form-control col-md-4" name="hfs_cs" value="{{$securiteService->hfs_cs}}" required/>
                     </div>
                 </div>
             </div>
@@ -123,7 +124,7 @@
                                     <label for="eop11Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop11" id="eop11Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop11}}</option>
+                                        <option value="{{$securiteService->eop11}}">{{$securiteService->eop11s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -132,27 +133,27 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop11Nom" id="eop11Nom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop11Nom" id="eop11Nom" value="{{$securiteService->eop11s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop11Prenom" id="eop11Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop11Prenom" id="eop11Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop11Fonction" id="eop11Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop11Fonction" id="eop11Fonction" value="{{$securiteService->eop11s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop11Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop11Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop11" value="{{$securiteService->hps_eop11}}" id="hps_eop11"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop11" value="{{$securiteService->hps_eop11}}" id="hps_eop11"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop11" value="{{$securiteService->hfs_eop11}}" id="hfs_eop11"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop11" value="{{$securiteService->hfs_eop11}}" id="hfs_eop11"/>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +168,7 @@
                                     <label for="eop12Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop12" id="eop12Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop12}}</option>
+                                        <option value="{{$securiteService->eop12}}">{{$securiteService->eop12s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -176,27 +177,27 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop112Nom" id="eop112Nom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop112Nom" id="eop112Nom" value="{{$securiteService->eop12s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop12Prenom" id="eop12Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop12Prenom" id="eop12Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop12Fonction" id="eop12Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop12Fonction" id="eop12Fonction" value="{{$securiteService->eop12s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop12Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop12Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop12" value="{{$securiteService->hps_eop12}}" id="hps_eop12"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop12" value="{{$securiteService->hps_eop12}}" id="hps_eop12"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop12" value="{{$securiteService->hfs_eop12}}" id="hfs_eop12"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop12" value="{{$securiteService->hfs_eop12}}" id="hfs_eop12"/>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +216,7 @@
                                     <label for="eop21Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop21" id="eop21Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop21}}</option>
+                                        <option value="{{$securiteService->eop21}}">{{$securiteService->eop21s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -224,27 +225,27 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Nom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop21Nom" id="eop21Nom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop21Nom" id="eop21Nom" value="{{$securiteService->eop21s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop21Prenom" id="eop21Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop21Prenom" id="eop21Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop21Fonction" id="eop21Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop21Fonction" id="eop21Fonction" value="{{$securiteService->eop21s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop21Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop21Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop21" value="{{$securiteService->hps_eop21}}" id="hps_eop21"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop21" value="{{$securiteService->hps_eop21}}" id="hps_eop21"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop21" value="{{$securiteService->hfs_eop21}}" id="hfs_eop21"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop21" value="{{$securiteService->hfs_eop21}}" id="hfs_eop21"/>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +266,7 @@
                                     <label for="eop31Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop31" id="eop31Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop31}}</option>
+                                        <option value="{{$securiteService->eop31}}">{{$securiteService->eop31s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -274,28 +275,28 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop31Nom" id="eop31Nom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop31Nom" id="eop31Nom" value="{{$securiteService->eop31s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop31Prenom" id="eop31Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop31Prenom" id="eop31Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop31Fonction"
-                                           id="eop31Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop31Fonction"
+                                           id="eop31Fonction" value="{{$securiteService->eop31s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop31Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop31Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop31" value="{{$securiteService->hps_eop31}}" id="hps_eop31"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop31" value="{{$securiteService->hps_eop31}}" id="hps_eop31"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop31" value="{{$securiteService->hfs_eop31}}" id="hfs_eop31"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop31" value="{{$securiteService->hfs_eop31}}" id="hfs_eop31"/>
                                 </div>
                             </div>
                         </div>
@@ -309,7 +310,7 @@
                                     <label for="eop32Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop32Matricule" id="eop32Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop32}}</option>
+                                        <option value="{{$securiteService->eop32}}">{{$securiteService->eop32s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -317,29 +318,29 @@
                                     </select>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop32Nom" id="eop32Nom"/>
+                                    <label class="col-md-3">Nom</label>
+                                    <input type="text" class="form-control col-md-4" name="eop32Nom" id="eop32Nom" value="{{$securiteService->eop32s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop32Prenom" id="eop32Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop32Prenom" id="eop32Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop32Fonction"
-                                           id="eop32Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop32Fonction"
+                                           id="eop32Fonction" value="{{$securiteService->eop32s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop32Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop32Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop32" value="{{$securiteService->hps_eop32}}" id="hps_eop32"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop32" value="{{$securiteService->hps_eop32}}" id="hps_eop32"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop32" value="{{$securiteService->hfs_eop32}}" id="hfs_eop32"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop32" value="{{$securiteService->hfs_eop32}}" id="hfs_eop32"/>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +361,7 @@
                                     <label for="eop22Matricule" class="col-sm-3">Matricule</label>
                                     <select type="text" name="eop22" id="eop22Matricule"
                                             class="form-control col-sm-4">
-                                        <option>{{$securiteService->eop22}}</option>
+                                        <option value="{{$securiteService->eop22}}">{{$securiteService->eop22s->matricule ?? ''}}</option>
                                         @foreach($personnels as $personnel)
                                             <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                 | {{$personnel->nomPrenoms}}</option>
@@ -369,27 +370,27 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Nom </label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Nom" id="eop22Nom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop22Nom" id="eop22Nom" value="{{$securiteService->eop22s->nomPrenoms ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Prénom</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Prenom" id="eop22Prenom"/>
+                                    <input type="text" class="form-control col-md-4" name="eop22Prenom" id="eop22Prenom"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Fonction</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Fonction" id="eop22Fonction"/>
+                                    <input type="text" class="form-control col-md-4" name="eop22Fonction" id="eop22Fonction" value="{{$securiteService->eop22s->fonction ?? ''}}"/>
                                 </div>
                                 {{--<div class="form-group row">
                                     <label class="col-md-3">Matricule</label>
-                                    <input type="text" class="editbox col-md-4" name="eop22Matricule" id="eop22Matricule"/>
+                                    <input type="text" class="form-control col-md-4" name="eop22Matricule" id="eop22Matricule"/>
                                 </div>--}}
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de prise de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hps_eop22" value="{{$securiteService->hps_eop22}}" id="hps_eop22"/>
+                                    <input type="time" class="form-control col-md-4" name="hps_eop22" value="{{$securiteService->hps_eop22}}" id="hps_eop22"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3">Heure de fin de service</label>
-                                    <input type="time" class="editbox col-md-4" name="hfs_eop22" value="{{$securiteService->hfs_eop22}}" id="hfs_eop22"/>
+                                    <input type="time" class="form-control col-md-4" name="hfs_eop22" value="{{$securiteService->hfs_eop22}}" id="hfs_eop22"/>
                                 </div>
                             </div>
                         </div>
@@ -406,6 +407,7 @@
     <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let personnels =  {!! json_encode($personnels) !!};
 
         $(document).ready( function () {
             $("#centre").on("change", function () {
@@ -422,6 +424,55 @@
                         text: centre_regional
                     }));
                 })
+            });
+            $("#matriculeChargeDeSecurite").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#nomChargeDeSecurite").val(personnel.nomPrenoms);
+                    $("#fonctionChargeDeSecurite").val(personnel.fonction);
+                }
+            });
+            $("#eop11Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop11Nom").val(personnel.nomPrenoms);
+                    $("#eop11Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop12Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop112Nom").val(personnel.nomPrenoms);
+                    $("#eop12Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop21Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop21Nom").val(personnel.nomPrenoms);
+                    $("#eop21Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop22Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop22Nom").val(personnel.nomPrenoms);
+                    $("#eop22Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop31Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop31Nom").val(personnel.nomPrenoms);
+                    $("#eop31Fonction").val(personnel.fonction);
+                }
+            });
+            $("#eop32Matricule").on("change", function () {
+                const personnel = personnels.find(p => p.id === parseInt(this.value));
+                if (personnel) {
+                    $("#eop32Nom").val(personnel.nomPrenoms);
+                    $("#eop32Fonction").val(personnel.fonction);
+                }
             });
         });
     </script>

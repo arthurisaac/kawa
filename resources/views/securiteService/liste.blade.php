@@ -68,18 +68,8 @@
                             <td>{{$service->centreRegional}}</td>
                             <td>{{$service->personnes->nomPrenoms ?? ""}}</td>
                             <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{{ route('securite-service.edit',$service->id)}}" class="btn btn-primary btn-sm">Modifier</a>
-                                    </div>
-                                    <div class="col">
-                                        <form action="{{ route('securite-service.destroy', $service->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                <a href="{{ route('securite-service.edit',$service->id)}}" class="btn btn-primary btn-sm"></a>
+                                <button class="btn btn-danger btn-sm" onclick="supprimer('{{$service->id}}', this)"></button>
                             </td>
                         </tr>
                     @endforeach
@@ -89,6 +79,35 @@
         </div>
     </div>
     <script>
+        function supprimer(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "securite-service/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        alert("Suppression effectuée");
+                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                        document.getElementById("liste").deleteRow(indexLigne);
+                    },
+                    error: function (xhr) {
+                        alert("Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+
+
+            }
+
+        }
+
         $(document).ready(function () {
             $('#liste').DataTable({
                 "language": {

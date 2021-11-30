@@ -163,12 +163,13 @@ class SecuriteServiceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         $securiteService = SecuriteService::find($id);
         $securiteService->delete();
-        return redirect('/securite-service-liste')->with('success', 'Enregistrement supprimé!');
+        //return redirect('/securite-service-liste')->with('success', 'Enregistrement supprimé!');
+        return \response()->json(["message", "supprimé"]);
     }
 }

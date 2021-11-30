@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-md-2">Centre</label>
                 <select class="Combobox col-md-4" name="centre" id="centre" required>
-                    <option>Choisir centre</option>
+                    <option></option>
                     @foreach ($centres as $centre)
                         <option value="{{$centre->centre}}">{{$centre->centre}}</option>
                     @endforeach
