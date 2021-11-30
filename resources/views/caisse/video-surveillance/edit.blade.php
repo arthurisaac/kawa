@@ -171,10 +171,10 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
-                                        <input type="hidden" name="erreur" value="{{$video->ecart}}">
-                                        <input class="form-check-input" type="checkbox" value="Montant annoncé" name="ecart">
+                                        <input type="hidden" name="ecart" value="{{$video->ecart}}">
+                                        <input class="form-check-input" type="checkbox" value="Montant annoncé" name="ecart" {{($video->ecart == 'Montant annoncé') ? 'checked' : ''}}>
                                         <label class="form-check-label">
-                                            Montant annoncé
+                                            Montant annoncé {{$video->absence}}
                                         </label>
                                     </div>
                                 </div>
@@ -189,13 +189,13 @@
                                 <div class="col">
                                     <div class="form-check">
                                         <input type="hidden" name="erreur" value="{{$video->erreur}}">
-                                        <input class="form-check-input" type="radio" value="Montant annoncé" name="erreur">
+                                        <input class="form-check-input" type="radio" value="Montant annoncé" name="erreur" {{($video->erreur == 'Montant annoncé') ? 'checked' : ''}}>
                                         <label class="form-check-label">
                                             Billetage
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Numéro de scellé" name="erreur">
+                                        <input class="form-check-input" type="radio" value="Numéro de scellé" name="erreur" {{($video->erreur == 'Numéro de scellé') ? 'checked' : ''}}>
                                         <label class="form-check-label">
                                             Numéro de scellé
                                         </label>
@@ -212,7 +212,7 @@
                                 <div class="col">
                                     <div class="form-check">
                                         <input type="hidden" name="erreur" value="{{$video->absence}}">
-                                        <input class="form-check-input" type="checkbox" value="Billetage" name="absence">
+                                        <input class="form-check-input" type="checkbox" value="Billetage" name="absence" checked="{{$video->absence == 'abscence' ? true : false}}">
                                         <label class="form-check-label" for="defaultCheck1">
                                             Billetage
                                         </label>
@@ -249,6 +249,8 @@
 
         <script>
             let operatrices = {!! json_encode($operatrices) !!};
+            let centres = {!! json_encode($centres) !!};
+            let centres_regionaux = {!! json_encode($centres_regionaux) !!};
             $(document).ready(function() {
                 $("#operatrice").on("change", function () {
                     const operatrice = operatrices.find(p => p.id === parseInt(this.value));
@@ -256,6 +258,19 @@
                         $("#nomOperatrice").val(operatrice.operatrice.nomPrenoms);
                         $("#matriculeOperatrice").val(operatrice.operatrice.matricule);
                     }
+                });
+                $("#centre").on("change", function () {
+                    $("#centre_regional option").remove();
+                    const centre = centres.find(c => c.centre === this.value);
+                    const regions = centres_regionaux.filter(region => {
+                        return region.id_centre === centre.id;
+                    });
+                    regions.map(({centre_regional}) => {
+                        $('#centre_regional').append($('<option>', {
+                            value: centre_regional,
+                            text: centre_regional
+                        }));
+                    })
                 });
             });
         </script>
