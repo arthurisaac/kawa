@@ -224,7 +224,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="form-group row">
+                    <div class="form-group row" style="display: none">
                         <label for="remarque" class="col-5">Remarque</label>
                         <textarea id="remarque" name="remarque" class="form-control col-7">{{$video->remarque}}</textarea>
                     </div>

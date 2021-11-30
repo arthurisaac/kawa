@@ -117,10 +117,10 @@
                         <tbody>
                         @foreach($operatricesCTV as $operatrice)
                             <tr>
-                                <input type="hidden" name="ids" value="{{$operatrice->id}}">
+                                <input type="hidden" name="ids[]" value="{{$operatrice->id}}">
                                 <td><select name="operatrice[]" class="form-control col-sm-7"
                                             required>
-                                        <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? ''}}</option>
+                                        <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? $operatrice->operatrice}}</option>
                                         @foreach ($operatrices as $caisseOperatrice)
                                             <option value="{{$caisseOperatrice->id}}"> {{$caisseOperatrice->operatrice->nomPrenoms}}</option>
                                         @endforeach
@@ -140,7 +140,7 @@
                                     </select></td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm"
-                                            onclick="supprimerLigne(this)"></button>
+                                            onclick="supprimerItem('{{$operatrice->id}}',this)"></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -281,8 +281,8 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="client" class="col-sm-5">Client</label>
-                                <select class="form-control col-sm-7" id="client" name="client" required>
-                                    <option>{{$ctv->client}}</option>
+                                <select class="form-control col-sm-7" id="client" name="client">
+                                    <option value="{{$ctv->client}}">{{$ctv->clients->client_nom ?? 'Donnée indisponible'}}</option>
                                     @foreach ($clients as $client)
                                         <option value="{{$client->id}}"> {{$client->client_nom}}</option>
                                     @endforeach
@@ -290,8 +290,8 @@
                             </div>
                             <div class="form-group row">
                                 <label for="site" class="col-sm-5">Site</label>
-                                <select class="form-control col-sm-7" id="site" name="site" required>
-                                    <option>{{$ctv->site}}</option>
+                                <select class="form-control col-sm-7" id="site" name="site">
+                                    <option value="{{$ctv->site}}">{{$ctv->sites->site ?? 'Donnée indisponible'}}</option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}"> {{$site->site}}</option>
                                     @endforeach
@@ -300,12 +300,12 @@
                             <div class="form-group row">
                                 <label for="expediteur" class="col-sm-5">Expediteur</label>
                                 <input type="text" value="{{$ctv->expediteur}}" class="form-control col-sm-7"
-                                       id="expediteur" name="expediteur" required/>
+                                       id="expediteur" name="expediteur"/>
                             </div>
                             <div class="form-group row">
                                 <label for="caisse_desti" class="col-sm-5">Destinataire</label>
                                 <input type="text" value="{{$ctv->destinataire}}" class="form-control col-sm-7"
-                                       id="destinataire" name="destinataire" required/>
+                                       id="destinataire" name="destinataire"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -553,7 +553,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" value="{{$ctv->montantAnnonce - $ctv->montantReconnu}}" min="0" name="ecartConstate"
+                                <input type="number" value="{{$ctv->montantAnnonce - $ctv->montantReconnu}}" name="ecartConstate"
                                        id="ecartConstate" class="form-control col-sm-7" required/>
                             </div>
                             <div class="form-group row">
@@ -789,6 +789,30 @@
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("mTable").deleteRow(indexLigne);
         }
+        function supprimerItem(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/ctv-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        supprimerLigne(e);
+                    },
+                    error: function (err) {
+                        console.error(err.responseJSON.message);
+                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+            }
+        }
         $(document).ready(function () {
             $("#regulatrice").on("change", function () {
                 const personnel = personnels.find(p => p.id === parseInt(this.value));
@@ -820,7 +844,7 @@
             });
             $("#add").on("click", function () {
                 $("#mTable").append(' <tr>\n' +
-                    '                            <input type="hidden" name="ids">\n' +
+                    '                            <input type="hidden" name="ids[]">\n' +
                     '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($operatrices as $operatrice)\n' +

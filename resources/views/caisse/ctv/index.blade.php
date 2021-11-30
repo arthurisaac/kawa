@@ -118,7 +118,7 @@
                             <td><select name="operatrice[]" class="form-control col-sm-7" required>
                                     <option></option>
                                     @foreach ($operatrices as $operatrice)
-                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>
+                                        <option value="{{$operatrice->id}}"> {{$operatrice->nomPrenoms}}</option>
                                     @endforeach
                                 </select></td>
                             <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
@@ -470,15 +470,15 @@
                             </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                <input type="number" min="0" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" min="0" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0"/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -683,7 +683,7 @@
                     '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($operatrices as $operatrice)\n' +
-                    '                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>\n' +
+                    '                                        <option value="{{$operatrice->id}}"> {{$operatrice->nomPrenoms}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select></td>\n' +
                     '                            <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>\n' +

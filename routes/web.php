@@ -150,8 +150,11 @@ Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class,
 Route::resource('caisse-service', 'CaisseServiceController');
 Route::get('caisse-service-liste', [\App\Http\Controllers\CaisseServiceController::class, 'liste']);
 Route::delete('caisse-service-item/{id}', [\App\Http\Controllers\CaisseServiceController::class, 'destroyItem']);
+
 Route::resource('ctv', 'CaisseCtvController');
 Route::get('ctv-liste', [\App\Http\Controllers\CaisseCtvController::class, 'liste']);
+Route::delete('ctv-item/{id}', [\App\Http\Controllers\CaisseCtvController::class, 'destroyItem']);
+
 Route::resource('caisse-entree-colis', 'CaisseEntreeColisController');
 Route::get('caisse-entree-colis-liste', [\App\Http\Controllers\CaisseEntreeColisController::class, 'liste']);
 Route::delete('caisse-entree-colis-item/{id}', [\App\Http\Controllers\CaisseEntreeColisController::class, 'destroyItem']);

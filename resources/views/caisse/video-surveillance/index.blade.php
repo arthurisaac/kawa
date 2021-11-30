@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4" style="display: none">
                     <div class="form-group row">
                         <label for="remarque" class="col-5">Remarque</label>
                         <textarea id="remarque" name="remarque" class="form-control col-7"></textarea>

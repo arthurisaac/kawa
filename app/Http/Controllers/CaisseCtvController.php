@@ -36,7 +36,7 @@ class CaisseCtvController extends Controller
         $operatrices = CaisseServiceOperatrice::with('operatrice')
             ->join('personnels', 'personnels.id', '=', 'caisse_service_operatrices.operatriceCaisse', 'left')
             ->orderBy('personnels.nomPrenoms', 'desc')
-            ->get();
+            ->get(['caisse_service_operatrices.id', 'personnels.nomPrenoms']);
         return view('/caisse.ctv.index',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'convoyeurs', 'regulatrices'));
     }
@@ -185,6 +185,8 @@ class CaisseCtvController extends Controller
         $ctv = CaisseCtv::with('operatrices')
             ->with('convoyeurs')
             ->with('regulatrices')
+            ->with('clients')
+            ->with('sites')
             ->find($id);
 
         $billetages = CaisseBilletage::where('ctv', $id)->get();
@@ -277,7 +279,7 @@ class CaisseCtvController extends Controller
 
             for ($i = 0; $i < count($operatrices); $i++) {
                 if (empty($ids[$i])) {
-                    if (empty($operatrice)) {
+                    if (!empty($operatrices[$i])) {
                         $data = new CaisseCTVOperatrice([
                             'ctv' => $id,
                             'operatrice' => $operatrices[$i],
@@ -315,5 +317,12 @@ class CaisseCtvController extends Controller
         }
         if ($ctv) $ctv->delete();
         return redirect('/ctv-liste')->with('success', 'Enregistrement supprimé avec succès!');
+    }
+
+    public function destroyItem($id)
+    {
+        $operatrices = CaisseCTVOperatrice::find($id);
+        if ($operatrices) $operatrices->delete();
+        return \response()->json(["message" => "ok"]);
     }
 }
