@@ -579,8 +579,8 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label for="caisse_bc" class="col-sm-5">Billets calculés</label>
-                                        <label><input type="radio" value="oui" name="billetsCalcules" checked="{{$ctv->billetsCalcules = 'oui' ? true : false }}"> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsCalcules" checked="{{$ctv->billetsCalcules = 'non' ? true : false }}"> Non</label>
+                                        <label><input type="radio" value="oui" name="billetsCalcules" {{($ctv->billetsCalcules == 'oui') ? 'checked' : ''}}> Oui</label>
+                                        <label><input type="radio" value="non" name="billetsCalcules" {{($ctv->billetsCalcules == 'non') ? 'checked' : ''}}> Non</label>
                                         <input type="hidden" name="billetsCalcules" value="{{$ctv->billetsCalcules}}">
                                         <input type="number" value="{{$ctv->billetsCalculesMontant}}"
                                                name="billetsCalculesMontant" id="caisse_bc"
@@ -588,8 +588,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_bsav" class="col-sm-5">Billets sans valeurs</label>
-                                        <label><input type="radio" value="oui" name="billetsSansValeurs" checked="{{$ctv->billetsSansValeurs = 'oui' ? true : false }}"> Oui</label>
-                                        <label><input type="radio" value="oui" name="billetsSansValeurs" checked="{{$ctv->billetsSansValeurs = 'non' ? true : false }}"> Non</label>
+                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'oui' ? 'checked' : '' }}> Oui</label>
+                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'non' ? 'checked' : '' }}> Non</label>
                                         <input type="hidden" name="billetsSansValeurs"
                                                value="{{$ctv->billetsSansValeurs}}">
                                         <input type="number" value="{{$ctv->billetsSansValeursMontant}}"
@@ -598,8 +598,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_busa" class="col-sm-5">Billets usagés</label>
-                                        <label><input type="radio" value="oui" name="billetsUsages" checked="{{$ctv->billetsUsages = 'oui' ? true : false }}"> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsUsages" checked="{{$ctv->billetsUsages = 'oui' ? true : false }}"> Non</label>
+                                        <label><input type="radio" value="oui" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? true : false }}> Oui</label>
+                                        <label><input type="radio" value="non" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? true : false }}> Non</label>
                                         <input type="hidden" name="billetsUsages" value="{{$ctv->billetsUsages}}">
                                         <input type="number" value="{{$ctv->billetsUsagesMontant}}"
                                                name="billetsUsagesMontant" id="caisse_busa"
@@ -607,8 +607,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_fau" class="col-sm-5">Faux billets</label>
-                                        <label><input type="radio" value="oui" name="fauxBillets" checked="{{$ctv->fauxBillets = 'oui' ? true : false }}"> Oui</label>
-                                        <label><input type="radio" value="non" name="fauxBillets" checked="{{$ctv->fauxBillets = 'non' ? true : false }}"> Non</label>
+                                        <label><input type="radio" value="oui" name="fauxBillets" {{$ctv->fauxBillets = 'oui' ? true : false }}> Oui</label>
+                                        <label><input type="radio" value="non" name="fauxBillets" {{$ctv->fauxBillets = 'non' ? true : false }}> Non</label>
                                         <input type="hidden" name="fauxBillets" value="{{$ctv->fauxBillets}}">
                                         <input type="number" value="{{$ctv->fauxBilletsMontant}}"
                                                name="fauxBilletsMontant" class="form-control col-sm-4"/>
@@ -617,8 +617,8 @@
 
                                     <div class="form-group row">
                                         <label for="caisse_bide" class="col-sm-5">Billets déparaillés</label>
-                                        <label><input type="radio" value="oui" name="billetsDeparailles" checked="{{$ctv->billetsDeparailles = 'non' ? true : false }}"> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsDeparailles" checked="{{$ctv->billetsDeparailles = 'non' ? true : false }}"> Non</label>
+                                        <label><input type="radio" value="oui" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? true : false }}> Oui</label>
+                                        <label><input type="radio" value="non" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? true : false }}> Non</label>
                                         <input type="hidden" name="billetsDeparailles"
                                                value="{{$ctv->billetsDeparailles}}">
                                         <input type="number" value="{{$ctv->billetsDeparaillesMontant}}"
