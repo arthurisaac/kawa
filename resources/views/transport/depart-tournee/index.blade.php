@@ -150,7 +150,7 @@
                                 <select class="form-control" name="site[]" id="site{{$i}}">
                                     <option></option>
                                     @foreach ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->site}}</option>
+                                        <option value="{{$site->id}}">{{$site->site}} | {{$site->clients->client_nom ?? ''}}</option>
                                     @endforeach
                                 </select>
 
@@ -224,7 +224,7 @@
                     '                                <select class="form-control" name="site[]" id="site{{$i}}">\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($sites as $site)\n' +
-                    '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                        <option value="{{$site->id}}">{{$site->site}} | {{$site->clients->client_nom ?? ''}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select>\n' +
                     '\n' +

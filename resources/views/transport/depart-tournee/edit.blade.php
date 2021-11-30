@@ -156,7 +156,7 @@
                     <tr>
                         <td>
                             <select class="form-control" name="site[]" id="site{{$site->id}}">
-                                <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}</option>
+                                <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}} | {{$site->sites->clients->client_nom ?? ''}}</option>
                                 @foreach ($commercial_sites as $commercial)
                                     <option value="{{$commercial->id}}">{{$commercial->site}}</option>
                                 @endforeach
@@ -423,7 +423,7 @@
                     '                                <select class="form-control" name="site[]" id="site">\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($commercial_sites as $site)\n' +
-                    '                                        <option value="{{$site->id}}">{{$site->site}}</option>\n' +
+                    '                                        <option value="{{$site->id}}">{{$site->site}} | {{$site->clients->client_nom}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select>\n' +
                     '\n' +

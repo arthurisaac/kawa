@@ -23,7 +23,7 @@ class SecuriteMaterielController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $personnels = DB::table('personnels')->where('service', '=', 'transport')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         return view('securite/materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
     }
@@ -191,7 +191,7 @@ class SecuriteMaterielController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $materiel = SecuriteMateriel::with('cbs')->with('ccs')->with('cgs')->with('operateurRadios')->with('tournees')->find($id);
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $personnels = DB::table('personnels')->where('service', '=', 'transport')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel', 'centres', 'centres_regionaux'));
     }
