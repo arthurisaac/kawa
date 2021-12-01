@@ -191,9 +191,10 @@ class SecuriteMaterielController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $materiel = SecuriteMateriel::with('cbs')->with('ccs')->with('cgs')->with('operateurRadios')->with('tournees')->find($id);
+        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->first();
         $personnels = DB::table('personnels')->where('service', '=', 'transport')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
-        return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel', 'centres', 'centres_regionaux'));
+        return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel', 'centres', 'centres_regionaux', 'remettant'));
     }
 
     /**
@@ -220,6 +221,51 @@ class SecuriteMaterielController extends Controller
         $materiel->centre_regional = $request->get('centre_regional');
         $materiel->centre = $request->get('centre');
         $materiel->save();
+
+        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->first();
+        if ($remettant) {
+            $remettant->remettantPieceVehicule = $request->get('remettantPieceVehicule');
+            $remettant->remettantPieceVehiculeQuantite = $request->get('remettantPieceVehiculeQuantite');
+            $remettant->remettantPieceVehiculeHeureRetour = $request->get('remettantPieceVehiculeHeureRetour');
+            $remettant->remettantPieceVehiculeConvoyeur = $request->get('remettantPieceVehiculeConvoyeur');
+            $remettant->remettantCleVehicule = $request->get('remettantCleVehicule');
+            $remettant->remettantCleVehiculeQuantite = $request->get('remettantCleVehiculeQuantite');
+            $remettant->remettantCleVehiculeHeureRetour = $request->get('remettantCleVehiculeHeureRetour');
+            $remettant->remettantCleVehiculeConvoyeur = $request->get('remettantCleVehiculeConvoyeur');
+            $remettant->remettantTelephone = $request->get('remettantTelephone');
+            $remettant->remettantTelephoneQuantite = $request->get('remettantTelephoneQuantite');
+            $remettant->remettantTelephoneHeureRetour = $request->get('remettantTelephoneHeureRetour');
+            $remettant->remettantTelephoneConvoyeur = $request->get('remettantTelephoneConvoyeur');
+            $remettant->remettantRadio = $request->get('remettantRadio');
+            $remettant->remettantRadioQuantite = $request->get('remettantRadioQuantite');
+            $remettant->remettantRadioHeureRetour = $request->get('remettantRadioHeureRetour');
+            $remettant->remettantRadioConvoyeur = $request->get('remettantRadioConvoyeur');
+            $remettant->remettantGBP = $request->get('remettantGBP');
+            $remettant->remettantGBPQuantite = $request->get('remettantGBPQuantite');
+            $remettant->remettantGBPHeureRetour = $request->get('remettantGBPHeureRetour');
+            $remettant->remettantGBPConvoyeur = $request->get('remettantGBPConvoyeur');
+            $remettant->remettantPA = $request->get('remettantPA');
+            $remettant->remettantPAQuantite = $request->get('remettantPAQuantite');
+            $remettant->remettantPAHeureRetour = $request->get('remettantPAHeureRetour');
+            $remettant->remettantPAConvoyeur = $request->get('remettantPAConvoyeur');
+            $remettant->remettantFP = $request->get('remettantFP');
+            $remettant->remettantFPQuantite = $request->get('remettantFPQuantite');
+            $remettant->remettantFPHeureRetour = $request->get('remettantFPHeureRetour');
+            $remettant->remettantFPConvoyeur = $request->get('remettantFPConvoyeur');
+            $remettant->remettantPM = $request->get('remettantPM');
+            $remettant->remettantPMQuantite = $request->get('remettantPMQuantite');
+            $remettant->remettantPMHeureRetour = $request->get('remettantPMHeureRetour');
+            $remettant->remettantPMConvoyeur = $request->get('remettantPMConvoyeur');
+            $remettant->remettantMunition = $request->get('remettantMunition');
+            $remettant->remettantMunitionQuantite = $request->get('remettantMunitionQuantite');
+            $remettant->remettantMunitionHeureRetour = $request->get('remettantMunitionHeureRetour');
+            $remettant->remettantMunitionConvoyeur = $request->get('remettantMunitionConvoyeur');
+            $remettant->remettantTAG = $request->get('remettantTAG');
+            $remettant->remettantTAGQuanite = $request->get('remettantTAGQuanite');
+            $remettant->remettantTAGHeureRetour = $request->get('remettantTAGHeureRetour');
+            $remettant->remettantTAGConvoyeur = $request->get('remettantTAGConvoyeur');
+        }
+
         return redirect('/materiel-liste')->with('success', 'Matériel enregistré!');
     }
 
