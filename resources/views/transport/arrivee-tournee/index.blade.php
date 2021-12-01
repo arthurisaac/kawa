@@ -276,10 +276,10 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                     </select></td>
-                            <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="text" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="text" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="text" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
+                            <td><input type="text" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
                             <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
                             <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
                             <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
@@ -358,9 +358,19 @@
         });
     </script>
     <script>
+        function separateNumbers(e){
+            try {
+                let str = e.value?.replace(/\s/g, '');
+                const donnee = parseFloat(str);
+                $(e).val(Number(donnee).toLocaleString());
+            } catch (e) {
+                console.log(e)
+            }
+        }
         function changeXOF() {
             let total = 0;
-            $(this).val(Number(this.val()).toLocaleString());
+            separateNumbers(this);
+
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
                 const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
@@ -370,6 +380,7 @@
 
         function changeDollar() {
             let total = 0;
+            separateNumbers(this);
             $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
@@ -379,6 +390,7 @@
 
         function changeEuro() {
             let total = 0;
+            separateNumbers(this);
             $.each($("input[name='device_etrangere_euro[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
@@ -388,6 +400,7 @@
 
         function changePierre() {
             let total = 0;
+            separateNumbers(this);
             $.each($("input[name='pierre_precieuse[]']"), function (i) {
                 const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
