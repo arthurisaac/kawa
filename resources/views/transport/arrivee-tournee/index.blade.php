@@ -187,7 +187,6 @@
                 const departSites = sites.filter(v => {
                     return parseInt(v.idTourneeDepart) === parseInt(this.value);
                 });
-                console.log(departSites);
                 if (departSites) populateSites(departSites);
                 if (tournee) {
                     $("#date").val(tournee.date);
@@ -361,6 +360,7 @@
     <script>
         function changeXOF() {
             let total = 0;
+            $(this).val(Number(this.val()).toLocaleString());
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
                 const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
