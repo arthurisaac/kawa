@@ -228,7 +228,6 @@
                         <td><select name="nature[]" class="form-control">
                                 <option>${s?.nature ?? ''}</option>
                                 <option>retour de cession</option>
-                                <option>envoi</option>
                                 <option>tri</option>
                                 <option>transite</option>
                                 <option>approvisionnement</option>

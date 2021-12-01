@@ -140,7 +140,7 @@
                             <td><input type="number"  min="0" name="nbre_colis[]" value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
                             <td><select name="nature[]" class="form-control">
                                     <option>{{$site->nature}}</option>
-                                    <option>envoi</option>
+                                    <option>retour de cession</option>
                                     <option>tri</option>
                                     <option>transite</option>
                                     <option>approvisionnement</option>
