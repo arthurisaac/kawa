@@ -227,6 +227,7 @@
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
                         <td><select name="nature[]" class="form-control">
                                 <option>${s?.nature ?? ''}</option>
+                                <option>retour de cession</option>
                                 <option>envoi</option>
                                 <option>tri</option>
                                 <option>transite</option>
