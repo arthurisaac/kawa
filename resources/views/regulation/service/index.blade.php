@@ -58,7 +58,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="chargeeRegulation" class="col-sm-5">Matricule</label>
-                                <select type="text" name="chargeeRegulation" id="chargeeRegulation" class="form-control col-sm-7" required>
+                                <select type="text" name="chargeeRegulation" id="chargeeRegulation" class="form-control col-sm-7">
                                     <option></option>
                                     @foreach($personnels as $personnel)
                                         <option value="{{$personnel->id}}">{{$personnel->matricule}} | {{$personnel->nomPrenoms}}</option>

@@ -264,7 +264,53 @@ class SecuriteMaterielController extends Controller
             $remettant->remettantTAGQuanite = $request->get('remettantTAGQuanite');
             $remettant->remettantTAGHeureRetour = $request->get('remettantTAGHeureRetour');
             $remettant->remettantTAGConvoyeur = $request->get('remettantTAGConvoyeur');
+            $remettant->save();
         }
+
+        $beneficiare = SecuriteMaterielBeneficiaire::where("idMateriel", $id)->first();
+        //if ($beneficiare) {
+            $beneficiare->beneficiairePieceVehicule = $request->get('beneficiairePieceVehicule');
+            $beneficiare->beneficiairePieceVehiculeQuantite = $request->get('beneficiairePieceVehiculeQuantite');
+            $beneficiare->beneficiairePieceVehiculeHeureRetour = $request->get('beneficiairePieceVehiculeHeureRetour');
+            $beneficiare->beneficiairePieceVehiculeConvoyeur = $request->get('beneficiairePieceVehiculeConvoyeur');
+            $beneficiare->beneficiaireCleVehicule = $request->get('beneficiaireCleVehicule');
+            $beneficiare->beneficiaireCleVehiculeQuantite = $request->get('beneficiaireCleVehiculeQuantite');
+            $beneficiare->beneficiaireCleVehiculeHeureRetour = $request->get('beneficiaireCleVehiculeHeureRetour');
+            $beneficiare->beneficiaireCleVehiculeConvoyeur = $request->get('beneficiaireCleVehiculeConvoyeur');
+            $beneficiare->beneficiaireTelephone = $request->get('beneficiaireTelephone');
+            $beneficiare->beneficiaireTelephoneHeureRetour = $request->get('beneficiaireTelephoneHeureRetour');
+            $beneficiare->beneficiaireTelephoneConvoyeur = $request->get('beneficiaireTelephoneConvoyeur');
+            $beneficiare->beneficiaireRadio = $request->get('beneficiaireRadio');
+            $beneficiare->beneficiaireRadioQuantite = $request->get('beneficiaireRadioQuantite');
+            $beneficiare->beneficiaireRadioHeureRetour = $request->get('beneficiaireRadioHeureRetour');
+            $beneficiare->beneficiaireRadioConvoyeur = $request->get('beneficiaireRadioConvoyeur');
+            $beneficiare->beneficiaireGBP = $request->get('beneficiaireGBP');
+            $beneficiare->beneficiaireGBPQuantite = $request->get('beneficiaireGBPQuantite');
+            $beneficiare->beneficiaireGBPHeureRetour = $request->get('beneficiaireGBPHeureRetour');
+            $beneficiare->beneficiaireGBPConvoyeur = $request->get('beneficiaireGBPConvoyeur');
+            $beneficiare->beneficiairePA = $request->get('beneficiairePA');
+            $beneficiare->beneficiairePAQuantite = $request->get('beneficiairePAQuantite');
+            $beneficiare->beneficiairePAHeureRetour = $request->get('beneficiairePAHeureRetour');
+            $beneficiare->beneficiairePAConvoyeur = $request->get('beneficiairePAConvoyeur');
+            $beneficiare->beneficiaireFP = $request->get('beneficiaireFP');
+            $beneficiare->beneficiaireFPQuantite = $request->get('beneficiaireFPQuantite');
+            $beneficiare->beneficiaireFPHeureRetour = $request->get('beneficiaireFPHeureRetour');
+            $beneficiare->beneficiaireFPConvoyeur = $request->get('beneficiaireFPConvoyeur');
+            $beneficiare->beneficiairePM = $request->get('beneficiairePM');
+            $beneficiare->beneficiairePMQuantite = $request->get('beneficiairePMQuantite');
+            $beneficiare->beneficiairePMHeureRetour = $request->get('beneficiairePMHeureRetour');
+            $beneficiare->beneficiairePMConvoyeur = $request->get('beneficiairePMConvoyeur');
+            $beneficiare->beneficiaireMunition = $request->get('beneficiaireMunition');
+            $beneficiare->beneficiaireMunitionQuantite = $request->get('beneficiaireMunitionQuantite');
+            $beneficiare->beneficiaireMunitionHeureRetour = $request->get('beneficiaireMunitionHeureRetour');
+            $beneficiare->beneficiaireMunitionConvoyeur = $request->get('beneficiaireMunitionConvoyeur');
+            $beneficiare->beneficiaireTAG = $request->get('beneficiaireTAG');
+            $beneficiare->beneficiaireTAGQuanite = $request->get('beneficiaireTAGQuanite');
+            $beneficiare->beneficiaireTAGHeureRetour = $request->get('beneficiaireTAGHeureRetour');
+            $beneficiare->beneficiaireTAGConvoyeur = $request->get('beneficiaireTAGConvoyeur');
+            $beneficiare->save();
+        //}
+
 
         return redirect('/materiel-liste')->with('success', 'Matériel enregistré!');
     }
