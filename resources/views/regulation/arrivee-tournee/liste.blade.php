@@ -60,7 +60,7 @@
                 <td>Véhicule</td>
                 <td>Nbre Total colis</td>
                 <td>Total valeur colis</td>
-                <td>Total device etrangere (XOF)</td>
+                <td>Total montant colis (XOF)</td>
                 <td>Total device etrangere (Dollar)</td>
                 <td>Total device etrangere (EURO)</td>
                 <td>Montant total</td>
@@ -77,7 +77,7 @@
                     <td>{{$tournee->date}}</td>
                     <td>{{$tournee->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                    <td>{{$tournee->sites->sum("nbre_colis")}}</td>
+                    <td>{{$tournee->sites->sum("nbre_colis_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("valeur_colis_xof_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_dollar_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_euro_arrivee")}}</td>

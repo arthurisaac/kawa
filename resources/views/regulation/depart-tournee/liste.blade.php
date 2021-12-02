@@ -59,10 +59,10 @@
                 <td>N° Tournée</td>
                 <td>Véhicule</td>
                 <td>Nbre Total colis</td>
-                <td>Total device etrangere (XOF)</td>
+                <td>Total montant (XOF)</td>
                 <td>Total device etrangere (Dollar)</td>
                 <td>Total device etrangere (EURO)</td>
-                <td>Total pierre precieuse/td>
+                <td>Total pierre precieuse</td>
                 <td>Equipage</td>
                 <td>Action</td>
             </tr>
