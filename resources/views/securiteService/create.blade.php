@@ -60,8 +60,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Nom </label>
-                        <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite"
-                               required/>
+                        <input type="text" class="editbox col-md-4" name="nomChargeDeSecurite" id="nomChargeDeSecurite"/>
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Prénom</label>
@@ -74,15 +73,15 @@
                     </div>
                     {{--<div class="form-group row">
                         <label class="col-md-3">Matricule</label>
-                        <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite" required/>
+                        <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite"/>
                     </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="editbox col-md-4" name="hps_cs" required/>
+                        <input type="time" class="editbox col-md-4" name="hps_cs"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="editbox col-md-4" name="hfs_cs" required/>
+                        <input type="time" class="editbox col-md-4" name="hfs_cs"/>
                     </div>
                 </div>
             </div>

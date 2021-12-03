@@ -218,10 +218,10 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                                 </select></td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? 0}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? 0}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? 0}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? 0}" class="form-control"></td>
+                        <td><input type="text" name="valeur_colis_xof[]" value="${s.valeur_colis_xof ?? 0}" class="form-control"></td>
+                        <td><input type="text" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar ?? 0}" class="form-control"></td>
+                        <td><input type="text" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro ?? 0}" class="form-control"></td>
+                        <td><input type="text" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse ?? 0}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? 0}" class="form-control"></td>
                 </tr>`;
@@ -325,7 +325,17 @@
         });
     </script>
     <script>
+        function separateNumbers(e){
+            try {
+                let str = e.value?.replace(/\s/g, '');
+                const donnee = parseFloat(str);
+                $(e).val(Number(donnee).toLocaleString());
+            } catch (e) {
+                console.log(e)
+            }
+        }
         function changeXOF() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
                 const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
@@ -334,6 +344,7 @@
             $("#totalValeurXOF").val(total);
         }
         function changeDollar() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
@@ -342,6 +353,7 @@
             $("#totalValeurDollar").val(total);
         }
         function changeEuro() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='device_etrangere_euro[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
@@ -350,6 +362,7 @@
             $("#totalValeurEuro").val(total);
         }
         function changePierre() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='pierre_precieuse[]']"), function (i) {
                 const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
@@ -366,6 +379,7 @@
             $("#totalColis").val(totalColis);
         }
         function changeColis() {
+            separateNumbers(this);
             let index = 0;
             const thisColisInput = this;
             // Trouver l'index du champs actuel

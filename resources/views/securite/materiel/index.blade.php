@@ -89,22 +89,16 @@
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <select type="text" name="cbMatricule" id="cbMatricule"
-                                                        class="form-control col-sm-8">
-                                                    <option></option>
-                                                    @foreach($personnels as $personnel)
-                                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                            | {{$personnel->nomPrenoms}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="cbMatricule" id="cbMatricule"
+                                                        class="form-control col-sm-8" />
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="cbNom">
+                                                <input type="text" class="form-control col-sm-8" name="cbNom" id="cbNom">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="cbFonction">
+                                                <input type="text" class="form-control col-sm-8" name="cbFonction" id="cbFonction">
                                             </div>
                                         </div>
                                     </div>
@@ -115,22 +109,16 @@
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <select type="text" name="ccMatricule" id="ccMatricule"
-                                                        class="form-control col-sm-8">
-                                                    <option></option>
-                                                    @foreach($personnels as $personnel)
-                                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                            | {{$personnel->nomPrenoms}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="ccMatricule" id="ccMatricule"
+                                                        class="form-control col-sm-8" />
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="ccNom">
+                                                <input type="text" class="form-control col-sm-8" name="ccNom" id="ccNom">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="ccFonction">
+                                                <input type="text" class="form-control col-sm-8" name="ccFonction" id="ccFonction">
                                             </div>
                                         </div>
                                     </div>
@@ -142,22 +130,16 @@
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <select type="text" name="cgMatricule" id="cgMatricule"
-                                                        class="form-control col-sm-8">
-                                                    <option></option>
-                                                    @foreach($personnels as $personnel)
-                                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                            | {{$personnel->nomPrenoms}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="cgMatricule" id="cgMatricule"
+                                                        class="form-control col-sm-8"/>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="cgNom">
+                                                <input type="text" class="form-control col-sm-8" name="cgNom" id="cgNom">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="cgFonction">
+                                                <input type="text" class="form-control col-sm-8" name="cgFonction" id="cgFonction">
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +183,7 @@
                         <div class="col-3">
                             <div class="form-group row">
                                 <label class="col-sm-4">Tournée N°</label>
-                                <select class="form-control col-sm-8" name="noTournee" required>
+                                <select class="form-control col-sm-8" name="noTournee" id="noTournee" required>
                                     <option></option>
                                     @foreach($tournees as $tournee)
                                         <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
@@ -610,6 +592,7 @@
     </div>
     <script>
         let personnels =  {!! json_encode($personnels) !!};
+        let tournees = {!! json_encode($tournees) !!};
         let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
@@ -657,6 +640,30 @@
                     $("input[name=operateurRadioFonction]").val(personnel.fonction);
                 }
             });
+            $("#noTournee").on("change", function () {
+                $("#cgMatricule").val("");
+                $("#ccMatricule").val("");
+                $("#cbMatricule").val("");
+
+                const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
+                console.log(tournee);
+                if (tournee) {
+                    $("#cgMatricule").val(tournee.chauffeurs?.matricule ?? '');
+                    $("#cgNom").val(tournee.chauffeurs?.nomPrenoms ?? '');
+                    $("#cgFonction").val(tournee.chauffeurs?.fonction ?? '');
+
+                    $("#ccMatricule").val(tournee.chef_de_bords?.matricule ?? '');
+                    $("#ccNom").val(tournee.chef_de_bords?.nomPrenoms ?? '');
+                    $("#ccFonction").val(tournee.chef_de_bords?.fonction ?? '');
+
+                    $("#cbMatricule").val(tournee.agent_de_gardes?.matricule ?? '');
+                    $("#cbNom").val(tournee.agent_de_gardes?.nomPrenoms ?? '');
+                    $("#cbFonction").val(tournee.agent_de_gardes?.fonction ?? '');
+                    $("#centre").val(tournee.centre);
+                    $("#centre_regional").val(tournee.centre_regional);
+                }
+            });
+
         })
     </script>
 @endsection

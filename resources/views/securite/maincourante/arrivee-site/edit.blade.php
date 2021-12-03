@@ -14,14 +14,14 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="date" class="col-sm-4">Date</label>
-                        <input type="text" name="date" id="date" value="{{$site->tournees->date}}" class="form-control col-sm-8"
+                        <input type="text" name="date" id="date" value="{{$site->tournees->date ?? ''}}" class="form-control col-sm-8"
                                readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee}} || {{$site->tournees->vehicules->code ?? ""}}" readonly />
+                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee ?? ''}} || {{$site->tournees->vehicules->code ?? ""}}" readonly />
                     </div>
                 </div>
                 <div class="col">
@@ -203,7 +203,7 @@
                                             <option>Pierres précieuses</option>
                                         </select>
                                     </td>
-                                    <td><input type="number" name="asNumColis_edit[]" value="{{$colis->num_colis}}" class="form-control"/></td>
+                                    <td><input type="text" name="asNumColis_edit[]" value="{{$colis->num_colis}}" class="form-control"/></td>
                                     <td><select name="asNumBordereau_edit[]" class="form-control">
                                             <option>{{$colis->bordereau}}</option>
                                             @foreach($optionBordereau as $option)
@@ -261,7 +261,7 @@
                     '                                        <option>Pierres précieuses</option>\n' +
                     '                                    </select>\n' +
                     '                                </td>\n' +
-                    '                                <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                <td><input type="text" name="asNumColis[]" class="form-control"/></td>\n' +
                     '                                <td><select name="asNumBordereau[]"\n' +
                     '                                                class="form-control">\n' +
                     '                                        <option>{{$colis->bordereau}}</option>\n' +

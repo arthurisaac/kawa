@@ -287,7 +287,6 @@ class SecuriteMaincouranteController extends Controller
 
     public function storeTourneeCentre(Request $request)
     {
-
         $arriveeCentre = new TourneeCentre([
             'noTournee' => $request->get('noTournee'),
             'centre' => $request->get('centre'),

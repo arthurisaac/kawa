@@ -150,6 +150,14 @@ class CaisseServiceController extends Controller
                 $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i] ?? 0;
                 $operatrice->operatriceCaisseBox = $numeroDeBox[$i];
                 $operatrice->save();
+            } else {
+                $operatrice = new CaisseServiceOperatrice([
+                    'caisseService' => $service->id,
+                    'operatriceCaisse' => $operatriceCaisse[$i],
+                    'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i] ?? 0,
+                    'operatriceCaisseBox' => $numeroDeBox[$i]
+                ]);
+                $operatrice->save();
             }
         }
         return redirect('/caisse-service-liste')->with('success', 'Service modifié!');

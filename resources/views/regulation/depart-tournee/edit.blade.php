@@ -126,10 +126,10 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
-                            <td><input type="number" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof ?? 0}}" class="form-control"></td>
-                            <td><input type="number" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar ?? 0}}" class="form-control"></td>
-                            <td><input type="number" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro ?? 0}}" class="form-control"></td>
-                            <td><input type="number" name="pierre_precieuse[]" value="{{$site->pierre_precieuse ?? 0}}" class="form-control"></td>
+                            <td><input type="text" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof ?? 0}}" class="form-control"></td>
+                            <td><input type="text" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar ?? 0}}" class="form-control"></td>
+                            <td><input type="text" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro ?? 0}}" class="form-control"></td>
+                            <td><input type="text" name="pierre_precieuse[]" value="{{$site->pierre_precieuse ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="numero[]" value="{{$site->numero}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis ?? 0}}" class="form-control"></td>
                         </tr>
@@ -156,7 +156,17 @@
 
     </div>
     <script>
+        function separateNumbers(e){
+            try {
+                let str = e.value?.replace(/\s/g, '');
+                const donnee = parseFloat(str);
+                $(e).val(Number(donnee).toLocaleString());
+            } catch (e) {
+                console.log(e)
+            }
+        }
         function changeXOF() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
                 const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
@@ -165,6 +175,7 @@
             $("#totalValeurXOF").val(total);
         }
         function changeDollar() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
@@ -173,6 +184,7 @@
             $("#totalValeurDollar").val(total);
         }
         function changeEuro() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='device_etrangere_euro[]']"), function (i) {
                 const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
@@ -181,6 +193,7 @@
             $("#totalValeurEuro").val(total);
         }
         function changePierre() {
+            separateNumbers(this);
             let total = 0;
             $.each($("input[name='pierre_precieuse[]']"), function (i) {
                 const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
@@ -220,7 +233,6 @@
                     $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', false);
                     $("textarea[name='numero[]']").eq(i).prop('readonly', false);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
-                    $("select[name='nature[]']").eq(i).prop('readonly', false);
                     $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });

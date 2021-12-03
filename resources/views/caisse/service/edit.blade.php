@@ -176,13 +176,18 @@
                 </div>
                 <div class="col"></div>
             </div>
+            <button class="btn btn-primary btn-sm" type="button" id="ajouterOperatrice">Ajouter +</button>
+            <br>
+            <br>
             <div class="row">
                 <table class="table table-striped table-bordered" id="table">
                     <thead>
-                    <th>No</th>
-                    <th>Nom & Prenom</th>
-                    <th>Box</th>
-                    <th></th>
+                    <tr>
+                        <th>No</th>
+                        <th>Nom & Prenom</th>
+                        <th>Box</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($operatriceCaisses as $operatriceCaisse)
@@ -286,6 +291,7 @@
             $("#ajouterOperatrice").on("click", function () {
                 operatrice++;
                 $("#table").append('<tr>\n' +
+                    '                                    <input name="idOperatriceCaisse[]" type="hidden">\n' +
                     '                                    <td><input name="numeroOperatriceCaisse[]" type="hidden" value="1"></td>\n' +
                     '                                    <td><select name="operatriceCaisse[]" class="form-control">\n' +
                     '                                            <option></option>\n' +
