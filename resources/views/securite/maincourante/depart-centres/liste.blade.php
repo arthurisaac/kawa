@@ -25,7 +25,7 @@
             @foreach ($departCentres as $centre)
                 <tr>
                     <td>{{$centre->tournees->numeroTournee ?? "Donnée indisponible"}}</td>
-                    <td>{{$centre->date}}</td>
+                    <td>{{$centre->tournees->date ?? ''}}</td>
                     <td>{{$centre->heureDepart}}</td>
                     <td>{{$centre->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$centre->tournees->chefDeBords->nomPrenoms ?? "Donnée indisponible"}}</td>
