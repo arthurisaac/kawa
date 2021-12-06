@@ -164,10 +164,6 @@ class SecuriteMaincouranteController extends Controller
             'asKm' => $request->get('asKm'),
             'bordereau' => $request->get('asNumBordereau'),
             'num_colis' => $request->get('asNumColis'),
-            /*'noBordereau' => $request->get('noBordereau'),
-            'heureArrivee' => $request->get('heureArrivee'),
-            'kmArrivee' => $request->get('kmArrivee'),
-            'observation' => $request->get('observation'),*/
         ]);
         $arrivee->save();
 
@@ -194,6 +190,7 @@ class SecuriteMaincouranteController extends Controller
                 $as->save();
             }
         }
+        return redirect('/maincourante-arriveesiteliste')->with('success', 'Enregistrement effectué!');
     }
 
     public function storeDepartSite(Request $request)

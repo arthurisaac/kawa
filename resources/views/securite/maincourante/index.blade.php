@@ -308,6 +308,7 @@
                     <form method="post" action="{{ route('maincourante.store') }}" id="departSite" novalidate>
                         @csrf
 
+                        <input type="hidden" name="tournee" class="noTournee" />
                         <input type="hidden" name="maincourante" value="departSite"/>
                         <div class="row">
                             <div class="col">
