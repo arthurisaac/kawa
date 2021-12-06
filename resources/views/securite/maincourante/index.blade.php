@@ -361,9 +361,10 @@
             </div>
             <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
                 <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}" id="arriveeCentre" novalidate>
+                    <form method="post" action="/maincourante-arriveecentre" id="arriveeCentre">
                         @csrf
                         <input type="hidden" name="maincourante" value="arriveeCentre"/>
+                        <input type="hidden" name="tournee" class="noTournee" />
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group row">
@@ -401,7 +402,7 @@
                                     <label class="col-sm-5">Observation</label>
                                     <textarea name="observation" class="form-control col-sm-7"></textarea>
                                 </div>
-                                <button class="btn btn-primary btn-sm" type="button" id="acSubmit">Valider</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Valider</button>
                             </div>
                         </div>
                     </form>

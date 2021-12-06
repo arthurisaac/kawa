@@ -273,7 +273,7 @@ class SecuriteMaincouranteController extends Controller
     public function storeArriveeCentre(Request $request)
     {
         $arriveeCentre = new ArriveeCentre([
-            'noTournee' => $request->get('noTournee'),
+            'noTournee' => $request->get('tournee'),
             'heureArrivee' => $request->get('heureArrivee'),
             'kmArrive' => $request->get('kmArrive'),
             'observation' => $request->get('observation'),
@@ -282,6 +282,7 @@ class SecuriteMaincouranteController extends Controller
             'dateArrivee' => $request->get('dateArrivee'),
         ]);
         $arriveeCentre->save();
+        return redirect('/maincourante-arriveecentreliste')->with('success', 'Enregistrement effectué!');
     }
 
     public function storeTourneeCentre(Request $request)

@@ -126,7 +126,7 @@
                                 <option>3/4</option>
                             </select>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" style="display: none;">
                             <label class="col-sm-5">Fin de tournée</label>
                             <select name="finTournee" class="form-control col-sm-7">
                                 <option>{{$centre->finTournee}}</option>
