@@ -106,7 +106,26 @@
                         </select>
                     </div>
                 </div>
-                <div class="col"><button class="btn btn-primary btn-sm" type="submit">Rechercher</button></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="caisse" class="col-5">Caisse</label>
+                        <select name="caisse" id="caisse" class="form-control col-sm-7">
+                            <option></option>
+                            <option value="oo_mad">MAD</option>
+                            <option value="oo_collecte">Collecte</option>
+                            <option value="oo_cctv">CCTV</option>
+                            <option value="oo_collecte_caisse">Collecte Caisse</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <button class="btn btn-info btn-sm" type="reset">Effacer</button> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
             </div>
         </form>
 
@@ -119,12 +138,13 @@
                 <th scope="col">Centre</th>
                 <th scope="col">No. Tournée</th>
                 <th scope="col">Date</th>
-                <th scope="col">Heure</th>
                 <th scope="col">Client</th>
                 <th scope="col">Site</th>
                 <th scope="col">Op</th>
                 <th scope="col">TDF</th>
-                <th scope="col">Véhicule</th>
+                <th scope="col">Montant TDF</th>
+                <th scope="col">Caisse</th>
+                <th scope="col">Montant Caisse</th>
             </tr>
             </thead>
             <tbody>
@@ -135,12 +155,57 @@
                     <td>{{$site->tournees->centre_regional ?? ""}}</td>
                     <td>{{$site->tournees->numeroTournee}}</td>
                     <td>{{$site->tournees->date}}</td>
-                    <td>{{$site->tournees->heureDepart}}</td>
                     <td>{{$site->sites->clients->client_nom ?? ""}}</td>
                     <td>{{$site->sites->site ?? ""}}</td>
                     <td>{{$site->type ?? ""}}</td>
+                    <td>
+                        @switch($site->tdf)
+                            @case("oo_vb_extamuros_bitume")
+                            VB extramuros bitume
+                            @break
+                            @case("oo_vb_extramuros_piste")
+                            VB extramuros piste
+                            @break
+                            @case("oo_vl_extramuros_bitume")
+                            VL extramuros bitume
+                            @break
+                            @case("oo_vl_extramuros_piste")
+                            VL extramuros piste
+                            @break
+                            @case("oo_vb_intramuros")
+                            VB
+                            @break
+                            @case("oo_vl_intramuros")
+                            VL
+                            @break
+                            @case("oo_ass_appro")
+                            Assistance appro DAB
+                            @break
+                            @case("oo_dnf")
+                            Dépôt non facturé
+                            @break
+                            @default
+                            ..
+                        @endswitch
+                    </td>
                     <td>{{$site->sites["$site->tdf"]}}</td>
-                    <td>{{$site->tournees->vehicules->immatriculation ?? ""}}</td>
+                    <td>@switch($site->caisse)
+                            @case("oo_mad")
+                            MAD
+                            @break
+                            @case("oo_collecte")
+                            Collecte
+                            @break
+                            @case("oo_cctv")
+                            CCTV
+                            @break
+                            @case("oo_collecte_caisse")
+                            Collecte caisse
+                            @break
+                            @default
+                            @break
+                        @endswitch</td>
+                    <td>{{$site->sites["$site->caisse"]}}</td>
                 </tr>
             @endforeach
             </tbody>

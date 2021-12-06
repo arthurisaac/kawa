@@ -110,6 +110,7 @@ class DepartTourneeController extends Controller
         $client = $request->get("client");
         $site = $request->get("site");
         $tdf = $request->get("tdf");
+        $caisse = $request->get("caisse");
 
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
@@ -185,6 +186,23 @@ class DepartTourneeController extends Controller
                 ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
                 ->where('site_depart_tournees.tdf', '=', $tdf)
+                ->groupBy('depart_tournees.id')
+                ->get(['coutTournee']);
+
+            foreach ($siteParTournees as $tournee) {
+                $totalTournee += $tournee["coutTournee"] ?? 0;
+            }
+
+        }
+        if (isset($caisse)) {
+            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
+                $query->where('caisse', '=',  $caisse);
+            })->get();
+            $totalTournee = 0;
+            $siteParTournees = DepartTournee::with('sites')
+                ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
+                ->where('site_depart_tournees.caisse', '=', $caisse)
                 ->groupBy('depart_tournees.id')
                 ->get(['coutTournee']);
 
