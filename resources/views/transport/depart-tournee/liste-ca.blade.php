@@ -90,7 +90,22 @@
                         <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="tdf" class="col-5">TDF</label>
+                        <select name="tdf" id="tdf" class="form-control col-sm-7">
+                            <option></option>
+                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                            <option value="oo_vb_intramuros">VB</option>
+                            <option value="oo_vl_intramuros">VL</option>
+                            <option value="oo_ass_appro">Assistance appro DAB</option>
+                            <option value="oo_dnf">Dépôt non facturé</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col"><button class="btn btn-primary btn-sm" type="submit">Rechercher</button></div>
             </div>
         </form>
@@ -108,7 +123,6 @@
                 <th scope="col">Client</th>
                 <th scope="col">Site</th>
                 <th scope="col">Op</th>
-                <th scope="col">Montant</th>
                 <th scope="col">TDF</th>
                 <th scope="col">Véhicule</th>
             </tr>
@@ -125,7 +139,6 @@
                     <td>{{$site->sites->clients->client_nom ?? ""}}</td>
                     <td>{{$site->sites->site ?? ""}}</td>
                     <td>{{$site->type ?? ""}}</td>
-                    <td>{{$site->tournees->coutTournee}}</td>
                     <td>{{$site->sites["$site->tdf"]}}</td>
                     <td>{{$site->tournees->vehicules->immatriculation ?? ""}}</td>
                 </tr>

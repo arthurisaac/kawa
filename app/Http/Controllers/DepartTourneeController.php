@@ -109,7 +109,7 @@ class DepartTourneeController extends Controller
         $fin = $request->get("fin");
         $client = $request->get("client");
         $site = $request->get("site");
-
+        $tdf = $request->get("tdf");
 
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
@@ -175,6 +175,53 @@ class DepartTourneeController extends Controller
                 $totalTournee += $tournee["coutTournee"] ?? 0;
             }
 
+        }
+        if (isset($tdf)) {
+            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
+                $query->where('tdf', 'like', '%' . $tdf . '%');
+            })->get();
+            $totalTournee = 0;
+            $siteParTournees = DepartTournee::with('sites')
+                ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
+                ->where('site_depart_tournees.tdf', '=', $tdf)
+                ->groupBy('depart_tournees.id')
+                ->get(['coutTournee']);
+
+            foreach ($siteParTournees as $tournee) {
+                $totalTournee += $tournee["coutTournee"] ?? 0;
+            }
+
+        }
+
+        if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
+            /*$sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site, $fin, $debut, $centre_regional, $centre) {
+                $query->whereBetween('date', [$debut, $fin]);
+                $query->where('id', 'like', '%' . $site . '%');
+                $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                $query->where('centre', 'like', '%' . $centre . '%');
+            })->get();*/
+            $sites = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
+                ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
+                ->get();
+            $totalTournee = 0;
+            $siteParTournees = DepartTournee::with('sites')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
+                ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
+                ->join('site_depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->join('commercial_sites', 'site_depart_tournees.site', '=', 'commercial_sites.id')
+                ->where('commercial_sites.id', '=', $site)
+                ->groupBy('depart_tournees.id')
+                ->get(['coutTournee']);
+
+            foreach ($siteParTournees as $tournee) {
+                $totalTournee += $tournee["coutTournee"] ?? 0;
+            }
         }
 
         return view('transport.depart-tournee.liste-ca', compact('sites', 'siteParTournees', 'totalTournee', 'centres', 'centres_regionaux', 'clients', 'sites_com',

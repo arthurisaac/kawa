@@ -65,11 +65,11 @@
                    role="tab"
                    aria-controls="remettant" aria-selected="false">REMETTANT</a>
             </li>
-            <li class="nav-item">
+            {{--<li class="nav-item">
                 <a class="nav-link" id="beneficiaire-tab" data-toggle="tab" href="#beneficiaire"
                    role="tab"
                    aria-controls="beneficiaire" aria-selected="false">BENEFICIAIRE</a>
-            </li>
+            </li>--}}
         </ul>
         <br>
         <div class="tab-content">
