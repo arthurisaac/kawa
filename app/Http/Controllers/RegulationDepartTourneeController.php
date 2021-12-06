@@ -21,7 +21,7 @@ class RegulationDepartTourneeController extends Controller
     {
         $date = date("Y/m/d");
         $heure = date("H:i");
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
         $sites = SiteDepartTournee::with('sites')->get();
         return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites"));
     }

@@ -26,16 +26,30 @@
             @csrf
 
             <div class="row">
+                <div class="col-4">
+                    <div class="form-group row">
+                        <label class="col-sm-4">Tournée N°</label>
+                        <select class="form-control col-sm-8" name="noTournee" id="noTournee" required>
+                            <option></option>
+                            @foreach($tournees as $tournee)
+                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                            @endforeach
+                        </select>
+                        {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" class="form-control" name="date" value="{{date('Y-m-d')}}">
+                    <div class="form-group row">
+                        <label class="col-4">Date</label>
+                        <input type="date" class="form-control col-8" name="date" value="{{date('Y-m-d')}}">
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group">
-                        <label for="centre">Centre Régional</label>
-                        <select name="centre" id="centre" class="form-control" required>
+                    <div class="form-group row">
+                        <label class="col-4" for="centre">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col-8" required>
                             <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -44,9 +58,9 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group">
-                        <label for="centre_regional">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control" required>
+                    <div class="form-group row">
+                        <label  class="col-4" for="centre_regional">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
                             <option></option>
                         </select>
                     </div>
@@ -151,7 +165,7 @@
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-4"><label>Véhicule</label></div>
-                                <div class="col-4">
+                                <div class="col-4" style="display: none;">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios"
                                                id="exampleRadios1"
@@ -169,7 +183,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4" style="display: none;">
                                     <div class="form-group row">
                                         <input type="text" class="form-control" name="vehiculeVB">
                                     </div>
@@ -177,21 +191,15 @@
                                         <input type="text" class="form-control" name="vehiculeVL">
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <input type="text" class="form-control" id="vehicule">
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
-                        <div class="col-3">
-                            <div class="form-group row">
-                                <label class="col-sm-4">Tournée N°</label>
-                                <select class="form-control col-sm-8" name="noTournee" id="noTournee" required>
-                                    <option></option>
-                                    @foreach($tournees as $tournee)
-                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                                    @endforeach
-                                </select>
-                                {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
-                            </div>
-                        </div>
+                        <div class="col-3"></div>
                     </div>
                     <br/>
                 </div>
@@ -211,6 +219,7 @@
                                     <select class="form-control" name="operateurRadio">
                                         <option value="opérateur radio 1">Opérateur radio 1</option>
                                         <option value="opérateur radio 2">Opérateur radio 2</option>
+                                        <option value="responsable sécurité">Responsable de sécurité</option>
                                     </select>
                                 </div>
                             </div>
@@ -659,6 +668,8 @@
                     $("#cbMatricule").val(tournee.agent_de_gardes?.matricule ?? '');
                     $("#cbNom").val(tournee.agent_de_gardes?.nomPrenoms ?? '');
                     $("#cbFonction").val(tournee.agent_de_gardes?.fonction ?? '');
+
+                    $("#vehicule").val(tournee.vehicules?.immatriculation ?? '');
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
                 }

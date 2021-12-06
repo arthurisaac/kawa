@@ -266,7 +266,7 @@
                                                 <option>Pierres précieuses</option>
                                             </select>
                                         </td>
-                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>
+                                        <td><input type="text" name="asNumColis[]" class="form-control"/></td>
                                         <td><select name="asNumBordereau[]" class="form-control">
                                                 <option></option>
                                                 @foreach($optionBordereau as $option)
@@ -526,7 +526,7 @@
                     '                                                <option>Pierres précieuses</option>\n' +
                     '                                            </select>\n' +
                     '                                        </td>\n' +
-                    '                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                        <td><input type="text" name="asNumColis[]" class="form-control"/></td>\n' +
                     '                                        <td><select name="asNumBordereau[]" class="form-control">\n' +
                     '                                                <option></option>\n' +
                     '                                                @foreach($optionBordereau as $option)\n' +

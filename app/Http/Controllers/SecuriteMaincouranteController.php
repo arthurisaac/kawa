@@ -36,7 +36,7 @@ class SecuriteMaincouranteController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $sites = Commercial_site::with('clients')->get();
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
         $sitesTournees = SiteDepartTournee::with("sites")->get();
         $departCentres = DepartCentre::with('tournees')->get();
         $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();

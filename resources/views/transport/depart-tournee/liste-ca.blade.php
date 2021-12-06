@@ -109,6 +109,8 @@
                 <th scope="col">Site</th>
                 <th scope="col">Op</th>
                 <th scope="col">Montant</th>
+                <th scope="col">TDF</th>
+                <th scope="col">Véhicule</th>
             </tr>
             </thead>
             <tbody>
@@ -124,6 +126,8 @@
                     <td>{{$site->sites->site ?? ""}}</td>
                     <td>{{$site->type ?? ""}}</td>
                     <td>{{$site->tournees->coutTournee}}</td>
+                    <td>{{$site->sites["$site->tdf"]}}</td>
+                    <td>{{$site->tournees->vehicules->immatriculation ?? ""}}</td>
                 </tr>
             @endforeach
             </tbody>

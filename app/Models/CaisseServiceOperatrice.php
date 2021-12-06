@@ -11,6 +11,8 @@ class CaisseServiceOperatrice extends Model
         'operatriceCaisse',
         'numeroOperatriceCaisse',
         'operatriceCaisseBox',
+        'heureArrivee',
+        'heureDepart',
     ];
 
     public function operatrice()

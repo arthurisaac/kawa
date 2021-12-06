@@ -64,6 +64,8 @@ class CaisseServiceController extends Controller
         $operatriceCaisse = $request->get('operatriceCaisse');
         $numeroOperatriceCaisse = $request->get('numeroOperatriceCaisse');
         $numeroDeBox = $request->get('operatriceCaisseBox');
+        $heureArrivee = $request->get('heureArrivee');
+        $heureDepart = $request->get('heureDepart');
 
         for ($i = 0; $i < count($operatriceCaisse); $i++) {
             if (!empty($operatriceCaisse[$i])) {
@@ -71,7 +73,9 @@ class CaisseServiceController extends Controller
                     'caisseService' => $service->id,
                     'operatriceCaisse' => $operatriceCaisse[$i],
                     'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i] ?? 0,
-                    'operatriceCaisseBox' => $numeroDeBox[$i]
+                    'operatriceCaisseBox' => $numeroDeBox[$i],
+                    'heureArrivee' => $heureArrivee[$i],
+                    'heureDepart' => $heureDepart[$i],
                 ]);
                 $operatrice->save();
             }
@@ -143,19 +147,26 @@ class CaisseServiceController extends Controller
         $numeroOperatriceCaisse = $request->get('numeroOperatriceCaisse');
         $numeroDeBox = $request->get('operatriceCaisseBox');
 
+        $heureArrivee = $request->get('heureArrivee');
+        $heureDepart = $request->get('heureDepart');
+
         for ($i = 0; $i < count($idOperatriceCaisse); $i++) {
             if (!empty($idOperatriceCaisse[$i])) {
                 $operatrice = CaisseServiceOperatrice::find($idOperatriceCaisse[$i]);
                 $operatrice->operatriceCaisse = $operatriceCaisse[$i];
                 $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i] ?? 0;
                 $operatrice->operatriceCaisseBox = $numeroDeBox[$i];
+                $operatrice->heureArrivee = $heureArrivee[$i];
+                $operatrice->heureDepart = $heureDepart[$i];
                 $operatrice->save();
             } else {
                 $operatrice = new CaisseServiceOperatrice([
                     'caisseService' => $service->id,
                     'operatriceCaisse' => $operatriceCaisse[$i],
                     'numeroOperatriceCaisse' => $numeroOperatriceCaisse[$i] ?? 0,
-                    'operatriceCaisseBox' => $numeroDeBox[$i]
+                    'operatriceCaisseBox' => $numeroDeBox[$i],
+                    'heureArrivee' => $heureArrivee[$i],
+                    'heureDepart' => $heureDepart[$i]
                 ]);
                 $operatrice->save();
             }

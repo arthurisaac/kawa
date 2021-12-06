@@ -185,6 +185,8 @@
                     <tr>
                         <th>No</th>
                         <th>Nom & Prenom</th>
+                        <th>Heure arrivée</th>
+                        <th>Heure départ</th>
                         <th>Box</th>
                         <th></th>
                     </tr>
@@ -201,6 +203,8 @@
                                         <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
                                     @endforeach
                                 </select></td>
+                            <td><input type="time" name="heureArrivee[]" class="form-control" value="{{$operatriceCaisse->heureArrivee}}" /></td>
+                            <td><input type="time" name="heureDepart[]" class="form-control" value="{{$operatriceCaisse->heureDepart}}"/></td>
                             <td><select name="operatriceCaisseBox[]"
                                         class="form-control numeroBox">
                                     <option>{{$operatriceCaisse->operatriceCaisseBox}}</option>
@@ -299,6 +303,8 @@
                     '                                                <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>\n' +
                     '                                            @endforeach\n' +
                     '                                        </select></td>\n' +
+                    '                                    <td><input type="time" name="heureArrivee[]" class="form-control" /></td>\n' +
+                    '                                    <td><input type="time" name="heureDepart[]" class="form-control" /></td>' +
                     '                                    <td><select name="operatriceCaisseBox[]"\n' +
                     '                                                class="form-control numeroBox">\n' +
                     '                                            @for($i = 1; $i <= 10; $i++)\n' +
