@@ -29,20 +29,20 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="date" class="col-sm-4">Date</label>
-                        <input type="text" name="date" id="date" value="{{$centre->tournees->date}}" class="form-control col-sm-8"
+                        <input type="text" name="date" id="date" value="{{$centre->tournees->date ?? ''}}" class="form-control col-sm-8"
                                readonly/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$centre->tournees->numeroTournee}}" readonly />
+                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$centre->tournees->numeroTournee ?? ''}} // {{$centre->tournees->vehicules->code ?? ""}}" readonly />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Véhicule</label>
-                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$centre->tournees->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
+                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$centre->tournees->vehicules->immatriculation?? ""}}" readonly/>
                         {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
                             <option></option>
                             @foreach($vehicules as $vehicule)
@@ -56,7 +56,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chef de bord</label>
-                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$centre->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$centre->tournees->chefDeBords->nomPrenoms ?? ""}}" readonly/>
                         {{--<select class="form-control col-sm-8" name="chefDeBord">
                             <option></option>
                             @foreach($chefBords as $chef)
@@ -68,7 +68,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Agent garde</label>
-                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$centre->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>
+                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$centre->tournees->agentDeGarde->nomPrenoms ?? ""}}"  readonly/>
                         {{--<select class="form-control col-sm-8" name="agentDeGarde">
                             <option></option>
                             @foreach($agents as $agent)
@@ -80,7 +80,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chauffeur:</label>
-                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$centre->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$centre->tournees->chauffeurs->nomPrenoms ?? ""}}" readonly/>
                         {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
                             <option></option>
                         </select>--}}

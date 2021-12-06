@@ -134,27 +134,29 @@ class SecuriteMaincouranteController extends Controller
     public function storeDepartCentre(Request $request)
     {
         $departCentre = new DepartCentre([
-            'date' => $request->get('date'),
-            'noTournee' => $request->get('noTournee'),
-            'heureDepart' => $request->get('heureDepart'),
-            'kmDepart' => $request->get('kmDepart'),
-            'observation' => $request->get('observation'),
-            'niveauCarburant' => $request->get('niveauCarburant'),
+            //'date' => $request->get('date'),
+            'noTournee' => $request->get('tournee'),
+            'heureDepart' => $request->get('dcHeureDepart'),
+            'kmDepart' => $request->get('dcKmDepart'),
+            'observation' => $request->get('dcObservation'),
+            'niveauCarburant' => $request->get('dcNiveauCarburant'),
         ]);
         $departCentre->save();
+
+        return redirect('/maincourante-departcentreliste')->with('success', 'Enregistrement effectué!');
     }
 
     public function storeArriveeSite(Request $request)
     {
         $arrivee = new ArriveeSite([
-            'noTournee' => $request->get('noTournee'),
-            'site' => $request->get('site'),
-            'operation' => $request->get('operation'),
-            'dateArrivee' => $request->get('dateArrivee'),
-            'heureArrivee' => $request->get('heureArrivee'),
-            'debutOperation' => $request->get('debutOperation'),
-            'finOperation' => $request->get('finOperation'),
-            'tempsOperation' => $request->get('tempsOperation'),
+            'noTournee' => $request->get('tournee'),
+            'site' => $request->get('asSite'),
+            'operation' => $request->get('asTypeOperation'),
+            'dateArrivee' => $request->get('asDateArrivee'),
+            'heureArrivee' => $request->get('asHeureArrivee'),
+            'debutOperation' => $request->get('asDebutOperation'),
+            'finOperation' => $request->get('asFinOperation'),
+            'tempsOperation' => $request->get('asTempsOperation'),
             'nombre_colis' => $request->get('asNbColis'),
             'asObservation' => $request->get('asObservation'),
             'asDestination' => $request->get('asDestination'),

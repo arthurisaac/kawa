@@ -46,6 +46,12 @@
                     <div class="form-group row">
                         <label class="col-sm-4">Véhicule</label>
                         <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
+                        {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
+                            <option></option>
+                            @foreach($vehicules as $vehicule)
+                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                            @endforeach
+                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -54,18 +60,33 @@
                     <div class="form-group row">
                         <label class="col-sm-4">Chef de bord</label>
                         <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
+                        {{--<select class="form-control col-sm-8" name="chefDeBord">
+                            <option></option>
+                            @foreach($chefBords as $chef)
+                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                            @endforeach
+                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Agent garde</label>
                         <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
+                        {{--<select class="form-control col-sm-8" name="agentDeGarde">
+                            <option></option>
+                            @foreach($agents as $agent)
+                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                            @endforeach
+                        </select>--}}
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-4">Chauffeur:</label>
                         <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
+                        {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
+                            <option></option>
+                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -114,10 +135,9 @@
             <div class="tab-pane fade show active" id="depart-centre" role="tabpanel"
                  aria-labelledby="depart-centre-tab">
                 <div class="container-fluid">
-                    <form method="post" action="/maincourante-departcentre" id="departCentre">
+                    <form method="post" action="{{ route('maincourante.store') }}" novalidate id="departCentre">
                         @csrf
                         <input type="hidden" name="maincourante" value="departCentre"/>
-                        <input type="hidden" name="tournee" class="noTournee" />
                         <br/>
                         <div class="row">
                             <div class="col-4">
@@ -147,7 +167,7 @@
 
                                 <div class="form-group row">
                                     <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer
+                                    <button class="btn btn-sm btn-primary" type="button" id="dcSubmit">Enregistrer
                                     </button>
                                 </div>
 
@@ -161,13 +181,16 @@
             </div>
             <div class="tab-pane fade" id="arrivee-site" role="tabpanel" aria-labelledby="arrivee-site-tab">
                 <div class="container-fluid">
-                    <form method="post" action="/maincourante-arriveesite">
-                        @csrf
+                    <form method="post" action="{{ route('maincourante.store') }}" novalidate>
                         <input type="hidden" name="maincourante" value="arriveeSite"/>
-                        <input type="hidden" name="tournee" class="noTournee" />
+                        @csrf
                         <br/>
                         <div class="row">
                             <div class="col-4">
+                                {{--<div class="form-group row">
+                                    <label for="heure_depart" class="col-sm-4">N°Bordereau</label>
+                                    <input type="text" name="asNumeroBordereau" class="form-control col-sm-8"/>
+                                </div>--}}
                                 <div class="form-group row">
                                     <label class="col-sm-4">SITE</label>
                                     <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
@@ -298,7 +321,7 @@
 
                         <br/>
                         <div class="form-group">
-                            <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
+                            <button class="btn btn-sm btn-primary" type="button" id="asSubmit">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -421,7 +444,6 @@
                 $("#chefDeBord").val("");
                 $("#agentDeGarde").val("");
                 $("#centre_regional option").remove();
-                $(".noTournee").val("");
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
                 if (tournee) {
@@ -431,7 +453,6 @@
                     $("#agentDeGarde").val(tournee.agent_de_gardes?.nomPrenoms ?? '');
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
-                    $(".noTournee").val(tournee.id);
 
                     // Filtrer les sites par centre
                     /*
@@ -657,6 +678,7 @@
                         if (response.errorInfo) {
                             alert(response.errorInfo);
                         } else {
+                            //alert("Enregistré avec succès!");
                             $("input[name=dcHeureDepart]").val("");
                             $("input[name=dcKmDepart]").val("");
                             $("textarea[name=dcObservation]").val("");
