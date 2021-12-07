@@ -1,8 +1,17 @@
 @extends('base')
 
 @section('main')
+    <style>
+        .titre {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .chiffre {
+            font-weight: bold;
+        }
+    </style>
     <div class="burval-container">
-        <div><h2 class="heading">Liste chiffre d'affaire</h2></div>
+        <div><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire" class="text-danger"></span> <span style="margin-left: 10px;" class="text-danger">Nombre de passage : <span>{{count($sites)}}</span></span></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,13 +30,6 @@
             </div>
         @endif
 
-        <div class="row">
-            <div class="col">
-                <h6 class="text-danger">Chiffre d'affaire : <span id="chiffreAffaire"></span></h6>
-                <h6 class="text-danger">Nombre de passage : <span>{{count($sites)}}</span></h6>
-            </div>
-            <div class="col"></div>
-        </div>
         <br>
         <form action="#" method="get">
             @csrf
