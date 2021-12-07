@@ -46,7 +46,6 @@ class DepartTourneeController extends Controller
 
     }
 
-
     public function liste(Request $request)
     {
         $debut = $request->get("debut");

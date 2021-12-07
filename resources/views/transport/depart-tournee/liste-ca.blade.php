@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre" class="col-5">Centre Régional</label>
+                        <label for="centre" class="col-5">Centre</label>
                         <select name="centre" id="centre" class="form-control col">
                             <option>{{$centre}}</option>
                             @foreach ($centres as $centre)
@@ -45,11 +45,11 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre_regional" class="col-5">Centre</label>
+                        <label for="centre_regional" class="col-5">Centre Régional</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
                             <option>{{$centre_regional}}</option>
                             @foreach ($centres_regionaux as $centre)
-                                <option value="{{$centre->centre}}">{{ $centre->centre_regional }}</option>
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
-                    <button class="btn btn-info btn-sm" type="reset">Effacer</button> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                    <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
         </form>
@@ -222,8 +222,21 @@
 
             let centres = {!! json_encode($centres) !!};
             let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+            let sites = {!! json_encode($sites_com) !!};
+            let clients = {!! json_encode($clients) !!};
 
-            $("#centre").on("change", function () {
+            const siteInput = $("#site");
+            if (siteInput.val()) {
+                const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
+                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
+            }
+            const clientInput = $("#client")
+            if (clientInput.val()) {
+                const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
+                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+            }
+
+            /*$("#centre").on("change", function () {
                 $("#centre_regional option").remove();
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -235,7 +248,7 @@
                         text: centre_regional
                     }));
                 })
-            });
+            });*/
         });
     </script>
 @endsection
