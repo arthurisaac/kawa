@@ -174,9 +174,9 @@ class DepartTourneeController extends Controller
         }
 
         $sites = array();
-        foreach ($site_array as $site) {
-            if ($site->sites["$site->tdf"] + $site->sites["$site->tdf"] != 0) {
-                array_push($sites, $site);
+        foreach ($site_array as $s) {
+            if ($s->sites["$s->tdf"] + $s->sites["$s->tdf"] != 0) {
+                array_push($sites, $s);
             }
         }
 
@@ -256,9 +256,9 @@ class DepartTourneeController extends Controller
         }
 
         $sites = array();
-        foreach ($site_array as $site) {
-            if ($site->sites["$site->tdf"] + $site->sites["$site->tdf"] == 0) {
-                array_push($sites, $site);
+        foreach ($site_array as $s) {
+            if ($s->sites["$s->tdf"] + $s->sites["$s->tdf"] == 0) {
+                array_push($sites, $s);
             }
         }
 

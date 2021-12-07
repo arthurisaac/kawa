@@ -78,7 +78,7 @@
                     <td>{{$tournee->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->sites->sum("nbre_colis_arrivee")}}</td>
-                    <td>{{$tournee->sites->sum("valeur_colis_xof_arrivee")}}</td>
+                    <td>{{--TODO {{$tournee->sites->sum("valeur_colis_xof_arrivee")}}--}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_dollar_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_euro_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("pierre_precieuse_arrivee")}}</td>
