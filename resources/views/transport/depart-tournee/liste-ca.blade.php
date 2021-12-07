@@ -23,7 +23,7 @@
 
         <div class="row">
             <div class="col">
-                <h6 class="text-danger">Chiffre d'affaire : <span>{{$totalTournee}}</span></h6>
+                <h6 class="text-danger">Chiffre d'affaire : <span id="chiffreAffaire"></span></h6>
                 <h6 class="text-danger">Nombre de passage : <span>{{count($sites)}}</span></h6>
             </div>
             <div class="col"></div>
@@ -94,7 +94,7 @@
                     <div class="form-group row">
                         <label for="tdf" class="col-5">TDF</label>
                         <select name="tdf" id="tdf" class="form-control col-sm-7">
-                            <option></option>
+                            <option>{{$tdf}}</option>
                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                             <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
                             <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
@@ -110,7 +110,7 @@
                     <div class="form-group row">
                         <label for="caisse" class="col-5">Caisse</label>
                         <select name="caisse" id="caisse" class="form-control col-sm-7">
-                            <option></option>
+                            <option>{{$caisse}}</option>
                             <option value="oo_mad">MAD</option>
                             <option value="oo_collecte">Collecte</option>
                             <option value="oo_cctv">CCTV</option>
@@ -188,7 +188,7 @@
                             RAS
                         @endswitch
                     </td>
-                    <td>{{$site->sites["$site->tdf"] ?? 0}}</td>
+                    <td class="tdf">{{$site->sites["$site->tdf"] ?? 0}}</td>
                     <td>@switch($site->caisse)
                             @case("oo_mad")
                             MAD
@@ -206,7 +206,7 @@
                             RAS
                             @break
                         @endswitch</td>
-                    <td>{{$site->sites["$site->caisse"] ?? 0}}</td>
+                    <td class="caisse">{{$site->sites["$site->caisse"] ?? 0}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -231,25 +231,78 @@
                 const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
                 if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
             }
-            const clientInput = $("#client")
+            const clientInput = $("#client");
             if (clientInput.val()) {
                 const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
                 if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
             }
+            const tdfInput = $("#tdf");
+            if (tdfInput.val()) {
+                switch (tdfInput.val()) {
+                    case "oo_vb_extamuros_bitume":
+                        $("select[name='tdf'] option[value=oo_vb_extamuros_bitume]").attr('selected','selected');
+                        break;
+                    case "oo_vb_extramuros_piste":
+                        $("select[name='tdf'] option[value=oo_vb_extramuros_piste]").attr('selected','selected');
+                        break;
+                    case "oo_vl_extramuros_bitume":
+                        $("select[name='tdf'] option[value=oo_vl_extramuros_bitume]").attr('selected','selected');
+                        break;
+                    case "oo_vl_extramuros_piste":
+                        $("select[name='tdf'] option[value=oo_vl_extramuros_piste]").attr('selected','selected');
+                        break;
+                    case "oo_vb_intramuros":
+                        $("select[name='tdf'] option[value=oo_vb_intramuros]").attr('selected','selected');
+                        break;
+                    case "oo_vl_intramuros":
+                        $("select[name='tdf'] option[value=oo_vl_intramuros]").attr('selected','selected');
+                        break;
+                    case "oo_ass_appro":
+                        $("select[name='tdf'] option[value=oo_ass_appro]").attr('selected','selected');
+                        break;
+                    case "oo_dnf":
+                        $("select[name='tdf'] option[value=oo_dnf]").attr('selected','selected');
+                        break;
+                    default:
+                        //tdf.eq(i).val("");
+                        //console.log("aucun tdf");
+                        break;
+                }
+            }
 
-            /*$("#centre").on("change", function () {
-                $("#centre_regional option").remove();
-                const centre = centres.find(c => c.centre === this.value);
-                const regions = centres_regionaux.filter(region => {
-                    return region.id_centre === centre.id;
-                });
-                regions.map(({centre_regional}) => {
-                    $('#centre_regional').append($('<option>', {
-                        value: centre_regional,
-                        text: centre_regional
-                    }));
-                })
-            });*/
+            const caisseInput = $("#caisse");
+            if (caisseInput.val()) {
+                switch (caisseInput.val()) {
+                    case "oo_mad":
+                        $("select[name='caisse'] option[value=oo_mad]").attr('selected','selected');
+                        break;
+                    case "oo_collecte":
+                        $("select[name='caisse'] option[value=oo_collecte]").attr('selected','selected');
+                        break;
+                    case "oo_cctv":
+                        $("select[name='caisse'] option[value=oo_cctv]").attr('selected','selected');
+                        break;
+                    case "oo_collecte_caisse":
+                        $("select[name='caisse'] option[value=oo_collecte_caisse]").attr('selected','selected');
+                        break;
+                    default:
+                        //caisse.eq(i).val("");
+                        break;
+                }
+            }
+
+            let totalTDF = 0;
+            let totalCaisse = 0;
+            $('table tr').each(function() {
+                const rowTdf = $(this).find('.tdf');
+                const rowCaisse = $(this).find('.caisse');
+                if (rowTdf) totalTDF += parseFloat(rowTdf.html() ?? 0);
+                if (rowCaisse) totalCaisse += parseFloat(rowCaisse.html() ?? 0);
+            });
+            $("#chiffreAffaire").html(totalTDF + totalCaisse);
+            console.log(totalTDF);
+            console.log(totalCaisse);
+
         });
     </script>
 @endsection
