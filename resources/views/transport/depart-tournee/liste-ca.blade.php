@@ -185,10 +185,10 @@
                             Dépôt non facturé
                             @break
                             @default
-                            ..
+                            RAS
                         @endswitch
                     </td>
-                    <td>{{$site->sites["$site->tdf"]}}</td>
+                    <td>{{$site->sites["$site->tdf"] ?? 0}}</td>
                     <td>@switch($site->caisse)
                             @case("oo_mad")
                             MAD
@@ -203,9 +203,10 @@
                             Collecte caisse
                             @break
                             @default
+                            RAS
                             @break
                         @endswitch</td>
-                    <td>{{$site->sites["$site->caisse"]}}</td>
+                    <td>{{$site->sites["$site->caisse"] ?? 0}}</td>
                 </tr>
             @endforeach
             </tbody>
