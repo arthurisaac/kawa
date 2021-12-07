@@ -246,7 +246,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4">Nom</label>
-                            <input type="text" class="form-control col-sm-8" name="operateurRadioNom" value="{{$materiel->operateurRadios->matricule ?? ''}}">
+                            <input type="text" class="form-control col-sm-8" name="operateurRadioNom" value="{{$materiel->operateurRadios->nomPrenoms ?? ''}}">
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4">Fonction</label>

@@ -417,7 +417,7 @@
                                                         href="javascript:popupwnd('depart-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">Liste</a>
                                                 </li>
-                                                <li><span></span><a
+                                                <li style="display: none;"><span></span><a
                                                         href="javascript:popupwnd('site-desservi-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">LISTE DES SITES DESSERVIS</a>
                                                 </li>
