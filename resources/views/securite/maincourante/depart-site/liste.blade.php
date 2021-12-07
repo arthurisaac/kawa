@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <br>
         <div><h2 class="heading">Départ site</h2></div>
+        <a href="/maincourante" class="btn btn-sm btn-info">Nouveau</a>
         <br>
         <table class="table table-bordered" style="width: 100%;" id="listeDepartSite">
             <thead>
