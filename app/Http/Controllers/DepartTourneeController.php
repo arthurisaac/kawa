@@ -119,51 +119,52 @@ class DepartTourneeController extends Controller
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
 
-        $sites = SiteDepartTournee::with('sites')
+        $site_array = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
             ->get();
+
         if (isset($debut) && isset($fin)) {
-            $sites = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
         }
         if (isset($centre_regional)) {
-            $sites = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
                 $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
             })->get();
         }
         if (isset($centre)) {
-            $sites = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
                 $query->where('centre', 'like', '%' . $centre . '%');
             })->get();
         }
         if (isset($client)) {
-            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
             })->get();
 
         }
         if (isset($site)) {
-            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
                 $query->where('id', 'like', '%' . $site . '%');
             })->get();
 
         }
         if (isset($tdf)) {
-            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
                 $query->where('tdf', 'like', '%' . $tdf . '%');
             })->get();
 
         }
         if (isset($caisse)) {
-            $sites = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
-                $query->where('caisse', '=',  $caisse);
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
+                $query->where('caisse', '=', $caisse);
             })->get();
 
         }
 
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
-            $sites = SiteDepartTournee::with('tournees')
+            $site_array = SiteDepartTournee::with('tournees')
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
@@ -172,9 +173,99 @@ class DepartTourneeController extends Controller
                 ->get();
         }
 
+        $sites = array();
+        foreach ($site_array as $site) {
+            if ($site->sites["$site->tdf"] + $site->sites["$site->tdf"] != 0) {
+                array_push($sites, $site);
+            }
+        }
+
         return view('transport.depart-tournee.liste-ca', compact('sites', 'centres', 'centres_regionaux', 'clients', 'sites_com',
-        'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'tdf', 'caisse'));
+            'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'tdf', 'caisse'));
     }
+
+    public function listeCAOperativeNonFacture(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $tdf = $request->get("tdf");
+        $caisse = $request->get("caisse");
+
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::orderBy('client_nom')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+
+        $site_array = SiteDepartTournee::with('sites')
+            ->orderByDesc("created_at")
+            ->get();
+
+        if (isset($debut) && isset($fin)) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+        }
+        if (isset($centre_regional)) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+            })->get();
+        }
+        if (isset($centre)) {
+            $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
+                $query->where('centre', 'like', '%' . $centre . '%');
+            })->get();
+        }
+        if (isset($client)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->get();
+
+        }
+        if (isset($site)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
+                $query->where('id', 'like', '%' . $site . '%');
+            })->get();
+
+        }
+        if (isset($tdf)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
+                $query->where('tdf', 'like', '%' . $tdf . '%');
+            })->get();
+
+        }
+        if (isset($caisse)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
+                $query->where('caisse', '=', $caisse);
+            })->get();
+
+        }
+
+        if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
+                ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
+                ->get();
+        }
+
+        $sites = array();
+        foreach ($site_array as $site) {
+            if ($site->sites["$site->tdf"] + $site->sites["$site->tdf"] == 0) {
+                array_push($sites, $site);
+            }
+        }
+
+        return view('transport.depart-tournee.liste-ca', compact('sites', 'centres', 'centres_regionaux', 'clients', 'sites_com',
+            'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'tdf', 'caisse'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -238,7 +329,7 @@ class DepartTourneeController extends Controller
         // $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
         // $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
         return view('transport.depart-tournee.show',
-            compact('tournee',  'sites'));
+            compact('tournee', 'sites'));
     }
 
     /**

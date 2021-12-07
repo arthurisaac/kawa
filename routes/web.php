@@ -85,6 +85,7 @@ Route::delete('depart-tournee-item/{id}', [\App\Http\Controllers\DepartTourneeCo
 Route::get('depart-tournee-liste', [\App\Http\Controllers\DepartTourneeController::class, 'liste']);
 Route::get('site-desservi-liste', [\App\Http\Controllers\DepartTourneeController::class, 'listeDesservi']);
 Route::get('ca-liste', [\App\Http\Controllers\DepartTourneeController::class, 'listeCA']);
+Route::get('ca-liste-non-facture', [\App\Http\Controllers\DepartTourneeController::class, 'listeCAOperativeNonFacture']);
 
 Route::resource('arrivee-tournee', 'ArriveeTourneeController');
 Route::get('arrivee-tournee-liste', [\App\Http\Controllers\ArriveeTourneeController::class, 'liste']);

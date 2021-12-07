@@ -425,6 +425,10 @@
                                                         href="javascript:popupwnd('ca-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">Liste CA</a>
                                                 </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('ca-liste-non-facture','no','no','no','yes','yes','no','','','1000','500')"
+                                                        target="_self" title="D&#233;part tourn&#233;e">Liste Opération non facturé</a>
+                                                </li>
                                             </ul>
                                         </li>
 
