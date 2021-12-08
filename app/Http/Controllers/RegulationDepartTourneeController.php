@@ -91,10 +91,10 @@ class RegulationDepartTourneeController extends Controller
                 $dataSite->nbre_colis = $nbre_colis[$i];
                 $dataSite->colis = $colis[$i];
 
-                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof = str_replace(' ', '',$valeur_colis_xof[$i]);
+                $dataSite->device_etrangere_dollar = str_replace(' ', '', $device_etrangere_dollar[$i]);
+                $dataSite->device_etrangere_euro = str_replace(' ', '', $device_etrangere_euro[$i]);
+                $dataSite->pierre_precieuse = str_replace(' ', '', $pierre_precieuse[$i]);
 
                 $dataSite->save();
             }

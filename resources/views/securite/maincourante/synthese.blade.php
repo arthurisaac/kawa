@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <br>
         <br>
-        <div><h2 class="heading">Liste Synthèse de Tournée</h2></div>
+        <div><h2 class="heading">Synthèse des Tournées</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -27,16 +27,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <div class="col">
-                        <h3 class="text-left">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h3>
-                    </div>
-                    <div class="col">
-                        <h3 class="text-leftt">Total temps parcouru: <span id="tempsTotal"></span></h3>
-                    </div>
-                    <div class="col">
-                        <h3 class="text-left">Total km parcouru: <span id="kmTotal"></span></h3>
-                    </div>
+                    <h3 class="text-left">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h3>
                 </div>
+                <div class="col">
+                    <h3 class="text-leftt">Total temps parcouru: <span id="tempsTotal"></span></h3>
+                </div>
+                <div class="col">
+                    <h3 class="text-left">Total km parcouru: <span id="kmTotal"></span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
                 <div class="col">
                     <form action="#" method="get">
                         @csrf

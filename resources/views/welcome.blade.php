@@ -466,7 +466,7 @@
                                             </ul>
                                         </li>
 
-                                        <li><span></span><span>Etat</span>
+                                        <li style="display: none;"><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('heure-supp-recap','no','no','no','yes','yes','no','','','1000','500')"

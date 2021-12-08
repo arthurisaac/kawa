@@ -133,10 +133,10 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->colis_arrivee = $colis[$i];
                 $dataSite->numero = $numero[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
+                $dataSite->device_etrangere_dollar_arrivee = str_replace(' ', '', $device_etrangere_dollar[$i]);
+                $dataSite->device_etrangere_euro_arrivee = str_replace(' ', '', $device_etrangere_euro[$i]);
+                $dataSite->pierre_precieuse_arrivee = str_replace(' ', '', $pierre_precieuse[$i]);
 
                 $dataSite->save();
             }
@@ -207,10 +207,10 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro_arrivee = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse_arrivee = $pierre_precieuse[$i];
+                $dataSite->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
+                $dataSite->device_etrangere_dollar_arrivee = str_replace(' ', '', $device_etrangere_dollar[$i]);
+                $dataSite->device_etrangere_euro_arrivee = str_replace(' ', '', $device_etrangere_euro[$i]);
+                $dataSite->pierre_precieuse_arrivee = str_replace(' ', '', $pierre_precieuse[$i]);
 
                 $dataSite->save();
             }

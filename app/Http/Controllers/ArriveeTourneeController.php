@@ -266,10 +266,10 @@ class ArriveeTourneeController extends Controller
                 $site->colis = $colis[$i] ?? "";
                 $site->numero_arrivee = $numero[$i] ?? "";
                 $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
-                $site->valeur_colis_xof_arrivee = $valeur_colis_xof[$i] ?? null;
-                $site->device_etrangere_dollar_arrivee = $device_etrangere_dollar[$i] ?? null;
-                $site->device_etrangere_euro_arrivee = $device_etrangere_euro[$i] ?? null;
-                $site->pierre_precieuse_arrivee = $pierre_precieuse[$i] ?? null;
+                $site->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
+                $site->device_etrangere_dollar_arrivee = str_replace(' ', '',$device_etrangere_dollar[$i]) ?? null;
+                $site->device_etrangere_euro_arrivee = str_replace(' ', '',$device_etrangere_euro[$i]) ?? null;
+                $site->pierre_precieuse_arrivee = str_replace(' ', '',$pierre_precieuse[$i]) ?? null;
 
                 $site->save();
             }
