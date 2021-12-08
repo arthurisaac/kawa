@@ -303,7 +303,6 @@ class SecuriteMaincouranteController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-
     public function store(Request $request)
     {
 
@@ -379,7 +378,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function editArriveeSite(Request $request, $id)
     {
-        $site = ArriveeSite::with('sites')->find($id);
+        $site = ArriveeSite::with('sites')->with('ArriveeColis')->find($id);
         $arriveeColis = ArriveeSiteColis::all()->where('arrivee_site', '=', $id);
         $sites = Commercial_site::all();
         $optionBordereau = OptionBordereau::all();

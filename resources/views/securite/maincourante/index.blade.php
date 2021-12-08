@@ -226,12 +226,12 @@
                                 <table class="table table-bordered" id="tableASColis">
                                     <thead>
                                     <tr>
-                                        <th>Colis</th>
+                                        <th style="width: 200px">Colis</th>
                                         <th>N° Colis</th>
                                         <th>N° Bordereau</th>
-                                        <th>Montant annoncé</th>
+                                        {{--<th>Montant annoncé</th>--}}
                                         <th>Nombre de colis</th>
-                                        <th>Nature colis</th>
+                                        {{--<th>Nature colis</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -241,19 +241,21 @@
                                                 <option>Keep Safe</option>
                                                 <option>Sac juste</option>
                                                 <option>Pierres précieuses</option>
+                                                <option>Caisse</option>
+                                                <option>Conteneur</option>
                                             </select>
                                         </td>
-                                        <td><input type="text" name="asNumColis[]" class="form-control"/></td>
+                                        <td><textarea name="asNumColis[]" class="form-control"></textarea></td>
                                         <td><select name="asNumBordereau[]" class="form-control">
                                                 <option></option>
                                                 @foreach($optionBordereau as $option)
                                                     <option>{{$option->numero}}</option>
                                                 @endforeach
                                             </select></td>
-                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
+                                        {{--<td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>--}}
                                         <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/>
                                         </td>
-                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
+                                        {{--<td><input type="text" name="asNatureColis[]" class="form-control"/></td>--}}
                                     </tr>
                                     </tbody>
                                 </table>
@@ -505,18 +507,20 @@
                     '                                                <option>Keep Safe</option>\n' +
                     '                                                <option>Sac juste</option>\n' +
                     '                                                <option>Pierres précieuses</option>\n' +
+                    '                                                <option>Caisse</option>\n' +
+                    '                                                <option>Conteneur</option>\n' +
                     '                                            </select>\n' +
                     '                                        </td>\n' +
-                    '                                        <td><input type="text" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                        <td><textarea name="asNumColis[]" class="form-control"></textarea></td>\n' +
                     '                                        <td><select name="asNumBordereau[]" class="form-control">\n' +
                     '                                                <option></option>\n' +
                     '                                                @foreach($optionBordereau as $option)\n' +
                     '                                                    <option>{{$option->numero}}</option>\n' +
                     '                                                @endforeach\n' +
                     '                                            </select></td>\n' +
-                    '                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    //'                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/></td>\n' +
-                    '                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    //'                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
                     '                                    </tr>')
             });
 

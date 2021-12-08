@@ -144,7 +144,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
-                            <input type="number" name="asNbColis" id="asNbColis" value="{{$site->nombre_colis}}"
+                            <input type="number" name="asNbColis" id="asNbColis" value="{{$site->ArriveeColis->sum('nombre_colis')}}"
                                    class="form-control col-sm-8" disabled/>
                         </div>
 
@@ -183,12 +183,12 @@
                         <table class="table table-bordered" id="tableASColis">
                             <thead>
                             <tr>
-                                <th>Colis</th>
+                                <th style="width: 250px;">Colis</th>
                                 <th>N° Colis</th>
                                 <th>N° Bordereau</th>
-                                <th>Montant annoncé</th>
+                                {{--<th>Montant annoncé</th>--}}
                                 <th>Nombre de colis</th>
-                                <th>Nature colis</th>
+                                {{--<th>Nature colis</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -201,18 +201,20 @@
                                             <option>Keep Safe</option>
                                             <option>Sac juste</option>
                                             <option>Pierres précieuses</option>
+                                            <option>Caisse</option>
+                                            <option>Conteneur</option>
                                         </select>
                                     </td>
-                                    <td><input type="text" name="asNumColis_edit[]" value="{{$colis->num_colis}}" class="form-control"/></td>
+                                    <td><textarea name="asNumColis_edit[]" value="{{$colis->num_colis}}" class="form-control"></textarea></td>
                                     <td><select name="asNumBordereau_edit[]" class="form-control">
                                             <option>{{$colis->bordereau}}</option>
                                             @foreach($optionBordereau as $option)
                                                 <option>{{$option->numero}}</option>
                                             @endforeach
                                         </select></td>
-                                    <td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}" class="form-control"/></td>
+                                    {{--<td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}" class="form-control"/></td>--}}
                                     <td><input type="number" min="0" name="asNombreColis_edit[]" value="{{$colis->nombre_colis}}" class="form-control"/></td>
-                                    <td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}" class="form-control"/></td>
+                                    {{--<td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}" class="form-control"/></td>--}}
                                     <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
                                 </tr>
                             @endforeach
@@ -259,9 +261,11 @@
                     '                                        <option>Keep Safe</option>\n' +
                     '                                        <option>Sac juste</option>\n' +
                     '                                        <option>Pierres précieuses</option>\n' +
+                    '                                        <option>Caisse</option>\n' +
+                    '                                        <option>Conteneur</option>\n' +
                     '                                    </select>\n' +
                     '                                </td>\n' +
-                    '                                <td><input type="text" name="asNumColis[]" class="form-control"/></td>\n' +
+                    '                                <td><textarea name="asNumColis[]" class="form-control"></textarea></td>\n' +
                     '                                <td><select name="asNumBordereau[]"\n' +
                     '                                                class="form-control">\n' +
                     '                                        <option>{{$colis->bordereau}}</option>\n' +
@@ -269,9 +273,9 @@
                     '                                            <option>{{$option->numero}}</option>\n' +
                     '                                        @endforeach\n' +
                     '                                    </select></td>\n' +
-                    '                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                    //'                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
                     '                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>\n' +
-                    '                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                    //'                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
                     '                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
                     '                            </tr>')
             });

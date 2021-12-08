@@ -42,4 +42,9 @@ class ArriveeSite extends Model
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
             ->with('clients');
     }
+
+    public function ArriveeColis()
+    {
+        return $this->hasMany('App\Models\ArriveeSiteColis', 'arrivee_site', 'id');
+    }
 }

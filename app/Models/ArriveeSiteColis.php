@@ -15,4 +15,9 @@ class ArriveeSiteColis extends Model
         'nature',
         'nombre_colis',
     ];
+
+    public function ArriveeSites()
+    {
+        return $this->hasMany('App\Models\ArriveeSites', 'arrivee_site', 'id');
+    }
 }
