@@ -20,7 +20,9 @@
             <br/>
         @endif
 
-        <a href="/ticket-carburant" class="btn btn-info btn-sm">Nouveau</a>
+
+        <h6 class="text-lg-right text-secondary">TOTAL: <span
+                class="montantTotal text-danger">{{$carburants->sum('soldePrecedent')}}</span></h6>
         <br>
         <br>
         <div class="row">
@@ -48,12 +50,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <div class="col">
-                    <h3 class="text-lg-right">TOTAL: <span
-                            class="montantTotal">{{$carburants->sum('soldePrecedent')}}</span></h3>
-                </div>
-            </div>
+            <div class="col"></div>
 
         </div>
         <form action="#" method="get">
@@ -72,6 +69,7 @@
             </div>
         </form>
 
+        <a href="/ticket-carburant" class="btn btn-info btn-sm">Nouveau</a>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered" style="width: 100%" id="liste">
