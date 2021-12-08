@@ -40,7 +40,8 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
+                        {{--<h6 class="text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>--}}
+                        <h6 class="text-secondary">Valeur Colis (XOF): 0</h6>
                     </div>
                 </div>
                 <div class="row">
