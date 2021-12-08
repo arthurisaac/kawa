@@ -28,41 +28,32 @@
         <br>
         <div class="row">
             <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Total sites: {{count($colisArrivees)}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Total tournées: {{count($tournees)}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Devise étrangère(dollar): {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Devise étrangère(euro): {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Pierre précieuse(xof): {{$colisArrivees->sum("pierre_precieuse_arrivee")}}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
-                    </div>
-                </div>
+                <h6 class="text-secondary">Total tournées: <span class="text-danger">{{count($tournees)}}</span></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-secondary">Total sites: <span class="text-danger">{{count($colisArrivees)}}</span></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-secondary">Nbre total colis: <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-secondary">Valeur Colis (XOF): <span class="text-danger">0{{--TODO {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}--}}</span></h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h6 class="text-secondary">Devise étrangère(dollar): <span class="text-danger">{{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</span></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-secondary">Devise étrangère(euro): <span class="text-danger">{{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</span></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-secondary">Pierre précieuse(xof): <span class="text-danger">{{$colisArrivees->sum("pierre_precieuse_arrivee")}}</span></h6>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col">
                 {{--<div class="row">
                     <div class="col">
                         <input type="text" id="CustomSearchTextField" class="form-control col-5" />
