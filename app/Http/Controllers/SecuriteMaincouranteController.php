@@ -442,8 +442,8 @@ class SecuriteMaincouranteController extends Controller
                     $as->colis = $asColis_edit[$i];
                     $as->num_colis = $asNumColis_edit[$i];
                     $as->bordereau = $asNumBordereau_edit[$i];
-                    $as->montant = $asMontantAnnonce_edit[$i];
-                    $as->nature = $asNatureColis_edit[$i];
+                    //$as->montant = $asMontantAnnonce_edit[$i];
+                    //$as->nature = $asNatureColis_edit[$i];
                     $as->nombre_colis = $asNombreColis_edit[$i];
                     $as->save();
                 }
