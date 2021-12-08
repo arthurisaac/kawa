@@ -205,7 +205,7 @@
                                             <option>Conteneur</option>
                                         </select>
                                     </td>
-                                    <td><textarea name="asNumColis_edit[]" value="{{$colis->num_colis}}" class="form-control"></textarea></td>
+                                    <td><textarea name="asNumColis_edit[]" class="form-control">{{$colis->num_colis}}</textarea></td>
                                     <td><select name="asNumBordereau_edit[]" class="form-control">
                                             <option>{{$colis->bordereau}}</option>
                                             @foreach($optionBordereau as $option)
