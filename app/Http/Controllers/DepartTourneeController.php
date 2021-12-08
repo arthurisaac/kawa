@@ -163,6 +163,38 @@ class DepartTourneeController extends Controller
 
         }
 
+        if (isset($debut) && isset($fin) && isset($site)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($tdf)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.tdf', 'like', '%' . $tdf . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($caisse)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.tdf', 'like', '%' . $caisse . '%')
+                ->get();
+        }
+
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
             $site_array = SiteDepartTournee::with('tournees')
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
@@ -224,7 +256,6 @@ class DepartTourneeController extends Controller
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
             })->get();
-
         }
         if (isset($site)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
@@ -243,6 +274,38 @@ class DepartTourneeController extends Controller
                 $query->where('caisse', '=', $caisse);
             })->get();
 
+        }
+
+        if (isset($debut) && isset($fin) && isset($site)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($tdf)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.tdf', 'like', '%' . $tdf . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($caisse)) {
+            $site_array = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.tdf', 'like', '%' . $caisse . '%')
+                ->get();
         }
 
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
