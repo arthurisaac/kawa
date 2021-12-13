@@ -48,7 +48,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-4" for="centre">Centre Régional</label>
+                        <label class="col-4" for="centre">Centre</label>
                         <select name="centre" id="centre" class="form-control col-8" required>
                             <option></option>
                             @foreach ($centres as $centre)
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label  class="col-4" for="centre_regional">Centre</label>
+                        <label  class="col-4" for="centre_regional">Centre Régional</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
                             <option></option>
                         </select>

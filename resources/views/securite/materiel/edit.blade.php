@@ -35,7 +35,7 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="centre">Centre Régional</label>
+                    <label for="centre">Centre</label>
                     <select name="centre" id="centre" class="form-control" required>
                         <option>{{$materiel->centre}}</option>
                         @foreach ($centres as $centre)
@@ -46,7 +46,7 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="centre_regional">Centre</label>
+                    <label for="centre_regional">Centre Régional</label>
                     <select id="centre_regional" name="centre_regional" class="form-control" required>
                         <option>{{$materiel->centre_regional}}</option>
                     </select>
@@ -86,13 +86,13 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>CB</label></div>
+                                    <div class="col-2"><label>Chef de bord</label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="cbMatricule" class="col-sm-4">Matricule</label>
                                             <select type="text" name="cbMatricule" id="cbMatricule"
                                                     class="form-control col-sm-8">
-                                                <option value="{{$materiel->cbMatricule}}">{{$materiel->cbs->matricule ?? ""}}</option>
+                                                <option value="{{$materiel->cbMatricule}}">{{$materiel->tournees->chefDeBords->matricule ?? ""}}</option>
                                                 @foreach($personnels as $personnel)
                                                     <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                         | {{$personnel->nomPrenoms}}</option>
@@ -101,24 +101,24 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Nom</label>
-                                            <input type="text" class="form-control col-sm-8" name="cbNom" value="{{$materiel->cbs->nomPrenoms}}">
+                                            <input type="text" class="form-control col-sm-8" name="cbNom" value="{{$materiel->tournees->chefDeBords->nomPrenoms}}">
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Fonction</label>
-                                            <input type="text" class="form-control col-sm-8" name="cbFonction" value="{{$materiel->cbs->fonction}}">
+                                            <input type="text" class="form-control col-sm-8" name="cbFonction" value="{{$materiel->tournees->chefDeBords->fonction}}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>CC</label></div>
+                                    <div class="col-2"><label>Convoyeur chauffeur</label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="ccMatricule" class="col-sm-4">Matricule</label>
                                             <select type="text" name="ccMatricule" id="ccMatricule"
                                                     class="form-control col-sm-8">
-                                                <option value="{{$materiel->ccMatricule}}">{{$materiel->ccs->nomPrenoms ?? ""}}</option>
+                                                <option value="{{$materiel->ccMatricule}}">{{$materiel->tournees->chauffeurs->nomPrenoms ?? ""}}</option>
                                                 @foreach($personnels as $personnel)
                                                     <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                         | {{$personnel->nomPrenoms}}</option>
@@ -127,11 +127,11 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Nom</label>
-                                            <input type="text" class="form-control col-sm-8" name="ccNom" value="{{$materiel->ccs->nomPrenoms ?? ""}}">
+                                            <input type="text" class="form-control col-sm-8" name="ccNom" value="{{$materiel->tournees->chauffeurs->nomPrenoms ?? ""}}">
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Fonction</label>
-                                            <input type="text" class="form-control col-sm-8" name="ccFonction" value="{{$materiel->ccs->fonction ?? ""}}">
+                                            <input type="text" class="form-control col-sm-8" name="ccFonction" value="{{$materiel->tournees->chauffeurs->fonction ?? ""}}">
                                         </div>
                                     </div>
                                 </div>
@@ -139,13 +139,13 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>CG</label></div>
+                                    <div class="col-2"><label>Agent garde</label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="cgMatricule" class="col-sm-4">Matricule</label>
                                             <select type="text" name="cgMatricule" id="cgMatricule"
                                                     class="form-control col-sm-8">
-                                                <option value="{{$materiel->cgMatricule}}">{{$materiel->cgs->matricule ?? ''}}</option>
+                                                <option value="{{$materiel->cgMatricule}}">{{$materiel->tournees->agentDeGardes->matricule ?? ''}}</option>
                                                 @foreach($personnels as $personnel)
                                                     <option value="{{$personnel->id}}">{{$personnel->matricule}}
                                                         | {{$personnel->nomPrenoms}}</option>
@@ -154,11 +154,11 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Nom</label>
-                                            <input type="text" class="form-control col-sm-8" name="cgNom" value="{{$materiel->cgs->nomPrenoms ?? ''}}">
+                                            <input type="text" class="form-control col-sm-8" name="cgNom" value="{{$materiel->tournees->agentDeGardes->nomPrenoms ?? ''}}">
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4">Fonction</label>
-                                            <input type="text" class="form-control col-sm-8" name="cgFonction" value="{{$materiel->cgs->fonction ?? ''}}">
+                                            <input type="text" class="form-control col-sm-8" name="cgFonction" value="{{$materiel->tournees->agentDeGardes->fonction ?? ''}}">
                                         </div>
                                     </div>
                                 </div>
