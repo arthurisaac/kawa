@@ -390,3 +390,7 @@ Route::get('parametres-option-bordereau', [\App\Http\Controllers\OptionSelectCon
 Route::post('parametres-option-bordereau', [\App\Http\Controllers\OptionSelectController::class, 'storeBordereau']);
 Route::delete('parametres-option-bordereau/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyBordereau']);
 
+Route::get('parametres-option-devise', [\App\Http\Controllers\OptionSelectController::class, 'optionDevise']);
+Route::post('parametres-option-devise', [\App\Http\Controllers\OptionSelectController::class, 'storeDevise']);
+Route::delete('parametres-option-devise/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyDevise']);
+

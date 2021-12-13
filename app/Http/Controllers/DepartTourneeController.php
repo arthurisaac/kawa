@@ -31,7 +31,7 @@ class DepartTourneeController extends Controller
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
         $chauffeurs = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
-        $num = (DB::table('depart_tournees')->max('id') + 1);
+        $num = date('dmY') .  (DB::table('depart_tournees')->max('id') + 1);
         return view('transport.depart-tournee.index',
             compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num', 'centres', 'centres_regionaux'));
     }

@@ -343,6 +343,7 @@ class PersonnelController extends Controller
     {
 
         $personnel = Personnel::find($id);
+        $personnel->matricule = $request->get('matricule');
         $personnel->centre = $request->get('centre');
         $personnel->centreRegional = $request->get('centreRegional');
         $personnel->securite = $request->get('securite');

@@ -26,6 +26,8 @@
             <a href="/parametres-option-niveau-caburant" class="btn btn-light btn-sm">Option niveau carburant</a>
             <br>
             <a href="/parametres-option-bordereau" class="btn btn-light btn-sm">Option bordereau</a>
+            <br>
+            <a href="/parametres-option-devise" class="btn btn-light btn-sm">Option devise</a>
         </div>
 
     </div>

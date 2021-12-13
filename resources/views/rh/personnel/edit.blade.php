@@ -79,6 +79,11 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="form-group row">
+                                    <label class="col-sm-4">Matricule</label>
+                                    <input type="text" class="form-control col-sm-6" name="matricule"
+                                           value={{$personnel->matricule}} required/>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-md-4">Centre</label>
                                     <select class="Combobox col-md-6" name="centre" id="centre" required>
                                         <option value={{ $personnel->centre }}>{{ $personnel->centre }}</option>

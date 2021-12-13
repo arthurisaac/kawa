@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OptionBordereau;
+use App\Models\OptionDevise;
 use App\Models\OptionNiveauCarburant;
 use Illuminate\Http\Request;
 
@@ -63,6 +64,35 @@ class OptionSelectController extends Controller
 
         if ($request->ajax()) {
             $data = OptionBordereau::find($id);
+            if ($data) $data->delete();
+            return \response()->json([
+                'message' => 'ok'
+            ]);
+        }
+    }
+
+    // DEVISE
+
+    public function optionDevise()
+    {
+        $options = OptionDevise::all();
+        return view('parametre.option.devise', compact('options'));
+    }
+
+    public function storeDevise(Request $request)
+    {
+        $data = new OptionBordereau([
+            'devise' => $request->get('option')
+        ]);
+        $data->save();
+        return redirect()->back()->with('success', 'Enregistré avec succès');
+    }
+
+    public function destroyDevise(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = OptionDevise::find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'
