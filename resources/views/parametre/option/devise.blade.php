@@ -49,7 +49,7 @@
                         <tbody>
                         @foreach($options as $option)
                             <tr>
-                                <td>{{$option->numero}}</td>
+                                <td>{{$option->devise}}</td>
                                 <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$option->id}}', this)"></a></td>
                             </tr>
                         @endforeach
