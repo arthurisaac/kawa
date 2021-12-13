@@ -84,10 +84,8 @@
                     <th>Type</th>
                     <th>Bordereau</th>
                     <th>Colis</th>
-                    <th>Valeur colis (XOF)</th>
-                    <th>Valeur devise étrangère (Dollar)</th>
-                    <th>Valeur devise étrangère (Euro)</th>
-                    <th>Valeur pierre précieuse</th>
+                    <th>Devise</th>
+                    <th>Valeur colis</th>
                     <th>Numéro</th>
                     <th>Nombre total colis</th>
                     <td style="display: none;">Montant</td>
@@ -276,10 +274,13 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                     </select></td>
-                            <td><input type="text" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="text" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="text" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="text" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
+                            <td><select name="transport_arrivee_devise[]" class="form-control">
+                                    <option></option>
+                                    @foreach($devises as $devise)
+                                        <option>{{$devise->devise}}</option>
+                                    @endforeach
+                                    </select></td>
+                            <td><input type="text" name="valeur_colis[]" value="${s.transport_arrivee_valeur_colis ?? '0'}" class="form-control"></td>
                             <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
                             <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
                             <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
