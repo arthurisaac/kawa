@@ -81,7 +81,7 @@ class OptionSelectController extends Controller
 
     public function storeDevise(Request $request)
     {
-        $data = new OptionBordereau([
+        $data = new OptionDevise([
             'devise' => $request->get('option')
         ]);
         $data->save();
