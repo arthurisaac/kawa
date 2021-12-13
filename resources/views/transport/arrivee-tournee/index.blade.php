@@ -88,7 +88,6 @@
                     <th>Valeur colis</th>
                     <th>Numéro</th>
                     <th>Nombre total colis</th>
-                    <td style="display: none;">Montant</td>
                 </tr>
                 </thead>
             </table>
@@ -253,7 +252,9 @@
 
             function populateSites(sites) {
                 $("#sitesListes > tbody").html("");
+                $("#sitesListes > tfoot").html("");
                 sites.map(s => {
+                    console.log(s.transport_arrivee_valeur_colis);
                     let HTML_NODE = `<tr>
                             <td>
                                     <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
@@ -275,37 +276,32 @@
                                     <option>Conteneur</option>
                                     </select></td>
                             <td><select name="transport_arrivee_devise[]" class="form-control">
-                                    <option></option>
+                                    <option>${s?.transport_arrivee_devise ?? ''}</option>
                                     @foreach($devises as $devise)
                                         <option>{{$devise->devise}}</option>
                                     @endforeach
                                     </select></td>
-                            <td><input type="text" name="valeur_colis[]" value="${s.transport_arrivee_valeur_colis ?? '0'}" class="form-control"></td>
+                            <td><input type="text" name="transport_arrivee_valeur_colis[]" value="${s.transport_arrivee_valeur_colis ?? 0}" class="form-control"></td>
                             <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
                             <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
-                            <td><input type="number" class="form-control" min="0" name="montant[]" value="${s?.montant ?? '0'}" style="display: none;"/></td>
                     </tr>`;
 
                     $("#sitesListes").append(HTML_NODE);
                 });
-            }
 
-            $("#sitesListes").append(`<tbody>
+                $("#sitesListes").append(`<tfoot>
                 <tr>
-                    <td colspan="4" style="vertical-align: center;">TOTAL</td>
-                    <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
-                               readonly></td>
-                    <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
-                               readonly>
-                    </td>
-                    <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
-                               readonly></td>
-                    <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
+                    <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                    <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control"
                                readonly></td>
                     <td></td>
-                    <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                    <td><input type="text" name="totalColis" id="totalColis" class="form-control" readonly></td>
                 </tr>
-                </tbody>`);
+                </tfoot>`);
+            }
+
+
+            changeValeurColis();
             changeXOF();
             changeDollar();
             changeEuro();
@@ -351,7 +347,7 @@
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
             });
-            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
+            $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
             $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
@@ -368,15 +364,31 @@
                 console.log(e)
             }
         }
+
+        function removeSpace(str) {
+            return str.replace(/\s/g, '');
+        }
         function changeXOF() {
             let total = 0;
             separateNumbers(this);
 
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
                 const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+                const parsedNbre = e.value?.replace(/\s/g, '');
                 total += parseFloat(nbre) ?? 0;
             });
             $("#totalValeurXOF").val(total);
+        }
+
+        function changeValeurColis() {
+            let total = 0;
+            separateNumbers(this);
+
+            $.each($("input[name='transport_arrivee_valeur_colis[]']"), function (i) {
+                const nbre = $("input[name='transport_arrivee_valeur_colis[]'").get(i).value;
+                total += parseFloat(removeSpace(nbre)) ?? 0;
+            });
+            $("#totalValeurColis").val(total);
         }
 
         function changeDollar() {

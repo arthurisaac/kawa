@@ -33,11 +33,11 @@
             <div class="col">
                 <h6 class="text-secondary">Nbre total colis: <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></h6>
             </div>
-            <div class="col">
-                <h6 class="text-secondary">Valeur Colis (XOF): <span class="text-danger">0{{--TODO {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}--}}</span></h6>
-            </div>
+            {{--<div class="col">
+                <h6 class="text-secondary">Valeur Colis: <span class="text-danger">{{$colisArrivees->sum("transport_arrivee_valeur_colis")}}</span></h6>
+            </div>--}}
         </div>
-        <div class="row">
+       {{--<div class="row">
             <div class="col">
                 <h6 class="text-secondary">Devise étrangère(dollar): <span class="text-danger">{{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</span></h6>
             </div>
@@ -48,7 +48,7 @@
                 <h6 class="text-secondary">Pierre précieuse(xof): <span class="text-danger">{{$colisArrivees->sum("pierre_precieuse_arrivee")}}</span></h6>
             </div>
             <div class="col"></div>
-        </div>
+        </div>--}}
         <div class="row">
             <div class="col">
                 {{--<div class="row">
@@ -110,10 +110,8 @@
                 <th>Colis</th>
                 <th>Bordereau</th>
                 <th>N° Tournée</th>
-                <th>colis (XOF)</th>
-                <th>Devise Dollar</th>
-                <th>Devise Euro</th>
-                <th>Pierre précieuse (XOF)</th>
+                <th>Devise</th>
+                <th>Valeur colis</th>
                 <th>Nombre de colis</th>
                 <th>Actions</th>
             </tr>
@@ -131,10 +129,8 @@
                     <td>{{$colis->colis ?? ''}}</td>
                     <td>{{$colis->bordereau ?? ''}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
-                    <td>{{$colis->valeur_colis_xof_arrivee}}</td>
-                    <td>{{$colis->device_etrangere_dollar_arrivee}}</td>
-                    <td>{{$colis->device_etrangere_euro_arrivee}}</td>
-                    <td>{{$colis->pierre_precieuse_arrivee}}</td>
+                    <td>{{$colis->transport_arrivee_devise}}</td>
+                    <td>{{$colis->transport_arrivee_valeur_colis}}</td>
                     <td>{{$colis->nbre_colis_arrivee}}</td>
                     <td><a href="{{ route('arrivee-tournee.edit',$colis->idTourneeDepart)}}" class="btn btn-primary btn-sm"></a></td>
                 </tr>

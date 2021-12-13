@@ -58,10 +58,10 @@
                             <td>Centre</td>
                             <td>Nbre Total colis</td>
                             <th>Remettant</th>
-                            <td>Total valeur colis</td>
+                            {{--<td>Total valeur colis</td>
                             <td>Total device etrangere (XOF)</td>
                             <td>Total device etrangere (Dollar)</td>
-                            <td>Total device etrangere (EURO)</td>
+                            <td>Total device etrangere (EURO)</td>--}}
                             <td>No Tournée</td>
                             <td>Equipage</td>
                             {{--<td>Montant total</td>--}}
@@ -76,10 +76,10 @@
                             <td>{{$coli->centre_regional}}</td>
                             <td>{{$coli->items->sum('nbre_colis')}}</td>
                             <td>{{$coli->remettant}}</td>
-                            <td>{{$coli->items->sum("valeur_colis_xof_entree")}}</td>
+                            {{--<td>{{$coli->items->sum("valeur_colis_xof_entree")}}</td>
                             <td>{{$coli->items->sum("device_etrangere_dollar_entree")}}</td>
                             <td>{{$coli->items->sum("device_etrangere_euro_entree")}}</td>
-                            <td>{{$coli->items->sum("pierre_precieuse_entree")}}</td>
+                            <td>{{$coli->items->sum("pierre_precieuse_entree")}}</td>--}}
                             <td>{{$coli->tournees->numeroTournee ?? ''}}</td>
                             <td>{{$coli->tournees->chefDeBords->nomPrenoms ?? ""}} //
                                 {{$coli->tournees->agentDeGardes->nomPrenoms ?? ""}} //

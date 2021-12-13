@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Commercial_site;
 use App\Models\Convoyeur;
 use App\Models\DepartTournee;
+use App\Models\OptionDevise;
 use App\Models\Personnel;
 use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
@@ -27,7 +28,8 @@ class RegulationArriveeTourneeController extends Controller
         $heure = date("H:i");
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $sites = SiteDepartTournee::with('sites')->get();
-        return view('regulation.arrivee-tournee.index', compact("date", "heure", "tournees", "sites"));
+        $devises = OptionDevise::all();
+        return view('regulation.arrivee-tournee.index', compact("date", "heure", "tournees", "sites", "devises"));
     }
 
     public function liste(Request $request)
@@ -104,10 +106,8 @@ class RegulationArriveeTourneeController extends Controller
         $numero = $request->get('numero');
 
 
-        $valeur_colis_xof = $request->get('valeur_colis_xof');
-        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        $device_etrangere_euro = $request->get('device_etrangere_euro');
-        $pierre_precieuse = $request->get('pierre_precieuse');
+        $regulation_arrivee_valeur_colis = $request->get("regulation_arrivee_valeur_colis");
+        $regulation_arrivee_devise = $request->get("regulation_arrivee_devise");
         $colis = $request->get('colis');
 
         //$client = $request->get('client');
@@ -133,10 +133,8 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->colis_arrivee = $colis[$i];
                 $dataSite->numero = $numero[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
-                $dataSite->device_etrangere_dollar_arrivee = str_replace(' ', '', $device_etrangere_dollar[$i]);
-                $dataSite->device_etrangere_euro_arrivee = str_replace(' ', '', $device_etrangere_euro[$i]);
-                $dataSite->pierre_precieuse_arrivee = str_replace(' ', '', $pierre_precieuse[$i]);
+                $dataSite->regulation_arrivee_valeur_colis = str_replace(' ', '', $regulation_arrivee_valeur_colis[$i]);
+                $dataSite->regulation_arrivee_devise = $regulation_arrivee_devise[$i];
 
                 $dataSite->save();
             }
@@ -168,7 +166,8 @@ class RegulationArriveeTourneeController extends Controller
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
         $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
-        return view('regulation.arrivee-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
+        $devises = OptionDevise::all();
+        return view('regulation.arrivee-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems", "devises"));
     }
 
     /**
@@ -186,12 +185,8 @@ class RegulationArriveeTourneeController extends Controller
         $sites = $request->get('site');
         $nbre_colis = $request->get('nbre_colis');
 
-        $valeur_colis_xof = $request->get('valeur_colis_xof');
-        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        $device_etrangere_euro = $request->get('device_etrangere_euro');
-        $pierre_precieuse = $request->get('pierre_precieuse');
-
-
+        $regulation_arrivee_valeur_colis = $request->get("regulation_arrivee_valeur_colis");
+        $regulation_arrivee_devise = $request->get("regulation_arrivee_devise");
 
         //$valeur_colis = $request->get('valeur_colis');
         $colis = $request->get('colis');
@@ -207,10 +202,8 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->numero = $numero[$i];
                 $dataSite->nature = $nature[$i];
 
-                $dataSite->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
-                $dataSite->device_etrangere_dollar_arrivee = str_replace(' ', '', $device_etrangere_dollar[$i]);
-                $dataSite->device_etrangere_euro_arrivee = str_replace(' ', '', $device_etrangere_euro[$i]);
-                $dataSite->pierre_precieuse_arrivee = str_replace(' ', '', $pierre_precieuse[$i]);
+                $dataSite->regulation_arrivee_valeur_colis = str_replace(' ', '', $regulation_arrivee_valeur_colis[$i]);
+                $dataSite->regulation_arrivee_devise = $regulation_arrivee_devise[$i];
 
                 $dataSite->save();
             }

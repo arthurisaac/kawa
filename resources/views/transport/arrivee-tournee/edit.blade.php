@@ -90,10 +90,8 @@
                     <th>Type</th>
                     <th>Bordereau</th>
                     <th>Colis</th>
-                    <th>Valeur colis (XOF)</th>
-                    <th>Valeur devise étrangère (Dollar)</th>
-                    <th>Valeur devise étrangère (Euro)</th>
-                    <th>Valeur pierre précieuse</th>
+                    <th>Devise</th>
+                    <th>Valeur colis</th>
                     <th>Numéro</th>
                     <th>Nombre total colis</th>
                     <td style="display: none;">Montant</td>
@@ -121,10 +119,13 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                             </select></td>
-                        <td><input type="number" min="0" name="valeur_colis_xof[]" value="{{$site->valeur_colis_xof_arrivee ?? 0}}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="{{$site->device_etrangere_dollar_arrivee ?? 0}}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="{{$site->device_etrangere_euro_arrivee ?? 0}}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="{{$site->pierre_precieuse_arrivee ?? 0}}" class="form-control"></td>
+                        <td><select name="transport_arrivee_devise[]" class="form-control">
+                                <option>{{$site->transport_arrivee_devise}}</option>
+                                @foreach($devises as $devise)
+                                    <option>{{$devise->devise}}</option>
+                                @endforeach
+                            </select></td>
+                        <td><input type="text" name="transport_arrivee_valeur_colis[]" value="{{$site->transport_arrivee_valeur_colis ?? 0}}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">{{$site->numero_arrivee}}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
                         <td style="display: none;"><input type="text" class="form-control" min="0" name="montant[]" value="{{$site->montant}}"/></td>
@@ -133,19 +134,11 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="4" style="vertical-align: center;">TOTAL</td>
-                    <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
-                               readonly></td>
-                    <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
-                               readonly>
-                    </td>
-                    <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
-                               readonly></td>
-                    <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
+                    <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                    <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control"
                                readonly></td>
                     <td></td>
-                    <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
-                    {{--<td><input type="number" name="totalMontant" id="totalMontant" class="form-control" style="display: none;" readonly></td>--}}
+                    <td><input type="text" name="totalColis" id="totalColis" class="form-control" readonly></td>
                 </tr>
                 </tfoot>
             </table>
@@ -212,6 +205,31 @@
     </div>
 
     <script>
+        function separateNumbers(e){
+            try {
+                let str = e.value?.replace(/\s/g, '');
+                const donnee = parseFloat(str);
+                $(e).val(Number(donnee).toLocaleString());
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        function removeSpace(str) {
+            return str.replace(/\s/g, '');
+        }
+
+        function changeValeurColis() {
+            let total = 0;
+            separateNumbers(this);
+
+            $.each($("input[name='transport_arrivee_valeur_colis[]']"), function (i) {
+                const nbre = $("input[name='transport_arrivee_valeur_colis[]'").get(i).value;
+                total += parseFloat(removeSpace(nbre)) ?? 0;
+            });
+            $("#totalValeurColis").val(total);
+        }
+
         function changeXOF() {
             let total = 0;
             $.each($("input[name='valeur_colis_xof[]']"), function (i) {
@@ -303,6 +321,7 @@
         let sites = {!! json_encode($sites) !!};
         let vidanges = {!! json_encode($vidanges) !!};
 
+        changeValeurColis();
         changeXOF();
         changeDollar();
         changeEuro();
@@ -396,6 +415,7 @@
             $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
             $("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
+            $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
         });
     </script>
 @endsection

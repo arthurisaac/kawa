@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
+use App\Models\OptionDevise;
 use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
 use App\Models\SiteDepartTournee;
@@ -23,7 +24,8 @@ class RegulationDepartTourneeController extends Controller
         $heure = date("H:i");
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
         $sites = SiteDepartTournee::with('sites')->get();
-        return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites"));
+        $devises = OptionDevise::all();
+        return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites", "devises"));
     }
 
 
@@ -72,10 +74,12 @@ class RegulationDepartTourneeController extends Controller
         $colis = $request->get('colis');
         $numero = $request->get('numero');
 
-        $valeur_colis_xof = $request->get('valeur_colis_xof');
-        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        $device_etrangere_euro = $request->get('device_etrangere_euro');
-        $pierre_precieuse = $request->get('pierre_precieuse');
+        $regulation_depart_devise = $request->get('regulation_depart_devise');
+        $regulation_depart_valeur_colis = $request->get('regulation_depart_valeur_colis');
+        //$valeur_colis_xof = $request->get('valeur_colis_xof');
+        //$device_etrangere_dollar = $request->get('device_etrangere_dollar');
+        //$device_etrangere_euro = $request->get('device_etrangere_euro');
+        //$pierre_precieuse = $request->get('pierre_precieuse');
 
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
@@ -91,10 +95,12 @@ class RegulationDepartTourneeController extends Controller
                 $dataSite->nbre_colis = $nbre_colis[$i];
                 $dataSite->colis = $colis[$i];
 
-                $dataSite->valeur_colis_xof = str_replace(' ', '',$valeur_colis_xof[$i]);
-                $dataSite->device_etrangere_dollar = str_replace(' ', '', $device_etrangere_dollar[$i]);
-                $dataSite->device_etrangere_euro = str_replace(' ', '', $device_etrangere_euro[$i]);
-                $dataSite->pierre_precieuse = str_replace(' ', '', $pierre_precieuse[$i]);
+                //$dataSite->valeur_colis_xof = str_replace(' ', '',$valeur_colis_xof[$i]);
+                //$dataSite->device_etrangere_dollar = str_replace(' ', '', $device_etrangere_dollar[$i]);
+                //$dataSite->device_etrangere_euro = str_replace(' ', '', $device_etrangere_euro[$i]);
+                //$dataSite->pierre_precieuse = str_replace(' ', '', $pierre_precieuse[$i]);
+                $dataSite->regulation_depart_devise = str_replace(' ', '', $regulation_depart_devise[$i]);
+                $dataSite->regulation_depart_valeur_colis = str_replace(' ', '', $regulation_depart_valeur_colis[$i]);
 
                 $dataSite->save();
             }
@@ -127,7 +133,8 @@ class RegulationDepartTourneeController extends Controller
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
         $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
-        return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems"));
+        $devises = OptionDevise::all();
+        return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems", "devises"));
     }
 
     /**
@@ -140,38 +147,32 @@ class RegulationDepartTourneeController extends Controller
     public function update(Request $request, $id)
     {
         $sites = $request->get('site');
-        //$client = $request->get('client');
-        //$autre = $request->get('autre');
-        //$numero_scelle = $request->get('numero_scelle');
-
-        //$valeur_colis = $request->get('valeur_colis');
-        //$valeur_autre = $request->get('valeur_autre');
         $nbre_colis = $request->get('nbre_colis');
         $colis = $request->get('colis');
         $numero = $request->get('numero');
         $site_id = $request->get("site_id");
 
-        $valeur_colis_xof = $request->get('valeur_colis_xof');
-        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        $device_etrangere_euro = $request->get('device_etrangere_euro');
-        $pierre_precieuse = $request->get('pierre_precieuse');
+        $regulation_depart_devise = $request->get('regulation_depart_devise');
+        $regulation_depart_valeur_colis = $request->get('regulation_depart_valeur_colis');
+
+        //$valeur_colis_xof = $request->get('valeur_colis_xof');
+        //$device_etrangere_dollar = $request->get('device_etrangere_dollar');
+        //$device_etrangere_euro = $request->get('device_etrangere_euro');
+        //$pierre_precieuse = $request->get('pierre_precieuse');
 
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
-                //$dataSite->client = $client[$i] ?? "";
-                //$dataSite->autre = $autre[$i];
-                //$dataSite->numero_scelle = $numero_scelle[$i] ?? "";
-                //$dataSite->valeur_colis = $valeur_colis[$i];
-                //$dataSite->valeur_autre = $valeur_autre[$i];
                 $dataSite->nbre_colis = $nbre_colis[$i];
                 $dataSite->colis = $colis[$i];
                 $dataSite->numero = $numero[$i];
+                $dataSite->regulation_depart_devise = str_replace(' ', '', $regulation_depart_devise[$i]);
+                $dataSite->regulation_depart_valeur_colis = str_replace(' ', '', $regulation_depart_valeur_colis[$i]);
 
-                $dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
-                $dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
-                $dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
-                $dataSite->pierre_precieuse = $pierre_precieuse[$i];
+                //$dataSite->valeur_colis_xof = $valeur_colis_xof[$i];
+                //$dataSite->device_etrangere_dollar = $device_etrangere_dollar[$i];
+                //$dataSite->device_etrangere_euro = $device_etrangere_euro[$i];
+                //$dataSite->pierre_precieuse = $pierre_precieuse[$i];
 
                 $dataSite->save();
             }

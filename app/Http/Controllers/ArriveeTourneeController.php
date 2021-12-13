@@ -164,7 +164,7 @@ class ArriveeTourneeController extends Controller
                 $site->colis = $colis[$i] ?? "";
                 $site->numero = $numero[$i] ?? "";
                 $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
-                $site->transport_arrivee_devise = str_replace(' ', '', $transport_arrivee_devise[$i]);
+                $site->transport_arrivee_devise = $transport_arrivee_devise[$i];
                 $site->transport_arrivee_valeur_colis = str_replace(' ', '', $transport_arrivee_valeur_colis[$i]);
                 //$site->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]) ?? null;
 
@@ -231,7 +231,8 @@ class ArriveeTourneeController extends Controller
         $personnels = Personnel::all();
         $sites = SiteDepartTournee::with('sites')->where("idTourneeDepart", $id)->get();
         $vidanges = VidangeGenerale::all();
-        return view('transport.arrivee-tournee.edit', compact('departTournees', 'tournee', 'convoyeurs', 'personnels', 'sites', 'vidanges'));
+        $devises = OptionDevise::all();
+        return view('transport.arrivee-tournee.edit', compact('departTournees', 'tournee', 'convoyeurs', 'personnels', 'sites', 'vidanges', 'devises'));
     }
 
     /**
@@ -256,11 +257,13 @@ class ArriveeTourneeController extends Controller
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
 
+        //$valeur_colis_xof = $request->get('valeur_colis_xof');
+        //$device_etrangere_dollar = $request->get('device_etrangere_dollar');
+        //$device_etrangere_euro = $request->get('device_etrangere_euro');
+        //$pierre_precieuse = $request->get('pierre_precieuse');
         $colis = $request->get('colis');
-        $valeur_colis_xof = $request->get('valeur_colis_xof');
-        $device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        $device_etrangere_euro = $request->get('device_etrangere_euro');
-        $pierre_precieuse = $request->get('pierre_precieuse');
+        $transport_arrivee_devise = $request->get('transport_arrivee_devise');
+        $transport_arrivee_valeur_colis = $request->get('transport_arrivee_valeur_colis');
         $numero = $request->get('numero');
         $nbre_colis = $request->get('nbre_colis');
 
@@ -274,10 +277,12 @@ class ArriveeTourneeController extends Controller
                 $site->colis = $colis[$i] ?? "";
                 $site->numero_arrivee = $numero[$i] ?? "";
                 $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
-                $site->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
-                $site->device_etrangere_dollar_arrivee = str_replace(' ', '',$device_etrangere_dollar[$i]) ?? null;
-                $site->device_etrangere_euro_arrivee = str_replace(' ', '',$device_etrangere_euro[$i]) ?? null;
-                $site->pierre_precieuse_arrivee = str_replace(' ', '',$pierre_precieuse[$i]) ?? null;
+                $site->transport_arrivee_devise = $transport_arrivee_devise[$i];
+                $site->transport_arrivee_valeur_colis = str_replace(' ', '', $transport_arrivee_valeur_colis[$i]);
+                //$site->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
+                //$site->device_etrangere_dollar_arrivee = str_replace(' ', '',$device_etrangere_dollar[$i]) ?? null;
+                //$site->device_etrangere_euro_arrivee = str_replace(' ', '',$device_etrangere_euro[$i]) ?? null;
+                //$site->pierre_precieuse_arrivee = str_replace(' ', '',$pierre_precieuse[$i]) ?? null;
 
                 $site->save();
             }

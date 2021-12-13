@@ -118,10 +118,8 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Valeur colis (XOF)</th>
-                        <th>Valeur devise étrangère (Dollar)</th>
-                        <th>Valeur devise étrangère (Euro)</th>
-                        <th>Valeur pierre précieuse</th>
+                        <th>Devise</th>
+                        <th>Valeur colis</th>
                         <th>Numéro</th>
                         <th>Nombre total colis</th>
                         <th>Nature</th>
@@ -129,19 +127,10 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
-                                   readonly></td>
-                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
-                                   readonly>
-                        </td>
-                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
-                                   readonly></td>
-                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
-                                   readonly></td>
+                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
+                        <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control" readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
-                        <td></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -218,10 +207,13 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                                 </select></td>
-                        <td><input type="number" name="valeur_colis_xof[]" value="${s.valeur_colis_xof_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" value="${s.device_etrangere_dollar_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" value="${s.device_etrangere_euro_arrivee ?? '0'}" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" value="${s.pierre_precieuse_arrivee ?? '0'}" class="form-control"></td>
+                        <td><select name="regulation_arrivee_devise[]" class="form-control">
+                                    <option>${s?.regulation_arrivee_devise ?? ''}</option>
+                                    @foreach($devises as $devise)
+                                        <option>{{$devise->devise}}</option>
+                                    @endforeach
+                                    </select></td>
+                        <td><input type="text" name="regulation_arrivee_valeur_colis[]" value="${s.regulation_arrivee_valeur_colis ?? 0}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero_arrivee ?? ''}</textarea></td>
 
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis_arrivee ?? '0'}" class="form-control"></td>
@@ -261,10 +253,7 @@
                 $("#totalValeurColis").val(totalValeurColis);
 
             });
-            changeXOF();
-            changeDollar();
-            changeEuro();
-            changePierre();
+            changeValeurColis();
             changeNombreColis();
         }
     </script>
@@ -324,48 +313,34 @@
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
             });
-            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
-            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            $("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
+            $("input[name='regulation_arrivee_valeur_colis[]']").on("change", changeValeurColis);
         });
     </script>
     <script>
-        function changeXOF() {
-            let total = 0;
-            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
-                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurXOF").val(total);
+        function separateNumbers(e){
+            try {
+                let str = e.value?.replace(/\s/g, '');
+                const donnee = parseFloat(str);
+                $(e).val(Number(donnee).toLocaleString());
+            } catch (e) {
+                console.log(e)
+            }
         }
 
-        function changeDollar() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurDollar").val(total);
+        function removeSpace(str) {
+            return str.replace(/\s/g, '');
         }
 
-        function changeEuro() {
+        function changeValeurColis() {
             let total = 0;
-            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurEuro").val(total);
-        }
+            separateNumbers(this);
 
-        function changePierre() {
-            let total = 0;
-            $.each($("input[name='pierre_precieuse[]']"), function (i) {
-                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
+            $.each($("input[name='regulation_arrivee_valeur_colis[]']"), function (i) {
+                const nbre = $("input[name='regulation_arrivee_valeur_colis[]'").get(i).value;
+                total += parseFloat(removeSpace(nbre)) ?? 0;
             });
-            $("#totalValeurPierre").val(total);
+            $("#totalValeurColis").val(total);
         }
 
         function changeNombreColis() {
@@ -387,20 +362,14 @@
                     index = i;
                 }
                 if (colis.value === "RAS" ) {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', true);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', true);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', true);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', true);
                     $("textarea[name='numero[]']").eq(i).prop('readonly', true);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
+                    $("input[name='regulation_arrivee_valeur_colis[]']").eq(i).prop('readonly', true);
                     $("select[name='nature[]']").eq(i).prop('readonly', true);
                 } else {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', false);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', false);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('readonly', false);
                     $("textarea[name='numero[]']").eq(i).prop('readonly', false);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("input[name='regulation_arrivee_valeur_colis[]']").eq(i).prop('readonly', false);
                     $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });

@@ -59,10 +59,10 @@
                 <td>N° Tournée</td>
                 <td>Véhicule</td>
                 <td>Nbre Total colis</td>
-                <td>Total montant (XOF)</td>
+                {{--<td>Total montant (XOF)</td>
                 <td>Total device etrangere (Dollar)</td>
                 <td>Total device etrangere (EURO)</td>
-                <td>Total pierre precieuse</td>
+                <td>Total pierre precieuse</td>--}}
                 <td>Equipage</td>
                 <td>Action</td>
             </tr>
@@ -77,10 +77,10 @@
                     <td>{{$tournee->numeroTournee ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
                     <td>{{$tournee->sites->sum("nbre_colis")}}</td>
-                    <td>{{--TODO {{$tournee->sites->sum("valeur_colis_xof")}}--}}</td>
+                    {{--<td>{{$tournee->sites->sum("valeur_colis_xof")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_dollar")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_euro")}}</td>
-                    <td>{{$tournee->sites->sum("pierre_precieuse")}}</td>
+                    <td>{{$tournee->sites->sum("pierre_precieuse")}}</td>--}}
                     <td>{{$tournee->chefDeBords->nomPrenoms ?? ""}} //
                         {{$tournee->agentDeGardes->nomPrenoms ?? ""}} //
                         {{$tournee->chauffeurs->nomPrenoms ?? ""}} //
