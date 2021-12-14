@@ -23,78 +23,77 @@
             </div>
         @endif
 
-        <div class="row">
-            <div class="col">
-                <h6 class="text-secondary">Total tournées: <span class="text-danger">{{count($tournees)}}</span></h6>
-            </div>
-            <div class="col">
-                <h6 class="text-secondary">Total sites: <span class="text-danger">{{count($colisArrivees)}}</span></h6>
-            </div>
-            <div class="col">
-                <h6 class="text-secondary">Nbre total colis: <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></h6>
-            </div>
-            {{--<div class="col">
-                <h6 class="text-secondary">Valeur Colis: <span class="text-danger">{{$colisArrivees->sum("transport_arrivee_valeur_colis")}}</span></h6>
-            </div>--}}
-        </div>
-       {{--<div class="row">
-            <div class="col">
-                <h6 class="text-secondary">Devise étrangère(dollar): <span class="text-danger">{{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</span></h6>
-            </div>
-            <div class="col">
-                <h6 class="text-secondary">Devise étrangère(euro): <span class="text-danger">{{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</span></h6>
-            </div>
-            <div class="col">
-                <h6 class="text-secondary">Pierre précieuse(xof): <span class="text-danger">{{$colisArrivees->sum("pierre_precieuse_arrivee")}}</span></h6>
-            </div>
-            <div class="col"></div>
-        </div>--}}
-        <div class="row">
-            <div class="col">
-                {{--<div class="row">
-                    <div class="col">
-                        <input type="text" id="CustomSearchTextField" class="form-control col-5" />
+        <form action="#" method="get">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </div>--}}
-                <form action="#" method="get" style="margin-top: 25px;">
-                    @csrf
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group row">
-                                <label class="col">Rechercher</label>
-                                <input type="text" name="q" id="searchInput" class="form-control col-sm-8">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-primary btn-sm">Rechercher</button>
-                        </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </form>
-            </div>
-            <div class="col">
-                <form action="#" method="get">
-                    <div class="row">
-                    @csrf
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="">Date début</label>
-                                <input type="date" name="debut" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="">Date fin</label>
-                                <input type="date" name="fin" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-sm" style="margin-top: 24px;">Rechercher</button>
-                        </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-5">Clients</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option>{{$client}}</option>
+                            @foreach ($clients as $client)
+                                <option value="{{$client->id}}">{{ $client->client_nom }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </form>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="site" class="col-5">Site</label>
+                        <select id="site" name="site" class="form-control col">
+                            <option>{{$site}}</option>
+                            @foreach ($sites_com as $site)
+                                <option value="{{$site->id}}">{{ $site->site }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
-
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date fin</label>
+                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <a href="/colis-arrivee-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
+            </div>
+        </form>
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
