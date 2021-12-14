@@ -107,11 +107,10 @@
                 <th>Site</th>
                 <th>Client</th>
                 <th>Type</th>
-                <th>Colis</th>
                 <th>Bordereau</th>
                 <th>N° Tournée</th>
-                <th>Devise</th>
                 <th>Valeur colis</th>
+                <th>Devise</th>
                 <th>Nombre de colis</th>
                 <th>Actions</th>
             </tr>
@@ -126,11 +125,10 @@
                     <td>{{$colis->sites->site ?? ''}}</td>
                     <td>{{$colis->sites->clients->client_nom ?? ''}}</td>
                     <td>{{$colis->type ?? ''}}</td>
-                    <td>{{$colis->colis ?? ''}}</td>
                     <td>{{$colis->bordereau ?? ''}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
-                    <td>{{$colis->transport_arrivee_devise}}</td>
                     <td>{{$colis->transport_arrivee_valeur_colis}}</td>
+                    <td>{{$colis->transport_arrivee_devise}}</td>
                     <td>{{$colis->nbre_colis_arrivee}}</td>
                     <td><a href="{{ route('arrivee-tournee.edit',$colis->idTourneeDepart)}}" class="btn btn-primary btn-sm"></a></td>
                 </tr>
