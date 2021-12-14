@@ -30,7 +30,12 @@ class ArriveeTourneeController extends Controller
      */
     public function index()
     {
-        $departTournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $departTournees = DepartTournee::with('agentDeGardes')
+            ->with('chefDeBords')
+            ->with('chauffeurs')
+            ->with('vehicules')
+            ->orderByDesc('id')
+            ->get();
         $convoyeurs = Convoyeur::all();
         $personnels = Personnel::all();
         $sites = SiteDepartTournee::with('sites')->get();
