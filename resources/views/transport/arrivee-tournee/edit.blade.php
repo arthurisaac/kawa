@@ -106,8 +106,7 @@
                             <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="site[]" value="{{$site->sites->clients->client_nom ?? ""}}" readonly/>
-                            <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
+                            <input type="text" class="form-control" value="{{$site->sites->clients->client_nom ?? ""}}" readonly/>
                         </td>
                         <td><select class="form-control" name="type[]">
                                 <option>{{$site->type}}</option>
@@ -139,7 +138,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="5" style="vertical-align: center;">TOTAL</td>
+                    <td colspan="6" style="vertical-align: center;">TOTAL</td>
                     <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control"
                                readonly></td>
                     <td></td>
@@ -235,42 +234,6 @@
             $("#totalValeurColis").val(total);
         }
 
-        function changeXOF() {
-            let total = 0;
-            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
-                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurXOF").val(total);
-        }
-
-        function changeDollar() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurDollar").val(total);
-        }
-
-        function changeEuro() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurEuro").val(total);
-        }
-
-        function changePierre() {
-            let total = 0;
-            $.each($("input[name='pierre_precieuse[]']"), function (i) {
-                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurPierre").val(total);
-        }
-
         function changeNombreColis() {
             let totalColis = 0;
             $.each($("input[name='nbre_colis[]']"), function (i) {
@@ -290,21 +253,14 @@
                     index = i;
                 }
                 if (colis.value === "RAS") {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', true);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', true);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', true);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', true);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', true);
-                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
+                    $("select[name='nature[]']").eq(i).prop('readonly', true);
                 } else {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_dollar[]']").eq(i).prop('disabled', false);
-                    $("input[name='device_etrangere_euro[]']").eq(i).prop('disabled', false);
-                    $("input[name='pierre_precieuse[]']").eq(i).prop('disabled', false);
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', false);
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', false);
-                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });
 
@@ -327,10 +283,6 @@
         let vidanges = {!! json_encode($vidanges) !!};
 
         changeValeurColis();
-        changeXOF();
-        changeDollar();
-        changeEuro();
-        changePierre();
         changeNombreColis();
         changeMontant();
 
@@ -415,10 +367,6 @@
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
             });
-            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
-            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            $("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
             $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
         });

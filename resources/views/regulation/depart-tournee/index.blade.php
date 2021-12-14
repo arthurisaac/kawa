@@ -118,7 +118,7 @@
                     <tbody></tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
+                        <td colspan="6" style="vertical-align: center;">TOTAL</td>
                         <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control" readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>

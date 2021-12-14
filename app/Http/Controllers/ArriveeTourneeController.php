@@ -257,15 +257,9 @@ class ArriveeTourneeController extends Controller
 
         $sites = $request->get('site');
         $type = $request->get('type');
-        //$autre = $request->get('autre');
         $site_ids = $request->get('site_id');
         $bordereaux = $request->get('bordereau');
         $montants = $request->get('montant');
-
-        //$valeur_colis_xof = $request->get('valeur_colis_xof');
-        //$device_etrangere_dollar = $request->get('device_etrangere_dollar');
-        //$device_etrangere_euro = $request->get('device_etrangere_euro');
-        //$pierre_precieuse = $request->get('pierre_precieuse');
         $colis = $request->get('colis');
         $transport_arrivee_devise = $request->get('transport_arrivee_devise');
         $transport_arrivee_valeur_colis = $request->get('transport_arrivee_valeur_colis');
@@ -275,19 +269,15 @@ class ArriveeTourneeController extends Controller
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
                 $site = SiteDepartTournee::find($site_ids[$i]);
-                $site->bordereau = $bordereaux[$i] ?? null;
-                $site->montant = $montants[$i] ?? 0;
-                $site->type = $type[$i] ?? null;
+                $site->bordereau = $bordereaux[$i];
+                $site->montant = $montants[$i];
+                $site->type = $type[$i];
 
-                $site->colis = $colis[$i] ?? "";
-                $site->numero_arrivee = $numero[$i] ?? "";
-                $site->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
+                $site->colis = $colis[$i];
+                $site->numero_arrivee = $numero[$i];
+                $site->nbre_colis_arrivee = $nbre_colis[$i];
                 $site->transport_arrivee_devise = $transport_arrivee_devise[$i];
                 $site->transport_arrivee_valeur_colis = str_replace(' ', '', $transport_arrivee_valeur_colis[$i]);
-                //$site->valeur_colis_xof_arrivee = str_replace(' ', '', $valeur_colis_xof[$i]);
-                //$site->device_etrangere_dollar_arrivee = str_replace(' ', '',$device_etrangere_dollar[$i]) ?? null;
-                //$site->device_etrangere_euro_arrivee = str_replace(' ', '',$device_etrangere_euro[$i]) ?? null;
-                //$site->pierre_precieuse_arrivee = str_replace(' ', '',$pierre_precieuse[$i]) ?? null;
 
                 $site->save();
             }
