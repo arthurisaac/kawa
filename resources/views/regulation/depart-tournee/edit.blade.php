@@ -31,7 +31,7 @@
                     <div class="col">
                         <div class="form-group row">
                             <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8" readonly/>
+                            <input type="date" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8" readonly/>
                         </div>
                     </div>
                     <div class="col">

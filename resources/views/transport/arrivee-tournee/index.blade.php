@@ -81,7 +81,8 @@
                 <thead>
                 <tr>
                     <th>Site</th>
-                    <th>Type</th>
+                    <th>Client</th>
+                    <th>Type opération</th>
                     <th>Bordereau</th>
                     <th>Colis</th>
                     <th>Devise</th>
@@ -150,7 +151,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label>{{--Assurance--}}Vidange pont</label>
+                        <label>Vidange pont</label>
                         <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
                         <input type="hidden" name="vidangePontID" id="vidangePontID"/>
                     </div>
@@ -260,6 +261,7 @@
                                     <input type="text" class="form-control" name="site[]" value="${s.sites.site}" readonly/>
                                     <input type="hidden" class="form-control" name="site_id[]" value="${s.id}"/>
                             </td>
+                            <td><input type="text" class="form-control" name="client[]" value="${s.sites?.clients?.client_nom}" readonly/></td>
                             <td><select class="form-control" name="type[]">
                                         <option>${s?.type ?? ''}</option>
                                         <option>Enlèvement</option>
@@ -276,7 +278,7 @@
                                     <option>Conteneur</option>
                                     </select></td>
                             <td><select name="transport_arrivee_devise[]" class="form-control">
-                                    <option>${s?.transport_arrivee_devise ?? ''}</option>
+                                    <option>${s?.transport_arrivee_devise ?? 'XOF'}</option>
                                     @foreach($devises as $devise)
                                         <option>{{$devise->devise}}</option>
                                     @endforeach
@@ -339,19 +341,11 @@
                 });
                 $("#totalValeurColis").val(totalValeurColis);
             });
-            $("input[name='valeur_autre[]']").on("change", function () {
-                let totalValeurAutre = 0;
-                $.each($("input[name='valeur_autre[]']"), function (i) {
-                    const nbre = $("input[name='valeur_autre[]'").get(i).value;
-                    totalValeurAutre += parseFloat(nbre) ?? 0;
-                });
-                $("#totalValeurAutre").val(totalValeurAutre);
-            });
             $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
-            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            $("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
+            //$("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
+            //$("input[name='device_etrangere_euro[]']").on("change", changeEuro);
+            //$("input[name='pierre_precieuse[]']").on("change", changePierre);
         });
     </script>
     <script>

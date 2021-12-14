@@ -87,7 +87,8 @@
                 <thead>
                 <tr>
                     <th>Site</th>
-                    <th>Type</th>
+                    <th>Client</th>
+                    <th>Type opération</th>
                     <th>Bordereau</th>
                     <th>Colis</th>
                     <th>Devise</th>
@@ -102,6 +103,10 @@
                     <tr>
                         <td>
                             <input type="text" class="form-control" name="site[]" value="{{$site->sites->site ?? ""}}" readonly/>
+                            <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="site[]" value="{{$site->sites->clients->client_nom ?? ""}}" readonly/>
                             <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
                         </td>
                         <td><select class="form-control" name="type[]">
