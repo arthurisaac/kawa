@@ -56,47 +56,46 @@
                         <input type="text" id="CustomSearchTextField" class="form-control col-5" />
                     </div>
                 </div>--}}
-            </div>
-            <div class="col">
-
-                <form action="#" method="get">
+                <form action="#" method="get" style="margin-top: 25px;">
                     @csrf
                     <div class="row">
                         <div class="col">
                             <div class="form-group row">
-                                <label for="" class="col-5">Date début</label>
-                                <input type="date" name="debut" class="form-control col-7">
+                                <label class="col">Rechercher</label>
+                                <input type="text" name="q" id="searchInput" class="form-control col-sm-8">
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group row">
-                                <label for="" class="col-5">Date fin</label>
-                                <input type="date" name="fin" class="form-control col-7">
-                            </div>
-                        </div>
-                        <div class="col">
+                        <div class="col-2">
                             <button class="btn btn-primary btn-sm">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <form action="#" method="get">
+                    <div class="row">
+                    @csrf
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Date début</label>
+                                <input type="date" name="debut" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Date fin</label>
+                                <input type="date" name="fin" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary btn-sm" style="margin-top: 24px;">Rechercher</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
-        <form action="#" method="get">
-            @csrf
-            <div class="row">
-                <div class="col"></div>
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label class="col">Rechercher</label>
-                        <input type="text" name="q" id="searchInput" class="form-control col-sm-8">
-                    </div>
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-primary btn-sm">Rechercher</button>
-                </div>
-            </div>
-        </form>
+
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
             <tr>
