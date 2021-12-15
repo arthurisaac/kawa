@@ -49,20 +49,13 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-4" for="centre">Centre</label>
-                        <select name="centre" id="centre" class="form-control col-8" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
+                        <input name="centre" id="centre" class="form-control col-8" required />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
                         <label  class="col-4" for="centre_regional">Centre Régional</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
-                            <option></option>
-                        </select>
+                        <input id="centre_regional" name="centre_regional" class="form-control col-8" required/>
                     </div>
                 </div>
             </div>
@@ -99,7 +92,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col-2"><label>CB</label></div>
+                                        <div class="col-2"><label></label></div>
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
@@ -119,7 +112,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col-2"><label>CC</label></div>
+                                        <div class="col-2"><label></label></div>
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
@@ -140,7 +133,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col-2"><label>CG</label></div>
+                                        <div class="col-2"><label></label></div>
                                         <div class="col">
                                             <div class="form-group row">
                                                 <label for="cbMatricule" class="col-sm-4">Matricule</label>
@@ -410,6 +403,54 @@
                                             <option value="CG">CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantMunitionHeureRetour" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Minutions PA</td>
+                                    <td><input type="radio" name="remettantMunitionPA" value="1"></td>
+                                    <td><input type="radio" name="remettantMunitionPA" value="0"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionPAQuantite"
+                                               class="form-control"
+                                        ></td>
+                                    <td><input type="time" name="beneficiaireMunitionPAHeureRetour" class="form-control"></td>
+                                    <td><select name="remettantMunitionPAConvoyeur" class="form-control">
+                                            <option value="CB">CB</option>
+                                            <option value="CC">CC</option>
+                                            <option value="CG">CG</option>
+                                        </select></td>
+                                    <td><input type="time" name="remettantMunitionPAHeureRetour" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Minutions FM</td>
+                                    <td><input type="radio" name="remettantMunitionFM" value="1"></td>
+                                    <td><input type="radio" name="remettantMunitionFM" value="0"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionFMQuantite"
+                                               class="form-control"
+                                        ></td>
+                                    <td><input type="time" name="beneficiaireMunitionFMHeureRetour" class="form-control"></td>
+                                    <td><select name="remettantMunitionFMConvoyeur" class="form-control">
+                                            <option value="CB">CB</option>
+                                            <option value="CC">CC</option>
+                                            <option value="CG">CG</option>
+                                        </select></td>
+                                    <td><input type="time" name="remettantMunitionFMHeureRetour" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Minutions FP</td>
+                                    <td><input type="radio" name="remettantMunitionFP" value="1"></td>
+                                    <td><input type="radio" name="remettantMunitionFP" value="0"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionFPQuantite"
+                                               class="form-control"
+                                        ></td>
+                                    <td><input type="time" name="beneficiaireMunitionFPHeureRetour" class="form-control"></td>
+                                    <td><select name="remettantMunitionFPConvoyeur" class="form-control">
+                                            <option value="CB">CB</option>
+                                            <option value="CC">CC</option>
+                                            <option value="CG">CG</option>
+                                        </select></td>
+                                    <td><input type="time" name="remettantMunitionFPHeureRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>

@@ -48,6 +48,21 @@ class SecuriteMaterielRemettant extends Model
         'remettantTAGQuanite',
         'remettantTAGHeureRetour',
         'remettantTAGConvoyeur',
+        'remettantMunitionPA',
+        'remettantMunitionPAQuantite',
+        'beneficiaireMunitionPAHeureRetour',
+        'remettantMunitionPAConvoyeur',
+        'remettantMunitionPAHeureRetour',
+        'remettantMunitionFM',
+        'remettantMunitionFMQuantite',
+        'beneficiaireMunitionFMHeureRetour',
+        'remettantMunitionFMConvoyeur',
+        'remettantMunitionFMHeureRetour',
+        'remettantMunitionFP',
+        'remettantMunitionFPQuantite',
+        'beneficiaireMunitionFPHeureRetour',
+        'remettantMunitionFPConvoyeur',
+        'remettantMunitionFPHeureRetour',
     ];
 
     public function materiels()

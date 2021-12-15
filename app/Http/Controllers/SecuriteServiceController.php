@@ -35,7 +35,9 @@ class SecuriteServiceController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $securiteServices = SecuriteService::with('personnes')->get();
+        $securiteServices = SecuriteService::with('personnes')
+            ->orderByDesc('id')
+            ->get();
         if (isset($debut) && isset($fin)) {
             $securiteServices = SecuriteService::with('personnes')
                 ->whereBetween('date', [$debut, $fin])

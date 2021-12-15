@@ -24,7 +24,11 @@ class SecuriteMaterielController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $personnels = DB::table('personnels')->where('service', '=', 'securite')->get();
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournees = DepartTournee::with('agentDeGardes')
+            ->with('chefDeBords')->with('chauffeurs')
+            ->with('vehicules')
+            ->orderByDesc('id')
+            ->get();
         return view('securite/materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
     }
 
@@ -35,7 +39,8 @@ class SecuriteMaterielController extends Controller
      */
     public function liste()
     {
-        $materiels = SecuriteMateriel::with('cbs')->with('tournees')->get();
+        $materiels = SecuriteMateriel::with('cbs')->with('tournees')->orderByDesc('id')
+            ->get();
         $remettants = SecuriteMaterielRemettant::with('materiels')->get();
         $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
         return view('securite.materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
@@ -118,6 +123,21 @@ class SecuriteMaterielController extends Controller
             'remettantTAGQuanite' => $request->get('remettantTAGQuanite'),
             'remettantTAGHeureRetour' => $request->get('remettantTAGHeureRetour'),
             'remettantTAGConvoyeur' => $request->get('remettantTAGConvoyeur'),
+            'remettantMunitionPA' => $request->get('remettantMunitionPA'),
+            'remettantMunitionPAQuantite' => $request->get('remettantMunitionPAQuantite'),
+            'beneficiaireMunitionPAHeureRetour' => $request->get('beneficiaireMunitionPAHeureRetour'),
+            'remettantMunitionPAHeureRetour' => $request->get('remettantMunitionPAHeureRetour'),
+            'remettantMunitionPAConvoyeur' => $request->get('remettantMunitionPAConvoyeur'),
+            'remettantMunitionFM' => $request->get('remettantMunitionFM'),
+            'remettantMunitionFMQuantite' => $request->get('remettantMunitionFMQuantite'),
+            'beneficiaireMunitionFMHeureRetour' => $request->get('beneficiaireMunitionFMHeureRetour'),
+            'remettantMunitionFMConvoyeur' => $request->get('remettantMunitionFMConvoyeur'),
+            'remettantMunitionFMHeureRetour' => $request->get('remettantMunitionFMHeureRetour'),
+            'remettantMunitionFP' => $request->get('remettantMunitionFP'),
+            'remettantMunitionFPQuantite' => $request->get('remettantMunitionFPQuantite'),
+            'beneficiaireMunitionFPHeureRetour' => $request->get('beneficiaireMunitionFPHeureRetour'),
+            'remettantMunitionFPConvoyeur' => $request->get('remettantMunitionFPConvoyeur'),
+            'remettantMunitionFPHeureRetour' => $request->get('remettantMunitionFPHeureRetour'),
         ]);
 
         $beneficiare = new SecuriteMaterielBeneficiaire([
@@ -264,6 +284,21 @@ class SecuriteMaterielController extends Controller
             $remettant->remettantTAGQuanite = $request->get('remettantTAGQuanite');
             $remettant->remettantTAGHeureRetour = $request->get('remettantTAGHeureRetour');
             $remettant->remettantTAGConvoyeur = $request->get('remettantTAGConvoyeur');
+            $remettant->remettantMunitionPA = $request->get('remettantMunitionPA');
+            $remettant->remettantMunitionPAQuantite = $request->get('remettantMunitionPAQuantite');
+            $remettant->beneficiaireMunitionPAHeureRetour = $request->get('beneficiaireMunitionPAHeureRetour');
+            $remettant->remettantMunitionPAConvoyeur = $request->get('remettantMunitionPAConvoyeur');
+            $remettant->remettantMunitionPAHeureRetour = $request->get('remettantMunitionPAHeureRetour');
+            $remettant->remettantMunitionFM = $request->get('remettantMunitionFM');
+            $remettant->remettantMunitionFMQuantite = $request->get('remettantMunitionFMQuantite');
+            $remettant->beneficiaireMunitionFMHeureRetour = $request->get('beneficiaireMunitionFMHeureRetour');
+            $remettant->remettantMunitionFMConvoyeur = $request->get('remettantMunitionFMConvoyeur');
+            $remettant->remettantMunitionFMHeureRetour = $request->get('remettantMunitionFMHeureRetour');
+            $remettant->remettantMunitionFP = $request->get('remettantMunitionFP');
+            $remettant->remettantMunitionFPQuantite = $request->get('remettantMunitionFPQuantite');
+            $remettant->beneficiaireMunitionFPHeureRetour = $request->get('beneficiaireMunitionFPHeureRetour');
+            $remettant->remettantMunitionFPConvoyeur = $request->get('remettantMunitionFPConvoyeur');
+            $remettant->remettantMunitionFPHeureRetour = $request->get('remettantMunitionFPHeureRetour');
             $remettant->save();
         }
 
