@@ -165,9 +165,12 @@
                         <td>
                             <select type="time" class="form-control" name="type[]">
                                 <option>{{$site->type}}</option>
-                                <option>Enlèvement</option>
-                                <option>Dépôt</option>
-                                <option>Enlèvement + Dépôt</option>
+                                <option value="Enlèvement">Enlèvement</option>
+                                    <option value="Dépôt">Dépôt</option>
+                                    <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
+                                    <option value="Enlèvement / R">Enlèvement / R</option>
+                                    <option value="Dépôt / R">Dépôt / R</option>
+                                    <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
                             </select>
                         </td>
                         <td>

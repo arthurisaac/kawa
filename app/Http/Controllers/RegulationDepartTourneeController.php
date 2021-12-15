@@ -10,6 +10,7 @@ use App\Models\RegulationDepartTourneeItem;
 use App\Models\SiteDepartTournee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class RegulationDepartTourneeController extends Controller
 {
@@ -23,7 +24,14 @@ class RegulationDepartTourneeController extends Controller
         $date = date("Y/m/d");
         $heure = date("H:i");
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
-        $sites = SiteDepartTournee::with('sites')->get();
+        // $sites = DB::table('site_depart_tournees')
+        // ->where('type', 'Enlèvement / R')
+        // ->orWhere('type', "Enlèvement + Dépôt / R")
+        // ->orWhere('type', "Dépôt / R")
+        // ->get();
+        $sites = SiteDepartTournee::with('sites')->where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
+        // dd($sites);
+
         $devises = OptionDevise::all();
         return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites", "devises"));
     }
@@ -38,6 +46,7 @@ class RegulationDepartTourneeController extends Controller
             $tournees = DepartTournee::with("sites")
                 ->whereBetween('date', [$debut, $fin])
                 ->get();
+
         }
         return view("regulation.depart-tournee.liste", compact("tournees"));
     }

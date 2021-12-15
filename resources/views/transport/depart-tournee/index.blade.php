@@ -157,9 +157,12 @@
                             </td>
                             <td>
                                 <select class="form-control" name="type[]">
-                                    <option>Enlèvement</option>
-                                    <option>Dépôt</option>
-                                    <option>Enlèvement + Dépôt</option>
+                                    <option value="Enlèvement">Enlèvement</option>
+                                    <option value="Dépôt">Dépôt</option>
+                                    <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
+                                    <option value="Enlèvement / R">Enlèvement / R</option>
+                                    <option value="Dépôt / R">Dépôt / R</option>
+                                    <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
                                 </select>
                             </td>
                             <td>
@@ -234,6 +237,9 @@
                     '                                    <option>Enlèvement</option>\n' +
                     '                                    <option>Dépôt</option>\n' +
                     '                                    <option>Enlèvement + Dépôt</option>\n' +
+                    '                                   <option>Enlèvement / R</option>\n' +
+                    '                                    <option>Dépôt / R</option>\n' +
+                    '                                    <option>Enlèvement + Dépôt / R</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td>\n' +
