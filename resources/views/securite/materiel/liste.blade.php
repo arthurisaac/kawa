@@ -55,6 +55,7 @@
                     <th>Date</th>
                     <th>Centre régional</th>
                     <th>Centre</th>
+                    <th>Véhicule</th>
                     <th>Opérateur radio</th>
                     <th>Chef de bord</th>
                     <th>Opération Ajout/Modif</th>
@@ -66,6 +67,7 @@
                     <td>{{$materiel->tournees->numeroTournee ?? 'Donnée indisponible'}}</td>
                     <td>{{$materiel->date}}</td>
                     <td>{{$materiel->tournees->centre ?? 'Donnée indisponible'}}</td>
+                    <td>{{$materiel->tournees->vehicules->immatriculation ?? 'Donnée indisponible'}}</td>
                     <td>{{$materiel->tournees->centre_regional ?? 'Donnée indisponible'}}</td>
                     <td>{{$materiel->operateurRadios->nomPrenoms ?? ""}}</td>
                     <td>{{$materiel->cbs->nomPrenoms ?? 'Donnée indisponible'}}</td>
