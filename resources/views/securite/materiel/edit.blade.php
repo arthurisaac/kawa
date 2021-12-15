@@ -27,6 +27,20 @@
         @method('PATCH')
 
         <div class="row">
+            <div class="col-4">
+                <div class="form-group row">
+                    <label class="col-sm-4">Tournée N°</label>
+                    <select class="form-control col-sm-8" name="noTournee" required>
+                        <option value="{{$materiel->noTournee}}">{{$materiel->tournees->numeroTournee ?? 'Donnée indisponible'}}</option>
+                        @foreach($tournees as $tournee)
+                            <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                        @endforeach
+                    </select>
+                    {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="form-group row">
                     <label class="col-2">Date</label>
@@ -34,9 +48,9 @@
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label for="centre">Centre</label>
-                    <select name="centre" id="centre" class="form-control" required>
+                <div class="form-group row">
+                    <label for="centre" class="col-4">Centre</label>
+                    <select name="centre" id="centre" class="form-control col" required>
                         <option>{{$materiel->centre}}</option>
                         @foreach ($centres as $centre)
                             <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -45,9 +59,9 @@
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label for="centre_regional">Centre Régional</label>
-                    <select id="centre_regional" name="centre_regional" class="form-control" required>
+                <div class="form-group row">
+                    <label for="centre_regional" class="col-4">Centre Régional</label>
+                    <select id="centre_regional" name="centre_regional" class="form-control col" required>
                         <option>{{$materiel->centre_regional}}</option>
                     </select>
                 </div>
@@ -86,7 +100,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>Chef de bord</label></div>
+                                    <div class="col-2"><label></label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="cbMatricule" class="col-sm-4">Matricule</label>
@@ -112,7 +126,7 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>Convoyeur chauffeur</label></div>
+                                    <div class="col-2"><label></label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="ccMatricule" class="col-sm-4">Matricule</label>
@@ -139,7 +153,7 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-2"><label>Agent garde</label></div>
+                                    <div class="col-2"><label></label></div>
                                     <div class="col">
                                         <div class="form-group row">
                                             <label for="cgMatricule" class="col-sm-4">Matricule</label>
@@ -170,8 +184,8 @@
                     <div class="col-3">
                         <div class="row">
                             <div class="col-4"><label>Véhicule</label></div>
-                            <div class="col-4">
-                                <div class="form-check">
+                            <div class="col-4" style="display: none;">
+                                <div class="form-check" >
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
                                            value="option1" checked>
                                     <label class="form-check-label" for="exampleRadios1">
@@ -186,7 +200,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4" style="display: none;">
                                 <div class="form-group row">
                                     <input type="text" class="form-control" name="vehiculeVB" value="{{$materiel->vehiculeVB}}">
                                 </div>
@@ -194,20 +208,16 @@
                                     <input type="text" class="form-control" name="vehiculeVL" value="{{$materiel->vehiculeVL}}">
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group row">
+                                    <input type="text" value="{{$materiel->tournees->vehicules->immatriculation ?? ''}}" class="form-control" id="vehicule">
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                     <div class="col-3">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Tournée N°</label>
-                            <select class="form-control col-sm-8" name="noTournee" required>
-                                <option value="{{$materiel->noTournee}}">{{$materiel->tournees->numeroTournee ?? 'Donnée indisponible'}}</option>
-                                @foreach($tournees as $tournee)
-                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                                @endforeach
-                            </select>
-                            {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
-                        </div>
+
                     </div>
                 </div>
             </div>

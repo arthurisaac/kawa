@@ -39,7 +39,10 @@ class SecuriteMaterielController extends Controller
      */
     public function liste()
     {
-        $materiels = SecuriteMateriel::with('cbs')->with('tournees')->orderByDesc('id')
+        $materiels = SecuriteMateriel::with('cbs')
+            ->with('tournees')
+            ->with('operateurRadios')
+            ->orderByDesc('id')
             ->get();
         $remettants = SecuriteMaterielRemettant::with('materiels')->get();
         $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
