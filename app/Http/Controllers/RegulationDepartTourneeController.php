@@ -8,6 +8,7 @@ use App\Models\OptionDevise;
 use App\Models\RegulationDepartTournee;
 use App\Models\RegulationDepartTourneeItem;
 use App\Models\SiteDepartTournee;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -141,7 +142,15 @@ class RegulationDepartTourneeController extends Controller
         $tournee = DepartTournee::find($id);
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
-        $sitesItems = SiteDepartTournee::where("idTourneeDepart", "=", $id)->Where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
+        //$sitesItems = SiteDepartTournee::where("idTourneeDepart", "=", $id)->Where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
+        $sitesItems = SiteDepartTournee::with('sites')
+            ->where("idTourneeDepart", "=", $id)
+            ->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })
+            ->get();
         $devises = OptionDevise::all();
         return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems", "devises"));
     }
