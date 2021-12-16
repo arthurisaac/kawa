@@ -109,8 +109,8 @@
                         <th>Site</th>
                         <th>Client</th>
                         <th>Colis</th>
-                        <th>Devise</th>
                         <th>Valeur colis</th>
+                        <th>Devise</th>
                         <th>Numéro</th>
                         <th>Nombre total de colis</th>
                     </tr>
@@ -118,8 +118,9 @@
                     <tbody></tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4" style="vertical-align: center;">TOTAL</td>
+                        <td colspan="3" style="vertical-align: center;">TOTAL</td>
                         <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control" readonly></td>
+                        <td></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                     </tr>
@@ -189,13 +190,17 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                                 </select></td>
-                        <td><select name="regulation_depart_devise[]" class="form-control">
+                <td><input type="text" name="regulation_depart_valeur_colis[]" value="${s.regulation_depart_valeur_colis ?? 0}" class="form-control"></td>
+                <td><select name="regulation_depart_devise[]" class="form-control">
                                     <option>${s?.regulation_depart_devise ?? ''}</option>
                                     @foreach($devises as $devise)
-                                        <option>{{$devise->devise}}</option>
+                                        @if ($devise->devise === "XOF")
+                                            <option selected>{{$devise->devise}}</option>
+                                        @else
+                                            <option>{{$devise->devise}}</option>
+                                        @endif
                                     @endforeach
                                     </select></td>
-                <td><input type="text" name="regulation_depart_valeur_colis[]" value="${s.regulation_depart_valeur_colis ?? 0}" class="form-control"></td>
                         <td><textarea name="numero[]" class="form-control">${s.numero ?? ''}</textarea></td>
                         <td><input type="number" name="nbre_colis[]" value="${s?.nbre_colis ?? 0}" class="form-control"></td>
                 </tr>`;
