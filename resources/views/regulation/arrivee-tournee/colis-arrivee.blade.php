@@ -40,24 +40,18 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-secondary">Valeur Colis (XOF): {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
+                        <h6 class="text-secondary">Colis: {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-secondary">Devise étrangère(dollar): {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
+                        <h6 class="text-secondary">Valeur Colis: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-secondary">Devise étrangère(euro): {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
+                        <h6 class="text-secondary">Devis numéro bordereau : {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Pierre précieuse(xof): {{$colisArrivees->sum("pierre_precieuse_arrivee")}}</h6>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col">
                         <h6 class="text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
@@ -123,12 +117,10 @@
                 <th>Client</th>
                 <th>Type</th>
                 <th>Colis</th>
-                <th>Bordereau</th>
+                <th>Valeur Colis</th>
+                <th>Dévise</th>
                 <th>N° Tournée</th>
-                <th>colis (XOF)</th>
-                <th>Devise Dollar</th>
-                <th>Devise Euro</th>
-                <th>Pierre précieuse (XOF)</th>
+                <th>Bordereau</th>
                 <th>Nombre de colis</th>
                 <th>Actions</th>
             </tr>
@@ -144,12 +136,10 @@
                     <td>{{$colis->sites->clients->client_nom ?? ''}}</td>
                     <td>{{$colis->type ?? ''}}</td>
                     <td>{{$colis->colis ?? ''}}</td>
-                    <td>{{$colis->bordereau ?? ''}}</td>
+                    <td>{{$colis->regulation_arrivee_valeur_colis}}</td>
+                    <td>{{$colis->regulation_arrivee_devise}}</td>
                     <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
-                    <td>{{$colis->valeur_colis_xof_arrivee}}</td>
-                    <td>{{$colis->device_etrangere_dollar_arrivee}}</td>
-                    <td>{{$colis->device_etrangere_euro_arrivee}}</td>
-                    <td>{{$colis->pierre_precieuse_arrivee}}</td>
+                    <td>{{$colis->bordereau ?? ''}}</td>
                     <td>{{$colis->nbre_colis_arrivee}}</td>
                     <td><a href="{{ route('regulation-arrivee-tournee.edit',$colis->idTourneeDepart)}}" class="btn btn-primary btn-sm"></a></td>
                 </tr>
