@@ -436,6 +436,9 @@
                     '                                    <option>Enlèvement</option>\n' +
                     '                                    <option>Dépôt</option>\n' +
                     '                                    <option>Enlèvement + Dépôt</option>\n' +
+                    '                                    <option>Enlèvement / R</option>\n' +
+                    '                                    <option>Dépôt / R</option>\n' +
+                    '                                    <option>Enlèvement + Dépôt / R</option>\n' +
                     '                                </select>\n' +
                     '                            </td>\n' +
                     '                            <td>\n' +
