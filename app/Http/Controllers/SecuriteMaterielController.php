@@ -29,7 +29,7 @@ class SecuriteMaterielController extends Controller
             ->with('vehicules')
             ->orderByDesc('id')
             ->get();
-        return view('securite/materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
+        return view('securite.materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
     }
 
     /**
@@ -37,15 +37,28 @@ class SecuriteMaterielController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
-        $materiels = SecuriteMateriel::with('cbs')
+        if(isset($request->debut) && isset($request->fin))
+        {
+            $materiels = SecuriteMateriel::with('cbs')
             ->with('tournees')
             ->with('operateurRadios')
+            ->whereBetween('date', [$request->debut, $request->fin])
             ->orderByDesc('id')
             ->get();
         $remettants = SecuriteMaterielRemettant::with('materiels')->get();
         $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
+        } else{
+            $materiels = SecuriteMateriel::with('cbs')
+                ->with('tournees')
+                ->with('operateurRadios')
+                ->orderByDesc('id')
+                ->get();
+            $remettants = SecuriteMaterielRemettant::with('materiels')->get();
+            $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
+        }
+
         return view('securite.materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
     }
 
@@ -67,6 +80,7 @@ class SecuriteMaterielController extends Controller
      */
     public function store(Request $request)
     {
+
         $saisie = new SecuriteMateriel([
             'date' => $request->get('date'),
             'cbMatricule' => $request->get('cbMatricule'),

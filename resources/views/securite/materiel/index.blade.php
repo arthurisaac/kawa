@@ -279,6 +279,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantPieceVehiculeHeureRetour"
                                                class="form-control">
@@ -296,6 +297,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantCleVehiculeHeureRetour" class="form-control">
                                     </td>
@@ -313,6 +315,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantTelephoneHeureRetour" class="form-control">
                                     </td>
@@ -329,6 +332,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantRadioHeureRetour" class="form-control"></td>
 
@@ -344,6 +348,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantGBPHeureRetour" class="form-control"></td>
                                 </tr>
@@ -358,6 +363,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantPAHeureRetour" class="form-control"></td>
                                 </tr>
@@ -372,6 +378,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantFPHeureRetour" class="form-control"></td>
                                 </tr>
@@ -386,6 +393,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantPMHeureRetour" class="form-control"></td>
                                 </tr>
@@ -401,6 +409,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantMunitionHeureRetour" class="form-control">
                                     </td>
@@ -417,6 +426,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantMunitionPAHeureRetour" class="form-control">
                                     </td>
@@ -433,6 +443,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantMunitionFMHeureRetour" class="form-control">
                                     </td>
@@ -449,6 +460,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantMunitionFPHeureRetour" class="form-control">
                                     </td>
@@ -464,6 +476,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="time" name="remettantTAGHeureRetour" class="form-control"></td>
                                 </tr>
@@ -499,6 +512,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiairePieceVehicule" value="1"></td>
                                     <td><input type="radio" name="beneficiairePieceVehicule" value="0"></td>
@@ -512,6 +526,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireCleVehicule" value="1"></td>
                                     <td><input type="radio" name="beneficiaireCleVehicule" value="0"></td>
@@ -526,6 +541,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireTelephone" value="1"></td>
                                     <td><input type="radio" name="beneficiaireTelephone" value="0"></td>
@@ -540,6 +556,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireRadio" value="1"></td>
                                     <td><input type="radio" name="beneficiaireRadio" value="0"></td>
@@ -554,6 +571,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireGBP" value="1"></td>
                                     <td><input type="radio" name="beneficiaireGBP" value="0"></td>
@@ -568,6 +586,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiairePA" value="1"></td>
                                     <td><input type="radio" name="beneficiairePA" value="0"></td>
@@ -581,6 +600,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireFP" value="1"></td>
                                     <td><input type="radio" name="beneficiaireFP" value="0"></td>
@@ -593,6 +613,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiairePM" value="1"></td>
                                     <td><input type="radio" name="beneficiairePM" value="0"></td>
@@ -606,6 +627,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireMunition" value="1"></td>
                                     <td><input type="radio" name="beneficiaireMunition" value="0"></td>
@@ -620,6 +642,7 @@
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
+                                            <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
                                     <td><input type="radio" name="beneficiaireTAG" value="1"></td>
                                     <td><input type="radio" name="beneficiaireTAG" value="0"></td>

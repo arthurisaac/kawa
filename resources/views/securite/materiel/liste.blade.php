@@ -23,7 +23,7 @@
 
     <a href="/materiel" class="btn btn-info btn-sm">Nouveau</a>
     <br>
-    <form action="#" method="get">
+    <form action="materiel-liste" method="get">
         @csrf
         <div class="row">
             <div class="col-4">

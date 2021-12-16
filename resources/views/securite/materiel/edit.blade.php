@@ -294,13 +294,14 @@
                                 <td><input type="radio" name="remettantPieceVehicule" value="1" {{($remettant->remettantPieceVehicule == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantPieceVehicule" value="0" {{($remettant->remettantPieceVehicule == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control" value="{{$remettant->remettantPieceVehiculeQuantite}}"></td>
-                                <td><input type="time" name="beneficiairePieceVehiculeHeureRetour" value="{{$remettant->beneficiairePieceVehiculeHeureRetour}}" class="form-control">
+                                <td><input type="time" name="remettantPieceVehiculeHeureRetour" value="{{$remettant->remettantPieceVehiculeHeureRetour}}" class="form-control">
                                 </td>
                                 <td><select name="remettantPieceVehiculeConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantPieceVehiculeConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantPieceVehiculeHeureRetour" value="{{$remettant->remettantPieceVehiculeHeureRetour}}" class="form-control">
                                 </td>
@@ -310,12 +311,13 @@
                                 <td><input type="radio" name="remettantCleVehicule" value="1" {{($remettant->remettantCleVehicule == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantCleVehicule" value="0" {{($remettant->remettantCleVehicule == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantCleVehiculeQuantite" value="{{$remettant->remettantCleVehiculeQuantite}}" class="form-control"></td>
-                                <td><input type="time" name="beneficiaireCleVehiculeHeureRetour" value="{{$remettant->beneficiaireCleVehiculeHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="beneficiaireCleVehiculeHeureRetour" value="{{$remettant->remettantCleVehiculeHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantCleVehiculeConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantCleVehiculeConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantCleVehiculeHeureRetour" value="{{$remettant->remettantCleVehiculeHeureRetour}}" class="form-control">
                                 </td>
@@ -325,12 +327,13 @@
                                 <td><input type="radio" name="remettantTelephone" value="1" {{($remettant->remettantTelephone == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantTelephone" value="0" {{($remettant->remettantTelephone == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantTelephoneQuantite" class="form-control" value="{{$remettant->remettantTelephoneQuantite}}"></td>
-                                <td><input type="time" name="beneficiaireTelephoneHeureRetour"  value="{{$remettant->beneficiaireTelephoneHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantTelephoneHeureRetour"  value="{{$remettant->remettantTelephoneHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantTelephoneConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantTelephoneConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantTelephoneHeureRetour" value="{{$remettant->remettantTelephoneHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -340,14 +343,15 @@
                                 <td><input type="radio" name="remettantRadio" value="0" {{($remettant->remettantRadio == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantRadioQuantite" value="{{$remettant->remettantRadioQuantite}}" class="form-control">
                                 </td>
-                                <td><input type="time" name="beneficiaireRadioHeureRetour" value="{{$remettant->beneficiaireRadioHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantRadioHeureRetour" value="{{$remettant->remettantRadioHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantRadioConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantRadioConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
-                                <td><input type="time" name="remettantRadioHeureRetour" value="{{$remettant->remettantRadioHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantRadioHeureRetour" value="{{ $remettant->remettantRadioHeureRetour }}" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>G. P. B</td>
@@ -355,12 +359,13 @@
                                 <td><input type="radio" name="remettantGBP" value="0" {{($remettant->remettantGBP == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantGBPQuantite" value="{{$remettant->remettantGBPQuantite}}" class="form-control">
                                 </td>
-                                <td><input type="time" name="beneficiaireGBPHeureRetour" value="{{$remettant->beneficiaireGBPHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="beneficiaireGBPHeureRetour" value="{{$remettant->remettantGBPHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantGBPConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantGBPConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantGBPHeureRetour"  value="{{$remettant->remettantGBPHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -369,12 +374,13 @@
                                 <td><input type="radio" name="remettantPA" value="1" {{($remettant->remettantPA == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantPA" value="0" {{($remettant->remettantPA == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantPAQuantite" value="{{$remettant->remettantPAQuantite}}" class="form-control"></td>
-                                <td><input type="time" name="beneficiairePAHeureRetour" value="{{$remettant->beneficiairePAHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantPAHeureRetour" value="{{$remettant->remettantPAHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantPAConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantPAConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantPAHeureRetour" value="{{$remettant->remettantPAHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -383,12 +389,13 @@
                                 <td><input type="radio" name="remettantFP" value="1" {{($remettant->remettantFP == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantFP" value="0" {{($remettant->remettantFP == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantFPQuantite" value="{{$remettant->remettantFPQuantite}}" class="form-control"></td>
-                                <td><input type="time" name="beneficiaireFPHeureRetour" value="{{$remettant->remettantPAHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantFPHeureRetour" value="{{$remettant->remettantPAHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantFPConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantFPConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantFPHeureRetour" value="{{$remettant->remettantFPHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -397,12 +404,13 @@
                                 <td><input type="radio" name="remettantPM" value="1" {{($remettant->remettantPM == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantPM" value="0" {{($remettant->remettantPM == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantPMQuantite" value="{{$remettant->remettantPMQuantite}}" class="form-control"></td>
-                                <td><input type="time" name="beneficiairePMHeureRetour" value="{{$remettant->beneficiairePMHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantPMHeureRetour" value="{{$remettant->remettantPMHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantPMConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantPMConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantPMHeureRetour" value="{{$remettant->remettantPMHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -412,12 +420,13 @@
                                 <td><input type="radio" name="remettantMunition" value="0" {{($remettant->remettantMunition == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantMunitionQuantite" value="{{$remettant->remettantMunitionQuantite}}" class="form-control"
                                     ></td>
-                                <td><input type="time" name="beneficiaireMunitionHeureRetour" class="form-control"></td>
+                                <td><input type="time" name="remettantMunitionHeureRetour" value="{{$remettant->remettantMunitionHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantMunitionConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantMunitionConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantMunitionHeureRetour" value="{{$remettant->remettantMunitionHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -428,12 +437,13 @@
                                 <td><input type="number" min="0" name="remettantMunitionPAQuantite" value="{{$remettant->remettantMunitionPAQuantite}}"
                                            class="form-control"
                                     ></td>
-                                <td><input type="time" name="beneficiaireMunitionPAHeureRetour" value="{{$remettant->beneficiaireMunitionPAHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantMunitionPAHeureRetour" value="{{$remettant->remettantMunitionPAHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantMunitionPAConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantMunitionPAConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantMunitionPAHeureRetour" value="{{$remettant->remettantMunitionPAHeureRetour}}" class="form-control">
                                 </td>
@@ -445,12 +455,13 @@
                                 <td><input type="number" min="0" name="remettantMunitionFMQuantite"  value="{{$remettant->remettantMunitionFMQuantite}}"
                                            class="form-control"
                                     ></td>
-                                <td><input type="time" name="beneficiaireMunitionFMHeureRetour" value="{{$remettant->beneficiaireMunitionFMHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantMunitionFMHeureRetour" value="{{$remettant->beneficiaireMunitionFMHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantMunitionFMConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantMunitionFMConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantMunitionFMHeureRetour" value="{{$remettant->remettantMunitionFMHeureRetour}}" class="form-control">
                                 </td>
@@ -462,12 +473,13 @@
                                 <td><input type="number" min="0" name="remettantMunitionFPQuantite" value="{{$remettant->remettantMunitionFPQuantite}}"
                                            class="form-control"
                                     ></td>
-                                <td><input type="time" name="beneficiaireMunitionFPHeureRetour" value="{{$remettant->beneficiaireMunitionFPHeureRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantMunitionFPHeureRetour" value="{{$remettant->remettantMunitionFPHeureRetour}}" class="form-control"></td>
                                 <td><select name="remettantMunitionFPConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantMunitionFPConvoyeur}}</option>
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantMunitionFPHeureRetour" value="{{$remettant->remettantMunitionFPHeureRetour}}" class="form-control">
                                 </td>
@@ -483,6 +495,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="time" name="remettantTAGHeureRetour" value="{{$remettant->remettantTAGHeureRetour}}" class="form-control"></td>
                             </tr>
@@ -518,6 +531,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiairePieceVehicule" value="1"></td>
                                 <td><input type="radio" name="beneficiairePieceVehicule" value="0"></td>
@@ -532,6 +546,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireCleVehicule" value="1"></td>
                                 <td><input type="radio" name="beneficiaireCleVehicule" value="0"></td>
@@ -544,6 +559,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireTelephone" value="1"></td>
                                 <td><input type="radio" name="beneficiaireTelephone" value="0"></td>
@@ -557,6 +573,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireRadio" value="1"></td>
                                 <td><input type="radio" name="beneficiaireRadio" value="0"></td>
@@ -570,6 +587,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireGBP" value="1"></td>
                                 <td><input type="radio" name="beneficiaireGBP" value="0"></td>
@@ -583,6 +601,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiairePA" value="1"></td>
                                 <td><input type="radio" name="beneficiairePA" value="0"></td>
@@ -595,6 +614,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireFP" value="1"></td>
                                 <td><input type="radio" name="beneficiaireFP" value="0"></td>
@@ -606,6 +626,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiairePM" value="1"></td>
                                 <td><input type="radio" name="beneficiairePM" value="0"></td>
@@ -618,6 +639,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireMunition" value="1"></td>
                                 <td><input type="radio" name="beneficiaireMunition" value="0"></td>
@@ -631,6 +653,7 @@
                                         <option value="CB">CB</option>
                                         <option value="CC">CC</option>
                                         <option value="CG">CG</option>
+                                        <option value="CB + CC + CG">CB + CC + CG</option>
                                     </select></td>
                                 <td><input type="radio" name="beneficiaireTAG" value="1"></td>
                                 <td><input type="radio" name="beneficiaireTAG" value="0"></td>
