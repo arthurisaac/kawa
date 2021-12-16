@@ -141,7 +141,7 @@ class RegulationDepartTourneeController extends Controller
         $tournee = DepartTournee::find($id);
         $tournees = RegulationDepartTournee::all();
         $sites = Commercial_site::with('clients')->get();
-        $sitesItems = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
+        $sitesItems = SiteDepartTournee::where("idTourneeDepart", "=", $id)->Where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
         $devises = OptionDevise::all();
         return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems", "devises"));
     }
