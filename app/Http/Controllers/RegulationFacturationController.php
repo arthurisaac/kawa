@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_client;
+use App\Models\Commercial_site;
 use App\Models\RegulationFacturation;
 use App\Models\RegulationFacturationItem;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class RegulationFacturationController extends Controller
         $clients = Commercial_client::all();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        return view('.regulation.facturation.index', compact('numero', 'clients', 'centres', 'centres_regionaux'));
+        $sites = Commercial_site::all();
+        return view('.regulation.facturation.index', compact('numero', 'clients', 'centres', 'centres_regionaux', 'sites'));
     }
 
     /**
@@ -53,6 +55,7 @@ class RegulationFacturationController extends Controller
             'montantTotal' => $request->get("montantTotal"),
             'client' => $request->get("client"),
             'type' => $request->get("type"),
+            'site' => $request->get('site'),
         ]);
         $data->save();
 

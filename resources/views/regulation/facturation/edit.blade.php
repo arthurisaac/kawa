@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="date" class="col-4">Date</label>
                         <input type="date" id="date" name="date" value="{{$regulation->date}}"
-                               class="form-control col-8" required readonly/>
+                               class="form-control col-8" required/>
                     </div>
                 </div>
                 <div class="col">

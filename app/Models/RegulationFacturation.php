@@ -16,6 +16,7 @@ class RegulationFacturation extends Model
         'montantTotal',
         'client',
         'type',
+        'site',
     ];
 
     public function items()

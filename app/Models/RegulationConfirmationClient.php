@@ -20,6 +20,7 @@ class RegulationConfirmationClient extends Model
         'lieu',
         'remarque',
         'confirmation',
+        'devise'
 
     ];
 

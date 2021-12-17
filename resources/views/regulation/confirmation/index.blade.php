@@ -52,21 +52,26 @@
                         <input type="text" class="form-control col-sm-7" id="nbre_colis" readonly>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Montant</label>
+                        <label class="col-sm-5">Montant (Valeur Colis)</label>
                         <input type="number" class="form-control col-sm-7" id="valeur_colis_xof" readonly>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (Dollar)</label>
-                        <input type="number" class="form-control col-sm-7" id="device_etrangere_dollar" readonly>
+                        <label class="col-sm-5">Devise</label>
+                        <select id="devise" name="devise" class="form-control col-sm-7" required>
+                                <option></option>
+                                <option>XOF</option>
+                                <option>Dollar</option>
+                                <option>Euro</option>
+                        </select>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (EURO)</label>
-                        <input type="number" class="form-control col-sm-7" id="device_etrangere_euro" readonly>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Pierre précieuse</label>
-                        <input type="number" class="form-control col-sm-7" id="pierre_precieuse" readonly>
-                    </div>
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Device etrangere (EURO)</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="device_etrangere_euro" readonly>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Pierre précieuse</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="pierre_precieuse" readonly>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="col">
                     <div class="form-group row">
@@ -129,9 +134,9 @@
                     $("#centre").val(site.tournees?.centre);
                     $("#centre_regional").val(site?.tournees?.centre_regional);
                     $("#valeur_colis_xof").val(site?.valeur_colis_xof_arrivee);
-                    $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
-                    $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
-                    $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
+                    // $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
+                    // $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
+                    // $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
                     $("#nbre_colis").val(site?.nbre_colis_arrivee);
                     $("#client").val(site?.sites?.clients?.client_nom);
                     $("#expediteur").val(site?.sites?.clients?.client_nom);
