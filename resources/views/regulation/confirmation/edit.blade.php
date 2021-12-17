@@ -53,22 +53,22 @@
                         <label class="col-sm-5">Nombre de colis</label>
                         <input type="number" class="form-control col-sm-7" value="{{$regulation->site->nbre_colis_arrivee ?? ''}}" id="nbre_colis" readonly>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (XOF)</label>
-                        <input type="number" class="form-control col-sm-7" id="valeur_colis_xof" value="{{$regulation->site->valeur_colis_xof_arrivee ?? ''}}" readonly>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (Dollar)</label>
-                        <input type="number" class="form-control col-sm-7" id="device_etrangere_dollar" value="{{$regulation->site->device_etrangere_dollar_arrivee ?? ''}}" readonly>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Device etrangere (EURO)</label>
-                        <input type="number" class="form-control col-sm-7" id="device_etrangere_euro" value="{{$regulation->site->device_etrangere_euro_arrivee ?? ''}}" readonly>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5">Pierre précieuse</label>
-                        <input type="number" class="form-control col-sm-7" id="pierre_precieuse" value="{{$regulation->site->pierre_precieuse_arrivee ?? ''}}" readonly>
-                    </div>
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Device etrangere (XOF)</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="valeur_colis_xof" value="{{$regulation->site->valeur_colis_xof_arrivee ?? ''}}" readonly>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Device etrangere (Dollar)</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="device_etrangere_dollar" value="{{$regulation->site->device_etrangere_dollar_arrivee ?? ''}}" readonly>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Device etrangere (EURO)</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="device_etrangere_euro" value="{{$regulation->site->device_etrangere_euro_arrivee ?? ''}}" readonly>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Pierre précieuse</label>--}}
+{{--                        <input type="number" class="form-control col-sm-7" id="pierre_precieuse" value="{{$regulation->site->pierre_precieuse_arrivee ?? ''}}" readonly>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="col">
                     <div class="form-group row">
@@ -135,9 +135,9 @@
                     $("#centre").val(site.tournees?.centre);
                     $("#centre_regional").val(site?.tournees?.centre_regional);
                     $("#valeur_colis_xof").val(site?.valeur_colis_xof_arrivee);
-                    $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
-                    $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
-                    $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
+                    // $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
+                    // $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
+                    // $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);
                     $("#nbre_colis").val(site?.nbre_colis);
                     $("#client").val(site?.sites?.clients?.client_nom);
                     $("#expediteur").val(site?.sites?.clients?.client_nom);

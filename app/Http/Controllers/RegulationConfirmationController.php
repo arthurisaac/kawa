@@ -48,7 +48,8 @@ class RegulationConfirmationController extends Controller
             'confirmation' => $request->get('confirmation'),
             'remarque' => $request->get('remarque'),
             'dateReception' => $request->get('date'),
-            'lieu' => $request->get('lieu')
+            'lieu' => $request->get('lieu'),
+            'devise' => $request->get('devise'),
         ]);
         $data->save();
         return redirect("/regulation-confirmation-liste")->with('success', 'Enregistré avec succès');

@@ -33,10 +33,10 @@
                     <tr>
                         <td>ID</td>
                         <td>N°Bordereau</td>
-                        <td>Montant</td>
-                        <td>Device etrangere (Dollar)</td>
-                        <td>Device etrangere (EURO)</td>
-                        <td>Pierre précieuse</td>
+                        <td>Montant (Valeur Colis)</td>
+                        <td>Devise</td>
+{{--                        <td>Device etrangere (EURO)</td>--}}
+{{--                        <td>Pierre précieuse</td>--}}
                         <td>Scellé</td>
                         <td>Client</td>
                         <td>Nom destinataire</td>
@@ -51,9 +51,9 @@
                             <td>{{$regulation->id}}</td>
                             <td>{{$regulation->site->bordereau ?? ''}}</td>
                             <td>{{$regulation->site->valeur_colis_xof_arrivee ?? ''}}</td>
-                            <td>{{$regulation->site->device_etrangere_dollar_arrivee ?? ''}}</td>
-                            <td>{{$regulation->site->device_etrangere_euro_arrivee ?? ''}}</td>
-                            <td>{{$regulation->site->pierre_precieuse_arrivee ?? ''}}</td>
+                            <td>{{$regulation->devise ?? ''}}</td>
+{{--                            <td>{{$regulation->site->device_etrangere_euro_arrivee ?? ''}}</td>--}}
+{{--                            <td>{{$regulation->site->pierre_precieuse_arrivee ?? ''}}</td>--}}
                             <td>{{$regulation->site->numero ?? ''}}</td>
                             <td>{{$regulation->site->sites->clients->client_nom ?? ''}}</td>
                             <td>{{$regulation->site->sites->site ?? 'inconnu'}}</td>
