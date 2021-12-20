@@ -270,7 +270,6 @@
                                         <input type="time" name="asHeure" class="form-control col-sm-6"
                                                value="{{date('H:i')}}"/>
                                     </div>
-
                                 </div>
                                 <div class="col"></div>
                                 <div class="col"></div>

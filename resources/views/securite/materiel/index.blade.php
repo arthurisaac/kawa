@@ -252,7 +252,6 @@
                     <div class="row">
                         <div class="col-8">
                             <table class="table table-borderless">
-
                                 <thead>
                                 <tr>
                                     <td>INTITULE</td>
@@ -269,11 +268,8 @@
                                     <td>Pièce de véhicule</td>
                                     <td><input type="radio" name="remettantPieceVehicule" value="1"></td>
                                     <td><input type="radio" name="remettantPieceVehicule" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantPieceVehiculeQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="beneficiairePieceVehiculeHeureRetour"
-                                    class="form-control">
+                                    <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantPieceVehiculeRemise" class="form-control">
                                     </td>
                                     <td><select name="remettantPieceVehiculeConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
@@ -281,35 +277,29 @@
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantPieceVehiculeHeureRetour"
-                                               class="form-control">
+                                    <td><input type="time" name="remettantPieceVehiculeRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Clés véhicule</td>
                                     <td><input type="radio" name="remettantCleVehicule" value="1"></td>
                                     <td><input type="radio" name="remettantCleVehicule" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantCleVehiculeQuantite"
-                                               class="form-control"></td>
-                                    <td><input type="time" name="beneficiaireCleVehiculeHeureRetour"
-                                               class="form-control"></td>
+                                    <td><input type="number" min="0" name="remettantCleVehiculeQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantCleVehiculeRemise" class="form-control"></td>
                                     <td><select name="remettantCleVehiculeConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantCleVehiculeHeureRetour" class="form-control">
-                                    </td>
+                                    <td><input type="time" name="remettantCleVehiculeRetour" class="form-control"></td>
                                 </tr>
                                 <tr>
                                     <td>Téléphone</td>
                                     <td><input type="radio" name="remettantTelephone" value="1"></td>
                                     <td><input type="radio" name="remettantTelephone" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantTelephoneQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="beneficiaireTelephoneHeureRetour" class="form-control">
+                                    <td><input type="number" min="0" name="remettantTelephoneQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantTelephoneRemise" class="form-control">
                                     </td>
                                     <td><select name="remettantTelephoneConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
@@ -317,7 +307,7 @@
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantTelephoneHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantTelephoneRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
@@ -326,7 +316,7 @@
                                     <td><input type="radio" name="remettantRadio" value="0"></td>
                                     <td><input type="number" min="0" name="remettantRadioQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="beneficiaireRadioHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantRadioRemise" class="form-control">
                                     </td>
                                     <td><select name="remettantRadioConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
@@ -334,7 +324,7 @@
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantRadioHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantRadioRetour" class="form-control"></td>
 
                                 </tr>
                                 <tr>
@@ -343,14 +333,14 @@
                                     <td><input type="radio" name="remettantGBP" value="0"></td>
                                     <td><input type="number" min="0" name="remettantGBPQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="beneficiaireGBPHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="beneficiaireGBPRemise" class="form-control"></td>
                                     <td><select name="remettantGBPConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantGBPHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantGBPRetour" class="form-control"></td>
                                 </tr>
                                 <tr>
                                     <td>P. A</td>
@@ -358,14 +348,14 @@
                                     <td><input type="radio" name="remettantPA" value="0"></td>
                                     <td><input type="number" min="0" name="remettantPAQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="beneficiairePAHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantPARemise" class="form-control"></td>
                                     <td><select name="remettantPAConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantPAHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantPARetour" class="form-control"></td>
                                 </tr>
                                 <tr>
                                     <td>F. P</td>
@@ -373,14 +363,14 @@
                                     <td><input type="radio" name="remettantFP" value="0"></td>
                                     <td><input type="number" min="0" name="remettantFPQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="beneficiaireFPHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="beneficiaireFPRemise" class="form-control"></td>
                                     <td><select name="remettantFPConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantFPHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantFPRetour" class="form-control"></td>
                                 </tr>
                                 <tr>
                                     <td>P. M</td>
@@ -388,47 +378,43 @@
                                     <td><input type="radio" name="remettantPM" value="0"></td>
                                     <td><input type="number" min="0" name="remettantPMQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="beneficiairePMHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantPMRemise" class="form-control"></td>
                                     <td><select name="remettantPMConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantPMHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantPMRetour" class="form-control"></td>
                                 </tr>
                                 <tr>
                                     <td>Minutions</td>
                                     <td><input type="radio" name="remettantMunition" value="1"></td>
                                     <td><input type="radio" name="remettantMunition" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="beneficiaireMunitionHeureRetour" class="form-control"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantMunitionRemise" class="form-control"></td>
                                     <td><select name="remettantMunitionConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantMunitionHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantMunitionRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Minutions PA</td>
                                     <td><input type="radio" name="remettantMunitionPA" value="1"></td>
                                     <td><input type="radio" name="remettantMunitionPA" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionPAQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="beneficiaireMunitionPAHeureRetour" class="form-control"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionPAQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantMunitionPARemise" class="form-control"></td>
                                     <td><select name="remettantMunitionPAConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantMunitionPAHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantMunitionPARetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
@@ -438,47 +424,45 @@
                                     <td><input type="number" min="0" name="remettantMunitionFMQuantite"
                                                class="form-control"
                                         ></td>
-                                    <td><input type="time" name="beneficiaireMunitionFMHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantMunitionFMRemise" class="form-control"></td>
                                     <td><select name="remettantMunitionFMConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantMunitionFMHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantMunitionFMRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Minutions FP</td>
                                     <td><input type="radio" name="remettantMunitionFP" value="1"></td>
                                     <td><input type="radio" name="remettantMunitionFP" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionFPQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="beneficiaireMunitionFPHeureRetour" class="form-control"></td>
+                                    <td><input type="number" min="0" name="remettantMunitionFPQuantite" class="form-control"></td>
+                                    <td><input type="time" name="remettantMunitionFPRemise" class="form-control"></td>
                                     <td><select name="remettantMunitionFPConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantMunitionFPHeureRetour" class="form-control">
+                                    <td><input type="time" name="remettantMunitionFPRetour" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>TAG Convoyeur CC12</td>
                                     <td><input type="radio" name="remettantTAG" value="1"></td>
                                     <td><input type="radio" name="remettantTAG" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantTAGQuanite" class="form-control">
+                                    <td><input type="number" min="0" name="remettantTAGQuantite" class="form-control">
                                     </td>
-                                    <td><input type="time" name="remettantTAGHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantTAGRemise" class="form-control"></td>
                                     <td><select name="remettantTAGConvoyeur" class="form-control">
                                             <option value="CB">CB</option>
                                             <option value="CC">CC</option>
                                             <option value="CG">CG</option>
                                             <option value="CB + CC + CG">CB + CC + CG</option>
                                         </select></td>
-                                    <td><input type="time" name="remettantTAGHeureRetour" class="form-control"></td>
+                                    <td><input type="time" name="remettantTAGRetour" class="form-control"></td>
                                 </tr>
                                 </tbody>
                             </table>
