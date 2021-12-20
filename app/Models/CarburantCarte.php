@@ -11,5 +11,6 @@ class CarburantCarte extends Model
         'societe',
         'idVehicule',
         'dateAquisition',
+        'localisation_id',
         ];
 }

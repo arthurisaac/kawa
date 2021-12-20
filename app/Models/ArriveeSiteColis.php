@@ -14,6 +14,7 @@ class ArriveeSiteColis extends Model
         'montant',
         'nature',
         'nombre_colis',
+        'localisation_id',
     ];
 
     public function ArriveeSites()

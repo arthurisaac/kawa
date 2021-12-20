@@ -16,6 +16,7 @@ class CaisseService extends Model
         'chargeCaisseAdjoint',
         'chargeCaisseAdjointHPS',
         'chargeCaisseAdjointHFS',
+        'localisation_id',
     ];
 
     public function chargeCaisses()

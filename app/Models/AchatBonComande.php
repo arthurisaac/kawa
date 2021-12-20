@@ -17,6 +17,7 @@ class AchatBonComande extends Model
         'objet',
         'total',
         'livraison',
+        'localisation_id',
     ];
 
     public function fournisseurs()

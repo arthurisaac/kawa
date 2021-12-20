@@ -20,6 +20,7 @@ class ArriveeSite extends Model
         'asDestination',
         'asDepartSite',
         'asKm',
+        'localisation_id',
         /*'heureArrivee',
         'kmArrivee',
         'observation',

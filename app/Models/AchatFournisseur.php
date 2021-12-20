@@ -32,5 +32,6 @@ class AchatFournisseur extends Model
         'sous_traitant',
         'condition',
         'mode_paiement',
+        'localisation_id',
     ];
 }

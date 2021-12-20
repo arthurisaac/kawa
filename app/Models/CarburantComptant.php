@@ -13,6 +13,7 @@ class CarburantComptant extends Model
         'qteServie',
         'lieu',
         'utilisation',
+        'localisation_id',
     ];
 
     public function vehicules()

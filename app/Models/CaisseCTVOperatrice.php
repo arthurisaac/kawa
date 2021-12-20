@@ -11,6 +11,7 @@ class CaisseCTVOperatrice extends Model
         'ctv',
         'operatrice',
         'numero',
+        'localisation_id',
     ];
 
     public function operatrices()

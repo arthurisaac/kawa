@@ -20,6 +20,7 @@ class ArriveeTournee extends Model
         'vidangeCourroie',
         'patente',
         'assuranceFin',
-        'assuranceHeurePont'
+        'assuranceHeurePont',
+        'localisation_id',
     ];
 }

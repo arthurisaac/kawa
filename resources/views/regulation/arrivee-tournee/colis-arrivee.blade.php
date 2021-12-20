@@ -28,33 +28,45 @@
         <br>
         <div class="row">
             <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Total sites: {{count($colisArrivees)}}</h6>
-                    </div>
+                <div class="form-group row">
+                    <label for="total_sites" class="col-5"><h6 class="text-secondary">Total sites:</h6></label>
+                    <input id="total_sites" name="total_sites" class="form-control col-7" value="{{count($colisArrivees)}}" readonly>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Total tournées: {{count($tournees)}}</h6>
-                    </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group row">
+                   <label for="total_tournees" class="col-5"><h6 class="text-secondary">Total tournées:</h6></label>
+                    <input id="total_tournees" name="total_tournees" class="form-control col-7" value="{{count($tournees)}}" readonly>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Colis: {{$colisArrivees->sum("valeur_colis_xof_arrivee")}}</h6>
-                    </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group row">
+                    <label for="colis" class="col-5"><h6 class="text-secondary">Colis: </h6></label>
+                    <input id="colis" name="colis" class="form-control col-7" value="{{$colisArrivees->sum("valeur_colis_xof_arrivee")}}" readonly>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Valeur Colis: {{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}</h6>
-                    </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label for="total_tournees" class="col-5"><h6 class="text-secondary">Valeur Colis: </h6></label>
+                    <input id="total_tournees" name="total_tournees" class="form-control col-7" value="{{$colisArrivees->sum("device_etrangere_dollar_arrivee")}}" readonly>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Devis numéro bordereau : {{$colisArrivees->sum("device_etrangere_euro_arrivee")}}</h6>
-                    </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-secondary">Nbre total colis: {{$colisArrivees->sum("nbre_colis_arrivee")}}</h6>
+            </div>
+
+            <div class="col">
+                <div class="form-group row">
+                    <label for="devise_etrangere_colis" class="col-5"><h6 class="text-secondary">Devis numéro bordereau: </h6></label>
+                    <input id="devise_etrangere_colis" name="devise_etrangere_colis" class="form-control col-7" value="{{$colisArrivees->sum("device_etrangere_euro_arrivee")}}" readonly>
+                </div>
+            </div>
+            <div class="col">
+                    <div class="form-group row">
+                        <label for="nbre_total_colis" class="col-5"><h6 class="text-secondary">Nbre total colis:</h6></label>
+                        <input id="nbre_total_colis" name="nbre_total_colis" class="form-control col-7" value="{{$colisArrivees->sum("nbre_colis_arrivee")}}">
                     </div>
                 </div>
                 {{--<div class="row">
@@ -68,28 +80,30 @@
                 <form action="#" method="get">
                     @csrf
                     <div class="row">
-                        <div class="col-7">
+                        <div class="col">
                             <div class="form-group row">
-                                <label for="" class="col-sm-5">Date début</label>
-                                <input type="date" name="debut" class="form-control col-sm-7">
+                                <label for="debut" class="col-5"><h6 class="text-secondary">Date début</h6></label>
+                                <input id="debut" name="debut" class="form-control col-7" type="date">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7">
+
+                        <div class="col">
                             <div class="form-group row">
-                                <label for="" class="col-sm-5">Date fin</label>
-                                <input type="date" name="fin" class="form-control col-sm-7">
+                                <label for="fin" class="col-5"><h6 class="text-secondary">Date fin</h6></label>
+                                <input id="fin" name="colis" class="form-control col-7" type="date">
                             </div>
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary btn-sm">Rechercher</button>
+                            <div class="form-group row">
+                                <label for="" class="col-5"><h6 class="text-secondary"></h6></label>
+                                <button class="btn btn-primary btn-sm col-7">Rechercher</button>
+                            </div>
                         </div>
-                        <div class="col"></div>
                     </div>
                 </form>
             </div>
         </div>
+    <br>
 
         <form action="#" method="get">
             @csrf
