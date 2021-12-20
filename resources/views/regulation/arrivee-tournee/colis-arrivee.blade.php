@@ -90,7 +90,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="fin" class="col-5"><h6 class="text-secondary">Date fin</h6></label>
-                                <input id="fin" name="colis" class="form-control col-7" type="date">
+                                <input id="fin" name="fin" class="form-control col-7" type="date">
                             </div>
                         </div>
                         <div class="col">

@@ -54,23 +54,31 @@ class RegulationArriveeTourneeController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
         $q = $request->get('q');
-
-        $tournees = DepartTournee::all();
-        $colisArrivees = SiteDepartTournee::with('sites')
-            ->where('colis', '!=', 'RAS')
-            ->orderByDesc("created_at")
-            ->get();
-        if (isset($debut) && isset($fin)) {
-            //$colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
-            //->whereBetween('created_at', [$debut, $fin])
-            //->orderByDesc("created_at")
-            //->get();
-
+        if (isset($debut) && isset($fin) )
+        {
             $colisArrivees = SiteDepartTournee::where('colis', '!=', 'RAS')->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
-            $tournees = DepartTournee::where('colis', '!=', 'RAS')->whereBetween('date', [$debut, $fin])->get();
+            $tournees = DepartTournee::whereBetween('date', [$debut, $fin])->get();
+        }else{
+            $tournees = DepartTournee::all();
+            $colisArrivees = SiteDepartTournee::with('sites')
+                ->where('colis', '!=', 'RAS')
+                ->orderByDesc("created_at")
+                ->get();
         }
+
+//        if (isset($debut) && isset($fin)) {
+//            //$colisArrivees = SiteDepartTournee::with('sites')->with('tournees')
+//            //->whereBetween('created_at', [$debut, $fin])
+//            //->orderByDesc("created_at")
+//            //->get();
+//
+//            $colisArrivees = SiteDepartTournee::where('colis', '!=', 'RAS')->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+//                $query->whereBetween('date', [$debut, $fin]);
+//            })->get();
+//            $tournees = DepartTournee::where('colis', '!=', 'RAS')->whereBetween('date', [$debut, $fin])->get();
+//        }
         if (isset($q)) {
             $tournees = DepartTournee::where('numeroTournee', 'like', '%' . $q . '%')
                 ->orWhere('centre', 'like', '%' . $q . '%')
