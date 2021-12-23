@@ -78,7 +78,7 @@ class RegulationArriveeTourneeController extends Controller
 
         if (isset($debut) && isset($fin) )
         {
-            $colisArrivees = SiteDepartTournee::where('colis', '!=', 'RAS')->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
             })->get();
         }
