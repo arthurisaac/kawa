@@ -11,7 +11,7 @@
         <br/>
         <div class="titre">
             <span>Total site</span> : <span class="text-danger">{{count($colisArrivees)}}</span>
-            <span>Colis</span> : <span class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
+            <span>Colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
             <span style="margin-left: 10px;">Nombre de colis : <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></span>
         </div>
         <br/>
@@ -96,14 +96,13 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="colis" class="col-5">Colis</label>
-                        <select name="colis" id="colis" class="form-control col-sm-7">
-                            <option>{{$colis}}</option>
-                            <option>RAS</option>
-                            <option>Sac jute</option>
-                            <option>Keep safe</option>
-                            <option>Caisse</option>
-                            <option>Conteneur</option>
+                        <label for="nature" class="col-5">Nature</label>
+                        <select name="nature" id="nature" class="form-control col-sm-7">
+                            <option>{{$nature}}</option>
+                            <option>retour de cession</option>
+                            <option>tri</option>
+                            <option>transite</option>
+                            <option>approvisionnement</option>
                         </select>
                     </div>
                 </div>
@@ -129,7 +128,6 @@
             </div>
         </form>
     </div>
-
     <table class="table table-bordered table-hover" id="table" style="width: 100%">
         <thead>
         <tr>
@@ -140,7 +138,7 @@
             <th>Site</th>
             <th>Client</th>
             <th>Type</th>
-            <th>Colis</th>
+            <th>Nature</th>
             <th>Valeur Colis</th>
             <th>Dévise</th>
             <th>N° Tournée</th>
@@ -159,7 +157,7 @@
                 <td>{{$colis->sites->site ?? ''}}</td>
                 <td>{{$colis->sites->clients->client_nom ?? ''}}</td>
                 <td>{{$colis->type ?? ''}}</td>
-                <td>{{$colis->colis ?? ''}}</td>
+                <td>{{$colis->nature ?? ''}}</td>
                 <td>{{$colis->regulation_arrivee_valeur_colis}}</td>
                 <td>{{$colis->regulation_arrivee_devise}}</td>
                 <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
@@ -181,9 +179,10 @@
                 },
                 "order": [[0, "desc"]]
             });
-            /*$('#CustomSearchTextField').keyup(function(){
-                oTable.search($(this).val()).draw() ;
-            })*/
+
+            const valeur_colis = $("#valeur_colis");
+            const valeur_colis_parsed = parseFloat(valeur_colis.html() ?? 0);
+            valeur_colis.html(Number(valeur_colis_parsed).toLocaleString());
         });
     </script>
     <script>

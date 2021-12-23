@@ -75,7 +75,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="col-sm-4">Chauffeur:</label>
+                            <label class="col-sm-4">Chauffeur</label>
                             <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
                         </div>
                     </div>
