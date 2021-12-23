@@ -72,7 +72,7 @@ class RegulationArriveeTourneeController extends Controller
 
         $tournees = DepartTournee::all();
         $colisArrivees = SiteDepartTournee::with('sites')
-            ->where('colis', '!=', 'RAS')
+            //->where('colis', '!=', 'RAS')
             ->orderByDesc("created_at")
             ->get();
 
