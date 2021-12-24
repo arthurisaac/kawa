@@ -11,7 +11,7 @@
         <br/>
         <div class="titre">
             <span>Total site</span> : <span class="text-danger">{{count($colisArrivees)}}</span>
-            <span>Colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
+            <span>Colis</span> : <span id="valeur_colis" class="text-danger">{{--{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}--}} 0</span>
             <span style="margin-left: 10px;">Nombre de colis : <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></span>
         </div>
         <br/>
