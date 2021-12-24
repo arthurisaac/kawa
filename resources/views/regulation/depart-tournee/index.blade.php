@@ -24,7 +24,7 @@
         @endif
 
 
-        <form action="{{ route('regulation-depart-tournee.store') }}" method="post">
+        <form action="{{ route('regulation-depart-tournee.store') }}" id="target" method="post">
             @csrf
             <div class="container-fluid">
                 <div class="row">
@@ -265,12 +265,13 @@
                 });
                 $("#totalValeurColis").val(totalValeurColis);
             });
-            //$("input[name='valeur_colis_xof[]']").on("change", changeXOF);
-            //$("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            //$("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            //$("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
             $("input[name='regulation_depart_valeur_colis[]']").on("change", changeValeurColis);
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         });
     </script>
     <script>

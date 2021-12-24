@@ -82,101 +82,99 @@ class ArriveeTourneeController extends Controller
                 ->orderByDesc("created_at")
                 ->get();
         }
-        return view('transport.arrivee-tournee.liste',
-            compact('departTournee'));
+        return view('transport.arrivee-tournee.liste', compact('departTournee'));
     }
 
     public function listeColisArrivee(Request $request)
     {
-            $debut = $request->get("debut");
-            $fin = $request->get("fin");
-            $client = $request->get("client");
-            $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $client = $request->get("client");
+        $site = $request->get("site");
 
-            $centres = Centre::all();
-            $centres_regionaux = Centre_regional::all();
-            $clients = Commercial_client::orderBy('client_nom')->get();
-            $sites_com = Commercial_site::orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::orderBy('client_nom')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
 
-            $centre = $request->get("centre");
-            $centre_regional = $request->get("centre_regional");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
 
-            $colisArrivees = SiteDepartTournee::with('sites')
-                ->orderByDesc("created_at")
-                ->get();
+        $colisArrivees = SiteDepartTournee::with('sites')
+            ->orderByDesc("created_at")
+            ->get();
 
-            if (isset($debut) && isset($fin)) {
-                $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
-                    $query->whereBetween('date', [$debut, $fin]);
-                })->get();
-            }
-            if (isset($centre_regional)) {
-                $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
-                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
-                })->get();
-            }
-            if (isset($centre)) {
-               $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
-                    $query->where('centre', 'like', '%' . $centre . '%');
-                })->get();
-            }
-            if (isset($client)) {
-                $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
-                    $query->where('client', 'like', '%' . $client . '%');
-                })->get();
-
-            }
-            if (isset($site)) {
-                $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
-                    $query->where('id', 'like', '%' . $site . '%');
-                })->get();
-
-            }
-
-            if (isset($debut) && isset($fin) && isset($site)) {
-                $colisArrivees = SiteDepartTournee::with('tournees')
-                    ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
-                    ->whereBetween('depart_tournees.date', [$debut, $fin])
-                    ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
-                    ->get();
-            }
-
-            if (isset($debut) && isset($fin) && isset($client)) {
-                $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
-                    $query->where('client', 'like', '%' . $client . '%');
-                })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
-                    $query->whereBetween('date', [$debut, $fin]);
-                })->get();
-            }
-
-            if (isset($debut) && isset($fin)) {
-                $colisArrivees= SiteDepartTournee::with('tournees')
-                    ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
-                    ->whereBetween('depart_tournees.date', [$debut, $fin])
-                    ->get();
-            }
-
-            if (isset($debut) && isset($fin)) {
-                $colisArrivees = SiteDepartTournee::with('tournees')
-                    ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
-                    ->whereBetween('depart_tournees.date', [$debut, $fin])
-
-                    ->get();
-            }
-
-            if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
-                $$colisArrivees = SiteDepartTournee::with('tournees')
-                    ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
-                    ->whereBetween('depart_tournees.date', [$debut, $fin])
-                    ->where('site_arrivee_tournees.site', 'like', '%' . $site . '%')
-                    ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
-                    ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
-                    ->get();
-            }
-
-            return view('transport.arrivee-tournee.colis-arrivee', compact('centres', 'centres_regionaux', 'clients', 'sites_com',
-                'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'colisArrivees'));
+        if (isset($debut) && isset($fin)) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
         }
+        if (isset($centre_regional)) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+            })->get();
+        }
+        if (isset($centre)) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
+                $query->where('centre', 'like', '%' . $centre . '%');
+            })->get();
+        }
+        if (isset($client)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->get();
+
+        }
+        if (isset($site)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
+                $query->where('id', 'like', '%' . $site . '%');
+            })->get();
+
+        }
+
+        if (isset($debut) && isset($fin) && isset($site)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->get();
+        }
+
+        if (isset($debut) && isset($fin)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
+            $$colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_arrivee_tournees.site', 'like', '%' . $site . '%')
+                ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
+                ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
+                ->get();
+        }
+
+        return view('transport.arrivee-tournee.colis-arrivee', compact('centres', 'centres_regionaux', 'clients', 'sites_com',
+            'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'colisArrivees'));
+    }
 
 
     /**

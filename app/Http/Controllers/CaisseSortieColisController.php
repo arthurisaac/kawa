@@ -8,6 +8,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
+use App\Models\OptionDevise;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,8 +30,9 @@ class CaisseSortieColisController extends Controller
         $sites = Commercial_site::with("clients")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $devises = OptionDevise::all();
         return view('/caisse/sortie-colis.index',
-            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords', 'tournees'));
+            compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords', 'tournees', 'devises'));
     }
 
     public function liste(Request $request)
@@ -131,7 +133,8 @@ class CaisseSortieColisController extends Controller
         $items = CaisseSortieColisItem::with("sites")->where("sortieColis", $id)->get();
         $colis = CaisseSortieColis::with('sites')->find($id);
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
-        return view('/caisse/sortie-colis.edit', compact('colis', 'items', 'centres', 'centres_regionaux', 'agents', 'chefBords', 'sites', 'tournees'));
+        $devises = OptionDevise::all();
+        return view('/caisse/sortie-colis.edit', compact('colis', 'items', 'centres', 'centres_regionaux', 'agents', 'chefBords', 'sites', 'tournees', 'devises'));
     }
 
     /**

@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <form action="{{ route('caisse-sortie-colis.store') }}" method="post">
+        <form action="{{ route('caisse-sortie-colis.store') }}" method="post" id="target">
             @csrf
             <div class="container-fluid">
                 <div class="row">
@@ -136,10 +136,8 @@
                     <thead>
                     <tr>
                         <th>Colis</th>
-                        <th>Valeur colis (XOF)</th>
-                        <th>Valeur devise étrangère (Dollar)</th>
-                        <th>Valeur devise étrangère (Euro)</th>
-                        <th>Valeur pierre précieuse</th>
+                        <th>Valeur</th>
+                        <th>Devise</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre colis</th>
                         <th>Site</th>
@@ -157,10 +155,12 @@
                                 <option>Caisse</option>
                                 <option>Conteneur</option>
                             </select></td>
-                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>
-                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>
-                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>
+                        <td><input type="number" name="valeur_colis_xof_sortie[]" class="form-control"></td>
+                        <td><select name="device_etrangere_dollar_sortie[]" class="form-control">
+                                @foreach($devises as $devise)
+                                    <option>{{$devise->devise}}</option>
+                                @endforeach
+                            </select></td>
                         <td><textarea name="scelle[]" class="form-control"></textarea></td>
                         <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                         <td>
@@ -181,13 +181,7 @@
                         <td style="vertical-align: center;">TOTAL</td>
                         <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
                                    readonly></td>
-                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
-                                   readonly>
-                        </td>
-                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
-                                   readonly></td>
-                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
-                                   readonly></td>
+                        <td></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                         <td></td>
@@ -297,12 +291,17 @@
                     $("#centre_regional").val(tournee.centre_regional);
                 }
             });
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         });
     </script>
     <script>
         $(document).ready(function () {
             $("#add").on("click", function () {
-                $('#table').append(' <tr>\n' +
+                $('#table').append('<tr>\n' +
                     '                        <td><select name="colis[]" class="form-control">\n' +
                     '                                <option></option>\n' +
                     '                                <option>Sac jute</option>\n' +
@@ -310,10 +309,12 @@
                     '                                <option>Caisse</option>\n' +
                     '                                <option>Conteneur</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
+                    '                        <td><input type="number" name="valeur_colis_xof_sortie[]" class="form-control"></td>\n' +
+                    '                        <td><select name="device_etrangere_dollar_sortie[]" class="form-control">\n' +
+                    '                                @foreach($devises as $devise)\n' +
+                    '                                    <option>{{$devise->devise}}</option>\n' +
+                    '                                @endforeach\n' +
+                    '                            </select></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td>\n' +
@@ -326,6 +327,7 @@
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
+                    '                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}\n' +
                     '                    </tr>');
             });
         })

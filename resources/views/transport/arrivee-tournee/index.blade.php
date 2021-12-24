@@ -15,7 +15,7 @@
             <br/>
         @endif
 
-        <form method="post" action="{{ route('arrivee-tournee.store') }}">
+        <form method="post" id="target" action="{{ route('arrivee-tournee.store') }}">
             @csrf
             <div class="row">
                 <div class="col">
@@ -302,7 +302,6 @@
                 </tfoot>`);
             }
 
-
             changeValeurColis();
             changeXOF();
             changeDollar();
@@ -319,14 +318,18 @@
                 $("#vidangeCourroie").val(totalVidangeCourroie);
                 $("#vidangePont").val(totalVidangePont);
             });
+
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         });
 
         function diffDate(d1, d2) {
             const t2 = d2.getTime();
             const t1 = d1.getTime();
             return new Date(t2 - t1);
-            // return diff.getUTCDate() - 1;
-            //return parseInt((t2-t1)/(24*3600*1000));
         }
     </script>
     <script>
@@ -343,9 +346,6 @@
             });
             $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
             $("select[name='colis[]']").on("change", changeColis);
-            //$("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            //$("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            //$("input[name='pierre_precieuse[]']").on("change", changePierre);
         });
     </script>
     <script>
@@ -434,15 +434,15 @@
                     index = i;
                 }
                 if (colis.value === "RAS") {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', 'readonly');
-                    $("textarea[name='numero[]']").eq(i).prop('readonly', 'readonly');
-                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', 'readonly');
-                    $("select[name='nature[]']").eq(i).prop('readonly', 'readonly');
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', true);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', true);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
+                    $("select[name='nature[]']").eq(i).prop('disabled', true);
                 } else {
-                    $("input[name='valeur_colis_xof[]']").eq(i).prop('disabled', 'readonly');
-                    $("textarea[name='numero[]']").eq(i).prop('disabled', 'readonly');
-                    $("input[name='nbre_colis[]']").eq(i).prop('disabled', 'readonly');
-                    $("select[name='nature[]']").eq(i).prop('disabled', 'readonly');
+                    $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
+                    $("textarea[name='numero[]']").eq(i).prop('readonly', false);
+                    $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('disabled', false);
                 }
             });
 
@@ -455,7 +455,6 @@
                 montantTotal += parseFloat(montant) ?? 0;
             });
             $("#totalMontant").val(montantTotal);
-
         }
     </script>
 @endsection
