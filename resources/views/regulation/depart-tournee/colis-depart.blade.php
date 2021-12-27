@@ -171,8 +171,9 @@
     </table>
 
     <script>
+        let sites = {!! json_encode($sites_com) !!};
+        let clients = {!! json_encode($clients) !!};
         $(document).ready(function () {
-            //let oTable = $('#table').DataTable({
             $('#table').DataTable({
                 "language": {
                     "url": "French.json"
@@ -183,6 +184,17 @@
             const valeur_colis = $("#valeur_colis");
             const valeur_colis_parsed = parseFloat(valeur_colis.html() ?? 0);
             valeur_colis.html(Number(valeur_colis_parsed).toLocaleString());
+
+            const siteInput = $("#site");
+            if (siteInput.val()) {
+                const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
+                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
+            }
+            const clientInput = $("#client");
+            if (clientInput.val()) {
+                const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
+                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+            }
         });
     </script>
     <script>
