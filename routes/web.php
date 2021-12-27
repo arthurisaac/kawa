@@ -327,6 +327,8 @@ Route::get('regulation-etat-scelle-vendu', [\App\Http\Controllers\RegulationEtat
 
 Route::resource('regulation-depart-tournee', 'RegulationDepartTourneeController');
 Route::get('regulation-depart-tournee-liste', [\App\Http\Controllers\RegulationDepartTourneeController::class, 'liste']);
+Route::get('regulation-depart-colis', [\App\Http\Controllers\RegulationDepartTourneeController::class, 'listeColisDepart']);
+
 
 Route::resource('regulation-arrivee-tournee', 'RegulationArriveeTourneeController');
 Route::get('regulation-arrivee-tournee-liste', [\App\Http\Controllers\RegulationArriveeTourneeController::class, 'liste']);
