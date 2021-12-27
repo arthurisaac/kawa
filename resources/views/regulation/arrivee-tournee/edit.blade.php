@@ -23,7 +23,7 @@
         @endif
 
 
-        <form action="{{ route('regulation-arrivee-tournee.update', $tournee->id) }}" method="post">
+        <form action="{{ route('regulation-arrivee-tournee.update', $tournee->id) }}" id="target" method="post">
             @csrf
             @method("PATCH")
             <div class="container-fluid">
@@ -31,13 +31,15 @@
                     <div class="col">
                         <div class="form-group row">
                             <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8" readonly/>
+                            <input type="text" name="date" id="date" value="{{$tournee->date}}"
+                                   class="form-control col-sm-8" readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure" id="heure" value="{{$tournee->heure}}" class="form-control col-sm-8" readonly/>
+                            <input type="text" name="heure" id="heure" value="{{$tournee->heure}}"
+                                   class="form-control col-sm-8" readonly/>
                         </div>
                     </div>
                     <div class="col"></div>
@@ -47,7 +49,8 @@
                     <div class="col-3">
                         <div class="form-group row">
                             <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                            <input type="text" class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$tournee->numeroTournee}}" readonly>
+                            <input type="text" class="form-control col-sm-8" name="noTournee" id="noTournee"
+                                   value="{{$tournee->numeroTournee}}" readonly>
                         </div>
                     </div>
                 </div>
@@ -55,25 +58,29 @@
                     <div class="col">
                         <div class="form-group row">
                             <label class="col-sm-4">Véhicule</label>
-                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$tournee->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
+                            <input class="form-control col-sm-8" name="vehicule" id="vehicule"
+                                   value="{{$tournee->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label class="col-sm-4">Chauffeur:</label>
-                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$tournee->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur"
+                                   value="{{$tournee->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label class="col-sm-4">Agent garde</label>
-                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$tournee->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>
+                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde"
+                                   value="{{$tournee->agentDeGarde->nomPrenoms ?? "Données indisponible"}}" readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label class="col-sm-4">Chef de bord</label>
-                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$tournee->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord"
+                                   value="{{$tournee->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
                         </div>
                     </div>
                 </div>
@@ -81,13 +88,15 @@
                     <div class="col">
                         <div class="form-group row">
                             <label for="centre" class="col-sm-4">Centre régional</label>
-                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>
+                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$tournee->centre}}"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
                             <label for="centre_regional" class="col-sm-4">Centre</label>
-                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>
+                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8"
+                                   value="{{$tournee->centre}}" readonly/>
                         </div>
                     </div>
                     <div class="col"></div>
@@ -130,15 +139,18 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
+                            <td><input type="text" name="regulation_arrivee_valeur_colis[]"
+                                       value="{{$site->regulation_arrivee_valeur_colis ?? 0}}" class="form-control">
+                            </td>
                             <td><select name="regulation_arrivee_devise[]" class="form-control">
-                                    <option>{{$site->regulation_arrivee_devise}}</option>
+                                    <option>{{$site->regulation_arrivee_devise ?? "XOF"}}</option>
                                     @foreach($devises as $devise)
                                         <option>{{$devise->devise}}</option>
                                     @endforeach
                                 </select></td>
-                            <td><input type="text" name="regulation_arrivee_valeur_colis[]" value="{{$site->regulation_arrivee_valeur_colis ?? 0}}" class="form-control"></td>
                             <td><textarea name="numero[]" class="form-control">{{$site->numero_arrivee}}</textarea></td>
-                            <td><input type="number"  min="0" name="nbre_colis[]" value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
+                            <td><input type="number" min="0" name="nbre_colis[]"
+                                       value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
                             <td><select name="nature[]" class="form-control">
                                     <option>{{$site->nature}}</option>
                                     <option>retour de cession</option>
@@ -152,22 +164,24 @@
                     <tfoot>
                     <tr>
                         <td colspan="4" style="vertical-align: center;">TOTAL</td>
-                        <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control" readonly></td>
+                        <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control"
+                                   readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
                     </tr>
                     </tfoot>
                 </table>
                 <br>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="/regulation-arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
+                <button type="submit" id="submitBtn" class="btn btn-primary">Enregistrer</button>
+                <a href="/regulation-arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la
+                    liste</a>
             </div>
         </form>
 
     </div>
 
     <script>
-        function separateNumbers(e){
+        function separateNumbers(e) {
             try {
                 let str = e.value?.replace(/\s/g, '');
                 const donnee = parseFloat(str);
@@ -210,16 +224,18 @@
                 if (thisColisInput === colis) {
                     index = i;
                 }
-                if (colis.value === "RAS" ) {
+                if (colis.value === "RAS") {
                     $("textarea[name='numero[]']").eq(i).prop('readonly', true);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
                     $("input[name='regulation_arrivee_valeur_colis[]']").eq(i).prop('readonly', true);
-                    $("select[name='nature[]']").eq(i).prop('readonly', true);
+                    $("select[name='nature[]']").eq(i).prop('disabled', true);
+                    $("select[name='regulation_arrivee_devise[]']").eq(i).prop('disabled', true);
                 } else {
                     $("textarea[name='numero[]']").eq(i).prop('readonly', false);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
                     $("input[name='regulation_arrivee_valeur_colis[]']").eq(i).prop('readonly', false);
-                    $("select[name='nature[]']").eq(i).prop('readonly', false);
+                    $("select[name='nature[]']").eq(i).prop('disabled', false);
+                    $("select[name='regulation_arrivee_devise[]']").eq(i).prop('disabled', false);
                 }
             });
 
@@ -251,7 +267,6 @@
                     const commerciaux = sites.filter(site => {
                         return site.centre === tournee.centre;
                     });
-                    console.log(commerciaux);
                     commerciaux.map(({id, site, clients}) => {
                         $('#asSite').append($('<option>', {
                             value: id,
@@ -290,8 +305,13 @@
                 });
                 $("#totalValeurColis").val(totalValeurColis);
             });
+            $("select[name='colis[]']").on("change", changeColis);
             $("input[name='regulation_arrivee_valeur_colis[]']").on("change", changeValeurColis);
-
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         })
     </script>
 @endsection

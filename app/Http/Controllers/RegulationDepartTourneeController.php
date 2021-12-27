@@ -42,7 +42,7 @@ class RegulationDepartTourneeController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $tournees = DepartTournee::with("sites")->get();
+        $tournees = DepartTournee::with("sites")->orderByDesc("id")->get();
         if (isset($debut) && isset($fin)) {
             $tournees = DepartTournee::with("sites")
                 ->whereBetween('date', [$debut, $fin])

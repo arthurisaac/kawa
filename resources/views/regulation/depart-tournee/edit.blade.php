@@ -23,7 +23,7 @@
         @endif
 
 
-        <form action="{{ route('regulation-depart-tournee.update', $tournee->id) }}" method="post">
+        <form action="{{ route('regulation-depart-tournee.update', $tournee->id) }}" id="target" method="post">
             @csrf
             @method("PATCH")
             <div class="container-fluid">
@@ -118,6 +118,7 @@
                             </td>
                             <td><input type="text" name="client[]" value="{{$site->sites->clients->client_nom ?? ''}}" class="form-control" readonly /></td>
                             <td><select name="colis[]" class="form-control">
+                                    <option>RAS</option>
                                     <option>{{$site->colis}}</option>
                                     <option>Sac jute</option>
                                     <option>Keep safe</option>
@@ -200,20 +201,11 @@
                     index = i;
                 }
                 if (colis.value === "RAS" ) {
-                    //$("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', true);
-                    //$("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', true);
-                    //$("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', true);
-                    //$("input[name='pierre_precieuse[]']").eq(i).prop('readonly', true);
                     $("textarea[name='numero[]']").eq(i).prop('readonly', true);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
                     $("input[name='regulation_depart_valeur_colis[]']").eq(i).prop('readonly', true);
                     //$("select[name='nature[]']").eq(i).prop('readonly', true);
                 } else {
-                    //$("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
-                    //$("input[name='device_etrangere_dollar[]']").eq(i).prop('readonly', false);
-                    //$("input[name='device_etrangere_euro[]']").eq(i).prop('readonly', false);
-                    //$("input[name='pierre_precieuse[]']").eq(i).prop('readonly', false);
-
                     $("textarea[name='numero[]']").eq(i).prop('readonly', false);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
                     $("input[name='regulation_depart_valeur_colis[]']").eq(i).prop('readonly', false);
@@ -296,13 +288,14 @@
                 });
                 $("#totalValeurAutre").val(totalValeurAutre);
             });
-            //$("input[name='valeur_colis_xof[]']").on("change", changeXOF);
-            //$("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            //$("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            //$("input[name='pierre_precieuse[]']").on("change", changePierre);
             $("select[name='colis[]']").on("change", changeColis);
             $("input[name='regulation_depart_valeur_colis[]']").on("change", changeValeurColis);
 
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         })
     </script>
 @endsection

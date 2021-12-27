@@ -16,7 +16,7 @@
             <br/>
         @endif
 
-        <form method="post" action="{{ route('arrivee-tournee.update', $tournee->id) }}">
+        <form method="post" id="target" action="{{ route('arrivee-tournee.update', $tournee->id) }}">
             @csrf
             @method("PATCH")
             <div class="row">
@@ -254,12 +254,16 @@
                 }
                 if (colis.value === "RAS") {
                     $("textarea[name='numero[]']").eq(i).prop('readonly', true);
+                    $("textarea[name='bordereau[]']").eq(i).prop('readonly', true);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', true);
+                    $("input[name='transport_arrivee_valeur_colis[]']").eq(i).prop('readonly', true);
                     $("select[name='nature[]']").eq(i).prop('readonly', true);
                 } else {
                     $("input[name='valeur_colis_xof[]']").eq(i).prop('readonly', false);
                     $("textarea[name='numero[]']").eq(i).prop('readonly', false);
+                    $("textarea[name='bordereau[]']").eq(i).prop('readonly', false);
                     $("input[name='nbre_colis[]']").eq(i).prop('readonly', false);
+                    $("input[name='transport_arrivee_valeur_colis[]']").eq(i).prop('readonly', false);
                     $("select[name='nature[]']").eq(i).prop('readonly', false);
                 }
             });
@@ -285,6 +289,7 @@
         changeValeurColis();
         changeNombreColis();
         changeMontant();
+        changeColis();
 
         $(document).ready(function () {
             $("#numeroTournee").on("change", function () {
@@ -369,6 +374,11 @@
             });
             $("select[name='colis[]']").on("change", changeColis);
             $("input[name='transport_arrivee_valeur_colis[]']").on("change", changeValeurColis);
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
+            });
         });
     </script>
 @endsection

@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <form action="{{ route('caisse-entree-colis.store') }}" method="post">
+        <form action="{{ route('caisse-entree-colis.store') }}" id="target" method="post">
             @csrf
             <div class="container-fluid">
                 <div class="row">
@@ -155,7 +155,6 @@
                                 <option>Conteneur</option>
                             </select></td>
                         <td><select name="caisse_entree_devise[]" class="form-control">
-                                <option></option>
                                 @foreach($devises as $devise)
                                     <option>{{$devise->devise}}</option>
                                 @endforeach
@@ -306,6 +305,12 @@
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
                     '                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
                     '                    </tr>');
+            });
+
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
             });
         })
     </script>
