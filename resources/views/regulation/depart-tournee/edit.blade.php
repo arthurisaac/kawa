@@ -156,6 +156,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="/regulation-depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
+                <a href="/regulation-depart-colis" class="btn btn-info" style="margin-left: 20px">Ouvrir liste tournées colis</a>
             </div>
         </form>
 
