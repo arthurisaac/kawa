@@ -14,11 +14,18 @@ class RegulationDepartTourneeItem extends Model
         'nbre_colis',
         'numero_scelle',
         'montant',
+        'localisation_id',
     ];
 
     public function sites()
     {
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
             ->with('clients');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

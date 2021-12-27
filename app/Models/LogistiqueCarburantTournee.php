@@ -20,17 +20,18 @@ class LogistiqueCarburantTournee extends Model
         'utilisation',
         'kilometrage',
         'litrage',
-    
+        'localisation_id',
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
         'date',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
@@ -38,5 +39,12 @@ class LogistiqueCarburantTournee extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/logistique-carburant-tournees/'.$this->getKey());
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

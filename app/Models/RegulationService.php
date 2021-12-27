@@ -17,6 +17,7 @@ class RegulationService extends Model
         'chargeeRegulationAdjointe',
         'chargeeRegulationAdjointeHPS',
         'chargeeRegulationAdjointeHFS',
+        'localisation_id',
 
     ];
 
@@ -28,5 +29,11 @@ class RegulationService extends Model
     public function chargeRegulationAdjointes()
     {
         return $this->belongsTo('App\Models\Personnel', 'chargeeRegulationAdjointe', 'id');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

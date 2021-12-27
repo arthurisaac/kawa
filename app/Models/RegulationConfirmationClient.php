@@ -20,7 +20,8 @@ class RegulationConfirmationClient extends Model
         'lieu',
         'remarque',
         'confirmation',
-        'devise'
+        'devise',
+        'localisation_id',
 
     ];
 
@@ -34,6 +35,13 @@ class RegulationConfirmationClient extends Model
     {
         return $this->belongsTo('App\Models\SiteDepartTournee', 'bordereau', 'id')
             ->with('sites')->with('tournees');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 
 }

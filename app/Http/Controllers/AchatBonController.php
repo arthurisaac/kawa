@@ -8,6 +8,7 @@ use App\Models\AchatDemande;
 use App\Models\AchatFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AchatBonController extends Controller
@@ -19,7 +20,7 @@ class AchatBonController extends Controller
      */
     public function index()
     {
-        $numeroBon = (DB::table('achat_bon_comandes')->max('id') + 1) . '-' . date('d') . '-' . date('m') . '-' . date('Y');
+        $numeroBon = (DB::table('achat_bon_comandes')->where('localisation_id', Auth()->user()->localisation_id)->max('id') + 1) . '-' . date('d') . '-' . date('m') . '-' . date('Y');
         $currentDate = date('Y-m-d');
         $fournisseurs = AchatFournisseur::all();
         $demandes = AchatDemande::all();

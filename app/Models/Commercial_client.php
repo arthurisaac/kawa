@@ -46,6 +46,14 @@ class Commercial_client extends Model
         //'base_consommable_atm',
         'base_garde_de_fonds_montant_forfaitaire',
         'base_comptage_montant_forfaitaire',
-        'bt_atm'
+        'bt_atm',
+        'localisation_id',
     ];
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }

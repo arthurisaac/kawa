@@ -34,4 +34,10 @@ class AchatFournisseur extends Model
         'mode_paiement',
         'localisation_id',
     ];
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }

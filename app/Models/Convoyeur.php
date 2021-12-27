@@ -13,5 +13,13 @@ class Convoyeur extends Model
         'fonction',
         'dateEmbauche',
         'photo',
+        'localisation_id',
     ];
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }

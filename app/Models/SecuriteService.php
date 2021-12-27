@@ -32,6 +32,7 @@ class SecuriteService extends Model
         'eop32',
         'hps_eop32',
         'hfs_eop32',
+        'localisation_id',
     ];
 
     public function chargeDeSecurites()
@@ -72,5 +73,12 @@ class SecuriteService extends Model
     public function eop22s()
     {
         return $this->belongsTo('App\Models\Personnel', 'eop22', 'id');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

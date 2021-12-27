@@ -20,7 +20,8 @@ class DepartTournee extends Model
         'heureArrivee',
         'centre',
         'centre_regional',
-        'heure_arrivee_regulation'
+        'heure_arrivee_regulation',
+        'localisation_id',
     ];
 
     public function agentDeGardes()
@@ -62,5 +63,12 @@ class DepartTournee extends Model
     public function sites()
     {
         return $this->hasMany('App\Models\SiteDepartTournee', 'idTourneeDepart')->with('sites');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

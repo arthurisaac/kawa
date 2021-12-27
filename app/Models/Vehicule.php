@@ -19,6 +19,7 @@ class Vehicule extends Model
         'centreRegional',
         'chauffeurTitulaire',
         'chauffeurSuppleant',
+        'localisation_id',
     ];
 
     public function chauffeurTitulaires()
@@ -28,5 +29,11 @@ class Vehicule extends Model
     public function chauffeurSuppleants()
     {
         return $this->belongsTo('App\Models\Personnel', 'chauffeurSuppleant', 'id');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

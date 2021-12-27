@@ -15,6 +15,7 @@ class DepartSite extends Model
         'depart_site',
         'destination',
         'observation',
+        'localisation_id',
     ];
 
 
@@ -25,5 +26,12 @@ class DepartSite extends Model
             ->with('agentDeGardes')
             ->with('chauffeurs')
             ->with('chefDeBords');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

@@ -20,7 +20,8 @@ class SecuriteMateriel extends Model
         'operateurRadioHeurePrise',
         'operateurRadioHeureFin',
         'centre',
-        'centre_regional'
+        'centre_regional',
+        'localisation_id',
     ];
 
     public function cbs()
@@ -46,5 +47,12 @@ class SecuriteMateriel extends Model
     public function tournees()
     {
         return $this->belongsTo('App\Models\DepartTournee', 'noTournee', 'id');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

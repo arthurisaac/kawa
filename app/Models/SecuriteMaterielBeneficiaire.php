@@ -48,10 +48,18 @@ class SecuriteMaterielBeneficiaire extends Model
         'beneficiaireTAGQuanite',
         'beneficiaireTAGHeureRetour',
         'beneficiaireTAGConvoyeur',
+        'localisation_id',
         ];
 
     public function materiels()
     {
         return $this->belongsTo('App\Models\SecuriteMateriel', 'idMateriel', 'id');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

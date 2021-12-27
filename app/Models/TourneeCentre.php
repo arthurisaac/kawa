@@ -13,6 +13,7 @@ class TourneeCentre extends Model
         'centreRegional',
         'dateDebut',
         'dateFin',
+        'localisation_id',
     ];
 
     /*public function personnesChef()
@@ -39,5 +40,12 @@ class TourneeCentre extends Model
             ->with('vehicules')
             ->with('chefDeBords')
             ->with('agentDeGardes');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }
