@@ -44,7 +44,7 @@ class CreatePersonnelsTable extends Migration
             $table->string('nomMere')->nullable();
             $table->string('nomConjoint')->nullable();
             $table->string('personneContacter')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

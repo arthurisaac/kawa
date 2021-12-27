@@ -16,7 +16,6 @@ class AddForeignKeysToRegulationServicesTable extends Migration
         Schema::table('regulation_services', function (Blueprint $table) {
             $table->foreign(['chargeeRegulation'])->references(['id'])->on('personnels')->onDelete('CASCADE');
             $table->foreign(['chargeeRegulationAdjointe'])->references(['id'])->on('personnels')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

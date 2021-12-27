@@ -19,7 +19,7 @@ class CreatePersonnelGestionExplicationsTable extends Migration
             $table->text('motif')->nullable();
             $table->text('sanctions')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_explications_personnel_foreign');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
             $table->timestamps();
         });
     }

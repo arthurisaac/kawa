@@ -15,7 +15,6 @@ class AddForeignKeysToAchatFournisseurCASTable extends Migration
     {
         Schema::table('achat_fournisseur_c_a_s', function (Blueprint $table) {
             $table->foreign(['fournisseur_fk'])->references(['id'])->on('achat_fournisseurs')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

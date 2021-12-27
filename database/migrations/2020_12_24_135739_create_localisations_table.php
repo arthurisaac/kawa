@@ -15,9 +15,9 @@ class CreateLocalisationsTable extends Migration
     public function up()
     {
         Schema::create('localisations', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('ref', 10)->default('0');
-            $table->string('pays', 100)->default('0');
+            $table->id();
+            $table->string('ref', 10);
+            $table->string('pays', 100);
         });
 
         DB::table('localisations')->insert(

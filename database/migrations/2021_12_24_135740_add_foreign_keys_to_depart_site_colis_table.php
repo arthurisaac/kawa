@@ -15,7 +15,6 @@ class AddForeignKeysToDepartSiteColisTable extends Migration
     {
         Schema::table('depart_site_colis', function (Blueprint $table) {
             $table->foreign(['departSite'])->references(['id'])->on('depart_sites');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

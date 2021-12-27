@@ -28,7 +28,7 @@ class CreateCaisseSortieColisItemsTable extends Migration
             $table->string('device_etrangere_dollar_sortie', 100)->nullable();
             $table->string('device_etrangere_euro_sortie', 100)->nullable();
             $table->string('pierre_precieuse_sortie', 100)->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

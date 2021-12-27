@@ -15,7 +15,6 @@ class AddForeignKeysToHeureSuppsTable extends Migration
     {
         Schema::table('heure_supps', function (Blueprint $table) {
             $table->foreign(['idPersonnel'])->references(['id'])->on('personnels');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

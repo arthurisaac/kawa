@@ -26,7 +26,7 @@ class CreateInformatiqueMaterielsTable extends Migration
             $table->double('prixUnitaire')->nullable();
             $table->double('montant')->default(0);
             $table->string('factureJointe')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

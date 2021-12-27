@@ -24,7 +24,7 @@ class CreateRegulationStockEntreeItemsTable extends Migration
             $table->string('autre')->nullable();
             $table->timestamps();
             $table->date('date')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

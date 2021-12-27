@@ -15,7 +15,6 @@ class AddForeignKeysToCaisseVideoSurveillancesTable extends Migration
     {
         Schema::table('caisse_video_surveillances', function (Blueprint $table) {
             $table->foreign(['operatrice'])->references(['id'])->on('caisse_service_operatrices')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

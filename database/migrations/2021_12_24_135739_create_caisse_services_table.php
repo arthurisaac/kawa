@@ -25,7 +25,7 @@ class CreateCaisseServicesTable extends Migration
             $table->unsignedBigInteger('chargeCaisseAdjoint')->nullable()->index('caisse_services_chargecaisseadjoint_foreign');
             $table->time('chargeCaisseAdjointHPS')->nullable();
             $table->time('chargeCaisseAdjointHFS')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

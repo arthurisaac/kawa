@@ -15,7 +15,6 @@ class AddForeignKeysToCarburantComptantsTable extends Migration
     {
         Schema::table('carburant_comptants', function (Blueprint $table) {
             $table->foreign(['idVehicule'])->references(['id'])->on('vehicules');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

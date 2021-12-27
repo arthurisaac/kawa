@@ -56,7 +56,7 @@ class CreateSecuriteMaterielBeneficiairesTable extends Migration
             $table->string('beneficiaireTAGQuanite')->nullable();
             $table->time('beneficiaireTAGHeureRetour')->nullable();
             $table->string('beneficiaireTAGConvoyeur')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

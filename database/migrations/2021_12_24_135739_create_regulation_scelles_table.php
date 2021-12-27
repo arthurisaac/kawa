@@ -24,7 +24,7 @@ class CreateRegulationScellesTable extends Migration
             $table->integer('prixUnitaire')->nullable();
             $table->integer('quantite')->nullable();
             $table->integer('prixTotal')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

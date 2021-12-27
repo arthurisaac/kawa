@@ -82,7 +82,7 @@ class CreateSecuriteMaterielRemettantsTable extends Migration
             $table->string('remettantMunitionFPRemise')->nullable();
             $table->string('remettantMunitionFPConvoyeur')->nullable();
             $table->time('remettantMunitionFPRetour')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

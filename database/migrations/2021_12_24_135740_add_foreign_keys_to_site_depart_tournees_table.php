@@ -15,7 +15,6 @@ class AddForeignKeysToSiteDepartTourneesTable extends Migration
     {
         Schema::table('site_depart_tournees', function (Blueprint $table) {
             $table->foreign(['idTourneeDepart'])->references(['id'])->on('depart_tournees')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

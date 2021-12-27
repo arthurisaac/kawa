@@ -35,7 +35,7 @@ class CreateRegulationBordereauTable extends Migration
             $table->integer('numeroFinAffection')->nullable();
             $table->integer('quantiteAffectee')->nullable();
             $table->integer('stockActuel')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

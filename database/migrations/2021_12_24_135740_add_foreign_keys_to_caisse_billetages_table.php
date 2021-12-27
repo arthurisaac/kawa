@@ -15,7 +15,6 @@ class AddForeignKeysToCaisseBilletagesTable extends Migration
     {
         Schema::table('caisse_billetages', function (Blueprint $table) {
             $table->foreign(['ctv'])->references(['id'])->on('caisse_ctvs');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

@@ -16,7 +16,7 @@ class CreateOptionBordereauTable extends Migration
         Schema::create('option_bordereau', function (Blueprint $table) {
             $table->integer('id', true)->index('CLE PRIMAIRE');
             $table->string('numero')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
             $table->timestamps();
         });
     }

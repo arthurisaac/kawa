@@ -21,7 +21,7 @@ class CreateAchatFournisseurConsultesTable extends Migration
             $table->bigInteger('prix_propose');
             $table->string('choix');
             $table->unsignedBigInteger('achat_demandes_fk')->index('achat_fournisseur_consultes_achat_demandes_fk_foreign');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

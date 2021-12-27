@@ -32,7 +32,7 @@ class CreateCaisseVideoSurveillancesTable extends Migration
             $table->string('centre_regional', 100)->nullable();
             $table->string('numero_bord', 100)->nullable();
             $table->text('remarque')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

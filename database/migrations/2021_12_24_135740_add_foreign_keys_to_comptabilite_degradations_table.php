@@ -17,7 +17,6 @@ class AddForeignKeysToComptabiliteDegradationsTable extends Migration
             $table->foreign(['client'])->references(['id'])->on('commercial_clients')->onDelete('CASCADE');
             $table->foreign(['conteneur'])->references(['id'])->on('conteneurs')->onDelete('CASCADE');
             $table->foreign(['site'])->references(['id'])->on('commercial_sites')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

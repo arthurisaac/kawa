@@ -24,7 +24,7 @@ class CreateRegulationStockSortieItemsTable extends Migration
             $table->string('reference')->nullable();
             $table->string('autre')->nullable();
             $table->string('libelle', 100)->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
             $table->timestamps();
         });
     }

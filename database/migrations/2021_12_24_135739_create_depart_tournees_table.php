@@ -30,7 +30,7 @@ class CreateDepartTourneesTable extends Migration
             $table->string('centre')->nullable();
             $table->string('centre_regional', 225)->nullable();
             $table->time('heure_arrivee_regulation')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

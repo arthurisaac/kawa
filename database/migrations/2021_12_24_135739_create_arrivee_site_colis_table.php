@@ -23,7 +23,7 @@ class CreateArriveeSiteColisTable extends Migration
             $table->string('nature')->nullable();
             $table->integer('nombre_colis')->nullable();
             $table->timestamps();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

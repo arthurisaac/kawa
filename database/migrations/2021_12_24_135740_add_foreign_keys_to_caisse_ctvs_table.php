@@ -19,7 +19,6 @@ class AddForeignKeysToCaisseCtvsTable extends Migration
             $table->foreign(['regulatrice'])->references(['id'])->on('personnels')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['site'])->references(['id'])->on('commercial_sites')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['tournee'])->references(['id'])->on('personnels')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

@@ -15,7 +15,6 @@ class AddForeignKeysToAchatBonComandeItemsTable extends Migration
     {
         Schema::table('achat_bon_comande_items', function (Blueprint $table) {
             $table->foreign(['achat_bon_fk'])->references(['id'])->on('achat_bon_comandes')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

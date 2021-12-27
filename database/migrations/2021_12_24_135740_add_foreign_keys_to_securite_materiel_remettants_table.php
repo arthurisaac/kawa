@@ -15,7 +15,6 @@ class AddForeignKeysToSecuriteMaterielRemettantsTable extends Migration
     {
         Schema::table('securite_materiel_remettants', function (Blueprint $table) {
             $table->foreign(['idMateriel'])->references(['id'])->on('securite_materiels')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

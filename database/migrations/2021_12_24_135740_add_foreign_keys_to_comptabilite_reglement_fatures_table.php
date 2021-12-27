@@ -15,7 +15,6 @@ class AddForeignKeysToComptabiliteReglementFaturesTable extends Migration
     {
         Schema::table('comptabilite_reglement_fatures', function (Blueprint $table) {
             $table->foreign(['facture'])->references(['id'])->on('comptabilite_factures')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

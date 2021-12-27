@@ -15,7 +15,6 @@ class AddForeignKeysToPersonnelSanctionsTable extends Migration
     {
         Schema::table('personnel_sanctions', function (Blueprint $table) {
             $table->foreign(['personnel'])->references(['id'])->on('personnels');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

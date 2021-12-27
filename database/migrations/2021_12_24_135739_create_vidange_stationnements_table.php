@@ -23,7 +23,7 @@ class CreateVidangeStationnementsTable extends Migration
             $table->date('dateRenouvellement');
             $table->date('prochainRenouvellement');
             $table->integer('montant');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

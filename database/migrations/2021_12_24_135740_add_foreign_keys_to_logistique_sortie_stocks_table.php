@@ -15,7 +15,6 @@ class AddForeignKeysToLogistiqueSortieStocksTable extends Migration
     {
         Schema::table('logistique_sortie_stocks', function (Blueprint $table) {
             $table->foreign(['produit'])->references(['id'])->on('logistique_produits');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

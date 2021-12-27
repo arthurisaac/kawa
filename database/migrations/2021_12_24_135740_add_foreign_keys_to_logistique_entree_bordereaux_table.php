@@ -15,7 +15,6 @@ class AddForeignKeysToLogistiqueEntreeBordereauxTable extends Migration
     {
         Schema::table('logistique_entree_bordereaux', function (Blueprint $table) {
             $table->foreign(['fournisseur'])->references(['id'])->on('logistique_fournisseurs')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

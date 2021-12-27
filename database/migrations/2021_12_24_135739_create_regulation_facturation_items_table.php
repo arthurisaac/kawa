@@ -23,7 +23,7 @@ class CreateRegulationFacturationItemsTable extends Migration
             $table->string('debut')->nullable();
             $table->string('fin')->nullable();
             $table->string('montant', 225)->default('0.00');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
             $table->timestamps();
         });
     }

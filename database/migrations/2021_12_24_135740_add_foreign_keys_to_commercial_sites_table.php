@@ -15,7 +15,6 @@ class AddForeignKeysToCommercialSitesTable extends Migration
     {
         Schema::table('commercial_sites', function (Blueprint $table) {
             $table->foreign(['client'])->references(['id'])->on('commercial_clients');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

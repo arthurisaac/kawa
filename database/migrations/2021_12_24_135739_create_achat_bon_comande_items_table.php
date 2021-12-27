@@ -22,7 +22,7 @@ class CreateAchatBonComandeItemsTable extends Migration
             $table->string('prix')->nullable();
             $table->string('montant')->nullable();
             $table->integer('tva')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

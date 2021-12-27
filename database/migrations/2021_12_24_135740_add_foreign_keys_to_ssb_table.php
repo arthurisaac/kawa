@@ -15,7 +15,6 @@ class AddForeignKeysToSsbTable extends Migration
     {
         Schema::table('ssb', function (Blueprint $table) {
             $table->foreign(['site'])->references(['id'])->on('commercial_sites')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

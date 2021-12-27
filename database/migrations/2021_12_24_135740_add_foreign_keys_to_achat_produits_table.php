@@ -15,7 +15,6 @@ class AddForeignKeysToAchatProduitsTable extends Migration
     {
         Schema::table('achat_produits', function (Blueprint $table) {
             $table->foreign(['produit'])->references(['id'])->on('logistique_produits')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

@@ -24,7 +24,7 @@ class CreateRegulationFacturationsTable extends Migration
             $table->unsignedBigInteger('client')->index('regulation_facturations_client_foreign');
             $table->timestamps();
             $table->unsignedBigInteger('site_id')->index('regulation_facturation_site_foreign');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

@@ -25,7 +25,7 @@ class CreateInformatiqueOperationsTable extends Migration
             $table->date('dateDebut')->nullable();
             $table->date('dateFin')->nullable();
             $table->string('operationEffectuee')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

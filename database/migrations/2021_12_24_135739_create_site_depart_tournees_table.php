@@ -56,7 +56,7 @@ class CreateSiteDepartTourneesTable extends Migration
             $table->string('regulation_depart_devise')->nullable();
             $table->string('regulation_arrivee_valeur_colis')->nullable();
             $table->string('regulation_arrivee_devise')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

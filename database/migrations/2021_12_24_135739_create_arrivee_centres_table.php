@@ -23,7 +23,7 @@ class CreateArriveeCentresTable extends Migration
             $table->string('finTournee')->nullable();
             $table->date('dateArrivee')->nullable();
             $table->string('observation')->nullable()->default('RAS');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

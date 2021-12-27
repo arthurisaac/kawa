@@ -15,7 +15,6 @@ class AddForeignKeysToLogistiqueChargementCartesTable extends Migration
     {
         Schema::table('logistique_chargement_cartes', function (Blueprint $table) {
             $table->foreign(['carte'])->references(['id'])->on('carburant_cartes')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

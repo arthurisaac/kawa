@@ -15,7 +15,6 @@ class AddForeignKeysToRegulationConfirmationClientsTable extends Migration
     {
         Schema::table('regulation_confirmation_clients', function (Blueprint $table) {
             $table->foreign(['client'])->references(['id'])->on('commercial_clients')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

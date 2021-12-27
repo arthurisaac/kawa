@@ -22,7 +22,7 @@ class CreateLogistiqueEntreeSecuripackTable extends Migration
             $table->unsignedBigInteger('fournisseur')->index('logistique_entree_securipack_fournisseur_foreign');
             $table->double('prixUnitaire')->nullable();
             $table->string('reference')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

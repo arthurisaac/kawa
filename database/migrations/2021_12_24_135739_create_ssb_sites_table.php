@@ -29,7 +29,7 @@ class CreateSsbSitesTable extends Migration
             $table->string('tel')->nullable();
             $table->string('nombreGab')->nullable();
             $table->string('muros')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

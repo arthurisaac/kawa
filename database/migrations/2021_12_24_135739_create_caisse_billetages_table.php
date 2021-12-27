@@ -43,7 +43,7 @@ class CreateCaisseBilletagesTable extends Migration
             $table->integer('br_nb10')->nullable();
             $table->integer('br_nb5')->nullable();
             $table->integer('br_nb1')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

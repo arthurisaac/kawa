@@ -17,7 +17,6 @@ class AddForeignKeysToArriveeTourneesTable extends Migration
             $table->foreign(['convoyeur1'])->references(['id'])->on('personnels');
             $table->foreign(['convoyeur2'])->references(['id'])->on('personnels');
             $table->foreign(['convoyeur3'])->references(['id'])->on('personnels');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

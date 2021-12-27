@@ -21,7 +21,7 @@ class CreateLogistiqueSortieApprovisionTable extends Migration
             $table->date('date')->nullable();
             $table->string('service')->nullable();
             $table->integer('prixUnitaire')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

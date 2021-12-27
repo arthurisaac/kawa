@@ -30,7 +30,7 @@ class CreateCaisseEntreeColisItemsTable extends Migration
             $table->string('pierre_precieuse_entree', 100)->nullable();
             $table->string('caisse_entree_devise')->nullable();
             $table->string('caisse_entree_valeur_colis')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

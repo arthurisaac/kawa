@@ -25,7 +25,7 @@ class CreateCaisseSortieColisTable extends Migration
             $table->string('observation')->nullable();
             $table->integer('noTournee')->nullable();
             $table->string('receveur')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

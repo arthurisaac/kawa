@@ -16,7 +16,6 @@ class AddForeignKeysToCaisseServicesTable extends Migration
         Schema::table('caisse_services', function (Blueprint $table) {
             $table->foreign(['chargeCaisse'])->references(['id'])->on('personnels');
             $table->foreign(['chargeCaisseAdjoint'])->references(['id'])->on('personnels');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

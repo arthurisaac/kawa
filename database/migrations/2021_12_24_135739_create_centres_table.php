@@ -17,7 +17,7 @@ class CreateCentresTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('centre');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

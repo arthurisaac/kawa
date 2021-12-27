@@ -15,7 +15,6 @@ class AddForeignKeysToRegulationBordereauTable extends Migration
     {
         Schema::table('regulation_bordereau', function (Blueprint $table) {
             $table->foreign(['responsable'])->references(['id'])->on('personnels')->onDelete('CASCADE');
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 

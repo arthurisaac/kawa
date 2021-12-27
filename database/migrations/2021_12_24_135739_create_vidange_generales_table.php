@@ -33,7 +33,7 @@ class CreateVidangeGeneralesTable extends Migration
             $table->integer('filtreAirMontant')->nullable();
             $table->integer('autresConsommables')->nullable();
             $table->integer('autresConsommablesMontant')->nullable();
-            $table->foreign(['localisation_id'])->references(['id'])->on('localisations')->OnUpdate('CASCADE')->default(1);
+            $table->foreignId('localisation_id')->references('id')->on('localisations')->OnUpdate('CASCADE')->default(1);
         });
     }
 
