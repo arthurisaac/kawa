@@ -42,4 +42,9 @@ class User extends Authenticatable
             $modele->localisation_id = Auth::user()->localisation_id;
         });
     }
+
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'role');
+    }
 }

@@ -82,8 +82,8 @@
 
         {{--@if (Route::has('login'))--}}
         <div class="top-right links">
-            @if (session('user'))
-                <a href="/logout">DECONNEXION</a>
+            @if (Auth::check())
+                <a href="{{route('logout')}}">DECONNEXION</a>
             @else
                 <a href="/login">CONNEXION</a>
 
@@ -559,8 +559,8 @@
                                                     </ul>
                                                 </li>
                                                 <li><span></span><a
-                                                            href="javascript:popupwnd('regulation-stock-appro','no','no','no','yes','yes','no','','','1200','600')"
-                                                            target="_self" title="Liste">Liste</a>
+                                                        href="javascript:popupwnd('regulation-stock-appro','no','no','no','yes','yes','no','','','1200','600')"
+                                                        target="_self" title="Liste">Liste</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -599,10 +599,6 @@
                                                         <li><span></span><a
                                                                 href="javascript:popupwnd('regulation-depart-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Liste</a>
-                                                        </li>
-                                                        <li><span></span><a
-                                                                href="javascript:popupwnd('regulation-depart-colis','no','no','no','yes','yes','no','','','1200','600')"
-                                                                target="_self">Colis départ</a>
                                                         </li>
                                                     </ul>
                                                 </li>

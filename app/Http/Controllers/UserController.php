@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Access;
+use App\Models\Localisation;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -23,8 +25,13 @@ class UserController extends Controller
 
     public function liste()
     {
-        $users = User::all();
-        return view('/user.index', compact('users'));
+        $user = Auth::user();
+        if($user->localisation_id<>1){
+            return view('/user.index')->withUsers(User::where('localisation_id','=',$user->localisation_id)->get());
+        }else{
+            $users = User::all();
+            return view('/user.index', compact('users'));
+        }
     }
 
     /**
@@ -36,7 +43,8 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $accesses = Access::all();
-        return view('/user.create', compact('roles', 'accesses'));
+        $localisations = Localisation::all();
+        return view('/user.create', compact('roles', 'accesses', 'localisations'));
     }
 
     public function login()
@@ -47,7 +55,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        session()->remove('user');
+        Auth::logout();
         return redirect('/');
     }
 
@@ -112,6 +120,8 @@ class UserController extends Controller
             'email' => $request->get('email'),
             'role' => $request->get('role'),
             'password' => $request->get('password'),
+            'localisation_id' => $request->get('localisation_id'),
+
         ]);
         $user->save();
     }

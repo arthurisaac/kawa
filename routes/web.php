@@ -21,6 +21,18 @@ Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);
  */
 
 Route::resource('user', 'UserController');
+Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);
+
+
+/*
+ * Localisation
+ */
+Route::get('user-localisation', [\App\Http\Controllers\LocalisationController::class, 'index']);
+Route::get('user-localisation-create', [\App\Http\Controllers\LocalisationController::class, 'create'])->name('user-localisation-create');
+Route::post('user-localisation', [\App\Http\Controllers\LocalisationController::class, 'store'])->name('user-localisation');
+Route::get('user-localisation/{localisation}/edit', [\App\Http\Controllers\LocalisationController::class, 'edit'])->name('user-localisation.edit');
+Route::get('user-localisation/{localisation}/destroy', [\App\Http\Controllers\LocalisationController::class, 'destroy'])->name('user-localisation.destroy');
+
 
 Route::get('login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::post('auth', [\App\Http\Controllers\UserController::class, 'auth']);
@@ -396,3 +408,7 @@ Route::get('parametres-option-devise', [\App\Http\Controllers\OptionSelectContro
 Route::post('parametres-option-devise', [\App\Http\Controllers\OptionSelectController::class, 'storeDevise']);
 Route::delete('parametres-option-devise/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyDevise']);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
