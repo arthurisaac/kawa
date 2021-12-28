@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -36,12 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function booted()
-    {
-        static::creating(function ($modele){
-            $modele->localisation_id = Auth::user()->localisation_id;
-        });
-    }
+//    public static function booted()
+//    {
+//        static::creating(function ($modele){
+//            $modele->localisation_id = Auth::user()->localisation_id;
+//        });
+//    }
 
     public function roles()
     {

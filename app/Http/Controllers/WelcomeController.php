@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
@@ -15,7 +16,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $user = session('user');
+        $user = Auth::user();
         $services = array();
         if ($user) {
             $accesses = DB::table('accesses')

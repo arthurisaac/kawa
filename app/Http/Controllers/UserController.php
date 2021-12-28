@@ -20,7 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('/user.index');
+        $users = User::all();
+        return view('/user.index', compact('users'));
     }
 
     public function liste()
@@ -119,7 +120,7 @@ class UserController extends Controller
             'compte' => $request->get('compte'),
             'email' => $request->get('email'),
             'role' => $request->get('role'),
-            'password' => $request->get('password'),
+            'password' => bcrypt('password'),
             'localisation_id' => $request->get('localisation_id'),
 
         ]);
