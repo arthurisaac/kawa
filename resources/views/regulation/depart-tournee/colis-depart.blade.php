@@ -11,8 +11,8 @@
         <br/>
         <div class="titre">
             <span>Total site</span> : <span class="text-danger">{{count($colisArrivees)}}</span>
-            <span>Colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
-            <span style="margin-left: 10px;">Nombre de colis : <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></span>
+            <span>Valeur colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_depart_valeur_colis")}}</span>
+            <span style="margin-left: 10px;">Nombre de colis : <span class="text-danger">{{$colisArrivees->sum("nbre_colis")}}</span></span>
         </div>
         <br/>
         @if ($errors->any())
@@ -163,8 +163,7 @@
                 <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
                 <td>{{$colis->bordereau ?? ''}}</td>
                 <td>{{$colis->nbre_colis}}</td>
-                <td><a href="{{ route('regulation-depart-tournee.edit',$colis->idTourneeDepart)}}"
-                       class="btn btn-primary btn-sm"></a></td>
+                <td><a href="{{ route('regulation-depart-tournee.edit',$colis->idTourneeDepart)}}" class="btn btn-primary btn-sm"></a></td>
             </tr>
         @endforeach
         </tbody>
