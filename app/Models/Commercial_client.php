@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Commercial_client extends Model
 {
@@ -48,6 +49,13 @@ class Commercial_client extends Model
         'base_comptage_montant_forfaitaire',
         'bt_atm'
     ];
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 
     public function sites()
     {
