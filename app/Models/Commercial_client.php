@@ -48,4 +48,9 @@ class Commercial_client extends Model
         'base_comptage_montant_forfaitaire',
         'bt_atm'
     ];
+
+    public function sites()
+    {
+        return $this->hasMany('App\Models\SiteDepartTournee', 'site')->with('sites');
+    }
 }

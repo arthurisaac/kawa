@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_client;
+use App\Models\Commercial_site;
 use App\Models\RegulationFacturationItem;
 use App\Models\RegulationStockEntreeItem;
 use App\Models\RegulationStockSortie;
@@ -78,6 +80,39 @@ class RegulationStockSortieController extends Controller
             ]);
         }
         return view('regulation.stock.liste', compact('stocks'));
+    }
+
+    public function gestionStock(Request $request)
+    {
+        $clients = Commercial_client::all();
+        $sites = Commercial_site::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $stockClients = Commercial_client::with("sites")
+            ->withCount([
+                'sites as montantSorti' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))->where('type', 'like', 'Dépôt / R');
+                }
+            ])
+            ->withCount([
+                'sites as montantEntree' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"))/*->where('type', 'like', 'Enlèvement / R')*/
+                    ;
+                }
+            ])
+            ->get();
+        /*if ($client)
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    //$query->whereBetween('date', [$debut, $fin]);
+                })->get();*/
+
+        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
     }
 
     /**
