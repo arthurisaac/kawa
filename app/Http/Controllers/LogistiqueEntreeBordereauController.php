@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeBordereaux;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeBordereauController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-bordereau.index', compact('fournisseurs'));
     }
 
@@ -27,7 +28,7 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function liste()
     {
-        $entrees = LogistiqueEntreeBordereaux::all();
+        $entrees = LogistiqueEntreeBordereaux::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-bordereau.liste', compact('entrees'));
     }
 
@@ -70,8 +71,8 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function edit($id)
     {
-        $fournisseurs = LogistiqueFournisseur::all();
-        $entree = LogistiqueEntreeBordereaux::find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $entree = LogistiqueEntreeBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/fourniture/entree-bordereau.edit',
             compact('fournisseurs', 'entree'));
     }
@@ -85,7 +86,7 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = LogistiqueEntreeBordereaux::find($id);
+        $data = LogistiqueEntreeBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->debutSerie = $request->get('debutSerie');
         $data->finSerie = $request->get('finSerie');
         $data->date = $request->get('date');
@@ -105,7 +106,7 @@ class LogistiqueEntreeBordereauController extends Controller
      */
     public function destroy($id)
     {
-        $data = LogistiqueEntreeBordereaux::find($id);
+        $data = LogistiqueEntreeBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->delete();
         return redirect('/logistique-entree-bordereau-liste')->with('success', 'Entrée bordereau supprimée!');
 

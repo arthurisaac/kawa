@@ -6,6 +6,7 @@ use App\Models\CarburantCarte;
 use App\Models\LogistiqueChargementCarte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CarburantChargementTicketController extends Controller
 {
@@ -16,37 +17,37 @@ class CarburantChargementTicketController extends Controller
      */
     public function index()
     {
-        $chargements = LogistiqueChargementCarte::all();
-        $cartes = CarburantCarte::all();
+        $chargements = LogistiqueChargementCarte::where('localisation_id', Auth::user()->localisation_id)->get();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-chargement-ticket.index',
             compact('chargements', 'cartes'));
     }
 
     public function carbCharg()
     {
-        $chargements = LogistiqueChargementCarte::all();
-        $cartes = CarburantCarte::all();
+        $chargements = LogistiqueChargementCarte::where('localisation_id', Auth::user()->localisation_id)->get();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-chargement.index',
             compact('chargements', 'cartes'));
     }
 
     public function carbTicket()
     {
-        $cartes = CarburantCarte::all();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-ticket.index',
             compact('cartes'));
     }
 
     public function carbVehicule()
     {
-        $cartes = CarburantCarte::all();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-vehicule.index',
             compact('cartes'));
     }
 
     public function etatCarburant()
     {
-        $cartes = CarburantCarte::all();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/etat-carburant.index',
             compact('cartes'));
     }
@@ -58,7 +59,7 @@ class CarburantChargementTicketController extends Controller
      */
     public function create()
     {
-        $cartes = CarburantCarte::all();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-chargement-ticket.create',
             compact('cartes'));
     }
@@ -100,8 +101,8 @@ class CarburantChargementTicketController extends Controller
      */
     public function edit($id)
     {
-        $chargement = \App\LogistiqueChargementCarte::find($id);
-        $cartes = CarburantCarte::all();
+        $chargement = \App\LogistiqueChargementCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carb-chargement-ticket.edit',
             compact('cartes', 'chargement'));
     }
@@ -115,7 +116,7 @@ class CarburantChargementTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $chargement = \App\LogistiqueChargementCarte::find($id);
+        $chargement = \App\LogistiqueChargementCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $chargement->carte = $request->get('carte');
         $chargement->date = $request->get('date');
         $chargement->somme = $request->get('somme');
@@ -133,7 +134,7 @@ class CarburantChargementTicketController extends Controller
      */
     public function destroy($id)
     {
-        $chargement = \App\LogistiqueChargementCarte::find($id);
+        $chargement = \App\LogistiqueChargementCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $chargement->delete();
         return redirect('/carb-chargement-ticket')->with('success', 'Chargement Carte carburant supprimé!');
     }

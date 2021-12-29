@@ -6,6 +6,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Conteneur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConteneurController extends Controller
 {
@@ -16,8 +17,8 @@ class ConteneurController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport/conteneur.index',
             compact('centres', 'centres_regionaux'));
     }
@@ -29,7 +30,7 @@ class ConteneurController extends Controller
      */
     public function liste()
     {
-        $conteneurs = Conteneur::all();
+        $conteneurs = Conteneur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport/conteneur.liste',
             compact('conteneurs'));
     }

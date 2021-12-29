@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeTicketVisite;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeTicketController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique.fourniture.entree-ticket-visiteur.index', compact('fournisseurs'));
     }
 
@@ -27,7 +28,7 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function liste()
     {
-        $entrees = LogistiqueEntreeTicketVisite::all();
+        $entrees = LogistiqueEntreeTicketVisite::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique.fourniture.entree-ticket-visiteur.liste', compact('entrees'));
     }
 
@@ -69,8 +70,8 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function edit($id)
     {
-        $entree = LogistiqueEntreeTicketVisite::find($id);
-        $fournisseurs = LogistiqueFournisseur::all();
+        $entree = LogistiqueEntreeTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique.fourniture.entree-ticket-visiteur.edit', compact('fournisseurs', 'entree'));
     }
 
@@ -83,7 +84,7 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entree = LogistiqueEntreeTicketVisite::find($id);
+        $entree = LogistiqueEntreeTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->debutSerie = $request->get('debutSerie');
         $entree->finSerie = $request->get('finSerie');
         $entree->date = $request->get('date');
@@ -101,7 +102,7 @@ class LogistiqueEntreeTicketController extends Controller
      */
     public function destroy($id)
     {
-        $entree = LogistiqueEntreeTicketVisite::find($id);
+        $entree = LogistiqueEntreeTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->delete();
         return redirect('/logistique-entree-ticket-liste')->with('success', 'Entrée ticket visiteur supprimée');
     }

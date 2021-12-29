@@ -9,6 +9,7 @@ use App\Models\Commercial_site;
 use App\Models\SsbSite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SsbSiteController extends Controller
 {
@@ -19,10 +20,10 @@ class SsbSiteController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $clients = Commercial_client::all();
-        $sites = Commercial_site::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.site.index', compact('centres', 'centres_regionaux', 'clients', 'sites'));
     }
 
@@ -33,7 +34,7 @@ class SsbSiteController extends Controller
      */
     public function liste()
     {
-        $ssbSites = SsbSite::all();
+        $ssbSites = SsbSite::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.site.liste', compact('ssbSites'));
     }
 
@@ -106,7 +107,7 @@ class SsbSiteController extends Controller
      */
     public function destroy($id)
     {
-        $site = SsbSite::find($id);
+        $site = SsbSite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $site->delete();
         return redirect('/ssb-site-liste')->with('success', 'Enregistrement effectué');
     }

@@ -6,6 +6,7 @@ use App\Models\RegulationConfirmationClient;
 use App\Models\SiteDepartTournee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegulationConfirmationController extends Controller
 {
@@ -20,7 +21,7 @@ class RegulationConfirmationController extends Controller
             ->with('tournees')
             ->whereNotNull('bordereau')
             ->orderBy('site')
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.confirmation.index', compact('sites'));
     }
 
@@ -31,7 +32,7 @@ class RegulationConfirmationController extends Controller
      */
     public function liste()
     {
-        $regulations = RegulationConfirmationClient::with('site')->get();
+        $regulations = RegulationConfirmationClient::with('site')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.confirmation.liste', compact('regulations'));
     }
 
@@ -79,7 +80,7 @@ class RegulationConfirmationController extends Controller
             ->whereNotNull('bordereau')
             ->orderBy('site')
             ->get();
-        $regulation = RegulationConfirmationClient::with('site')->find($id);
+        $regulation = RegulationConfirmationClient::with('site')->where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('.regulation.confirmation.edit', compact('sites', 'regulation'));
     }
 
@@ -92,7 +93,7 @@ class RegulationConfirmationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = RegulationConfirmationClient::find($id);
+        $data = RegulationConfirmationClient::where('localisation_id', Auth::user()->localisation_id)->find($id);
 
         $data->bordereau = $request->get('bordereau');
         $data->dateReception = $request->get('date');
@@ -111,7 +112,7 @@ class RegulationConfirmationController extends Controller
      */
     public function destroy($id)
     {
-        $data = SiteDepartTournee::find($id);
+        $data = SiteDepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) $data->delete();
         return redirect("/regulation-confirmation-liste")->with('success', 'Supprimé avec succès');
         /*return response()->json([

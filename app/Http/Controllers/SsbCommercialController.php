@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SsbCommercial;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SsbCommercialController extends Controller
 {
@@ -25,7 +26,7 @@ class SsbCommercialController extends Controller
      */
     public function liste()
     {
-        $ssb = SsbCommercial::all();
+        $ssb = SsbCommercial::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.commercial.liste', compact('ssb'));
     }
 
@@ -96,7 +97,7 @@ class SsbCommercialController extends Controller
      */
     public function edit($id)
     {
-        $commercial = SsbCommercial::find($id);
+        $commercial = SsbCommercial::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('ssb.commercial.edit', compact('commercial'));
     }
 
@@ -109,7 +110,7 @@ class SsbCommercialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ssb = SsbCommercial::find($id);
+        $ssb = SsbCommercial::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $ssb->nomClient = $request->get('nomClient');
         $ssb->situationGeographique = $request->get('situationGeographique');
         $ssb->telephoneClient = $request->get('telephoneClient');
@@ -156,7 +157,7 @@ class SsbCommercialController extends Controller
      */
     public function destroy($id)
     {
-        $ssb = SsbCommercial::find($id);
+        $ssb = SsbCommercial::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $ssb->delete();
         return redirect('/ssb-commercial-liste')->with('success', 'Enregistrement supprimé!');
     }

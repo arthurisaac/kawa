@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\InformatiqueMission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class InformatiqueMissionController extends Controller
 {
@@ -17,8 +18,8 @@ class InformatiqueMissionController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.mission.index', compact('centres', 'centres_regionaux'));
     }
 
@@ -29,7 +30,7 @@ class InformatiqueMissionController extends Controller
      */
     public function liste()
     {
-        $missions = InformatiqueMission::all();
+        $missions = InformatiqueMission::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.mission.liste', compact('missions'));
     }
 
@@ -75,9 +76,9 @@ class InformatiqueMissionController extends Controller
      */
     public function edit($id)
     {
-        $mission = InformatiqueMission::find($id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $mission = InformatiqueMission::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.mission.edit', compact('centres', 'centres_regionaux', 'mission'));
     }
 
@@ -90,7 +91,7 @@ class InformatiqueMissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mission = InformatiqueMission::find($id);
+        $mission = InformatiqueMission::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $mission->centre = $request->get('centre');
         $mission->centreRegional = $request->get('centreRegional');
         $mission->service = $request->get('service');
@@ -112,7 +113,7 @@ class InformatiqueMissionController extends Controller
      */
     public function destroy($id)
     {
-        $mission = InformatiqueMission::find($id);
+        $mission = InformatiqueMission::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $mission->delete();
         return redirect('/informatique-mission-liste')->with('success', 'Enregistrement supprimé!');
     }

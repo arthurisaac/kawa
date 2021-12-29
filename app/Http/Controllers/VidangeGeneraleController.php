@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use App\Models\VidangeGenerale;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VidangeGeneraleController extends Controller
 {
@@ -18,10 +19,10 @@ class VidangeGeneraleController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeGenerale::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeGenerale::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-generale.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -33,7 +34,7 @@ class VidangeGeneraleController extends Controller
      */
     public function liste()
     {
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-generale.liste', compact('vehicules'));
     }
 
@@ -99,8 +100,8 @@ class VidangeGeneraleController extends Controller
      */
     public function edit($id)
     {
-        $vehicules = Vehicule::all();
-        $vidange = VidangeGenerale::find($id);
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidange = VidangeGenerale::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-generale.edit', compact('vehicules', 'vidange'));
     }
 
@@ -113,7 +114,7 @@ class VidangeGeneraleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vidangeGenerale = VidangeGenerale::find($id);
+        $vidangeGenerale = VidangeGenerale::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vidangeGenerale->kmActuel = $request->get('kmActuel');
         $vidangeGenerale->prochainKm = $request->get('prochainKm');
         $vidangeGenerale->huileMoteur = $request->get('huileMoteur');
@@ -142,7 +143,7 @@ class VidangeGeneraleController extends Controller
      */
     public function destroy($id)
     {
-        $vidange = VidangeGenerale::find($id);
+        $vidange = VidangeGenerale::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vidange->delete();
         return redirect('/vidange-generale')->with('success', 'Enregistrement supprimé!');
     }

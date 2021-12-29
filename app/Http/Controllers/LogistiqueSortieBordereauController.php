@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueSortieBordereaux;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieBordereauController extends Controller
 {
@@ -25,7 +26,7 @@ class LogistiqueSortieBordereauController extends Controller
      */
     public function liste()
     {
-        $sortieBordereaux = LogistiqueSortieBordereaux::all();
+        $sortieBordereaux = LogistiqueSortieBordereaux::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/sortie-bordereau.liste', compact('sortieBordereaux'));
     }
 
@@ -67,7 +68,7 @@ class LogistiqueSortieBordereauController extends Controller
      */
     public function edit($id)
     {
-        $sortie = LogistiqueSortieBordereaux::find($id);
+        $sortie = LogistiqueSortieBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/fourniture/sortie-bordereau.edit', compact('sortie'));
     }
 
@@ -80,7 +81,7 @@ class LogistiqueSortieBordereauController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sortie = LogistiqueSortieBordereaux::find($id);
+        $sortie = LogistiqueSortieBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->debutSerie = $request->get('debutSerie');
         $sortie->finSerie = $request->get('finSerie');
         $sortie->date = $request->get('date');
@@ -98,7 +99,7 @@ class LogistiqueSortieBordereauController extends Controller
      */
     public function destroy($id)
     {
-        $sortie = LogistiqueSortieBordereaux::find($id);
+        $sortie = LogistiqueSortieBordereaux::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->delete();
         return redirect('/logistique-sortie-bordereau-liste')->with('success', 'Sortie bordereau supprimée!');
     }

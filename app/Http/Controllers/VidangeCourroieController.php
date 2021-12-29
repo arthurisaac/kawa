@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use App\Models\VidangeCourroie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VidangeCourroieController extends Controller
 {
@@ -18,10 +19,10 @@ class VidangeCourroieController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeCourroie::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-courroie.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -79,8 +80,8 @@ class VidangeCourroieController extends Controller
      */
     public function edit($id)
     {
-        $vehicules = Vehicule::all();
-        $vidange = VidangeCourroie::find($id);
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidange = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-courroie.edit', compact('vehicules', 'vidange'));
     }
 
@@ -93,7 +94,7 @@ class VidangeCourroieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vidange = VidangeCourroie::find($id);
+        $vidange = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vidange->kmActuel = $request->get('kmActuel');
         $vidange->prochainKm = $request->get('prochainKm');
         $vidange->courroie = $request->get('courroie');
@@ -115,7 +116,7 @@ class VidangeCourroieController extends Controller
      */
     public function destroy($id)
     {
-        $data = VidangeCourroie::find($id);
+        $data = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

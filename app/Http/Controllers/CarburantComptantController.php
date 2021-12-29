@@ -6,6 +6,7 @@ use App\Models\CarburantComptant;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CarburantComptantController extends Controller
 {
@@ -16,7 +17,7 @@ class CarburantComptantController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/carburant-comptant.index',
             compact('vehicules'));
     }
@@ -28,7 +29,7 @@ class CarburantComptantController extends Controller
      */
     public function liste()
     {
-        $carburants = CarburantComptant::with('vehicules')->get();
+        $carburants = CarburantComptant::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/carburant-comptant.liste',
             compact('carburants'));
     }

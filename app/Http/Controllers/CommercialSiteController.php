@@ -8,6 +8,7 @@ use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CommercialSiteController extends Controller
 {
@@ -18,16 +19,16 @@ class CommercialSiteController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('commercial/site.index',
             compact('clients', 'centres', 'centres_regionaux'));
     }
 
     public function liste()
     {
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('commercial/site.liste',
             compact('sites'));
     }

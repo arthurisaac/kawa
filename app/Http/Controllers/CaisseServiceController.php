@@ -11,6 +11,7 @@ use App\Models\Commercial_client;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CaisseServiceController extends Controller
@@ -23,10 +24,10 @@ class CaisseServiceController extends Controller
     public function index()
     {
         //$personnels = DB::table('personnels')->where('caisse', '!=', null)->get();
-        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->get();
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/caisse.service.index',
             compact('personnels', 'centres', 'centres_regionaux', 'clients'));
     }
@@ -97,7 +98,7 @@ class CaisseServiceController extends Controller
         if (isset($debut) && isset($fin)) {
             $services = CaisseService::with('chargeCaisses')
                 ->whereBetween('date', [$debut, $fin])
-                ->with('chargeCaisseAdjoints')->get();
+                ->with('chargeCaisseAdjoints')->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('/caisse/service.liste',
             compact('services'));
@@ -111,12 +112,12 @@ class CaisseServiceController extends Controller
      */
     public function edit($id)
     {
-        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->get();
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $service = CaisseService::with('chargeCaisses')->with('chargeCaisseAdjoints')->find($id);
-        $operatriceCaisses = CaisseServiceOperatrice::with('operatrice')->where("caisseService", $id)->get();
+        $personnels = Personnel::where('service', 'like', 'CAISSE')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $service = CaisseService::with('chargeCaisses')->with('chargeCaisseAdjoints')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $operatriceCaisses = CaisseServiceOperatrice::with('operatrice')->where("caisseService", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/caisse.service.edit',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'service', 'operatriceCaisses'));
     }
@@ -130,7 +131,7 @@ class CaisseServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = CaisseService::find($id);
+        $service = CaisseService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $service->date = $request->get('date');
         $service->centre = $request->get('centre');
         $service->centreRegional = $request->get('centreRegional');
@@ -152,7 +153,7 @@ class CaisseServiceController extends Controller
 
         for ($i = 0; $i < count($idOperatriceCaisse); $i++) {
             if (!empty($idOperatriceCaisse[$i])) {
-                $operatrice = CaisseServiceOperatrice::find($idOperatriceCaisse[$i]);
+                $operatrice = CaisseServiceOperatrice::where('localisation_id', Auth::user()->localisation_id)->find($idOperatriceCaisse[$i]);
                 $operatrice->operatriceCaisse = $operatriceCaisse[$i];
                 $operatrice->numeroOperatriceCaisse = $numeroOperatriceCaisse[$i] ?? 0;
                 $operatrice->operatriceCaisseBox = $numeroDeBox[$i];
@@ -182,7 +183,7 @@ class CaisseServiceController extends Controller
      */
     public function destroy($id)
     {
-        $caisse = CaisseServiceOperatrice::all()->where("caisseService", "=", $id);
+        $caisse = CaisseServiceOperatrice::where("caisseService", "=", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         foreach ($caisse as $item)
         {
             if ($item) {
@@ -193,7 +194,7 @@ class CaisseServiceController extends Controller
                 $item->delete();
             }
         }
-        $service = CaisseService::find($id);
+        $service = CaisseService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $service->delete();
         //return \response()->json(["message" => "ok"]);
         return redirect('/caisse-service-liste')->with('success', 'Service supprimé!');
@@ -201,7 +202,7 @@ class CaisseServiceController extends Controller
 
     public function destroyItem($id)
     {
-        $service = CaisseServiceOperatrice::find($id);
+        $service = CaisseServiceOperatrice::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $service->delete();
         //return redirect('/caisse-service-liste')->with('success', 'Service supprimé!');
         return \response()->json(["message" => "ok"]);

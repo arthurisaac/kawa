@@ -10,6 +10,7 @@ use App\Models\SecuriteMaterielBeneficiaire;
 use App\Models\SecuriteMaterielRemettant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SecuriteMaterielController extends Controller
@@ -21,14 +22,14 @@ class SecuriteMaterielController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $personnels = DB::table('personnels')->where('service', '=', 'securite')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = DB::table('personnels')->where('service', '=', 'securite')->where('localisation_id', Auth::user()->localisation_id)->get();
         $tournees = DepartTournee::with('agentDeGardes')
             ->with('chefDeBords')->with('chauffeurs')
             ->with('vehicules')
             ->orderByDesc('id')
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite.materiel.index', compact('personnels', 'tournees', 'centres_regionaux', 'centres'));
     }
 
@@ -46,17 +47,17 @@ class SecuriteMaterielController extends Controller
             ->with('operateurRadios')
             ->whereBetween('date', [$request->debut, $request->fin])
             ->orderByDesc('id')
-            ->get();
-        $remettants = SecuriteMaterielRemettant::with('materiels')->get();
-        $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
+        $remettants = SecuriteMaterielRemettant::with('materiels')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->where('localisation_id', Auth::user()->localisation_id)->get();
         } else{
             $materiels = SecuriteMateriel::with('cbs')
                 ->with('tournees')
                 ->with('operateurRadios')
                 ->orderByDesc('id')
-                ->get();
-            $remettants = SecuriteMaterielRemettant::with('materiels')->get();
-            $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
+            $remettants = SecuriteMaterielRemettant::with('materiels')->where('localisation_id', Auth::user()->localisation_id)->get();
+            $beneficiaires = SecuriteMaterielBeneficiaire::with('materiels')->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         return view('securite.materiel.liste', compact('materiels', 'remettants', 'beneficiaires'));
@@ -190,12 +191,12 @@ class SecuriteMaterielController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $materiel = SecuriteMateriel::with('cbs')->with('ccs')->with('cgs')->with('operateurRadios')->with('tournees')->find($id);
-        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->first();
-        $personnels = DB::table('personnels')->where('service', 'LIKE', 'SECURITE')->get();
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $materiel = SecuriteMateriel::with('cbs')->with('ccs')->with('cgs')->with('operateurRadios')->with('tournees')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->where('localisation_id', Auth::user()->localisation_id)->first();
+        $personnels = DB::table('personnels')->where('service', 'LIKE', 'SECURITE')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite.materiel.edit', compact('personnels', 'tournees', 'materiel', 'centres', 'centres_regionaux', 'remettant'));
     }
 
@@ -208,7 +209,7 @@ class SecuriteMaterielController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $materiel = SecuriteMateriel::find($id);
+        $materiel = SecuriteMateriel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $materiel->date = $request->get('date');
         $materiel->cbMatricule = $request->get('cbMatricule');
         $materiel->ccMatricule = $request->get('ccMatricule');
@@ -224,7 +225,7 @@ class SecuriteMaterielController extends Controller
         $materiel->centre = $request->get('centre');
         $materiel->save();
 
-        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->first();
+        $remettant = SecuriteMaterielRemettant::where("idMateriel", $id)->where('localisation_id', Auth::user()->localisation_id)->first();
             $remettant->remettantPieceVehicule = $request->get('remettantPieceVehicule');
         $remettant->remettantPieceVehiculeQuantite = $request->get('remettantPieceVehiculeQuantite');
         $remettant->remettantPieceVehiculeRemise = $request->get('remettantPieceVehiculeRemise');
@@ -304,7 +305,7 @@ class SecuriteMaterielController extends Controller
      */
     public function destroy($id)
     {
-        $materiel = SecuriteMateriel::find($id);
+        $materiel = SecuriteMateriel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $materiel->delete();
         return redirect('/materiel-liste')->with('success', 'Matériel supprimé!');
     }

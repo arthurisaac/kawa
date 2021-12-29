@@ -6,6 +6,7 @@ use App\Models\ComptabiliteFacture;
 use App\Models\ComptabiliteReglementFacture;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ComptabiliteReglementFactureController extends Controller
 {
@@ -16,7 +17,7 @@ class ComptabiliteReglementFactureController extends Controller
      */
     public function index()
     {
-        $factures = ComptabiliteFacture::all();
+        $factures = ComptabiliteFacture::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/reglement-facture.index', compact('factures'));
     }
 
@@ -27,7 +28,7 @@ class ComptabiliteReglementFactureController extends Controller
      */
     public function liste()
     {
-        $reglements = ComptabiliteReglementFacture::all();
+        $reglements = ComptabiliteReglementFacture::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/reglement-facture.liste', compact('reglements'));
     }
 

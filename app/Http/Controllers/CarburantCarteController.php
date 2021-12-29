@@ -6,6 +6,7 @@ use App\Models\CarburantCarte;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CarburantCarteController extends Controller
 {
@@ -16,14 +17,14 @@ class CarburantCarteController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carte-carburant.index',
             compact('vehicules'));
     }
 
     public function liste()
     {
-        $cartes = CarburantCarte::all();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carte-carburant.liste',
             compact('cartes'));
     }
@@ -75,8 +76,8 @@ class CarburantCarteController extends Controller
      */
     public function edit($id)
     {
-        $carte = CarburantCarte::find($id);
-        $vehicules = Vehicule::all();
+        $carte = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/carburant/carte-carburant.edit',
             compact('vehicules','carte'));
     }
@@ -90,7 +91,7 @@ class CarburantCarteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carte = CarburantCarte::find($id);
+        $carte = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $carte->numeroCarte = $request->get('numeroCarte');
         $carte->societe = $request->get('societe');
         $carte->idVehicule = $request->get('idVehicule');
@@ -107,7 +108,7 @@ class CarburantCarteController extends Controller
      */
     public function destroy($id)
     {
-        $carte = CarburantCarte::find($id);
+        $carte = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $carte->delete();
         return redirect('/carte-carburant-liste')->with('success', 'Carte carburant supprimée!');
     }

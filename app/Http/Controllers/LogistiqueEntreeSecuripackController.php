@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeSecuripack;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeSecuripackController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('logistique.fourniture.entree-securipack.index', compact('fournisseurs'));
     }
 
@@ -27,13 +28,13 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function liste()
     {
-        $entrees =  LogistiqueEntreeSecuripack::all();
+        $entrees =  LogistiqueEntreeSecuripack::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-securipack.liste', compact('entrees'));
     }
 
     public function rechercher()
     {
-        $entreeBordereaux =  LogistiqueEntreeSecuripack::all();
+        $entreeBordereaux =  LogistiqueEntreeSecuripack::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-securipack.liste', compact('entreeBordereaux'));
     }
 
@@ -76,8 +77,8 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function edit($id)
     {
-        $entree = LogistiqueEntreeSecuripack::find($id);
-        $fournisseurs = LogistiqueFournisseur::all();
+        $entree = LogistiqueEntreeSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-securipack.edit', compact('fournisseurs', 'entree'));
     }
 
@@ -90,7 +91,7 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entree = LogistiqueEntreeSecuripack::find($id);
+        $entree = LogistiqueEntreeSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->debutSerie = $request->get('debutSerie');;
         $entree->finSerie = $request->get('finSerie');
         $entree->date = $request->get('date');
@@ -109,7 +110,7 @@ class LogistiqueEntreeSecuripackController extends Controller
      */
     public function destroy($id)
     {
-        $entree = LogistiqueEntreeSecuripack::find($id);
+        $entree = LogistiqueEntreeSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->delete();
         return redirect('/logistique-entree-securipack-liste')->with('success', 'Entrée supprimée!');
     }

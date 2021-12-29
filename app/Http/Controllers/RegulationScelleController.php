@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\RegulationScelle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegulationScelleController extends Controller
 {
@@ -17,8 +18,8 @@ class RegulationScelleController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/regulation.scelle.index', compact('centres', 'centres_regionaux'));
     }
 
@@ -29,7 +30,7 @@ class RegulationScelleController extends Controller
      */
     public function liste()
     {
-        $regulations = RegulationScelle::all();
+        $regulations = RegulationScelle::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/regulation.scelle.liste', compact('regulations'));
     }
 

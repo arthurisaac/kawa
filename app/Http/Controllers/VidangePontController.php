@@ -9,6 +9,7 @@ use App\Models\VidangeHuilePont;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VidangePontController extends Controller
 {
@@ -19,10 +20,10 @@ class VidangePontController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeHuilePont::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-pont.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -80,7 +81,7 @@ class VidangePontController extends Controller
      */
     public function edit($id)
     {
-        $vidange = VidangeHuilePont::find($id);
+        $vidange = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-pont.edit', compact('vidange'));
     }
 
@@ -93,7 +94,7 @@ class VidangePontController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vidanges = VidangeHuilePont::find($id);
+        $vidanges = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vidanges->kmActuel = $request->get('kmActuel');
         $vidanges->prochainKm = $request->get('prochainKm');
         $vidanges->save();
@@ -108,7 +109,7 @@ class VidangePontController extends Controller
      */
     public function destroy($id)
     {
-        $data = VidangeHuilePont::find($id);
+        $data = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

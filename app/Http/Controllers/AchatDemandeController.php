@@ -9,6 +9,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AchatDemandeController extends Controller
@@ -21,10 +22,10 @@ class AchatDemandeController extends Controller
     public function index()
     {
         $user = session('user');
-        $fournisseurs = AchatFournisseur::all();
-        $numeroDA = DB::table('achat_demandes')->max('id') + 1;
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $numeroDA = DB::table('achat_demandes')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1;
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('achat.demande.index', compact('fournisseurs', 'numeroDA', 'centres', 'centres_regionaux', 'user'));
     }
@@ -41,10 +42,10 @@ class AchatDemandeController extends Controller
 
     public function liste()
     {
-        $demandes = AchatDemande::all();
-        $achatsRefuses = AchatDemande::all()->where("demande", "=", "Demande refusée");
-        $achatsValides = AchatDemande::all()->where("demande", "=", "Demande validée");
-        $achatsEnCours = AchatDemande::all()->where("demande", "=", "Demande en cours");
+        $demandes = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get();
+        $achatsRefuses = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get()->where("demande", "=", "Demande refusée");
+        $achatsValides = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get()->where("demande", "=", "Demande validée");
+        $achatsEnCours = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get()->where("demande", "=", "Demande en cours");
         return view('achat.demande.liste', compact('demandes', 'achatsRefuses', 'achatsValides', 'achatsEnCours'));
     }
 
@@ -118,11 +119,11 @@ class AchatDemandeController extends Controller
     public function edit($id)
     {
         //$demande = AchatDemande::with('fournisseurs')->with('chauffeurs')->find($id);
-        $demande = AchatDemande::with('fournisseurs')->find($id);
+        $demande = AchatDemande::with('fournisseurs')->where('localisation_id', Auth::user()->localisation_id)->find($id);
         $consultes = AchatFournisseurConsulte::with('fournisseurs')->get()->where('achat_demandes_fk', '=', $id);
-        $fournisseurs = AchatFournisseur::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.demande.edit', compact('demande', 'fournisseurs', 'consultes', 'centres', 'centres_regionaux'));
     }
 
@@ -135,7 +136,7 @@ class AchatDemandeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = AchatDemande::find($id);
+        $data = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->date = $request->get('date');
         $data->identite = $request->get('identite');
         $data->service = $request->get('service');
@@ -204,7 +205,7 @@ class AchatDemandeController extends Controller
      */
     public function destroy($id)
     {
-        $demande = AchatDemande::find($id);
+        $demande = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $demande->delete();
         return redirect('achat-demande-liste')->with('success', 'Enregistrement supprimé!');
     }

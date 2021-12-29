@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CarburantPrevision;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarburantPrevisionController extends Controller
 {
@@ -14,7 +15,7 @@ class CarburantPrevisionController extends Controller
      */
     public function index()
     {
-        $carburants = CarburantPrevision::all();
+        $carburants = CarburantPrevision::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/carburant-prevision.index',
             compact('carburants'));
     }

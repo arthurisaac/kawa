@@ -6,6 +6,7 @@ use App\Models\OptionBordereau;
 use App\Models\OptionDevise;
 use App\Models\OptionNiveauCarburant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OptionSelectController extends Controller
 {
@@ -17,7 +18,7 @@ class OptionSelectController extends Controller
 
     public function optionCarburant()
     {
-        $options = OptionNiveauCarburant::all();
+        $options = OptionNiveauCarburant::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('parametre.option.niveau-carburant', compact('options'));
     }
 
@@ -34,7 +35,7 @@ class OptionSelectController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = OptionNiveauCarburant::find($id);
+            $data = OptionNiveauCarburant::where('localisation_id', Auth::user()->localisation_id)->find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'
@@ -46,7 +47,7 @@ class OptionSelectController extends Controller
 
     public function optionBordereau()
     {
-        $options = OptionBordereau::all();
+        $options = OptionBordereau::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('parametre.option.bordereau', compact('options'));
     }
 
@@ -63,7 +64,7 @@ class OptionSelectController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = OptionBordereau::find($id);
+            $data = OptionBordereau::where('localisation_id', Auth::user()->localisation_id)->find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'
@@ -75,7 +76,7 @@ class OptionSelectController extends Controller
 
     public function optionDevise()
     {
-        $options = OptionDevise::all();
+        $options = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('parametre.option.devise', compact('options'));
     }
 
@@ -92,7 +93,7 @@ class OptionSelectController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = OptionDevise::find($id);
+            $data = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'

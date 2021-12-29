@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RegulationScelle;
 use App\Models\RegulationSecuripack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegulationEtatController extends Controller
 {
@@ -15,25 +16,25 @@ class RegulationEtatController extends Controller
      */
     public function securipackUtilise()
     {
-        $regulations = RegulationSecuripack::all();
+        $regulations = RegulationSecuripack::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.etat.securipack.utilise', compact('regulations'));
     }
 
     public function securipackVendu()
     {
-        $regulations = RegulationSecuripack::all();
+        $regulations = RegulationSecuripack::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.etat.securipack.vendu', compact('regulations'));
     }
 
     public function scelleUtilise()
     {
-        $regulations = RegulationScelle::all();
+        $regulations = RegulationScelle::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.etat.scelle.utilise', compact('regulations'));
     }
 
     public function scelleVendu()
     {
-        $regulations = RegulationScelle::all();
+        $regulations = RegulationScelle::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.etat.scelle.vendu', compact('regulations'));
     }
 

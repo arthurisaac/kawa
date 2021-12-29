@@ -8,6 +8,7 @@ use App\Models\Personnel;
 use App\Models\RegulationBordereau;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegulationBordereauController extends Controller
 {
@@ -18,9 +19,9 @@ class RegulationBordereauController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/regulation.bordereau.index', compact('centres', 'centres_regionaux', 'personnels'));
     }
 
@@ -31,7 +32,7 @@ class RegulationBordereauController extends Controller
      */
     public function liste()
     {
-        $bordereaux= RegulationBordereau::all();
+        $bordereaux= RegulationBordereau::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/regulation.bordereau.liste',
             compact('bordereaux'));
     }

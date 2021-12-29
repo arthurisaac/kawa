@@ -8,6 +8,7 @@ use App\Models\ComptabiliteDegradation;
 use App\Models\Conteneur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ComptabiliteDegradationController extends Controller
 {
@@ -18,9 +19,9 @@ class ComptabiliteDegradationController extends Controller
      */
     public function index()
     {
-        $conteneurs = Conteneur::all();
-        $sites = Commercial_site::all();
-        $clients = Commercial_client::all();
+        $conteneurs = Conteneur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/degradation.index', compact('conteneurs', 'sites', 'clients'));
     }
 
@@ -31,7 +32,7 @@ class ComptabiliteDegradationController extends Controller
      */
     public function liste()
     {
-        $degradations = ComptabiliteDegradation::all();
+        $degradations = ComptabiliteDegradation::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/degradation.liste', compact('degradations'));
     }
 
@@ -81,10 +82,10 @@ class ComptabiliteDegradationController extends Controller
      */
     public function edit($id)
     {
-        $degradation = ComptabiliteDegradation::find($id);
-        $conteneurs = Conteneur::all();
-        $sites = Commercial_site::all();
-        $clients = Commercial_client::all();
+        $degradation = ComptabiliteDegradation::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $conteneurs = Conteneur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/degradation.edit', compact('conteneurs', 'sites', 'clients', 'degradation'));
 
     }
@@ -98,7 +99,7 @@ class ComptabiliteDegradationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $degradation = ComptabiliteDegradation::find($id);
+        $degradation = ComptabiliteDegradation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $degradation->dateDegradation = $request->get('dateDegradation');
         $degradation->conteneur = $request->get('conteneur');
         $degradation->lieu = $request->get('lieu');
@@ -124,7 +125,7 @@ class ComptabiliteDegradationController extends Controller
      */
     public function destroy($id)
     {
-        $degradation = ComptabiliteDegradation::find($id);
+        $degradation = ComptabiliteDegradation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $degradation->delete();
         return redirect('/comptabilite-degradation-liste')->with('success', 'Incident supprimé!');
     }

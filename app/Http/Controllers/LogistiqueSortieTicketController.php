@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueSortieTicketVisite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieTicketController extends Controller
 {
@@ -25,7 +26,7 @@ class LogistiqueSortieTicketController extends Controller
      */
     public function liste()
     {
-        $sorties = LogistiqueSortieTicketVisite::all();
+        $sorties = LogistiqueSortieTicketVisite::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique.fourniture.sortie-ticket-visiteur.liste', compact('sorties'));
     }
 
@@ -67,7 +68,7 @@ class LogistiqueSortieTicketController extends Controller
      */
     public function edit($id)
     {
-        $sortie = LogistiqueSortieTicketVisite::find($id);
+        $sortie = LogistiqueSortieTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique.fourniture.sortie-ticket-visiteur.edit', compact('sortie'));
     }
 
@@ -80,7 +81,7 @@ class LogistiqueSortieTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sortie = LogistiqueSortieTicketVisite::find($id);
+        $sortie = LogistiqueSortieTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->debutSerie = $request->get('debutSerie');
         $sortie->finSerie = $request->get('finSerie');
         $sortie->date = $request->get('date');
@@ -98,7 +99,7 @@ class LogistiqueSortieTicketController extends Controller
      */
     public function destroy($id)
     {
-        $sortie = LogistiqueSortieTicketVisite::find($id);
+        $sortie = LogistiqueSortieTicketVisite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->delete();
         return redirect('/logistique-sortie-ticket-liste')->with('success', 'Sortie ticket visiteur supprimée');
     }

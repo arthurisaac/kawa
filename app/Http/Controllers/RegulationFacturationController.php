@@ -9,6 +9,7 @@ use App\Models\Commercial_site;
 use App\Models\RegulationFacturation;
 use App\Models\RegulationFacturationItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RegulationFacturationController extends Controller
@@ -20,11 +21,11 @@ class RegulationFacturationController extends Controller
      */
     public function index()
     {
-        $numero = DB::table('regulation_facturations')->max('id') + 1 . '-' . date('Y-m-d');
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::all();
+        $numero = DB::table('regulation_facturations')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1 . '-' . date('Y-m-d');
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.facturation.index', compact('numero', 'clients', 'centres', 'centres_regionaux', 'sites'));
     }
 
@@ -35,7 +36,7 @@ class RegulationFacturationController extends Controller
      */
     public function liste()
     {
-        $regulations = RegulationFacturation::with('clients')->get();
+        $regulations = RegulationFacturation::with('clients')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.facturation.liste', compact('regulations'));
     }
 
@@ -105,11 +106,11 @@ class RegulationFacturationController extends Controller
      */
     public function edit($id)
     {
-        $regulation = RegulationFacturation::with('items')->find($id);
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $items = RegulationFacturationItem::where('facturation', $id)->get();
+        $regulation = RegulationFacturation::with('items')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $items = RegulationFacturationItem::where('facturation', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('.regulation.facturation.edit', compact('regulation', 'clients', 'centres', 'centres_regionaux', 'items'));
     }
 
@@ -122,7 +123,7 @@ class RegulationFacturationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = RegulationFacturation::find($id);
+        $data = RegulationFacturation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->date = $request->get("date");
         $data->numero = $request->get("numero");
         $data->centre = $request->get("centre");
@@ -157,7 +158,7 @@ class RegulationFacturationController extends Controller
                     ]);
                     $item->save();
                 } else {
-                    $item = RegulationFacturationItem::find($ids[$i]);
+                    $item = RegulationFacturationItem::where('localisation_id', Auth::user()->localisation_id)->find($ids[$i]);
                     if ($item) {
                         $item->facturation = $data->id;
                         $item->libelle = $libelle[$i];
@@ -184,7 +185,7 @@ class RegulationFacturationController extends Controller
      */
     public function destroy($id)
     {
-        $data = RegulationFacturation::find($id);
+        $data = RegulationFacturation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }
@@ -195,9 +196,9 @@ class RegulationFacturationController extends Controller
 
     public function destroyItem($id)
     {
-        $data = RegulationFacturationItem::find($id);
+        $data = RegulationFacturationItem::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
-            $items = RegulationFacturationItem::where("facturation", $id)->get();
+            $items = RegulationFacturationItem::where("facturation", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
             foreach ($items as $item) {
                 $fact = RegulationFacturationItem::find($item->id);
                 $fact->delete();

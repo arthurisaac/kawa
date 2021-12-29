@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LogistiqueSortieCommande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieBonController extends Controller
 {
@@ -24,7 +25,7 @@ class LogistiqueSortieBonController extends Controller
      */
     public function liste()
     {
-        $sorties = LogistiqueSortieCommande::all();
+        $sorties = LogistiqueSortieCommande::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/sortie-bon-commande.liste', compact('sorties'));
     }
 

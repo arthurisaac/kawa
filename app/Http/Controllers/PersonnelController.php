@@ -16,6 +16,7 @@ use App\Models\PersonnelGestionSanction;
 use App\Models\PersonnelSanction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,10 +29,10 @@ class PersonnelController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $personnels = Personnel::all();
-        $nextId = DB::table('personnels')->max('id') + 1;
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $nextId = DB::table('personnels')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1;
         return view('/rh/personnel.index', compact('centres', 'centres_regionaux', 'personnels', 'nextId'));
     }
 
@@ -319,16 +320,16 @@ class PersonnelController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $gestionMission = PersonnelGestionMission::all()->where('personnel', '=', $id);
-        $gestionAbsences = PersonnelGestionAbsences::all()->where('personnel', '=', $id);
-        $gestionContrats = PersonnelGestionContrats::all()->where('personnel', '=', $id);
-        $gestionExplications = PersonnelGestionExplications::all()->where('personnel', '=', $id);
-        $gestionAffectation = PersonnelGestionAffectations::all()->where('personnel', '=', $id);
-        $gestionSanction = PersonnelGestionSanction::all()->where('personnel', '=', $id);
-        $gestionConge = PersonnelGestionConge::all()->where('personnel', '=', $id);
-        $personnel = Personnel::find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionMission = PersonnelGestionMission::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionAbsences = PersonnelGestionAbsences::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionContrats = PersonnelGestionContrats::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionExplications = PersonnelGestionExplications::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionAffectation = PersonnelGestionAffectations::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionSanction = PersonnelGestionSanction::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $gestionConge = PersonnelGestionConge::all()->where('personnel', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnel = Personnel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/rh/personnel.edit', compact('personnel', 'centres', 'centres_regionaux', 'gestionMission', 'gestionAbsences', 'gestionContrats', 'gestionExplications', 'gestionAffectation', 'gestionSanction', 'gestionConge'));
     }
 
@@ -342,7 +343,7 @@ class PersonnelController extends Controller
     public function update(Request $request, $id)
     {
 
-        $personnel = Personnel::find($id);
+        $personnel = Personnel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $personnel->matricule = $request->get('matricule');
         $personnel->centre = $request->get('centre');
         $personnel->centreRegional = $request->get('centreRegional');
@@ -685,7 +686,7 @@ class PersonnelController extends Controller
      */
     public function destroy($id)
     {
-        $personnel = Personnel::find($id);
+        $personnel = Personnel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $personnel->delete();
         return response()->json([
             'message' => 'Good!'

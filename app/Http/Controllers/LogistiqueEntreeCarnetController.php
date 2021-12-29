@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeCarnetCaisse;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeCarnetController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeCarnetController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-carnet.index', compact('fournisseurs'));
     }
 
@@ -27,7 +28,7 @@ class LogistiqueEntreeCarnetController extends Controller
      */
     public function liste()
     {
-        $entrees =  LogistiqueEntreeCarnetCaisse::all();
+        $entrees =  LogistiqueEntreeCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-carnet.liste', compact('entrees'));
     }
 
@@ -69,8 +70,8 @@ class LogistiqueEntreeCarnetController extends Controller
      */
     public function edit($id)
     {
-        $fournisseurs = LogistiqueFournisseur::all();
-        $entree = LogistiqueEntreeCarnetCaisse::find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $entree = LogistiqueEntreeCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique.fourniture.entree-carnet.edit', compact('fournisseurs', 'entree'));
     }
 
@@ -83,7 +84,7 @@ class LogistiqueEntreeCarnetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entree = LogistiqueEntreeCarnetCaisse::find($id);
+        $entree = LogistiqueEntreeCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->debutSerie = $request->get('debutSerie');
         $entree->finSerie = $request->get('finSerie');
         $entree->date = $request->get('date');
@@ -101,7 +102,7 @@ class LogistiqueEntreeCarnetController extends Controller
      */
     public function destroy($id)
     {
-        $entree = LogistiqueEntreeCarnetCaisse::find($id);
+        $entree = LogistiqueEntreeCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->delete();
         return redirect('/logistique-entree-carnet-liste')->with('success', 'Entrée carnet de caisse supprimée');
     }

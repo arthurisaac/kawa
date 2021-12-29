@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Convoyeur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ConvoyeurController extends Controller
 {
@@ -20,7 +21,7 @@ class ConvoyeurController extends Controller
 
     public function liste()
     {
-        $convoyeurs = Convoyeur::all();
+        $convoyeurs = Convoyeur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/rh/convoyeur.liste', compact('convoyeurs'));
     }
 

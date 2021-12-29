@@ -14,6 +14,7 @@ use App\Models\SiteDepartTournee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RegulationDepartTourneeController extends Controller
@@ -27,16 +28,16 @@ class RegulationDepartTourneeController extends Controller
     {
         $date = date("Y/m/d");
         $heure = date("H:i");
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->where('localisation_id', Auth::user()->localisation_id)->get();
         // $sites = DB::table('site_depart_tournees')
         // ->where('type', 'Enlèvement / R')
         // ->orWhere('type', "Enlèvement + Dépôt / R")
         // ->orWhere('type', "Dépôt / R")
         // ->get();
-        $sites = SiteDepartTournee::with('sites')->where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
+        $sites = SiteDepartTournee::with('sites')->where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->where('localisation_id', Auth::user()->localisation_id)->get();
         // dd($sites);
 
-        $devises = OptionDevise::all();
+        $devises = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->get();
         return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites", "devises"));
     }
 
@@ -48,7 +49,7 @@ class RegulationDepartTourneeController extends Controller
         if (isset($debut) && isset($fin)) {
             $tournees = DepartTournee::with("sites")
                 ->whereBetween('date', [$debut, $fin])
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
         return view("regulation.depart-tournee.liste", compact("tournees"));
@@ -56,11 +57,11 @@ class RegulationDepartTourneeController extends Controller
 
     public function listeColisDepart(Request $request)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $clients = Commercial_client::orderBy('client_nom')->get();
-        $sites_com = Commercial_site::orderBy('site')->get();
-        $devises = OptionDevise::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::orderBy('client_nom')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites_com = Commercial_site::orderBy('site')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $devises = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->get();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
@@ -72,7 +73,7 @@ class RegulationDepartTourneeController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
 
-        $tournees = DepartTournee::all();
+        $tournees = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
         $colisArrivees = SiteDepartTournee::with('sites')
             //->where('colis', '!=', 'RAS')
             ->where(function(Builder $query) {
@@ -81,7 +82,7 @@ class RegulationDepartTourneeController extends Controller
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
             })
             ->orderByDesc("created_at")
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
 
         if (isset($debut) && isset($fin) )
         {
@@ -91,7 +92,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($centre_regional)) {
             $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
@@ -100,7 +101,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($centre)) {
             $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
@@ -109,7 +110,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($client)) {
             $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
@@ -118,7 +119,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($site)) {
             $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
@@ -127,7 +128,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($nature)) {
             $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($nature) {
@@ -136,7 +137,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($site)) {
@@ -149,7 +150,7 @@ class RegulationDepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($client)) {
@@ -161,7 +162,7 @@ class RegulationDepartTourneeController extends Controller
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($devise)) {
@@ -174,7 +175,7 @@ class RegulationDepartTourneeController extends Controller
                         ->orWhere('type', "Dépôt / R")
                         ->orWhere('type', 'Enlèvement + Dépôt / R');
                 })
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($colis)) {
             $colisArrivees = SiteDepartTournee::with('tournees')
@@ -186,7 +187,7 @@ class RegulationDepartTourneeController extends Controller
                         ->orWhere('type', "Dépôt / R")
                         ->orWhere('type', 'Enlèvement + Dépôt / R');
                 })
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
             $colisArrivees = SiteDepartTournee::with('tournees')
@@ -200,7 +201,7 @@ class RegulationDepartTourneeController extends Controller
                         ->orWhere('type', "Dépôt / R")
                         ->orWhere('type', 'Enlèvement + Dépôt / R');
                 })
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         return view('regulation.depart-tournee.colis-depart',
@@ -295,9 +296,9 @@ class RegulationDepartTourneeController extends Controller
      */
     public function edit($id)
     {
-        $tournee = DepartTournee::find($id);
-        $tournees = RegulationDepartTournee::all();
-        $sites = Commercial_site::with('clients')->get();
+        $tournee = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $tournees = RegulationDepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::with('clients')->where('localisation_id', Auth::user()->localisation_id)->get();
         //$sitesItems = SiteDepartTournee::where("idTourneeDepart", "=", $id)->Where('type', 'Enlèvement / R')->orWhere('type', "Dépôt / R")->orWhere('type', 'Enlèvement + Dépôt / R')->get();
         $sitesItems = SiteDepartTournee::with('sites')
             ->where("idTourneeDepart", "=", $id)
@@ -306,7 +307,7 @@ class RegulationDepartTourneeController extends Controller
                     ->orWhere('type', "Dépôt / R")
                     ->orWhere('type', 'Enlèvement + Dépôt / R');
             })
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
         $devises = OptionDevise::all();
         return view('regulation.depart-tournee.edit', compact("tournee", "tournees", "sites", "sitesItems", "devises"));
     }
@@ -336,7 +337,7 @@ class RegulationDepartTourneeController extends Controller
 
         for ($i = 0; $i < count($sites); $i++) {
             if (!empty($sites[$i])) {
-                $dataSite = SiteDepartTournee::find($site_id[$i]);
+                $dataSite = SiteDepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($site_id[$i]);
                 $dataSite->nbre_colis = $nbre_colis[$i];
                 $dataSite->colis = $colis[$i];
                 $dataSite->numero = $numero[$i];

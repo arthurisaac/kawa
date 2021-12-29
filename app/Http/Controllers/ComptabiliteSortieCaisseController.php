@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ComptabiliteSortieCaisse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComptabiliteSortieCaisseController extends Controller
 {
@@ -24,7 +25,7 @@ class ComptabiliteSortieCaisseController extends Controller
      */
     public function liste()
     {
-        $sortieCaisses = ComptabiliteSortieCaisse::all();
+        $sortieCaisses = ComptabiliteSortieCaisse::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/sortie-caisse.liste', compact('sortieCaisses'));
     }
 
@@ -66,7 +67,7 @@ class ComptabiliteSortieCaisseController extends Controller
      */
     public function edit($id)
     {
-        $sortieCaisse = ComptabiliteSortieCaisse::find($id);
+        $sortieCaisse = ComptabiliteSortieCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/comptabilite/sortie-caisse.edit', compact('sortieCaisse'));
     }
 
@@ -79,7 +80,7 @@ class ComptabiliteSortieCaisseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $caisse = ComptabiliteSortieCaisse::find($id);
+        $caisse = ComptabiliteSortieCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $caisse->date = $request->get('date');
         $caisse->somme = $request->get('somme');
         $caisse->motif = $request->get('motif');
@@ -97,7 +98,7 @@ class ComptabiliteSortieCaisseController extends Controller
      */
     public function destroy($id)
     {
-        $caisse = ComptabiliteSortieCaisse::find($id);
+        $caisse = ComptabiliteSortieCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $caisse->delete();
         return redirect('/comptabilite-sortie-caisse-liste')->with('success', 'Sortie caisse enregistrée!');
     }

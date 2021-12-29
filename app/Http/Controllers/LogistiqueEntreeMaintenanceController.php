@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueEntreeMaintenance;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeMaintenanceController extends Controller
 {
@@ -15,7 +16,7 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-maintenance.index', compact('fournisseurs'));
     }
 
@@ -26,7 +27,7 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function liste()
     {
-        $entrees = LogistiqueEntreeMaintenance::all();
+        $entrees = LogistiqueEntreeMaintenance::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-maintenance.liste', compact('entrees'));
     }
 
@@ -68,8 +69,8 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function edit($id)
     {
-        $entree = LogistiqueEntreeMaintenance::find($id);
-        $fournisseurs = LogistiqueFournisseur::all();
+        $entree = LogistiqueEntreeMaintenance::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-maintenance.edit', compact('fournisseurs', 'entree'));
     }
 
@@ -82,7 +83,7 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entree = LogistiqueEntreeMaintenance::find($id);
+        $entree = LogistiqueEntreeMaintenance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->debutSerie = $request->get('debutSerie');
         $entree->finSerie = $request->get('finSerie');
         $entree->date = $request->get('date');
@@ -100,7 +101,7 @@ class LogistiqueEntreeMaintenanceController extends Controller
      */
     public function destroy($id)
     {
-        $entree = LogistiqueEntreeMaintenance::find($id);
+        $entree = LogistiqueEntreeMaintenance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->delete();
         return redirect('/logistique-entree-maintenance-liste')->with('success', 'Entrée fiche de maintenance DAB supprimée');
     }

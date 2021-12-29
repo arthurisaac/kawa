@@ -20,10 +20,10 @@ class AchatBonController extends Controller
      */
     public function index()
     {
-        $numeroBon = (DB::table('achat_bon_comandes')->where('localisation_id', Auth()->user()->localisation_id)->max('id') + 1) . '-' . date('d') . '-' . date('m') . '-' . date('Y');
+        $numeroBon = (DB::table('achat_bon_comandes')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1) . '-' . date('d') . '-' . date('m') . '-' . date('Y');
         $currentDate = date('Y-m-d');
-        $fournisseurs = AchatFournisseur::all();
-        $demandes = AchatDemande::all();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $demandes = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/achat.bon.index', compact('fournisseurs', 'numeroBon', 'currentDate', 'demandes'));
     }
 
@@ -34,7 +34,7 @@ class AchatBonController extends Controller
      */
     public function liste()
     {
-        $bons = AchatBonComande::with('fournisseurs')->get();
+        $bons = AchatBonComande::with('fournisseurs')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/achat.bon.liste', compact('bons'));
     }
 
@@ -107,10 +107,10 @@ class AchatBonController extends Controller
     public function edit($id)
     {
         // $bon = AchatBonComande::with('fournisseurs')->find($id)->get();
-        $bon = AchatBonComande::find($id);
-        $fournisseurs = AchatFournisseur::all();
-        $demandes = AchatDemande::all();
-        $bonItems = AchatBonComandeItem::with('bons')->get()->where('achat_bon_fk', '=', $id);
+        $bon = AchatBonComande::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $demandes = AchatDemande::where('localisation_id', Auth::user()->localisation_id)->get();
+        $bonItems = AchatBonComandeItem::with('bons')->where('achat_bon_fk', '=', $id)->andWhere('localisation_id', Auth::user()->localisation_id)->get();
         return view('/achat.bon.edit', compact('bon', 'fournisseurs', 'bonItems', 'demandes'));
     }
 
@@ -136,7 +136,7 @@ class AchatBonController extends Controller
                 $ht = intval($pu[$i]) * intval($quantite[$i]);
                 $total = $ht + ($ht * intval($tva[$i]) / 100); // intval($pu[$i]) * intval($quantite[$i]);
                 $montant += $total;
-                $item = AchatBonComandeItem::find($ids[$i]);
+                $item = AchatBonComandeItem::where('localisation_id', Auth::user()->localisation_id)->find($ids[$i]);
                 $item->achat_bon_fk = $id;
                 $item->designation = $designation[$i];
                 $item->quantite = $quantite[$i];
@@ -147,7 +147,7 @@ class AchatBonController extends Controller
             }
         }
 
-        $data = AchatBonComande::find($id);
+        $data = AchatBonComande::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->date = $request->get('date');
         $data->numero = $request->get('numero');
         $data->numero_da = $request->get('numero_da');
@@ -176,7 +176,7 @@ class AchatBonController extends Controller
      */
     public function destroy($id)
     {
-        $data = AchatBonComande::find($id);
+        $data = AchatBonComande::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->delete();
         return redirect('achat-bon-liste')->with('success', 'Enregistrement supprimé!');
     }

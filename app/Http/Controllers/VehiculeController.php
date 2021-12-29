@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class VehiculeController extends Controller
@@ -18,10 +19,10 @@ class VehiculeController extends Controller
      */
     public function index()
     {
-        $vehicule = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $vehicule = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport.vehicule.index',
             compact('vehicule','centres', 'centres_regionaux', 'personnels'));
     }
@@ -33,7 +34,7 @@ class VehiculeController extends Controller
      */
     public function liste()
     {
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport/vehicule.liste', compact('vehicules'));
     }
 
@@ -99,10 +100,10 @@ class VehiculeController extends Controller
      */
     public function edit($id)
     {
-        $vehicule = Vehicule::with('chauffeurTitulaires')->with('chauffeurSuppleants')->find($id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $vehicule = Vehicule::with('chauffeurTitulaires')->with('chauffeurSuppleants')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport.vehicule.edit',
             compact('vehicule','centres', 'centres_regionaux', 'personnels'));
     }
@@ -116,7 +117,7 @@ class VehiculeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vehicule = Vehicule::find($id);
+        $vehicule = Vehicule::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if($request->file()) {
             $fileName = time().'_'.$request->photo->getClientOriginalName();
             $request->file('photo')->storeAs('uploads', $fileName, 'public');
@@ -150,7 +151,7 @@ class VehiculeController extends Controller
      */
     public function destroy($id)
     {
-        $vehicule = Vehicule::find($id);
+        $vehicule = Vehicule::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vehicule->delete();
         return redirect('/vehicule-liste')->with('success', 'Véhicule supprimé!');
     }

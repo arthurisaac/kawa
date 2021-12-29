@@ -9,6 +9,7 @@ use App\Models\RegulationStockEntree;
 use App\Models\RegulationStockEntreeItem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RegulationStockEntreeController extends Controller
@@ -20,17 +21,17 @@ class RegulationStockEntreeController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $fournisseurs = AchatFournisseur::all();
-        $numero = DB::table('regulation_stock_entrees')->max('id') + 1 . '-' . date('Y-m-d');
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
+        $numero = DB::table('regulation_stock_entrees')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1 . '-' . date('Y-m-d');
         return view("regulation.stock.entree.index", compact('centres_regionaux', 'centres', 'fournisseurs', 'numero'));
     }
 
 
     public function liste()
     {
-        $stocks = RegulationStockEntree::with('items')->get();
+        $stocks = RegulationStockEntree::with('items')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view("regulation.stock.entree.liste", compact('stocks'));
     }
 
@@ -106,11 +107,11 @@ class RegulationStockEntreeController extends Controller
      */
     public function edit($id)
     {
-        $stock = RegulationStockEntree::find($id);
-        $items = RegulationStockEntreeItem::all()->where('stock_entree', '=', $id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $fournisseurs = AchatFournisseur::all();
+        $stock = RegulationStockEntree::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $items = RegulationStockEntreeItem::all()->where('stock_entree', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view("regulation.stock.entree.edit", compact('centres_regionaux', 'centres', 'fournisseurs', 'stock', 'items'));
     }
 
@@ -123,7 +124,7 @@ class RegulationStockEntreeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = RegulationStockEntree::find($id);
+        $data = RegulationStockEntree::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->numero = $request->get("numero");
         $data->centre = $request->get("centre");
         $data->centre_regional = $request->get("centre_regional");
@@ -173,7 +174,7 @@ class RegulationStockEntreeController extends Controller
                     ]);
                     $item->save();
                 } else {
-                    $item = RegulationStockEntreeItem::find($ids[$i]);
+                    $item = RegulationStockEntreeItem::where('localisation_id', Auth::user()->localisation_id)->find($ids[$i]);
                     $item->date = $qte_attendu[$i];
                     $item->qte_attendu = $qte_attendu[$i];
                     $item->date = $date[$i];
@@ -198,11 +199,11 @@ class RegulationStockEntreeController extends Controller
      */
     public function destroy($id)
     {
-        $data = RegulationStockEntree::find($id);
+        $data = RegulationStockEntree::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
-            $items = RegulationStockEntreeItem::where("stock_entree", $id)->get();
+            $items = RegulationStockEntreeItem::where("stock_entree", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
             foreach ($items as $item) {
-                $ent = RegulationStockEntreeItem::find($item->id);
+                $ent = RegulationStockEntreeItem::where('localisation_id', Auth::user()->localisation_id)->find($item->id);
                 $ent->delete();
             }
             $data->delete();
@@ -214,7 +215,7 @@ class RegulationStockEntreeController extends Controller
 
     public function destroyItem($id)
     {
-        $data = RegulationStockEntreeItem::find($id);
+        $data = RegulationStockEntreeItem::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\InformatiqueOperation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class InformatiqueOperationMaintenanceController extends Controller
 {
@@ -17,8 +18,8 @@ class InformatiqueOperationMaintenanceController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.operation-maintenance.index', compact('centres', 'centres_regionaux'));
     }
 
@@ -29,7 +30,7 @@ class InformatiqueOperationMaintenanceController extends Controller
      */
     public function liste()
     {
-        $informatiques = InformatiqueOperation::all();
+        $informatiques = InformatiqueOperation::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.operation-maintenance.liste', compact('informatiques'));
     }
 
@@ -75,9 +76,9 @@ class InformatiqueOperationMaintenanceController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $informatique = InformatiqueOperation::find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $informatique = InformatiqueOperation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('informatique.operation-maintenance.edit',
             compact('centres', 'centres_regionaux', 'informatique'));
     }
@@ -91,7 +92,7 @@ class InformatiqueOperationMaintenanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $informatique = InformatiqueOperation::find($id);
+        $informatique = InformatiqueOperation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $informatique->centre = $request->get('centre');
         $informatique->centreRegional = $request->get('centreRegional');
         $informatique->service = $request->get('service');
@@ -113,7 +114,7 @@ class InformatiqueOperationMaintenanceController extends Controller
      */
     public function destroy($id)
     {
-        $informatique = InformatiqueOperation::find($id);
+        $informatique = InformatiqueOperation::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $informatique->delete();
         return redirect('/informatique-maintenance-liste')->with('success','Enregistrement supprimé!');
     }

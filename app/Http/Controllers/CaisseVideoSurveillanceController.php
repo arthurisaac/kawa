@@ -8,6 +8,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CaisseVideoSurveillanceController extends Controller
 {
@@ -18,9 +19,9 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $operatrices = CaisseServiceOperatrice::with('operatrice')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/caisse/video-surveillance.index',
             compact('operatrices', 'centres', 'centres_regionaux'));
     }
@@ -31,7 +32,7 @@ class CaisseVideoSurveillanceController extends Controller
         $fin = $request->get("fin");
         $surveillances = CaisseVideoSurveillance::orderBy('id', 'desc')->get();
         if (isset($debut) && isset($fin)) {
-            $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])->get();
+            $surveillances = CaisseVideoSurveillance::whereBetween('date', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('/caisse/video-surveillance.liste',
             compact('surveillances'));
@@ -96,10 +97,10 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $video = CaisseVideoSurveillance::find($id);
-        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $video = CaisseVideoSurveillance::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $operatrices = CaisseServiceOperatrice::with('operatrice')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/caisse/video-surveillance.edit',
             compact('operatrices', 'video', 'centres', 'centres_regionaux'));
     }
@@ -113,7 +114,7 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $caisse = CaisseVideoSurveillance::find($id);
+        $caisse = CaisseVideoSurveillance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $caisse->date = $request->get('date');
         $caisse->heureDebut = $request->get('heureDebut');
         $caisse->heureFin = $request->get('heureFin');
@@ -142,7 +143,7 @@ class CaisseVideoSurveillanceController extends Controller
      */
     public function destroy($id)
     {
-        $video = CaisseVideoSurveillance::find($id);
+        $video = CaisseVideoSurveillance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $video->delete();
         return redirect('/caisse-video-surveillance-liste')->with('success', 'Suppression effectuée!');
     }

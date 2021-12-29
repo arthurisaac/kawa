@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeCommande;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeBonController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeBonController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-bon-commande.index', compact('fournisseurs'));
     }
 
@@ -27,7 +28,7 @@ class LogistiqueEntreeBonController extends Controller
      */
     public function liste()
     {
-        $entrees = LogistiqueEntreeCommande::all();
+        $entrees = LogistiqueEntreeCommande::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-bon-commande.liste', compact('entrees'));
     }
 

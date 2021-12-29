@@ -10,6 +10,7 @@ use App\Models\RegulationStockSortie;
 use App\Models\RegulationStockSortieItem;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RegulationStockSortieController extends Controller
@@ -21,8 +22,8 @@ class RegulationStockSortieController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view("regulation.stock.sortie.index", compact('centres_regionaux', 'centres'));
     }
 
@@ -30,9 +31,9 @@ class RegulationStockSortieController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $stocks = RegulationStockSortie::all();
+        $stocks = RegulationStockSortie::where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
-            $stocks = RegulationStockSortie::all()->whereBetween('date', [$debut, $fin])->get();
+            $stocks = RegulationStockSortie::all()->whereBetween('date', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view("regulation.stock.sortie.liste", compact('stocks'));
     }
@@ -63,11 +64,11 @@ class RegulationStockSortieController extends Controller
         );
         $stocks = array();
         foreach ($libelles as $libelle) {
-            $factures = RegulationFacturationItem::where('libelle', 'like', $libelle)->sum('qte');
-            $sorties = RegulationStockSortieItem::where('libelle', 'like', $libelle)->sum('qte_sortie');
+            $factures = RegulationFacturationItem::where('localisation_id', Auth::user()->localisation_id)->where('libelle', 'like', $libelle)->sum('qte');
+            $sorties = RegulationStockSortieItem::where('localisation_id', Auth::user()->localisation_id)->where('libelle', 'like', $libelle)->sum('qte_sortie');
             $appro = RegulationStockEntreeItem::whereHas('stocks', function (Builder $query) use ($libelle) {
                 $query->where('libelle', 'like', $libelle);
-            })->sum('qte_livree');
+            })->where('localisation_id', Auth::user()->localisation_id)->sum('qte_livree');
             array_push($stocks, [
                 "libelle" => $libelle,
                 "appro" => $appro,
@@ -151,10 +152,10 @@ class RegulationStockSortieController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $stock = RegulationStockSortie::with('items')->find($id);
-        $items = RegulationStockSortieItem::all()->where('stock_sortie', '=', $id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $stock = RegulationStockSortie::with('items')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $items = RegulationStockSortieItem::all()->where('stock_sortie', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view("regulation.stock.sortie.edit", compact('stock', 'items', 'centres', 'centres_regionaux'));
     }
 
@@ -167,7 +168,7 @@ class RegulationStockSortieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = RegulationStockSortie::find($id);
+        $data = RegulationStockSortie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->date = $request->get("date");
         $data->receveur = $request->get("receveur");
         $data->centre = $request->get("centre");
@@ -199,7 +200,7 @@ class RegulationStockSortieController extends Controller
                     ]);
                     $item->save();
                 } else {
-                    $item = RegulationStockSortieItem::find($item_id[$i]);
+                    $item = RegulationStockSortieItem::where('localisation_id', Auth::user()->localisation_id)->find($item_id[$i]);
                     $item->date = $date_item[$i];
                     $item->qte_sortie = $qte_sortie[$i];
                     $item->debut = $debut[$i];
@@ -241,11 +242,11 @@ class RegulationStockSortieController extends Controller
      */
     public function destroy($id)
     {
-        $data = RegulationStockSortie::find($id);
+        $data = RegulationStockSortie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
-            $items = RegulationStockSortieItem::where("stock_sortie", $id)->get();
+            $items = RegulationStockSortieItem::where("stock_sortie", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
             foreach ($items as $item) {
-                $sortie = RegulationStockSortieItem::find($item->id);
+                $sortie = RegulationStockSortieItem::where('localisation_id', Auth::user()->localisation_id)->find($item->id);
                 $sortie->delete();
             }
             $data->delete();
@@ -257,7 +258,7 @@ class RegulationStockSortieController extends Controller
 
     public function destroyItem($id)
     {
-        $data = RegulationStockSortieItem::find($id);
+        $data = RegulationStockSortieItem::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

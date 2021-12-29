@@ -7,6 +7,7 @@ use App\Models\LogistiqueFournisseur;
 use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeStockController extends Controller
 {
@@ -17,14 +18,14 @@ class LogistiqueEntreeStockController extends Controller
      */
     public function index()
     {
-        $produits = LogistiqueProduit::all();
-        $fournisseurs = LogistiqueFournisseur::all();
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/entree-stock.index', compact('produits', 'fournisseurs'));
     }
 
     public function liste()
     {
-        $stocks = LogistiqueEntreeStock::all();
+        $stocks = LogistiqueEntreeStock::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/entree-stock.liste', compact('stocks'));
     }
 
@@ -78,9 +79,9 @@ class LogistiqueEntreeStockController extends Controller
      */
     public function edit($id)
     {
-        $entreeStock = LogistiqueEntreeStock::find($id);
-        $produits = LogistiqueProduit::all();
-        $fournisseurs = LogistiqueFournisseur::all();
+        $entreeStock = LogistiqueEntreeStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/entree-stock.edit', compact('produits', 'fournisseurs', 'entreeStock'));
     }
 
@@ -93,7 +94,7 @@ class LogistiqueEntreeStockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entreeStock = LogistiqueEntreeStock::find($id);
+        $entreeStock = LogistiqueEntreeStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entreeStock->produit = $request->get('produit');
         $entreeStock->dateApprovisionnement = $request->get('dateApprovisionnement');
         $entreeStock->fournisseur = $request->get('fournisseur');
@@ -113,7 +114,7 @@ class LogistiqueEntreeStockController extends Controller
      */
     public function destroy($id)
     {
-        $entreeStock = LogistiqueEntreeStock::find($id);
+        $entreeStock = LogistiqueEntreeStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entreeStock->delete();
         return redirect('/logistique-entree-stock-liste')->with('success', 'Entrée de stock supprimée!');
     }

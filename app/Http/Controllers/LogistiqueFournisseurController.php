@@ -6,6 +6,7 @@ use App\Models\LogistiqueFournisseur;
 use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LogistiqueFournisseurController extends Controller
@@ -22,7 +23,7 @@ class LogistiqueFournisseurController extends Controller
 
     public function liste()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/fournisseur.liste',
             compact('fournisseurs'));
     }
@@ -84,7 +85,7 @@ class LogistiqueFournisseurController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = LogistiqueFournisseur::find($id);
+        $fournisseur = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/achat/fournisseur.edit', compact('fournisseur'));
     }
 
@@ -97,7 +98,7 @@ class LogistiqueFournisseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $fournisseur = LogistiqueFournisseur::find($id);
+        $fournisseur = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $fournisseur->societe = $request->get('societe');
         $fournisseur->civilite = $request->get('civilite');
         $fournisseur->nom = $request->get('nom');
@@ -124,8 +125,8 @@ class LogistiqueFournisseurController extends Controller
      */
     public function destroy($id)
     {
-        $fournisseur = LogistiqueFournisseur::find($id);
-        $produits = DB::table('logistique_produits')->where('fournisseur', '=', $id)->get();
+        $fournisseur = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $produits = DB::table('logistique_produits')->where('fournisseur', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         foreach ($produits as $produit) {
             $p = LogistiqueProduit::find($produit->id);
             $p->delete();

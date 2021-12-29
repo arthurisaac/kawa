@@ -8,6 +8,7 @@ use App\Models\Personnel;
 use App\Models\RegulationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegulationServiceController extends Controller
 {
@@ -18,9 +19,9 @@ class RegulationServiceController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/regulation.service.index',
             compact('personnels', 'centres', 'centres_regionaux'));
     }
@@ -35,12 +36,12 @@ class RegulationServiceController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $services = RegulationService::with('chargeRegulations')->with('chargeRegulationAdjointes')->get();
+        $services = RegulationService::with('chargeRegulations')->with('chargeRegulationAdjointes')->where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
             $services = RegulationService::with('chargeRegulations')
                 ->with('chargeRegulationAdjointes')
                 ->whereBetween('date', [$debut, $fin])
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('/regulation.service.liste',
             compact('services'));
@@ -88,10 +89,10 @@ class RegulationServiceController extends Controller
      */
     public function edit($id)
     {
-        $personnels = Personnel::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $service = RegulationService::with('chargeRegulations')->with('chargeRegulationAdjointes')->find($id);
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $service = RegulationService::with('chargeRegulations')->with('chargeRegulationAdjointes')->where('localisation_id', Auth::user()->localisation_id)->find($id);
         //$service = $services[0];
         return view('/regulation.service.edit',
             compact('personnels', 'centres', 'centres_regionaux', 'service', 'id'));
@@ -106,7 +107,7 @@ class RegulationServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = RegulationService::find($id);
+        $service = RegulationService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $service->centre = $request->get('centre');
         $service->centreRegional = $request->get('centreRegional');
         $service->chargeeRegulation = $request->get('chargeeRegulation');
@@ -127,7 +128,7 @@ class RegulationServiceController extends Controller
      */
     public function destroy($id)
     {
-        $service = RegulationService::find($id);
+        $service = RegulationService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $service->delete();
         return redirect('/regulation-service-liste')->with('success', 'Service supprimé!');
     }

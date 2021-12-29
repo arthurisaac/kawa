@@ -10,6 +10,7 @@ use App\Models\Ssb;
 use App\Models\SsbSite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SSBController extends Controller
 {
@@ -20,11 +21,11 @@ class SSBController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $sites = SsbSite::all();
-        $personnels = Personnel::all();
-        $incidents = ComptabiliteDegradation::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = SsbSite::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $incidents = ComptabiliteDegradation::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.index', compact('centres', 'centres_regionaux', 'sites', 'personnels', 'incidents'));
     }
 
@@ -35,7 +36,7 @@ class SSBController extends Controller
      */
     public function liste()
     {
-        $ssb = Ssb::all();
+        $ssb = Ssb::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.liste', compact('ssb'));
     }
 
@@ -88,10 +89,10 @@ class SSBController extends Controller
      */
     public function edit($id)
     {
-        $ssb = Ssb::find($id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $sites = SsbSite::all();
+        $ssb = Ssb::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = SsbSite::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('ssb.edit', compact('centres', 'centres_regionaux', 'sites', 'ssb'));
     }
 
@@ -104,7 +105,7 @@ class SSBController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ssb = Ssb::find($id);
+        $ssb = Ssb::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $ssb->numeroIncident = $request->get('date');
         $ssb->numeroIncident = $request->get('numeroIncident');
         $ssb->numeroBordereau = $request->get('numeroBordereau');
@@ -133,7 +134,7 @@ class SSBController extends Controller
      */
     public function destroy($id)
     {
-        $ssb = Ssb::find($id);
+        $ssb = Ssb::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $ssb->delete();
         return redirect('ssb-liste')->with('success', 'Enregistrement supprimé!');
     }

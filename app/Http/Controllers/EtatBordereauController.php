@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DepartTournee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EtatBordereauController extends Controller
@@ -23,7 +24,7 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() : DepartTournee::all();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() : DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('/transport/etat-bordereau.tournee-sur-periode', compact('tournees'));
     }
@@ -32,8 +33,8 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/etat-bordereau.sur-periode', compact('tournees'));
     }
 
@@ -46,8 +47,8 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/etat-bordereau.par-site', compact('tournees'));
     }
 
@@ -55,8 +56,8 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/etat-bordereau.par-client', compact('tournees'));
     }
 
@@ -64,8 +65,8 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/etat-bordereau.par-vehicule', compact('tournees'));
     }
 
@@ -73,8 +74,8 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/etat-bordereau.par-convoyeur', compact('tournees'));
     }
 
@@ -82,16 +83,16 @@ class EtatBordereauController extends Controller
     {
         $from = $request->get('from');
         $to = $request->get('to');
-        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->get() :
-            DepartTournee::with('vehicules')->get();
+        $tournees = isset($from) && isset($to) ? DepartTournee::whereBetween('date', [$from, $to])->where('localisation_id', Auth::user()->localisation_id)->get() :
+            DepartTournee::with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         $total = isset($from) && isset($to) ?
             DB::table("depart_tournees")
                 ->select(DB::raw("SUM(coutTournee) as total"))
                 ->whereBetween('date', [$from, $to])
-                ->get() :
+                ->where('localisation_id', Auth::user()->localisation_id)->get() :
             DB::table("depart_tournees")
                 ->select(DB::raw("SUM(coutTournee) as total"))
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('/transport/etat-bordereau.fond-transport-periode', compact('tournees', 'total'));
     }

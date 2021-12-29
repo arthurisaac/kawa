@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\InformatiqueMateriel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class InformatiqueMaterielController extends Controller
 {
@@ -17,8 +18,8 @@ class InformatiqueMaterielController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.achat-materiel.index', compact('centres', 'centres_regionaux'));
     }
 
@@ -29,7 +30,7 @@ class InformatiqueMaterielController extends Controller
      */
     public function liste()
     {
-        $achats = InformatiqueMateriel::all();
+        $achats = InformatiqueMateriel::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.achat-materiel.liste', compact('achats'));
     }
 
@@ -83,9 +84,9 @@ class InformatiqueMaterielController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $achat = InformatiqueMateriel::find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $achat = InformatiqueMateriel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('informatique.achat-materiel.edit', compact('centres', 'centres_regionaux', 'achat'));
     }
 
@@ -105,7 +106,7 @@ class InformatiqueMaterielController extends Controller
             $factureJointe = $fileName;
         }
 
-        $achat = InformatiqueMateriel::find($id);
+        $achat = InformatiqueMateriel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $achat->centre = $request->get('centre');
         $achat->centreRegional = $request->get('centreRegional');
         $achat->service = $request->get('service');
@@ -129,7 +130,7 @@ class InformatiqueMaterielController extends Controller
      */
     public function destroy($id)
     {
-        $achat = InformatiqueMateriel::find($id);
+        $achat = InformatiqueMateriel::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $achat->delete();
         return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement supprimé!');
     }

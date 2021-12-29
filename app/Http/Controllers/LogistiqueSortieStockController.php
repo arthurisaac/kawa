@@ -6,6 +6,7 @@ use App\Models\LogistiqueProduit;
 use App\Models\LogistiqueSortieStock;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieStockController extends Controller
 {
@@ -16,13 +17,13 @@ class LogistiqueSortieStockController extends Controller
      */
     public function index()
     {
-        $produits = LogistiqueProduit::all();
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/sortie-stock.index', compact('produits'));
     }
 
     public function liste()
     {
-        $stocks = LogistiqueSortieStock::all();
+        $stocks = LogistiqueSortieStock::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/sortie-stock.liste', compact('stocks'));
     }
 
@@ -76,8 +77,8 @@ class LogistiqueSortieStockController extends Controller
      */
     public function edit($id)
     {
-        $produits = LogistiqueProduit::all();
-        $stock = LogistiqueSortieStock::find($id);
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
+        $stock = LogistiqueSortieStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/achat/sortie-stock.edit', compact('produits', 'stock'));
     }
 
@@ -90,7 +91,7 @@ class LogistiqueSortieStockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $stock = LogistiqueSortieStock::find($id);
+        $stock = LogistiqueSortieStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $stock->produit = $request->get('produit');
         $stock->quantite = $request->get('quantite');
         $stock->dateSortie = $request->get('dateSortie');
@@ -111,7 +112,7 @@ class LogistiqueSortieStockController extends Controller
      */
     public function destroy($id)
     {
-        $stock = LogistiqueSortieStock::find($id);
+        $stock = LogistiqueSortieStock::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $stock->delete();
         return redirect('/logistique-sortie-stock-liste')->with('success', 'Sortie stock enregistrée!');
     }

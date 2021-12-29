@@ -9,6 +9,7 @@ use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CarburantTicketController extends Controller
 {
@@ -19,10 +20,10 @@ class CarburantTicketController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $cartes = CarburantCarte::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/ticket-carburant.index',
             compact('vehicules','cartes', 'centres', 'centres_regionaux'));
     }
@@ -38,7 +39,7 @@ class CarburantTicketController extends Controller
         $fin = $request->get("fin");
         $q = $request->get('q');
 
-        $carburants = CarburantTicket::all();
+        $carburants = CarburantTicket::where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
             $carburants = CarburantTicket::whereBetween('date', [$debut, $fin])->get();
         }
@@ -48,6 +49,7 @@ class CarburantTicketController extends Controller
                 ->orWhere('numeroTicket', 'like', '%' . $q . '%')
                 ->orWhere('numeroCarteCarburant', 'like', '%' . $q . '%')
                 ->orWhere('soldePrecedent', 'like', '%' . $q . '%')
+                ->where('localisation_id', Auth::user()->localisation_id)
                 ->get();
         }
         return view('/transport/ticket-carburant.liste',
@@ -110,11 +112,11 @@ class CarburantTicketController extends Controller
      */
     public function edit($id)
     {
-        $carburant = CarburantTicket::find($id);
-        $vehicules = Vehicule::all();
-        $cartes = CarburantCarte::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $carburant = CarburantTicket::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $cartes = CarburantCarte::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('transport.ticket-carburant.edit',
             compact('vehicules','cartes', 'centres', 'centres_regionaux', 'id', 'carburant'));
     }
@@ -128,7 +130,7 @@ class CarburantTicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carburant = CarburantTicket::find($id);
+        $carburant = CarburantTicket::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($carburant) {
             $carburant->date = $request->get('date');
             $carburant->heure = $request->get('heure');
@@ -156,7 +158,7 @@ class CarburantTicketController extends Controller
      */
     public function destroy($id)
     {
-        $data = CarburantTicket::find($id);
+        $data = CarburantTicket::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) $data->delete();
         return response()->json([
             'message' => 'Good!'

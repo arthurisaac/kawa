@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangeVignette;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VidangeVignetteController extends Controller
 {
@@ -17,10 +18,10 @@ class VidangeVignetteController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeVignette::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-vignette.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -74,7 +75,7 @@ class VidangeVignetteController extends Controller
      */
     public function edit($id)
     {
-        $vidange = VidangeVignette::find($id);
+        $vidange = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-vignette.edit', compact('vidange'));
     }
 
@@ -87,7 +88,7 @@ class VidangeVignetteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vignette = VidangeVignette::find($id);
+        $vignette = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vignette->dateRenouvellement = $request->get('dateRenouvellement');
         $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
         $vignette->montant = $request->get('montant');
@@ -104,7 +105,7 @@ class VidangeVignetteController extends Controller
      */
     public function destroy($id)
     {
-        $data = VidangeVignette::find($id);
+        $data = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

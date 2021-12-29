@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueSortieApprovision;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieApprovisionController extends Controller
 {
@@ -25,7 +26,7 @@ class LogistiqueSortieApprovisionController extends Controller
      */
     public function liste()
     {
-        $sorties = LogistiqueSortieApprovision::all();
+        $sorties = LogistiqueSortieApprovision::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/sortie-approvision.liste', compact('sorties'));
     }
 
@@ -67,7 +68,7 @@ class LogistiqueSortieApprovisionController extends Controller
      */
     public function edit($id)
     {
-        $sortie = LogistiqueSortieApprovision::find($id);
+        $sortie = LogistiqueSortieApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique.fourniture.sortie-approvision.edit', compact('sortie'));
     }
 
@@ -80,7 +81,7 @@ class LogistiqueSortieApprovisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sortie = LogistiqueSortieApprovision::find($id);
+        $sortie = LogistiqueSortieApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->debutSerie = $request->get('debutSerie');
         $sortie->finSerie = $request->get('finSerie');
         $sortie->date = $request->get('date');
@@ -98,7 +99,7 @@ class LogistiqueSortieApprovisionController extends Controller
      */
     public function destroy($id)
     {
-        $sortie = LogistiqueSortieApprovision::find($id);
+        $sortie = LogistiqueSortieApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->delete();
         return redirect('/logistique-sortie-approvision-liste')->with('success', 'Sortie fiche approvisionnement DAB supprimée');
     }

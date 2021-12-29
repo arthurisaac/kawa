@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InformatiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class InformatiqueFournisseurController extends Controller
 {
@@ -25,7 +26,7 @@ class InformatiqueFournisseurController extends Controller
      */
     public function liste()
     {
-        $fournisseurs = InformatiqueFournisseur::all();
+        $fournisseurs = InformatiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('informatique.fournisseur.liste', compact('fournisseurs'));
     }
 
@@ -68,7 +69,7 @@ class InformatiqueFournisseurController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = InformatiqueFournisseur::find($id);
+        $fournisseur = InformatiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('informatique.fournisseur.edit', compact('fournisseur'));
     }
 
@@ -81,7 +82,7 @@ class InformatiqueFournisseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $personnel = InformatiqueFournisseur::find($id);
+        $personnel = InformatiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $personnel->libelleFournisseur = $request->get('libelleFournisseur');
         $personnel->specialite = $request->get('specialite');
         $personnel->localisation = $request->get('localisation');
@@ -100,7 +101,7 @@ class InformatiqueFournisseurController extends Controller
      */
     public function destroy($id)
     {
-        $fournisseur = InformatiqueFournisseur::find($id);
+        $fournisseur = InformatiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $fournisseur->delete();
         return redirect('/informatique-fournisseur-liste')->with('success','Enregistrement supprimé!');
     }

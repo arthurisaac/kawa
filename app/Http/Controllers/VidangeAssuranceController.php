@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use App\Models\VidangeAssurance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VidangeAssuranceController extends Controller
 {
@@ -18,10 +19,10 @@ class VidangeAssuranceController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeAssurance::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-assurance.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -74,7 +75,7 @@ class VidangeAssuranceController extends Controller
      */
     public function edit($id)
     {
-        $vidange = VidangeAssurance::find($id);
+        $vidange = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-assurance.edit', compact('vidange'));
     }
 
@@ -87,7 +88,7 @@ class VidangeAssuranceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vignette = VidangeAssurance::find($id);
+        $vignette = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vignette->dateRenouvellement = $request->get('dateRenouvellement');
         $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
         $vignette->montant = $request->get('montant');
@@ -105,7 +106,7 @@ class VidangeAssuranceController extends Controller
      */
     public function destroy($id)
     {
-        $data = VidangeAssurance::find($id);
+        $data = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

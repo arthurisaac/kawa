@@ -21,6 +21,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SecuriteMaincouranteController extends Controller
@@ -33,21 +34,21 @@ class SecuriteMaincouranteController extends Controller
     public function index()
     {
         $date = date('d/m/Y');
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::with('clients')->get();
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
-        $sitesTournees = SiteDepartTournee::with("sites")->get();
-        $departCentres = DepartCentre::with('tournees')->get();
-        $arriveeSites = ArriveeSite::with('sites')->with('tournees')->get();
-        $departSites = DepartSite::with('tournees')->get();
-        $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->get();
-        $arriveeCentres = ArriveeCentre::with('tournees')->get();
-        $optionNiveauCarburant = OptionNiveauCarburant::all();
-        $optionBordereau = OptionBordereau::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::with('clients')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sitesTournees = SiteDepartTournee::with("sites")->where('localisation_id', Auth::user()->localisation_id)->get();
+        $departCentres = DepartCentre::with('tournees')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $arriveeSites = ArriveeSite::with('sites')->with('tournees')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $departSites = DepartSite::with('tournees')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $arriveeCentres = ArriveeCentre::with('tournees')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $optionNiveauCarburant = OptionNiveauCarburant::where('localisation_id', Auth::user()->localisation_id)->get();
+        $optionBordereau = OptionBordereau::where('localisation_id', Auth::user()->localisation_id)->get();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/securite.maincourante.index',
             compact('centres', 'centres_regionaux',
                 'tournees', 'departCentres', 'arriveeSites',
@@ -56,7 +57,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function liste()
     {
-        $tournees = DepartTournee::all();
+        $tournees = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('/securite.maincourante.liste', compact('tournees'));
     }
@@ -67,12 +68,12 @@ class SecuriteMaincouranteController extends Controller
         $fin = $request->get("fin");
         $tournees = DepartTournee::with('departCentre')
             ->with('arriveeCentre')
-            ->get();
+            ->where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
             $tournees = DepartTournee::with('departCentre')
                 ->with('arriveeCentre')
                 ->whereBetween('date', [$debut, $fin])
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         return view('/securite.maincourante.synthese', compact('tournees'));
@@ -85,7 +86,7 @@ class SecuriteMaincouranteController extends Controller
         $arriveeSites = ArriveeSite::all();
         if (isset($debut) && isset($fin)) {
             $arriveeSites = ArriveeSite::with("tournees")
-                ->whereBetween('dateArrivee', [$debut, $fin])->get();
+                ->whereBetween('dateArrivee', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         return view('/securite.maincourante.arrivee-site.liste',
@@ -94,7 +95,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function departCentreListe()
     {
-        $departCentres = DepartCentre::all();
+        $departCentres = DepartCentre::where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('/securite.maincourante.depart-centres.liste',
             compact('departCentres'));
@@ -102,14 +103,14 @@ class SecuriteMaincouranteController extends Controller
 
     public function departSiteListe()
     {
-        $departSites = DepartSite::all();
+        $departSites = DepartSite::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/securite.maincourante.depart-site.liste',
             compact('departSites'));
     }
 
     public function arriveeCentreListe()
     {
-        $arriveeCentres = ArriveeCentre::all();
+        $arriveeCentres = ArriveeCentre::where('localisation_id', Auth::user()->localisation_id)->get();
 
         return view('/securite.maincourante.arrivee-centre.liste',
             compact('arriveeCentres'));
@@ -371,29 +372,29 @@ class SecuriteMaincouranteController extends Controller
 
     public function editDepartCentre(Request $request, $id)
     {
-        $centre = DepartCentre::all()->find($id);
-        $optionNiveauCarburant = OptionNiveauCarburant::all();
+        $centre = DepartCentre::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $optionNiveauCarburant = OptionNiveauCarburant::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite.maincourante.depart-centres.edit', compact('centre', 'optionNiveauCarburant'));
     }
 
     public function editArriveeSite(Request $request, $id)
     {
-        $site = ArriveeSite::with('sites')->with('ArriveeColis')->find($id);
-        $arriveeColis = ArriveeSiteColis::all()->where('arrivee_site', '=', $id);
-        $sites = Commercial_site::all();
-        $optionBordereau = OptionBordereau::all();
+        $site = ArriveeSite::with('sites')->with('ArriveeColis')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $arriveeColis = ArriveeSiteColis::where('arrivee_site', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        $optionBordereau = OptionBordereau::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite.maincourante.arrivee-site.edit', compact('site', 'sites', 'arriveeColis', 'optionBordereau'));
     }
 
     public function editDepartSite(Request $request, $id)
     {
-        $site = DepartSite::with('tournees')->find($id);
+        $site = DepartSite::with('tournees')->where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('securite.maincourante.depart-site.edit', compact('site'));
     }
 
     public function editArriveeCentre(Request $request, $id)
     {
-        $centre = ArriveeCentre::all()->find($id);
+        $centre = ArriveeCentre::where('localisation_id', Auth::user()->localisation_id)->get()->find($id);
         return view('securite.maincourante.arrivee-centre.edit', compact('centre'));
     }
 
@@ -411,7 +412,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function updateArriveeColis(Request $request, $id)
     {
-        $arrivee = ArriveeSite::find($id);
+        $arrivee = ArriveeSite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $arrivee->site = $request->get('asSite');
         $arrivee->operation = $request->get('asTypeOperation');
         $arrivee->dateArrivee = $request->get('asDateArrivee');
@@ -486,7 +487,7 @@ class SecuriteMaincouranteController extends Controller
         $destination = $request->get('destination');
         $observation = $request->get('observation');
 
-        $data = DepartSite::find($id);
+        $data = DepartSite::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->heureDepart = $heureDepart;
         $data->kmDepart = $kmDepart;
         $data->depart_site = $departSite;
@@ -498,7 +499,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function updateArriveeCentre(Request $request, $id)
     {
-        $centre = ArriveeCentre::find($id);
+        $centre = ArriveeCentre::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $centre->heureArrivee = $request->get('heureArrivee');
         $centre->kmArrive = $request->get('kmArrive');
         $centre->observation = $request->get('observation');
@@ -511,7 +512,7 @@ class SecuriteMaincouranteController extends Controller
 
     public function updatedepartCentre(Request $request, $id)
     {
-        $departCentre = DepartCentre::find($id);
+        $departCentre = DepartCentre::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $departCentre->heureDepart = $request->get('heureDepart');
         $departCentre->kmDepart = $request->get('kmDepart');
         $departCentre->observation = $request->get('observation');
@@ -530,13 +531,13 @@ class SecuriteMaincouranteController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
-            $data = DepartTournee::find($id);
+            $data = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'
             ]);
         }
-        $data = DepartTournee::find($id);
+        $data = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->delete();
         return redirect('/maincourante')->with('success', 'Enregistrement supprimé!');
     }
@@ -553,7 +554,7 @@ class SecuriteMaincouranteController extends Controller
     public function deleteDepartSite(Request $request)
     {
         if ($request->ajax()) {
-            $departSite = DepartSite::find($request->id);
+            $departSite = DepartSite::where('localisation_id', Auth::user()->localisation_id)->find($request->id);
             $departSite->delete();
             return $departSite;
         }
@@ -563,7 +564,7 @@ class SecuriteMaincouranteController extends Controller
     public function deleteDepartCentre(Request $request, $id)
     {
         if ($request->ajax()) {
-            $data = DepartCentre::find($id);
+            $data = DepartCentre::where('localisation_id', Auth::user()->localisation_id)->find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'
@@ -576,7 +577,7 @@ class SecuriteMaincouranteController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = ArriveeSite::find($id);
+            $data = ArriveeSite::where('localisation_id', Auth::user()->localisation_id)->find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'
@@ -588,7 +589,7 @@ class SecuriteMaincouranteController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = ArriveeSiteColis::find($id);
+            $data = ArriveeSiteColis::where('localisation_id', Auth::user()->localisation_id)->find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'
@@ -600,7 +601,7 @@ class SecuriteMaincouranteController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = ArriveeCentre::find($id);
+            $data = ArriveeCentre::where('localisation_id', Auth::user()->localisation_id)->find($id);
             $data->delete();
             return \response()->json([
                 'message' => 'supprimé'

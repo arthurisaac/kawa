@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\ComptabiliteEntreeCaisse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ComptabiliteEntreeCaisseController extends Controller
 {
@@ -17,8 +18,8 @@ class ComptabiliteEntreeCaisseController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/entree-caisse.index', compact('centres_regionaux', 'centres'));
     }
 
@@ -35,37 +36,37 @@ class ComptabiliteEntreeCaisseController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
 
-        $entreeCaisses = ComptabiliteEntreeCaisse::all();
+        $entreeCaisses = ComptabiliteEntreeCaisse::where('localisation_id', Auth::user()->localisation_id)->get();
 
         if (!isset($debut) && !isset($fin) && isset($mouvement) && $mouvement != "ras") {
-            $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->get();
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (!isset($debut) && !isset($fin) && !isset($mouvement) && isset($service)) {
-            $entreeCaisses = ComptabiliteEntreeCaisse::where('service', 'like', '%' . $service . '%')->get();
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('service', 'like', '%' . $service . '%')->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (!isset($debut) && !isset($fin) && !isset($mouvement) && isset($deposant)) {
-            $entreeCaisses = ComptabiliteEntreeCaisse::where('deposant', 'like', '%' . $deposant . '%')->get();
+            $entreeCaisses = ComptabiliteEntreeCaisse::where('deposant', 'like', '%' . $deposant . '%')->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && !isset($mouvement)) {
-            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])->get();
+            $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($mouvement)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($mouvement) && isset($service)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
                 ->where('service', $service)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($mouvement) && isset($service) && isset($deposant)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
                 ->where('service', $service)
                 ->where('deposant', $deposant)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('/comptabilite/entree-caisse.liste', compact('entreeCaisses'));
     }
@@ -79,35 +80,35 @@ class ComptabiliteEntreeCaisseController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
 
-        $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->get();
+        $entreeCaisses = ComptabiliteEntreeCaisse::where('mouvement', $mouvement)->where('localisation_id', Auth::user()->localisation_id)->get();
 
         if (!isset($debut) && !isset($fin) && isset($service)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::where('service', 'like', '%' . $service . '%')
                 ->where('mouvement', $mouvement)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (!isset($debut) && !isset($fin) && isset($deposant)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::where('deposant', 'like', '%' . $deposant . '%')
                 ->where('mouvement', $mouvement)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($service)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
                 ->where('service', $service)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($debut) && isset($fin) && isset($service) && isset($deposant)) {
             $entreeCaisses = ComptabiliteEntreeCaisse::whereBetween('date', [$debut, $fin])
                 ->where('mouvement', $mouvement)
                 ->where('service', $service)
                 ->where('deposant', $deposant)
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('comptabilite.entree-caisse.liste-justifs', compact('entreeCaisses'));
     }
@@ -156,9 +157,9 @@ class ComptabiliteEntreeCaisseController extends Controller
      */
     public function edit($id)
     {
-        $entreeCaisse = ComptabiliteEntreeCaisse::find($id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $entreeCaisse = ComptabiliteEntreeCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/entree-caisse.edit', compact('entreeCaisse', 'centres', 'centres_regionaux'));
 
     }
@@ -172,7 +173,7 @@ class ComptabiliteEntreeCaisseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $caisse = ComptabiliteEntreeCaisse::find($id);
+        $caisse = ComptabiliteEntreeCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $caisse->date = $request->get('date');
         $caisse->somme = $request->get('somme');
         $caisse->motif = $request->get('motif');
@@ -196,7 +197,7 @@ class ComptabiliteEntreeCaisseController extends Controller
      */
     public function destroy($id)
     {
-        $caisse = ComptabiliteEntreeCaisse::find($id);
+        $caisse = ComptabiliteEntreeCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $caisse->delete();
         return redirect('/comptabilite-entree-caisse-liste')->with('success', 'Entrée caisse supprimée!');
     }

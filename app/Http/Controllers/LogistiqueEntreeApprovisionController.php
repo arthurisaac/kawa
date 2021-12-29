@@ -6,6 +6,7 @@ use App\Models\LogistiqueEntreeApprovision;
 use App\Models\LogistiqueFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueEntreeApprovisionController extends Controller
 {
@@ -16,7 +17,7 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-approvision.index', compact('fournisseurs'));
     }
 
@@ -27,7 +28,7 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function liste()
     {
-        $entrees = LogistiqueEntreeApprovision::all();
+        $entrees = LogistiqueEntreeApprovision::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-approvision.liste', compact('entrees'));
     }
 
@@ -69,8 +70,8 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function edit($id)
     {
-        $entree = LogistiqueEntreeApprovision::find($id);
-        $fournisseurs = LogistiqueFournisseur::all();
+        $entree = LogistiqueEntreeApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/entree-approvision.edit', compact('fournisseurs', 'entree'));
     }
 
@@ -83,7 +84,7 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entree = LogistiqueEntreeApprovision::find($id);
+        $entree = LogistiqueEntreeApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->debutSerie = $request->get('debutSerie');
         $entree->finSerie = $request->get('finSerie');
         $entree->date = $request->get('date');
@@ -101,7 +102,7 @@ class LogistiqueEntreeApprovisionController extends Controller
      */
     public function destroy($id)
     {
-        $entree = LogistiqueEntreeApprovision::find($id);
+        $entree = LogistiqueEntreeApprovision::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $entree->delete();
         return redirect('/logistique-entree-approvision-liste')->with('success', 'Entrée approvisionnement supprimée');
     }

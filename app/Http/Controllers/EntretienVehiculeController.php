@@ -14,6 +14,7 @@ use App\Models\VidangeTransport;
 use App\Models\VidangeVignette;
 use App\Models\VidangeVisite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntretienVehiculeController extends Controller
 {
@@ -24,15 +25,15 @@ class EntretienVehiculeController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidangePonts = VidangeHuilePont::all();
-        $vidangeTransport = VidangeTransport::all();
-        $vidangeVisite = VidangeVisite::all();
-        $vidangeCourroie = VidangeCourroie::all();
-        $vidangeVignette = VidangeVignette::all();
-        $assurances = VidangeAssurance::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangePonts = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeTransport = VidangeTransport::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeVisite = VidangeVisite::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeCourroie = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeVignette = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->get();
+        $assurances = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule.index',
             compact('vehicules', 'centres_regionaux', 'centres', 'vidangePonts', 'vidangeTransport', 'vidangeVisite', 'vidangeCourroie', 'vidangeVignette', 'assurances'));
     }
@@ -50,14 +51,14 @@ class EntretienVehiculeController extends Controller
 
     public function liste()
     {
-        $vidangeGenerale = VidangeGenerale::all();
-        $vidangePonts = VidangeHuilePont::all();
-        $vidangeTransport = VidangeTransport::all();
-        $vidangeVisite = VidangeVisite::all();
-        $vidangeCourroie = VidangeCourroie::all();
-        $vidangeVignette = VidangeVignette::all();
-        $vidangePatentes = VidangePatente::all();
-        $assurances = VidangeAssurance::all();
+        $vidangeGenerale = VidangeGenerale::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangePonts = VidangeHuilePont::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeTransport = VidangeTransport::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeVisite = VidangeVisite::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeCourroie = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangeVignette = VidangeVignette::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidangePatentes = VidangePatente::where('localisation_id', Auth::user()->localisation_id)->get();
+        $assurances = VidangeAssurance::where('localisation_id', Auth::user()->localisation_id)->get();
         return view("transport.entretien-vehicule.liste", compact("vidangePonts", "vidangeGenerale", "vidangeTransport", "vidangeVisite", "vidangeCourroie", "vidangeVignette", "vidangePatentes", "assurances"));
     }
 
@@ -114,7 +115,7 @@ class EntretienVehiculeController extends Controller
      */
     public function destroy($id)
     {
-        $data = VidangeCourroie::find($id);
+        $data = VidangeCourroie::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($data) {
             $data->delete();
         }

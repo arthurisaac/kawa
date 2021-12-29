@@ -8,6 +8,7 @@ use App\Models\Centre_regional;
 use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AchatProduitController extends Controller
 {
@@ -18,39 +19,39 @@ class AchatProduitController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $produits = LogistiqueProduit::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.index', compact('centres', 'centres_regionaux', 'produits'));
     }
 
     public function liste()
     {
-        $produits = AchatProduit::all();
+        $produits = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.liste', compact('produits'));
     }
 
     public function rechercheParProduit()
     {
-        $produits = AchatProduit::all();
+        $produits = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.par-produit', compact('produits'));
     }
 
     public function rechercheParBudget()
     {
-        $produits = AchatProduit::all();
+        $produits = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.par-budget', compact('produits'));
     }
 
     public function rechercheParCentre()
     {
-        $produits = AchatProduit::all();
+        $produits = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.par-centre', compact('produits'));
     }
 
     public function rechercheParService()
     {
-        $produits = AchatProduit::all();
+        $produits = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.par-service', compact('produits'));
     }
 
@@ -110,10 +111,10 @@ class AchatProduitController extends Controller
      */
     public function edit($id)
     {
-        $achat = AchatProduit::find($id);
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $produits = LogistiqueProduit::all();
+        $achat = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $produits = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat.produit.edit',
             compact('centres', 'centres_regionaux', 'achat', 'produits'));
     }
@@ -127,7 +128,7 @@ class AchatProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $achat = AchatProduit::find($id);
+        $achat = AchatProduit::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $achat->date = $request->get('date');
         $achat->produit = $request->get('produit');
         $achat->affectationService = $request->get('affectationService');

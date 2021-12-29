@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangeStationnement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VidangeStationnementController extends Controller
 {
@@ -17,10 +18,10 @@ class VidangeStationnementController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangeStationnement::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangeStationnement::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-stationnement.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }

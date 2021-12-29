@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueSortieSecuripack;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieSecuripackController extends Controller
 {
@@ -25,7 +26,7 @@ class LogistiqueSortieSecuripackController extends Controller
      */
     public function liste()
     {
-        $sorties = LogistiqueSortieSecuripack::all();
+        $sorties = LogistiqueSortieSecuripack::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique.fourniture.sortie-securipack.liste', compact('sorties'));
     }
 
@@ -69,7 +70,7 @@ class LogistiqueSortieSecuripackController extends Controller
     public function edit($id)
     {
 
-        $sortie = LogistiqueSortieSecuripack::find($id);
+        $sortie = LogistiqueSortieSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/fourniture/sortie-securipack.edit', compact('sortie'));
     }
 
@@ -82,7 +83,7 @@ class LogistiqueSortieSecuripackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sortie = LogistiqueSortieSecuripack::find($id);
+        $sortie = LogistiqueSortieSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->debutSerie = $request->get('debutSerie');
         $sortie->finSerie = $request->get('finSerie');
         $sortie->date = $request->get('date');
@@ -101,7 +102,7 @@ class LogistiqueSortieSecuripackController extends Controller
      */
     public function destroy($id)
     {
-        $sortie = LogistiqueSortieSecuripack::find($id);
+        $sortie = LogistiqueSortieSecuripack::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->delete();
         return redirect('/logistique-sortie-securipack-liste')->with('success', 'Sortie supprimée!');
     }

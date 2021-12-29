@@ -6,6 +6,7 @@ use App\Models\LogistiqueFournisseur;
 use App\Models\LogistiqueProduit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueProduitController extends Controller
 {
@@ -16,13 +17,13 @@ class LogistiqueProduitController extends Controller
      */
     public function index()
     {
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/produit.index', compact('fournisseurs'));
     }
 
     public function liste()
     {
-        $produits = LogistiqueProduit::with('fournisseurs')->get();
+        $produits = LogistiqueProduit::with('fournisseurs')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/produit.liste', compact('produits'));
     }
 
@@ -77,9 +78,9 @@ class LogistiqueProduitController extends Controller
      */
     public function edit($id)
     {
-        $produits = LogistiqueProduit::where('id', $id)->with('fournisseurs')->get();
+        $produits = LogistiqueProduit::where('id', $id)->with('fournisseurs')->where('localisation_id', Auth::user()->localisation_id)->get();
         $produit = $produits[0];
-        $fournisseurs = LogistiqueFournisseur::all();
+        $fournisseurs = LogistiqueFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/achat/produit.edit', compact('produit','fournisseurs'));
     }
 
@@ -92,7 +93,7 @@ class LogistiqueProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $produit = LogistiqueProduit::find($id);
+        $produit = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $produit->fournisseur = $request->get('fournisseur');
         $produit->reference = $request->get('reference');
         $produit->libelle = $request->get('libelle');
@@ -114,7 +115,7 @@ class LogistiqueProduitController extends Controller
      */
     public function destroy($id)
     {
-        $produit = LogistiqueProduit::find($id);
+        $produit = LogistiqueProduit::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $produit->delete();
         return redirect('/logistique-produit-liste')->with('success', 'Produit supprimé avec succès!');
     }

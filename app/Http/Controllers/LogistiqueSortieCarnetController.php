@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogistiqueSortieCarnetCaisse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LogistiqueSortieCarnetController extends Controller
 {
@@ -25,7 +26,7 @@ class LogistiqueSortieCarnetController extends Controller
      */
     public function liste()
     {
-        $sorties = LogistiqueSortieCarnetCaisse::all();
+        $sorties = LogistiqueSortieCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/logistique/fourniture/sortie-carnet.liste', compact('sorties'));
     }
 
@@ -67,7 +68,7 @@ class LogistiqueSortieCarnetController extends Controller
      */
     public function edit($id)
     {
-        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        $sortie = LogistiqueSortieCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('/logistique/fourniture/sortie-carnet.edit', compact('sortie'));
     }
 
@@ -80,7 +81,7 @@ class LogistiqueSortieCarnetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        $sortie = LogistiqueSortieCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->debutSerie = $request->get('debutSerie');
         $sortie->finSerie = $request->get('finSerie');
         $sortie->date = $request->get('date');
@@ -98,7 +99,7 @@ class LogistiqueSortieCarnetController extends Controller
      */
     public function destroy($id)
     {
-        $sortie = LogistiqueSortieCarnetCaisse::find($id);
+        $sortie = LogistiqueSortieCarnetCaisse::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $sortie->delete();
         return redirect('/logistique-sortie-carnet')->with('success', 'Sortie carnet de caisse supprimée');
     }

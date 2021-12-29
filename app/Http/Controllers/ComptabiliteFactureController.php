@@ -6,6 +6,7 @@ use App\Models\Commercial_client;
 use App\Models\ComptabiliteFacture;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ComptabiliteFactureController extends Controller
@@ -17,8 +18,8 @@ class ComptabiliteFactureController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::all();
-        $nextId = DB::table('comptabilite_factures')->max('id') + 1;
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $nextId = DB::table('comptabilite_factures')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1;
         return view('/comptabilite/facture.index', compact('clients', 'nextId'));
     }
 
@@ -29,7 +30,7 @@ class ComptabiliteFactureController extends Controller
      */
     public function liste()
     {
-        $factures = ComptabiliteFacture::all();
+        $factures = ComptabiliteFacture::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/facture.liste', compact('factures'));
     }
 
@@ -72,8 +73,8 @@ class ComptabiliteFactureController extends Controller
      */
     public function edit($id)
     {
-        $facture = ComptabiliteFacture::find($id);
-        $clients = Commercial_client::all();
+        $facture = ComptabiliteFacture::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/comptabilite/facture.edit', compact('clients', 'facture'));
     }
 
@@ -86,7 +87,7 @@ class ComptabiliteFactureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $facture = ComptabiliteFacture::find($id);
+        $facture = ComptabiliteFacture::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $facture->numeroFacture = $request->get('numeroFacture');
         $facture->client = $request->get('client');
         $facture->periode = $request->get('periode');
@@ -105,7 +106,7 @@ class ComptabiliteFactureController extends Controller
      */
     public function destroy($id)
     {
-        $facture = ComptabiliteFacture::find($id);
+        $facture = ComptabiliteFacture::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $facture->delete();
         return redirect('/comptabilite-fature-liste')->with('success', 'Facture supprimée!');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Virgilometrie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VirgilometrieController extends Controller
 {
@@ -25,7 +26,7 @@ class VirgilometrieController extends Controller
      */
     public function liste()
     {
-        $virgils = Virgilometrie::all();
+        $virgils = Virgilometrie::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('virgilometrie.liste', compact('virgils'));
     }
 

@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\Vehicule;
 use App\Models\VidangePatente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VidangePatenteController extends Controller
 {
@@ -17,10 +18,10 @@ class VidangePatenteController extends Controller
      */
     public function index()
     {
-        $vehicules = Vehicule::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $vidanges = VidangePatente::all();
+        $vehicules = Vehicule::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vidanges = VidangePatente::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/transport/entretien-vehicule/vidange-patente.index',
             compact('vehicules', 'centres', 'centres_regionaux', 'vidanges'));
     }
@@ -73,7 +74,7 @@ class VidangePatenteController extends Controller
      */
     public function edit($id)
     {
-        $vidange = VidangePatente::find($id);
+        $vidange = VidangePatente::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('transport.entretien-vehicule.vidange-patente.edit', compact('vidange'));
     }
 
@@ -86,7 +87,7 @@ class VidangePatenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vignette = VidangePatente::find($id);
+        $vignette = VidangePatente::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $vignette->dateRenouvellement = $request->get('dateRenouvellement');
         $vignette->prochainRenouvellement = $request->get('prochainRenouvellement');
         $vignette->save();

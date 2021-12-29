@@ -6,6 +6,7 @@ use App\Models\AchatFournisseurCA;
 use App\Models\AchatFournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AchatFournisseurController extends Controller
 {
@@ -21,7 +22,7 @@ class AchatFournisseurController extends Controller
 
     public function liste()
     {
-        $fournisseurs = AchatFournisseur::all();
+        $fournisseurs = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('achat/fournisseur.liste', compact('fournisseurs'));
     }
 
@@ -104,8 +105,8 @@ class AchatFournisseurController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = AchatFournisseur::find($id);
-        $cas = AchatFournisseurCA::where('fournisseur_fk', '=', $id)->get();
+        $fournisseur = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $cas = AchatFournisseurCA::where('localisation_id', Auth::user()->localisation_id)->where('fournisseur_fk', '=', $id)->get();
         return view('achat.fournisseur.edit', compact('fournisseur', 'cas'));
     }
 
@@ -118,7 +119,7 @@ class AchatFournisseurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $fournisseur = AchatFournisseur::find($id);
+        $fournisseur = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $fournisseur->denomination = $request->get('denomination');
         $fournisseur->sigle = $request->get('sigle');
         $fournisseur->secteur_activite = $request->get('secteur_activite');
@@ -169,7 +170,7 @@ class AchatFournisseurController extends Controller
      */
     public function destroy($id)
     {
-        $fournisseur = AchatFournisseur::find($id);
+        $fournisseur = AchatFournisseur::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $fournisseur->delete();
         return redirect('achat-fournisseur-liste')->with('success', 'Enregistrement effectué!');
     }

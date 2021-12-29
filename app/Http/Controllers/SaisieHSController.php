@@ -6,6 +6,7 @@ use App\Models\HeureSupp;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SaisieHSController extends Controller
 {
@@ -16,13 +17,13 @@ class SaisieHSController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::all();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite/saisie.index', compact('personnels'));
     }
 
     public function liste()
     {
-        $saisies = HeureSupp::with('personnels')->get();
+        $saisies = HeureSupp::with('personnels')->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite/saisie.liste', compact('saisies'));
     }
 
@@ -80,8 +81,8 @@ class SaisieHSController extends Controller
      */
     public function edit($id)
     {
-        $saisie = HeureSupp::find($id);
-        $personnels = Personnel::all();
+        $saisie = HeureSupp::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securite.saisie.edit', compact('personnels', 'saisie'));
     }
 
@@ -94,7 +95,7 @@ class SaisieHSController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $saisie = HeureSupp::find($id);
+        $saisie = HeureSupp::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $saisie->date = $request->get('date');
         $saisie->typeDate = $request->get('typeDate');
         $saisie->idPersonnel = $request->get('idPersonnel');
@@ -119,7 +120,7 @@ class SaisieHSController extends Controller
      */
     public function destroy($id)
     {
-        $saisie = HeureSupp::find($id);
+        $saisie = HeureSupp::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $saisie->delete();
         return redirect('/saisie-liste')->with('success', 'Enregistrement modifiée!');
     }

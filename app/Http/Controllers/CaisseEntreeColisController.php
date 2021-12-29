@@ -12,6 +12,7 @@ use App\Models\OptionDevise;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CaisseEntreeColisController extends Controller
@@ -23,12 +24,12 @@ class CaisseEntreeColisController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::with("clients")->get();
-        $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
-        $devises = OptionDevise::all();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::with("clients")->where('localisation_id', Auth::user()->localisation_id)->get();
+        $numero = DB::table('caisse_entree_colis')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1 . '-' . date('Y-m-d');
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $devises = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('caisse.entree-colis.index',
             compact('centres', 'centres_regionaux', 'numero', 'sites', 'tournees', 'devises'));
     }
@@ -37,9 +38,9 @@ class CaisseEntreeColisController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $colis = CaisseEntreeColis::with("items")->get();
+        $colis = CaisseEntreeColis::with("items")->where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
-            $colis = CaisseEntreeColis::with("sites")->whereBetween('date', [$debut, $fin])->get();
+            $colis = CaisseEntreeColis::with("sites")->whereBetween('date', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('/caisse/entree-colis.liste', compact('colis'));
     }
@@ -128,17 +129,17 @@ class CaisseEntreeColisController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $personnels = Personnel::all();
-        $colis = CaisseEntreeColis::with('sites')->find($id);
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = Personnel::where('localisation_id', Auth::user()->localisation_id)->get();
+        $colis = CaisseEntreeColis::with('sites')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->get();
         //$items = DB::table('caisse_entree_colis_items')->where('entree_colis', $id)->get();
-        $items = CaisseEntreeColisItem::all()->where("entree_colis", $id);
-        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::with("clients")->get();
-        $devises = OptionDevise::all();
+        $items = CaisseEntreeColisItem::where("entree_colis", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::with("clients")->where('localisation_id', Auth::user()->localisation_id)->get();
+        $devises = OptionDevise::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/caisse/entree-colis.edit',
             compact('colis', 'centres', 'centres_regionaux', 'personnels', 'items', 'agents', 'chefBords', 'sites', 'tournees', 'devises'));
     }
@@ -152,7 +153,7 @@ class CaisseEntreeColisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = CaisseEntreeColis::find($id);
+        $data = CaisseEntreeColis::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $data->date = $request->get("date");
         $data->heure = $request->get("heure");
         $data->centre = $request->get("centre");
@@ -188,7 +189,7 @@ class CaisseEntreeColisController extends Controller
                     ]);
                     $item->save();
                 } else {
-                    $item = CaisseEntreeColisItem::find($ids[$i]);
+                    $item = CaisseEntreeColisItem::where('localisation_id', Auth::user()->localisation_id)->find($ids[$i]);
                     if ($item) {
                         $item->site = $site[$i];
                         $item->colis = $colis[$i];
@@ -246,11 +247,11 @@ class CaisseEntreeColisController extends Controller
      */
     public function destroy($id)
     {
-        $coli = CaisseEntreeColis::find($id);
+        $coli = CaisseEntreeColis::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $coli->delete();
-        $items = DB::table('caisse_entree_colis_items')->where('entree_colis', $id)->get();
+        $items = DB::table('caisse_entree_colis_items')->where('localisation_id', Auth::user()->localisation_id)->where('entree_colis', $id)->get();
         foreach ($items as $item) {
-            $i = CaisseEntreeColisItem::find($item->id);
+            $i = CaisseEntreeColisItem::where('localisation_id', Auth::user()->localisation_id)->find($item->id);
             $i->delete();
         }
         return \response()->json(["message" => "ok"]);
@@ -259,7 +260,7 @@ class CaisseEntreeColisController extends Controller
 
     public function destroyItem($id)
     {
-        $coli = CaisseEntreeColisItem::find($id);
+        $coli = CaisseEntreeColisItem::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $coli->delete();
         return \response()->json(["message" => "ok"]);
         //return redirect('/caisse-entree-colis-liste')->with('success', 'Service supprimé avec succès!');

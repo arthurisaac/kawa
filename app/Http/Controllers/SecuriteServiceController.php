@@ -7,6 +7,7 @@ use App\Models\Centre_regional;
 use App\Models\SecuriteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SecuriteServiceController extends Controller
@@ -18,10 +19,10 @@ class SecuriteServiceController extends Controller
      */
     public function index()
     {
-        $personnels = DB::table('personnels')->where('service', 'LIKE', "securite")->orderBy('nomPrenoms')->get();
-        $securiteService = SecuriteService::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
+        $personnels = DB::table('personnels')->where('service', 'LIKE', "securite")->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $securiteService = SecuriteService::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('securiteService.create',
             compact('centres', 'centres_regionaux', 'securiteService', 'personnels'));
     }
@@ -41,7 +42,7 @@ class SecuriteServiceController extends Controller
         if (isset($debut) && isset($fin)) {
             $securiteServices = SecuriteService::with('personnes')
                 ->whereBetween('date', [$debut, $fin])
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('securiteService.liste', compact('securiteServices'));
     }
@@ -115,10 +116,10 @@ class SecuriteServiceController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $securiteService = SecuriteService::with('chargeDeSecurites')->get()->find($id);
-        $personnels = DB::table('personnels')->where('transport', '!=', null)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $securiteService = SecuriteService::with('chargeDeSecurites')->where('localisation_id', Auth::user()->localisation_id)->get()->find($id);
+        $personnels = DB::table('personnels')->where('transport', '!=', null)->where('localisation_id', Auth::user()->localisation_id)->get();
         return view('/securiteService.edit', compact('securiteService','centres', 'centres_regionaux', 'personnels'));
     }
 
@@ -131,7 +132,7 @@ class SecuriteServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $securiteService = SecuriteService::find($id);
+        $securiteService = SecuriteService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $securiteService->date = $request->get('date');
         $securiteService->centre = $request->get('centre');
         $securiteService->centreRegional = $request->get('centreRegional');
@@ -169,7 +170,7 @@ class SecuriteServiceController extends Controller
      */
     public function destroy($id)
     {
-        $securiteService = SecuriteService::find($id);
+        $securiteService = SecuriteService::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $securiteService->delete();
         //return redirect('/securite-service-liste')->with('success', 'Enregistrement supprimé!');
         return \response()->json(["message", "supprimé"]);

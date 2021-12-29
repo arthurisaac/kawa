@@ -14,6 +14,7 @@ use App\Models\DepartTournee;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CaisseCtvController extends Controller
@@ -25,17 +26,18 @@ class CaisseCtvController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::orderBy('nomPrenoms')->get();
-        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->get();
-        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->get();
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $tournees = DepartTournee::all();
-        $sites = Commercial_site::all();
+        $personnels = Personnel::orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $tournees = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
         $operatrices = CaisseServiceOperatrice::with('operatrice')
             ->join('personnels', 'personnels.id', '=', 'caisse_service_operatrices.operatriceCaisse', 'left')
             ->orderBy('personnels.nomPrenoms', 'desc')
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->get(['caisse_service_operatrices.id', 'personnels.nomPrenoms']);
         return view('/caisse.ctv.index',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'convoyeurs', 'regulatrices'));
@@ -154,10 +156,11 @@ class CaisseCtvController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $ctvs = CaisseCtv::with('operatrices')->get();
+        $ctvs = CaisseCtv::with('operatrices')->where('localisation_id', Auth::user()->localisation_id)->get();
         if (isset($debut) && isset($fin)) {
             $ctvs = CaisseCtv::with('operatrices')
                 ->whereBetween('date', [$debut, $fin])
+                ->where('localisation_id', Auth::user()->localisation_id)
                 ->get();
         }
         return view('/caisse/ctv.liste',
@@ -172,24 +175,25 @@ class CaisseCtvController extends Controller
      */
     public function edit($id)
     {
-        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->get();
-        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->get();
-        $personnels = Personnel::orderBy('nomPrenoms')->get();
-        $clients = Commercial_client::all();
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $tournees = DepartTournee::all();
-        $sites = Commercial_site::all();
-        $operatrices = CaisseServiceOperatrice::with('operatrice')->get();
-        $operatricesCTV = CaisseCTVOperatrice::with('operatrices')->where('ctv', $id)->get();
+        $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $personnels = Personnel::orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $tournees = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        $operatrices = CaisseServiceOperatrice::with('operatrice')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $operatricesCTV = CaisseCTVOperatrice::with('operatrices')->where('ctv', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         $ctv = CaisseCtv::with('operatrices')
             ->with('convoyeurs')
             ->with('regulatrices')
             ->with('clients')
             ->with('sites')
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->find($id);
 
-        $billetages = CaisseBilletage::where('ctv', $id)->get();
+        $billetages = CaisseBilletage::where('ctv', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         $billetage = $billetages[0];
         return view('/caisse.ctv.edit',
             compact('ctv', 'centres', 'centres_regionaux',
@@ -205,7 +209,7 @@ class CaisseCtvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ctv = CaisseCtv::find($id);
+        $ctv = CaisseCtv::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $ctv->date = $request->get('date');
         $ctv->centre = $request->get('centre_regional');
         $ctv->centre_regional = $request->get('centre');
@@ -242,7 +246,7 @@ class CaisseCtvController extends Controller
         $ctv->save();
 
         $billetageId = $request->get('billetageId');
-        $billetage = CaisseBilletage::find($billetageId);
+        $billetage = CaisseBilletage::where('localisation_id', Auth::user()->localisation_id)->find($billetageId);
 
         $billetage->ba_nb10000 = $request->get('ba_nb10000');
         $billetage->ba_nb5000 = $request->get('ba_nb5000');
@@ -288,7 +292,7 @@ class CaisseCtvController extends Controller
                         $data->save();
                     }
                 } else {
-                    $data = CaisseCTVOperatrice::find($ids[$i]);
+                    $data = CaisseCTVOperatrice::where('localisation_id', Auth::user()->localisation_id)->find($ids[$i]);
                     if ($data) {
                         $data->operatrice = $operatrices[$i];
                         $data->numero = $numeros[$i];
@@ -304,15 +308,15 @@ class CaisseCtvController extends Controller
 
     public function destroy($id)
     {
-        $ctv = CaisseCtv::find($id);
-        $billetages = CaisseBilletage::where('ctv', $id)->get();
-        $operatrices = CaisseCTVOperatrice::where('ctv', $id)->get();
+        $ctv = CaisseCtv::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $billetages = CaisseBilletage::where('ctv', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $operatrices = CaisseCTVOperatrice::where('ctv', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         foreach ($billetages as $billetage) {
-            $billet = CaisseBilletage::find($billetage->id);
+            $billet = CaisseBilletage::where('localisation_id', Auth::user()->localisation_id)->find($billetage->id);
             if ($billet) $billet->delete();
         }
         foreach ($operatrices as $operatrice) {
-            $data = CaisseCTVOperatrice::find($operatrice->id);
+            $data = CaisseCTVOperatrice::where('localisation_id', Auth::user()->localisation_id)->find($operatrice->id);
             if ($data) $data->delete();
         }
         if ($ctv) $ctv->delete();
@@ -321,7 +325,7 @@ class CaisseCtvController extends Controller
 
     public function destroyItem($id)
     {
-        $operatrices = CaisseCTVOperatrice::find($id);
+        $operatrices = CaisseCTVOperatrice::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($operatrices) $operatrices->delete();
         return \response()->json(["message" => "ok"]);
     }

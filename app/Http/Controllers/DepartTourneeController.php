@@ -12,6 +12,7 @@ use App\Models\Vehicule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DepartTourneeController extends Controller
@@ -23,15 +24,15 @@ class DepartTourneeController extends Controller
      */
     public function index()
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $departTournee = DepartTournee::all();
-        $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
-        $sites = Commercial_site::orderBy('site')->get();
-        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
-        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
-        $chauffeurs = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->get();
-        $num = date('dmY') .  (DB::table('depart_tournees')->max('id') + 1);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $departTournee = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
+        $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites = Commercial_site::orderBy('site')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $chauffeurs = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->orderBy('nomPrenoms')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $num = date('dmY') .  (DB::table('depart_tournees')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1);
         return view('transport.depart-tournee.index',
             compact('departTournee', 'vehicules', 'chauffeurs', 'sites', 'agents', 'chefBords', 'num', 'centres', 'centres_regionaux'));
     }
@@ -53,11 +54,13 @@ class DepartTourneeController extends Controller
 
         $departTournee = DepartTournee::with('vehicules')
             ->orderByDesc("created_at")
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->get();
         if (isset($debut) && isset($fin)) {
             $departTournee = DepartTournee::with('vehicules')
                 ->whereBetween('date', [$debut, $fin])
                 ->orderByDesc("created_at")
+                ->where('localisation_id', Auth::user()->localisation_id)
                 ->get();
         }
         return view('transport.depart-tournee.liste',
@@ -70,16 +73,17 @@ class DepartTourneeController extends Controller
         $fin = $request->get("fin");
         $q = $request->get("q");
 
-        $totalTournee = DepartTournee::all()->sum('coutTournee');
-        $tournees = DepartTournee::all();
+        $totalTournee = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get()->sum('coutTournee');
+        $tournees = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->get();
         $siteDepartTournee = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->get();
         if (isset($debut) && isset($fin)) {
             $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
-            })->get();
-            $tournees = DepartTournee::with('tournees')->whereBetween('date', [$debut, $fin]);
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
+            $tournees = DepartTournee::with('tournees')->whereBetween('date', [$debut, $fin])->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($q)) {
             $siteDepartTournee = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($q) {
@@ -89,7 +93,7 @@ class DepartTourneeController extends Controller
                 $query->where('centre_regional', 'like', '%' . $q . '%');
                 $query->where('heureDepart', 'like', '%' . $q . '%');
                 $query->where('kmDepart', 'like', '%' . $q . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
             $tournees = DepartTournee::where('numeroTournee', 'like', '%' . $q . '%')
                 ->where('date', 'like', '%' . $q . '%')
                 ->orWhere('coutTournee', 'like', '%' . $q . '%')
@@ -97,7 +101,7 @@ class DepartTourneeController extends Controller
                 ->orWhere('heureDepart', 'like', '%' . $q . '%')
                 ->orWhere('centre', 'like', '%' . $q . '%')
                 ->orWhere('centre_regional', 'like', '%' . $q . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         return view('transport.desservi.liste', compact('siteDepartTournee', 'totalTournee', 'tournees'));
     }
@@ -111,22 +115,23 @@ class DepartTourneeController extends Controller
         $tdf = $request->get("tdf");
         $caisse = $request->get("caisse");
 
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $clients = Commercial_client::orderBy('client_nom')->get();
-        $sites_com = Commercial_site::orderBy('site')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::orderBy('client_nom')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites_com = Commercial_site::orderBy('site')->where('localisation_id', Auth::user()->localisation_id)->get();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
 
         $site_array = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->get();
 
         if (isset($debut) && isset($fin)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($centre_regional)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
@@ -136,29 +141,29 @@ class DepartTourneeController extends Controller
         if (isset($centre)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
                 $query->where('centre', 'like', '%' . $centre . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($client)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($site)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
                 $query->where('id', 'like', '%' . $site . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
         if (isset($tdf)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
                 $query->where('tdf', 'like', '%' . $tdf . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
         if (isset($caisse)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
                 $query->where('caisse', '=', $caisse);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
 
@@ -167,7 +172,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($client)) {
@@ -175,7 +180,7 @@ class DepartTourneeController extends Controller
                 $query->where('client', 'like', '%' . $client . '%');
             })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($tdf)) {
@@ -183,7 +188,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.tdf', 'like', '%' . $tdf . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($caisse)) {
@@ -191,7 +196,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.tdf', 'like', '%' . $caisse . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
@@ -201,7 +206,7 @@ class DepartTourneeController extends Controller
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
                 ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
                 ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         $sites = array();
@@ -224,54 +229,55 @@ class DepartTourneeController extends Controller
         $tdf = $request->get("tdf");
         $caisse = $request->get("caisse");
 
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $clients = Commercial_client::orderBy('client_nom')->get();
-        $sites_com = Commercial_site::orderBy('site')->get();
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::orderBy('client_nom')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sites_com = Commercial_site::orderBy('site')->where('localisation_id', Auth::user()->localisation_id)->get();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
 
         $site_array = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")
+            ->where('localisation_id', Auth::user()->localisation_id)
             ->get();
 
         if (isset($debut) && isset($fin)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($centre_regional)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
                 $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($centre)) {
             $site_array = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
                 $query->where('centre', 'like', '%' . $centre . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($client)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
         if (isset($site)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
                 $query->where('id', 'like', '%' . $site . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
         if (isset($tdf)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
                 $query->where('tdf', 'like', '%' . $tdf . '%');
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
         if (isset($caisse)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
                 $query->where('caisse', '=', $caisse);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
 
         }
 
@@ -280,7 +286,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($client)) {
@@ -288,7 +294,7 @@ class DepartTourneeController extends Controller
                 $query->where('client', 'like', '%' . $client . '%');
             })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
-            })->get();
+            })->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($tdf)) {
@@ -296,7 +302,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.tdf', 'like', '%' . $tdf . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($caisse)) {
@@ -304,7 +310,7 @@ class DepartTourneeController extends Controller
                 ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
                 ->whereBetween('depart_tournees.date', [$debut, $fin])
                 ->where('site_depart_tournees.tdf', 'like', '%' . $caisse . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
@@ -314,7 +320,7 @@ class DepartTourneeController extends Controller
                 ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
                 ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
                 ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
-                ->get();
+                ->where('localisation_id', Auth::user()->localisation_id)->get();
         }
 
         $sites = array();
@@ -384,9 +390,9 @@ class DepartTourneeController extends Controller
     public function show($id)
     {
         // $commercial_sites = Commercial_site::all();
-        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
+        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->find($id);
         // $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
-        $sites = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
+        $sites = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         //$agents = DB::table('personnels')->where('transport', '=', 'Garde')->get();
         // $chefBords = DB::table('personnels')->where('transport', '=', 'Chef de bord')->get();
         // $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
@@ -402,16 +408,16 @@ class DepartTourneeController extends Controller
      */
     public function edit($id)
     {
-        $centres = Centre::all();
-        $centres_regionaux = Centre_regional::all();
-        $commercial_sites = Commercial_site::all();
-        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->find($id);
-        $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->get();
-        $sitesTournees = SiteDepartTournee::with('sites')->get()->where('idTourneeDepart', '=', $id);
-        $agents = DB::table('personnels')->where('service', '=', 'transport')->get();
-        $chefBords = DB::table('personnels')->where('service', '=', 'transport')->get();
-        $chauffeurs = DB::table('personnels')->where('service', '=', 'transport')->get();
-        $num = date('dmY') . (DB::table('depart_tournees')->max('id') + 1);
+        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
+        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $commercial_sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        $tournee = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $vehicules = Vehicule::with('chauffeurSuppleants')->with('chauffeurTitulaires')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $sitesTournees = SiteDepartTournee::with('sites')->where('idTourneeDepart', '=', $id)->where('localisation_id', Auth::user()->localisation_id)->get();
+        $agents = DB::table('personnels')->where('service', '=', 'transport')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $chefBords = DB::table('personnels')->where('service', '=', 'transport')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $chauffeurs = DB::table('personnels')->where('service', '=', 'transport')->where('localisation_id', Auth::user()->localisation_id)->get();
+        $num = date('dmY') . (DB::table('depart_tournees')->where('localisation_id', Auth::user()->localisation_id)->max('id') + 1);
         return view('transport.depart-tournee.edit',
             compact('tournee', 'vehicules', 'sitesTournees', 'commercial_sites', 'agents', 'chefBords', 'num', 'chauffeurs', 'centres', 'centres_regionaux'));
     }
@@ -425,7 +431,7 @@ class DepartTourneeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $departTournee = DepartTournee::find($id);
+        $departTournee = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $departTournee->coutTournee = $request->get('coutTournee');
         $departTournee->numeroTournee = $request->get('numeroTournee');
         $departTournee->date = $request->get('date');
@@ -475,7 +481,7 @@ class DepartTourneeController extends Controller
                     }
 
                 } else {
-                    $siteDepartTournee = SiteDepartTournee::find($site_ids[$i]);
+                    $siteDepartTournee = SiteDepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($site_ids[$i]);
                     if ($siteDepartTournee) {
                         $siteDepartTournee->site = $sites[$i] ?? '1';
                         $siteDepartTournee->type = $types[$i] ?? '';
@@ -498,8 +504,8 @@ class DepartTourneeController extends Controller
      */
     public function destroy($id)
     {
-        $departTournee = DepartTournee::find($id);
-        $sitesDepart = SiteDepartTournee::all()->where("idTourneeDepart", "=", $id);
+        $departTournee = DepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $sitesDepart = SiteDepartTournee::where("idTourneeDepart", "=", $id)->where('localisation_id', Auth::user()->localisation_id)->get();
         foreach ($sitesDepart as $site)
             $site->delete();
 
@@ -512,7 +518,7 @@ class DepartTourneeController extends Controller
 
     public function destroyItem($id)
     {
-        $sitesDepart = SiteDepartTournee::find($id);
+        $sitesDepart = SiteDepartTournee::where('localisation_id', Auth::user()->localisation_id)->find($id);
         if ($sitesDepart) $sitesDepart->delete();
         return response()->json([
             'message' => 'Good!'

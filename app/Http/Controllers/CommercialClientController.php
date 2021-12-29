@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Commercial_client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CommercialClientController extends Controller
 {
@@ -15,13 +16,13 @@ class CommercialClientController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::all();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('commercial/client.index', compact('clients'));
     }
 
     public function liste()
     {
-        $clients = Commercial_client::all();
+        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
         return view('commercial/client.liste', compact('clients'));
     }
 
@@ -118,7 +119,7 @@ class CommercialClientController extends Controller
             $contrat_regime = implode(",", $request->get('contrat_regime'));
         }
         // $id = $request->get('id_client');
-        $client = Commercial_client::find($id);
+        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $client->client_nom = $request->get('client_nom');
         $client->client_situation_geographique = $request->get('client_situation_geographique');
         $client->client_tel = $request->get('client_tel');
@@ -196,7 +197,7 @@ class CommercialClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Commercial_client::find($id);
+        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
         return view('commercial.client.edit', compact('client'));
     }
 
@@ -221,7 +222,7 @@ class CommercialClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Commercial_client::find($id);
+        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
         $client->delete();
         return response()->json([
             'message' => 'Good!'
