@@ -12,6 +12,7 @@ class DepartCentre extends Model
         'kmDepart',
         'observation',
         'niveauCarburant',
+        'localisation_id',
     ];
 
     public function tournees()
@@ -21,5 +22,12 @@ class DepartCentre extends Model
             ->with('agentDeGardes')
             ->with('chauffeurs')
             ->with('chefDeBords');
+    }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

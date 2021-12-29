@@ -15,10 +15,17 @@ class LogistiqueProduit extends Model
         'stockAlert',
         'ves',
         'prix',
+        'localisation_id',
     ];
 
     public function fournisseurs()
     {
         return $this->belongsTo('App\Models\LogistiqueFournisseur', 'fournisseur', 'id');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

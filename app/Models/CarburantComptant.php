@@ -20,4 +20,11 @@ class CarburantComptant extends Model
     {
         return $this->belongsTo('App\Models\Vehicule', 'idVehicule', 'id');
     }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }

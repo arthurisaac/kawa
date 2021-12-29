@@ -161,6 +161,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="">Localisation</label>
+                                <select name="localisation_id" class="form-control" required>
+                                    <option></option>
+                                    @foreach($localisations as $localisation)
+                                        <option value="{{$localisation->id}}">{{$localisation->pays}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="form-group">
@@ -171,6 +180,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
     <script>

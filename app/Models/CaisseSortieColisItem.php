@@ -23,4 +23,11 @@ class CaisseSortieColisItem extends Model
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
             ->with("clients");
     }
+
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }

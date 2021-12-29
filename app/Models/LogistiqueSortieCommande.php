@@ -15,6 +15,7 @@ class LogistiqueSortieCommande extends Model
         'centre',
         'prixUnitaire',
         'reference',
+        'localisation_id',
 
     ];
 
@@ -27,5 +28,11 @@ class LogistiqueSortieCommande extends Model
         'date',
 
     ];
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 
 }

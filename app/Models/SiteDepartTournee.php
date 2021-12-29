@@ -14,7 +14,7 @@ class SiteDepartTournee extends Model
         'regulation_depart_valeur_colisç', 'regulation_depart_devise',
         'regulation_arrivee_valeur_colis', 'regulation_arrivee_devise',
         'valeur_colis_xof_arrivee', 'device_etrangere_dollar_arrivee', 'device_etrangere_euro_arrivee', 'pierre_precieuse_arrivee', 'numero_arrivee', 'nbre_colis_arrivee', 'colis_arrivee',
-        'valeur_colis_xof_transport_depart', 'device_etrangere_dollar_transport_depart', 'device_etrangere_euro_transport_depart', 'pierre_precieuse_transport_depart', 'numero_transport_depart', 'nbre_colis_transport_depart',
+        'valeur_colis_xof_transport_depart', 'device_etrangere_dollar_transport_depart', 'device_etrangere_euro_transport_depart', 'pierre_precieuse_transport_depart', 'numero_transport_depart', 'nbre_colis_transport_depart', 'localisation_id',
     ];
 
     public function sites()
@@ -25,5 +25,11 @@ class SiteDepartTournee extends Model
     public function tournees()
     {
         return $this->belongsTo('App\Models\DepartTournee', 'idTourneeDepart', 'id');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

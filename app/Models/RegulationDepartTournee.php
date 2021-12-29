@@ -13,7 +13,8 @@ class RegulationDepartTournee extends Model
         'totalMontant',
         'totalColis',
         'kmArrivee',
-        'heureArrivee'
+        'heureArrivee',
+        'localisation_id',
     ];
 
     public function tournees()
@@ -23,5 +24,11 @@ class RegulationDepartTournee extends Model
             ->with('agentDeGardes')
             ->with('chauffeurs')
             ->with('chefDeBords');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 }

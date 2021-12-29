@@ -17,6 +17,7 @@ class RegulationFacturation extends Model
         'client',
         'type',
         'site',
+        'localisation_id',
     ];
 
     public function items()
@@ -27,6 +28,12 @@ class RegulationFacturation extends Model
     public function clients()
     {
         return $this->belongsTo('App\Models\Commercial_client', 'client');
+    }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
     }
 
 }

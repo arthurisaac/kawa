@@ -19,4 +19,10 @@ class AchatFournisseurConsulte extends Model
     {
         return $this->belongsTo('App\Models\AchatFournisseur', 'fournisseur', 'id');
     }
+    public static function booted()
+    {
+        static::creating(function ($modele){
+            $modele->localisation_id = Auth::user()->localisation_id;
+        });
+    }
 }
