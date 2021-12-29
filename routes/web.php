@@ -344,6 +344,8 @@ Route::delete('regulation-stock-sortie-item/{id}', [\App\Http\Controllers\Regula
 
 Route::get('regulation-stock-appro', [\App\Http\Controllers\RegulationStockSortieController::class, 'listeAppro']);
 
+Route::get('regulation-gestion-stock', [\App\Http\Controllers\RegulationStockSortieController::class, 'gestionStock']);
+
 /*
  * VIRGILOMETREIE
  */
