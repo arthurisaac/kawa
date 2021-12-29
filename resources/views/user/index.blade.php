@@ -44,7 +44,7 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->nom}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->roles}}</td>
+                            <td>{{$user->roles->role}}</td>
                             <td>{{$user->created_at}}</td>
                             <td>
                                 <a href="{{ route('user.edit',$user->id)}}" class="btn btn-primary btn-sm">Modifier</a>
