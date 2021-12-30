@@ -3,6 +3,8 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">GESTION DE CF</h2></div>
+        <a href="/regulation-gestion-stock" class="btn btn-sm btn-info">Retour</a>
+        <br/>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,13 +23,17 @@
             </div>
         @endif
 
-        <div class="titre">
-            <span>Total montant entré CF</span> : <span id="total_montant_entre" class="text-danger">{{$stockClients->sum("montantEntree")}}</span><br>
-            <span>Total montant sorti CF</span> : <span id="total_montant_sorti" class="text-danger">{{$stockClients->sum("montantSorti")}}</span><br>
-            <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("montantEntree") - $stockClients->sum("montantSorti")}}</span></span>
-        </div>
+        @if(!empty($stockClients))
+            <div class="titre">
+                <span>Total montant entré CF</span> : <span id="total_montant_entre"
+                                                            class="text-danger">{{$stockClients->sum("regulation_depart_valeur_colis")}}</span><br>
+                <span>Total montant sorti CF</span> : <span id="total_montant_sorti"
+                                                            class="text-danger">{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}</span><br>
+                <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_depart_valeur_colis") - ($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))}}</span></span>
+            </div>
+        @endif
         <br/>
-        {{--<form action="#" method="get">
+        <form action="#" method="get">
             @csrf
             <div class="row">
                 <div class="col">
@@ -44,7 +50,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col">
+                {{--<div class="col">
                     <div class="form-group row">
                         <label for="client" class="col-5">Clients</label>
                         <select id="client" name="client" class="form-control col">
@@ -54,7 +60,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>--}}
                 <div class="col">
                     <div class="form-group row">
                         <label for="site" class="col-5">Site</label>
@@ -66,6 +72,7 @@
                         </select>
                     </div>
                 </div>
+                <div class="col"></div>
             </div>
             <div class="row">
                 <div class="col">
@@ -92,26 +99,26 @@
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
-        </form>--}}
+        </form>
         <br>
         <table class="table table-bordered" id="liste">
             <thead>
             <tr>
-                <th>Clients</th>
+                <th>Sites</th>
+                <th>Tournées</th>
+                <th>Date</th>
                 <th>Montant entrée au CF</th>
                 <th>Montant sorti du CF</th>
-                <th>Montant disponible au CF</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
             @foreach($stockClients as $stock)
                 <tr>
-                    <td>{{$stock->client_nom}}</td>
-                    <td>{{$stock->montantEntree ?? 0}}</td>
-                    <td>{{$stock->montantSorti ?? 0}}</td>
-                    <td>{{$stock->montantEntree - $stock->montantSorti}}</td>
-                    <td><a href="/regulation-gestion-client-stock/{{$stock->id}}" class="btn btn-sm btn-info"></a></td>
+                    <td>{{$stock->sites->site ?? ""}}</td>
+                    <td>{{$stock->tournees->numeroTournee ?? ""}}</td>
+                    <td>{{$stock->tournees->date ?? ""}}</td>
+                    <td>{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}</td>
+                    <td>{{$stock->regulation_depart_valeur_colis ?? 0}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -130,7 +137,7 @@
             const clientInput = $("#client");
             if (clientInput.val()) {
                 const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
-                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+                if (client) $("select[name='client'] option[value=" + client?.id + "]").attr('selected', 'selected');
             }
         });
     </script>

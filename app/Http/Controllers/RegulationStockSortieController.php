@@ -94,6 +94,51 @@ class RegulationStockSortieController extends Controller
         $site = $request->get("site");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+        $stockClients = Commercial_client::with("sites")
+            ->withCount([
+                'sites as montantSorti' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                        ->where('type', 'like', 'Dépôt / R');
+                }
+            ])
+            ->withCount([
+                'sites as montantEntree' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                }
+            ])
+            ->get();
+
+        /*if (isset($debut) && isset($fin) && isset($client) && isset($site)) {
+            $stockClients = Commercial_client::with("sites")
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }*/
+
+        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
+    }
+
+
+    public function gestionClientStock(Request $request, $id)
+    {
+        $clients = Commercial_client::all();
+        $sites = Commercial_site::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $client = $id; //$request->get("client");
+        $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
         $stockClients = array();
         /*$stockClients = Commercial_client::with("sites")
             ->withCount([
@@ -138,7 +183,7 @@ class RegulationStockSortieController extends Controller
                 ->get();
         }
 
-        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
+        return view('regulation.stock.gestion-client', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
     }
 
     /**
