@@ -10,6 +10,7 @@ use App\Models\RegulationFacturationItem;
 use App\Models\RegulationStockEntreeItem;
 use App\Models\RegulationStockSortie;
 use App\Models\RegulationStockSortieItem;
+use App\Models\SiteDepartTournee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,7 +94,8 @@ class RegulationStockSortieController extends Controller
         $site = $request->get("site");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $stockClients = Commercial_client::with("sites")
+        $stockClients = array();
+        /*$stockClients = Commercial_client::with("sites")
             ->withCount([
                 'sites as montantSorti' => function (Builder $query) {
                     $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))->where('type', 'like', 'Dépôt / R');
@@ -101,16 +103,40 @@ class RegulationStockSortieController extends Controller
             ])
             ->withCount([
                 'sites as montantEntree' => function (Builder $query) {
-                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"))/*->where('type', 'like', 'Enlèvement / R')*/
-                    ;
+                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
                 }
             ])
-            ->get();
-        /*if ($client)
-            $stockClients = Commercial_client::with("sites")
+            ->get();*/
+
+        if ($client)
+            $stockClients = SiteDepartTournee::with("tournees")
                 ->whereHas('sites', function (Builder $query) use ($client) {
-                    //$query->whereBetween('date', [$debut, $fin]);
-                })->get();*/
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($client) && isset($site)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('sites', function (Builder $query) use ($site) {
+                    $query->where('id', 'like', '%' . $site . '%');
+                })
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client, $site) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
 
         return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
     }

@@ -21,23 +21,31 @@
             </div>
         @endif
 
-        {{--<form action="#" method="get">
+        @if(!empty($stockClients))
+        <div class="titre">
+            <span>Total montant entré CF</span> : <span id="total_montant_entre" class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis")}}</span><br>
+            <span>Total montant sorti CF</span> : <span id="total_montant_sorti" class="text-danger">{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}</span><br>
+            <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis") - ($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))}}</span></span>
+        </div>
+        @endif
+        <br/>
+        <form action="#" method="get">
             @csrf
             <div class="row">
-                <div class="col">
-                    --}}{{--<div class="form-group row">
+                {{--<div class="col">
+                    <div class="form-group row">
                         <label for="centre" class="col-5">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control col">
                         </select>
-                    </div>--}}{{--
+                    </div>
                 </div>
                 <div class="col">
-                    --}}{{--<div class="form-group row">
+                    <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
                         </select>
-                    </div>--}}{{--
-                </div>
+                    </div>
+                </div>--}}
                 <div class="col">
                     <div class="form-group row">
                         <label for="client" class="col-5">Clients</label>
@@ -50,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    --}}{{--<div class="form-group row">
+                    <div class="form-group row">
                         <label for="site" class="col-5">Site</label>
                         <select id="site" name="site" class="form-control col">
                             <option>{{$site}}</option>
@@ -58,10 +66,12 @@
                                 <option value="{{$site->id}}">{{ $site->site }}</option>
                             @endforeach
                         </select>
-                    </div>--}}{{--
+                    </div>
                 </div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
-            --}}{{--<div class="row">
+            <div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-5">Date début</label>
@@ -76,7 +86,7 @@
                 </div>
                 <div class="col"></div>
                 <div class="col"></div>
-            </div>--}}{{--
+            </div>
             <div class="row">
                 <div class="col"></div>
                 <div class="col"></div>
@@ -86,9 +96,9 @@
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
-        </form>--}}
+        </form>
         <br>
-        <table class="table table-bordered" id="liste">
+        {{--<table class="table table-bordered" id="liste">
             <thead>
             <tr>
                 <th>Clients</th>
@@ -106,16 +116,28 @@
                     <td>{{$stock->montantEntree - $stock->montantSorti}}</td>
                 </tr>
             @endforeach
-            {{--@foreach($sitesDepart as $site)
+            </tbody>
+        </table>--}}
+        <table class="table table-bordered" id="liste">
+            <thead>
+            <tr>
+                <th>Sites</th>
+                <th>Tournées</th>
+                <th>Date</th>
+                <th>Montant entrée au CF</th>
+                <th>Montant sorti du CF</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($stockClients as $stock)
                 <tr>
-                    <td>{{$site->site}}</td>
-                    <td>{{$site->tournees->numeroTournee ?? ""}}</td>
-                    <td>{{$site->tournees->date ?? ""}}</td>
-                    <td>{{$site->regulation_arrivee_valeur_colis ?? 0}}</td>
-                    <td>{{$site->regulation_depart_valeur_colis ?? 0}}</td>
-                    <td></td>
+                    <td>{{$stock->sites->site ?? ""}}</td>
+                    <td>{{$stock->tournees->numeroTournee ?? ""}}</td>
+                    <td>{{$stock->tournees->date ?? ""}}</td>
+                    <td>{{$stock->regulation_arrivee_valeur_colis ?? 0}}</td>
+                    <td>{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}</td>
                 </tr>
-            @endforeach--}}
+            @endforeach
             </tbody>
         </table>
     </div>

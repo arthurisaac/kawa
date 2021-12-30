@@ -74,7 +74,6 @@ class RegulationDepartTourneeController extends Controller
 
         $tournees = DepartTournee::all();
         $colisArrivees = SiteDepartTournee::with('sites')
-            //->where('colis', '!=', 'RAS')
             ->where(function(Builder $query) {
                 $query->Where('type', 'Enlèvement / R')
                     ->orWhere('type', "Dépôt / R")
