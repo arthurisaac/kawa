@@ -40,6 +40,10 @@
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -47,10 +51,14 @@
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
-                {{--<div class="col">
+                <div class="col">
                     <div class="form-group row">
                         <label for="client" class="col-5">Clients</label>
                         <select id="client" name="client" class="form-control col">
@@ -60,7 +68,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>--}}
+                </div>
                 <div class="col">
                     <div class="form-group row">
                         <label for="site" class="col-5">Site</label>
@@ -72,7 +80,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="col"></div>
             </div>
             <div class="row">
                 <div class="col">
@@ -95,7 +102,7 @@
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
-                    <a href="/regulation-gestion-stock" class="btn btn-info btn-sm">Effacer</a>
+                    <a href="/regulation-gestion-client-stock/{{$id}}" class="btn btn-info btn-sm">Effacer</a>
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
@@ -106,6 +113,8 @@
             <tr>
                 <th>Sites</th>
                 <th>Tournées</th>
+                <th>Centre</th>
+                <th>Centre régional</th>
                 <th>Date</th>
                 <th>Montant entrée au CF</th>
                 <th>Montant sorti du CF</th>
@@ -116,6 +125,8 @@
                 <tr>
                     <td>{{$stock->sites->site ?? ""}}</td>
                     <td>{{$stock->tournees->numeroTournee ?? ""}}</td>
+                    <td>{{$stock->tournees->centre ?? ""}}</td>
+                    <td>{{$stock->tournees->centre_regional ?? ""}}</td>
                     <td>{{$stock->tournees->date ?? ""}}</td>
                     <td>{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}</td>
                     <td>{{$stock->regulation_depart_valeur_colis ?? 0}}</td>

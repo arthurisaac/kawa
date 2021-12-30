@@ -87,6 +87,8 @@ class RegulationStockSortieController extends Controller
     {
         $clients = Commercial_client::all();
         $sites = Commercial_site::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
@@ -108,6 +110,64 @@ class RegulationStockSortieController extends Controller
             ])
             ->get();
 
+        if (isset($centre)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
+        if (isset($centre) && isset($centre_regional)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional, $centre) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
+        if (isset($centre_regional)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
         /*if (isset($debut) && isset($fin) && isset($client) && isset($site)) {
             $stockClients = Commercial_client::with("sites")
                 ->withCount([
@@ -124,7 +184,7 @@ class RegulationStockSortieController extends Controller
                 ->get();
         }*/
 
-        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
+        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients', 'centres', 'centres_regionaux'));
     }
 
 
@@ -132,10 +192,16 @@ class RegulationStockSortieController extends Controller
     {
         $clients = Commercial_client::all();
         $sites = Commercial_site::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
-        $client = $id; //$request->get("client");
+        if ($id) {
+            $client = $id;
+        } else {
+            $client = $request->get("client");
+        }
         $site = $request->get("site");
         $debut = $request->get("debut");
         $fin = $request->get("fin");
@@ -158,6 +224,35 @@ class RegulationStockSortieController extends Controller
                 ->whereHas('sites', function (Builder $query) use ($client) {
                     $query->where('client', 'like', '%' . $client . '%');
                 })->get();
+
+        if ($client && isset($centre_regional))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if ($client && isset($centre))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if ($client && isset($centre))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre, $centre_regional) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
 
         if (isset($debut) && isset($fin) && isset($client)) {
             $stockClients = SiteDepartTournee::with("tournees")
@@ -182,8 +277,23 @@ class RegulationStockSortieController extends Controller
                 })
                 ->get();
         }
+        if (isset($debut) && isset($fin) && isset($client) && isset($site) && isset($centre) && isset($centre_regional)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('sites', function (Builder $query) use ($site) {
+                    $query->where('id', 'like', '%' . $site . '%');
+                })
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client, $site, $centre, $centre_regional) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
 
-        return view('regulation.stock.gestion-client', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients'));
+        return view('regulation.stock.gestion-client', compact('clients',  'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients', 'centres', 'centres_regionaux', 'id'));
     }
 
     /**

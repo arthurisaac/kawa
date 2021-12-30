@@ -34,6 +34,10 @@
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -41,31 +45,15 @@
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="client" class="col-5">Clients</label>
-                        <select id="client" name="client" class="form-control col">
-                            <option>{{$client}}</option>
-                            @foreach ($clients as $client)
-                                <option value="{{$client->id}}">{{ $client->client_nom }}</option>
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="site" class="col-5">Site</label>
-                        <select id="site" name="site" class="form-control col">
-                            <option>{{$site}}</option>
-                            @foreach ($sites as $site)
-                                <option value="{{$site->id}}">{{ $site->site }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
             <div class="row">
                 <div class="col">
