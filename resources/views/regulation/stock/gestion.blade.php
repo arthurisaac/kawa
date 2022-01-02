@@ -21,10 +21,36 @@
             </div>
         @endif
 
+        @php
+            $totalMontantEntree = 0;
+            $totalMontantSortie = 0;
+
+                foreach ($stockClients as $st) {
+                    $entrees = 0;
+                    $sorties = 0;
+                    foreach($st->sites as $clt)
+                        $entrees += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+
+                    foreach($st->sites as $clt)
+                            $sorties += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+
+                    $totalMontantEntree += $entrees;
+                    $totalMontantSortie += $sorties;
+
+                }
+        @endphp
+
         <div class="titre">
-            <span>Total montant entré CF</span> : <span id="total_montant_entre" class="text-danger">{{$stockClients->sum("montantEntree")}}</span><br>
-            <span>Total montant sorti CF</span> : <span id="total_montant_sorti" class="text-danger">{{$stockClients->sum("montantSorti")}}</span><br>
-            <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("montantEntree") - $stockClients->sum("montantSorti")}}</span></span>
+            <span>Total montant entré CF</span> : <span id="total_montant_entre"
+                                                        class="text-danger">
+                {{$totalMontantEntree}}
+            </span><br>
+            <span>Total montant sorti CF</span> : <span id="total_montant_sorti"
+                                                        class="text-danger">
+                {{$totalMontantSortie}}
+            </span><br>
+            <span>Total montant restant : <span
+                    class="text-danger">{{$totalMontantEntree - $totalMontantSortie}}</span></span>
         </div>
         <br/>
         {{--<form action="#" method="get">
@@ -95,10 +121,36 @@
             <tbody>
             @foreach($stockClients as $stock)
                 <tr>
-                    <td>{{$stock->client_nom}}</td>
-                    <td>{{$stock->montantEntree ?? 0}}</td>
-                    <td>{{$stock->montantSorti ?? 0}}</td>
-                    <td>{{$stock->montantEntree - $stock->montantSorti}}</td>
+                    <td>{{$stock->client_nom}}{{-- @if ($stock->id == 84) {{$stock->sites}} @endif--}}</td>
+                    <td>
+                        @php
+                            $totalEntree = 0;
+                            foreach($stock->sites as $clt)
+                                $totalEntree += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                        echo $totalEntree;
+                        @endphp
+                    </td>
+                    <td>
+                        @php
+                            $totalSortie = 0;
+                            foreach($stock->sites as $clt)
+                                $totalSortie += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                            echo $totalSortie;
+                        @endphp
+                    </td>
+                    <td>
+                        @php
+                            $totalEntree = 0;
+                            $totalSortie = 0;
+
+                            foreach($stock->sites as $clt)
+                                $totalEntree += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+
+                            foreach($stock->sites as $clt)
+                                $totalSortie += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                        echo $totalEntree - $totalSortie;
+                        @endphp
+                    </td>
                     <td><a href="/regulation-gestion-client-stock/{{$stock->id}}" class="btn btn-sm btn-info"></a></td>
                 </tr>
             @endforeach
@@ -118,7 +170,7 @@
             const clientInput = $("#client");
             if (clientInput.val()) {
                 const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
-                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+                if (client) $("select[name='client'] option[value=" + client?.id + "]").attr('selected', 'selected');
             }
         });
     </script>

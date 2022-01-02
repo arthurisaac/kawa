@@ -28,8 +28,8 @@
                 <span>Total montant entré CF</span> : <span id="total_montant_entre"
                                                             class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis")}}</span><br>
                 <span>Total montant sorti CF</span> : <span id="total_montant_sorti"
-                                                            class="text-danger">{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}</span><br>
-                <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_depart_valeur_colis") - ($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))}}</span></span>
+                                                            class="text-danger">{{--{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}--}} {{$stockClients->sum("regulation_depart_valeur_colis")}}</span><br>
+                <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis") - $stockClients->sum("regulation_depart_valeur_colis")/*($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))*/}}</span></span>
             </div>
         @endif
         <br/>

@@ -51,6 +51,6 @@ class Commercial_client extends Model
 
     public function sites()
     {
-        return $this->hasMany('App\Models\SiteDepartTournee', 'site')->with('sites');
+        return $this->hasMany('App\Models\Commercial_site', 'client')->with('sitesDepart');
     }
 }

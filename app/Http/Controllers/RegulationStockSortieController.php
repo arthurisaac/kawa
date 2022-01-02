@@ -97,17 +97,17 @@ class RegulationStockSortieController extends Controller
         $debut = $request->get("debut");
         $fin = $request->get("fin");
         $stockClients = Commercial_client::with("sites")
-            ->withCount([
+            /*->withCount([
                 'sites as montantSorti' => function (Builder $query) {
-                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
-                        ->where('type', 'like', 'Dépôt / R');
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"));
+                        //->where('type', 'like', 'Dépôt / R');
                 }
             ])
             ->withCount([
                 'sites as montantEntree' => function (Builder $query) {
-                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
                 }
-            ])
+            ])*/
             ->get();
 
         if (isset($centre)) {
