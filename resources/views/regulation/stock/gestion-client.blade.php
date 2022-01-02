@@ -26,7 +26,7 @@
         @if(!empty($stockClients))
             <div class="titre">
                 <span>Total montant entré CF</span> : <span id="total_montant_entre"
-                                                            class="text-danger">{{$stockClients->sum("regulation_depart_valeur_colis")}}</span><br>
+                                                            class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis")}}</span><br>
                 <span>Total montant sorti CF</span> : <span id="total_montant_sorti"
                                                             class="text-danger">{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}</span><br>
                 <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_depart_valeur_colis") - ($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))}}</span></span>
@@ -128,7 +128,7 @@
                     <td>{{$stock->tournees->centre ?? ""}}</td>
                     <td>{{$stock->tournees->centre_regional ?? ""}}</td>
                     <td>{{$stock->tournees->date ?? ""}}</td>
-                    <td>{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}</td>
+                    <td>{{--{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}--}}{{$stock->regulation_arrivee_valeur_colis}}</td>
                     <td>{{$stock->regulation_depart_valeur_colis ?? 0}}</td>
                 </tr>
             @endforeach

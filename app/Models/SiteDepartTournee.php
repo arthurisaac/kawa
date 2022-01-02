@@ -9,7 +9,6 @@ class SiteDepartTournee extends Model
     protected $fillable = [
         'site', 'type', 'tdf', 'idTourneeDepart', 'caisse', 'montant', 'autre', 'bordereau',
         'nature', 'client', 'nbre_colis', 'numero_scelle', 'montant_regulation', 'colis', 'valeur_colis', 'numero', 'valeur_autre',
-        //'valeur_colis_xof', 'device_etrangere_dollar', 'device_etrangere_euro', 'pierre_precieuse',
         'transport_arrivee_valeur_colis', 'transport_arrivee_devise',
         'regulation_depart_valeur_colis', 'regulation_depart_devise',
         'regulation_arrivee_valeur_colis', 'regulation_arrivee_devise',
