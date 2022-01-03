@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">GESTION DE CF</h2></div>
+        <div><h2 class="heading">GESTION DE CF : <span id="client_nom"></span></h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -144,6 +144,10 @@
                     "url": "French.json"
                 }
             });
+
+            const clientValue = {{$client}};
+            const client = clients.find(s => s.id === parseInt(clientValue ?? 0));
+            if (client) $("#client_nom").text(client.client_nom);
 
             const clientInput = $("#client");
             if (clientInput.val()) {
