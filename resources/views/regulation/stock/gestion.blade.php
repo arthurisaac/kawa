@@ -29,10 +29,10 @@
                     $entrees = 0;
                     $sorties = 0;
                     foreach($st->sites as $clt)
-                        $entrees += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                        $entrees += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
 
                     foreach($st->sites as $clt)
-                            $sorties += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                            $sorties += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
 
                     $totalMontantEntree += $entrees;
                     $totalMontantSortie += $sorties;
@@ -50,7 +50,7 @@
                 {{$totalMontantSortie}}
             </span><br>
             <span>Total montant restant : <span
-                    class="text-danger">{{$totalMontantEntree - $totalMontantSortie}}</span></span>
+                    class="text-danger">{{$totalMontantSortie - $totalMontantEntree}}</span></span>
         </div>
         <br/>
         {{--<form action="#" method="get">
