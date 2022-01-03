@@ -29,10 +29,10 @@
                     $entrees = 0;
                     $sorties = 0;
                     foreach($st->sites as $clt)
-                        $entrees += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                        $entrees += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
 
                     foreach($st->sites as $clt)
-                            $sorties += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                            $sorties += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
 
                     $totalMontantEntree += $entrees;
                     $totalMontantSortie += $sorties;
@@ -126,7 +126,7 @@
                         @php
                             $totalEntree = 0;
                             foreach($stock->sites as $clt)
-                                $totalEntree += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                                $totalEntree += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
                         echo $totalEntree;
                         @endphp
                     </td>
@@ -134,7 +134,7 @@
                         @php
                             $totalSortie = 0;
                             foreach($stock->sites as $clt)
-                                $totalSortie += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                                $totalSortie += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
                             echo $totalSortie;
                         @endphp
                     </td>
