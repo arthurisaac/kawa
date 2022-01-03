@@ -33,6 +33,7 @@ class RegulationArriveeTourneeController extends Controller
             ->with('chefDeBords')
             ->with('chauffeurs')
             ->with('vehicules')
+            ->orderByDesc("id")
             ->get();
         $sites = SiteDepartTournee::with('sites')->get();
         $devises = OptionDevise::all();

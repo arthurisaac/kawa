@@ -11,7 +11,7 @@
         <br/>
         <div class="titre">
             <span>Total site</span> : <span class="text-danger">{{count($colisArrivees)}}</span>
-            <span>Colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
+            <span>Total valeur Colis</span> : <span id="valeur_colis" class="text-danger">{{$colisArrivees->sum("regulation_arrivee_valeur_colis")}}</span>
             <span style="margin-left: 10px;">Nombre de colis : <span class="text-danger">{{$colisArrivees->sum("nbre_colis_arrivee")}}</span></span>
         </div>
         <br/>
@@ -171,6 +171,8 @@
     </table>
 
     <script>
+        let sites = {!! json_encode($sites_com) !!};
+        let clients = {!! json_encode($clients) !!};
         $(document).ready(function () {
             //let oTable = $('#table').DataTable({
             $('#table').DataTable({
@@ -183,6 +185,17 @@
             const valeur_colis = $("#valeur_colis");
             const valeur_colis_parsed = parseFloat(valeur_colis.html() ?? 0);
             valeur_colis.html(Number(valeur_colis_parsed).toLocaleString());
+
+            const siteInput = $("#site");
+            if (siteInput.val()) {
+                const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
+                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
+            }
+            const clientInput = $("#client");
+            if (clientInput.val()) {
+                const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
+                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+            }
         });
     </script>
     <script>
