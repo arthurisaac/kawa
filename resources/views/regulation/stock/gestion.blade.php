@@ -120,39 +120,37 @@
             </thead>
             <tbody>
             @foreach($stockClients as $stock)
-                <tr>
-                    <td>{{$stock->client_nom}}{{-- @if ($stock->id == 84) {{$stock->sites}} @endif--}}</td>
-                    <td>
-                        @php
-                            $totalEntree = 0;
-                            foreach($stock->sites as $clt)
-                                $totalEntree += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
-                        echo $totalEntree;
-                        @endphp
-                    </td>
-                    <td>
-                        @php
-                            $totalSortie = 0;
-                            foreach($stock->sites as $clt)
-                                $totalSortie += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
-                            echo $totalSortie;
-                        @endphp
-                    </td>
-                    <td>
-                        @php
-                            $totalEntree = 0;
-                            $totalSortie = 0;
+                @php
+                    $totalEntree = 0;
+                    foreach($stock->sites as $clt)
+                        $totalEntree += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
+                @endphp
+                @php
+                    $totalSortie = 0;
+                    foreach($stock->sites as $clt)
+                        $totalSortie += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                @endphp
+                @php
+                    $totalEntree = 0;
+                    $totalSortie = 0;
 
-                            foreach($stock->sites as $clt)
-                                $totalEntree += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                    foreach($stock->sites as $clt)
+                        $totalEntree += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
 
-                            foreach($stock->sites as $clt)
-                                $totalSortie += $clt->sitesDepart->sum("regulation_arrivee_valeur_colis") ?? 0;
-                        echo $totalEntree - $totalSortie;
-                        @endphp
-                    </td>
-                    <td><a href="/regulation-gestion-client-stock/{{$stock->id}}" class="btn btn-sm btn-info"></a></td>
-                </tr>
+                    foreach($stock->sites as $clt)
+                        $totalSortie += $clt->sitesDepart->sum("regulation_depart_valeur_colis") ?? 0;
+                $disponible = $totalEntree - $totalSortie;
+                @endphp
+                @if ($disponible != 0)
+                    <tr>
+                        <td>{{$stock->client_nom}}{{-- @if ($stock->id == 84) {{$stock->sites}} @endif--}}</td>
+                        <td>{{$totalEntree}}</td>
+                        <td>{{$totalSortie}}</td>
+                        <td>{{$disponible}}</td>
+                        <td><a href="/regulation-gestion-client-stock/{{$stock->id}}" class="btn btn-sm btn-info">Voir details</a>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

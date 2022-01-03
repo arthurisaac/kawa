@@ -3,7 +3,6 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">GESTION DE CF</h2></div>
-        <a href="/regulation-gestion-stock" class="btn btn-sm btn-info">Retour</a>
         <br/>
         <br/>
         @if ($errors->any())
@@ -59,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label for="client" class="col-5">Clients</label>
                         <select id="client" name="client" class="form-control col">
                             <option>{{$client}}</option>
@@ -67,10 +66,10 @@
                                 <option value="{{$client->id}}">{{ $client->client_nom }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="col">
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label for="site" class="col-5">Site</label>
                         <select id="site" name="site" class="form-control col">
                             <option>{{$site}}</option>
@@ -78,7 +77,7 @@
                                 <option value="{{$site->id}}">{{ $site->site }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
             <div class="row">
@@ -102,6 +101,7 @@
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
+                    <a href="/regulation-gestion-stock" class="btn btn-sm btn-dark">Retour</a>
                     <a href="/regulation-gestion-client-stock/{{$id}}" class="btn btn-info btn-sm">Effacer</a>
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
