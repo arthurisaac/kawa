@@ -35,7 +35,7 @@ class SecuriteMaincouranteController extends Controller
         $date = date('d/m/Y');
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::with('clients')->get();
+        $sites = Commercial_site::with('clients')->orderBy('site')->get();
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc('id')->get();
         $sitesTournees = SiteDepartTournee::with("sites")->get();
         $departCentres = DepartCentre::with('tournees')->get();
@@ -44,7 +44,7 @@ class SecuriteMaincouranteController extends Controller
         $sitesDepartTournees = SiteDepartTournee::with('tournees')->with('sites')->get();
         $arriveeCentres = ArriveeCentre::with('tournees')->get();
         $optionNiveauCarburant = OptionNiveauCarburant::all();
-        $optionBordereau = OptionBordereau::all();
+        $optionBordereau = OptionBordereau::orderBy("numero")->get();
         $tourneeCentres = TourneeCentre::with('tournees')
             ->with('details')
             ->get();

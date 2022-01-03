@@ -28,7 +28,8 @@
                                                             class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis")}}</span><br>
                 <span>Total montant sorti CF</span> : <span id="total_montant_sorti"
                                                             class="text-danger">{{--{{$stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis")}}--}} {{$stockClients->sum("regulation_depart_valeur_colis")}}</span><br>
-                <span>Total montant restant : <span class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis") - $stockClients->sum("regulation_depart_valeur_colis")/*($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))*/}}</span></span>
+                <span>Total montant restant : <span
+                        class="text-danger">{{$stockClients->sum("regulation_arrivee_valeur_colis") - $stockClients->sum("regulation_depart_valeur_colis")/*($stockClients->where("type", "=", "Dépôt / R")->sum("regulation_depart_valeur_colis"))*/}}</span></span>
             </div>
         @endif
         <br/>
@@ -67,6 +68,10 @@
                             @endforeach
                         </select>
                     </div>--}}
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
+                    </div>
                 </div>
                 <div class="col">
                     {{--<div class="form-group row">
@@ -78,20 +83,18 @@
                             @endforeach
                         </select>
                     </div>--}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="" class="col-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
-                    </div>
-                </div>
-                <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-5">Date fin</label>
                         <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                </div>
+                <div class="col">
+
                 </div>
                 <div class="col"></div>
                 <div class="col"></div>
@@ -122,15 +125,17 @@
             </thead>
             <tbody>
             @foreach($stockClients as $stock)
-                <tr>
-                    <td>{{$stock->sites->site ?? ""}}</td>
-                    <td>{{$stock->tournees->numeroTournee ?? ""}}</td>
-                    <td>{{$stock->tournees->centre ?? ""}}</td>
-                    <td>{{$stock->tournees->centre_regional ?? ""}}</td>
-                    <td>{{$stock->tournees->date ?? ""}}</td>
-                    <td>{{--{{($stock->type == "Dépôt / R") ? ($stock->regulation_depart_valeur_colis ?? 0) : 0}}--}}{{$stock->regulation_arrivee_valeur_colis}}</td>
-                    <td>{{$stock->regulation_depart_valeur_colis ?? 0}}</td>
-                </tr>
+                @if ($stock->regulation_arrivee_valeur_colis - $stock->regulation_depart_valeur_colis != 0)
+                    <tr>
+                        <td>{{$stock->sites->site ?? ""}}</td>
+                        <td>{{$stock->tournees->numeroTournee ?? ""}}</td>
+                        <td>{{$stock->tournees->centre ?? ""}}</td>
+                        <td>{{$stock->tournees->centre_regional ?? ""}}</td>
+                        <td>{{$stock->tournees->date ?? ""}}</td>
+                        <td>{{$stock->regulation_arrivee_valeur_colis}}</td>
+                        <td>{{$stock->regulation_depart_valeur_colis ?? 0}}</td>
+                    </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

@@ -25,7 +25,7 @@ class CaisseEntreeColisController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::with("clients")->get();
+        $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $devises = OptionDevise::all();
@@ -137,7 +137,7 @@ class CaisseEntreeColisController extends Controller
         $items = CaisseEntreeColisItem::all()->where("entree_colis", $id);
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::with("clients")->get();
+        $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $devises = OptionDevise::all();
         return view('/caisse/entree-colis.edit',
             compact('colis', 'centres', 'centres_regionaux', 'personnels', 'items', 'agents', 'chefBords', 'sites', 'tournees', 'devises'));

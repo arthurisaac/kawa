@@ -27,7 +27,7 @@ class CaisseSortieColisController extends Controller
         $centres_regionaux = Centre_regional::all();
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::with("clients")->get();
+        $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
         $devises = OptionDevise::all();
@@ -129,7 +129,7 @@ class CaisseSortieColisController extends Controller
         $centres_regionaux = Centre_regional::all();
         $agents = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
-        $sites = Commercial_site::with("clients")->get();
+        $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $items = CaisseSortieColisItem::with("sites")->where("sortieColis", $id)->get();
         $colis = CaisseSortieColis::with('sites')->find($id);
         $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
