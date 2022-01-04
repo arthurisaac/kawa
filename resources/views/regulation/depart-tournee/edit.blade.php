@@ -118,8 +118,7 @@
                             </td>
                             <td><input type="text" name="client[]" value="{{$site->sites->clients->client_nom ?? ''}}" class="form-control" readonly /></td>
                             <td><select name="colis[]" class="form-control">
-                                    <option>RAS</option>
-                                    <option>{{$site->colis}}</option>
+                                    <option>{{$site->colis ?? "RAS"}}</option>
                                     <option>Sac jute</option>
                                     <option>Keep safe</option>
                                     <option>Caisse</option>

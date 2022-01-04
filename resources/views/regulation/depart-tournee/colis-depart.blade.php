@@ -163,7 +163,7 @@
                 <td>{{$colis->tournees->numeroTournee ?? ''}}</td>
                 <td>{{$colis->bordereau ?? ''}}</td>
                 <td>{{$colis->nbre_colis_arrivee}}</td>
-                <td><a href="{{ route('regulation-arrivee-tournee.edit',$colis->idTourneeDepart)}}"
+                <td><a href="{{ route('regulation-depart-tournee.edit',$colis->idTourneeDepart)}}"
                        class="btn btn-primary btn-sm"></a></td>
             </tr>
         @endforeach
