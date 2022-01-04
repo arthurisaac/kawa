@@ -287,7 +287,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4">Prochaine destination</label>
                                         <select class="form-control col-sm-8" name="asDestination"
-                                                id="prochaineDestination"></select>
+                                                id="prochaineDestination">
+                                            @foreach($sites as $site)
+                                                <option>{{$site->site}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-4">Observation</label>
