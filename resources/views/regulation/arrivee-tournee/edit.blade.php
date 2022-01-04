@@ -124,14 +124,14 @@
                         <tr>
                             <td>
                                 <select name="site[]" class="form-control">
-                                    <option value="{{$site->site}}">{{$site->sites->site}}</option>
+                                    <option value="{{$site->site}}">{{$site->sites->site ?? ""}}</option>
                                     @foreach($sites as $s)
                                         <option value="{{$s->id}}">{{$s->site}}</option>
                                     @endforeach
                                 </select>
                                 <input type="hidden" name="site_id[]" value="{{$site->id}}">
                             </td>
-                            <td><input type="text" name="client[]" value="{{$site->client}}" class="form-control"></td>
+                            <td><input type="text" name="client[]" value="{{$site->sites->clients->client_nom ?? ''}}" class="form-control"></td>
                             <td><select name="colis[]" class="form-control">
                                     <option>{{$site->colis_arrivee ?? 'RAS'}}</option>
                                     <option>Sac jute</option>
@@ -139,15 +139,15 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
-                            <td><input type="text" name="regulation_arrivee_valeur_colis[]"
-                                       value="{{$site->regulation_arrivee_valeur_colis ?? 0}}" class="form-control">
-                            </td>
                             <td><select name="regulation_arrivee_devise[]" class="form-control">
                                     <option>{{$site->regulation_arrivee_devise ?? "XOF"}}</option>
                                     @foreach($devises as $devise)
                                         <option>{{$devise->devise}}</option>
                                     @endforeach
                                 </select></td>
+                            <td><input type="text" name="regulation_arrivee_valeur_colis[]"
+                                       value="{{$site->regulation_arrivee_valeur_colis ?? 0}}" class="form-control">
+                            </td>
                             <td><textarea name="numero[]" class="form-control">{{$site->numero_arrivee}}</textarea></td>
                             <td><input type="number" min="0" name="nbre_colis[]"
                                        value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>

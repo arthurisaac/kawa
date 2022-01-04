@@ -23,7 +23,6 @@
 <script src="{{ asset('js/jscookmenu.min.js') }}"></script>
 <script>
     function removeSpaceValeurColis() {
-        alert("ok")
         $.each($("input[name='regulation_arrivee_valeur_colis[]']"), function (i) {
             const nbre = $("input[name='regulation_arrivee_valeur_colis[]'").get(i).value;
             $("input[name='regulation_arrivee_valeur_colis[]'").eq(i).val(removeSpace(nbre));
