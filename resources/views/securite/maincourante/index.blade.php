@@ -172,7 +172,7 @@
                                     <label class="col-sm-4">SITE</label>
                                     <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
                                         @foreach($sites as $site)
-                                            <option>{{$site->site}}</option>
+                                            <option value="{{$site->id}}">{{$site->site}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -289,7 +289,7 @@
                                         <select class="form-control col-sm-8" name="asDestination"
                                                 id="prochaineDestination">
                                             @foreach($sites as $site)
-                                                <option>{{$site->site}}</option>
+                                                <option value="{{$site->id}}">{{$site->site}}</option>
                                             @endforeach
                                         </select>
                                     </div>
