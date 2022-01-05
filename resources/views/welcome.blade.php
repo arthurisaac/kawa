@@ -604,10 +604,10 @@
                                                                 href="javascript:popupwnd('regulation-depart-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Liste</a>
                                                         </li>
-                                                        <li><span></span><a
+                                                        {{--<li><span></span><a
                                                                 href="javascript:popupwnd('regulation-depart-colis','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Colis départ</a>
-                                                        </li>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Arrivée tournée</span>
