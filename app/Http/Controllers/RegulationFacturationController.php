@@ -73,7 +73,7 @@ class RegulationFacturationController extends Controller
                     'facturation' => $data->id,
                     'libelle' => $libelle[$i],
                     'qte' => $qte[$i],
-                    'pu' => $pu{$i},
+                    'pu' => $pu[$i],
                     'reference' => $reference[$i],
                     'debut' => $debut[$i],
                     'fin' => $fin[$i],
@@ -149,7 +149,7 @@ class RegulationFacturationController extends Controller
                         'facturation' => $data->id,
                         'libelle' => $libelle[$i],
                         'qte' => $qte[$i],
-                        'pu' => $pu{$i},
+                        'pu' => $pu[$i],
                         'reference' => $reference[$i],
                         'debut' => $debut[$i],
                         'fin' => $fin[$i],
@@ -162,7 +162,7 @@ class RegulationFacturationController extends Controller
                         $item->facturation = $data->id;
                         $item->libelle = $libelle[$i];
                         $item->qte = $qte[$i];
-                        $item->pu = $pu{$i};
+                        $item->pu = $pu[$i];
                         $item->reference = $reference[$i];
                         $item->debut = $debut[$i];
                         $item->fin = $fin[$i];
