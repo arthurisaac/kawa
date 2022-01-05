@@ -29,4 +29,9 @@ class RegulationFacturation extends Model
         return $this->belongsTo('App\Models\Commercial_client', 'client');
     }
 
+    public function sites()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'site');
+    }
+
 }

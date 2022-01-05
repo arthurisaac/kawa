@@ -94,11 +94,12 @@
                         <label for="centre_regional" class="col-4">Site</label>
                         <select id="site" name="site" class="form-control col-8" required>
                             @foreach($sites as $site)
-                                <option>{{$site->site}}</option>
+                                <option value="{{$site->id}}">{{$site->site}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+                <div class="col"></div>
                 <div class="col"></div>
             </div>
             <br/>

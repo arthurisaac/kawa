@@ -8,6 +8,7 @@ use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use App\Models\RegulationFacturation;
 use App\Models\RegulationFacturationItem;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,22 +22,211 @@ class RegulationFacturationController extends Controller
     public function index()
     {
         $numero = DB::table('regulation_facturations')->max('id') + 1 . '-' . date('Y-m-d');
-        $clients = Commercial_client::all();
+        $clients = Commercial_client::orderBy("client_nom")->get();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::orderBy("site")->get();
         return view('.regulation.facturation.index', compact('numero', 'clients', 'centres', 'centres_regionaux', 'sites'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
         $regulations = RegulationFacturation::with('clients')->get();
-        return view('.regulation.facturation.liste', compact('regulations'));
+
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::orderBy('client_nom')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $libelle = $request->get("libelle");
+
+        if (isset($debut) && isset($fin)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+
+        if (isset($client)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->where("client", "=", $client)
+                ->get();
+        }
+
+        if (isset($site)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("site", "=", $site)
+                ->get();
+        }
+
+        if (isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->get();
+        }
+
+        if (isset($centre)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+
+        if (isset($centre_regional)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre_regional", "=", $centre_regional)
+                ->get();
+        }
+
+        if (isset($centre_regional) &&  isset($centre)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+
+        if (isset($centre_regional) && isset($centre) && isset($site)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->where("site", "=", $site)
+                ->get();
+        }
+
+        if (isset($centre_regional) && isset($centre) && isset($client)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->where("client", "=", $client)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->where("client", "=", $client)
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client) && isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereHas('clients', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($site)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->where("site", "=", $site)
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($site) && isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->where("site", "=", $site)
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+
+        if (isset($centre_regional) &&  isset($centre) && isset($client) && isset($site)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->with("sites")
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->where("site", "=", $site)
+                ->where("client", "=", $client)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($site) && isset($client)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereBetween("date", [$debut, $fin])
+                ->where("site", "=", $site)
+                ->where("client", "=", $client)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereBetween("date", [$debut, $fin])
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional) && isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->whereBetween("date", [$debut, $fin])
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional) && isset($site) && isset($client)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereBetween("date", [$debut, $fin])
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->where("site", "=", $site)
+                ->where("client", "=", $client)
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional) && isset($site) && isset($client) && isset($libelle)) {
+            $regulations = RegulationFacturation::with('clients')
+                ->whereHas('items', function (Builder $query) use ($libelle) {
+                    $query->where('libelle', 'like', '%' . $libelle . '%');
+                })
+                ->whereBetween("date", [$debut, $fin])
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->where("site", "=", $site)
+                ->where("client", "=", $client)
+                ->get();
+        }
+        return view('.regulation.facturation.liste', compact('regulations', 'centres', 'centres_regionaux',
+            'clients', 'sites_com', 'centre', 'centre_regional', 'client', 'site', 'debut', 'fin', 'libelle'));
     }
 
     /**
@@ -106,11 +296,12 @@ class RegulationFacturationController extends Controller
     public function edit($id)
     {
         $regulation = RegulationFacturation::with('items')->find($id);
-        $clients = Commercial_client::all();
+        $clients = Commercial_client::orderBy("client_nom")->get();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $items = RegulationFacturationItem::where('facturation', $id)->get();
-        return view('.regulation.facturation.edit', compact('regulation', 'clients', 'centres', 'centres_regionaux', 'items'));
+        $sites = Commercial_site::orderBy("site")->get();
+        return view('.regulation.facturation.edit', compact('regulation', 'clients', 'centres', 'centres_regionaux', 'items', 'sites'));
     }
 
     /**
@@ -129,6 +320,7 @@ class RegulationFacturationController extends Controller
         $data->centre_regional = $request->get("centre_regional");
         $data->montantTotal = $request->get("montantTotal");
         $data->client = $request->get("client");
+        $data->site = $request->get("site");
         $data->type = $request->get("type");
         $data->save();
 
