@@ -16,4 +16,9 @@ class RegulationFacturationItem extends Model
         'fin',
         'montant',
     ];
+
+    public function facture()
+    {
+        return $this->belongsTo('App\Models\RegulationFacturation', 'facturation', 'id');
+    }
 }

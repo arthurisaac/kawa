@@ -81,11 +81,11 @@
                     </div>--}}
                     <div class="form-group row">
                         <label class="col-md-3">Heure de prise de service</label>
-                        <input type="time" class="form-control col-md-4" name="hps_cs" value="{{$securiteService->hps_cs}}" required/>
+                        <input type="time" class="form-control col-md-4" name="hps_cs" value="{{$securiteService->hps_cs}}"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Heure de fin de service</label>
-                        <input type="time" class="form-control col-md-4" name="hfs_cs" value="{{$securiteService->hfs_cs}}" required/>
+                        <input type="time" class="form-control col-md-4" name="hfs_cs" value="{{$securiteService->hfs_cs}}"/>
                     </div>
                 </div>
             </div>

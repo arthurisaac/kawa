@@ -293,7 +293,7 @@
                                 <td><input type="radio" name="remettantPieceVehicule" value="1" {{($remettant->remettantPieceVehicule == '1') ? 'checked' : ''}}></td>
                                 <td><input type="radio" name="remettantPieceVehicule" value="0" {{($remettant->remettantPieceVehicule == '0') ? 'checked' : ''}}></td>
                                 <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control" value="{{$remettant->remettantPieceVehiculeQuantite}}"></td>
-                                <td><input type="time" name="remettantPieceVehiculeRetour" value="{{$remettant->remettantPieceVehiculeRetour}}" class="form-control"></td>
+                                <td><input type="time" name="remettantPieceVehiculeRemise" value="{{$remettant->remettantPieceVehiculeRemise}}" class="form-control"></td>
                                 <td><select name="remettantPieceVehiculeConvoyeur" class="form-control">
                                         <option>{{$remettant->remettantPieceVehiculeConvoyeur}}</option>
                                         <option value="CB">CB</option>
