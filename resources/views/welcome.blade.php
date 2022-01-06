@@ -544,6 +544,10 @@
                                                                 href="javascript:popupwnd('regulation-stock-entree-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-entree-liste-detaillee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self" title="Liste">Liste détaillée</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Sortie</span>

@@ -87,10 +87,6 @@
                         <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
                     </div>
                 </div>
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <div class="form-group row">
                         <label for="libelle" class="col-5">Libelle</label>
@@ -106,6 +102,10 @@
                         </select>
                     </div>
                 </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
@@ -134,7 +134,7 @@
                     <tbody>
                     @foreach ($regulations as $regulation)
                         <tr>
-                            <td>{{$regulation->id ?? ""}}</td>
+                            <td>{{$regulation->facture->id ?? ""}}</td>
                             <td>{{$regulation->facture->centre_regional ?? ""}}</td>
                             <td>{{$regulation->facture->centre ?? ""}}</td>
                             <td>{{$regulation->facture->date ?? ""}}</td>
@@ -143,7 +143,7 @@
                             <td>{{$regulation->libelle}}</td>
                             <td>{{$regulation->montant}}</td>
                             <td>
-                                <a href="{{ route('regulation-facturation.edit',$regulation->id)}}"
+                                <a href="{{ route('regulation-facturation.edit',$regulation->facture->id)}}"
                                    class="btn btn-primary btn-sm"></a>
                                 <a class="btn btn-danger btn-sm"
                                    onclick="supprimer('{{$regulation->facture->id ??  0}}', this)"></a>
