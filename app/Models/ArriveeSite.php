@@ -44,6 +44,12 @@ class ArriveeSite extends Model
             ->with('clients');
     }
 
+    public function sitesDestinations()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'asDestination', 'id')
+            ->with('clients');
+    }
+
     public function ArriveeColis()
     {
         return $this->hasMany('App\Models\ArriveeSiteColis', 'arrivee_site', 'id');

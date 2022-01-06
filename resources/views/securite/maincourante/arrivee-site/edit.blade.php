@@ -165,7 +165,10 @@
                         <div class="form-group row">
                             <label class="col-sm-4">Prochaine destination</label>
                             <select class="form-control col" name="asDestination" id="prochaineDestination">
-                                <option>{{$site->asDestination}}</option>
+                                <option>{{$site->sitesDestinations->site ?? $site->asDestination}}</option>
+                                @foreach($sites as $s)
+                                    <option value="{{$s->id}}">{{$s->site}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group row">
