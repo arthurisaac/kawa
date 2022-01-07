@@ -204,7 +204,7 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite->nbre_colis_arrivee = $nbre_colis[$i];
                 $dataSite->nature = $nature[$i];
                 $dataSite->colis_arrivee = $colis[$i];
-                $dataSite->numero = $numero[$i];
+                $dataSite->numero_arrivee = $numero[$i];
 
                 $dataSite->regulation_arrivee_valeur_colis = preg_replace("/\s+/ ", "", $regulation_arrivee_valeur_colis[$i]);
                 $dataSite->regulation_arrivee_devise = $regulation_arrivee_devise[$i];
@@ -268,7 +268,7 @@ class RegulationArriveeTourneeController extends Controller
                 $dataSite = SiteDepartTournee::find($site_id[$i]);
                 $dataSite->nbre_colis_arrivee = $nbre_colis[$i] ?? 0;
                 $dataSite->colis_arrivee = $colis[$i];
-                $dataSite->numero = $numero[$i];
+                $dataSite->numero_arrivee = $numero[$i];
                 $dataSite->nature = $nature[$i];
 
                 $dataSite->regulation_arrivee_valeur_colis = str_replace(" ", "", $regulation_arrivee_valeur_colis[$i]);
