@@ -3,7 +3,13 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Entrée stock</h2></div>
-        <br/>
+        @php
+            $totalQte = 0;
+            foreach ($stocks as $stock) {
+                $totalQte += $stock->items->sum("qte_attendu");
+            }
+        @endphp
+        <h2>Quantité en stock : <span>{{$totalQte}}</span></h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -54,7 +60,7 @@
                     <div class="form-group row">
                         <label for="fournisseur" class="col-5">Fournisseur</label>
                         <select id="fournisseur" name="fournisseur" class="form-control col">
-                            <option></option>
+                            <option>{{$fournisseur}}</option>
                             <option>VECTIS</option>
                             <option>SOSIV</option>
                         </select>
@@ -79,7 +85,7 @@
                     <div class="form-group row">
                         <label for="libelle" class="col-5">Libelle</label>
                         <select class="form-control col" name="libelle" id="libelle">
-                            <option></option>
+                            <option>{{$libelle}}</option>
                             <option>bordereau de transport</option>
                             <option>bordereau de collecte</option>
                             <option>cahier de maintenance</option>
