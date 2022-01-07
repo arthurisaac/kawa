@@ -224,6 +224,7 @@
                                 <option>tri</option>
                                 <option>transite</option>
                                 <option>approvisionnement</option>
+                                <option>opération exterieur</option>
                                 </select></td>
                         </tr>`;
 
