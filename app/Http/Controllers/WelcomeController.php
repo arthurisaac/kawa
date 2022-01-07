@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class WelcomeController extends Controller
 {
@@ -15,6 +16,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+        $pass = Hash::make("burval");
         $user = session('user');
         $services = array();
         if ($user) {
@@ -23,7 +25,7 @@ class WelcomeController extends Controller
                 ->get();
             $services = explode(',', $accesses[0]->services);
         }
-        return view('welcome', compact('services'));
+        return view('welcome', compact('services', 'pass'));
     }
 
     /**

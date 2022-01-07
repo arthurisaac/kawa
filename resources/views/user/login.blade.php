@@ -24,7 +24,9 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="auth">
+                    {{Auth::user()->compte ?? "Non connecté"}}
+
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Compte</label>
@@ -47,9 +49,14 @@
                                        class="form-control" name="password"
                                        required autocomplete="current-password">
 
-                                <span class="invalid-feedback" role="alert">
+                                {{--<span class="invalid-feedback" role="alert">
                                         <strong>message</strong>
+                                    </span>--}}
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
                                     </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -59,6 +66,7 @@
                                         {{ session()->get('error') }}
                                     </div>
                                 @endif
+
                             </div>
                         </div>
 
