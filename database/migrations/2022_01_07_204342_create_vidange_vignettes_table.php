@@ -21,6 +21,7 @@ class CreateVidangeVignettesTable extends Migration
             $table->date('dateRenouvellement');
             $table->date('prochainRenouvellement');
             $table->integer('montant');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

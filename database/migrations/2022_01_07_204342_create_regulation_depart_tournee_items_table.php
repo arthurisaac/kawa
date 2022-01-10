@@ -24,6 +24,7 @@ class CreateRegulationDepartTourneeItemsTable extends Migration
             $table->double('montant', 8, 2)->default(0);
             $table->timestamps();
             $table->string('autre')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

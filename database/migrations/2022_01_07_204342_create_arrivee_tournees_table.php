@@ -30,6 +30,7 @@ class CreateArriveeTourneesTable extends Migration
             $table->integer('patente')->nullable();
             $table->integer('assuranceFin')->nullable();
             $table->integer('assuranceHeurePont')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

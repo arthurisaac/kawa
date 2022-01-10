@@ -21,6 +21,7 @@ class CreateLogistiqueSortieMaintenanceTable extends Migration
             $table->date('date')->nullable();
             $table->string('service')->nullable();
             $table->integer('prixUnitaire')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

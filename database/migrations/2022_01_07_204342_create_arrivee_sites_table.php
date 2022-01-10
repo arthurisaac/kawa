@@ -30,6 +30,7 @@ class CreateArriveeSitesTable extends Migration
             $table->string('asDestination')->nullable();
             $table->dateTime('asDepartSite')->nullable();
             $table->integer('asKm')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

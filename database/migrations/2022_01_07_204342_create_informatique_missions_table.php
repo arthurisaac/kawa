@@ -25,6 +25,7 @@ class CreateInformatiqueMissionsTable extends Migration
             $table->string('objetMission')->nullable();
             $table->text('interventionEffectuee')->nullable();
             $table->text('rapportMission')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

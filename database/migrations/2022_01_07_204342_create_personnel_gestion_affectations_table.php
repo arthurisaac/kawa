@@ -19,6 +19,7 @@ class CreatePersonnelGestionAffectationsTable extends Migration
             $table->string('centre')->nullable();
             $table->text('motif')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_affectations_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

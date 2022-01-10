@@ -23,6 +23,7 @@ class CreateLogistiqueSortieStocksTable extends Migration
             $table->date('dateSaisie')->nullable();
             $table->text('observation')->nullable();
             $table->string('service')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

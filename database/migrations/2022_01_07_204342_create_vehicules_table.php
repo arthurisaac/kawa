@@ -28,6 +28,7 @@ class CreateVehiculesTable extends Migration
             $table->string('photo')->nullable();
             $table->string('chauffeurTitulaire')->nullable();
             $table->string('chauffeurSuppleant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

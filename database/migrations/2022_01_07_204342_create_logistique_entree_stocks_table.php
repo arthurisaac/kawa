@@ -23,6 +23,7 @@ class CreateLogistiqueEntreeStocksTable extends Migration
             $table->double('prixAchat')->default(0);
             $table->text('observation')->nullable();
             $table->string('facture')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

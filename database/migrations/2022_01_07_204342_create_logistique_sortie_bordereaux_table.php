@@ -21,6 +21,7 @@ class CreateLogistiqueSortieBordereauxTable extends Migration
             $table->date('date')->nullable();
             $table->string('service')->nullable();
             $table->double('prix')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

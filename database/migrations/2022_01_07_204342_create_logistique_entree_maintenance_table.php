@@ -21,6 +21,7 @@ class CreateLogistiqueEntreeMaintenanceTable extends Migration
             $table->date('date')->nullable();
             $table->unsignedBigInteger('fournisseur')->index('logistique_entree_maintenance_fournisseur_foreign');
             $table->double('prixUnitaire')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

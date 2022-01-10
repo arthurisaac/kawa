@@ -73,6 +73,7 @@ class CreateCommercialSitesTable extends Migration
             $table->string('oo_dispatching')->nullable();
             $table->string('oo_ass_appro')->nullable();
             $table->string('oo_dnf')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

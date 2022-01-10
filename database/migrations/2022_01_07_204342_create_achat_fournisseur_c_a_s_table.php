@@ -19,6 +19,7 @@ class CreateAchatFournisseurCASTable extends Migration
             $table->unsignedBigInteger('fournisseur_fk')->index('achat_fournisseur_c_a_s_fournisseur_fk_foreign');
             $table->bigInteger('ca');
             $table->string('annee');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

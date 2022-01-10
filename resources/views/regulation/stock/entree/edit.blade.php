@@ -48,7 +48,7 @@
                                class="form-control col-8" required/>
                     </div>
                     <div class="form-group row">
-                        <label for="centre_regional" class="col-4">Site</label>
+                        <label for="site" class="col-4">Site</label>
                         <select id="site" name="site" class="form-control col-8" required>
                             @foreach($sites as $site)
                                 <option>{{$site->site}}</option>

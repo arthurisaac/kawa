@@ -19,8 +19,9 @@ class CreateRegulationStockSortiesTable extends Migration
             $table->string('centre_regional')->nullable();
             $table->date('date')->nullable();
             $table->string('service')->nullable();
-            $table->timestamps();
             $table->string('receveur')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->timestamps();
         });
     }
 

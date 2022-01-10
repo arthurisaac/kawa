@@ -40,6 +40,174 @@ class RegulationStockSortieController extends Controller
         return view("regulation.stock.sortie.liste", compact('stocks'));
     }
 
+    public function listeDetaillee(Request $request)
+    {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $libelle = $request->get("libelle");
+        $service = $request->get("service");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $stocks = RegulationStockSortieItem::all();
+        if (isset($debut) && isset($fin)) {
+            $stocks = RegulationStockSortieItem::with("stocks")->whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($service) {
+                    $builder->where("service", $service);
+                })
+                ->get();
+        }
+        if (isset($centre)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre) {
+                    $builder->where("centre", $centre);
+                })
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($libelle) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereBetween('date', [$debut, $fin])
+                ->where("service", $service)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre) {
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $service) {
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($libelle) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        return view("regulation.stock.sortie.liste-detaillee", compact('stocks', 'centres', 'centres_regionaux', 'centre', 'centre_regional', 'libelle', 'service', 'debut', 'fin'));
+    }
+
     public function listeAppro(Request $request)
     {
         $libelles = array(

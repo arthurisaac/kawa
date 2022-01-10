@@ -28,6 +28,7 @@ class CreateAchatProduitsTable extends Migration
             $table->double('montantTTC')->nullable();
             $table->double('montantHT')->nullable();
             $table->string('suiviBudgetaire')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

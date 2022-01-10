@@ -33,6 +33,7 @@ class CreateAchatDemandesTable extends Migration
             $table->string('centre')->nullable();
             $table->string('centre_regional')->nullable();
             $table->string('demande')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

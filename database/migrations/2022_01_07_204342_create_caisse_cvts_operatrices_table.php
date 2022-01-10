@@ -20,6 +20,7 @@ class CreateCaisseCvtsOperatricesTable extends Migration
             $table->integer('numero')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -20,6 +20,7 @@ class CreateVidangeHuilePontsTable extends Migration
             $table->integer('idVehicule');
             $table->integer('kmActuel');
             $table->integer('prochainKm');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

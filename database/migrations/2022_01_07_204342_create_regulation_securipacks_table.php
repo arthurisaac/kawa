@@ -25,6 +25,7 @@ class CreateRegulationSecuripacksTable extends Migration
             $table->integer('prixUnitaire')->nullable();
             $table->integer('quantite')->nullable();
             $table->integer('prixTotal')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

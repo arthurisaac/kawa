@@ -22,6 +22,7 @@ class CreateComptabiliteFacturesTable extends Migration
             $table->double('montant')->nullable();
             $table->date('dateDepot')->nullable();
             $table->date('dateEcheance')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -19,6 +19,7 @@ class CreatePersonnelGestionSanctionsTable extends Migration
             $table->string('sanction')->nullable();
             $table->text('motif')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_sanctions_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -21,6 +21,7 @@ class CreateDepartCentresTable extends Migration
             $table->string('kmDepart')->nullable();
             $table->string('observation')->nullable();
             $table->string('niveauCarburant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

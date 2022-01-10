@@ -20,6 +20,7 @@ class CreateSiteArriveeTourneesTable extends Migration
             $table->string('bord');
             $table->integer('montant');
             $table->unsignedBigInteger('idTourneeArrivee')->index('site_arrivee_tournees_idtourneearrivee_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

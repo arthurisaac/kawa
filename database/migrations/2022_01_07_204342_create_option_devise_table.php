@@ -16,6 +16,7 @@ class CreateOptionDeviseTable extends Migration
         Schema::create('option_devise', function (Blueprint $table) {
             $table->integer('id', true)->index('CLE PRIMAIRE');
             $table->string('devise')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

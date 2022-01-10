@@ -19,6 +19,7 @@ class CreatePersonnelGestionCongesTable extends Migration
             $table->date('prochain')->nullable();
             $table->integer('jourPris')->default(0);
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_conges_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

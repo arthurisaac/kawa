@@ -22,6 +22,7 @@ class CreateConvoyeursTable extends Migration
             $table->string('fonction');
             $table->date('dateEmbauche')->nullable();
             $table->string('photo')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -30,6 +30,7 @@ class CreateLogistiqueFournisseursTable extends Migration
             $table->string('domaine')->nullable();
             $table->string('delaiLivraison')->nullable();
             $table->string('conditionPaiement')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

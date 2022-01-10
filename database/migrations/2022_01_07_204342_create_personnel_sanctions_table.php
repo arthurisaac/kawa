@@ -20,6 +20,7 @@ class CreatePersonnelSanctionsTable extends Migration
             $table->string('licenciement')->nullable();
             $table->string('miseAPied')->nullable();
             $table->string('avertissement')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

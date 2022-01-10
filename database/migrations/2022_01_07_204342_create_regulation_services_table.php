@@ -25,6 +25,7 @@ class CreateRegulationServicesTable extends Migration
             $table->unsignedBigInteger('chargeeRegulationAdjointe')->nullable()->index('regulation_services_chargeeregulationadjointe_foreign');
             $table->time('chargeeRegulationAdjointeHPS')->nullable();
             $table->time('chargeeRegulationAdjointeHFS')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

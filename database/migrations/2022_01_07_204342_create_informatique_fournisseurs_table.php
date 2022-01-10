@@ -22,6 +22,7 @@ class CreateInformatiqueFournisseursTable extends Migration
             $table->string('nationalite')->nullable();
             $table->string('email')->nullable();
             $table->string('contact')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

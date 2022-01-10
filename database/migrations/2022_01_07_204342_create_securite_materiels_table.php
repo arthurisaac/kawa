@@ -41,6 +41,7 @@ class CreateSecuriteMaterielsTable extends Migration
             $table->string('operateurRadioHeureFin')->nullable();
             $table->string('centre', 100)->nullable();
             $table->string('centre_regional', 100)->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

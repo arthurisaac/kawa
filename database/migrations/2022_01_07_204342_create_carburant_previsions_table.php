@@ -28,6 +28,7 @@ class CreateCarburantPrevisionsTable extends Migration
             $table->integer('coutSemaine');
             $table->integer('dessMois');
             $table->integer('coutMois');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

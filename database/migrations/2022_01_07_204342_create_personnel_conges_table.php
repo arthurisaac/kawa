@@ -21,6 +21,7 @@ class CreatePersonnelCongesTable extends Migration
             $table->date('dateProchainDepartConge')->nullable();
             $table->integer('nombreJourPris')->nullable();
             $table->integer('nombreJourRestant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

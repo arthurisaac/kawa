@@ -31,6 +31,7 @@ class CreateConteneursTable extends Migration
             $table->string('imputationRaport');
             $table->string('centre');
             $table->string('centreRegional');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -26,6 +26,7 @@ class CreateDepartSiteColisTable extends Migration
             $table->integer('montantAnnonceSecuripack')->nullable();
             $table->integer('montantAnnonceSacjute')->nullable();
             $table->unsignedBigInteger('departSite')->index('depart_site_colis_departsite_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -50,6 +50,7 @@ class CreateSsbCommercialsTable extends Migration
             $table->string('coutUnitaire')->nullable();
             $table->string('coutForfaitaire')->nullable();
             $table->double('montant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

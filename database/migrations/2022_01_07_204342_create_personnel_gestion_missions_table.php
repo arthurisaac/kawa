@@ -22,6 +22,7 @@ class CreatePersonnelGestionMissionsTable extends Migration
             $table->text('motif')->nullable();
             $table->double('frais')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_missions_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

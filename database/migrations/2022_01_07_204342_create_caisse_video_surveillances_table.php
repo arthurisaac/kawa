@@ -32,6 +32,7 @@ class CreateCaisseVideoSurveillancesTable extends Migration
             $table->string('centre_regional', 100)->nullable();
             $table->string('numero_bord', 100)->nullable();
             $table->text('remarque')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

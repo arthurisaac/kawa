@@ -31,6 +31,7 @@ class CreateSsbTable extends Migration
             $table->time('debutIntervention')->nullable();
             $table->time('finIntervention')->nullable();
             $table->date('dateCloture')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateRegulationStockEntreesTable extends Migration
             $table->date('date')->nullable();
             $table->string('libelle')->nullable();
             $table->string('fournisseur')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

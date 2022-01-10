@@ -22,6 +22,7 @@ class CreateLogistiqueSortieSecuripackTable extends Migration
             $table->string('centre')->nullable();
             $table->integer('prixUnitaire')->nullable();
             $table->string('reference')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

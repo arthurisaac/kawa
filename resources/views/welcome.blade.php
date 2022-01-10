@@ -82,8 +82,8 @@
 
         {{--@if (Route::has('login'))--}}
         <div class="top-right links">
-            @if (session('user'))
-                <a href="/logout">DECONNEXION</a>
+            @if (Auth::user())
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >DECONNEXION</a>
             @else
                 <a href="/login">CONNEXION</a>
 
@@ -92,10 +92,12 @@
                 @endif--}}
             @endauth
         </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
         {{--@endif--}}
     </div>
 </div>
-{{$pass}}
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="row">
@@ -560,6 +562,10 @@
                                                         <li><span></span><a
                                                                 href="javascript:popupwnd('regulation-stock-sortie-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self" title="Liste">Liste</a>
+                                                        </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-sortie-liste-detaillee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self" title="Liste">Liste détaillée</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1827,7 +1833,7 @@
                 </div>
             @endif
 
-            @if (session('user'))
+            @if (Auth::user())
                 <div class="element">
                     <!--SSB-->
                     <nav id="wb_MenuBar13">

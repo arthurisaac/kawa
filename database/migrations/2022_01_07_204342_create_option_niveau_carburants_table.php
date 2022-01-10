@@ -16,6 +16,7 @@ class CreateOptionNiveauCarburantsTable extends Migration
         Schema::create('option_niveau_carburants', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('option')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

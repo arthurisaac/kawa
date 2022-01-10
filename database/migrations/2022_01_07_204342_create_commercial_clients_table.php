@@ -56,6 +56,7 @@ class CreateCommercialClientsTable extends Migration
             $table->string('base_garde_de_fonds_montant_forfaitaire')->nullable();
             $table->string('base_comptage_montant_forfaitaire')->nullable();
             $table->string('bt_atm')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

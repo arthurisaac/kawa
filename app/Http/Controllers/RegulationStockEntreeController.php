@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AchatFournisseur;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_site;
 use App\Models\RegulationStockEntree;
 use App\Models\RegulationStockEntreeItem;
 use Illuminate\Http\Request;
@@ -173,7 +174,8 @@ class RegulationStockEntreeController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $fournisseurs = AchatFournisseur::all();
-        return view("regulation.stock.entree.edit", compact('centres_regionaux', 'centres', 'fournisseurs', 'stock', 'items'));
+        $sites = Commercial_site::all();
+        return view("regulation.stock.entree.edit", compact('centres_regionaux', 'centres', 'fournisseurs', 'stock', 'items', 'sites'));
     }
 
     /**

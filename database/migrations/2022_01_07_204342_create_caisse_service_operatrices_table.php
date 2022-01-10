@@ -22,6 +22,7 @@ class CreateCaisseServiceOperatricesTable extends Migration
             $table->integer('operatriceCaisseBox')->nullable();
             $table->time('heureArrivee')->nullable();
             $table->time('heureDepart')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

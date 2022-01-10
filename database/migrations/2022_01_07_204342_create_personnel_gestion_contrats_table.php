@@ -22,6 +22,7 @@ class CreatePersonnelGestionContratsTable extends Migration
             $table->string('fonction')->nullable();
             $table->string('salaire')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_contrats_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

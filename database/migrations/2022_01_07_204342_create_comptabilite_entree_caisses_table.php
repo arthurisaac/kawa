@@ -27,6 +27,7 @@ class CreateComptabiliteEntreeCaissesTable extends Migration
             $table->string('justification', 100)->nullable();
             $table->string('montant_justifie', 100)->nullable();
             $table->string('montant_non_justifie', 100)->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -42,6 +42,7 @@ class CreateAchatFournisseursTable extends Migration
             $table->string('credit_60_jours')->nullable();
             $table->string('condition')->nullable();
             $table->string('mode_paiement')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

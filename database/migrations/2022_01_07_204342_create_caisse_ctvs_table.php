@@ -49,6 +49,7 @@ class CreateCaisseCtvsTable extends Migration
             $table->integer('billetsDeparaillesMontant')->nullable();
             $table->string('centre', 100)->nullable();
             $table->string('centre_regional', 100)->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

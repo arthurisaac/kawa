@@ -25,6 +25,7 @@ class CreateCaisseEntreeColisTable extends Migration
             $table->string('observation')->nullable();
             $table->integer('noTournee')->nullable();
             $table->string('remettant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -29,6 +29,7 @@ class CreateComptabiliteDegradationsTable extends Migration
             $table->integer('montant')->nullable();
             $table->date('dateDeclaration')->nullable();
             $table->string('bordereau')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

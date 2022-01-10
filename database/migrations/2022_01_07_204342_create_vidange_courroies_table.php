@@ -25,6 +25,7 @@ class CreateVidangeCourroiesTable extends Migration
             $table->integer('courroieKm')->nullable();
             $table->string('courroieFournisseur')->nullable();
             $table->integer('courroieMontant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateComptabiliteSortieCaissesTable extends Migration
             $table->text('motif')->nullable();
             $table->string('beneficiaire')->nullable();
             $table->string('service')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

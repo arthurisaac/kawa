@@ -29,6 +29,7 @@ class CreateCarburantTicketsTable extends Migration
             $table->string('litrage')->nullable();
             $table->string('centre')->nullable();
             $table->string('centre_regional')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

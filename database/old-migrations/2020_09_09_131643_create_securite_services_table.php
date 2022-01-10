@@ -40,7 +40,6 @@ class CreateSecuriteServicesTable extends Migration
             $table->string('eop32')->nullable();
             $table->time('hps_eop32')->nullable();
             $table->time('hfs_eop32')->nullable();
-            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

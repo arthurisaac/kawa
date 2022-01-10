@@ -25,6 +25,7 @@ class CreateVirgilometriesTable extends Migration
             $table->time('heureDepart')->nullable();
             $table->text('observation')->nullable();
             $table->string('photo')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

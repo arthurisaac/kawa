@@ -26,6 +26,7 @@ class CreateAchatBonComandesTable extends Migration
             $table->string('objet')->nullable();
             $table->string('total')->nullable();
             $table->string('livraison')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

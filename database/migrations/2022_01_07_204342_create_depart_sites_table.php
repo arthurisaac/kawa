@@ -23,6 +23,7 @@ class CreateDepartSitesTable extends Migration
             $table->integer('kmDepart')->nullable();
             $table->string('destination')->nullable();
             $table->string('observation')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

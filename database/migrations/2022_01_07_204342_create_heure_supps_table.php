@@ -27,6 +27,7 @@ class CreateHeureSuppsTable extends Migration
             $table->time('heureDepart1')->nullable();
             $table->time('heureDepart2')->nullable();
             $table->time('heureDepart3')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

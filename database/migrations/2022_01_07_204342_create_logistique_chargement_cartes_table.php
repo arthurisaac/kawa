@@ -20,6 +20,7 @@ class CreateLogistiqueChargementCartesTable extends Migration
             $table->string('date')->nullable();
             $table->double('somme')->nullable();
             $table->string('service')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

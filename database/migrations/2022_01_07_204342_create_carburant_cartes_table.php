@@ -20,6 +20,7 @@ class CreateCarburantCartesTable extends Migration
             $table->string('societe');
             $table->integer('idVehicule');
             $table->date('dateAquisition');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

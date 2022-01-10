@@ -21,6 +21,7 @@ class CreatePersonnelGestionAbsencesTable extends Migration
             $table->text('motif')->nullable();
             $table->string('frais')->nullable();
             $table->unsignedBigInteger('personnel')->index('personnel_gestion_absences_personnel_foreign');
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

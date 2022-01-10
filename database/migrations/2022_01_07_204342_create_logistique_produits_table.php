@@ -24,6 +24,7 @@ class CreateLogistiqueProduitsTable extends Migration
             $table->integer('stockAlert')->nullable()->default(0);
             $table->string('ves')->nullable();
             $table->double('prix')->nullable()->default(0);
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

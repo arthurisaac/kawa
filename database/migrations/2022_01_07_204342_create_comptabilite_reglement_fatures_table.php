@@ -22,6 +22,7 @@ class CreateComptabiliteReglementFaturesTable extends Migration
             $table->string('pieceComptable')->nullable();
             $table->double('montantVerse')->nullable();
             $table->double('montantRestant')->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

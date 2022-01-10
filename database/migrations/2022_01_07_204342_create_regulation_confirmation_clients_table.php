@@ -28,6 +28,7 @@ class CreateRegulationConfirmationClientsTable extends Migration
             $table->text('confirmation')->nullable();
             $table->string('remarque', 100)->nullable();
             $table->string('devise', 50)->nullable();
+            $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
