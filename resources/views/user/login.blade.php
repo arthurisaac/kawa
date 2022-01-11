@@ -1,7 +1,6 @@
 @extends('base')
 
 @section('main')
-    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
