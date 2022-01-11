@@ -30,43 +30,32 @@
                 <span>Temps parcouru</span> : <span class="text-danger" id="tempsTotal"></span>
                 <span style="margin-left: 10px;">Km parcouru : <span class="text-danger" id="kmTotal"></span></span>
             </div>
-            {{--<div class="row">
-                <div class="col">
-                    <h6 class="text-left">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h6>
-                </div>
-                <div class="col">
-                    <h6 class="text-leftt">Temps parcouru: <span id="tempsTotal"></span></h6>
-                </div>
-                <div class="col">
-                    <h6 class="text-left">Km parcouru: <span id="kmTotal"></span></h6>
-                </div>
-            </div>--}}
-            <div class="row">
-                <div class="col"></div>
-                <div class="col">
-                    <form action="#" method="get">
-                        @csrf
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="" class="col-5">Date début</label>
-                                    <input type="date" name="debut" class="form-control col-7">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="" class="col-5">Date fin</label>
-                                    <input type="date" name="fin" class="form-control col-7">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-primary btn-sm">Rechercher</button>
-                            </div>
+            <br>
+            
+            <form action="#" method="get">
+                @csrf
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="" class="col-4">Date début</label>
+                            <input type="date" name="debut" class="form-control col" value="{{$debut}}">
                         </div>
-                    </form>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="" class="col-4">Date fin</label>
+                            <input type="date" name="fin" class="form-control col" value="{{$fin}}">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-primary btn-sm">Rechercher</button>
+                    </div>
                 </div>
+            </form>
 
-            </div>
+            <br>
             <table class="table table-bordered table-hover" id="listeMaincourante" style="width: 100%;">
                 <thead>
                 <tr>

@@ -75,7 +75,7 @@ class SecuriteMaincouranteController extends Controller
                 ->get();
         }
 
-        return view('/securite.maincourante.synthese', compact('tournees'));
+        return view('/securite.maincourante.synthese', compact('tournees', 'debut', 'fin'));
     }
 
     public function arriveeSiteListe(Request $request)
