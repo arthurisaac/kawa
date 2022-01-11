@@ -25,7 +25,12 @@
 
         <br/>
         <div class="container-fluid">
-            <div class="row">
+            <div class="titre">
+                <span>Total tournée</span> : <span class="text-danger" id="montantTotal">{{count($tournees)}}</span>
+                <span>Temps parcouru</span> : <span class="text-danger" id="tempsTotal"></span>
+                <span style="margin-left: 10px;">Km parcouru : <span class="text-danger" id="kmTotal"></span></span>
+            </div>
+            {{--<div class="row">
                 <div class="col">
                     <h6 class="text-left">Total tournée: <span id="montantTotal">{{count($tournees)}}</span></h6>
                 </div>
@@ -35,7 +40,7 @@
                 <div class="col">
                     <h6 class="text-left">Km parcouru: <span id="kmTotal"></span></h6>
                 </div>
-            </div>
+            </div>--}}
             <div class="row">
                 <div class="col"></div>
                 <div class="col">
