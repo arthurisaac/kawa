@@ -426,7 +426,7 @@
                                                 </li>--}}
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ca-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="D&#233;part tourn&#233;e">Liste CA</a>
+                                                        target="_self" title="D&#233;part tourn&#233;e">Chiffre d'affaire des tournées</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ca-liste-non-facture','no','no','no','yes','yes','no','','','1000','500')"
