@@ -575,7 +575,7 @@
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('regulation-gestion-stock','no','no','no','yes','yes','no','','','1200','600')"
-                                                        target="_self" title="Liste">Gestion de stock</a>
+                                                        target="_self" title="Liste">Gestion de CF</a>
                                                 </li>
                                             </ul>
                                         </li>

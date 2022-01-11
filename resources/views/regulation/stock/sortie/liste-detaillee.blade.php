@@ -3,7 +3,7 @@
 @section('main')
     <div class="burval-container">
         <h2 class="heading">Sortie stock</h2>
-        <h2>Quantité sortie : <span>{{ $stocks->sum("qte_sortie") }}</span></h2>
+        <h2>Quantité sortie : <span class="text-danger">{{ $stocks->sum("qte_sortie") }}</span></h2>
         <br>
         @if ($errors->any())
             <div class="alert alert-danger">

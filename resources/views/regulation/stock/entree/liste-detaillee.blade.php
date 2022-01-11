@@ -9,7 +9,7 @@
                 $totalQte += $stock->items->sum("qte_livree");
             }
         @endphp
-        <h2>Quantité en stock : <span>{{$totalQte}}</span></h2>
+        <h2>Quantité en stock : <span class="text-danger">{{$totalQte}}</span></h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

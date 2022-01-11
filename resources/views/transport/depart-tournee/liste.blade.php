@@ -24,39 +24,42 @@
         <a href="/depart-tournee" class="btn btn-info btn-sm">Nouveau départ tournée</a>
         <br>
         <br>
-        <div class="row">
-            <div class="col">
-                <form action="#" method="get">
-                    @csrf
-                    <div class="row">
-                        <div class="col-10">
-                            <div class="form-group row">
-                                <label for="" class="col-sm-5">Date début</label>
-                                <input type="date" name="debut" class="form-control col-sm-7">
+        <div class="titre">
+            <div class="row">
+                <div class="col">
+                    <form action="#" method="get">
+                        @csrf
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-5">Date début</label>
+                                    <input type="date" name="debut" class="form-control col-sm-7">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div class="form-group row">
-                                <label for="" class="col-sm-5">Date fin</label>
-                                <input type="date" name="fin" class="form-control col-sm-7">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-5">Date fin</label>
+                                    <input type="date" name="fin" class="form-control col-sm-7">
+                                </div>
                             </div>
+                            <div class="col">
+                                <button class="btn btn-primary btn-sm">Rechercher</button>
+                            </div>
+                            <div class="col"></div>
                         </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-sm">Rechercher</button>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="col">
-                 <h3 class="text-lg-right">COUT TOTAL TOURNES: {{$departTournee->sum('coutTournee')}}</h3>
-            </div>
-            <div class="col">
-                 <h3 class="text-lg-right">NOMBRE DE TOURNES: {{count($departTournee)}}</h3>
+                    </form>
+                </div>
+                <div class="col">
+                    <span class="text-lg-right">COUT TOTAL TOURNES: <span class="text-danger">{{$departTournee->sum('coutTournee')}}</span></h3>
+                </div>
+                <div class="col">
+                    <span class="text-lg-right">NOMBRE DE TOURNES: <span class="text-danger">{{count($departTournee)}}</span></h3>
+                </div>
             </div>
         </div>
+        
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>
