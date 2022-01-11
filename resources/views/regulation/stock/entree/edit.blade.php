@@ -145,6 +145,7 @@
 
             <br>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a href="/regulation-stock-entree-liste-detaillee" class="btn btn-outline-info">Liste entrée stock detaillée</a>
         </form>
     </div>
     <script>

@@ -6,7 +6,7 @@
         @php
             $totalQte = 0;
             foreach ($stocks as $stock) {
-                $totalQte += $stock->items->sum("qte_attendu");
+                $totalQte += $stock->items->sum("qte_livree");
             }
         @endphp
         <h2>Quantité en stock : <span>{{$totalQte}}</span></h2>
