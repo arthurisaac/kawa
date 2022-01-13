@@ -29,6 +29,7 @@
             <thead>
             <tr>
                 <th scope="col">Client</th>
+                <th scope="col">Secteur d'activité</th>
                 <th scope="col">Tel</th>
                 <th scope="col">Situation géographique</th>
                 <th scope="col">Nom contact</th>
@@ -41,6 +42,7 @@
             @foreach ($clients as $client)
                 <tr>
                     <td>{{$client->client_nom}}</td>
+                    <td>{{$client->secteur ? $client->secteur->secteur_activite : "Pas encore renseigné"}}</td>
                     <td>{{$client->client_tel}}</td>
                     <td>{{$client->client_situation_geographique}}</td>
                     <td>{{$client->contact_nom}}</td>

@@ -3,6 +3,7 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Site</h2></div>
+        <div><h2 class="heading">Nombre total de site {{$sites->count()}}</h2> </div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -20,11 +21,68 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
+        <form action="{{url('commercial-site-liste')}}" method="get">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option></option>
+                            @foreach ($sites as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre regional</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option></option>
+                            @foreach ($sites as $centre_regional)
+                                <option value="{{$centre_regional->centre_regional}}">{{ $centre_regional->centre_regional }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-5">Clients</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option></option>
+                            @foreach ($sites as $client)
+                                <option value="{{$client->id}}">{{ $client->clients->client_nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="site" class="col-5">Site</label>
+                        <select id="site" name="site" class="form-control col">
+                            <option></option>
+                            @foreach ($sites as $site)
+                                <option value="{{$site->id}}">{{ $site->site }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <a href="/commercial-site-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
+            </div>
+            <div class="row"></div>
+        </form>
         <br/>
         <a href="/commercial-site" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
+
         <table id="table_client_information" class="table table-bordered table-hover" style="width: 100%;">
             <thead>
             <tr>

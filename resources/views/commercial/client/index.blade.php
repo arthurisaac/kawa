@@ -99,6 +99,15 @@
                                     <label for="client_ncc" class="col-sm-5">NCC</label>
                                     <input type="text" name="client_ncc" id="client_ncc" class="editbox col-sm-7"/>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5">Secteur d'activité</label>
+                                    <select class="form-control col-md-7" name="secteur_activite_id" required>
+                                        <option></option>
+                                        @foreach ($secteurs as $secteur)
+                                            <option value="{{$secteur->id}}">{{$secteur->secteur_activite}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
                                 {{--<div>
@@ -113,6 +122,13 @@
                                 <div>
                                     <a href="javascript:popupwnd('commercial-site','no','no','no','no','no','no','','','1200','600')"
                                        target="_self" class="btn btn-sm btn-outline-info" type="button" style="min-width: 150px">Site</a>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <div>
+                                    <a href="javascript:popupwnd('secteur-activite','no','no','no','no','no','no','','','1200','600')"
+                                       target="_self" class="btn btn-sm btn-outline-info" type="button" style="min-width: 150px; position: relative">Secteur activite</a>
                                 </div>
                             </div>
                         </div>

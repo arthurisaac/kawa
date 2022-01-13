@@ -96,6 +96,19 @@
                                     <label for="client_ncc" class="col-sm-5">NCC</label>
                                     <input type="text" name="client_ncc" id="client_ncc" class="editbox col-sm-7"/>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5">Secteur d'activité</label>
+                                    <select class="form-control col-md-7" name="secteur_activite_id" required>
+                                        <option></option>
+                                        @foreach ($secteurs as $secteur)
+                                            @if($secteur->id === $client->secteur_activite_id)
+                                                <option value="{{$secteur->id}}" selected>{{$secteur->secteur_activite}}</option>
+                                            @else
+                                                <option value="{{$secteur->id}}">{{$secteur->secteur_activite}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
                                 {{--<div>

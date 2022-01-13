@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+ * Secteur Activite
+ */
+
+Route::get('secteur-activite', [\App\Http\Controllers\SecteurActiviteController::class, 'liste']);
+Route::get('secteur-activite-create', [\App\Http\Controllers\SecteurActiviteController::class, 'index'])->name('secteur-activite-create');
+Route::post('secteur-activite', [\App\Http\Controllers\SecteurActiviteController::class, 'store'])->name('secteur-activite');
+Route::get('secteur-activite/{id}/edit', [\App\Http\Controllers\SecteurActiviteController::class, 'edit'])->name('secteur-activite-edit');
+Route::patch('secteur-activite/{id}/update', [\App\Http\Controllers\SecteurActiviteController::class, 'update'])->name('secteur-activite.update');
+Route::delete('secteur-activite/{id}', [\App\Http\Controllers\SecteurActiviteController::class, 'destroy'])->name('secteur-activite.destroy');
+
 Route::resource('/', 'WelcomeController');
 Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);
 

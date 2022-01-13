@@ -26,9 +26,32 @@ class CommercialSiteController extends Controller
             compact('clients', 'centres', 'centres_regionaux'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
-        $sites = Commercial_site::where('localisation_id', Auth::user()->localisation_id)->get();
+        if (isset($site))
+        {
+            $sites = Commercial_site::with('clients')->where('localisation_id', Auth::user()->localisation_id)
+                                    ->where('site', $request->$site)
+                                    ->get();
+        }elseif (isset($centre))
+        {
+            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
+                                        ->where('centre', $request->get('centre'))
+                                        ->get();
+        }elseif (isset($centre_regional))
+        {
+            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
+                ->where('centre', $request->get('centre_regional'))
+                ->get();
+        }elseif (isset($telephone)){
+            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
+                ->where('centre', $request->get('telephone'))
+                ->get();
+        }
+        else{
+            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)->get();
+        }
+        dd($sites);
         return view('commercial/site.liste',
             compact('sites'));
     }

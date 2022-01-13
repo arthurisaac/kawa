@@ -47,7 +47,8 @@ class Commercial_client extends Model
         //'base_consommable_atm',
         'base_garde_de_fonds_montant_forfaitaire',
         'base_comptage_montant_forfaitaire',
-        'bt_atm'
+        'bt_atm',
+        'secteur_activite_id'
     ];
 
     public static function booted()
@@ -60,5 +61,10 @@ class Commercial_client extends Model
     public function sites()
     {
         return $this->hasMany('App\Models\SiteDepartTournee', 'site')->with('sites');
+    }
+
+    public function secteur()
+    {
+        return $this->belongsTo(SecteurActivite::class, 'secteur_activite_id');
     }
 }

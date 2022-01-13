@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commercial_client;
+use App\Models\SecteurActivite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +18,15 @@ class CommercialClientController extends Controller
     public function index()
     {
         $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
-        return view('commercial/client.index', compact('clients'));
+        $secteurs = SecteurActivite::where('localisation_id', Auth::user()->localisation_id)->get();
+        return view('commercial/client.index', compact('clients', 'secteurs'));
     }
 
     public function liste()
     {
         $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
-        return view('commercial/client.liste', compact('clients'));
+        $secteurs = SecteurActivite::where('localisation_id', Auth::user()->localisation_id)->get();
+        return view('commercial/client.liste', compact('clients', 'secteurs'));
     }
 
     /**
@@ -95,6 +98,7 @@ class CommercialClientController extends Controller
             'base_garde_de_fonds_montant_forfaitaire' => $request->get('base_garde_de_fonds_montant_forfaitaire'),
             //ase_maintenance_atm' => $request->get('base_maintenance_atm'),
             //'base_consommable_atm' => $request->get('base_consommable_atm'),
+            'secteur_activite_id' => $request->get('secteur_activite_id')
         ]);
         $client->save();
     }
@@ -161,6 +165,7 @@ class CommercialClientController extends Controller
         $client->bt_atm = $request->get("bt_atm");
         $client->base_comptage_montant_forfaitaire = $request->get("base_comptage_montant_forfaitaire");
         $client->base_garde_de_fonds_montant_forfaitaire = $request->get("base_garde_de_fonds_montant_forfaitaire");
+        $client->secteur_activite_id = $request->get('secteur_activite_id');
 
         $client->save();
     }
@@ -198,7 +203,8 @@ class CommercialClientController extends Controller
     public function edit($id)
     {
         $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
-        return view('commercial.client.edit', compact('client'));
+        $secteurs = SecteurActivite::where('localisation_id', Auth::user()->localisation_id)->get();
+        return view('commercial.client.edit', compact('client', 'secteurs'));
     }
 
     /**
