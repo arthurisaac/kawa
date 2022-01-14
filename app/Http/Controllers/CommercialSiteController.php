@@ -19,41 +19,79 @@ class CommercialSiteController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
-        $centres = Centre::where('localisation_id', Auth::user()->localisation_id)->get();
-        $centres_regionaux = Centre_regional::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::all();
+        $centres = Centre::all();;
+        $centres_regionaux = Centre_regional::all();;
         return view('commercial/site.index',
             compact('clients', 'centres', 'centres_regionaux'));
     }
 
     public function liste(Request $request)
     {
+//        dd($request->all());
+        $site = $request->get('site');
+        $centre = $request->get('centre');
+        $centre_regional = $request->get('centre_regional');
+        $client = $request->get('client');
+
+        $cr = Commercial_site::with('clients')->distinct('centre_regional')->groupBy('centre_regional')->get();
+        $c = Commercial_site::with('clients')->distinct('centre')->groupBy('centre')->get();
+        $s = Commercial_site::with('clients')->distinct('site')->groupBy('site')->get();
+        $cl = Commercial_site::with('clients')->distinct('client')->groupBy('client')->get();
+
         if (isset($site))
         {
-            $sites = Commercial_site::with('clients')->where('localisation_id', Auth::user()->localisation_id)
-                                    ->where('site', $request->$site)
+            $sites = Commercial_site::with('clients')
+                                    ->where('site', $site)
                                     ->get();
+
+            $count =  Commercial_site::with('clients')
+                ->where('site', $site)
+                ->distinct('client')
+                ->count();
+
         }elseif (isset($centre))
         {
-            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
-                                        ->where('centre', $request->get('centre'))
+            $sites = Commercial_site::with('clients')
+                                        ->where('centre', $centre)
                                         ->get();
+
+            $count =  Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->distinct('client')
+                ->count();
+
         }elseif (isset($centre_regional))
         {
-            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
-                ->where('centre', $request->get('centre_regional'))
+            $sites = Commercial_site::with('clients')
+                ->where('centre_regional', $centre_regional)
                 ->get();
-        }elseif (isset($telephone)){
-            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)
-                ->where('centre', $request->get('telephone'))
+
+            $count =  Commercial_site::with('clients')
+                ->where('centre_regional', $centre_regional)
+                ->distinct('client')
+                ->count();
+
+        }elseif (isset($client)){
+            $sites = Commercial_site::with('clients')
+                ->where('client', $client)
                 ->get();
+
+            $count =  Commercial_site::with('clients')
+                ->where('client', $client)
+                ->distinct('client')
+                ->count();
         }
         else{
-            $sites = Commercial_site::with('clients')->where('localisation_id',Auth::user()->localisation_id)->get();
+            $sites = Commercial_site::with('clients')->get();
+
+            $count =  Commercial_site::with('clients')
+                ->distinct('client')
+                ->count();
         }
-        dd($sites);
+
         return view('commercial/site.liste',
-            compact('sites'));
+            compact('sites', 'count', 'c', 'cl', 'cr', 's'));
     }
 
     /**

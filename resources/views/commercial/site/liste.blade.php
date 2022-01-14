@@ -3,7 +3,8 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Site</h2></div>
-        <div><h2 class="heading">Nombre total de site {{$sites->count()}}</h2> </div>
+        <div><h2 class="heading">Nombre total de sites {{$sites->count()}}</h2></div>
+        <div><h2 class="heading">Nombre total de clients {{$count}}</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -28,7 +29,7 @@
                         <label for="centre" class="col-5">Centre</label>
                         <select name="centre" id="centre" class="form-control col">
                             <option></option>
-                            @foreach ($sites as $centre)
+                            @foreach ($c as $centre)
                                 <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
                             @endforeach
                         </select>
@@ -39,7 +40,7 @@
                         <label for="centre_regional" class="col-5">Centre regional</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
                             <option></option>
-                            @foreach ($sites as $centre_regional)
+                            @foreach ($cr as $centre_regional)
                                 <option value="{{$centre_regional->centre_regional}}">{{ $centre_regional->centre_regional }}</option>
                             @endforeach
                         </select>
@@ -50,8 +51,8 @@
                         <label for="client" class="col-5">Clients</label>
                         <select id="client" name="client" class="form-control col">
                             <option></option>
-                            @foreach ($sites as $client)
-                                <option value="{{$client->id}}">{{ $client->clients->client_nom }}</option>
+                            @foreach ($cl as $client)
+                                <option value="{{ $client->client }}">{{ $client->clients->client_nom }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -61,8 +62,8 @@
                         <label for="site" class="col-5">Site</label>
                         <select id="site" name="site" class="form-control col">
                             <option></option>
-                            @foreach ($sites as $site)
-                                <option value="{{$site->id}}">{{ $site->site }}</option>
+                            @foreach ($s as $site)
+                                <option value="{{ $site->site }}">{{ $site->site }}</option>
                             @endforeach
                         </select>
                     </div>
