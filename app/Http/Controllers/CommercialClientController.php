@@ -17,8 +17,8 @@ class CommercialClientController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->get();
-        $secteurs = SecteurActivite::where('localisation_id', Auth::user()->localisation_id)->get();
+        $clients = Commercial_client::with('sites', 'secteur')->get();
+        $secteurs = SecteurActivite::with('sites', 'secteur')->get();
         return view('commercial/client.index', compact('clients', 'secteurs'));
     }
 
@@ -239,8 +239,8 @@ class CommercialClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
-        $secteurs = SecteurActivite::where('localisation_id', Auth::user()->localisation_id)->get();
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
+        $secteurs = SecteurActivite::with('sites', 'secteur')->get();
         return view('commercial.client.edit', compact('client', 'secteurs'));
     }
 
@@ -265,7 +265,7 @@ class CommercialClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
         $client->delete();
         return response()->json([
             'message' => 'Good!'
