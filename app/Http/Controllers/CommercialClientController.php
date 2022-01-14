@@ -160,7 +160,7 @@ class CommercialClientController extends Controller
             $contrat_regime = implode(",", $request->get('contrat_regime'));
         }
         // $id = $request->get('id_client');
-        $client = Commercial_client::where('localisation_id', Auth::user()->localisation_id)->find($id);
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
         $client->client_nom = $request->get('client_nom');
         $client->client_situation_geographique = $request->get('client_situation_geographique');
         $client->client_tel = $request->get('client_tel');
