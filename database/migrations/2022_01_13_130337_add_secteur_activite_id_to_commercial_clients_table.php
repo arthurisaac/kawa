@@ -14,7 +14,7 @@ class AddSecteurActiviteIdToCommercialClientsTable extends Migration
     public function up()
     {
         Schema::table('commercial_clients', function (Blueprint $table) {
-            $table->foreignId('secteur_activite_id')->nullable();
+            $table->string('client_secteur_activite')->nullable();
         });
     }
 

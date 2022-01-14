@@ -101,10 +101,10 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Secteur d'activité</label>
-                                    <select class="form-control col-md-7" name="secteur_activite_id" required>
+                                    <select class="form-control col-md-7" name="secteur_activite" required>
                                         <option></option>
                                         @foreach ($secteurs as $secteur)
-                                            <option value="{{$secteur->id}}">{{$secteur->secteur_activite}}</option>
+                                            <option>{{$secteur->secteur_activite}}</option>
                                         @endforeach
                                     </select>
                                 </div>

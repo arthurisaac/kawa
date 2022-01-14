@@ -3,6 +3,7 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Client</h2></div>
+        <div><h2 class="heading">Nombre total de sites <sup class="text-success text-lg-center">{{$clients->count()}}</sup> </h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -20,6 +21,75 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+        <form action="{{url('commercial-client-liste')}}" method="get">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client_nom" class="col-4">Client</label>
+                        <select name="client_nom" id="client_nom" class="form-control col">
+                            <option></option>
+                            @foreach ($cn as $client)
+                                <option value="{{$client->client_nom}}">{{ $client->client_nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client_situation_geographique" class="col-4">Situation geographique</label>
+                        <select id="client_situation_geographique" name="client_situation_geographique" class="form-control col">
+                            <option></option>
+                            @foreach ($sg as $client)
+                                <option value="{{$client->client_situation_geographique}}">{{ $client->client_situation_geographique }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="contact_nom" class="col-4">Nom de Contact</label>
+                        <select id="contact_nom" name="contact_nom" class="form-control col">
+                            <option></option>
+                            @foreach ($ctn as $client)
+                                <option value="{{ $client->contact_nom }}">{{ $client->contact_nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client_ville" class="col-4">Ville</label>
+                        <select id="client_ville" name="client_ville" class="form-control col">
+                            <option></option>
+                            @foreach ($v as $client)
+                                <option value="{{ $client->client_ville }}">{{ $client->client_ville }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="secteur_activite" class="col-4">Secteur D'activité</label>
+                        <select id="secteur_activite" name="secteur_activite" class="form-control col">
+                            <option></option>
+                            @foreach ($sa as $client)
+                                <option value="{{ $client->secteur_activite}}">{{$client->secteur_activite}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <a href="/commercial-client-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
+            </div>
+            <div class="row"></div>
+        </form>
 
         <br/>
         <a href="/commercial-client" class="btn btn-info btn-sm">Nouveau</a>
