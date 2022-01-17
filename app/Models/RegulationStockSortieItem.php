@@ -17,4 +17,9 @@ class RegulationStockSortieItem extends Model
         "libelle",
         "autre",
     ];
+
+    public function stocks()
+    {
+        return $this->belongsTo('App\Models\RegulationStockSortie', 'stock_sortie', 'id');
+    }
 }

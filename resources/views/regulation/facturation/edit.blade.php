@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="date" class="col-4">Date</label>
                         <input type="date" id="date" name="date" value="{{$regulation->date}}"
-                               class="form-control col-8" required readonly/>
+                               class="form-control col-8" required/>
                     </div>
                 </div>
                 <div class="col">
@@ -72,7 +72,7 @@
                     <div class="form-group row">
                         <label for="client" class="col-4">Client</label>
                         <select id="client" name="client" class="form-control col-8" required>
-                            <option>{{$regulation->client}}</option>
+                            <option value="{{$regulation->client}}">{{$regulation->clients->client_nom ?? ""}}</option>
                             @foreach($clients as $client)
                                 <option value="{{$client->id}}">{{$client->client_nom}}</option>
                             @endforeach
@@ -89,6 +89,21 @@
                         </select>
                     </div>
                 </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-4">Site</label>
+                        <select id="site" name="site" class="form-control col-8" required>
+                            <option value="{{$regulation->site}}">{{$regulation->sites->site ?? ""}}</option>
+                            @foreach($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
                 <div class="col"></div>
             </div>
             <br/>

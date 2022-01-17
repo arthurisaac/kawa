@@ -24,23 +24,33 @@
         <a href="/comptabilite-entree-caisse" class="btn btn-sm btn-info">Ajouter</a>
         <br>
         <br>
-        <div class="row">
-            <div class="col">
-                <h5 class="text-left text-danger">Total entrée: <span id="totalEntree"></span></h5>
-                <h5 class="text-left text-danger">Total sortie: <span id="totalSortie"></span></h5><br>
+        <div class="titre">
+            <div class="row">
+                <div class="col">
+                    <span class="text-left">Total entrée: <span class="text-danger" id="totalEntree"></span></span><br>
+                    <span class="text-left">Total sortie: <span class="text-danger" id="totalSortie"></span></span><br>
+                </div>
+                <div class="col"></div>
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <form action="#" method="get">
-                    @csrf
+        </div>
+        <br>
+        
+        <form action="#" method="get">
+            @csrf
+            <div class="row">
+                <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-sm-5">Date début</label>
                         <input type="date" name="debut" class="form-control col-sm-7">
                     </div>
+                </div>
+                <div class="col">
                     <div class="form-group row">
                         <label for="" class="col-sm-5">Date fin</label>
                         <input type="date" name="fin" class="form-control col">
                     </div>
+                </div>
+                <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5" for="mouvement">Mouvement</label>
                         <select id="mouvement" name="mouvement" class="form-control col-sm-7">
@@ -49,26 +59,29 @@
                             <option>Sortie</option>
                         </select>
                     </div>
+                </div>
+                <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5" for="service">Service</label>
                         <input id="service" name="service" class="form-control col-sm-7" />
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5" for="deposant">Déposant</label>
                         <input id="deposant" name="deposant" class="form-control col-sm-7" />
                     </div>
-
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-sm text-right" style="margin-left: 10px;">Rechercher</button>
-                        </div>
-                    </div>
-
-                    <br>
-                </form>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <button class="btn btn-primary btn-sm text-right" style="margin-left: 10px;">Rechercher</button>
+                </div>
             </div>
-        </div>
+            <br>
+        </form>
         <br>
 
         <div class="row">

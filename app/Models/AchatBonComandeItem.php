@@ -13,6 +13,7 @@ class AchatBonComandeItem extends Model
         'prix',
         'tva',
         'montant',
+        'localisation_id',
     ];
 
     public function bons()

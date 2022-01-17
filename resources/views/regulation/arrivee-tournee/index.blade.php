@@ -24,7 +24,7 @@
         @endif
 
 
-        <form action="{{ route('regulation-arrivee-tournee.store') }}" method="post">
+        <form action="{{ route('regulation-arrivee-tournee.store') }}" method="post" id="target">
             @csrf
 
             <input type="hidden" name="idDepart" id="idDepart">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="col-sm-4">Chauffeur:</label>
+                            <label class="col-sm-4">Chauffeur</label>
                             <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                     </tfoot>
                 </table>
                 <br>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="button" class="btn btn-primary" id="submitBtn">Enregistrer</button>
             </div>
         </form>
 
@@ -186,6 +186,7 @@
                 });
                 if (departSites) populateSites(departSites);
                 changeColis();
+                changeValeurColis();
             });
         });
 
@@ -223,6 +224,7 @@
                                 <option>tri</option>
                                 <option>transite</option>
                                 <option>approvisionnement</option>
+                                <option>opération exterieur</option>
                                 </select></td>
                         </tr>`;
 
@@ -315,6 +317,11 @@
             });
             $("select[name='colis[]']").on("change", changeColis);
             $("input[name='regulation_arrivee_valeur_colis[]']").on("change", changeValeurColis);
+            $( "#submitBtn" ).click(function( event ) {
+                event.preventDefault();
+                removeSpaceValeurColis();
+                $("#target").submit();
+            });
         });
     </script>
     <script>
@@ -341,6 +348,13 @@
                 total += parseFloat(removeSpace(nbre)) ?? 0;
             });
             $("#totalValeurColis").val(total);
+        }
+
+        function removeSpaceValeurColis() {
+            $.each($("input[name='regulation_arrivee_valeur_colis[]']"), function (i) {
+                const nbre = $("input[name='regulation_arrivee_valeur_colis[]'").get(i).value;
+                $("input[name='regulation_arrivee_valeur_colis[]'").eq(i).val(removeSpace(nbre));
+            });
         }
 
         function changeNombreColis() {

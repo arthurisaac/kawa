@@ -34,6 +34,7 @@ class CaisseBilletage extends Model
         'br_nb10',
         'br_nb5',
         'br_nb1',
+        'localisation_id',
     ];
 
     public function ctv()

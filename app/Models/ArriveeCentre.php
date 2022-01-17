@@ -14,6 +14,7 @@ class ArriveeCentre extends Model
         'niveauCarburant',
         'finTournee',
         'dateArrivee',
+        'localisation_id',
     ];
 
     public function tournees()

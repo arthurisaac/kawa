@@ -21,6 +21,7 @@ class AchatProduit extends Model
         'montantTTC',
         'montantHT',
         'suiviBudgetaire',
+        'localisation_id',
 
     ];
 }

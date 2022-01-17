@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_client;
+use App\Models\Commercial_site;
 use App\Models\RegulationFacturationItem;
 use App\Models\RegulationStockEntreeItem;
 use App\Models\RegulationStockSortie;
 use App\Models\RegulationStockSortieItem;
+use App\Models\SiteDepartTournee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +38,174 @@ class RegulationStockSortieController extends Controller
             $stocks = RegulationStockSortie::all()->whereBetween('date', [$debut, $fin])->get();
         }
         return view("regulation.stock.sortie.liste", compact('stocks'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $libelle = $request->get("libelle");
+        $service = $request->get("service");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $stocks = RegulationStockSortieItem::all();
+        if (isset($debut) && isset($fin)) {
+            $stocks = RegulationStockSortieItem::with("stocks")->whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($service) {
+                    $builder->where("service", $service);
+                })
+                ->get();
+        }
+        if (isset($centre)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre) {
+                    $builder->where("centre", $centre);
+                })
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional) && isset($libelle) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with('stocks')
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($centre) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereBetween('date', [$debut, $fin])
+                ->where("service", $service)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre) {
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre, $service) {
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional) {
+                    $builder->where("centre_regional", $centre_regional);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($service) && isset($libelle) && isset($centre_regional) && isset($centre)) {
+            $stocks = RegulationStockSortieItem::with("stocks")
+                ->whereHas("stocks", function(Builder $builder) use ($centre_regional, $centre, $service) {
+                    $builder->where("centre_regional", $centre_regional);
+                    $builder->where("centre", $centre);
+                    $builder->where("service", $service);
+                })
+                ->whereBetween('date', [$debut, $fin])
+                ->where("libelle", $libelle)
+                ->get();
+        }
+        return view("regulation.stock.sortie.liste-detaillee", compact('stocks', 'centres', 'centres_regionaux', 'centre', 'centre_regional', 'libelle', 'service', 'debut', 'fin'));
     }
 
     public function listeAppro(Request $request)
@@ -78,6 +249,219 @@ class RegulationStockSortieController extends Controller
             ]);
         }
         return view('regulation.stock.liste', compact('stocks'));
+    }
+
+    public function gestionStock(Request $request)
+    {
+        $clients = Commercial_client::all();
+        $sites = Commercial_site::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $stockClients = Commercial_client::with("sites")
+            /*->withCount([
+                'sites as montantSorti' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"));
+                        //->where('type', 'like', 'Dépôt / R');
+                }
+            ])
+            ->withCount([
+                'sites as montantEntree' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
+                }
+            ])*/
+            ->get();
+
+        if (isset($centre)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
+        if (isset($centre) && isset($centre_regional)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional, $centre) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
+        if (isset($centre_regional)) {
+            $stockClients = Commercial_client::with("sites")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }
+
+        /*if (isset($debut) && isset($fin) && isset($client) && isset($site)) {
+            $stockClients = Commercial_client::with("sites")
+                ->withCount([
+                    'sites as montantSorti' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))
+                            ->where('type', 'like', 'Dépôt / R');
+                    }
+                ])
+                ->withCount([
+                    'sites as montantEntree' => function (Builder $query) {
+                        $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
+                    }
+                ])
+                ->get();
+        }*/
+
+        return view('regulation.stock.gestion', compact('clients', 'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients', 'centres', 'centres_regionaux'));
+    }
+
+
+    public function gestionClientStock(Request $request, $id)
+    {
+        $clients = Commercial_client::all();
+        $sites = Commercial_site::all();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        if ($id) {
+            $client = $id;
+        } else {
+            $client = $request->get("client");
+        }
+        $site = $request->get("site");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $stockClients = array();
+        /*$stockClients = Commercial_client::with("sites")
+            ->withCount([
+                'sites as montantSorti' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_depart_valeur_colis) as montantSorti"))->where('type', 'like', 'Dépôt / R');
+                }
+            ])
+            ->withCount([
+                'sites as montantEntree' => function (Builder $query) {
+                    $query->select(DB::raw("SUM(regulation_arrivee_valeur_colis) as montantEntree"));
+                }
+            ])
+            ->get();*/
+
+        if ($client)
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if ($client && isset($centre_regional))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if ($client && isset($centre))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+        if ($client && isset($centre))
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($centre, $centre_regional) {
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })->get();
+
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($client) && isset($site)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('sites', function (Builder $query) use ($site) {
+                    $query->where('id', 'like', '%' . $site . '%');
+                })
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client, $site) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($client) && isset($site) && isset($centre) && isset($centre_regional)) {
+            $stockClients = SiteDepartTournee::with("tournees")
+                ->whereHas('sites', function (Builder $query) use ($site) {
+                    $query->where('id', 'like', '%' . $site . '%');
+                })
+                ->whereHas('tournees', function (Builder $query) use ($fin, $debut, $client, $site, $centre, $centre_regional) {
+                    $query->whereBetween('date', [$debut, $fin]);
+                    $query->where('centre', 'like', '%' . $centre . '%');
+                    $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+                })
+                ->whereHas('sites', function (Builder $query) use ($client) {
+                    $query->where('client', 'like', '%' . $client . '%');
+                })
+                ->get();
+        }
+
+        return view('regulation.stock.gestion-client', compact('clients',  'sites', 'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'stockClients', 'centres', 'centres_regionaux', 'id'));
     }
 
     /**

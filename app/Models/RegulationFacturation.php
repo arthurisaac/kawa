@@ -16,6 +16,7 @@ class RegulationFacturation extends Model
         'montantTotal',
         'client',
         'type',
+        'site',
     ];
 
     public function items()
@@ -26,6 +27,11 @@ class RegulationFacturation extends Model
     public function clients()
     {
         return $this->belongsTo('App\Models\Commercial_client', 'client');
+    }
+
+    public function sites()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'site');
     }
 
 }

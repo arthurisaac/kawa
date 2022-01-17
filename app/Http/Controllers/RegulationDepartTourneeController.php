@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
+use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\OptionDevise;
@@ -37,12 +40,11 @@ class RegulationDepartTourneeController extends Controller
         return view("regulation.depart-tournee.index", compact("date", "heure", "tournees", "sites", "devises"));
     }
 
-
     public function liste(Request $request)
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
-        $tournees = DepartTournee::with("sites")->get();
+        $tournees = DepartTournee::with("sites")->orderByDesc("id")->get();
         if (isset($debut) && isset($fin)) {
             $tournees = DepartTournee::with("sites")
                 ->whereBetween('date', [$debut, $fin])
@@ -50,6 +52,159 @@ class RegulationDepartTourneeController extends Controller
 
         }
         return view("regulation.depart-tournee.liste", compact("tournees"));
+    }
+
+    public function listeColisDepart(Request $request)
+    {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::orderBy('client_nom')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
+        $devises = OptionDevise::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $nature = $request->get("nature");
+        $devise = $request->get("devise");
+
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+
+        $tournees = DepartTournee::all();
+        $colisArrivees = SiteDepartTournee::with('sites')
+            ->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })
+            ->orderByDesc("created_at")
+            ->get();
+
+        if (isset($debut) && isset($fin) )
+        {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+        if (isset($centre_regional)) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre_regional) {
+                $query->where('centre_regional', 'like', '%' . $centre_regional . '%');
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+        if (isset($centre)) {
+            $colisArrivees = SiteDepartTournee::whereHas('tournees', function (Builder $query) use ($centre) {
+                $query->where('centre', 'like', '%' . $centre . '%');
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+        if (isset($client)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+        if (isset($site)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
+                $query->where('id', 'like', '%' . $site . '%');
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+        if (isset($nature)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($nature) {
+                $query->where('nature', 'like', '%' . $nature . '%');
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($site)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->where(function(Builder $query) {
+                    $query->Where('type', 'Enlèvement / R')
+                        ->orWhere('type', "Dépôt / R")
+                        ->orWhere('type', 'Enlèvement + Dépôt / R');
+                })
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($client)) {
+            $colisArrivees = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+                $query->where('client', 'like', '%' . $client . '%');
+            })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
+                $query->whereBetween('date', [$debut, $fin]);
+            })->where(function(Builder $query) {
+                $query->Where('type', 'Enlèvement / R')
+                    ->orWhere('type', "Dépôt / R")
+                    ->orWhere('type', 'Enlèvement + Dépôt / R');
+            })->get();
+        }
+
+        if (isset($debut) && isset($fin) && isset($devise)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.regulation_depart_devise', 'like', '%' . $devise . '%')
+                ->where(function(Builder $query) {
+                    $query->Where('type', 'Enlèvement / R')
+                        ->orWhere('type', "Dépôt / R")
+                        ->orWhere('type', 'Enlèvement + Dépôt / R');
+                })
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($colis)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.colis', 'like', '%' . $colis . '%')
+                ->where(function(Builder $query) {
+                    $query->Where('type', 'Enlèvement / R')
+                        ->orWhere('type', "Dépôt / R")
+                        ->orWhere('type', 'Enlèvement + Dépôt / R');
+                })
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($site) && isset($centre) && isset($centre_regional)) {
+            $colisArrivees = SiteDepartTournee::with('tournees')
+                ->join('depart_tournees', 'site_depart_tournees.idTourneeDepart', '=', 'depart_tournees.id')
+                ->whereBetween('depart_tournees.date', [$debut, $fin])
+                ->where('site_depart_tournees.site', 'like', '%' . $site . '%')
+                ->where('depart_tournees.centre_regional', 'like', '%' . $centre_regional . '%')
+                ->where('depart_tournees.centre', 'like', '%' . $centre . '%')
+                ->where(function(Builder $query) {
+                    $query->Where('type', 'Enlèvement / R')
+                        ->orWhere('type', "Dépôt / R")
+                        ->orWhere('type', 'Enlèvement + Dépôt / R');
+                })
+                ->get();
+        }
+
+        return view('regulation.depart-tournee.colis-depart',
+            compact('colisArrivees', 'tournees', 'centres', 'centres_regionaux', 'clients', 'centre', 'centre_regional', 'site', 'client', 'sites_com',
+                'debut', 'fin', 'devises', 'nature', 'devise'));
     }
 
     /**

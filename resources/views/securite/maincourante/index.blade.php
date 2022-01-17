@@ -171,6 +171,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4">SITE</label>
                                     <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
+                                        @foreach($sites as $site)
+                                            <option value="{{$site->id}}">{{$site->site}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group row">
@@ -270,7 +273,6 @@
                                         <input type="time" name="asHeure" class="form-control col-sm-6"
                                                value="{{date('H:i')}}"/>
                                     </div>
-
                                 </div>
                                 <div class="col"></div>
                                 <div class="col"></div>
@@ -285,7 +287,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4">Prochaine destination</label>
                                         <select class="form-control col-sm-8" name="asDestination"
-                                                id="prochaineDestination"></select>
+                                                id="prochaineDestination">
+                                            @foreach($sites as $site)
+                                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-4">Observation</label>
@@ -451,10 +457,10 @@
                     */
 
                     // Filtrer les sites par tournee site
-                    const commercial_site = sitesTournees.filter(site => {
+                    /* const commercial_site = sitesTournees.filter(site => {
                         return site.idTourneeDepart === tournee.id;
                     });
-                    $("#asSite option").remove();
+                   $("#asSite option").remove();
                     commercial_site.map(({sites}) => {
                         $('#asSite').append($('<option>', {
                             value: sites.id,
@@ -464,7 +470,7 @@
                             value: sites.site,
                             text: `${sites.site} (${sites.clients.client_nom})`
                         }));
-                    })
+                    })*/
                 }
             });
         });

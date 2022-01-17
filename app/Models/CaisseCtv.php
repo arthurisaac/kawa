@@ -39,7 +39,8 @@ class CaisseCtv extends Model
         'billetsDeparailles',
         'billetsDeparaillesMontant',
         'centre',
-        'centre_regional'
+        'centre_regional',
+        'localisation_id',
     ];
 
     public function operatrices()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AchatFournisseur;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_site;
 use App\Models\RegulationStockEntree;
 use App\Models\RegulationStockEntreeItem;
 use Illuminate\Http\Request;
@@ -32,6 +33,68 @@ class RegulationStockEntreeController extends Controller
     {
         $stocks = RegulationStockEntree::with('items')->get();
         return view("regulation.stock.entree.liste", compact('stocks'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $fournisseurs = AchatFournisseur::all();
+
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $libelle = $request->get("libelle");
+        $fournisseur = $request->get("fournisseur");
+
+        $stocks = RegulationStockEntree::with('items')->get();
+
+        if (isset($debut) && isset($fin)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->whereBetween("date", [$debut, $fin])
+                ->get();
+        }
+        if (isset($centre)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->where("centre_regional", "=", $centre_regional)
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->where("centre_regional", "=", $centre_regional)
+                ->where("centre", "=", $centre)
+                ->get();
+        }
+        if (isset($fournisseur)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->where("fournisseur", "like", "%". $fournisseur . "%")
+                ->get();
+        }
+        if (isset($libelle)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->where("libelle", "like", "%". $libelle . "%")
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($libelle)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->whereBetween("date", [$debut, $fin])
+                ->where("libelle", "like", "%". $libelle . "%")
+                ->get();
+        }
+        if (isset($debut) && isset($fin) && isset($fournisseur)) {
+            $stocks = RegulationStockEntree::with('items')
+                ->whereBetween("date", [$debut, $fin])
+                ->where("fournisseur", "like", "%". $fournisseur . "%")
+                ->get();
+        }
+
+        return view("regulation.stock.entree.liste-detaillee", compact('stocks', 'centres', 'centres_regionaux', 'centre', 'centre_regional', 'debut', 'fin', 'libelle', 'fournisseurs', 'fournisseur'));
     }
 
     /**
@@ -111,7 +174,8 @@ class RegulationStockEntreeController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $fournisseurs = AchatFournisseur::all();
-        return view("regulation.stock.entree.edit", compact('centres_regionaux', 'centres', 'fournisseurs', 'stock', 'items'));
+        $sites = Commercial_site::all();
+        return view("regulation.stock.entree.edit", compact('centres_regionaux', 'centres', 'fournisseurs', 'stock', 'items', 'sites'));
     }
 
     /**

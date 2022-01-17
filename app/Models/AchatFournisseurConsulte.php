@@ -12,6 +12,7 @@ class AchatFournisseurConsulte extends Model
         'prix_propose',
         'choix',
         'achat_demandes_fk',
+        'localisation_id',
     ];
 
     public function fournisseurs()

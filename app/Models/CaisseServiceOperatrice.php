@@ -13,6 +13,7 @@ class CaisseServiceOperatrice extends Model
         'operatriceCaisseBox',
         'heureArrivee',
         'heureDepart',
+        'localisation_id',
     ];
 
     public function operatrice()

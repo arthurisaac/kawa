@@ -18,6 +18,7 @@ class CarburantPrevision extends Model
         'dessSemaine',
         'coutSemaine',
         'dessMois',
-        'coutMois'
+        'coutMois',
+        'localisation_id',
     ];
 }

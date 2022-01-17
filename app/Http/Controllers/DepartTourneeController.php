@@ -142,7 +142,6 @@ class DepartTourneeController extends Controller
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
             })->get();
-
         }
         if (isset($site)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {

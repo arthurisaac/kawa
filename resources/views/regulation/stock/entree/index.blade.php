@@ -44,7 +44,7 @@
                     <div class="form-group row">
                         <label for="date_appro" class="col-4">Date</label>
                         <input type="date" id="date_appro" name="date_appro" value="{{date('Y-m-d')}}"
-                               class="form-control col-8" required readonly/>
+                               class="form-control col-8" required/>
                     </div>
                     <div class="form-group row">
                         <label for="libelle" class="col-4">Libellé</label>

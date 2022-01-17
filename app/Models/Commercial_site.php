@@ -66,4 +66,9 @@ class Commercial_site extends Model
     {
         return $this->belongsTo('App\Models\Commercial_client', 'client', 'id');
     }
+
+    public function sitesDepart()
+    {
+        return $this->hasMany('App\Models\SiteDepartTournee', 'site');
+    }
 }

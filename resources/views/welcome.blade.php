@@ -82,8 +82,8 @@
 
         {{--@if (Route::has('login'))--}}
         <div class="top-right links">
-            @if (session('user'))
-                <a href="/logout">DECONNEXION</a>
+            @if (Auth::user())
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >DECONNEXION</a>
             @else
                 <a href="/login">CONNEXION</a>
 
@@ -92,6 +92,9 @@
                 @endif--}}
             @endauth
         </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
         {{--@endif--}}
     </div>
 </div>
@@ -417,13 +420,13 @@
                                                         href="javascript:popupwnd('depart-tournee-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">Liste</a>
                                                 </li>
-                                                <li style="display: none;"><span></span><a
+                                                {{--<li style="display: none;"><span></span><a
                                                         href="javascript:popupwnd('site-desservi-liste','no','no','no','yes','yes','no','','','1000','500')"
                                                         target="_self" title="D&#233;part tourn&#233;e">LISTE DES SITES DESSERVIS</a>
-                                                </li>
+                                                </li>--}}
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ca-liste','no','no','no','yes','yes','no','','','1000','500')"
-                                                        target="_self" title="D&#233;part tourn&#233;e">Liste CA</a>
+                                                        target="_self" title="D&#233;part tourn&#233;e">Chiffre d'affaire des tournées</a>
                                                 </li>
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('ca-liste-non-facture','no','no','no','yes','yes','no','','','1000','500')"
@@ -544,6 +547,10 @@
                                                                 href="javascript:popupwnd('regulation-stock-entree-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-entree-liste-detaillee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self" title="Liste">Liste détaillée</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Sortie</span>
@@ -556,11 +563,19 @@
                                                                 href="javascript:popupwnd('regulation-stock-sortie-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('regulation-stock-sortie-liste-detaillee','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self" title="Liste">Liste détaillée</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><span></span><a
                                                             href="javascript:popupwnd('regulation-stock-appro','no','no','no','yes','yes','no','','','1200','600')"
                                                             target="_self" title="Liste">Liste</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('regulation-gestion-stock','no','no','no','yes','yes','no','','','1200','600')"
+                                                        target="_self" title="Liste">Gestion de CF</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -600,6 +615,10 @@
                                                                 href="javascript:popupwnd('regulation-depart-tournee-liste','no','no','no','yes','yes','no','','','1200','600')"
                                                                 target="_self">Liste</a>
                                                         </li>
+                                                        {{--<li><span></span><a
+                                                                href="javascript:popupwnd('regulation-depart-colis','no','no','no','yes','yes','no','','','1200','600')"
+                                                                target="_self">Colis départ</a>
+                                                        </li>--}}
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Arrivée tournée</span>
@@ -1814,7 +1833,7 @@
                 </div>
             @endif
 
-            @if (session('user'))
+            @if (Auth::user())
                 <div class="element">
                     <!--SSB-->
                     <nav id="wb_MenuBar13">

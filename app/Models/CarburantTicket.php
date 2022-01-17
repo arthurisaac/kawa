@@ -20,6 +20,7 @@ class CarburantTicket extends Model
         'litrage',
         'centre',
         'centre_regional',
+        'localisation_id',
     ];
 
     public function vehicules()

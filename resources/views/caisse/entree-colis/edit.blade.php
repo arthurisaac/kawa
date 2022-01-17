@@ -21,81 +21,10 @@
             </div>
         @endif
 
-        <form action="{{ route('caisse-entree-colis.update', $colis->id) }}" method="post">
+        <form action="{{ route('caisse-entree-colis.update', $colis->id) }}" id="target" method="post">
             @csrf
             @method("PATCH")
 
-            {{--<div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date" id="date" value="{{$coli->date}}"
-                                   class="form-control col-sm-8"/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure" id="heure" value="{{$coli->heure}}"
-                                   class="form-control col-sm-8"/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Agent garde</label>
-                            <select class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" required>
-                                <option value="{{$coli->agent}}">{{$coli->agents->nomPrenoms ?? ""}}</option>
-                                @foreach($agents as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chef de bord</label>
-                            <select class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" required>
-                                <option value="{{$coli->chef}}">{{$coli->chefs->nomPrenoms ?? ""}}</option>
-                                @foreach($chefBords as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre" class="col-sm-4">Centre</label>
-                            <select name="centre" id="centre" class="form-control col-8" required>
-                                <option>{{$coli->centre}}</option>
-                                @foreach ($centres as $centre)
-                                    <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre_regional" class="col-sm-4">Centre régional</label>
-                            <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
-                                <option>{{$coli->centre_regional}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>--}}
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
@@ -130,12 +59,6 @@
                             <input class="form-control col-sm-8" name="vehicule" id="vehicule"
                                    value="{{$colis->tournees->vehicules->immatriculation?? "Donnée indisponible"}}"
                                    readonly/>
-                            {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
-                                <option></option>
-                                @foreach($vehicules as $vehicule)
-                                    <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                                @endforeach
-                            </select>--}}
                         </div>
                     </div>
                 </div>
@@ -146,12 +69,6 @@
                             <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord"
                                    value="{{$colis->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}"
                                    readonly/>
-                            {{--<select class="form-control col-sm-8" name="chefDeBord">
-                                <option></option>
-                                @foreach($chefBords as $chef)
-                                    <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
-                                @endforeach
-                            </select>--}}
                         </div>
                     </div>
                     <div class="col">
@@ -160,12 +77,6 @@
                             <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde"
                                    value="{{$colis->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"
                                    readonly/>
-                            {{--<select class="form-control col-sm-8" name="agentDeGarde">
-                                <option></option>
-                                @foreach($agents as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>--}}
                         </div>
                     </div>
                     <div class="col">
@@ -174,9 +85,6 @@
                             <input class="form-control col-sm-8" name="chauffeur" id="chauffeur"
                                    value="{{$colis->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}"
                                    readonly/>
-                            {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
-                                <option></option>
-                            </select>--}}
                         </div>
                     </div>
                     <div class="col"></div>
@@ -243,7 +151,7 @@
                             <td><select name="caisse_entree_devise[]" class="form-control">
                                     <option>{{$item->caisse_entree_devise}}</option>
                                     @foreach($devises as $devise)
-                                        <option>{{$devise->devise}}</option
+                                        <option>{{$devise->devise}}</option>
                                     @endforeach
                                 </select></td>
                             <td><input type="text" name="caisse_entree_valeur_colis[]" value="{{$item->caisse_entree_valeur_colis}}" class="form-control"></td>
@@ -356,6 +264,13 @@
                 });
             }
         }
+
+        function separateNumbersFromEdit() {
+            $.each($("input[name='caisse_entree_valeur_colis[]']"), function (i) {
+                const nbre = $("input[name='caisse_entree_valeur_colis[]'").get(i).value;
+                $("input[name='caisse_entree_valeur_colis[]'").eq(i).val(separateNumber(nbre));
+            });
+        }
     </script>
     <script>
         let centres = {!! json_encode($centres) !!};
@@ -365,6 +280,7 @@
         $(document).ready(function () {
             changeValeurColis();
             changeNombreColis();
+            separateNumbersFromEdit();
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
                 //$('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
@@ -396,6 +312,11 @@
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
                 }
+            });
+            $("#target").submit(function () {
+                removeSpaceValeurColis();
+                enableAllColisField();
+                return true;
             });
         });
     </script>

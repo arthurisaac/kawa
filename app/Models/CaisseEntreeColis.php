@@ -16,6 +16,7 @@ class CaisseEntreeColis extends Model
         'totalColis',
         'noTournee',
         'remettant',
+        'localisation_id',
     ];
 
     public function tournees()

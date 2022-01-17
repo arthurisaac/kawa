@@ -23,7 +23,8 @@ class AchatDemande extends Model
         'numero_da',
         'centre',
         'centre_regional',
-        'demande'
+        'demande',
+        'localisation_id',
     ];
 
     public function fournisseurs()

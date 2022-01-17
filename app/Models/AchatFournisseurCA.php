@@ -9,7 +9,8 @@ class AchatFournisseurCA extends Model
     protected $fillable = [
         'fournisseur_fk',
         'annee',
-        'ca'
+        'ca',
+        'localisation_id'
         ];
 
     public function fournisseurs()

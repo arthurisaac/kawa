@@ -53,7 +53,7 @@
                     <div class="form-group row">
                         <label for="date" class="col-4">Date</label>
                         <input type="date" id="date" name="date" value="{{date('Y-m-d')}}"
-                               class="form-control col-8" required readonly/>
+                               class="form-control col-8" required/>
                     </div>
                 </div>
                 <div class="col">
@@ -86,6 +86,20 @@
                             </select>
                         </div>
                 </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-4">Site</label>
+                        <select id="site" name="site" class="form-control col-8" required>
+                            @foreach($sites as $site)
+                                <option value="{{$site->id}}">{{$site->site}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
                 <div class="col"></div>
             </div>
             <br/>

@@ -20,6 +20,7 @@ class ArriveeSite extends Model
         'asDestination',
         'asDepartSite',
         'asKm',
+        'localisation_id',
         /*'heureArrivee',
         'kmArrivee',
         'observation',
@@ -40,6 +41,12 @@ class ArriveeSite extends Model
     public function sites()
     {
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
+            ->with('clients');
+    }
+
+    public function sitesDestinations()
+    {
+        return $this->belongsTo('App\Models\Commercial_site', 'asDestination', 'id')
             ->with('clients');
     }
 

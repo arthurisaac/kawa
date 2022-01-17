@@ -23,6 +23,7 @@ class CaisseVideoSurveillance extends Model
         'centre_regional',
         'numero_bord',
         'remarque',
+        'localisation_id',
     ];
 
 
