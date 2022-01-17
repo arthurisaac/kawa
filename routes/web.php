@@ -14,18 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', 'WelcomeController');
-Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);
+/*Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout']);*/
 
 /*
  *  USER
  */
 
-Route::resource('user', 'UserController');
+//Route::resource('user', 'UserController');
 
-Route::get('login', [\App\Http\Controllers\UserController::class, 'login']);
-Route::post('auth', [\App\Http\Controllers\UserController::class, 'auth']);
-Route::get('users', [\App\Http\Controllers\UserController::class, 'liste']);
-Route::get('users', [\App\Http\Controllers\UserController::class, 'liste']);
+/*Route::get('login', [\App\Http\Controllers\UserController::class, 'login']);*/
+//Route::post('auth', [\App\Http\Controllers\UserController::class, 'auth']);
+//Route::get('users', [\App\Http\Controllers\UserController::class, 'liste']);
 
 /*
  *  SECURITE
@@ -327,6 +326,8 @@ Route::get('regulation-etat-scelle-vendu', [\App\Http\Controllers\RegulationEtat
 
 Route::resource('regulation-depart-tournee', 'RegulationDepartTourneeController');
 Route::get('regulation-depart-tournee-liste', [\App\Http\Controllers\RegulationDepartTourneeController::class, 'liste']);
+Route::get('regulation-depart-colis', [\App\Http\Controllers\RegulationDepartTourneeController::class, 'listeColisDepart']);
+
 
 Route::resource('regulation-arrivee-tournee', 'RegulationArriveeTourneeController');
 Route::get('regulation-arrivee-tournee-liste', [\App\Http\Controllers\RegulationArriveeTourneeController::class, 'liste']);
@@ -334,13 +335,18 @@ Route::get('regulation-arrivee-colis', [\App\Http\Controllers\RegulationArriveeT
 
 Route::resource('regulation-stock-entree', 'RegulationStockEntreeController');
 Route::get('regulation-stock-entree-liste', [\App\Http\Controllers\RegulationStockEntreeController::class, 'liste']);
+Route::get('regulation-stock-entree-liste-detaillee', [\App\Http\Controllers\RegulationStockEntreeController::class, 'listeDetaillee']);
 Route::delete('regulation-stock-entree-item/{id}', [\App\Http\Controllers\RegulationStockEntreeController::class, 'destroyItem']);
 
 Route::resource('regulation-stock-sortie', 'RegulationStockSortieController');
 Route::get('regulation-stock-sortie-liste', [\App\Http\Controllers\RegulationStockSortieController::class, 'liste']);
+Route::get('regulation-stock-sortie-liste-detaillee', [\App\Http\Controllers\RegulationStockSortieController::class, 'listeDetaillee']);
 Route::delete('regulation-stock-sortie-item/{id}', [\App\Http\Controllers\RegulationStockSortieController::class, 'destroyItem']);
 
 Route::get('regulation-stock-appro', [\App\Http\Controllers\RegulationStockSortieController::class, 'listeAppro']);
+
+Route::get('regulation-gestion-stock', [\App\Http\Controllers\RegulationStockSortieController::class, 'gestionStock']);
+Route::get('regulation-gestion-client-stock/{id}', [\App\Http\Controllers\RegulationStockSortieController::class, 'gestionClientStock']);
 
 /*
  * VIRGILOMETREIE

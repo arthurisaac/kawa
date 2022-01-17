@@ -21,8 +21,9 @@
         @endif
 
 
-        <h6 class="text-secondary">TOTAL: <span
-                class="montantTotal text-danger">{{$carburants->sum('soldePrecedent')}}</span></h6>
+        <div class="titre">
+            <span class="text-secondary">TOTAL: <span class="montantTotal text-danger">{{$carburants->sum('soldePrecedent')}}</span></h6>
+        </div>
         <br>
         <br>
         <div class="row">

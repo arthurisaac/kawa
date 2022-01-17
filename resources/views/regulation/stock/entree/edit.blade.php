@@ -45,7 +45,15 @@
                     <div class="form-group row">
                         <label for="date_appro" class="col-4">Date</label>
                         <input type="date" id="date_appro" name="date_appro" value="{{$stock->date}}"
-                               class="form-control col-8" required readonly/>
+                               class="form-control col-8" required/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="site" class="col-4">Site</label>
+                        <select id="site" name="site" class="form-control col-8" required>
+                            @foreach($sites as $site)
+                                <option>{{$site->site}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group row">
                         <label for="libelle" class="col-4">Libellé</label>
@@ -137,6 +145,7 @@
 
             <br>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a href="/regulation-stock-entree-liste-detaillee" class="btn btn-outline-info">Liste entrée stock detaillée</a>
         </form>
     </div>
     <script>

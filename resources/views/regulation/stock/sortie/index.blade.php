@@ -34,7 +34,6 @@
                     <div class="form-group row">
                         <label for="centre" class="col-4">Centre Régional</label>
                         <select name="centre" id="centre" class="form-control col-8" required>
-                            <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                             @endforeach

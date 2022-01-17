@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commercial_client;
+use App\Models\SecteurActivite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CommercialClientController extends Controller
 {
@@ -15,14 +17,80 @@ class CommercialClientController extends Controller
      */
     public function index()
     {
-        $clients = Commercial_client::all();
-        return view('commercial/client.index', compact('clients'));
+        $clients = Commercial_client::with('sites')->get();
+        $secteurs = SecteurActivite::with('sites')->get();
+        return view('commercial/client.index', compact('clients', 'secteurs'));
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
-        $clients = Commercial_client::all();
-        return view('commercial/client.liste', compact('clients'));
+
+        $secteurs = SecteurActivite::all();
+
+        $cn = Commercial_client::with('sites')->distinct('client_nom')->groupBy('client_nom')->get();
+        $ctn = Commercial_client::with('sites')->distinct('contact_nom')->groupBy('contact_nom')->get();
+        $sa = Commercial_client::with('sites')->distinct('secteur_activite')->groupBy('secteur_activite')->get();
+        $sg = Commercial_client::with('sites')->distinct('client_situation_geographique')->groupBy('client_situation_geographique')->get();
+        $v = Commercial_client::with('sites')->distinct('client_ville')->groupBy('client_ville')->get();
+
+        $client_nom = $request->get('client_nom');
+        $contact_nom = $request->get('contact_nom');
+        $secteur_activite = $request->get('secteur_activite');
+        $situation_geographique = $request->get('client_situation_geographique');
+        $ville = $request->get('client_ville');
+
+        if (isset($client_nom) && isset($contact_nom) && isset($secteur_activite) && isset($situation_geographique) && isset($ville)){
+            $clients = Commercial_client::with('sites')
+                                        ->where('client_nom', $client_nom)
+                                        ->andWhere('contact_nom', $contact_nom)
+                                        ->andWhere('secteur_activite', $secteur_activite)
+                                        ->andWhere('client_situation_geographique', $situation_geographique)
+                                        ->andWhere('client_ville', $ville)
+                                        ->get();
+        }elseif (isset($client_nom) && isset($contact_nom) && isset($secteur_activite) && isset($situation_geographique)){
+            $clients = Commercial_client::with('sites')
+                ->where('client_nom', $client_nom)
+                ->andWhere('contact_nom', $contact_nom)
+                ->andWhere('secteur_activite', $secteur_activite)
+                ->andWhere('client_situation_geographique', $situation_geographique)
+                ->get();
+        }elseif (isset($client_nom) && isset($contact_nom) && isset($secteur_activite)){
+            $clients = Commercial_client::with('sites')
+                ->where('client_nom', $client_nom)
+                ->andWhere('contact_nom', $contact_nom)
+                ->andWhere('secteur_activite', $secteur_activite)
+                ->get();
+        }elseif (isset($client_nom) && isset($contact_nom)){
+            $clients = Commercial_client::with('sites')
+                ->where('client_nom', $client_nom)
+                ->andWhere('contact_nom', $contact_nom)
+                ->get();
+        }
+        elseif (isset($client_nom)){
+            $clients = Commercial_client::with('sites')
+                                        ->where('client_nom', $client_nom)
+                                        ->get();
+        }elseif (isset($contact_nom)){
+            $clients = Commercial_client::with('sites')
+                ->where('contact_nom', $contact_nom)
+                ->get();
+        }elseif (isset($secteur_activite)){
+            $clients = Commercial_client::with('sites')
+                ->where('secteur_activite', $secteur_activite)
+                ->get();
+        }elseif (isset($situation_geographique)){
+            $clients = Commercial_client::with('sites')
+                ->where('client_situation_geographique', $situation_geographique)
+                ->get();
+        }elseif (isset($ville)){
+            $clients = Commercial_client::with('sites')
+                ->where('client_ville', $ville)
+                ->get();
+        }else{
+            $clients = Commercial_client::all();
+        }
+        return view('commercial/client.liste', compact('clients', 'secteurs', 'cn', 'ctn', 'sa', 'sg', 'v'));
+
     }
 
     /**
@@ -94,6 +162,7 @@ class CommercialClientController extends Controller
             'base_garde_de_fonds_montant_forfaitaire' => $request->get('base_garde_de_fonds_montant_forfaitaire'),
             //ase_maintenance_atm' => $request->get('base_maintenance_atm'),
             //'base_consommable_atm' => $request->get('base_consommable_atm'),
+            'secteur_activite' => $request->get('secteur_activite')
         ]);
         $client->save();
     }
@@ -118,7 +187,7 @@ class CommercialClientController extends Controller
             $contrat_regime = implode(",", $request->get('contrat_regime'));
         }
         // $id = $request->get('id_client');
-        $client = Commercial_client::find($id);
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
         $client->client_nom = $request->get('client_nom');
         $client->client_situation_geographique = $request->get('client_situation_geographique');
         $client->client_tel = $request->get('client_tel');
@@ -160,6 +229,7 @@ class CommercialClientController extends Controller
         $client->bt_atm = $request->get("bt_atm");
         $client->base_comptage_montant_forfaitaire = $request->get("base_comptage_montant_forfaitaire");
         $client->base_garde_de_fonds_montant_forfaitaire = $request->get("base_garde_de_fonds_montant_forfaitaire");
+        $client->secteur_activite = $request->get('secteur_activite');
 
         $client->save();
     }
@@ -196,8 +266,9 @@ class CommercialClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Commercial_client::find($id);
-        return view('commercial.client.edit', compact('client'));
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
+        $secteurs = SecteurActivite::with('sites', 'secteur')->get();
+        return view('commercial.client.edit', compact('client', 'secteurs'));
     }
 
     /**
@@ -221,7 +292,7 @@ class CommercialClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Commercial_client::find($id);
+        $client = Commercial_client::with('sites', 'secteur')->find($id);
         $client->delete();
         return response()->json([
             'message' => 'Good!'
