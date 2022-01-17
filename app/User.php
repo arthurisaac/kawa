@@ -1,3 +1,5 @@
+<<<<<<< HEAD:app/Models/User.php
+=======
 <?php
 
 namespace App;
@@ -36,3 +38,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+
