@@ -46,7 +46,10 @@ class Commercial_client extends Model
         //'base_consommable_atm',
         'base_garde_de_fonds_montant_forfaitaire',
         'base_comptage_montant_forfaitaire',
-        'bt_atm'
+        'bt_atm',
+        'centre',
+        'centre_regional',
+        'client_secteur_activite',
     ];
 
     public function sites()

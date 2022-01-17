@@ -120,6 +120,10 @@
                                                         href="javascript:popupwnd('commercial-client-liste','no','no','no','yes','yes','no','','','1000','400')"
                                                         target="_self" title="Liste">Liste</a>
                                                 </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('commercial-client-liste-detaillee','no','no','no','yes','yes','no','','','1000','400')"
+                                                        target="_self" title="Liste">Liste detaillee</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><span></span><a
@@ -133,6 +137,10 @@
                                                 <li><span></span><a
                                                         href="javascript:popupwnd('commercial-site-liste','no','no','no','yes','yes','no','','','1000','600')"
                                                         target="_self" title="Liste">Liste</a>
+                                                </li>
+                                                <li><span></span><a
+                                                        href="javascript:popupwnd('commercial-site-liste-detaillee','no','no','no','yes','yes','no','','','1000','600')"
+                                                        target="_self" title="Liste">Liste détaillée</a>
                                                 </li>
                                             </ul>
                                         </li>

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Centre_regional;
 use App\Models\Commercial_client;
+use App\Models\Commercial_site;
+use App\Models\OptionSecteurActivite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,13 +20,33 @@ class CommercialClientController extends Controller
     public function index()
     {
         $clients = Commercial_client::all();
-        return view('commercial/client.index', compact('clients'));
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $secteur_activites = OptionSecteurActivite::orderBy("option")->get();
+        return view('commercial/client.index', compact('clients', 'centres', 'centres_regionaux', 'secteur_activites'));
     }
 
     public function liste()
     {
         $clients = Commercial_client::all();
         return view('commercial/client.liste', compact('clients'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $clients = Commercial_client::all();
+        $clients_com = Commercial_client::all();
+        $sites_com = Commercial_site::orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $secteur_activites = OptionSecteurActivite::orderBy("option")->get();
+
+        return view('commercial.client.liste-detaillee', compact('clients', 'sites_com', 'clients_com', 'centres', 'centres_regionaux', 'client', 'site', 'centre', 'centre_regional', 'secteur_activites'));
     }
 
     /**
@@ -82,22 +106,15 @@ class CommercialClientController extends Controller
             'base_petit_materiel_securipack' => $request->get('base_petit_materiel_securipack'),
             'base_petit_materiel_sacjute' => $request->get('base_petit_materiel_sacjute'),
             'base_petit_materiel_scelle' => $request->get('base_petit_materiel_scelle'),
-            //'base_garde_de_fonds_cout_unitaire' => $request->get('base_garde_de_fonds_cout_unitaire'),
-            //'base_garde_de_fonds_montant_garde_cu' => $request->get('base_garde_de_fonds_montant_garde_cu'),
-            //'base_garde_de_fonds_cout_forfetaire' => $request->get('base_garde_de_fonds_cout_forfetaire'),
-            //'base_garde_de_fonds_montant_garde_cf' => $request->get('base_garde_de_fonds_montant_garde_cf'),
-            //'base_comptage_tri_cout_unitaire' => $request->get('base_comptage_tri_cout_unitaire'),
-            //'base_comptage_tri_montant_ctv' => $request->get('base_comptage_tri_montant_ctv'),
-            //'base_gestion_atm' => $request->get('base_gestion_atm'),
             'bt_atm' => $request->get('bt_atm'),
             'base_comptage_montant_forfaitaire' => $request->get('base_comptage_montant_forfaitaire'),
             'base_garde_de_fonds_montant_forfaitaire' => $request->get('base_garde_de_fonds_montant_forfaitaire'),
-            //ase_maintenance_atm' => $request->get('base_maintenance_atm'),
-            //'base_consommable_atm' => $request->get('base_consommable_atm'),
+            'client_secteur_activite' => $request->get('client_secteur_activite'),
+            'centre' => $request->get('centre'),
+            'centre_regional' => $request->get('centre_regional'),
         ]);
         $client->save();
     }
-
 
     public function updateClient(Request $request, $id)
     {
@@ -148,18 +165,12 @@ class CommercialClientController extends Controller
         $client->base_petit_materiel_securipack = $request->get('base_petit_materiel_securipack');
         $client->base_petit_materiel_sacjute = $request->get('base_petit_materiel_sacjute');
         $client->base_petit_materiel_scelle = $request->get('base_petit_materiel_scelle');
-        //$client->base_garde_de_fonds_cout_unitaire = $request->get('base_garde_de_fonds_cout_unitaire');
-        //$client->base_garde_de_fonds_montant_garde_cu = $request->get('base_garde_de_fonds_montant_garde_cu');
-        //$client->base_garde_de_fonds_cout_forfetaire = $request->get('base_garde_de_fonds_cout_forfetaire');
-        //$client->base_garde_de_fonds_montant_garde_cf = $request->get('base_garde_de_fonds_montant_garde_cf');
-        //$client->base_comptage_tri_cout_unitaire = $request->get('base_comptage_tri_cout_unitaire');
-        //$client->base_comptage_tri_montant_ctv = $request->get('base_comptage_tri_montant_ctv');
-        //$client->base_gestion_atm = $request->get('base_gestion_atm');
-        //$client->base_maintenance_atm = $request->get('base_maintenance_atm');
-        //$client->base_consommable_atm = $request->get('base_consommable_atm');
         $client->bt_atm = $request->get("bt_atm");
         $client->base_comptage_montant_forfaitaire = $request->get("base_comptage_montant_forfaitaire");
         $client->base_garde_de_fonds_montant_forfaitaire = $request->get("base_garde_de_fonds_montant_forfaitaire");
+        $client->centre_regional = $request->get("centre_regional");
+        $client->centre = $request->get("centre");
+        $client->client_secteur_activite = $request->get("client_secteur_activite");
 
         $client->save();
     }
@@ -170,7 +181,7 @@ class CommercialClientController extends Controller
         if (empty($id)) {
             $this->saveClient($request);
         } else {
-            $this->updateClient($request);
+            $this->updateClient($request, $id);
         }
 
 
@@ -197,7 +208,10 @@ class CommercialClientController extends Controller
     public function edit($id)
     {
         $client = Commercial_client::find($id);
-        return view('commercial.client.edit', compact('client'));
+        $secteur_activites = OptionSecteurActivite::orderBy("option")->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        return view('commercial.client.edit', compact('client', 'secteur_activites', 'centres', 'centres_regionaux'));
     }
 
     /**

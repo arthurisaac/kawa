@@ -34,6 +34,8 @@
                 <th scope="col">Nom contact</th>
                 <th scope="col">Ville</th>
                 <th scope="col">Mail</th>
+                <th scope="col">Secteur activité</th>
+                <th scope="col">Centre régional</th>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -46,6 +48,8 @@
                     <td>{{$client->contact_nom}}</td>
                     <td>{{$client->client_ville}}</td>
                     <td>{{$client->contact_email}}</td>
+                    <td>{{$client->client_secteur_activite}}</td>
+                    <td>{{$client->centre_regional}}</td>
                     <td>
                         <div style="width: 110px;">
                             <a href="{{ route('commercial-client.edit', $client->id)}}"

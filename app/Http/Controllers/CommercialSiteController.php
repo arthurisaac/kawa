@@ -6,6 +6,7 @@ use App\Models\Centre;
 use App\Models\Centre_regional;
 use App\Models\Commercial_client;
 use App\Models\Commercial_site;
+use App\Models\OptionSecteurActivite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -30,6 +31,91 @@ class CommercialSiteController extends Controller
         $sites = Commercial_site::all();
         return view('commercial/site.liste',
             compact('sites'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $sites = Commercial_site::orderBy('site')->get();
+        $sites_com = Commercial_site::orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $clients = Commercial_client::orderBy('client_nom')->get();
+
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+
+        if (isset($client)) {
+            $sites = Commercial_site::with('clients')
+                ->where('client', $client)
+                ->get();
+        }
+
+        if (isset($site)) {
+            $data_com = Commercial_site::find($site);
+            if ($data_com) {
+                $sites = Commercial_site::with('clients')
+                    ->where('site', $data_com->site)
+                    ->get();
+            }
+        }
+
+        if (isset($site) && isset($client)) {
+            $data_com = Commercial_site::find($site);
+            $sites = Commercial_site::with('clients')
+                ->where('client', $client)
+                ->where('site', $data_com->site)
+                ->get();
+        }
+
+        if (isset($centre)) {
+            $data_com = Commercial_site::find($site);
+            if ($data_com) {
+                $sites = Commercial_site::with('clients')
+                    ->where('centre', $centre)
+                    ->get();
+            }
+        }
+
+        if (isset($centre_regional)) {
+            $data_com = Commercial_site::find($site);
+            if ($data_com) {
+                $sites = Commercial_site::with('clients')
+                    ->where('centre_regional', $centre_regional)
+                    ->get();
+            }
+        }
+
+        if (isset($centre_regional) && isset($centre)) {
+            $sites = Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->where('centre_regional', $centre_regional)
+                ->get();
+        }
+
+        if (isset($centre_regional) && isset($centre) && isset($client)) {
+            $sites = Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->where('centre_regional', $centre_regional)
+                ->where('client', $client)
+                ->get();
+        }
+
+        if (isset($centre_regional) && isset($centre) && isset($client) && isset($site)) {
+            $data_com = Commercial_site::find($site);
+            if ($data_com) {
+                $sites = Commercial_site::with('clients')
+                    ->where('centre', $centre)
+                    ->where('centre_regional', $centre_regional)
+                    ->where('client', $client)
+                    ->where('site', $data_com->site)
+                    ->get();
+            }
+        }
+
+        return view('commercial.site.liste-detaillee',
+            compact('sites', 'sites_com', 'centres', 'centres_regionaux', 'clients', 'client', 'site', 'centre', 'centre_regional'));
     }
 
     /**

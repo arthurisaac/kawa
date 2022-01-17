@@ -58,7 +58,7 @@
                             <div class="col">
                                 <div class="form-group row">
                                     <label for="client_nom" class="col-sm-5">Nom du client</label>
-                                    <input type="text" name="client_nom" id="client_nom" class="editbox col-sm-7" required/>
+                                    <input type="text" name="client_nom" id="client_nom" class="form-control col-sm-7" required/>
                                     <div>
                                         <ul id="list-clients"></ul>
                                     </div>
@@ -66,35 +66,59 @@
                                 <div class="form-group row">
                                     <label for="client_situation_geographique" class="col-sm-5">Situation géographique</label>
                                     <input type="text" name="client_situation_geographique" id="client_situation_geographique"
-                                           class="editbox col-sm-7"/>
+                                           class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="client_tel" class="col-sm-5">TEL/FAX</label>
-                                    <input type="text" name="client_tel" id="client_tel" class="editbox col-sm-7"/>
+                                    <input type="text" name="client_tel" id="client_tel" class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="client_regime" class="col-sm-5">Régime impot</label>
                                     <input type="text" name="client_regime_impot" id="client_regime_impot"
-                                           class="editbox col-sm-7"/>
+                                           class="form-control col-sm-7"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group row">
                                     <label for="client_boite_postale" class="col-sm-5">Boîte postale</label>
                                     <input type="text" name="client_boite_postale" id="client_boite_postale"
-                                           class="editbox col-sm-7"/>
+                                           class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="client_ville" class="col-sm-5">Ville</label>
-                                    <input type="text" name="client_ville" id="client_ville" class="editbox col-sm-7"/>
+                                    <input type="text" name="client_ville" id="client_ville" class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="client_rc" class="col-sm-5">RC</label>
-                                    <input type="text" name="client_rc" id="client_rc" class="editbox col-sm-7"/>
+                                    <input type="text" name="client_rc" id="client_rc" class="form-control col-sm-7"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="client_ncc" class="col-sm-5">NCC</label>
-                                    <input type="text" name="client_ncc" id="client_ncc" class="editbox col-sm-7"/>
+                                    <input type="text" name="client_ncc" id="client_ncc" class="form-control col-sm-7"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="client_secteur_activite" class="col-sm-5">Secteur d'activité</label>
+                                    <select name="client_secteur_activite" id="client_secteur_activite" class="form-control col-sm-7">
+                                        <option>{{$client->client_secteur_activite}}</option>
+                                        @foreach ($secteur_activites as $secteur_activite)
+                                            <option>{{ $secteur_activite->option }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="centre" class="col-sm-5">Centre Régional</label>
+                                    <select name="centre" id="centre" class="form-control col" required>
+                                        <option>{{$client->centre}}</option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="centre_regional" class="col-sm-5">Centre</label>
+                                    <select id="centre_regional" name="centre_regional" class="form-control col" required>
+                                        <option>{{$client->centre_regional}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">
@@ -126,31 +150,31 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="contact_nom" class="col-sm-5">Nom contact</label>
-                                <input type="text" name="contact_nom" id="contact_nom" class="editbox col-sm-7">
+                                <input type="text" name="contact_nom" id="contact_nom" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contact_email" class="col-sm-5">Email</label>
-                                <input type="email" name="contact_email" id="contact_email" class="editbox col-sm-7">
+                                <input type="email" name="contact_email" id="contact_email" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contact_portefeuille" class="col-sm-5">Porte feuille client</label>
                                 <input type="text" name="contact_portefeuille" id="contact_portefeuille"
-                                       class="editbox col-sm-7">
+                                       class="form-control col-sm-7">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group row">
                                 <label for="contact_fonction" class="col-sm-5">Fonction</label>
-                                <input type="text" name="contact_fonction" id="contact_fonction" class="editbox col-sm-7">
+                                <input type="text" name="contact_fonction" id="contact_fonction" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contact_portable" class="col-sm-5">Tel portable</label>
-                                <input type="tel" name="contact_portable" id="contact_portable" class="editbox col-sm-7">
+                                <input type="tel" name="contact_portable" id="contact_portable" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contact_secteur_activite" class="col-sm-5">Secteur d'activité</label>
                                 <input type="text" name="contact_secteur_activite" id="contact_secteur_activite"
-                                       class="editbox col-sm-7">
+                                       class="form-control col-sm-7">
                             </div>
                         </div>
                         <div class="col"></div>
@@ -168,15 +192,15 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="contrat_numero" class="col-sm-5">N° Contrat</label>
-                                <input type="text" name="contrat_numero" id="contrat_numero" class="editbox col-sm-7">
+                                <input type="text" name="contrat_numero" id="contrat_numero" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contrat_date_effet" class="col-sm-5">Date effet</label>
-                                <input type="date" name="contrat_date_effet" id="contrat_date_effet" class="editbox col-sm-7">
+                                <input type="date" name="contrat_date_effet" id="contrat_date_effet" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="contrat_duree" class="col-sm-5">Durée</label>
-                                <input type="number" name="contrat_duree" id="contrat_duree" class="editbox col-sm-7">
+                                <input type="number" name="contrat_duree" id="contrat_duree" class="form-control col-sm-7">
                             </div>
                         </div>
                         <div class="col">
@@ -356,7 +380,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-6">Garde de fond / montant forfaitaire</label>
                                             <input type="number" min="0"
-                                                   name="base_garde_de_fonds_montant_forfaitaire" value="{{$client->base_garde_de_fonds_montant_forfaitaire}}" class="editbox col-sm-6">
+                                                   name="base_garde_de_fonds_montant_forfaitaire" value="{{$client->base_garde_de_fonds_montant_forfaitaire}}" class="form-control col-sm-6">
                                         </div>
                                     </div>
                                 </div>
@@ -372,20 +396,20 @@
                                             <label for="bt_comptage_cout_unitaire">Coût unitaire</label>
                                             <input type="number" min="0" name="base_comptage_tri_cout_unitaire"
                                                    id="bt_comptage_cout_unitaire"
-                                                   class="editbox"/>
+                                                   class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="bt_comptage_montant_ctv">Montant CTV</label>
                                             <input type="number" min="0" name="base_comptage_tri_montant_ctv"
                                                    id="bt_comptage_montant_ctv"
-                                                   class="editbox"/>
+                                                   class="form-control"/>
                                         </div>
                                     </div>
                                 </div>--}}
 
                                 <div class="form-group row">
                                     <label for="bt_comptage_montant_forfaitaire" class="col-sm-5">Comptage + tri / montant forfaitaire</label>
-                                    <input type="text" name="base_comptage_montant_forfaitaire" value="{{$client->base_comptage_montant_forfaitaire}}" id="bt_comptage_montant_forfaitaire" class="editbox col-sm-7">
+                                    <input type="text" name="base_comptage_montant_forfaitaire" value="{{$client->base_comptage_montant_forfaitaire}}" id="bt_comptage_montant_forfaitaire" class="form-control col-sm-7">
                                 </div>
                                 <br/>
                                 <h6>ATM</h6>
@@ -409,15 +433,15 @@
                                 </div>
                             {{--<div class="form-group row">
                                 <label for="bt_gestion_atm" class="col-sm-5">Gestion ATM</label>
-                                <input type="text" name="base_gestion_atm" id="bt_gestion_atm" class="editbox col-sm-7">
+                                <input type="text" name="base_gestion_atm" id="bt_gestion_atm" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="bt_maintenance_atm" class="col-sm-5">Maintenance ATM</label>
-                                <input type="text" name="base_maintenance_atm" id="bt_maintenance_atm" class="editbox col-sm-7">
+                                <input type="text" name="base_maintenance_atm" id="bt_maintenance_atm" class="form-control col-sm-7">
                             </div>
                             <div class="form-group row">
                                 <label for="bt_consommable_atm" class="col-sm-5">Consommable ATM</label>
-                                <input type="text" name="base_consommable_atm" id="bt_consommable_atm" class="editbox col-sm-7">
+                                <input type="text" name="base_consommable_atm" id="bt_consommable_atm" class="form-control col-sm-7">
                             </div>--}}
                             <!--<input type="hidden" name="id_client"id="id_client">-->
                             </div>

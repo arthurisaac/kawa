@@ -99,6 +99,30 @@
                                     <label for="client_ncc" class="col-sm-5">NCC</label>
                                     <input type="text" name="client_ncc" id="client_ncc" class="editbox col-sm-7"/>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="client_secteur_activite" class="col-sm-5">Secteur d'activité</label>
+                                    <select name="client_secteur_activite" id="client_secteur_activite" class="editbox col-sm-7">
+                                        <option></option>
+                                        @foreach ($secteur_activites as $secteur_activite)
+                                            <option>{{ $secteur_activite->option }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="centre" class="col-sm-5">Centre Régional</label>
+                                    <select name="centre" id="centre" class="form-control col" required>
+                                        <option></option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="centre_regional" class="col-sm-5">Centre</label>
+                                    <select id="centre_regional" name="centre_regional" class="form-control col" required>
+                                        <option></option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
                                 {{--<div>
@@ -504,7 +528,8 @@
     </div>
     <script>
         let clients =  {!! json_encode($clients) !!};
-        // console.log(clients);
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
         $(document).ready(function () {
             $("input[name='client_nom']").on("keyup", function () {
@@ -513,6 +538,20 @@
                 for (let i = 0; i < clients.length; i++) {
                     if (clients[i].client_nom === current_word) populateData(clients[i]);
                 }
+            });
+
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
             });
         });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OptionBordereau;
 use App\Models\OptionDevise;
 use App\Models\OptionNiveauCarburant;
+use App\Models\OptionSecteurActivite;
 use Illuminate\Http\Request;
 
 class OptionSelectController extends Controller
@@ -93,6 +94,35 @@ class OptionSelectController extends Controller
 
         if ($request->ajax()) {
             $data = OptionDevise::find($id);
+            if ($data) $data->delete();
+            return \response()->json([
+                'message' => 'ok'
+            ]);
+        }
+    }
+
+    // DEVISE
+
+    public function optionSecteurActivite()
+    {
+        $options = OptionSecteurActivite::all();
+        return view('parametre.option.secteur-activite', compact('options'));
+    }
+
+    public function storeSecteurActivite(Request $request)
+    {
+        $data = new OptionSecteurActivite([
+            'option' => $request->get('option')
+        ]);
+        $data->save();
+        return redirect()->back()->with('success', 'Enregistré avec succès');
+    }
+
+    public function destroySecteurActivite(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+            $data = OptionSecteurActivite::find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'

@@ -20,7 +20,7 @@ Route::resource('/', 'WelcomeController');
  *  USER
  */
 
-//Route::resource('user', 'UserController');
+Route::resource('user', 'UserController');
 
 /*Route::get('login', [\App\Http\Controllers\UserController::class, 'login']);*/
 //Route::post('auth', [\App\Http\Controllers\UserController::class, 'auth']);
@@ -133,9 +133,11 @@ Route::get('conteneur-liste', [\App\Http\Controllers\ConteneurController::class,
 
 Route::resource('commercial-client', 'CommercialClientController');
 Route::get('commercial-client-liste', [\App\Http\Controllers\CommercialClientController::class, 'liste']);
+Route::get('commercial-client-liste-detaillee', [\App\Http\Controllers\CommercialClientController::class, 'listeDetaillee']);
 
 Route::resource('commercial-site', 'CommercialSiteController');
 Route::get('commercial-site-liste', [\App\Http\Controllers\CommercialSiteController::class, 'liste']);
+Route::get('commercial-site-liste-detaillee', [\App\Http\Controllers\CommercialSiteController::class, 'listeDetaillee']);
 
 /*
  * RH
@@ -399,4 +401,8 @@ Route::delete('parametres-option-bordereau/{id}', [\App\Http\Controllers\OptionS
 Route::get('parametres-option-devise', [\App\Http\Controllers\OptionSelectController::class, 'optionDevise']);
 Route::post('parametres-option-devise', [\App\Http\Controllers\OptionSelectController::class, 'storeDevise']);
 Route::delete('parametres-option-devise/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyDevise']);
+
+Route::get('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSelectController::class, 'optionSecteurActivite']);
+Route::post('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSelectController::class, 'storeSecteurActivite']);
+Route::delete('parametres-option-secteur-activite/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroySecteurActivite']);
 
