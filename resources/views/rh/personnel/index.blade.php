@@ -486,6 +486,7 @@
                                 <th>Date</th>
                                 <th>Sanction</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -498,6 +499,7 @@
                                             <option>Licenciement</option>
                                         </select></td>
                                     <td><input type="text" name="sanction_motif[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerSanctionTableLine(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -553,6 +555,7 @@
                                 <th>Lieu</th>
                                 <th>Motif</th>
                                 <th>Frais</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -565,6 +568,7 @@
                                     <td><input type="text" name="missions_lieu[]" class="form-control"></td>
                                     <td><input type="text" name="missions_motif[]" class="form-control"></td>
                                     <td><input type="number" min="0" name="missions_frais[]" class="form-control">
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerMissionTableLine(this)"></a></td>
                                     </td>
                                 </tr>
                             @endfor
@@ -585,6 +589,7 @@
                                 <th>Fin absence</th>
                                 <th>Nbre de jours</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -594,6 +599,7 @@
                                     <td><input type="date" name="absence_fin[]" class="form-control"></td>
                                     <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>
                                     <td><input type="text" name="absence_motif[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAbsenceTableLine(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -615,6 +621,7 @@
                                 <th>Nbre de jours</th>
                                 <th>Fonction</th>
                                 <th>Salaire</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -632,6 +639,7 @@
                                     <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
                                     <td><input type="text" name="contrat_fonction[]" class="form-control"></td>
                                     <td><input type="text" name="contrat_salaire[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerContratTableLine(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -651,6 +659,7 @@
                                 <th>Date demande d'explication</th>
                                 <th>Motif demande explication</th>
                                 <th>Sanctions</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -659,6 +668,7 @@
                                     <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
                                     <td><input type="text" name="demande_motif[]" class="form-control"></td>
                                     <td><input type="text" name="demande_sanctions[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerExplicationTableLine(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -678,6 +688,7 @@
                                 <th>Date d'affectation</th>
                                 <th>Centre</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -686,6 +697,7 @@
                                     <td><input type="date" name="affectation_date[]" class="form-control"></td>
                                     <td><input type="text" name="affectation_centre[]" class="form-control"></td>
                                     <td><input type="text" name="affectation_motif[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAffectationTableLine(this)"></a></td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -736,8 +748,8 @@
                     '                                               class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>\n' +
-                    '                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">\n' +
-                    '                                    </td>\n' +
+                    '                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerMissionTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -748,6 +760,7 @@
                     '                                    <td><input type="date" name="absence_fin[]" class="form-control"></td>\n' +
                     '                                    <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="absence_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAbsenceTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -766,6 +779,7 @@
                     '                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerContratTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -775,6 +789,7 @@
                     '                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerExplicationTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -784,6 +799,7 @@
                     '                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAffectationTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -797,6 +813,7 @@
                     '                                            <option>Licenciement </option>\n' +
                     '                                        </select></td>\n' +
                     '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerSanctionTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -816,6 +833,30 @@
         function supprimerCongeTableLine(e) {
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("tableConge").deleteRow(indexLigne);
+        }
+        function supprimerSanctionTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableSanction").deleteRow(indexLigne);
+        }
+        function supprimerMissionTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableMission").deleteRow(indexLigne);
+        }
+        function supprimerAbsenceTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableAbsences").deleteRow(indexLigne);
+        }
+        function supprimerContratTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableContrats").deleteRow(indexLigne);
+        }
+        function supprimerExplicationTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableExplication").deleteRow(indexLigne);
+        }
+        function supprimerAffectationTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableAffectation").deleteRow(indexLigne);
         }
 
         $(document).ready(function () {

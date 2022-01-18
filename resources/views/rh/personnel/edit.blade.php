@@ -454,14 +454,10 @@
                                 <tr>
                                     <input type="hidden" name="conge_id[]" value="{{$gestion->id}}"
                                            class="form-control">
-                                    <td><input type="date" name="dateDernierDepartConge_edit[]"
-                                               value="{{$gestion->dernier}}" class="form-control"></td>
-                                    <td><input type="date" name="dateProchainDepartConge[]"
-                                               value="{{$gestion->prochain}}" class="form-control"></td>
-                                    <td><input type="text" name="nombreJourPris[]" value="{{$gestion->jourPris}}"
-                                               class="form-control"></td>
-                                    <td><a class="btn btn-danger btn-sm"
-                                           onclick="supprimerConge({{$gestion->id}}, this)"></a></td>
+                                    <td><input type="date" name="dateDernierDepartConge_edit[]" value="{{$gestion->dernier}}" class="form-control"></td>
+                                    <td><input type="date" name="dateProchainDepartConge[]" value="{{$gestion->prochain}}" class="form-control"></td>
+                                    <td><input type="text" name="nombreJourPris[]" value="{{$gestion->jourPris}}" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerConge('{{$gestion->id}}', this)"></a></td>
                                 </tr>
                             @endforeach
 
@@ -488,6 +484,7 @@
                                 <th>Date</th>
                                 <th>Sanction</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -501,10 +498,11 @@
                                                value="{{$mission->sanction}}" class="form-control"></td>
                                     <td><input type="text" name="sanction_motif_edit[]"
                                                value="{{$mission->motif}}" class="form-control"></td>
+                                    <td></td>
 
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i <= 2; $i++)
+
                                 <tr>
                                     <td><input type="date" name="sanction_date[]" class="form-control"></td>
                                     <td><select type="text" name="sanction_sanction[]" class="form-control">
@@ -513,8 +511,9 @@
                                             <option>Licenciement</option>
                                         </select></td>
                                     <td><input type="text" name="sanction_motif[]" class="form-control"></td>
+                                    <td>><a class="btn btn-danger btn-sm" onclick="supprimerSanctionTableLine(this)"></a></td>
                                 </tr>
-                            @endfor
+
                             </tbody>
                         </table>
                     </div>
@@ -574,6 +573,7 @@
                                 <th>Lieu</th>
                                 <th>Motif</th>
                                 <th>Frais</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -594,20 +594,21 @@
                                                value="{{$mission->frais}}" class="form-control"></td>
                                     <td><input type="hidden" name="missions_ids_edit[]" value="{{$mission->id}}"
                                                class="form-control"></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i <= 5; $i++)
-                                <tr>
-                                    <td><input type="date" name="missions_debut[]" class="form-control"></td>
-                                    <td><input type="date" name="missions_fin[]" class="form-control"></td>
-                                    <td><input type="number" min="0" name="missions_nbre_jours[]"
-                                               class="form-control"></td>
-                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>
-                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>
-                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">
-                                    </td>
-                                </tr>
-                            @endfor
+
+                            <tr>
+                                <td><input type="date" name="missions_debut[]" class="form-control"></td>
+                                <td><input type="date" name="missions_fin[]" class="form-control"></td>
+                                <td><input type="number" min="0" name="missions_nbre_jours[]"
+                                           class="form-control"></td>
+                                <td><input type="text" name="missions_lieu[]" class="form-control"></td>
+                                <td><input type="text" name="missions_motif[]" class="form-control"></td>
+                                <td><input type="number" min="0" name="missions_frais[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerMissionTableLine(this)"></a></td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -625,6 +626,7 @@
                                 <th>Fin absence</th>
                                 <th>Nbre de jours</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -639,6 +641,7 @@
                                                value="{{$data->nombre_jours}}" class="form-control"></td>
                                     <td><input type="text" name="absence_motif_edit[]" value="{{$data->motif}}"
                                                class="form-control"></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                             @for($i = 0; $i <= 5; $i++)
@@ -648,6 +651,8 @@
                                     <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>
                                     <td><input type="text" name="absence_motif[]" class="form-control"></td>
                                     <td><input type="number" name="absence_frais[]" class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAbsenceTableLine(this)"></a>
+                                    </td>
                                 </tr>
                             @endfor
                             </tbody>
@@ -669,6 +674,7 @@
                                 <th>Nbre de jours</th>
                                 <th>Fonction</th>
                                 <th>Salaire</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -687,24 +693,26 @@
                                                class="form-control"></td>
                                     <td><input type="text" name="contrat_salaire_edit[]" value="{{$gestion->salaire}}"
                                                class="form-control"></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i <= 5; $i++)
-                                <tr>
-                                    <td><select type="text" name="contrat_type_contrat[]" class="form-control">
-                                            <option>CDD</option>
-                                            <option>CDI</option>
-                                            <option>STAGE</option>
-                                            <option>INTERIM</option>
-                                            <option>IMMERSION</option>
-                                        </select></td>
-                                    <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>
-                                    <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>
-                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
-                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>
-                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>
-                                </tr>
-                            @endfor
+
+                            <tr>
+                                <td><select type="text" name="contrat_type_contrat[]" class="form-control">
+                                        <option>CDD</option>
+                                        <option>CDI</option>
+                                        <option>STAGE</option>
+                                        <option>INTERIM</option>
+                                        <option>IMMERSION</option>
+                                    </select></td>
+                                <td><input type="date" name="contrat_debut_contrat[]" class="form-control"></td>
+                                <td><input type="date" name="contrat_fin_contrat[]" class="form-control"></td>
+                                <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>
+                                <td><input type="text" name="contrat_fonction[]" class="form-control"></td>
+                                <td><input type="text" name="contrat_salaire[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerContratTableLine(this)"></a></td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -722,6 +730,7 @@
                                 <th>Date demande d'explication</th>
                                 <th>Motif demande explication</th>
                                 <th>Sanctions</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -734,15 +743,16 @@
                                                class="form-control"></td>
                                     <td><input type="text" name="demande_sanctions_edit[]"
                                                value="{{$gestion->sanctions}}" class="form-control"></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i < 5; $i++)
-                                <tr>
-                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
-                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>
-                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>
-                                </tr>
-                            @endfor
+                            <tr>
+                                <td><input type="date" name="demande_date_demande[]" class="form-control"></td>
+                                <td><input type="text" name="demande_motif[]" class="form-control"></td>
+                                <td><input type="text" name="demande_sanctions[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerExplicationTableLine(this)"></a>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -760,6 +770,7 @@
                                 <th>Date d'affectation</th>
                                 <th>Centre</th>
                                 <th>Motif</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -772,15 +783,18 @@
                                                class="form-control"></td>
                                     <td><input type="text" name="affectation_motif_edit[]" value="{{$gestion->motif}}"
                                                class="form-control"></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i < 5; $i++)
-                                <tr>
-                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>
-                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>
-                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>
-                                </tr>
-                            @endfor
+
+                            <tr>
+                                <td><input type="date" name="affectation_date[]" class="form-control"></td>
+                                <td><input type="text" name="affectation_centre[]" class="form-control"></td>
+                                <td><input type="text" name="affectation_motif[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerAffectationTableLine(this)"></a>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -829,8 +843,8 @@
                     '                                               class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="missions_lieu[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="missions_motif[]" class="form-control"></td>\n' +
-                    '                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control">\n' +
-                    '                                    </td>\n' +
+                    '                                    <td><input type="number" min="0" name="missions_frais[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerMissionTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -841,6 +855,7 @@
                     '                                    <td><input type="date" name="absence_fin[]" class="form-control"></td>\n' +
                     '                                    <td><input type="number" name="absence_nombre_jours[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="absence_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAbsenceTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -859,6 +874,7 @@
                     '                                    <td><input type="number" name="contrat_nombre_jours[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="contrat_fonction[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="contrat_salaire[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerContratTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -868,6 +884,7 @@
                     '                                    <td><input type="date" name="demande_date_demande[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="demande_motif[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="demande_sanctions[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerExplicationTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -877,6 +894,7 @@
                     '                                    <td><input type="date" name="affectation_date[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_centre[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="affectation_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerAffectationTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -890,6 +908,7 @@
                     '                                            <option>Licenciement </option>\n' +
                     '                                        </select></td>\n' +
                     '                                    <td><input type="text" name="sanction_motif[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerSanctionTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
 
@@ -936,5 +955,41 @@
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("tableConge").deleteRow(indexLigne);
         }
+
+        function supprimerSanctionTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableSanction").deleteRow(indexLigne);
+        }
+
+        function supprimerMissionTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableMission").deleteRow(indexLigne);
+        }
+
+        function supprimerAbsenceTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableAbsences").deleteRow(indexLigne);
+        }
+
+        function supprimerContratTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableContrats").deleteRow(indexLigne);
+        }
+
+        function supprimerExplicationTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableExplication").deleteRow(indexLigne);
+        }
+
+        function supprimerAffectationTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableAffectation").deleteRow(indexLigne);
+        }
+
+        $(document).ready(function () {
+            $("#continueBtn").on("click", function () {
+                $("#successAlert").hide();
+            });
+        });
     </script>
 @endsection
