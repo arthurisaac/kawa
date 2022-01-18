@@ -70,21 +70,15 @@ class CommercialSiteController extends Controller
         }
 
         if (isset($centre)) {
-            $data_com = Commercial_site::find($site);
-            if ($data_com) {
-                $sites = Commercial_site::with('clients')
-                    ->where('centre', $centre)
-                    ->get();
-            }
+            $sites = Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->get();
         }
 
         if (isset($centre_regional)) {
-            $data_com = Commercial_site::find($site);
-            if ($data_com) {
-                $sites = Commercial_site::with('clients')
-                    ->where('centre_regional', $centre_regional)
-                    ->get();
-            }
+            $sites = Commercial_site::with('clients')
+                ->where('centre_regional', $centre_regional)
+                ->get();
         }
 
         if (isset($centre_regional) && isset($centre)) {
@@ -94,11 +88,36 @@ class CommercialSiteController extends Controller
                 ->get();
         }
 
+        if (isset($centre_regional) && isset($site)) {
+            $data_com = Commercial_site::find($site);
+            $sites = Commercial_site::with('clients')
+                ->where('centre_regional', $centre_regional)
+                ->where('site', $data_com->site)
+                ->get();
+        }
+
+        if (isset($centre) && isset($site)) {
+            $data_com = Commercial_site::find($site);
+            $sites = Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->where('site', $data_com->site)
+                ->get();
+        }
+
         if (isset($centre_regional) && isset($centre) && isset($client)) {
             $sites = Commercial_site::with('clients')
                 ->where('centre', $centre)
                 ->where('centre_regional', $centre_regional)
                 ->where('client', $client)
+                ->get();
+        }
+
+        if (isset($centre_regional) && isset($centre) && isset($site)) {
+            $data_com = Commercial_site::find($site);
+            $sites = Commercial_site::with('clients')
+                ->where('centre', $centre)
+                ->where('centre_regional', $centre_regional)
+                ->where('site', $data_com->site)
                 ->get();
         }
 

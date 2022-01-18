@@ -145,6 +145,9 @@ Route::get('commercial-site-liste-detaillee', [\App\Http\Controllers\CommercialS
 
 Route::resource('personnel', 'PersonnelController');
 Route::get('personnel-liste', [\App\Http\Controllers\PersonnelController::class, 'liste']);
+Route::get('personnel-liste-detaillee', [\App\Http\Controllers\PersonnelController::class, 'listeDetaillee']);
+Route::delete('personnel-conges-item/{id}', [\App\Http\Controllers\PersonnelController::class, 'destroyCongeItem']);
+
 Route::resource('convoyeur', 'ConvoyeurController');
 Route::get('convoyeur-liste', [\App\Http\Controllers\ConvoyeurController::class, 'liste']);
 

@@ -42,6 +42,280 @@ class PersonnelController extends Controller
             compact('personnels'));
     }
 
+    public function listeDetaillee(Request $request)
+    {
+        $personnels = Personnel::all();
+        $centre = $request->get('centre');
+        $centre_regional = $request->get('centre_regional');
+        $fonction = $request->get('fonction');
+        $service = $request->get('service');
+        $nature = $request->get('nature');
+        $situation_matrimonial = $request->get('situation_matrimonial');
+
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        if (isset($fonction)) {
+            $personnels = Personnel::query()->where("fonction", 'like', "%" . $fonction . "%")->get();
+        }
+        if (isset($service)) {
+            $personnels = Personnel::query()->where("service", 'like', "%" . $service . "%")->get();
+        }
+        if (isset($nature)) {
+            $personnels = Personnel::query()->where("natureContrat", 'like', "%" . $nature . "%")->get();
+        }
+        if (isset($situation_matrimonial)) {
+            $personnels = Personnel::query()->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")->get();
+        }
+        if (isset($centre)) {
+            $personnels = Personnel::query()->where("centre", 'like', "%" . $centre . "%")->get();
+        }
+        if (isset($centre_regional)) {
+            $personnels = Personnel::query()->where("centreRegional", 'like', "%" . $centre_regional . "%")->get();
+        }
+        if (isset($centre) && isset($centre_regional)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->get();
+        }
+        // Recherche par centre
+        if (isset($centre) && isset($fonction)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre fonction
+        if (isset($centre) && isset($fonction) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($fonction) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($fonction) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre service
+        if (isset($centre) && isset($service) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre) && isset($service) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre regional
+        if (isset($centre_regional) && isset($fonction)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre régional fonction
+        if (isset($centre_regional) && isset($fonction) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($fonction) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($fonction) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre régional service
+        if (isset($centre_regional) && isset($service) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($service) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }// Recherche par centre regional et centre
+        if (isset($centre_regional) && isset($centre) && isset($fonction)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre régional fonction
+        if (isset($centre_regional) && isset($fonction) && isset($service)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($fonction) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($fonction) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche par centre régional service
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        // Recherche tous les champs
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($nature) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($fonction) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($fonction) && isset($nature)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre) && isset($service) && isset($fonction) && isset($nature) && isset($situation_matrimonial)) {
+            $personnels = Personnel::query()
+                ->where("centreRegional", 'like', "%" . $centre_regional . "%")
+                ->where("centre", 'like', "%" . $centre . "%")
+                ->where("service", 'like', "%" . $service . "%")
+                ->where("fonction", 'like', "%" . $fonction . "%")
+                ->where("natureContrat", 'like', "%" . $nature . "%")
+                ->where("situationMatrimoniale", 'like', "%" . $situation_matrimonial . "%")
+                ->get();
+        }
+
+        return view('/rh.personnel.liste-detaillee',
+            compact('personnels', 'centres', 'centres_regionaux', 'centre', 'centre_regional', 'fonction', 'service', 'nature', 'situation_matrimonial'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -102,46 +376,6 @@ class PersonnelController extends Controller
             'photo' => $photo
         ]);
         $personnel->save();
-        /*if (!empty($request->get('nombreJourPris'))) {
-            $conges = new PersonnelConge([
-                'personnel' => $personnel->id,
-                'dateDernierDepartConge' => $request->get('dateDernierDepartConge'),
-                'dateProchainDepartConge' => $request->get('dateProchainDepartConge'),
-                'nombreJourPris' => $request->get('nombreJourPris'),
-                'nombreJourRestant' => $request->get('nombreJourRestant'),
-            ]);
-            $conges->save();
-        }
-        if (!empty($request->get('avertissement') || !empty($request->get('miseAPied')) || !empty($request->get('licenciement')))) {
-            $sanctions = new PersonnelSanction([
-                'personnel' => $personnel->id,
-                'avertissement' => $request->get('avertissement'),
-                'miseAPied' => $request->get('miseAPied'),
-                'licenciement' => $request->get('licenciement')
-            ]);
-            $sanctions->save();
-        }*/
-        /*if (!empty($request->get('missions_debut')) && !empty($request->get('missions_fin'))) {
-            $missions_debut = $request->get('missions_debut');
-            $missions_fin = $request->get('missions_fin');
-            $missions_nbre_jours = $request->get('missions_nbre_jours');
-            $missions_lieu = $request->get('missions_lieu');
-            $missions_motif = $request->get('missions_motif');
-            $missions_frais = $request->get('missions_frais');
-
-            for ($i = 0; $i < count($missions_debut); $i++) {
-                $mission = new PersonnelGestionMission([
-                    "debut_mission" => $missions_debut[$i],
-                    "fin_mission" => $missions_fin[$i],
-                    "nombre_jours" => $missions_nbre_jours[$i],
-                    "lieu" => $missions_lieu[$i],
-                    "motif" => $missions_motif[$i],
-                    "frais" => $missions_frais[$i],
-                    "personnel" => $personnel->id,
-                ]);
-                $mission->save();
-            }
-        }*/
 
         /* missions */
         if (!empty($request->get('missions_debut')) && !empty($request->get('missions_fin'))) {
@@ -691,5 +925,14 @@ class PersonnelController extends Controller
             'message' => 'Good!'
         ]);
         //return redirect('/personnel-liste')->with('success', 'Personnel supprimé!');
+    }
+
+    public function destroyCongeItem($id)
+    {
+        $data = PersonnelConge::find($id);
+        $data->delete();
+        return response()->json([
+            'message' => 'Good!'
+        ]);
     }
 }

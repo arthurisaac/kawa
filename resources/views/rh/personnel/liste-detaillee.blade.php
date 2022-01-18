@@ -3,7 +3,6 @@
 @section('main')
     <div class="burval-container">
         <div><h2 class="heading">Liste personnel</h2></div>
-        <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -24,6 +23,77 @@
             <a href="{{route('personnel.index')}}" class="btn btn-primary">Nouveau personnel +</a>
         </div>
         <br>
+        <div class="titre">
+            <span class="titre">TOTAL PERSONNEL</span> : <span class="text-danger">{{count($personnels)}}</span>
+        </div>
+        <br>
+        <form action="#" method="get">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="fonction" class="col-5">Fonction</label>
+                        <input id="fonction" name="fonction" class="form-control col" value="{{$fonction}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="service" class="col-5">Service</label>
+                        <input id="service" name="service" class="form-control col" value="{{$service}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="nature" class="col-5">Nature contrat</label>
+                        <input id="nature" type="text" name="nature" class="form-control col-7" value="{{$nature}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="situation_matrimonial" class="col-5">Situation matrimonial</label>
+                        <input id="situation_matrimonial" type="text" name="situation_matrimonial" class="form-control col-7" value="{{$nature}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row"></div>
+                </div>
+                <div class="col">
+                    <div class="form-group row"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <a href="/personnel-liste-detaillee" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
+            </div>
+        </form>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered" style="width: 100%;" id="liste">
@@ -57,7 +127,7 @@
                                 <a href="{{ route('personnel.edit',$personnel->id)}}"
                                    class="btn btn-primary btn-sm"></a>
                                 <button class="btn btn-danger btn-sm"
-                                        onclick="supprimer('{{$personnel->id}}', this)"></button>
+                                        onclick="supprimer({{$personnel->id}}, this)"></button>
                             </td>
                         </tr>
                     @endforeach

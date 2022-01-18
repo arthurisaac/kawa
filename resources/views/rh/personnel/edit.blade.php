@@ -23,7 +23,9 @@
                     <h5>{{ $personnel->nomPrenoms }}</h5>
                     <p style="color: darkred">{{ $personnel->fonction }}</p>
                 </div>
-                <img src="{{$personnel->photo ? (config('global.FILES_URL') . $personnel->photo)  : "/images/logonoir.png" }}" alt="" style="height: 50px;">
+                <img
+                    src="{{$personnel->photo ? (config('global.FILES_URL') . $personnel->photo)  : "/images/logonoir.png" }}"
+                    alt="" style="height: 50px;">
             </div>
             <br>
 
@@ -36,10 +38,10 @@
                     <a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab"
                        aria-controls="infos" aria-selected="false">Informations complementaires</a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"--}}
-{{--                       aria-controls="affectation" aria-selected="false">Affectation</a>--}}
-{{--                </li>--}}
+                {{--                <li class="nav-item">--}}
+                {{--                    <a class="nav-link" id="affectation-tab" data-toggle="tab" href="#affectation" role="tab"--}}
+                {{--                       aria-controls="affectation" aria-selected="false">Affectation</a>--}}
+                {{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" id="conges-tab" data-toggle="tab" href="#conges" role="tab"
                        aria-controls="conges" aria-selected="false">Gestion des conges</a>
@@ -452,18 +454,24 @@
                                 <tr>
                                     <input type="hidden" name="conge_id[]" value="{{$gestion->id}}"
                                            class="form-control">
-                                    <td><input type="date" name="dateDernierDepartConge_edit[]" value="{{$gestion->dernier}}" class="form-control"></td>
-                                    <td><input type="date" name="dateProchainDepartConge[]"  value="{{$gestion->prochain}}" class="form-control"></td>
-                                    <td><input type="text" name="nombreJourPris[]" value="{{$gestion->jourPris}}" class="form-control"></td>
+                                    <td><input type="date" name="dateDernierDepartConge_edit[]"
+                                               value="{{$gestion->dernier}}" class="form-control"></td>
+                                    <td><input type="date" name="dateProchainDepartConge[]"
+                                               value="{{$gestion->prochain}}" class="form-control"></td>
+                                    <td><input type="text" name="nombreJourPris[]" value="{{$gestion->jourPris}}"
+                                               class="form-control"></td>
+                                    <td><a class="btn btn-danger btn-sm"
+                                           onclick="supprimerConge({{$gestion->id}}, this)"></a></td>
                                 </tr>
                             @endforeach
-                            @for($i = 0; $i <= 2; $i++)
-                                <tr>
-                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
-                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
-                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
-                                </tr>
-                            @endfor
+
+                            <tr>
+                                <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
+                                <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
+                                <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerCongeTableLine(this)"></a></td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -502,7 +510,7 @@
                                     <td><select type="text" name="sanction_sanction[]" class="form-control">
                                             <option>Avertissement</option>
                                             <option>Mise à pied</option>
-                                            <option>Licenciement </option>
+                                            <option>Licenciement</option>
                                         </select></td>
                                     <td><input type="text" name="sanction_motif[]" class="form-control"></td>
                                 </tr>
@@ -720,9 +728,12 @@
                             @foreach($gestionExplications as $gestion)
                                 <tr>
                                     <input type="hidden" name="demande_id[]" value="{{$gestion->id}}">
-                                    <td><input type="date" name="demande_date_demande_edit[]" value="{{$gestion->date_demande}}" class="form-control"></td>
-                                    <td><input type="text" name="demande_motif_edit[]" value="{{$gestion->motif}}" class="form-control"></td>
-                                    <td><input type="text" name="demande_sanctions_edit[]" value="{{$gestion->sanctions}}" class="form-control"></td>
+                                    <td><input type="date" name="demande_date_demande_edit[]"
+                                               value="{{$gestion->date_demande}}" class="form-control"></td>
+                                    <td><input type="text" name="demande_motif_edit[]" value="{{$gestion->motif}}"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="demande_sanctions_edit[]"
+                                               value="{{$gestion->sanctions}}" class="form-control"></td>
                                 </tr>
                             @endforeach
                             @for($i = 0; $i < 5; $i++)
@@ -743,7 +754,7 @@
                         <button type="button" id="addRowAffection" class="btn btn-sm btn-dark">Ajouter</button>
                         <br>
                         <br>
-                        <table class="table table-bordered"  id="tableAffectation">
+                        <table class="table table-bordered" id="tableAffectation">
                             <thead>
                             <tr>
                                 <th>Date d'affectation</th>
@@ -755,9 +766,12 @@
                             @foreach($gestionAffectation as $gestion)
                                 <tr>
                                     <input type="hidden" name="affectation_id[]" value="{{$gestion->id}}">
-                                    <td><input type="date" name="affectation_date_edit[]" value="{{$gestion->date_affectation}}" class="form-control"></td>
-                                    <td><input type="text" name="affectation_centre_edit[]" value="{{$gestion->centre}}" class="form-control"></td>
-                                    <td><input type="text" name="affectation_motif_edit[]" value="{{$gestion->motif}}" class="form-control"></td>
+                                    <td><input type="date" name="affectation_date_edit[]"
+                                               value="{{$gestion->date_affectation}}" class="form-control"></td>
+                                    <td><input type="text" name="affectation_centre_edit[]" value="{{$gestion->centre}}"
+                                               class="form-control"></td>
+                                    <td><input type="text" name="affectation_motif_edit[]" value="{{$gestion->motif}}"
+                                               class="form-control"></td>
                                 </tr>
                             @endforeach
                             @for($i = 0; $i < 5; $i++)
@@ -789,7 +803,6 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -804,7 +817,6 @@
             });
         });
     </script>
-
 
     <script>
         $(document).ready(function () {
@@ -887,8 +899,42 @@
                     '                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>\n' +
                     '                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerCongeTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
         });
+    </script>
+
+    <script>
+        function supprimerConge(id, e) {
+            if (confirm("Confirmer la suppression?")) {
+                const token = "{{ csrf_token() }}";
+                $.ajax({
+                    url: "/personnel-conges-item/" + id,
+                    type: 'DELETE',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        _token: token,
+                    },
+                    success: function (response) {
+                        supprimerCongeTableLine(e);
+                    },
+                    error: function (xhr) {
+                        alert("Une erreur s'est produite");
+                    }
+                }).done(function () {
+                    // TODO hide loader
+                });
+
+
+            }
+
+        }
+
+        function supprimerCongeTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableConge").deleteRow(indexLigne);
+        }
     </script>
 @endsection

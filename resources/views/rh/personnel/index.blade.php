@@ -437,16 +437,18 @@
                                 <th>Date du dernier départ</th>
                                 <th>Date du prochain départ</th>
                                 <th>Nombre de jours pris</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i <= 2; $i++)
-                                <tr>
-                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
-                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
-                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
-                                </tr>
-                            @endfor
+
+                            <tr>
+                                <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>
+                                <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>
+                                <td><input type="text" name="nombreJourPris[]" class="form-control"></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimerCongeTableLine(this)"></a></td>
+                            </tr>
+
                             </tbody>
                         </table>
                         {{--<div class="row">
@@ -493,7 +495,7 @@
                                     <td><select type="text" name="sanction_sanction[]" class="form-control">
                                             <option>Avertissement</option>
                                             <option>Mise à pied</option>
-                                            <option>Licenciement </option>
+                                            <option>Licenciement</option>
                                         </select></td>
                                     <td><input type="text" name="sanction_motif[]" class="form-control"></td>
                                 </tr>
@@ -708,7 +710,6 @@
         $(document).ready(function () {
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
-                $('#centre_regional').append($('<option>', {text: "Choisir centre régional"}));
 
                 const centre = centres.find(c => c.centre === this.value);
                 const regions = centres_regionaux.filter(region => {
@@ -805,12 +806,18 @@
                     '                                    <td><input type="date" name="dateDernierDepartConge[]" class="form-control"></td>\n' +
                     '                                    <td><input type="date" name="dateProchainDepartConge[]" class="form-control"></td>\n' +
                     '                                    <td><input type="text" name="nombreJourPris[]" class="form-control"></td>\n' +
+                    '                                    <td><a class="btn btn-danger btn-sm" onclick="supprimerCongeTableLine(this)"></a></td>\n' +
                     '                                </tr>');
             });
         });
     </script>
 
     <script>
+        function supprimerCongeTableLine(e) {
+            const indexLigne = $(e).closest('tr').get(0).rowIndex;
+            document.getElementById("tableConge").deleteRow(indexLigne);
+        }
+
         $(document).ready(function () {
             $("#continueBtn").on("click", function () {
                 $("#successAlert").hide();
