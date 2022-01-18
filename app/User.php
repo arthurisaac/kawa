@@ -1,5 +1,3 @@
-<<<<<<< HEAD:app/Models/User.php
-=======
 <?php
 
 namespace App;
