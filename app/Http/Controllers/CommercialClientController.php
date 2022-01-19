@@ -40,13 +40,53 @@ class CommercialClientController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
 
+        $secteur_activite = $request->get("secteur_activite");
         $client = $request->get("client");
         $site = $request->get("site");
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
         $secteur_activites = OptionSecteurActivite::orderBy("option")->get();
 
-        return view('commercial.client.liste-detaillee', compact('clients', 'sites_com', 'clients_com', 'centres', 'centres_regionaux', 'client', 'site', 'centre', 'centre_regional', 'secteur_activites'));
+        if (isset($client)) {
+            $clients = Commercial_client::query()->where('id', $client)->get();
+        }
+        if (isset($secteur_activite)) {
+            $clients = Commercial_client::query()
+                ->where('client_secteur_activite', $secteur_activite)
+                ->get();
+        }
+        if (isset($centre)) {
+            $clients = Commercial_client::query()
+                ->where('centre', $centre)
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $clients = Commercial_client::query()
+                ->where('centre_regional', $centre_regional)
+                ->get();
+        }
+        if (isset($centre_regional) && isset($centre)) {
+            $clients = Commercial_client::query()
+                ->where('centre_regional', $centre_regional)
+                ->where('centre', $centre)
+                ->get();
+        }
+        //Recherche par centre
+        if (isset($centre) && isset($client)) {
+            $clients = Commercial_client::query()
+                ->where('centre', $centre)
+                ->where('id', $client)
+                ->get();
+        }
+        if (isset($centre) && isset($secteur_activite)) {
+            $clients = Commercial_client::query()
+                ->where('centre', $centre)
+                ->where('client_secteur_activite', $secteur_activite)
+                ->get();
+        }
+
+        return view('commercial.client.liste-detaillee', compact('clients',
+            'sites_com', 'clients_com', 'centres', 'centres_regionaux', 'client', 'site', 'centre', 'centre_regional', 'secteur_activites', 'secteur_activite'));
     }
 
     /**
