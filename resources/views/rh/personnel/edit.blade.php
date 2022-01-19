@@ -144,8 +144,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4">Nature du contrat</label>
-                                    <select name="natureContrat" class="form-control col-sm-6"
-                                            value="{{ $personnel->natureContrat }}">
+                                    <select name="natureContrat" class="form-control col-sm-6">
+                                        <option>{{ $personnel->natureContrat }}</option>
                                         <option value="CDD">CDD</option>
                                         <option value="CDI">CDI</option>
                                         <option value="PRESTATAIRE">PRESTATAIRE</option>
