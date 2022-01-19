@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre" class="col-5">Centre Régional</label>
+                        <label for="centre" class="col-5">Centre</label>
                         <select name="centre" id="centre" class="form-control col">
                             <option>{{$centre}}</option>
                             @foreach ($centres as $centre)
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="centre_regional" class="col-5">Centre</label>
+                        <label for="centre_regional" class="col-5">Centre Régional</label>
                         <select id="centre_regional" name="centre_regional" class="form-control col">
                             <option>{{$centre_regional}}</option>
                             @foreach ($centres_regionaux as $centre)
@@ -126,8 +126,7 @@
                             <td>
                                 <a href="{{ route('personnel.edit',$personnel->id)}}"
                                    class="btn btn-primary btn-sm"></a>
-                                <button class="btn btn-danger btn-sm"
-                                        onclick="supprimer({{$personnel->id}}, this)"></button>
+                                <button class="btn btn-danger btn-sm" onclick="supprimer('{{$personnel->id}}', this)"></button>
                             </td>
                         </tr>
                     @endforeach

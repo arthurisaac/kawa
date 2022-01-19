@@ -811,7 +811,7 @@
         </form>
     </div>
     <script>
-        let centres =  {!! json_encode($centres) !!};
+        let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
 
         $(document).ready(function () {
