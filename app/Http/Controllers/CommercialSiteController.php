@@ -96,6 +96,13 @@ class CommercialSiteController extends Controller
                 ->get();
         }
 
+        if (isset($centre_regional) && isset($client)) {
+            $sites = Commercial_site::with('clients')
+                ->where('centre_regional', $centre_regional)
+                ->where('client', $client)
+                ->get();
+        }
+
         if (isset($centre) && isset($site)) {
             $data_com = Commercial_site::find($site);
             $sites = Commercial_site::with('clients')
