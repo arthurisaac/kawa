@@ -409,3 +409,11 @@ Route::get('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSe
 Route::post('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSelectController::class, 'storeSecteurActivite']);
 Route::delete('parametres-option-secteur-activite/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroySecteurActivite']);
 
+Route::get('parametres-option-categorie-informatique', [\App\Http\Controllers\OptionSelectController::class, 'optionCategorieInformatique']);
+Route::post('parametres-option-categorie-informatique', [\App\Http\Controllers\OptionSelectController::class, 'storeCategorieInformatique']);
+Route::delete('parametres-option-categorie-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyCategorieInformatique']);
+
+Route::get('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'optionLibelleInformatique']);
+Route::post('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'storeLibelleInformatique']);
+Route::delete('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyLibelleInformatique']);
+

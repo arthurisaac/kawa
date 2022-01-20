@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\InformatiqueFournisseur;
 use App\Models\InformatiqueMateriel;
+use App\Models\OptionInformatiqueCategorie;
+use App\Models\OptionInformatiqueLibelle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -19,7 +22,10 @@ class InformatiqueMaterielController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
-        return view('informatique.achat-materiel.index', compact('centres', 'centres_regionaux'));
+        $categories = OptionInformatiqueCategorie::all();
+        $libelles = OptionInformatiqueLibelle::all();
+        $fournisseurs = InformatiqueFournisseur::all();
+        return view('informatique.achat-materiel.index', compact('centres', 'centres_regionaux', 'categories', "libelles", 'fournisseurs'));
     }
 
     /**
@@ -27,10 +33,42 @@ class InformatiqueMaterielController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $categorie = $request->get("categorie");
+        $libelle = $request->get("libelle");
+
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $categories = OptionInformatiqueCategorie::all();
+        $libelles = OptionInformatiqueLibelle::query()->orderBy("libelle")->get();
+
         $achats = InformatiqueMateriel::all();
-        return view('informatique.achat-materiel.liste', compact('achats'));
+
+        if (isset($centre)) {
+            $achats = InformatiqueMateriel::query()
+                ->where("centre", $centre)
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $achats = InformatiqueMateriel::query()
+                ->where("centreRegional", $centre_regional)
+                ->get();
+        }
+        if (isset($categorie)) {
+            $achats = InformatiqueMateriel::query()
+                ->where("categorie", $categorie)
+                ->get();
+        }
+        if (isset($libelle)) {
+            $achats = InformatiqueMateriel::query()
+                ->where("libelle", $libelle)
+                ->get();
+        }
+
+        return view('informatique.achat-materiel.liste', compact('achats', 'centre', 'centre_regional', 'centres', 'centres_regionaux', 'categories', 'libelles', 'categorie', 'libelle'));
     }
 
     /**
@@ -44,20 +82,25 @@ class InformatiqueMaterielController extends Controller
         $factureJointe = null;
         if($request->file()) {
             $fileName = time().'_'.$request->factureJointe->getClientOriginalName();
-            $request->file('factureJointe')->storeAs('uploads', $fileName, 'public');
-            $factureJointe = $fileName;
+            //$request->file('factureJointe')->storeAs('uploads', $fileName, 'public');
+            $filePath = $request->file('photo')->storeAs('/', $fileName, 'ftp');
+            $factureJointe = $filePath;
         }
 
         $informatique = new InformatiqueMateriel([
             'centre' => $request->get('centre'),
             'centreRegional' => $request->get('centreRegional'),
-            'service' => $request->get('service'),
-            'date' => $request->get('date'),
+            'date_achat' => $request->get('date_achat'),
+            'date_fin' => $request->get('date_fin'),
+            'duree' => $request->get('duree'),
             'reference' => $request->get('reference'),
             'libelle' => $request->get('libelle'),
+            'categorie' => $request->get('categorie'),
             'quantite' => $request->get('quantite'),
             'prixUnitaire' => $request->get('prixUnitaire'),
             'montant' => $request->get('montant'),
+            'caracteristique' => $request->get('caracteristique'),
+            'fournisseur' => $request->get('fournisseur'),
             'factureJointe' => $factureJointe,
         ]);
         $informatique->save();
@@ -131,6 +174,7 @@ class InformatiqueMaterielController extends Controller
     {
         $achat = InformatiqueMateriel::find($id);
         $achat->delete();
-        return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement supprimé!');
+        //return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement supprimé!');
+        return  \response(["message" => "supprimé avec succès"]);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\OptionBordereau;
 use App\Models\OptionDevise;
+use App\Models\OptionInformatiqueCategorie;
+use App\Models\OptionInformatiqueLibelle;
 use App\Models\OptionNiveauCarburant;
 use App\Models\OptionSecteurActivite;
 use Illuminate\Http\Request;
@@ -123,6 +125,64 @@ class OptionSelectController extends Controller
 
         if ($request->ajax()) {
             $data = OptionSecteurActivite::find($id);
+            if ($data) $data->delete();
+            return \response()->json([
+                'message' => 'ok'
+            ]);
+        }
+    }
+
+    // CATEGORIE INFORMATIQUE
+
+    public function optionCategorieInformatique()
+    {
+        $options = OptionInformatiqueCategorie::all();
+        return view('parametre.option.categorie-informatique', compact('options'));
+    }
+
+    public function storeCategorieInformatique(Request $request)
+    {
+        $data = new OptionInformatiqueCategorie([
+            'categorie' => $request->get('option')
+        ]);
+        $data->save();
+        return redirect()->back()->with('success', 'Enregistré avec succès');
+    }
+
+    public function destroyCategorieInformatique(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $data = OptionInformatiqueCategorie::find($id);
+            if ($data) $data->delete();
+            return \response()->json([
+                'message' => 'ok'
+            ]);
+        }
+    }
+
+    // LIBELLE INFORMATIQUE
+
+    public function optionLibelleInformatique($id)
+    {
+        $options = OptionInformatiqueLibelle::with("categorie")->where("categorie_id", $id)->get();
+        $categorie = OptionInformatiqueCategorie::query()->find($id);
+        return view('parametre.option.libelle-informatique', compact('options', 'categorie'));
+    }
+
+    public function storeLibelleInformatique(Request $request, $id)
+    {
+        $data = new OptionInformatiqueLibelle([
+            'libelle' => $request->get('libelle'),
+            'categorie_id' => $id
+        ]);
+        $data->save();
+        return redirect()->back()->with('success', 'Enregistré avec succès');
+    }
+
+    public function destroyLibelleInformatique(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $data = OptionInformatiqueCategorie::find($id);
             if ($data) $data->delete();
             return \response()->json([
                 'message' => 'ok'

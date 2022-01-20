@@ -10,13 +10,17 @@ class InformatiqueMateriel extends Model
         'centre',
         'centreRegional',
         'service',
-        'date',
+        'date_achat',
+        'date_fin',
         'reference',
         'libelle',
         'quantite',
         'prixUnitaire',
         'montant',
         'factureJointe',
+        'categorie',
+        'caracteristique',
+        'fournisseur',
     ];
 
 }
