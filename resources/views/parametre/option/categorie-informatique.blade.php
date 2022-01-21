@@ -68,7 +68,7 @@
             if (confirm("Confirmer la suppression?")) {
                 const token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: "/parametres-option-secteur-activite/" + id,
+                    url: "/parametres-option-categorie-informatique/" + id,
                     type: 'DELETE',
                     dataType: "JSON",
                     data: {

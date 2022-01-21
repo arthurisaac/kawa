@@ -39,11 +39,13 @@ class InformatiqueMaterielController extends Controller
         $centre_regional = $request->get("centre_regional");
         $categorie = $request->get("categorie");
         $libelle = $request->get("libelle");
+        $fournisseur = $request->get("fournisseur");
 
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $categories = OptionInformatiqueCategorie::all();
         $libelles = OptionInformatiqueLibelle::query()->orderBy("libelle")->get();
+        $fournisseurs = InformatiqueFournisseur::all();
 
         $achats = InformatiqueMateriel::all();
 
@@ -67,8 +69,13 @@ class InformatiqueMaterielController extends Controller
                 ->where("libelle", $libelle)
                 ->get();
         }
+        if (isset($fournisseur)) {
+            $achats = InformatiqueMateriel::query()
+                ->where("fournisseur", $fournisseur)
+                ->get();
+        }
 
-        return view('informatique.achat-materiel.liste', compact('achats', 'centre', 'centre_regional', 'centres', 'centres_regionaux', 'categories', 'libelles', 'categorie', 'libelle'));
+        return view('informatique.achat-materiel.liste', compact('achats', 'centre', 'centre_regional', 'centres', 'centres_regionaux', 'categories', 'libelles', 'categorie', 'libelle', 'fournisseurs', 'fournisseur'));
     }
 
     /**

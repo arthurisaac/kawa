@@ -32,7 +32,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre regional</label>
-                        <select name="centre" id="centre" class="form-control col-7" required>
+                        <select name="centre" id="centre" class="form-control col-7" >
                             <option>{{$ctv->centre}}</option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -43,7 +43,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-7" required>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-7" >
                             <option>{{$ctv->centre_regional}}</option>
                         </select>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} required/>
+                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} />
                     </div>
                 </div>
                 <div class="col"></div>
@@ -64,7 +64,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="heurePrise" class="col-sm-5">Heure de prise de service</label>
-                        <input type="time" name="heurePriseBox" value="{{$ctv->heurePriseBox}}" class="form-control col-sm-7" REQUIRED/>
+                        <input type="time" name="heurePriseBox" value="{{$ctv->heurePriseBox}}" class="form-control col-sm-7" />
                     </div>
                 </div>
                 <div class="col">
@@ -119,13 +119,13 @@
                             <tr>
                                 <input type="hidden" name="ids[]" value="{{$operatrice->id}}">
                                 <td><select name="operatrice[]" class="form-control col-sm-7"
-                                            required>
+                                            >
                                         <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? $operatrice->operatrice}}</option>
                                         @foreach ($operatrices as $caisseOperatrice)
                                             <option value="{{$caisseOperatrice->id}}"> {{$caisseOperatrice->operatrice->nomPrenoms}}</option>
                                         @endforeach
                                     </select></td>
-                                <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
+                                <td><select name="numero[]" class="form-control col-sm-7" >
                                         <option>{{$operatrice->numero}}</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -211,7 +211,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prénoms</label>
                                         <select class="form-control col-sm-7" name="regulatrice" id="regulatrice"
-                                                required>
+                                                >
                                             <option value="{{$ctv->regulatrice}}">{{$ctv->regulatrices->nomPrenoms ?? ''}}</option>
                                             @foreach ($regulatrices as $personnel)
                                                 <option value="{{$personnel->id}}"> {{$personnel->nomPrenoms}}</option>
@@ -549,16 +549,16 @@
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
                                 <input type="number" value="{{$ctv->montantReconnu}}" min="0" name="montantReconnu"
-                                       id="montantReconnu" class="form-control col-sm-7" required/>
+                                       id="montantReconnu" class="form-control col-sm-7" />
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
                                 <input type="number" value="{{$ctv->montantAnnonce - $ctv->montantReconnu}}" name="ecartConstate"
-                                       id="ecartConstate" class="form-control col-sm-7" required/>
+                                       id="ecartConstate" class="form-control col-sm-7" />
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7" required
+                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7"
                                        value={{$ctv->montantFinal}}/>
                             </div>
                         </div>
@@ -844,13 +844,13 @@
             $("#add").on("click", function () {
                 $("#mTable").append(' <tr>\n' +
                     '                            <input type="hidden" name="ids[]">\n' +
-                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
+                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" >\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($operatrices as $operatrice)\n' +
                     '                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select></td>\n' +
-                    '                            <td><select name="numero[]" id="numero" class="form-control col-sm-7" REQUIRED>\n' +
+                    '                            <td><select name="numero[]" id="numero" class="form-control col-sm-7" >\n' +
                     '                                    <option value="1">1</option>\n' +
                     '                                    <option value="2">2</option>\n' +
                     '                                    <option value="3">3</option>\n' +

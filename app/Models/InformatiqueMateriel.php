@@ -23,4 +23,8 @@ class InformatiqueMateriel extends Model
         'fournisseur',
     ];
 
+    public function fournisseurs()
+    {
+        return $this->belongsTo('App\Models\InformatiqueFournisseur', 'fournisseur', 'id');
+    }
 }

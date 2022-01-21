@@ -78,7 +78,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="fournisseur" class="col-5">Fournisseur</label>
+                        <select id="fournisseur" name="fournisseur" class="form-control col">
+                            <option>{{$fournisseur}}</option>
+                            @foreach ($fournisseurs as $fournisseur)
+                                <option value="{{$fournisseur->id}}">{{ $fournisseur->libelleFournisseur }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
@@ -97,6 +107,8 @@
                         <td>Centre régional</td>
                         <td>Centre</td>
                         <td>Service</td>
+                        <td>Fournisseur</td>
+                        <td>Catégorie</td>
                         <td>Date achat</td>
                         <td>Référence</td>
                         <td>Libellé</td>
@@ -113,6 +125,8 @@
                             <td>{{$achat->centre}}</td>
                             <td>{{$achat->centreRegional}}</td>
                             <td>{{$achat->service}}</td>
+                            <td>{{$achat->fournisseurs->libelleFournisseur ?? ""}}</td>
+                            <td>{{$achat->categorie}}</td>
                             <td>{{$achat->date_achat}}</td>
                             <td>{{$achat->reference}}</td>
                             <td>{{$achat->libelle}}</td>
@@ -133,12 +147,19 @@
         </div>
 
         <script>
+            let fournisseurs = {!! json_encode($fournisseurs) !!};
             $(document).ready(function () {
                 $('#liste').DataTable({
                     "language": {
                         "url": "French.json"
                     }
                 });
+
+                const fournInput = $("#fournisseur");
+                if (fournInput.val()) {
+                    const fournisseur = fournisseurs.find(f => f.id === parseInt(fournInput.val() ?? 0));
+                    if (fournisseur) $("select[name='fournisseur'] option[value="+ fournisseur?.id +"]").attr('selected','selected');
+                }
             });
         </script>
         <script>
