@@ -269,8 +269,8 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="numeroScelleColis" class="col-sm-5">Numero de scellé</label>
-                                <input type="number" value="{{$ctv->numeroScelleColis}}" name="numeroScelleColis"
-                                       id="numeroScelleColis" class="form-control col-sm-7"/>
+                                <textarea type="number" name="numeroScelleColis"
+                                          id="numeroScelleColis" class="form-control col-sm-7">{{$ctv->numeroScelleColis}}</textarea>
                             </div>
                         </div>
                         <div class="col">

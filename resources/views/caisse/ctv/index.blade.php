@@ -117,8 +117,8 @@
                         <tr>
                             <td><select name="operatrice[]" class="form-control col-sm-7" >
                                     <option></option>
-                                    @foreach ($operatrices as $operatrice)
-                                        <option value="{{$operatrice->id}}"> {{$operatrice->nomPrenoms}}</option>
+                                    @foreach ($operatrices as $op)
+                                        <option value="{{$op->id}}"> {{$op->nomPrenoms}}</option>
                                     @endforeach
                                 </select></td>
                             <td><select name="numero[]" class="form-control col-sm-7" >
@@ -254,7 +254,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="numeroScelleColis" class="col-sm-5">Numero de scellé</label>
-                                <input type="number" name="numeroScelleColis" id="numeroScelleColis" class="form-control col-sm-7"/>
+                                <textarea name="numeroScelleColis" id="numeroScelleColis" class="form-control col-sm-7"></textarea>
                             </div>
                         </div>
                         <div class="col">
@@ -466,19 +466,19 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7"/>
+                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/=
                             </div>
                         </div>
                         <div class="col"></div>

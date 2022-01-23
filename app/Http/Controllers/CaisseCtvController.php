@@ -28,14 +28,15 @@ class CaisseCtvController extends Controller
         $personnels = Personnel::orderBy('nomPrenoms')->get();
         $convoyeurs = Personnel::where('service', 'like', 'transport')->orderBy('nomPrenoms')->get();
         $regulatrices = Personnel::where('service', 'like', 'regulation')->orderBy('nomPrenoms')->get();
-        $clients = Commercial_client::all();
+        $clients = Commercial_client::query()->orderBy('client_nom')->get();
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $tournees = DepartTournee::all();
-        $sites = Commercial_site::all();
+        $sites = Commercial_site::query()->orderBy("site")->get();
         $operatrices = CaisseServiceOperatrice::with('operatrice')
             ->join('personnels', 'personnels.id', '=', 'caisse_service_operatrices.operatriceCaisse', 'left')
             ->orderBy('personnels.nomPrenoms', 'desc')
+            ->groupBy('personnels.id')
             ->get(['caisse_service_operatrices.id', 'personnels.nomPrenoms']);
         return view('/caisse.ctv.index',
             compact('personnels', 'centres', 'centres_regionaux', 'clients', 'tournees', 'sites', 'operatrices', 'convoyeurs', 'regulatrices'));
