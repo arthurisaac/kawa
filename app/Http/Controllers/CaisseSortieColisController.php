@@ -29,7 +29,7 @@ class CaisseSortieColisController extends Controller
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc("id")->get();
         $devises = OptionDevise::all();
         return view('/caisse/sortie-colis.index',
             compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords', 'tournees', 'devises'));
