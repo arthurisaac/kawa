@@ -80,10 +80,6 @@ class CaisseSortieColisController extends Controller
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
         $colis =  $request->get("colis");
-        $valeur_colis_xof = $request->get("valeur_colis_xof");
-        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro = $request->get("device_etrangere_euro");
-        $pierre_precieuse = $request->get("pierre_precieuse");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -93,10 +89,10 @@ class CaisseSortieColisController extends Controller
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
                     'colis' => $colis[$i],
-                    'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
-                    'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
-                    'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
-                    'pierre_precieuse_sortie' => $pierre_precieuse[$i],
+                    //'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
+                    //'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
+                    //'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
+                    //'pierre_precieuse_sortie' => $pierre_precieuse[$i],
                 ]);
                 $item->save();
             }
@@ -163,10 +159,6 @@ class CaisseSortieColisController extends Controller
         $nbre_colis = $request->get("nbre_colis");
 
         $colis =  $request->get("colis");
-        $valeur_colis_xof = $request->get("valeur_colis_xof");
-        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro = $request->get("device_etrangere_dollar");
-        $pierre_precieuse = $request->get("pierre_precieuse");
         $ids = $request->get("ids");
 
         if (!empty($site) && !empty($nbre_colis)) {
@@ -178,10 +170,6 @@ class CaisseSortieColisController extends Controller
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
                         'colis' => $colis[$i],
-                        'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
-                        'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
-                        'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
-                        'pierre_precieuse_sortie' => $pierre_precieuse[$i],
                     ]);
                     $item->save();
                 } else {
