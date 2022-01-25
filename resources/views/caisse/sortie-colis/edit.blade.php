@@ -138,10 +138,8 @@
                     <thead>
                     <tr>
                         <th>Colis</th>
-                        <th>Valeur colis (XOF)</th>
-                        <th>Valeur devise étrangère (Dollar)</th>
-                        <th>Valeur devise étrangère (Euro)</th>
-                        <th>Valeur pierre précieuse</th>
+                        <th>Devise</th>
+                        <th>Valeur</th>
                         <th>Numéros scellé (Réference)</th>
                         <th>Nbre colis</th>
                         <th>Site</th>
@@ -159,10 +157,13 @@
                                     <option>Caisse</option>
                                     <option>Conteneur</option>
                                 </select></td>
-                            <td><input type="number" name="valeur_colis_xof[]" value="{{$item->valeur_colis_xof_sortie ?? 0}}" class="form-control" /></td>
-                            <td><input type="number" min="0" name="device_etrangere_dollar[]" value="{{$item->device_etrangere_dollar_sortie ?? 0}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="device_etrangere_euro[]" value="{{$item->device_etrangere_euro_sortie ?? 0}}" class="form-control"></td>
-                            <td><input type="number" min="0" name="pierre_precieuse[]" value="{{$item->pierre_precieuse_sortie ?? 0}}" class="form-control"></td>
+                            <td><select name="devise[]" class="form-control">
+                                    <option>{{$item->devise}}</option>
+                                    @foreach($devises as $devise)
+                                        <option>{{$devise->devise}}</option>
+                                    @endforeach
+                                </select></td>
+                            <td><input type="number" name="valeur[]" value="{{$item->valeur ?? 0}}" class="form-control"></td>
                             <td><input type="text" name="scelle[]" value="{{$item->scelle}}" class="form-control"></td>
                             <td><input type="number" name="nbre_colis[]" value="{{$item->nbre_colis ?? 0}}" class="form-control"></td>
                             <td>
@@ -182,14 +183,8 @@
                     <tfoot>
                     <tr>
                         <td style="vertical-align: center;">TOTAL</td>
+                        <td></td>
                         <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
-                                   readonly></td>
-                        <td><input type="number" name="totalValeurDollar" id="totalValeurDollar" class="form-control"
-                                   readonly>
-                        </td>
-                        <td><input type="number" name="totalValeurEuro" id="totalValeurEuro" class="form-control"
-                                   readonly></td>
-                        <td><input type="number" name="totalValeurPierre" id="totalValeurPierre" class="form-control"
                                    readonly></td>
                         <td></td>
                         <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
@@ -209,38 +204,11 @@
     <script>
         function changeXOF() {
             let total = 0;
-            $.each($("input[name='valeur_colis_xof[]']"), function (i) {
-                const nbre = $("input[name='valeur_colis_xof[]'").get(i).value;
+            $.each($("input[name='valeur[]']"), function (i) {
+                const nbre = $("input[name='valeur[]'").get(i).value;
                 total += parseFloat(nbre) ?? 0;
             });
             $("#totalValeurXOF").val(total);
-        }
-
-        function changeDollar() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_dollar[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_dollar[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurDollar").val(total);
-        }
-
-        function changeEuro() {
-            let total = 0;
-            $.each($("input[name='device_etrangere_euro[]']"), function (i) {
-                const nbre = $("input[name='device_etrangere_euro[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurEuro").val(total);
-        }
-
-        function changePierre() {
-            let total = 0;
-            $.each($("input[name='pierre_precieuse[]']"), function (i) {
-                const nbre = $("input[name='pierre_precieuse[]'").get(i).value;
-                total += parseFloat(nbre) ?? 0;
-            });
-            $("#totalValeurPierre").val(total);
         }
 
         function changeNombreColis() {
@@ -293,9 +261,6 @@
         let tournees = {!! json_encode($tournees) !!};
         $(document).ready(function () {
             changeNombreColis();
-            changeDollar();
-            changeEuro();
-            changePierre();
             changeXOF();
             $("#centre").on("change", function () {
                 $("#centre_regional option").remove();
@@ -321,10 +286,10 @@
 
                 const tournee = tournees.find(t => t.id === parseInt(this.value ?? 0));
                 if (tournee) {
-                    $("#vehicule").val(tournee.vehicules.immatriculation);
-                    $("#chauffeur").val(tournee.chauffeurs.nomPrenoms);
-                    $("#chefDeBord").val(tournee.chef_de_bords.nomPrenoms);
-                    $("#agentDeGarde").val(tournee.agent_de_gardes.nomPrenoms);
+                    $("#vehicule").val(tournee?.vehicules?.immatriculation ?? "");
+                    $("#chauffeur").val(tournee?.chauffeurs?.nomPrenoms ?? "");
+                    $("#chefDeBord").val(tournee?.chef_de_bords?.nomPrenoms ?? "");
+                    $("#agentDeGarde").val(tournee?.agent_de_gardes?.nomPrenoms ?? "");
                     $("#centre").val(tournee.centre);
                     $("#centre_regional").val(tournee.centre_regional);
                 }
@@ -334,7 +299,7 @@
     <script>
         $(document).ready(function () {
             $("#add").on("click", function () {
-                $('#table').append(' <tr>\n' +
+                $('#table').append('<tr>\n' +
                     '                        <input type="hidden" name="ids[]">\n' +
                     '                        <td><select name="colis[]" class="form-control">\n' +
                     '                                <option></option>\n' +
@@ -343,10 +308,12 @@
                     '                                <option>Caisse</option>\n' +
                     '                                <option>Conteneur</option>\n' +
                     '                            </select></td>\n' +
-                    '                        <td><input type="number" name="valeur_colis_xof[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="device_etrangere_dollar[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="device_etrangere_euro[]" class="form-control"></td>\n' +
-                    '                        <td><input type="number" min="0" name="pierre_precieuse[]" class="form-control"></td>\n' +
+                    '                        <td><select name="devise[]" class="form-control">\n' +
+                    '                                @foreach($devises as $devise)\n' +
+                    '                                    <option>{{$devise->devise}}</option>\n' +
+                    '                                @endforeach\n' +
+                    '                            </select></td>\n' +
+                    '                        <td><input type="number" name="valeur[]" class="form-control"></td>\n' +
                     '                        <td><textarea name="scelle[]" class="form-control"></textarea></td>\n' +
                     '                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>\n' +
                     '                        <td>\n' +
@@ -402,10 +369,7 @@
                     console.log("Site non trouvé :-(");
                 }
             });
-            $("input[name='valeur_colis_xof[]']").on("change", changeXOF);
-            $("input[name='device_etrangere_dollar[]']").on("change", changeDollar);
-            $("input[name='device_etrangere_euro[]']").on("change", changeEuro);
-            $("input[name='pierre_precieuse[]']").on("change", changePierre);
+            $("input[name='valeur[]']").on("change", changeXOF);
         });
     </script>
 

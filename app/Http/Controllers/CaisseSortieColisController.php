@@ -80,6 +80,8 @@ class CaisseSortieColisController extends Controller
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
         $colis =  $request->get("colis");
+        $devise =  $request->get("devise");
+        $valeur =  $request->get("valeur");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -89,6 +91,8 @@ class CaisseSortieColisController extends Controller
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
                     'colis' => $colis[$i],
+                    'devise' => $devise[$i],
+                    'valeur' => $valeur[$i],
                     //'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
                     //'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
                     //'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
@@ -159,6 +163,8 @@ class CaisseSortieColisController extends Controller
         $nbre_colis = $request->get("nbre_colis");
 
         $colis =  $request->get("colis");
+        $devise =  $request->get("devise");
+        $valeur =  $request->get("valeur");
         $ids = $request->get("ids");
 
         if (!empty($site) && !empty($nbre_colis)) {
@@ -170,6 +176,8 @@ class CaisseSortieColisController extends Controller
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
                         'colis' => $colis[$i],
+                        'valeur' => $valeur[$i],
+                        'devise' => $devise[$i],
                     ]);
                     $item->save();
                 } else {
@@ -180,10 +188,8 @@ class CaisseSortieColisController extends Controller
                     $item->nbre_colis = $nbre_colis[$i];
 
                     $item->colis = $colis[$i];
-                    $item->valeur_colis_xof_sortie = $valeur_colis_xof[$i];
-                    $item->device_etrangere_dollar_sortie = $device_etrangere_dollar[$i];
-                    $item->device_etrangere_euro_sortie = $device_etrangere_euro[$i];
-                    $item->pierre_precieuse_sortie = $pierre_precieuse[$i];
+                    $item->valeur = $valeur[$i];
+                    $item->devise = $devise[$i];
                     $item->save();
                 }
 
