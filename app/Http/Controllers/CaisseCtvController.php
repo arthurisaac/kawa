@@ -188,6 +188,7 @@ class CaisseCtvController extends Controller
             ->with('regulatrices')
             ->with('clients')
             ->with('sites')
+            ->with('tournees')
             ->find($id);
 
         $billetages = CaisseBilletage::where('ctv', $id)->get();
