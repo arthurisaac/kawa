@@ -546,6 +546,8 @@
     <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let montantAnnonce = 0;
+        let montantReconnu = 0;
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
@@ -569,83 +571,135 @@
             // Tableau montant annoncé
             $("#ba_nb10000").on("change", function() {
                 $("#ba_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5000").on("change", function() {
                 $("#ba_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb2000").on("change", function() {
                 $("#ba_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1000").on("change", function() {
                 $("#ba_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb500").on("change", function() {
                 $("#ba_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb250").on("change", function() {
                 $("#ba_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb200").on("change", function() {
                 $("#ba_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb100").on("change", function() {
                 $("#ba_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb50").on("change", function() {
                 $("#ba_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb25").on("change", function() {
                 $("#ba_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb10").on("change", function() {
                 $("#ba_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5").on("change", function() {
                 $("#ba_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1").on("change", function() {
                 $("#ba_nb1_total").val(parseInt(this.value));
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
 
             // Tableau montant reconnu
             $("#br_nb10000").on("change", function() {
                 $("#br_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5000").on("change", function() {
                 $("#br_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb2000").on("change", function() {
                 $("#br_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1000").on("change", function() {
                 $("#br_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb500").on("change", function() {
                 $("#br_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb250").on("change", function() {
                 $("#br_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb200").on("change", function() {
                 $("#br_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb100").on("change", function() {
                 $("#br_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb50").on("change", function() {
                 $("#br_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb25").on("change", function() {
                 $("#br_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb10").on("change", function() {
                 $("#br_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5").on("change", function() {
                 $("#br_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1").on("change", function() {
                 $("#br_nb1_total").val(parseInt(this.value));
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
         });
     </script>
