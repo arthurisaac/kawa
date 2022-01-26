@@ -33,6 +33,75 @@ class CaisseEntreeColisController extends Controller
             compact('centres', 'centres_regionaux', 'numero', 'sites', 'tournees', 'devises'));
     }
 
+    public function listeDetaillee(Request $request)
+    {
+        $devises = OptionDevise::all();
+        $colis = CaisseEntreeColis::with('items')->get();
+        $numero_scelles = CaisseEntreeColisItem::orderBy('scelle')->get();
+        $nombre_total_colis = CaisseEntreeColisItem::with('sites')->orderBy('nbre_colis')->get();
+        $sites = CaisseEntreeColisItem::with('sites')->orderBy('site')->get();
+        $clients = CaisseEntreeColisItem::with('sites')->get();
+//        dd($sites);
+
+        $client = $request->get('client');
+        $devise = $request->get('devise');
+        $scelle = $request->get('scelle');
+        $valeur = $request->get('val_colis');
+        $nb_total_colis = $request->get('total_colis');
+        $site = $request->get('site');
+
+        if (isset($devise)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('caisse_entree_devise', $devise)
+                ->get();
+        }
+        if (isset($valeur)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('caisse_entree_valeur_colis', $valeur)
+                ->get();
+        }
+        if (isset($client)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('client_nom', 'client')
+                ->get();
+        }
+        if (isset($site)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('site', $site);
+        }
+        if (isset($scelle)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('scelle', $scelle)
+                ->get();
+        }
+        if (isset($nb_total_colis)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('nbre_colis', $nb_total_colis)
+                ->get();
+        }
+
+        if (isset($nb_total_colis) && isset($scelle) && isset($site)){
+            CaisseEntreeColisItem::with('sites')
+                ->where('nbre_colis', $nb_total_colis)
+                ->where('scelle', $scelle)
+                ->where('site', $site)
+                ->get();
+        }
+        if (isset($devise) && isset($client) && isset($site) && isset($scelle) && isset($valeur) && isset($nb_total_colis)){
+            $data_devise = OptionDevise::find($devise);
+            CaisseEntreeColisItem::with('sites')
+                ->where('nbre_colis', $nb_total_colis)
+                ->where('scelle', $scelle)
+                ->where('site', $site)
+                ->where('caisse_entree_valeur_colis', $valeur)
+                ->where('caisse_entree_devise', $data_devise->devise)
+                ->where('client_nom', $client)
+                ->get();
+        }
+//        dd($colis);
+        return view('caisse.entree-colis.liste-detaillee', compact('sites', 'clients', 'devises', 'nombre_total_colis', 'numero_scelles', 'colis'));
+    }
+
     public function liste(Request $request)
     {
         $debut = $request->get("debut");

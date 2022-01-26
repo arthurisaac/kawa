@@ -165,6 +165,7 @@ Route::delete('ctv-item/{id}', [\App\Http\Controllers\CaisseCtvController::class
 
 Route::resource('caisse-entree-colis', 'CaisseEntreeColisController');
 Route::get('caisse-entree-colis-liste', [\App\Http\Controllers\CaisseEntreeColisController::class, 'liste']);
+Route::get('caisse-entree-colis-liste-detaillee', [\App\Http\Controllers\CaisseEntreeColisController::class, 'listeDetaillee']);
 Route::delete('caisse-entree-colis-item/{id}', [\App\Http\Controllers\CaisseEntreeColisController::class, 'destroyItem']);
 Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
 Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
