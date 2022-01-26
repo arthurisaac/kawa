@@ -6,10 +6,12 @@ use App\Models\CaisseSortieColis;
 use App\Models\CaisseSortieColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\OptionDevise;
 use App\Models\Personnel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +46,62 @@ class CaisseSortieColisController extends Controller
             $colis = CaisseSortieColis::all()->whereBetween('date', [$debut, $fin]);
         }
         return view('/caisse/sortie-colis.liste', compact('colis'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $receveur = $request->get('receveur');
+        $scelle = $request->get('scelle');
+
+        $clients_com = Commercial_client::query()->orderBy('client_nom')->get();
+        $sites_com = Commercial_site::query()->orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $colis = CaisseSortieColisItem::with("sites")
+            ->with("caisses")
+            ->get();
+
+        if ($receveur) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($receveur) {
+                    $builder->where("receveur", $receveur);
+                })
+                ->get();
+        }
+
+        if ($site) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->where("site", $site)
+                ->get();
+        }
+
+        if ($client) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("sites", function (Builder $builder) use ($client) {
+                    $builder->where("client", $client);
+                })
+                ->get();
+        }
+
+        if ($scelle) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->where("scelle", $scelle)
+                ->get();
+        }
+
+        return view('/caisse.sortie-colis.liste-detaillee', compact('colis', 'debut', 'fin', 'client', 'site', 'centre', 'centre_regional', 'receveur', 'scelle',
+        'clients_com', 'sites_com', 'centres', 'centres_regionaux'));
     }
 
     /**

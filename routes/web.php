@@ -168,6 +168,7 @@ Route::get('caisse-entree-colis-liste', [\App\Http\Controllers\CaisseEntreeColis
 Route::delete('caisse-entree-colis-item/{id}', [\App\Http\Controllers\CaisseEntreeColisController::class, 'destroyItem']);
 Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
 Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
+Route::get('caisse-sortie-colis-liste-detaillee', [\App\Http\Controllers\CaisseSortieColisController::class, 'listeDetaillee']);
 Route::delete('caisse-sortie-colis-item/{id}', [\App\Http\Controllers\CaisseSortieColisController::class, 'destroyItem']);
 Route::resource('caisse-video-surveillance', 'CaisseVideoSurveillanceController');
 Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideoSurveillanceController::class, 'liste']);

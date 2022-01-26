@@ -168,8 +168,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Numero de bordereau</label>
-                                <input type="number" value={{$ctv->bordereau}} name="bordereau"
-                                       class="form-control col-sm-7"/>
+                                <input type="number" value="{{$ctv->bordereau}}" name="bordereau" class="form-control col-sm-7"/>
                             </div>
                         </div>
                         <div class="col">
@@ -183,8 +182,7 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prenoms</label>
-                                        <select type="text" name="convoyeurGarde" id="convoyeurGarde"
-                                                class="form-control col-sm-7">
+                                        <select type="text" name="convoyeurGarde" id="convoyeurGarde" class="form-control col-sm-7">
                                             <option
                                                 value="{{$ctv->convoyeurGarde}}">{{$ctv->convoyeurs->nomPrenoms ?? ''}}</option>
                                             @foreach ($convoyeurs as $garde)
@@ -194,15 +192,11 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-5">Fonction</label>
-                                        <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction"
-                                               class="form-control col-sm-7"
-                                               value="{{$ctv->convoyeurs->fonction ?? ''}}"/>
+                                        <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction" class="form-control col-sm-7" value="{{$ctv->convoyeurs->fonction ?? ''}}"/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-5">Matricule</label>
-                                        <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule"
-                                               class="form-control col-sm-7"
-                                               value="{{$ctv->convoyeurs->matricule ?? ''}}"/>
+                                        <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule" class="form-control col-sm-7" value="{{$ctv->convoyeurs->matricule ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -218,8 +212,7 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prénoms</label>
-                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice"
-                                        >
+                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice">
                                             <option
                                                 value="{{$ctv->regulatrice}}">{{$ctv->regulatrices->nomPrenoms ?? ''}}</option>
                                             @foreach ($regulatrices as $personnel)
