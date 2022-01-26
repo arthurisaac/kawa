@@ -169,6 +169,7 @@ Route::get('caisse-entree-colis-liste-detaillee', [\App\Http\Controllers\CaisseE
 Route::delete('caisse-entree-colis-item/{id}', [\App\Http\Controllers\CaisseEntreeColisController::class, 'destroyItem']);
 Route::resource('caisse-sortie-colis', 'CaisseSortieColisController');
 Route::get('caisse-sortie-colis-liste', [\App\Http\Controllers\CaisseSortieColisController::class, 'liste']);
+Route::get('caisse-sortie-colis-liste-detaillee', [\App\Http\Controllers\CaisseSortieColisController::class, 'listeDetaillee']);
 Route::delete('caisse-sortie-colis-item/{id}', [\App\Http\Controllers\CaisseSortieColisController::class, 'destroyItem']);
 Route::resource('caisse-video-surveillance', 'CaisseVideoSurveillanceController');
 Route::get('caisse-video-surveillance-liste', [\App\Http\Controllers\CaisseVideoSurveillanceController::class, 'liste']);
@@ -409,4 +410,12 @@ Route::delete('parametres-option-devise/{id}', [\App\Http\Controllers\OptionSele
 Route::get('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSelectController::class, 'optionSecteurActivite']);
 Route::post('parametres-option-secteur-activite', [\App\Http\Controllers\OptionSelectController::class, 'storeSecteurActivite']);
 Route::delete('parametres-option-secteur-activite/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroySecteurActivite']);
+
+Route::get('parametres-option-categorie-informatique', [\App\Http\Controllers\OptionSelectController::class, 'optionCategorieInformatique']);
+Route::post('parametres-option-categorie-informatique', [\App\Http\Controllers\OptionSelectController::class, 'storeCategorieInformatique']);
+Route::delete('parametres-option-categorie-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyCategorieInformatique']);
+
+Route::get('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'optionLibelleInformatique']);
+Route::post('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'storeLibelleInformatique']);
+Route::delete('parametres-option-libelle-informatique/{id}', [\App\Http\Controllers\OptionSelectController::class, 'destroyLibelleInformatique']);
 

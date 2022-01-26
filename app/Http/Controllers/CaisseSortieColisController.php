@@ -6,10 +6,12 @@ use App\Models\CaisseSortieColis;
 use App\Models\CaisseSortieColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\OptionDevise;
 use App\Models\Personnel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +31,7 @@ class CaisseSortieColisController extends Controller
         $chefBords = DB::table('personnels')->where('fonction', 'like', '%convoyeur%')->get();
         $sites = Commercial_site::with("clients")->orderBy("site")->get();
         $numero = DB::table('caisse_entree_colis')->max('id') + 1 . '-' . date('Y-m-d');
-        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->get();
+        $tournees = DepartTournee::with('agentDeGardes')->with('chefDeBords')->with('chauffeurs')->with('vehicules')->orderByDesc("id")->get();
         $devises = OptionDevise::all();
         return view('/caisse/sortie-colis.index',
             compact('centres', 'centres_regionaux', 'numero', 'sites', 'agents', 'chefBords', 'tournees', 'devises'));
@@ -44,6 +46,62 @@ class CaisseSortieColisController extends Controller
             $colis = CaisseSortieColis::all()->whereBetween('date', [$debut, $fin]);
         }
         return view('/caisse/sortie-colis.liste', compact('colis'));
+    }
+
+    public function listeDetaillee(Request $request)
+    {
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $receveur = $request->get('receveur');
+        $scelle = $request->get('scelle');
+
+        $clients_com = Commercial_client::query()->orderBy('client_nom')->get();
+        $sites_com = Commercial_site::query()->orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $colis = CaisseSortieColisItem::with("sites")
+            ->with("caisses")
+            ->get();
+
+        if ($receveur) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($receveur) {
+                    $builder->where("receveur", $receveur);
+                })
+                ->get();
+        }
+
+        if ($site) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->where("site", $site)
+                ->get();
+        }
+
+        if ($client) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("sites", function (Builder $builder) use ($client) {
+                    $builder->where("client", $client);
+                })
+                ->get();
+        }
+
+        if ($scelle) {
+            $colis = CaisseSortieColisItem::with("sites")
+                ->with("caisses")
+                ->where("scelle", $scelle)
+                ->get();
+        }
+
+        return view('/caisse.sortie-colis.liste-detaillee', compact('colis', 'debut', 'fin', 'client', 'site', 'centre', 'centre_regional', 'receveur', 'scelle',
+        'clients_com', 'sites_com', 'centres', 'centres_regionaux'));
     }
 
     /**
@@ -80,10 +138,8 @@ class CaisseSortieColisController extends Controller
         $scelle = $request->get("scelle");
         $nbre_colis = $request->get("nbre_colis");
         $colis =  $request->get("colis");
-        $valeur_colis_xof = $request->get("valeur_colis_xof");
-        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro = $request->get("device_etrangere_euro");
-        $pierre_precieuse = $request->get("pierre_precieuse");
+        $devise =  $request->get("devise");
+        $valeur =  $request->get("valeur");
 
         if (!empty($site) && !empty($nbre_colis)) {
             for ($i = 0; $i < count($nbre_colis); $i++) {
@@ -93,10 +149,12 @@ class CaisseSortieColisController extends Controller
                     "scelle" => $scelle[$i],
                     "nbre_colis" => $nbre_colis[$i],
                     'colis' => $colis[$i],
-                    'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
-                    'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
-                    'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
-                    'pierre_precieuse_sortie' => $pierre_precieuse[$i],
+                    'devise' => $devise[$i],
+                    'valeur' => $valeur[$i],
+                    //'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
+                    //'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
+                    //'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
+                    //'pierre_precieuse_sortie' => $pierre_precieuse[$i],
                 ]);
                 $item->save();
             }
@@ -163,10 +221,8 @@ class CaisseSortieColisController extends Controller
         $nbre_colis = $request->get("nbre_colis");
 
         $colis =  $request->get("colis");
-        $valeur_colis_xof = $request->get("valeur_colis_xof");
-        $device_etrangere_dollar = $request->get("device_etrangere_dollar");
-        $device_etrangere_euro = $request->get("device_etrangere_dollar");
-        $pierre_precieuse = $request->get("pierre_precieuse");
+        $devise =  $request->get("devise");
+        $valeur =  $request->get("valeur");
         $ids = $request->get("ids");
 
         if (!empty($site) && !empty($nbre_colis)) {
@@ -178,10 +234,8 @@ class CaisseSortieColisController extends Controller
                         "scelle" => $scelle[$i],
                         "nbre_colis" => $nbre_colis[$i],
                         'colis' => $colis[$i],
-                        'valeur_colis_xof_sortie' => $valeur_colis_xof[$i],
-                        'device_etrangere_dollar_sortie' => $device_etrangere_dollar[$i],
-                        'device_etrangere_euro_sortie' => $device_etrangere_euro[$i],
-                        'pierre_precieuse_sortie' => $pierre_precieuse[$i],
+                        'valeur' => $valeur[$i],
+                        'devise' => $devise[$i],
                     ]);
                     $item->save();
                 } else {
@@ -192,10 +246,8 @@ class CaisseSortieColisController extends Controller
                     $item->nbre_colis = $nbre_colis[$i];
 
                     $item->colis = $colis[$i];
-                    $item->valeur_colis_xof_sortie = $valeur_colis_xof[$i];
-                    $item->device_etrangere_dollar_sortie = $device_etrangere_dollar[$i];
-                    $item->device_etrangere_euro_sortie = $device_etrangere_euro[$i];
-                    $item->pierre_precieuse_sortie = $pierre_precieuse[$i];
+                    $item->valeur = $valeur[$i];
+                    $item->devise = $devise[$i];
                     $item->save();
                 }
 

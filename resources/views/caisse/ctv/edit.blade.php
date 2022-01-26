@@ -32,7 +32,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre regional</label>
-                        <select name="centre" id="centre" class="form-control col-7" required>
+                        <select name="centre" id="centre" class="form-control col-7">
                             <option>{{$ctv->centre}}</option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -43,7 +43,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-7" required>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-7">
                             <option>{{$ctv->centre_regional}}</option>
                         </select>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} required/>
+                        <input type="date" name="date" class="form-control col-sm-7" value={{$ctv->date}} />
                     </div>
                 </div>
                 <div class="col"></div>
@@ -64,18 +64,21 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="heurePrise" class="col-sm-5">Heure de prise de service</label>
-                        <input type="time" name="heurePriseBox" value="{{$ctv->heurePriseBox}}" class="form-control col-sm-7" REQUIRED/>
+                        <input type="time" name="heurePriseBox" value="{{$ctv->heurePriseBox}}"
+                               class="form-control col-sm-7"/>
                     </div>
                 </div>
                 <div class="col">
 
                     <div class="form-group row">
                         <label for="heureFin" class="col-sm-5">Heure de fin de service</label>
-                        <input type="time" name="heureFinBox" value="{{$ctv->heureFinBox}}" id="heureFinBox" class="form-control col-sm-7"/>
+                        <input type="time" name="heureFinBox" value="{{$ctv->heureFinBox}}" id="heureFinBox"
+                               class="form-control col-sm-7"/>
                     </div>
                 </div>
                 <div class="col"></div>
-            </div><br />
+            </div>
+            <br/>
             <br/>
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -119,13 +122,15 @@
                             <tr>
                                 <input type="hidden" name="ids[]" value="{{$operatrice->id}}">
                                 <td><select name="operatrice[]" class="form-control col-sm-7"
-                                            required>
-                                        <option value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? $operatrice->operatrice}}</option>
+                                    >
+                                        <option
+                                            value="{{$operatrice->operatrice}}">{{$operatrice->operatrices->operatrice->nomPrenoms ?? $operatrice->operatrice}}</option>
                                         @foreach ($operatrices as $caisseOperatrice)
-                                            <option value="{{$caisseOperatrice->id}}"> {{$caisseOperatrice->operatrice->nomPrenoms}}</option>
+                                            <option
+                                                value="{{$caisseOperatrice->id}}"> {{$caisseOperatrice->operatrice->nomPrenoms}}</option>
                                         @endforeach
                                     </select></td>
-                                <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
+                                <td><select name="numero[]" class="form-control col-sm-7">
                                         <option>{{$operatrice->numero}}</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -155,7 +160,7 @@
                             <div class="form-group row">
                                 <label for="caisse_numtour" class="col-sm-5">Numero de tournée</label>
                                 <select name="tournee" id="caisse_numtour" class="form-control col-sm-7">
-                                    <option>{{$ctv->tournee}}</option>
+                                    <option>{{$ctv->tournees->numeroTournee ?? $ctv->tournee}}</option>
                                     @foreach($tournees as $tournee)
                                         <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
                                     @endforeach
@@ -163,8 +168,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5">Numero de bordereau</label>
-                                <input type="number" value={{$ctv->bordereau}} name="bordereau"
-                                       class="form-control col-sm-7"/>
+                                <input type="number" value="{{$ctv->bordereau}}" name="bordereau" class="form-control col-sm-7"/>
                             </div>
                         </div>
                         <div class="col">
@@ -178,9 +182,9 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prenoms</label>
-                                        <select type="text" name="convoyeurGarde" id="convoyeurGarde"
-                                                class="form-control col-sm-7">
-                                            <option value="{{$ctv->convoyeurGarde}}">{{$ctv->convoyeurs->nomPrenoms ?? ''}}</option>
+                                        <select type="text" name="convoyeurGarde" id="convoyeurGarde" class="form-control col-sm-7">
+                                            <option
+                                                value="{{$ctv->convoyeurGarde}}">{{$ctv->convoyeurs->nomPrenoms ?? ''}}</option>
                                             @foreach ($convoyeurs as $garde)
                                                 <option value="{{$garde->id}}"> {{$garde->nomPrenoms}}</option>
                                             @endforeach
@@ -188,19 +192,17 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-5">Fonction</label>
-                                        <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction"
-                                               class="form-control col-sm-7" value="{{$ctv->convoyeurs->fonction ?? ''}}"/>
+                                        <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction" class="form-control col-sm-7" value="{{$ctv->convoyeurs->fonction ?? ''}}"/>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-5">Matricule</label>
-                                        <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule"
-                                               class="form-control col-sm-7" value="{{$ctv->convoyeurs->matricule ?? ''}}"/>
+                                        <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule" class="form-control col-sm-7" value="{{$ctv->convoyeurs->matricule ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                        <div class="row" style="align-items: center;">
+                            <div class="row" style="align-items: center;">
                                 <div class="col-4">
                                     <h6>Régulatrice</h6>
                                 </div>
@@ -210,9 +212,9 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label class="col-sm-5">Nom et prénoms</label>
-                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice"
-                                                required>
-                                            <option value="{{$ctv->regulatrice}}">{{$ctv->regulatrices->nomPrenoms ?? ''}}</option>
+                                        <select class="form-control col-sm-7" name="regulatrice" id="regulatrice">
+                                            <option
+                                                value="{{$ctv->regulatrice}}">{{$ctv->regulatrices->nomPrenoms ?? ''}}</option>
                                             @foreach ($regulatrices as $personnel)
                                                 <option value="{{$personnel->id}}"> {{$personnel->nomPrenoms}}</option>
                                             @endforeach
@@ -221,12 +223,14 @@
                                     <div class="form-group row">
                                         <label class="col-sm-5">Fonction</label>
                                         <input type="text" name="regulatriceFonction" id="regulatriceFonction"
-                                               class="form-control col-sm-7" value="{{$ctv->regulatrices->fonction ?? ''}}"/>
+                                               class="form-control col-sm-7"
+                                               value="{{$ctv->regulatrices->fonction ?? ''}}"/>
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_matre" class="col-sm-5">Matricule</label>
                                         <input type="text" name="regulatriceMatricule" id="regulatriceMatricule"
-                                               class="form-control col-sm-7" value="{{$ctv->regulatrices->matricule ?? ''}}"/>
+                                               class="form-control col-sm-7"
+                                               value="{{$ctv->regulatrices->matricule ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -269,8 +273,9 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="numeroScelleColis" class="col-sm-5">Numero de scellé</label>
-                                <input type="number" value="{{$ctv->numeroScelleColis}}" name="numeroScelleColis"
-                                       id="numeroScelleColis" class="form-control col-sm-7"/>
+                                <textarea type="number" name="numeroScelleColis"
+                                          id="numeroScelleColis"
+                                          class="form-control col-sm-7">{{$ctv->numeroScelleColis}}</textarea>
                             </div>
                         </div>
                         <div class="col">
@@ -282,7 +287,8 @@
                             <div class="form-group row">
                                 <label for="client" class="col-sm-5">Client</label>
                                 <select class="form-control col-sm-7" id="client" name="client">
-                                    <option value="{{$ctv->client}}">{{$ctv->clients->client_nom ?? 'Donnée indisponible'}}</option>
+                                    <option
+                                        value="{{$ctv->client}}">{{$ctv->clients->client_nom ?? 'Donnée indisponible'}}</option>
                                     @foreach ($clients as $client)
                                         <option value="{{$client->id}}"> {{$client->client_nom}}</option>
                                     @endforeach
@@ -291,7 +297,8 @@
                             <div class="form-group row">
                                 <label for="site" class="col-sm-5">Site</label>
                                 <select class="form-control col-sm-7" id="site" name="site">
-                                    <option value="{{$ctv->site}}">{{$ctv->sites->site ?? 'Donnée indisponible'}}</option>
+                                    <option
+                                        value="{{$ctv->site}}">{{$ctv->sites->site ?? 'Donnée indisponible'}}</option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}"> {{$site->site}}</option>
                                     @endforeach
@@ -544,22 +551,23 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" value={{$ctv->montantAnnonce}} name="montantAnnonce" id="montantAnnonce" class="form-control col-sm-7"/>
+                                <input type="text" value="" name="montantAnnonce" id="montantAnnonce"
+                                       class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                <input type="number" value="{{$ctv->montantReconnu}}" min="0" name="montantReconnu"
-                                       id="montantReconnu" class="form-control col-sm-7" required/>
+                                <input type="text" value="" min="0" name="montantReconnu"
+                                       id="montantReconnu" class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" value="{{$ctv->montantAnnonce - $ctv->montantReconnu}}" name="ecartConstate"
-                                       id="ecartConstate" class="form-control col-sm-7" required/>
+                                <input type="text" name="ecartConstate"
+                                       id="ecartConstate" class="form-control col-sm-7"/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" min="0" name="montantFinal" id="montantFinal" class="form-control col-sm-7" required
-                                       value={{$ctv->montantFinal}}/>
+                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="{{$ctv->montantFinal}}"/>
+                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="{{$ctv->montantFinal}}"/>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -579,8 +587,12 @@
                                 <div class="col">
                                     <div class="form-group row">
                                         <label for="caisse_bc" class="col-sm-5">Billets calculés</label>
-                                        <label><input type="radio" value="oui" name="billetsCalcules" {{($ctv->billetsCalcules == 'oui') ? 'checked' : ''}}> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsCalcules" {{($ctv->billetsCalcules == 'non') ? 'checked' : ''}}> Non</label>
+                                        <label><input type="radio" value="oui"
+                                                      name="billetsCalcules" {{($ctv->billetsCalcules == 'oui') ? 'checked' : ''}}>
+                                            Oui</label>
+                                        <label><input type="radio" value="non"
+                                                      name="billetsCalcules" {{($ctv->billetsCalcules == 'non') ? 'checked' : ''}}>
+                                            Non</label>
                                         <input type="hidden" name="billetsCalcules" value="{{$ctv->billetsCalcules}}">
                                         <input type="number" value="{{$ctv->billetsCalculesMontant}}"
                                                name="billetsCalculesMontant" id="caisse_bc"
@@ -588,42 +600,33 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_bsav" class="col-sm-5">Billets sans valeurs</label>
-                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'oui' ? 'checked' : '' }}> Oui</label>
-                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'non' ? 'checked' : '' }}> Non</label>
-                                        <input type="hidden" name="billetsSansValeurs"
-                                               value="{{$ctv->billetsSansValeurs}}">
-                                        <input type="number" value="{{$ctv->billetsSansValeursMontant}}"
-                                               name="billetsSansValeursMontant" id="caisse_bsav"
-                                               class="form-control col-sm-4"/>
+                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'oui' ? 'checked' : '' }}>Oui</label>
+                                        <label><input type="radio" value="oui" name="billetsSansValeurs" {{$ctv->billetsSansValeurs = 'non' ? 'checked' : '' }}>Non</label>
+                                        <input type="hidden" name="billetsSansValeurs" value="{{$ctv->billetsSansValeurs}}">
+                                        <input type="number" value="{{$ctv->billetsSansValeursMontant}}" name="billetsSansValeursMontant" id="caisse_bsav" class="form-control col-sm-4"/>
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_busa" class="col-sm-5">Billets usagés</label>
-                                        <label><input type="radio" value="oui" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? true : false }}> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? true : false }}> Non</label>
+                                        <label><input type="radio" value="oui" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? 'checked'  : '' }}>Oui</label>
+                                        <label><input type="radio" value="non" name="billetsUsages" {{$ctv->billetsUsages = 'oui' ? 'checked'  : '' }}>Non</label>
                                         <input type="hidden" name="billetsUsages" value="{{$ctv->billetsUsages}}">
-                                        <input type="number" value="{{$ctv->billetsUsagesMontant}}"
-                                               name="billetsUsagesMontant" id="caisse_busa"
-                                               class="form-control col-sm-4"/>
+                                        <input type="number" value="{{$ctv->billetsUsagesMontant}}" name="billetsUsagesMontant" id="caisse_busa" class="form-control col-sm-4"/>
                                     </div>
                                     <div class="form-group row">
                                         <label for="caisse_fau" class="col-sm-5">Faux billets</label>
-                                        <label><input type="radio" value="oui" name="fauxBillets" {{$ctv->fauxBillets = 'oui' ? true : false }}> Oui</label>
-                                        <label><input type="radio" value="non" name="fauxBillets" {{$ctv->fauxBillets = 'non' ? true : false }}> Non</label>
+                                        <label><input type="radio" value="oui" name="fauxBillets" {{$ctv->fauxBillets = 'oui' ? 'checked'  : '' }}>Oui</label>
+                                        <label><input type="radio" value="non" name="fauxBillets" {{$ctv->fauxBillets = 'non' ? 'checked'  : '' }}>Non</label>
                                         <input type="hidden" name="fauxBillets" value="{{$ctv->fauxBillets}}">
-                                        <input type="number" value="{{$ctv->fauxBilletsMontant}}"
-                                               name="fauxBilletsMontant" class="form-control col-sm-4"/>
+                                        <input type="number" value="{{$ctv->fauxBilletsMontant}}" name="fauxBilletsMontant" class="form-control col-sm-4"/>
                                     </div>
 
 
                                     <div class="form-group row">
                                         <label for="caisse_bide" class="col-sm-5">Billets déparaillés</label>
-                                        <label><input type="radio" value="oui" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? true : false }}> Oui</label>
-                                        <label><input type="radio" value="non" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? true : false }}> Non</label>
-                                        <input type="hidden" name="billetsDeparailles"
-                                               value="{{$ctv->billetsDeparailles}}">
-                                        <input type="number" value="{{$ctv->billetsDeparaillesMontant}}"
-                                               name="billetsDeparaillesMontant" id="caisse_bide"
-                                               class="form-control col-sm-4"/>
+                                        <label><input type="radio" value="oui" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? 'checked'  : '' }}>Oui</label>
+                                        <label><input type="radio" value="non" name="billetsDeparailles" {{$ctv->billetsDeparailles = 'non' ? 'checked'  : '' }}>Non</label>
+                                        <input type="hidden" name="billetsDeparailles"value="{{$ctv->billetsDeparailles}}">
+                                        <input type="number" value="{{$ctv->billetsDeparaillesMontant}}" name="billetsDeparaillesMontant" id="caisse_bide" class="form-control col-sm-4"/>
                                     </div>
                                 </div>
                             </div>
@@ -666,128 +669,191 @@
     <script>
         $(document).ready(function () {
             // Tableau montant annoncé
-            $("#ba_nb10000_total").val(parseInt($("#ba_nb10000").value) * 10000);
-            $("#ba_nb5000_total").val(parseInt($("#ba_nb5000").value) * 5000);
-            $("#ba_nb2000_total").val(parseInt($("#ba_nb2000").value) * 2000);
-            $("#ba_nb1000_total").val(parseInt($("#ba_nb1000").value) * 1000);
-            $("#ba_nb500_total").val(parseInt($("#ba_nb500").value) * 500);
-            $("#ba_nb250_total").val(parseInt($("#ba_nb250").value) * 250);
-            $("#ba_nb200_total").val(parseInt($("#ba_nb200").value) * 200);
-            $("#ba_nb100_total").val(parseInt($("#ba_nb100").value) * 100);
-            $("#ba_nb50_total").val(parseInt($("#ba_nb50").value) * 50);
-            $("#ba_nb25_total").val(parseInt($("#ba_nb25").value) * 25);
-            $("#ba_nb10_total").val(parseInt($("#ba_nb10").value) * 10);
-            $("#ba_nb5_total").val(parseInt($("#ba_nb5").value) * 5);
-            $("#ba_nb1_total").val(parseInt($("#ba_nb1").value));
+            $("#ba_nb10000_total").val(parseInt($("#ba_nb10000").val()) * 10000);
+            $("#ba_nb5000_total").val(parseInt($("#ba_nb5000").val()) * 5000);
+            $("#ba_nb2000_total").val(parseInt($("#ba_nb2000").val()) * 2000);
+            $("#ba_nb1000_total").val(parseInt($("#ba_nb1000").val()) * 1000);
+            $("#ba_nb500_total").val(parseInt($("#ba_nb500").val()) * 500);
+            $("#ba_nb250_total").val(parseInt($("#ba_nb250").val()) * 250);
+            $("#ba_nb200_total").val(parseInt($("#ba_nb200").val()) * 200);
+            $("#ba_nb100_total").val(parseInt($("#ba_nb100").val()) * 100);
+            $("#ba_nb50_total").val(parseInt($("#ba_nb50").val()) * 50);
+            $("#ba_nb25_total").val(parseInt($("#ba_nb25").val()) * 25);
+            $("#ba_nb10_total").val(parseInt($("#ba_nb10").val()) * 10);
+            $("#ba_nb5_total").val(parseInt($("#ba_nb5").val()) * 5);
+            $("#ba_nb1_total").val(parseInt($("#ba_nb1").val()));
 
 
             // Tableau montant reconnu
-            $("#br_nb10000_total").val(parseInt($("#br_nb10000").value) * 10000);
-            $("#br_nb5000_total").val(parseInt($("#br_nb5000").value) * 5000);
-            $("#br_nb2000_total").val(parseInt($("#br_nb2000").value) * 2000);
-            $("#br_nb1000_total").val(parseInt($("#br_nb1000").value) * 1000);
-            $("#br_nb500_total").val(parseInt($("#br_nb500").value) * 500);
-            $("#br_nb250_total").val(parseInt($("#br_nb250").value) * 250);
-            $("#br_nb200_total").val(parseInt($("#br_nb200").value) * 200);
-            $("#br_nb100_total").val(parseInt($("#br_nb100").value) * 100);
-            $("#br_nb50_total").val(parseInt($("#br_nb50").value) * 50);
-            $("#br_nb25_total").val(parseInt($("#br_nb25").value) * 25);
-            $("#br_nb10_total").val(parseInt($("#br_nb10").value) * 10);
-            $("#br_nb5_total").val(parseInt($("#br_nb5").value) * 5);
-            $("#br_nb1_total").val(parseInt($("#br_nb1").value));
+            $("#br_nb10000_total").val(parseInt($("#br_nb10000").val()) * 10000);
+            $("#br_nb5000_total").val(parseInt($("#br_nb5000").val()) * 5000);
+            $("#br_nb2000_total").val((parseInt($("#br_nb2000").val()) * 2000));
+            $("#br_nb1000_total").val(parseInt($("#br_nb1000").val()) * 1000);
+            $("#br_nb500_total").val(parseInt($("#br_nb500").val()) * 500);
+            $("#br_nb250_total").val(parseInt($("#br_nb250").val()) * 250);
+            $("#br_nb200_total").val(parseInt($("#br_nb200").val()) * 200);
+            $("#br_nb100_total").val(parseInt($("#br_nb100").val()) * 100);
+            $("#br_nb50_total").val(parseInt($("#br_nb50").val()) * 50);
+            $("#br_nb25_total").val(parseInt($("#br_nb25").val()) * 25);
+            $("#br_nb10_total").val(parseInt($("#br_nb10").val()) * 10);
+            $("#br_nb5_total").val(parseInt($("#br_nb5").val()) * 5);
+            $("#br_nb1_total").val(parseInt($("#br_nb1").val()));
+
+            calculerBilletageAnnonce();
+            calculerBilletageReconnu();
+            calculerEcartConstate();
+
         });
     </script>
     <script>
+        let montantAnnonce = 0;
+        let montantReconnu = 0;
+
         $(document).ready(function () {
+
             // Tableau montant annoncé
             $("#ba_nb10000").on("change", function () {
                 $("#ba_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5000").on("change", function () {
                 $("#ba_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb2000").on("change", function () {
                 $("#ba_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1000").on("change", function () {
                 $("#ba_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb500").on("change", function () {
                 $("#ba_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb250").on("change", function () {
                 $("#ba_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb200").on("change", function () {
                 $("#ba_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb100").on("change", function () {
                 $("#ba_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb50").on("change", function () {
                 $("#ba_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb25").on("change", function () {
                 $("#ba_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb10").on("change", function () {
                 $("#ba_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5").on("change", function () {
                 $("#ba_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1").on("change", function () {
                 $("#ba_nb1_total").val(parseInt(this.value));
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
 
             // Tableau montant reconnu
             $("#br_nb10000").on("change", function () {
                 $("#br_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5000").on("change", function () {
                 $("#br_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb2000").on("change", function () {
                 $("#br_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1000").on("change", function () {
                 $("#br_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb500").on("change", function () {
                 $("#br_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb250").on("change", function () {
                 $("#br_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb200").on("change", function () {
                 $("#br_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb100").on("change", function () {
                 $("#br_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb50").on("change", function () {
                 $("#br_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb25").on("change", function () {
                 $("#br_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb10").on("change", function () {
                 $("#br_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5").on("change", function () {
                 $("#br_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1").on("change", function () {
                 $("#br_nb1_total").val(parseInt(this.value));
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
         });
     </script>
     <script>
         let personnels = {!! json_encode($personnels) !!};
+
         function supprimerLigne(e) {
             const indexLigne = $(e).closest('tr').get(0).rowIndex;
             document.getElementById("mTable").deleteRow(indexLigne);
         }
+
         function supprimerItem(id, e) {
             if (confirm("Confirmer la suppression?")) {
                 const token = "{{ csrf_token() }}";
@@ -812,6 +878,7 @@
                 });
             }
         }
+
         $(document).ready(function () {
             $("#regulatrice").on("change", function () {
                 const personnel = personnels.find(p => p.id === parseInt(this.value));
@@ -833,24 +900,24 @@
                     //$("#chauffeurTitulaireDateAffection").val(personnel.dateEntreeSociete);
                 }
             });
-            $("#montantAnnonce").on('change', function() {
+            $("#montantAnnonce").on('change', function () {
                 const montantReconnu = $("#montantReconnu").val();
                 $("#ecartConstate").val(parseFloat(this.value ?? 0) - parseFloat(montantReconnu ?? 0))
             });
-            $("#montantReconnu").on('change', function() {
+            $("#montantReconnu").on('change', function () {
                 const montantAnnonce = $("#montantAnnonce").val();
                 $("#ecartConstate").val(parseFloat(montantAnnonce ?? 0) - parseFloat(this.value ?? 0))
             });
             $("#add").on("click", function () {
                 $("#mTable").append(' <tr>\n' +
                     '                            <input type="hidden" name="ids[]">\n' +
-                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
+                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" >\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($operatrices as $operatrice)\n' +
                     '                                        <option value="{{$operatrice->id}}"> {{$operatrice->operatrice->nomPrenoms}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select></td>\n' +
-                    '                            <td><select name="numero[]" id="numero" class="form-control col-sm-7" REQUIRED>\n' +
+                    '                            <td><select name="numero[]" id="numero" class="form-control col-sm-7" >\n' +
                     '                                    <option value="1">1</option>\n' +
                     '                                    <option value="2">2</option>\n' +
                     '                                    <option value="3">3</option>\n' +

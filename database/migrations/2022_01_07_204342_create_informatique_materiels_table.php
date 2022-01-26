@@ -19,13 +19,18 @@ class CreateInformatiqueMaterielsTable extends Migration
             $table->string('centre')->nullable();
             $table->string('centreRegional')->nullable();
             $table->string('service')->nullable();
-            $table->date('date')->nullable();
+            $table->date('date_achat')->nullable();
+            $table->date('date_fin')->nullable();
+            $table->integer('duree')->nullable();
             $table->string('reference')->nullable();
+            $table->string('categorie')->nullable();
             $table->string('libelle')->nullable();
             $table->integer('quantite')->default(0);
             $table->double('prixUnitaire')->nullable();
             $table->double('montant')->default(0);
             $table->string('factureJointe')->nullable();
+            $table->text('caracteristique')->nullable();
+            $table->integer('fournisseur')->nullable();
             $table->foreignId('location')->nullable()->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

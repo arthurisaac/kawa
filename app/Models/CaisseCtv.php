@@ -43,6 +43,11 @@ class CaisseCtv extends Model
         'localisation_id',
     ];
 
+    public function tournees()
+    {
+        return $this->belongsTo('App\Models\DepartTournee', 'tournee', 'id');
+    }
+
     public function operatrices()
     {
         return $this->belongsTo('App\Models\CaisseServiceOperatrice', 'operatriceCaisse', 'id')->with("operatrice");

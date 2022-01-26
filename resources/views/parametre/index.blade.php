@@ -30,6 +30,8 @@
             <a href="/parametres-option-devise" class="btn btn-light btn-sm">Option devise</a>
             <br>
             <a href="/parametres-option-secteur-activite" class="btn btn-light btn-sm">Secteur d'activité</a>
+            <br>
+            <a href="/parametres-option-categorie-informatique" class="btn btn-light btn-sm">Catégorie</a>
         </div>
 
     </div>

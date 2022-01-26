@@ -31,7 +31,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre" class="col-5">Centre regional</label>
-                        <select name="centre" id="centre" class="form-control col-7" required>
+                        <select name="centre" id="centre" class="form-control col-7" >
                             <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -42,7 +42,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="centre_regional" class="col-5">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-7" required>
+                        <select id="centre_regional" name="centre_regional" class="form-control col-7" >
                             <option></option>
                         </select>
                     </div>
@@ -53,7 +53,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control col-sm-7" required/>
+                        <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control col-sm-7" />
                     </div>
                 </div>
                 <div class="col"></div>
@@ -63,7 +63,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label for="heurePrise" class="col-sm-5">Heure de prise de service</label>
-                        <input type="time" name="heurePriseBox" class="form-control col-sm-7" REQUIRED/>
+                        <input type="time" name="heurePriseBox" class="form-control col-sm-7" />
                     </div>
                 </div>
                 <div class="col">
@@ -115,13 +115,13 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><select name="operatrice[]" class="form-control col-sm-7" required>
+                            <td><select name="operatrice[]" class="form-control col-sm-7" >
                                     <option></option>
-                                    @foreach ($operatrices as $operatrice)
-                                        <option value="{{$operatrice->id}}"> {{$operatrice->nomPrenoms}}</option>
+                                    @foreach ($operatrices as $op)
+                                        <option value="{{$op->id}}"> {{$op->nomPrenoms}}</option>
                                     @endforeach
                                 </select></td>
-                            <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>
+                            <td><select name="numero[]" class="form-control col-sm-7" >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -254,7 +254,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="numeroScelleColis" class="col-sm-5">Numero de scellé</label>
-                                <input type="number" name="numeroScelleColis" id="numeroScelleColis" class="form-control col-sm-7"/>
+                                <textarea name="numeroScelleColis" id="numeroScelleColis" class="form-control col-sm-7"></textarea>
                             </div>
                         </div>
                         <div class="col">
@@ -265,7 +265,7 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="client" class="col-sm-5">Client</label>
-                                <select class="form-control col-sm-7" id="client" name="client" required>
+                                <select class="form-control col-sm-7" id="client" name="client" >
                                     <option></option>
                                     @foreach ($clients as $client)
                                         <option value="{{$client->id}}"> {{$client->client_nom}}</option>
@@ -274,7 +274,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="site" class="col-sm-5">Site</label>
-                                <select class="form-control col-sm-7" id="site" name="site" required>
+                                <select class="form-control col-sm-7" id="site" name="site" >
                                     <option></option>
                                     @foreach ($sites as $site)
                                         <option value="{{$site->id}}"> {{$site->site}}</option>
@@ -283,11 +283,11 @@
                             </div>
                             <div class="form-group row">
                                 <label for="expediteur" class="col-sm-5">Expediteur</label>
-                                <input type="text" class="form-control col-sm-7" id="expediteur" name="expediteur" required />
+                                <input type="text" class="form-control col-sm-7" id="expediteur" name="expediteur"  />
                             </div>
                             <div class="form-group row">
                                 <label for="caisse_desti" class="col-sm-5">Destinataire</label>
-                                <input type="text" class="form-control col-sm-7" id="destinataire" name="destinataire" required />
+                                <input type="text" class="form-control col-sm-7" id="destinataire" name="destinataire"  />
                             </div>
                         </div>
                         <div class="col"></div>
@@ -466,19 +466,19 @@
                         <div class="col">
                             <div class="form-group row">
                                 <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7"/>
+                                <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0" readonly/>
                             </div>
                             <div class="form-group row">
                                 <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/>
+                                <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/=
                             </div>
                         </div>
                         <div class="col"></div>
@@ -546,6 +546,8 @@
     <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+        let montantAnnonce = 0;
+        let montantReconnu = 0;
 
         $(document).ready(function () {
             $("#centre").on("change", function () {
@@ -569,83 +571,135 @@
             // Tableau montant annoncé
             $("#ba_nb10000").on("change", function() {
                 $("#ba_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5000").on("change", function() {
                 $("#ba_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb2000").on("change", function() {
                 $("#ba_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1000").on("change", function() {
                 $("#ba_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb500").on("change", function() {
                 $("#ba_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb250").on("change", function() {
                 $("#ba_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb200").on("change", function() {
                 $("#ba_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb100").on("change", function() {
                 $("#ba_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb50").on("change", function() {
                 $("#ba_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb25").on("change", function() {
                 $("#ba_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb10").on("change", function() {
                 $("#ba_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb5").on("change", function() {
                 $("#ba_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
             $("#ba_nb1").on("change", function() {
                 $("#ba_nb1_total").val(parseInt(this.value));
+                calculerBilletageAnnonce();
+                calculerEcartConstate();
             });
 
             // Tableau montant reconnu
             $("#br_nb10000").on("change", function() {
                 $("#br_nb10000_total").val(parseInt(this.value) * 10000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5000").on("change", function() {
                 $("#br_nb5000_total").val(parseInt(this.value) * 5000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb2000").on("change", function() {
                 $("#br_nb2000_total").val(parseInt(this.value) * 2000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1000").on("change", function() {
                 $("#br_nb1000_total").val(parseInt(this.value) * 1000);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb500").on("change", function() {
                 $("#br_nb500_total").val(parseInt(this.value) * 500);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb250").on("change", function() {
                 $("#br_nb250_total").val(parseInt(this.value) * 250);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb200").on("change", function() {
                 $("#br_nb200_total").val(parseInt(this.value) * 200);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb100").on("change", function() {
                 $("#br_nb100_total").val(parseInt(this.value) * 100);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb50").on("change", function() {
                 $("#br_nb50_total").val(parseInt(this.value) * 50);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb25").on("change", function() {
                 $("#br_nb25_total").val(parseInt(this.value) * 25);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb10").on("change", function() {
                 $("#br_nb10_total").val(parseInt(this.value) * 10);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb5").on("change", function() {
                 $("#br_nb5_total").val(parseInt(this.value) * 5);
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
             $("#br_nb1").on("change", function() {
                 $("#br_nb1_total").val(parseInt(this.value));
+                calculerBilletageReconnu();
+                calculerEcartConstate();
             });
         });
     </script>
@@ -680,13 +734,13 @@
             //$("#mTable > tbody").html("");
             $("#add").on("click", function () {
                 $("#mTable").append(' <tr>\n' +
-                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" required>\n' +
+                    '                            <td><select name="operatrice[]" class="form-control col-sm-7" >\n' +
                     '                                    <option></option>\n' +
                     '                                    @foreach ($operatrices as $operatrice)\n' +
                     '                                        <option value="{{$operatrice->id}}"> {{$operatrice->nomPrenoms}}</option>\n' +
                     '                                    @endforeach\n' +
                     '                                </select></td>\n' +
-                    '                            <td><select name="numero[]" class="form-control col-sm-7" REQUIRED>\n' +
+                    '                            <td><select name="numero[]" class="form-control col-sm-7" >\n' +
                     '                                    <option value="1">1</option>\n' +
                     '                                    <option value="2">2</option>\n' +
                     '                                    <option value="3">3</option>\n' +

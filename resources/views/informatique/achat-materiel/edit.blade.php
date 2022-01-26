@@ -49,8 +49,12 @@
                         <input class="form-control col-md-7" name="service" value="{{$achat->service}}" required/>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-5">Date</label>
-                        <input type="date" class="form-control col-md-7" name="date" value="{{$achat->date}}" required/>
+                        <label for="date_achat" class="col-md-5">Date achat</label>
+                        <input type="date" class="form-control col-md-7" name="date_achat" id="date_achat" value="{{$achat->date_achat}}" required/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="date_fin" class="col-md-5">Date fin de vie</label>
+                        <input type="date" class="form-control col-md-7" name="date_fin" id="date_fin" value="{{$achat->date_fin}}" required/>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Référence</label>
