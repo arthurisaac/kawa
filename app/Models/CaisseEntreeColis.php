@@ -37,4 +37,10 @@ class CaisseEntreeColis extends Model
     {
         return $this->hasMany('App\Models\CaisseEntreeColisItem', 'entree_colis');
     }
+
+    public function caisses()
+    {
+        return $this->belongsTo('App\Models\CaisseEntreeColis', 'entree_colis', 'id')
+            ->with('tournee');
+    }
 }

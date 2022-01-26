@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\CaisseEntreeColis;
 use App\Models\CaisseEntreeColisItem;
+use App\Models\CaisseSortieColisItem;
 use App\Models\Centre;
 use App\Models\Centre_regional;
+use App\Models\Commercial_client;
 use App\Models\Commercial_site;
 use App\Models\DepartTournee;
 use App\Models\OptionDevise;
 use App\Models\Personnel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -35,71 +38,58 @@ class CaisseEntreeColisController extends Controller
 
     public function listeDetaillee(Request $request)
     {
-        $devises = OptionDevise::all();
-        $colis = CaisseEntreeColis::with('items')->get();
-        $numero_scelles = CaisseEntreeColisItem::orderBy('scelle')->get();
-        $nombre_total_colis = CaisseEntreeColisItem::with('sites')->orderBy('nbre_colis')->get();
-        $sites = CaisseEntreeColisItem::with('sites')->orderBy('site')->get();
-        $clients = CaisseEntreeColisItem::with('sites')->get();
-//        dd($sites);
-
-        $client = $request->get('client');
-        $devise = $request->get('devise');
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $client = $request->get("client");
+        $site = $request->get("site");
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $remettant = $request->get('remettant');
         $scelle = $request->get('scelle');
-        $valeur = $request->get('val_colis');
-        $nb_total_colis = $request->get('total_colis');
-        $site = $request->get('site');
 
-        if (isset($devise)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('caisse_entree_devise', $devise)
-                ->get();
-        }
-        if (isset($valeur)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('caisse_entree_valeur_colis', $valeur)
-                ->get();
-        }
-        if (isset($client)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('client_nom', 'client')
-                ->get();
-        }
-        if (isset($site)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('site', $site);
-        }
-        if (isset($scelle)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('scelle', $scelle)
-                ->get();
-        }
-        if (isset($nb_total_colis)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('nbre_colis', $nb_total_colis)
+        $clients_com = Commercial_client::query()->orderBy('client_nom')->get();
+        $sites_com = Commercial_site::query()->orderBy('site')->get();
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+
+        $colis = CaisseSortieColisItem::with("sites")
+            ->with("caisses")
+            ->get();
+
+        if ($remettant) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($remettant) {
+                    $builder->where("remettant", $remettant);
+                })
                 ->get();
         }
 
-        if (isset($nb_total_colis) && isset($scelle) && isset($site)){
-            CaisseEntreeColisItem::with('sites')
-                ->where('nbre_colis', $nb_total_colis)
-                ->where('scelle', $scelle)
-                ->where('site', $site)
+        if ($site) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->where("site", $site)
                 ->get();
         }
-        if (isset($devise) && isset($client) && isset($site) && isset($scelle) && isset($valeur) && isset($nb_total_colis)){
-            $data_devise = OptionDevise::find($devise);
-            CaisseEntreeColisItem::with('sites')
-                ->where('nbre_colis', $nb_total_colis)
-                ->where('scelle', $scelle)
-                ->where('site', $site)
-                ->where('caisse_entree_valeur_colis', $valeur)
-                ->where('caisse_entree_devise', $data_devise->devise)
-                ->where('client_nom', $client)
+
+        if ($client) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("sites", function (Builder $builder) use ($client) {
+                    $builder->where("client", $client);
+                })
                 ->get();
         }
-//        dd($colis);
-        return view('caisse.entree-colis.liste-detaillee', compact('sites', 'clients', 'devises', 'nombre_total_colis', 'numero_scelles', 'colis'));
+
+        if ($scelle) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->where("scelle", $scelle)
+                ->get();
+        }
+
+        return view('/caisse.entree-colis.liste-detaillee', compact('colis', 'debut', 'fin', 'client', 'site', 'centre', 'centre_regional', 'remettant', 'scelle',
+            'clients_com', 'sites_com', 'centres', 'centres_regionaux'));
     }
 
     public function liste(Request $request)

@@ -2,7 +2,8 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Entrée colis</h2></div>
+        <div><h2 class="heading">Entrée colis détaillée</h2></div>
+        <br/>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -20,20 +21,18 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <a href="/commercial-client" class="btn btn-info btn-sm">Nouveau</a>
-        <br><br>
+        <a href="/caisse-sortie-colis" class="btn btn-info btn-sm">Nouveau</a>
+        <br>
+        <br>
         <div class="titre">
             <div class="row">
                 <div class="col">
-                    <span class="titre">TOTAL VALEUR COLIS</span> : <span class="text-danger"></span>
+                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger">{{count($colis)}}</span>
                 </div>
             </div>
-        </div>
-        <div class="titre">
             <div class="row">
                 <div class="col">
-                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger"></span>
+                    <span class="titre">TOTAL VALEUR COLIS</span> : <span class="text-danger">{{$colis->sum("valeur")}}</span>
                 </div>
             </div>
         </div>
@@ -43,45 +42,12 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="devise" class="col-5">Devise</label>
-                        <select name="devise" id="devise" class="form-control col">
-                            <option></option>
-                            @foreach ($devises as $devise)
-                                <option>{{$devise->devise}}</option>
+                        <label for="client" class="col-5">Clients</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option>{{$client}}</option>
+                            @foreach ($clients_com as $client)
+                                <option value="{{$client->id}}">{{ $client->client_nom }}</option>
                             @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-5">Valeur Colis</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col">
-                            <option></option>
-                            @foreach ($sites as $valeur)
-                                <option value="{{$valeur->caisse_entree_valeur_colis}}">{{$valeur->caisse_entree_valeur_colis}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="scelle" class="col-5">Numéros scelles</label>
-                        <select id="scelle" name="scelle" class="form-control col">
-                            <option></option>
-                            @foreach ($sites as $scelle)
-                                <option>{{$scelle->scelle}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="secteur_activite" class="col-5">Nombre total de colis</label>
-                        <select id="secteur_activite" name="secteur_activite" class="form-control col">
-{{--                            <option></option>--}}
-{{--                            @foreach ($secteur_activites as $secteur_activite)--}}
-{{--                                <option>{{ $secteur_activite->option }}</option>--}}
-{{--                            @endforeach--}}
                         </select>
                     </div>
                 </div>
@@ -89,27 +55,30 @@
                     <div class="form-group row">
                         <label for="site" class="col-5">Site</label>
                         <select id="site" name="site" class="form-control col">
-                            <option></option>
-                            @foreach ($sites as $site)
-                                <option value="{{$site->site}}">{{$site->sites->site}}</option>
+                            <option>{{$site}}</option>
+                            @foreach ($sites_com as $site)
+                                <option value="{{$site->id}}">{{ $site->site }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="secteur_activite" class="col-5">Client</label>
-                        <select id="secteur_activite" name="secteur_activite" class="form-control col">
-                            {{--                            <option></option>--}}
-                            {{--                            @foreach ($secteur_activites as $secteur_activite)--}}
-                            {{--                                <option>{{ $secteur_activite->option }}</option>--}}
-                            {{--                            @endforeach--}}
-                        </select>
+                        <label for="remettant" class="col-5">Remettant</label>
+                        <input type="text" id="remettant" name="remettant" class="form-control col" value="{{$remettant}}" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="scelle" class="col-5">Numéro scellé</label>
+                        <input type="text" id="scelle" name="scelle" class="form-control col" value="{{$scelle}}" />
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+
+                </div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
@@ -118,81 +87,79 @@
                 </div>
             </div>
         </form>
-        <br>
-        <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
-            <thead>
-            <tr>
-                <th scope="col">N°</th>
-                <th scope="col">Date</th>
-                <th scope="col">Centre régional</th>
-                <th scope="col">Centre</th>
-                <th scope="col">Colis</th>
-                <th scope="col">Devise</th>
-                <th scope="col">Valeur de Colis</th>
-                <th scope="col">Numéro scelle</th>
-                <th scope="col">Nombre Total de colis</th>
-                <th scope="col">Site</th>
-                <th scope="col">Client</th>
-                <td>Actions</td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($colis as $coli)
-                <tr>
-                    <td>{{$coli->id}}</td>
-                    <td>{{$coli->date}}</td>
-                    <td>{{$coli->centre}}</td>
-                    <td>{{$coli->centre_regional}}</td>
-                    <td>{{$coli->colis}}</td>
-{{--                    <td>{{$coli->items->caisse_entree_devise}}</td>--}}
-{{--                    <td>{{$coli->items->caisse_entree_valeur_colis}}</td>--}}
-{{--                    <td>{{$coli->items->scelle}}</td>--}}
-{{--                    <td>{{$coli->items->sum('nbre_colis')}}</td>--}}
-{{--                    <td>{{$coli->items->site}}</td>--}}
-{{--                    <td>{{$coli->items->items->sites->clients->client_nom}}</td>--}}
-                    <td>
-                        <div style="width: 110px;">
-                            <a href="{{ route('caisse-entree-colis.edit', $coli->id)}}"
-                               class="btn btn-primary btn-sm"></a>
-                            <a class="btn btn-danger btn-sm" type="submit"
-                               onclick="supprimer({{$coli->id}}, this)"></a>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-
-        </table>
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered" style="width: 100%;" id="liste">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Site</th>
+                        <th>Nbre colis</th>
+                        <th>Remettant</th>
+                        <th>Scelle</th>
+                        <th>Valeur colis</th>
+                        <th>No Tournee</th>
+                        <th>Equipage</th>
+                        <td style="width: 50px;">Actions</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($colis as $coli)
+                        <tr>
+                            <td>{{$coli->id}}</td>
+                            <td>{{$coli->caisses->tournees->date ?? ""}}</td>
+                            <td>{{$coli->sites->site ?? ""}}</td>
+                            <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
+                            <td>{{$coli->nbre_colis}}</td>
+                            <td>{{$coli->caisses->remettant}}</td>
+                            <td>{{$coli->scelle}}</td>
+                            <td>{{$coli->valeur}}</td>
+                            <td>{{$coli->caisses->tournees->numeroTournee ?? ""}}</td>
+                            <td>{{$coli->caisses->tournees->chefDeBords->nomPrenoms ?? ""}} //
+                                {{$coli->caisses->tournees->agentDeGardes->nomPrenoms ?? ""}} //
+                                {{$coli->caisses->tournees->chauffeurs->nomPrenoms ?? ""}} //</td>
+                            <td>
+                                <a href="{{ route('caisse-entree-colis.edit',$coli->caisses->id ?? 0)}}" class="btn btn-primary btn-sm"></a>
+                                <a class="btn btn-danger btn-sm" onclick="supprimer('{{$coli->caisses->id}}', this)"></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-{{--    <script>--}}
-{{--        let sites = {!! json_encode($sites_com) !!};--}}
-{{--        let clients = {!! json_encode($clients_com) !!};--}}
-{{--        $(document).ready(function () {--}}
-{{--            $('#table_client_informations').DataTable({--}}
-{{--                "language": {--}}
-{{--                    "url": "French.json"--}}
-{{--                }--}}
-{{--            });--}}
+    <script>
+        let sites = {!! json_encode($sites_com) !!};
+        let clients = {!! json_encode($clients_com) !!};
+        $(document).ready(function () {
+            $('#liste').DataTable({
+                "language": {
+                    "url": "French.json"
+                },
+                "order": [[ 0, "desc" ]]
+            });
 
-{{--            const siteInput = $("#site");--}}
-{{--            if (siteInput.val()) {--}}
-{{--                const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));--}}
-{{--                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');--}}
-{{--            }--}}
-{{--            const clientInput = $("#client");--}}
-{{--            if (clientInput.val()) {--}}
-{{--                const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));--}}
-{{--                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
-
+            const siteInput = $("#site");
+            if (siteInput.val()) {
+                const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
+                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
+            }
+            const clientInput = $("#client");
+            if (clientInput.val()) {
+                const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
+                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+            }
+        });
+    </script>
     <script>
         function supprimer(id, e) {
             if (confirm("Confirmer la suppression?")) {
                 const token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: "caisse-entree-colis/" + id,
+                    url: "caisse-sortie-colis/" + id,
                     type: 'DELETE',
                     dataType: "JSON",
                     data: {
@@ -203,13 +170,11 @@
                         console.log(response);
                         alert("Suppression effectuée");
                         const indexLigne = $(e).closest('tr').get(0).rowIndex;
-                        document.getElementById("table_client_informations").deleteRow(indexLigne);
+                        document.getElementById("liste").deleteRow(indexLigne);
                     },
-                    error: function (xhr) {
+                    error: function () {
                         alert("Une erreur s'est produite");
                     }
-                }).done(function () {
-                    // TODO hide loader
                 });
 
 

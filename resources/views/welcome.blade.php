@@ -324,6 +324,10 @@
                                                                 href="javascript:popupwnd('caisse-entree-colis-liste','no','no','no','yes','yes','no','','','1700','500')"
                                                                 target="_self" title="Liste">Liste</a>
                                                         </li>
+                                                        <li><span></span><a
+                                                                href="javascript:popupwnd('caisse-entree-colis-liste-detaillee','no','no','no','yes','yes','no','','','1700','500')"
+                                                                target="_self" title="Liste detaillée">Liste detaillée</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><span></span><span>Sortie&nbsp;de&nbsp;colis</span>
