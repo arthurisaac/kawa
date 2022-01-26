@@ -21,6 +21,105 @@
             </div>
         @endif
 
+        <form action="#" method="get">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="client" class="col-5">Clients</label>
+                        <select id="client" name="client" class="form-control col">
+                            <option>{{$client}}</option>
+                            @foreach ($clients as $client)
+                                <option value="{{$client->id}}">{{ $client->client_nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="site" class="col-5">Site</label>
+                        <select id="site" name="site" class="form-control col">
+                            <option>{{$site}}</option>
+                            @foreach ($sites_com as $site)
+                                <option value="{{$site->id}}">{{ $site->site }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date fin</label>
+                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="tdf" class="col-5">TDF</label>
+                        <select name="tdf" id="tdf" class="form-control col-sm-7">
+                            <option>{{$tdf}}</option>
+                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                            <option value="oo_vb_intramuros">VB</option>
+                            <option value="oo_vl_intramuros">VL</option>
+                            <option value="oo_ass_appro">Assistance appro DAB</option>
+                            <option value="oo_dnf">Dépôt non facturé</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="caisse" class="col-5">Caisse</label>
+                        <select name="caisse" id="caisse" class="form-control col-sm-7">
+                            <option>{{$caisse}}</option>
+                            <option value="oo_mad">MAD</option>
+                            <option value="oo_collecte">Collecte</option>
+                            <option value="oo_cctv">CCTV</option>
+                            <option value="oo_collecte_caisse">Collecte Caisse</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col text-right">
+                    <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
+            </div>
+        </form>
         <br>
 
 
