@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div><h2 class="heading">Sortie colis détaillée</h2></div>
+        <div><h2 class="heading">CAISSE : SORTIE DE COLIS</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
