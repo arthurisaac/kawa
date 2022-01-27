@@ -88,6 +88,51 @@ class CaisseEntreeColisController extends Controller
                 ->get();
         }
 
+        if ($debut && $fin) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($debut, $fin) {
+                    $builder->whereHas("tournees", function (Builder $query) use ($debut, $fin) {
+                        $query->whereBetween("date", [$debut, $fin]);
+                    });
+                })
+                ->get();
+        }
+
+        if ($centre) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($centre) {
+                    $builder->whereHas("tournees", function (Builder $query) use ($centre) {
+                        $query->where("centre", $centre);
+                    });
+                })
+                ->get();
+        }
+
+        if ($centre_regional) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($centre_regional) {
+                    $builder->whereHas("tournees", function (Builder $query) use ($centre_regional) {
+                        $query->where("centre_regional", $centre_regional);
+                    });
+                })
+                ->get();
+        }
+
+        if ($centre && $centre_regional) {
+            $colis = CaisseEntreeColisItem::with("sites")
+                ->with("caisses")
+                ->whereHas("caisses", function (Builder $builder) use ($centre, $centre_regional) {
+                    $builder->whereHas("tournees", function (Builder $query) use ($centre, $centre_regional) {
+                        $query->where("centre", $centre);
+                        $query->where("centre_regional", $centre_regional);
+                    });
+                })
+                ->get();
+        }
+
         return view('/caisse.entree-colis.liste-detaillee', compact('colis', 'debut', 'fin', 'client', 'site', 'centre', 'centre_regional', 'remettant', 'scelle',
             'clients_com', 'sites_com', 'centres', 'centres_regionaux'));
     }

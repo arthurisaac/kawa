@@ -151,7 +151,7 @@
                             <td>{{$coli->nbre_colis}}</td>
                             <td>{{$coli->caisses->remettant ?? ""}}</td>
                             <td>{{$coli->scelle}}</td>
-                            <td>{{$coli->valeur}}</td>
+                            <td>{{$coli->caisse_entree_valeur_colis}}</td>
                             <td>{{$coli->caisses->tournees->numeroTournee ?? ""}}</td>
                             <td>{{$coli->caisses->tournees->chefDeBords->nomPrenoms ?? ""}} //
                                 {{$coli->caisses->tournees->agentDeGardes->nomPrenoms ?? ""}} //

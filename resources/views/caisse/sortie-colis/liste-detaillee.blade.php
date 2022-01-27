@@ -100,14 +100,14 @@
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="" class="col-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group row">
-                        <label for="" class="col-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
+                        <label for="" class="col-5">Date fin</label>
+                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
                     </div>
                 </div>
             </div>
