@@ -901,10 +901,10 @@
                                         <li><span></span><span>Etat</span>
                                             <ul>
                                                 <li><span></span><a
-                                                        href="javascript:popupwnd('comptabilite-etat-client-periode','no','no','no','yes','yes','no','','','1300','700')"
+                                                        href="javascript:popupwnd('ca-liste','no','no','no','yes','yes','no','','','1300','700')"
                                                         target="_self">Tableau&nbsp;client/p&#233;riode</a>
                                                 </li>
-                                                <li><span></span><a
+                                                {{--<li><span></span><a
                                                         href="javascript:popupwnd('comptabilite-etat-facturation-client','no','no','no','yes','yes','no','','','1300','700')"
                                                         target="_self">Facturation&nbsp;client</a>
                                                 </li>
@@ -923,7 +923,7 @@
                                                                 target="_self">Facturation&nbsp;tourn&#233;e&nbsp;par&nbsp;date</a>
                                                         </li>
                                                     </ul>
-                                                </li>
+                                                </li>--}}
                                                 <li><span></span><span>Caisse</span>
                                                     <ul>
                                                         <li><span></span><a
