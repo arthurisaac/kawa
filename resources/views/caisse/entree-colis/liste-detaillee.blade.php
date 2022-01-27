@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <span class="titre">TOTAL VALEUR COLIS</span> : <span class="text-danger">{{$colis->sum("valeur")}}</span>
+                    <span class="titre">TOTAL VALEUR COLIS</span> : <span class="text-danger">{{$colis->sum("caisse_entree_valeur_colis")}}</span>
                 </div>
             </div>
         </div>
