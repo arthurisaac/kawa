@@ -26,4 +26,10 @@ class CaisseEntreeColisItem extends Model
         return $this->belongsTo('App\Models\Commercial_site', 'site', 'id')
             ->with("clients");
     }
+
+    public function caisses()
+    {
+        return $this->belongsTo('App\Models\CaisseEntreeColis', 'entree_colis', 'id')
+            ->with("tournees");
+    }
 }

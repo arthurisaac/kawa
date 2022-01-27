@@ -77,13 +77,49 @@
             </div>
             <div class="row">
                 <div class="col">
-
+                    <div class="form-group row">
+                        <label for="centre" class="col-5">Centre Régional</label>
+                        <select name="centre" id="centre" class="form-control col">
+                            <option>{{$centre}}</option>
+                            @foreach ($centres as $centre)
+                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="centre_regional" class="col-5">Centre</label>
+                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                            <option>{{$centre_regional}}</option>
+                            @foreach ($centres_regionaux as $centre)
+                                <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date fin</label>
+                        <input type="date" name="fin" class="form-control col-sm-7" value="{{$fin}}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Date début</label>
+                        <input type="date" name="debut" class="form-control col-7" value="{{$debut}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col"></div>
                 <div class="col"></div>
-                <div class="col text-right">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="col text-right">
                     <a href="/caisse-entree-colis-liste-detaillee" class="btn btn-info btn-sm">Effacer</a>
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </div>
                 </div>
             </div>
         </form>
@@ -113,7 +149,7 @@
                             <td>{{$coli->sites->site ?? ""}}</td>
                             <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
                             <td>{{$coli->nbre_colis}}</td>
-                            <td>{{$coli->caisses->remettant}}</td>
+                            <td>{{$coli->caisses->remettant ?? ""}}</td>
                             <td>{{$coli->scelle}}</td>
                             <td>{{$coli->valeur}}</td>
                             <td>{{$coli->caisses->tournees->numeroTournee ?? ""}}</td>

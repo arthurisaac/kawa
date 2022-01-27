@@ -52,7 +52,7 @@ class CaisseEntreeColisController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
 
-        $colis = CaisseSortieColisItem::with("sites")
+        $colis = CaisseEntreeColisItem::with("sites")
             ->with("caisses")
             ->get();
 
