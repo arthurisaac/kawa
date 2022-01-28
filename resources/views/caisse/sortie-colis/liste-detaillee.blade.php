@@ -144,8 +144,8 @@
                         <tr>
                             <td>{{$coli->id}}</td>
                             <td>{{$coli->caisses->tournees->date ?? ""}}</td>
-                            <td>{{$coli->sites->site ?? ""}}</td>
                             <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
+                            <td>{{$coli->sites->site ?? ""}}</td>
                             <td>{{$coli->nbre_colis}}</td>
                             <td>{{$coli->caisses->receveur}}</td>
                             <td>{{$coli->scelle}}</td>

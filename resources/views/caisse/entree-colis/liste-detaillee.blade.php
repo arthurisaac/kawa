@@ -21,7 +21,7 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-        <a href="/caisse-sortie-colis" class="btn btn-info btn-sm">Nouveau</a>
+        <a href="/caisse-entree-colis" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
         <div class="titre">
@@ -146,8 +146,8 @@
                         <tr>
                             <td>{{$coli->id}}</td>
                             <td>{{$coli->caisses->tournees->date ?? ""}}</td>
-                            <td>{{$coli->sites->site ?? ""}}</td>
                             <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
+                            <td>{{$coli->sites->site ?? ""}}</td>
                             <td>{{$coli->nbre_colis}}</td>
                             <td>{{$coli->caisses->remettant ?? ""}}</td>
                             <td>{{$coli->scelle}}</td>
