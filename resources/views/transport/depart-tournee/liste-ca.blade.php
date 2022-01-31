@@ -252,6 +252,7 @@
             let centres_regionaux = {!! json_encode($centres_regionaux) !!};
             let sites = {!! json_encode($sites_com) !!};
             let clients = {!! json_encode($clients) !!};
+            let vehicules = {!! json_encode($vehicules) !!};
 
             const siteInput = $("#site");
             if (siteInput.val()) {
@@ -263,6 +264,11 @@
             if (clientInput.val()) {
                 const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
                 if (client) $("select[name='client'] option[value=" + client?.id + "]").attr('selected', 'selected');
+            }
+            const vehiculeInput = $("#vehicule");
+            if (vehiculeInput.val()) {
+                const vehicule = vehicules.find(s => s.id === parseInt(vehiculeInput.val() ?? 0));
+                if (vehicule) $("select[name='vehicule'] option[value=" + vehicule?.id + "]").attr('selected', 'selected');
             }
             const tdfInput = $("#tdf");
             if (tdfInput.val()) {
