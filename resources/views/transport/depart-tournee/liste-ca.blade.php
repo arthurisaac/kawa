@@ -258,7 +258,7 @@
             if (siteInput.val()) {
                 console.log(siteInput.val())
                 const site = sites.find(s => s.id === parseInt(siteInput.val() ?? 0));
-                //if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
+                if (site) $("select[name='site'] option[value="+ site?.id +"]").attr('selected','selected');
             }
             const clientInput = $("#client");
             if (clientInput.val()) {
