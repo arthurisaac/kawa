@@ -268,9 +268,7 @@ class DepartTourneeController extends Controller
             })->get();
         }
         if (isset($site)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
-                $query->where('id', 'like', '%' . $site . '%');
-            })->get();
+            $site_array = SiteDepartTournee::query()->where('site', $site)->get();
 
         }
         if (isset($tdf)) {
