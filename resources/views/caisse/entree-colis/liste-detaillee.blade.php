@@ -27,7 +27,7 @@
         <div class="titre">
             <div class="row">
                 <div class="col">
-                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger">{{count($colis)}}</span>
+                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger">{{$colis->sum("nbre_colis")}}</span>
                 </div>
             </div>
             <div class="row">
@@ -130,8 +130,8 @@
                     <tr>
                         <th>No</th>
                         <th>Date</th>
-                        <th>Client</th>
                         <th>Site</th>
+                        <th>Client</th>
                         <th>Nbre colis</th>
                         <th>Remettant</th>
                         <th>Scelle</th>
@@ -146,8 +146,8 @@
                         <tr>
                             <td>{{$coli->id}}</td>
                             <td>{{$coli->caisses->tournees->date ?? ""}}</td>
-                            <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
                             <td>{{$coli->sites->site ?? ""}}</td>
+                            <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
                             <td>{{$coli->nbre_colis}}</td>
                             <td>{{$coli->caisses->remettant ?? ""}}</td>
                             <td>{{$coli->scelle}}</td>

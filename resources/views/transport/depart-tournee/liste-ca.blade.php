@@ -2,7 +2,10 @@
 
 @section('main')
     <div class="burval-container">
-        <div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire" class="text-danger"></span> <span style="margin-left: 10px;">Nombre de passage : <span class="text-danger">{{count($sites)}}</span></span></div>
+        <div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
+                                                                                class="text-danger"></span> <span
+                style="margin-left: 10px;">Nombre de passage : <span class="text-danger">{{count($sites)}}</span></span>
+        </div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -112,11 +115,41 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="typeOP" class="col-5">Type OP</label>
+                        <select name="typeOP" id="typeOP" class="form-control col-7">
+                            <option>{{$typeOP}}</option>
+                            <option value="Enlèvement">Enlèvement</option>
+                            <option value="Dépôt">Dépôt</option>
+                            <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
+                            <option value="Enlèvement / R">Enlèvement / R</option>
+                            <option value="Dépôt / R">Dépôt / R</option>
+                            <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="" class="col-5">Véhicule</label>
+                        <select name="vehicule" id="vehicule" class="form-control col-sm-7">
+                            <option>{{$vehicule}}</option>
+                            @foreach($vehicules as $vehicule)
+                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
-                    <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a> <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                    <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a>
+                    <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
         </form>
@@ -229,34 +262,34 @@
             const clientInput = $("#client");
             if (clientInput.val()) {
                 const client = clients.find(s => s.id === parseInt(clientInput.val() ?? 0));
-                if (client) $("select[name='client'] option[value="+ client?.id +"]").attr('selected','selected');
+                if (client) $("select[name='client'] option[value=" + client?.id + "]").attr('selected', 'selected');
             }
             const tdfInput = $("#tdf");
             if (tdfInput.val()) {
                 switch (tdfInput.val()) {
                     case "oo_vb_extamuros_bitume":
-                        $("select[name='tdf'] option[value=oo_vb_extamuros_bitume]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vb_extamuros_bitume]").attr('selected', 'selected');
                         break;
                     case "oo_vb_extramuros_piste":
-                        $("select[name='tdf'] option[value=oo_vb_extramuros_piste]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vb_extramuros_piste]").attr('selected', 'selected');
                         break;
                     case "oo_vl_extramuros_bitume":
-                        $("select[name='tdf'] option[value=oo_vl_extramuros_bitume]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vl_extramuros_bitume]").attr('selected', 'selected');
                         break;
                     case "oo_vl_extramuros_piste":
-                        $("select[name='tdf'] option[value=oo_vl_extramuros_piste]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vl_extramuros_piste]").attr('selected', 'selected');
                         break;
                     case "oo_vb_intramuros":
-                        $("select[name='tdf'] option[value=oo_vb_intramuros]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vb_intramuros]").attr('selected', 'selected');
                         break;
                     case "oo_vl_intramuros":
-                        $("select[name='tdf'] option[value=oo_vl_intramuros]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_vl_intramuros]").attr('selected', 'selected');
                         break;
                     case "oo_ass_appro":
-                        $("select[name='tdf'] option[value=oo_ass_appro]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_ass_appro]").attr('selected', 'selected');
                         break;
                     case "oo_dnf":
-                        $("select[name='tdf'] option[value=oo_dnf]").attr('selected','selected');
+                        $("select[name='tdf'] option[value=oo_dnf]").attr('selected', 'selected');
                         break;
                     default:
                         //tdf.eq(i).val("");
@@ -269,16 +302,16 @@
             if (caisseInput.val()) {
                 switch (caisseInput.val()) {
                     case "oo_mad":
-                        $("select[name='caisse'] option[value=oo_mad]").attr('selected','selected');
+                        $("select[name='caisse'] option[value=oo_mad]").attr('selected', 'selected');
                         break;
                     case "oo_collecte":
-                        $("select[name='caisse'] option[value=oo_collecte]").attr('selected','selected');
+                        $("select[name='caisse'] option[value=oo_collecte]").attr('selected', 'selected');
                         break;
                     case "oo_cctv":
-                        $("select[name='caisse'] option[value=oo_cctv]").attr('selected','selected');
+                        $("select[name='caisse'] option[value=oo_cctv]").attr('selected', 'selected');
                         break;
                     case "oo_collecte_caisse":
-                        $("select[name='caisse'] option[value=oo_collecte_caisse]").attr('selected','selected');
+                        $("select[name='caisse'] option[value=oo_collecte_caisse]").attr('selected', 'selected');
                         break;
                     default:
                         //caisse.eq(i).val("");
@@ -288,7 +321,7 @@
 
             let totalTDF = 0;
             let totalCaisse = 0;
-            $('table tr').each(function() {
+            $('table tr').each(function () {
                 const rowTdf = $(this).find('.tdf');
                 const rowCaisse = $(this).find('.caisse');
                 if (rowTdf) totalTDF += parseFloat(rowTdf.html() ?? 0);

@@ -110,11 +110,14 @@ class DepartTourneeController extends Controller
         $site = $request->get("site");
         $tdf = $request->get("tdf");
         $caisse = $request->get("caisse");
+        $typeOP = $request->get("typeOP");
+        $vehicule = $request->get("vehicule");
 
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $clients = Commercial_client::orderBy('client_nom')->get();
         $sites_com = Commercial_site::orderBy('site')->get();
+        $vehicules = Vehicule::all();
 
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
@@ -160,6 +163,14 @@ class DepartTourneeController extends Controller
                 $query->where('caisse', '=', $caisse);
             })->get();
 
+        }
+        if (isset($typeOP)) {
+            $site_array = SiteDepartTournee::query()->where('type', $typeOP)->get();
+        }
+        if (isset($vehicule)) {
+            $site_array = SiteDepartTournee::query()->whereHas('tournees', function (Builder $query) use ($vehicule) {
+                $query->where('idVehicule', $vehicule);
+            })->get();
         }
 
         if (isset($debut) && isset($fin) && isset($site)) {
@@ -212,7 +223,7 @@ class DepartTourneeController extends Controller
         }
 
         return view('transport.depart-tournee.liste-ca', compact('sites', 'centres', 'centres_regionaux', 'clients', 'sites_com',
-            'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'tdf', 'caisse'));
+            'site', 'client', 'debut', 'fin', 'centre', 'centre_regional', 'tdf', 'caisse', 'vehicules', 'vehicule', 'typeOP'));
     }
 
     public function listeCAOperativeNonFacture(Request $request)
