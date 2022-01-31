@@ -80,7 +80,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="secteur_activite" class="col-5">Secteur activité</label>
+                        <select name="secteur_activite" id="secteur_activite" class="form-control col">
+                            <option>{{$secteur_activite}}</option>
+                            @foreach ($secteur_activites as $secteur_activite)
+                                <option>{{ $secteur_activite->option }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">

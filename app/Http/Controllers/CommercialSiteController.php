@@ -40,11 +40,13 @@ class CommercialSiteController extends Controller
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
         $clients = Commercial_client::orderBy('client_nom')->get();
+        $secteur_activites = OptionSecteurActivite::orderBy("option")->get();
 
         $client = $request->get("client");
         $site = $request->get("site");
         $centre = $request->get("centre");
         $centre_regional = $request->get("centre_regional");
+        $secteur_activite = $request->get("secteur_activite");
 
         if (isset($client)) {
             $sites = Commercial_site::with('clients')
@@ -148,7 +150,7 @@ class CommercialSiteController extends Controller
         }
 
         return view('commercial.site.liste-detaillee',
-            compact('sites', 'sites_com', 'centres', 'centres_regionaux', 'clients', 'client', 'site', 'centre', 'centre_regional'));
+            compact('sites', 'sites_com', 'centres', 'centres_regionaux', 'clients', 'client', 'site', 'centre', 'centre_regional', 'secteur_activite', 'secteur_activites'));
     }
 
     /**

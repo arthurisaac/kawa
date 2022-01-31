@@ -28,7 +28,7 @@
                 <div class="col">
                     <div class="form-group row">
                         <label class="col-md-5">Centre</label>
-                        <select class="form-control col-md-7" name="centre" id="centre" required>
+                        <select class="form-control col-md-7" name="centre" id="centre" >
                             <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">{{$centre->centre}}</option>
@@ -38,7 +38,7 @@
                     <div class="form-group row">
                         <label class="col-md-5">Centre régional</label>
                         <select class="form-control col-md-7" name="centreRegional" id="centre_regional"
-                                required></select>
+                                ></select>
                     </div>
                     <div class="form-group row">
                         <label for="fournisseur" class="col-md-5">Fournisseur</label>
@@ -55,19 +55,15 @@
                     </div>
                     <div class="form-group row">
                         <label for="date_achat" class="col-md-5">Date achat</label>
-                        <input type="date" class="form-control col-md-7" name="date_achat" id="date_achat" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="date_fin" class="col-md-5">Date fin de vie</label>
-                        <input type="date" class="form-control col-md-7" name="date_fin" id="date_fin" required/>
+                        <input type="date" class="form-control col-md-7" name="date_achat" id="date_achat" />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Duree de vie</label>
-                        <input type="number" class="form-control col-md-7" name="duree" id="duree" required/>
+                        <input type="number" class="form-control col-md-7" name="duree" id="duree" readonly />
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Référence</label>
-                        <input type="text" class="form-control col-md-7" name="reference" required/>
+                        <input type="text" class="form-control col-md-7" name="reference" />
                     </div>
                     <div class="form-group row">
                         <label for="categorie" class="col-md-5">Catégorie</label>
@@ -103,6 +99,10 @@
                         <label class="col-md-5">Facture</label>
                         <input type="file" class="form-control-file col-md-7" name="factureJointe"/>
                     </div>
+                    <div class="form-group row">
+                        <label for="date_fin" class="col-md-5">Date fin de vie</label>
+                        <input type="date" class="form-control col-md-7" name="date_fin" id="date_fin" />
+                    </div>
                 </div>
                 <div class="col"></div>
             </div>
@@ -110,6 +110,7 @@
                 <div class="col">
                     <button class="btn btn-primary btn-sm" type="submit">Valider</button>
                     <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
+                    <a href="/informatique-achat-materiel-liste" class="btn btn-info btn-sm">Ouvrir la liste</a>
                 </div>
             </div>
         </form>

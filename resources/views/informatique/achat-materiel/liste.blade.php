@@ -83,17 +83,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="fournisseur" class="col-5">Fournisseur</label>
-                        <select id="fournisseur" name="fournisseur" class="form-control col">
-                            <option>{{$fournisseur}}</option>
-                            @foreach ($fournisseurs as $fournisseur)
-                                <option value="{{$fournisseur->id}}">{{ $fournisseur->libelleFournisseur }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                <div class="col"></div>
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">

@@ -136,8 +136,11 @@ class InformatiqueMaterielController extends Controller
     {
         $centres = Centre::all();
         $centres_regionaux = Centre_regional::all();
+        $categories = OptionInformatiqueCategorie::all();
+        $libelles = OptionInformatiqueLibelle::all();
+        $fournisseurs = InformatiqueFournisseur::all();
         $achat = InformatiqueMateriel::find($id);
-        return view('informatique.achat-materiel.edit', compact('centres', 'centres_regionaux', 'achat'));
+        return view('informatique.achat-materiel.edit', compact('centres', 'centres_regionaux', 'achat', 'categories', 'libelles', 'fournisseurs'));
     }
 
     /**

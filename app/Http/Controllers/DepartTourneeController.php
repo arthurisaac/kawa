@@ -142,24 +142,25 @@ class DepartTourneeController extends Controller
             })->get();
         }
         if (isset($client)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+            $site_array = SiteDepartTournee::query()->whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
             })->get();
         }
         if (isset($site)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($site) {
-                $query->where('id', 'like', '%' . $site . '%');
-            })->get();
+            /*$site_array = SiteDepartTournee::query()->whereHas('sites', function (Builder $query) use ($site) {
+                $query->where('id', $site);
+            })->get();*/
+            $site_array = SiteDepartTournee::query()->where('site', $site)->get();
 
         }
         if (isset($tdf)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
+            $site_array = SiteDepartTournee::query()->whereHas('sites', function (Builder $query) use ($tdf) {
                 $query->where('tdf', 'like', '%' . $tdf . '%');
             })->get();
 
         }
         if (isset($caisse)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
+            $site_array = SiteDepartTournee::query()->whereHas('sites', function (Builder $query) use ($caisse) {
                 $query->where('caisse', '=', $caisse);
             })->get();
 
@@ -269,7 +270,6 @@ class DepartTourneeController extends Controller
         }
         if (isset($site)) {
             $site_array = SiteDepartTournee::query()->where('site', $site)->get();
-
         }
         if (isset($tdf)) {
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($tdf) {
@@ -281,7 +281,6 @@ class DepartTourneeController extends Controller
             $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($caisse) {
                 $query->where('caisse', '=', $caisse);
             })->get();
-
         }
 
         if (isset($debut) && isset($fin) && isset($site)) {
@@ -293,7 +292,7 @@ class DepartTourneeController extends Controller
         }
 
         if (isset($debut) && isset($fin) && isset($client)) {
-            $site_array = SiteDepartTournee::whereHas('sites', function (Builder $query) use ($client) {
+            $site_array = SiteDepartTournee::query()->whereHas('sites', function (Builder $query) use ($client) {
                 $query->where('client', 'like', '%' . $client . '%');
             })->whereHas('tournees', function (Builder $query) use ($fin, $debut) {
                 $query->whereBetween('date', [$debut, $fin]);
