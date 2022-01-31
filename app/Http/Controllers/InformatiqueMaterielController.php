@@ -108,6 +108,7 @@ class InformatiqueMaterielController extends Controller
             'montant' => $request->get('montant'),
             'caracteristique' => $request->get('caracteristique'),
             'fournisseur' => $request->get('fournisseur'),
+            'service' => $request->get('service'),
             'factureJointe' => $factureJointe,
         ]);
         $informatique->save();
@@ -159,7 +160,7 @@ class InformatiqueMaterielController extends Controller
         $achat->centre = $request->get('centre');
         $achat->centreRegional = $request->get('centreRegional');
         $achat->service = $request->get('service');
-        $achat->date = $request->get('date');
+        $achat->date = $request->get('date_achat');
         $achat->reference = $request->get('reference');
         $achat->libelle = $request->get('libelle');
         $achat->quantite = $request->get('quantite');

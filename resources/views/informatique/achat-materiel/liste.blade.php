@@ -24,6 +24,11 @@
         <div class="titre">
             <div class="row">
                 <div class="col">
+                    <span class="titre">TOTAL QUANTITE</span> : <span class="text-danger">{{$achats->sum('quantite')}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <span class="titre">TOTAL MONTANT</span> : <span class="text-danger">{{$achats->sum('montant')}}</span>
                 </div>
             </div>
@@ -92,12 +97,15 @@
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
-                    <a href="/" class="btn btn-info btn-sm">Effacer</a>
+                    <a href="/informatique-achat-materiel-liste" class="btn btn-info btn-sm">Effacer</a>
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
         </form>
         <br/>
+        <a href="/informatique-achat-materiel" class="btn btn-info btn-sm">Nouveau</a>
+        <br/>
+        <br>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered" style="width: 100%;" id="liste">

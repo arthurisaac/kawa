@@ -458,7 +458,24 @@
     </div>
     <script>
         let client =  {!! json_encode($client) !!};
+        let centres = {!! json_encode($centres) !!};
+        let centres_regionaux = {!! json_encode($centres_regionaux) !!};
+
         $(document).ready(function () {
+
+            $("#centre").on("change", function () {
+                $("#centre_regional option").remove();
+                const centre = centres.find(c => c.centre === this.value);
+                const regions = centres_regionaux.filter(region => {
+                    return region.id_centre === centre.id;
+                });
+                regions.map(({centre_regional}) => {
+                    $('#centre_regional').append($('<option>', {
+                        value: centre_regional,
+                        text: centre_regional
+                    }));
+                })
+            });
 
             const contrat_objet = client.contrat_objet + "";
             const contrat_objet_array = contrat_objet.split(',');
