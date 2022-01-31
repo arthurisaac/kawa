@@ -62,23 +62,6 @@
                         <input type="number" class="form-control col-md-7" name="duree" id="duree" readonly />
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-5">Référence</label>
-                        <input type="text" class="form-control col-md-7" name="reference" />
-                    </div>
-                    <div class="form-group row">
-                        <label for="categorie" class="col-md-5">Catégorie</label>
-                        <select class="form-control col-md-7" name="categorie" id="categorie">
-                            <option></option>
-                            @foreach($categories as $categorie)
-                                <option>{{$categorie->categorie}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Libellé</label>
-                        <select class="form-control col-md-7" name="libelle" id="libelle"></select>
-                    </div>
-                    <div class="form-group row">
                         <label for="caracteristique" class="col-md-5">Caracteristique</label>
                         <textarea class="form-control col-md-7" name="caracteristique" id="caracteristique"></textarea>
                     </div>
@@ -102,6 +85,25 @@
                     <div class="form-group row">
                         <label for="date_fin" class="col-md-5">Date fin de vie</label>
                         <input type="date" class="form-control col-md-7" name="date_fin" id="date_fin" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Référence</label>
+                        <input type="text" class="form-control col-md-7" name="reference" />
+                    </div>
+                    <div class="form-group row">
+                        <label for="categorie" class="col-md-5">Catégorie</label>
+                        <select class="form-control col-md-7" name="categorie" id="categorie">
+                            <option></option>
+                            @foreach($categories as $categorie)
+                                <option>{{$categorie->categorie}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-5">Libellé</label>
+                        <select class="form-control col-md-7" name="libelle" id="libelle"></select>
                     </div>
                 </div>
                 <div class="col"></div>

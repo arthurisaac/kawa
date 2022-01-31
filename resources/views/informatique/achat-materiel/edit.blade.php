@@ -39,8 +39,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Centre régional</label>
-                        <select class="form-control col-md-7" name="centreRegional" id="centre_regional"
-                                >
+                        <select class="form-control col-md-7" name="centreRegional" id="centre_regional">
                             <option>{{$achat->centreRegional}}</option>
                         </select>
                     </div>
@@ -60,26 +59,6 @@
                     <div class="form-group row">
                         <label for="date_achat" class="col-md-5">Date achat</label>
                         <input type="date" class="form-control col-md-7" name="date_achat" id="date_achat" value="{{$achat->date_achat}}" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Référence</label>
-                        <input type="text" class="form-control col-md-7" name="reference" value="{{$achat->reference}}"
-                               />
-                    </div>
-                    <div class="form-group row">
-                        <label for="categorie" class="col-md-5">Catégorie</label>
-                        <select class="form-control col-md-7" name="categorie" id="categorie">
-                            <option>{{$achat->categorie}}</option>
-                            @foreach($categories as $categorie)
-                                <option>{{$categorie->categorie}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Libellé</label>
-                        <select class="form-control col-md-7" name="libelle" id="libelle">
-                            <option>{{$achat->libelle}}</option>
-                        </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-5">Prix unitaire</label>
@@ -107,6 +86,27 @@
                     @if ($achat->factureJointe)
                         <a href="{{ $achat->factureJointe }}" target="_blank">Voir Facture</a>
                     @endif
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Référence</label>
+                        <input type="text" class="form-control col-md-7" name="reference" value="{{$achat->reference}}"/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="categorie" class="col-md-5">Catégorie</label>
+                        <select class="form-control col-md-7" name="categorie" id="categorie">
+                            <option>{{$achat->categorie}}</option>
+                            @foreach($categories as $categorie)
+                                <option>{{$categorie->categorie}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-5">Libellé</label>
+                        <select class="form-control col-md-7" name="libelle" id="libelle">
+                            <option>{{$achat->libelle}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col"></div>
             </div>
