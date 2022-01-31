@@ -190,6 +190,7 @@
                     </tfoot>
                 </table>
                 <br>
+                <a href="/caisse-entree-colis-liste-detaillee" class="btn btn-sm btn-info" style="margin-left: 20px">Ouvrir la liste</a>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>

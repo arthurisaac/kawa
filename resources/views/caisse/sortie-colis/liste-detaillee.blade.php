@@ -27,7 +27,7 @@
         <div class="titre">
             <div class="row">
                 <div class="col">
-                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger">{{count($colis)}}</span>
+                    <span class="titre">TOTAL COLIS</span> : <span class="text-danger">{{$colis->sum("nbre_colis")}}</span>
                 </div>
             </div>
             <div class="row">
@@ -116,7 +116,7 @@
                 <div class="col"></div>
                 <div class="col"></div>
                 <div class="col text-right">
-                    <a href="/commercial-client-liste-detaillee" class="btn btn-info btn-sm">Effacer</a>
+                    <a href="/caisse-sortie-colis-liste-detaillee" class="btn btn-info btn-sm">Effacer</a>
                     <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                 </div>
             </div>
@@ -128,8 +128,8 @@
                         <tr>
                             <th>No</th>
                             <th>Date</th>
-                            <th>Client</th>
                             <th>Site</th>
+                            <th>Client</th>
                             <th>Nbre colis</th>
                             <th>Receveur</th>
                             <th>Scelle</th>
@@ -144,8 +144,8 @@
                         <tr>
                             <td>{{$coli->id}}</td>
                             <td>{{$coli->caisses->tournees->date ?? ""}}</td>
-                            <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
                             <td>{{$coli->sites->site ?? ""}}</td>
+                            <td>{{$coli->sites->clients->client_nom ?? ""}}</td>
                             <td>{{$coli->nbre_colis}}</td>
                             <td>{{$coli->caisses->receveur}}</td>
                             <td>{{$coli->scelle}}</td>
