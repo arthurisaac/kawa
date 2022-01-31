@@ -163,12 +163,15 @@ class InformatiqueMaterielController extends Controller
         $achat->centre = $request->get('centre');
         $achat->centreRegional = $request->get('centreRegional');
         $achat->service = $request->get('service');
-        $achat->date = $request->get('date_achat');
+        $achat->date_achat = $request->get('date_achat');
         $achat->reference = $request->get('reference');
         $achat->libelle = $request->get('libelle');
         $achat->quantite = $request->get('quantite');
         $achat->prixUnitaire = $request->get('prixUnitaire');
         $achat->montant = $request->get('montant');
+        $achat->fournisseur = $request->get('fournisseur');
+        $achat->categorie = $request->get('categorie');
+        $achat->libelle = $request->get('libelle');
         $achat->factureJointe = $factureJointe;
         $achat->save();
         return redirect('/informatique-achat-materiel-liste')->with('success', 'Enregistrement effectué!');
