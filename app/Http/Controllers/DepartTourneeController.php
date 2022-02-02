@@ -119,8 +119,8 @@ class DepartTourneeController extends Controller
         $sites_com = Commercial_site::orderBy('site')->get();
         $vehicules = Vehicule::all();
 
-        $centre = $request->get("centre");
-        $centre_regional = $request->get("centre_regional");
+            $centre = $request->get("centre");
+            $centre_regional = $request->get("centre_regional");
 
         $site_array = SiteDepartTournee::with('sites')
             ->orderByDesc("created_at")

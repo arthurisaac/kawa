@@ -134,7 +134,7 @@
                     $("#numeroTournee").val(site.tournees?.numeroTournee);
                     $("#centre").val(site.tournees?.centre);
                     $("#centre_regional").val(site?.tournees?.centre_regional);
-                    $("#valeur_colis_xof").val(site?.valeur_colis_xof_arrivee);
+                    $("#valeur_colis_xof").val(site?.regulation_arrivee_valeur_colis);
                     // $("#device_etrangere_dollar").val(site?.device_etrangere_dollar_arrivee);
                     // $("#device_etrangere_euro").val(site?.device_etrangere_euro_arrivee);
                     // $("#pierre_precieuse").val(site?.pierre_precieuse_arrivee);

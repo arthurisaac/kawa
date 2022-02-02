@@ -2,8 +2,7 @@
 
 @section('main')
     <div class="burval-container">
-        <div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
-                                                                                class="text-danger"></span> <span
+        <div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire" class="text-danger"></span> <span
                 style="margin-left: 10px;">Nombre de passage : <span class="text-danger">{{count($sites)}}</span></span>
         </div>
         <br/>
