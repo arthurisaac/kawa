@@ -331,7 +331,7 @@
                 "language": {
                     "url": "French.json"
                 }
-            });*/
+            });g*/
             let centres = {!! json_encode($centres) !!};
             let centres_regionaux = {!! json_encode($centres_regionaux) !!};
             let sites = {!! json_encode($sites_com) !!};
