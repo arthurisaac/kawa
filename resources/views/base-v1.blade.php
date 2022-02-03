@@ -13,8 +13,10 @@
     <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <!--end::Global Stylesheets Bundle-->
 
-    <script src="{{ asset('js/jquery-1.12.4.min.js') }}"></script>
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
+
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
 </head>
@@ -513,7 +515,7 @@
                                  data-kt-swapper="true" data-kt-swapper-mode="prepend"
                                  data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                 <!--begin::Menu-->
-                                <div
+                                {{--<div
                                     class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                                     id="#kt_header_menu" data-kt-menu="true">
                                     <div class="menu-item me-lg-1">
@@ -531,7 +533,7 @@
                                             <span class="menu-title">Arrivée tournée</span>
                                         </a>
                                     </div>
-                                    {{--<div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                                    <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                                          class="menu-item menu-lg-down-accordion me-lg-1">
 												<span class="menu-link py-3">
 													<span class="menu-title">Crafted</span>
@@ -1695,8 +1697,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>--}}
-                                </div>
+                                    </div>
+                                </div>--}}
                                 <!--end::Menu-->
                             </div>
                             <!--end::Menu wrapper-->
@@ -2168,8 +2170,7 @@
 <script>var hostUrl = "assets/";</script>
 <!--begin::Javascript-->
 <!--begin::Global Javascript Bundle(used by all pages)-->
-<script src="assets/plugins/global/plugins.bundle.js"></script>
-<script src="assets/js/scripts.bundle.js"></script>
+
 <!--end::Global Javascript Bundle-->
 <!--end::Javascript-->
 </html>
