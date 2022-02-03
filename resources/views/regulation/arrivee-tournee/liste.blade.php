@@ -82,7 +82,7 @@
                     <td>{{$tournee->sites->sum("device_etrangere_dollar_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("device_etrangere_euro_arrivee")}}</td>
                     <td>{{$tournee->sites->sum("pierre_precieuse_arrivee")}}</td>--}}
-                    <td>{{$tournee->sites->sum("montant_regulation")}}</td>
+                    <td>{{$tournee->sites->sum("regulation_arrivee_valeur_colis")}}</td>
                     <td>{{$tournee->chefDeBords->nomPrenoms ?? ""}} //
                         {{$tournee->agentDeGardes->nomPrenoms ?? ""}} //
                         {{$tournee->chauffeurs->nomPrenoms ?? ""}} //
