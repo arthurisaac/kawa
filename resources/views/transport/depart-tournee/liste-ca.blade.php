@@ -93,12 +93,12 @@
         <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
             <!--begin::Row-->
-            <div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
+            {{--<div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
                                                                                     class="text-danger chiffreAffaire"></span>
                 <span
                     style="margin-left: 10px;">Nombre de passage : <span
                         class="text-danger">{{count($sites)}}</span></span>
-            </div>
+            </div>--}}
             <br/>
 
             @if ($errors->any())

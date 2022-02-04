@@ -62,8 +62,8 @@ class RegulationServiceController extends Controller
             'chargeeRegulationHPS' => $request->get('chargeeRegulationHPS'),
             'chargeeRegulationHFS' => $request->get('chargeeRegulationHFS'),
             'chargeeRegulationAdjointe' => $request->get('chargeeRegulationAdjointe'),
-            'chargeeRegulationAdjointeHPS' => $request->get('chargeeRegulationAdjointeHPS'),
-            'chargeeRegulationAdjointeHFS' => $request->get('chargeeRegulationAdjointeHFS'),
+            'chargeeRegulationAdjointeHPS' => $request->get('chargeeRegulationAdjointHPS'),
+            'chargeeRegulationAdjointeHFS' => $request->get('chargeeRegulationAdjointHFS'),
         ]);
         $service->save();
         return redirect('/regulation-service-liste')->with('success', 'Service enregistré!');

@@ -76,10 +76,10 @@
                         id="#kt_aside_menu" data-kt-menu="true">
                         <div class="menu-item">
                             <div class="menu-content pt-8 pb-2">
-                                <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                                <span class="menu-section text-muted text-uppercase fs-8 ls-1">Transport</span>
                             </div>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 									<span class="menu-link">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
@@ -432,8 +432,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="menu-item">
+                        </div>--}}
+                        {{--<div class="menu-item">
                             <a class="menu-link" href="../../demo1/dist/apps/calendar.html">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
@@ -455,7 +455,7 @@
 										</span>
                                 <span class="menu-title">Calendar</span>
                             </a>
-                        </div>
+                        </div>--}}
                         <div class="menu-item">
                             <div class="menu-content">
                                 <div class="separator mx-1 my-4"></div>
@@ -513,7 +513,7 @@
                                  data-kt-drawer-width="{default:'200px', '300px': '250px'}"
                                  data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle"
                                  data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                                 data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+                                 data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}" style="background-color: #f6e801;">
                                 <!--begin::Menu-->
                                 {{--<div
                                     class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"

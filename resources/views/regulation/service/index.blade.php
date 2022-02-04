@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <label for="centre" class="col-sm-5">Centre</label>
                         <select name="centre" id="centre" class="form-control col-sm-7" required>
-                            <option>Choisir centre</option>
+                            <option></option>
                             @foreach ($centres as $centre)
                                 <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                             @endforeach
