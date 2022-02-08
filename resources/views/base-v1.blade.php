@@ -472,7 +472,7 @@
         <!--begin::Wrapper-->
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
             <!--begin::Header-->
-            <div id="kt_header" style="" class="header align-items-stretch">
+            <div id="kt_header" class="header align-items-stretch"  style="background-color: #f6e801;">
                 <!--begin::Container-->
                 <div class="container-fluid d-flex align-items-stretch justify-content-between">
                     <!--begin::Aside mobile toggle-->
@@ -513,7 +513,7 @@
                                  data-kt-drawer-width="{default:'200px', '300px': '250px'}"
                                  data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle"
                                  data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                                 data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}" style="background-color: #f6e801;">
+                                 data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                 <!--begin::Menu-->
                                 {{--<div
                                     class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
@@ -1712,7 +1712,7 @@
                                 <div class="d-flex align-items-center ms-1 ms-lg-3">
                                     <!--begin::Menu wrapper-->
                                     <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
-                                         {{--data-kt-menu-trigger="click"--}} data-kt-menu-attach="parent"
+                                         data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                          data-kt-menu-placement="bottom-end">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                         <span class="svg-icon svg-icon-1">
@@ -1864,7 +1864,7 @@
                                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
                                          data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                          data-kt-menu-placement="bottom-end">
-                                        <img src="assets/media/avatars/150-26.jpg" alt="user"/>
+                                        <img src="assets/media/avatars/blank.png" alt="user"/>
                                     </div>
                                     <!--begin::Menu-->
                                     <div

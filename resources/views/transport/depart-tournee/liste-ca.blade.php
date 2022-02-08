@@ -78,7 +78,7 @@
                 </div>
                 <!--end::Wrapper-->
                 <!--begin::Button-->
-                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
+                <a href="#" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
                    id="kt_toolbar_primary_button">Nouveau</a>
                 <!--end::Button-->
             </div>
@@ -149,8 +149,7 @@
                                 <!--end::Icon-->
                                 <!--begin::Title-->
                                 <div class="flex-grow-1 me-2">
-                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Chiffre
-                                        d'affaire</a>
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Chiffre d'affaire</a>
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
@@ -196,7 +195,7 @@
                     <form action="#" method="get">
 
                         <div class="card card-xl-stretch">
-                            <div class="card-header border-0 bg-primary py-5">
+                            <div class="card-header border-0 bg-dark py-5">
                                 <h3 class="card-title fw-bolder text-white">Option de filtre</h3>
                             </div>
                             <div class="card-body  pt-5">
@@ -330,7 +329,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a>
-                                <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                                <button class="btn btn-dark btn-sm" type="submit">Rechercher</button>
                             </div>
                         </div>
                         @csrf
