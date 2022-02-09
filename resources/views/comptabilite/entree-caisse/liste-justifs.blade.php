@@ -1,168 +1,162 @@
-@extends('base-v1')
+@extends('bases.caisse')
 
 @section('main')
-    <link rel="stylesheet" href="{{ asset('css/burval.css') }}">
-    <!--begin::Toolbar-->
-    <div class="toolbar" id="kt_toolbar">
-        <!--begin::Container-->
-        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                 data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
-                 class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Comptabilite
-                    <!--begin::Separator-->
-                    <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
-                    <!--end::Separator-->
-                    <!--begin::Description-->
-                    <small class="text-muted fs-7 fw-bold my-1 ms-1">Nouvelle facture</small>
-                    <!--end::Description--></h1>
-                <!--end::Title-->
-            </div>
-            <!--end::Page title-->
-            <!--begin::Actions-->
-            <div class="d-flex align-items-center py-1">
-                <!--begin::Wrapper-->
-                <div class="me-4">
-                    <!--begin::Menu-->
-                    <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                       data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none">
-												<path
-                                                    d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
-                                                    fill="black"/>
-											</svg>
-										</span>
-                        <!--end::Svg Icon-->Filtrer</a>
-                    <!--begin::Menu 1-->
-                    <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                         id="kt_menu_61484bf44d957">
+
+    @extends('bases.toolbar', ["title" => "Comptabilité", "subTitle" => "Liste des justificatifs"])
+    @section("nouveau")
+        <a href="/comptabilite-entree-caisse" class="btn btn-sm btn-info">Ajouter</a>
+    @endsection
+
+    <div class="post d-flex flex-column-fluid">
+        <div id="kt_content_container" class="container-xxl">
+
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="card card-xl-stretch mb-xl-8">
                         <!--begin::Header-->
-                        <div class="px-7 py-5">
-                            <div class="fs-5 text-dark fw-bolder">Options de filtre</div>
+                        <div class="card-header border-0">
+                            <h3 class="card-title fw-bolder text-dark">Statistiques</h3>
                         </div>
                         <!--end::Header-->
-                        <!--begin::Menu separator-->
-                        <div class="separator border-gray-200"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Form-->
-                        <div class="px-7 py-5">
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fw-bold">Bordereau:</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <div>
-                                    <select id="client" class="form-select form-select-solid" data-kt-select2="true"
-                                            data-placeholder="Selectionner un bordereau"
-                                            data-dropdown-parent="#kt_menu_61484bf44d957" data-allow-clear="true">
-                                        {{--                                       --}}
-                                        {{--                                        @foreach ($clients as $clt)--}}
-                                        {{--                                            <option value="{{$clt->id}}">{{ $clt->client_nom }}</option>--}}
-                                        {{--                                        @endforeach--}}
-                                    </select>
+                        <!--begin::Body-->
+                        <div class="card-body pt-2">
+                            <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
+                                <!--begin::Icon-->
+                                <span class="svg-icon svg-icon-warning me-5">
+                                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                        <span class="svg-icon svg-icon-1">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path opacity="0.3"
+                                                                    d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                                                    fill="black"></path>
+                                                                <path
+                                                                    d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                                                    fill="black"></path>
+                                                            </svg>
+                                                        </span>
+                                    <!--end::Svg Icon-->
+                                                    </span>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <div class="flex-grow-1 me-2">
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Total sortie</a>
+                                    <span class="text-muted fw-bold d-block"></span>
                                 </div>
-                                <!--end::Input-->
+                                <!--end::Title-->
+                                <!--begin::Lable-->
+                                <span class="fw-bolder text-warning py-1">{{$entreeCaisses->sum('somme')}}</span>
+                                <!--end::Lable-->
                             </div>
-                            <!--end::Input group-->
+                            <div class="d-flex align-items-center bg-light-info rounded p-5 mb-7">
+                                <!--begin::Icon-->
+                                <span class="svg-icon svg-icon-info me-5">
+                                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                        <span class="svg-icon svg-icon-1">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path opacity="0.3"
+                                                                    d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                                                    fill="black"></path>
+                                                                <path
+                                                                    d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                                                    fill="black"></path>
+                                                            </svg>
+                                                        </span>
+                                    <!--end::Svg Icon-->
+                                                    </span>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <div class="flex-grow-1 me-2">
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Total montant justifié</a>
+                                    <span class="text-muted fw-bold d-block"></span>
+                                </div>
+                                <!--end::Title-->
+                                <!--begin::Lable-->
+                                <span class="fw-bolder text-info py-1">{{$entreeCaisses->sum('montant_justifie')}}</span>
+                                <!--end::Lable-->
+                            </div>
+                            <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
+                                <!--begin::Icon-->
+                                <span class="svg-icon svg-icon-danger me-5">
+                                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                        <span class="svg-icon svg-icon-1">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path opacity="0.3"
+                                                                    d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                                                    fill="black"></path>
+                                                                <path
+                                                                    d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                                                    fill="black"></path>
+                                                            </svg>
+                                                        </span>
+                                    <!--end::Svg Icon-->
+                                                    </span>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <div class="flex-grow-1 me-2">
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-danger fs-6">Total montant non justifié</a>
+                                    <span class="text-muted fw-bold d-block"></span>
+                                </div>
+                                <!--end::Title-->
+                                <!--begin::Lable-->
+                                <span class="fw-bolder text-danger py-1">{{$entreeCaisses->sum('montant_non_justifie')}}</span>
+                                <!--end::Lable-->
+                            </div>
                         </div>
-                        <!--end::Form-->
+                        <!--end::Body-->
                     </div>
-                    <!--end::Menu 1-->
-                    <!--end::Menu-->
+                    
                 </div>
-                <!--end::Wrapper-->
-                <!--begin::Button-->
-                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
-                   id="kt_toolbar_primary_button">Nouveau</a>
-                <!--end::Button-->
-            </div>
-            <!--end::Actions-->
-        </div>
-        <!--end::Container-->
-    </div>
-    <!--end::Toolbar-->
+                <div class="col-xl-9">
+                    <form action="#" method="get">
+                        @csrf
 
-    <!--begin::Post-->
-    <div class="post d-flex flex-column-fluid" id="kt_post">
-        <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
-            <!--begin::Row-->
-            {{--<div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
-                                                                                    class="text-danger chiffreAffaire"></span>
-                <span
-                    style="margin-left: 10px;">Nombre de passage : <span
-                        class="text-danger">{{count($sites)}}</span></span>
-            </div>--}}
-            <br/>
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                        <div class="card card-xl-stretch">
+                            <div class="card-header border-0 py-5">
+                                <h3 class="card-title fw-bolder">Option de filtre</h3>
+                            </div>
+                            <div class="card-body pt-5">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="" class="col">Date début</label>
+                                            <input type="date" name="debut" class="form-control col">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="" class="col">Date fin</label>
+                                            <input type="date" name="fin" class="form-control col">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col" for="service">Service</label>
+                                            <input id="service" name="service" class="form-control col" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col" for="deposant">Receveur</label>
+                                            <input id="deposant" name="deposant" class="form-control col" />
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm text-end" type="submit">Rechercher</button>
+                            </div>
+                        </div>  
+                    </form>
                 </div>
-                <br/>
-            @endif
-
-            @if(session()->get('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-        <a href="/comptabilite-entree-caisse" class="btn btn-sm btn-info">Ajouter</a>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col">
-                <h5 class="text-left text-danger">Total sortie: {{$entreeCaisses->sum('somme')}}</h5>
-                <h5 class="text-left text-danger">Total montant justifé: {{$entreeCaisses->sum('montant_justifie')}}</h5>
-                <h5 class="text-left text-danger">Total montant non justifié: {{$entreeCaisses->sum('montant_non_justifie')}}</h5>
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <form action="#" method="get">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-sm-7">
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col">
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5" for="service">Service</label>
-                        <input id="service" name="service" class="form-control col-sm-7" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-5" for="deposant">Receveur</label>
-                        <input id="deposant" name="deposant" class="form-control col-sm-7" />
-                    </div>
-
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col">
-                             <button class="btn btn-primary btn-sm text-right text-end" style="margin-left: 10px;">Rechercher</button>
-                        </div>
-                    </div>
-
-                    <br>
-                </form>
-            </div>
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col">
-                <table class="table table-bordered" style="width: 100%;" id="liste">
+            
+            <div class="card card-xl-stretch">
+                <table class="table table-striped gy-7 gs-7" style="width: 100%;" id="liste">
                     <thead>
                         <tr>
                             <td>ID</td>
@@ -206,7 +200,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>  
     </div>
     <script>
         function totalEntree(){
