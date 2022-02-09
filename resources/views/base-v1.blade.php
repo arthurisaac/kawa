@@ -74,11 +74,6 @@
                     <div
                         class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                         id="#kt_aside_menu" data-kt-menu="true">
-                        <div class="menu-item">
-                            <div class="menu-content pt-8 pb-2">
-                                <span class="menu-section text-muted text-uppercase fs-8 ls-1">Transport</span>
-                            </div>
-                        </div>
 
                         <div class="menu-item">
                             <div class="menu-content pt-8 pb-2">
@@ -706,7 +701,7 @@
         <!--begin::Wrapper-->
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
             <!--begin::Header-->
-            <div id="kt_header" class="header align-items-stretch"  style="background-color: #f6e801;">
+            <div id="kt_header" class="header align-items-stretch"  style="background-color: #FFD801;">
                 <!--begin::Container-->
                 <div class="container-fluid d-flex align-items-stretch justify-content-between">
                     <!--begin::Aside mobile toggle-->
