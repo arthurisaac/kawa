@@ -85,8 +85,8 @@
                         <label for="secteur_activite" class="col-5">Secteur activité</label>
                         <select name="secteur_activite" id="secteur_activite" class="form-control col">
                             <option>{{$secteur_activite}}</option>
-                            @foreach ($secteur_activites as $secteur_activite)
-                                <option>{{ $secteur_activite->option }}</option>
+                            @foreach ($secteur_activites as $secteur)
+                                <option>{{ $secteur->option }}</option>
                             @endforeach
                         </select>
                     </div>

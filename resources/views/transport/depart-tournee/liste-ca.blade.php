@@ -195,7 +195,7 @@
                     <form action="#" method="get">
 
                         <div class="card card-xl-stretch">
-                            <div class="card-header border-0 bg-dark py-5">
+                            <div class="card-header border-0 bg-warning py-5"  style="background-color: #FFD801;">
                                 <h3 class="card-title fw-bolder text-white">Option de filtre</h3>
                             </div>
                             <div class="card-body  pt-5">
