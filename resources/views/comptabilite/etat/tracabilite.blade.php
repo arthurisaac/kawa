@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 
@@ -15,7 +15,7 @@
             class="text-danger">{{count($sites)}}</span></span>
         </div>--}}
         <br/>
-        
+
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -26,14 +26,14 @@
         </div>
         <br/>
         @endif
-        
+
         @if(session()->get('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}
         </div>
         @endif
-        
-        
+
+
         <div class="card card-xl-stretch">
             <table class="table table-striped gy-7 gs-7" style="width: 100%;" id="liste">
                 <thead>

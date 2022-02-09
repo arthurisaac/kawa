@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 <!--begin::Toolbar-->
@@ -69,7 +69,7 @@
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
         <br/>
-        
+
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -80,13 +80,13 @@
         </div>
         <br/>
         @endif
-        
+
         @if(session()->get('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}
         </div>
         @endif
-        
+
         <div class="row gy-5 g-xl-8">
             <div class="col-xl-3">
                 <!--begin::List Widget 2-->
@@ -162,12 +162,12 @@
         </div>
         <div class="col-xl-9">
             <form action="#" method="get">
-                
+
                 <div class="card card-xl-stretch">
                     <div class="card-header border-0 py-5">
                         <h3 class="card-title fw-bolder">Option de filtre</h3>
                     </div>
-                    <div class="card-body pt-5">   
+                    <div class="card-body pt-5">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group row">
@@ -292,7 +292,7 @@
                             <div class="col"></div>
                             <div class="col"></div>
                             <div class="col text-right">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -302,12 +302,12 @@
                     </div>
                 </div>
                 @csrf
-                
+
             </form>
         </div>
     </div>
     <br>
-    
+
     <div class="card card-xl-stretch">
         <table id="table" class="table table-striped gy-7 gs-7" style="width: 100%">
             <thead>
@@ -389,7 +389,7 @@
                     </tr>
                     @endforeach
                 </tbody>
-                
+
             </table>
         </div>
         <!--end::Row-->
@@ -404,13 +404,13 @@
                 "url": "French.json"
             }
         });
-        
+
         let centres = {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};
         let sites = {!! json_encode($sites_com) !!};
         let clients = {!! json_encode($clients) !!};
         let vehicules = {!! json_encode($vehicules) !!};
-        
+
         const siteInput = $("#site");
         if (siteInput.val()) {
             console.log(siteInput.val())
@@ -460,7 +460,7 @@
                 break;
             }
         }
-        
+
         const caisseInput = $("#caisse");
         if (caisseInput.val()) {
             switch (caisseInput.val()) {
@@ -481,7 +481,7 @@
                 break;
             }
         }
-        
+
         let totalTDF = 0;
         let totalCaisse = 0;
         $('table tr').each(function () {

@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 
@@ -77,7 +77,7 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                    <button class="btn btn-danger btn-sm" type="reset">Annuler</button> 
+                    <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
                 </div>
             </form>
         </div>

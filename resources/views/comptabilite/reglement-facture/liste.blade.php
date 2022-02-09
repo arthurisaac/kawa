@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 

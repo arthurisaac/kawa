@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 
@@ -33,7 +33,7 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-            
+
             <form class="form-horizontal" method="post" action="{{ route('comptabilite-entree-caisse.store') }}">
                 @csrf
 
@@ -98,9 +98,9 @@
                                     <label for="montant_non_justifie" class="col-sm-5">Montant non justifié</label>
                                     <input type="number" value="0" class="form-control col-sm-7" name="montant_non_justifie" id="montant_non_justifie" disabled />
                                 </div>
-        
+
                             </div>
-                        </div>  
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="col-4">

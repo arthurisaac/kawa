@@ -1,4 +1,4 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
 
@@ -107,7 +107,7 @@
                         </div>
                         <!--end::Body-->
                     </div>
-                    
+
                 </div>
                 <div class="col-xl-9">
                     <form action="#" method="get">
@@ -145,16 +145,16 @@
                                             <input id="deposant" name="deposant" class="form-control col" />
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary btn-sm text-end" type="submit">Rechercher</button>
                             </div>
-                        </div>  
+                        </div>
                     </form>
                 </div>
             </div>
-            
+
             <div class="card card-xl-stretch">
                 <table class="table table-striped gy-7 gs-7" style="width: 100%;" id="liste">
                     <thead>
@@ -200,7 +200,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>  
+        </div>
     </div>
     <script>
         function totalEntree(){

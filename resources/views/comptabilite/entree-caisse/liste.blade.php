@@ -1,7 +1,7 @@
-@extends('bases.caisse')
+@extends('bases.comptabilite')
 
 @section('main')
-    
+
     @extends('bases.toolbar', ["title" => "Comptabilité", "subTitle" => "Entrée de caisse"])
     @section("nouveau")
         <a href="/comptabilite-entree-caisse" class="btn btn-sm btn-info">Ajouter</a>
@@ -11,7 +11,7 @@
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
-            
+
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -159,7 +159,7 @@
                     </form>
                 </div>
             </div>
-                
+
             <div class="card card-xl-stretch">
                 <table class="table table-striped gy-7 gs-7" style="width: 100%;" id="liste">
                     <thead>

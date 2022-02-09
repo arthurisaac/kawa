@@ -1,4 +1,4 @@
-@extends('base-v1')
+@extends('bases.caisse')
 
 @section('main')
     <link rel="stylesheet" href="{{ asset('css/burval.css') }}">
