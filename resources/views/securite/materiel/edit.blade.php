@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Matériel Modifier un matériel"])
+@section("nouveau")
+    <a href="/materiel" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
 <div class="burval-container">
     <div><h2 class="heading">Matériel</h2></div>

@@ -1,6 +1,10 @@
-@extends("base")
+@extends('bases.securite')
 
 @section("main")
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Départ Centre |"])
+@section("nouveau")
+    <a href="/maincourante-departcentreliste" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="container">
         <br>
         @if ($errors->any())

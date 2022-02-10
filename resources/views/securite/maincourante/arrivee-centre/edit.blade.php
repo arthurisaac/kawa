@@ -1,4 +1,4 @@
-@extends("base")
+@extends('bases.securite')
 
 @section("main")
     <div class="container">

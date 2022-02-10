@@ -1,6 +1,10 @@
-@extends("base")
+@extends('bases.securite')
 
 @section("main")
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Tournée centre"])
+@section("nouveau")
+    <a href="/maincourante" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="container">
         <br>
         <div><h2 class="heading">Tournée centre</h2></div>

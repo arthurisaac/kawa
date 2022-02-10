@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Synthèse des Tournées"])
+@section("nouveau")
+    <a href="/maincourante" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="container-fluid">
         <br>
         <br>
@@ -36,10 +40,10 @@
                     <div class="col">
                         <span>Km parcouru : <span class="text-danger" id="kmTotal"></span></span>
                     </div>
-                </div>    
+                </div>
             </div>
             <br>
-            
+
             <form action="#" method="get">
                 @csrf
                 <div class="row">

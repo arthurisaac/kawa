@@ -1,4 +1,4 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">

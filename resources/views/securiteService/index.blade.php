@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Service"])
+@section("nouveau")
+    <a href="/service" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="burval-container">
         <div><h2 class="heading">Service</h2></div>
         <br/>

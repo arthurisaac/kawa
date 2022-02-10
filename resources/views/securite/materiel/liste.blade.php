@@ -1,8 +1,11 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Matériel | Liste de matériel"])
+@section("nouveau")
+    <a href="/materiel" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
 <div class="burval-container">
-    <div><h2 class="heading">Matériel</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -20,8 +23,6 @@
             {{ session()->get('success') }}
         </div>
     @endif
-
-    <a href="/materiel" class="btn btn-info btn-sm">Nouveau</a>
     <br>
     <form action="materiel-liste" method="get">
         @csrf

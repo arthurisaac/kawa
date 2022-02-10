@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante Nouveau"])
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <br/>

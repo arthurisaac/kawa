@@ -1,8 +1,11 @@
-@extends('base')
+@extends('bases.securite')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Saisie | Liste Saisie"])
+@section("nouveau")
+    <a href="/saisie" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
 <div class="burval-container">
-    <div><h2 class="heading">Liste saisie</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
