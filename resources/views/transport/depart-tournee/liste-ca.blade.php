@@ -91,7 +91,8 @@
                 <!--begin::List Widget 2-->
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Header-->
-                    <div class="card-header border-0 bg-warning">
+                    <div class="card-header border-0" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%);">
                         <h3 class="card-title fw-bolder text-dark">Stats</h3>
                     </div>
                     <!--end::Header-->
@@ -309,9 +310,10 @@
         <br>
 
         <div class="card card-xl-stretch">
-            <table id="table" class="table table-striped gy-7 gs-7" style="width: 100%">
+            <table id="table" class="table table-striped gy-7 gs-7 pt-0" style="width: 100%">
                 <thead>
-                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                     <th scope="col">No</th>
                     <th scope="col">Centre regional</th>
                     <th scope="col">Centre</th>
