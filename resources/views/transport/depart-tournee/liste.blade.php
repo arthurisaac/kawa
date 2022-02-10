@@ -1,8 +1,11 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Liste Départ tournée"])
+@section("nouveau")
+    <a href="/depart-tournee" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="burval-container">
-        <div><h2 class="heading">Départ tournée</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,8 +24,6 @@
             </div>
         @endif
 
-        <a href="/depart-tournee" class="btn btn-info btn-sm">Nouveau départ tournée</a>
-        <br>
         <br>
         <div class="titre">
             <div class="row">
@@ -59,7 +60,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <table class="table table-bordered table-hover" id="table" style="width: 100%">
             <thead>

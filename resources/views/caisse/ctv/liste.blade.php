@@ -1,29 +1,12 @@
 @extends('bases.caisse')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">CTV</h2></div>
-        <br/>
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
-
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
-
-        <a href="/ctv" class="btn btn-info btn-sm">Nouveau</a>
-        <br>
+    <!--begin::Toolbar-->
+@extends('bases.toolbar', ["title" => "Caisse Centrale", "subTitle" => "Caisse centrale nouveau ctv"])
+@section("nouveau")
+    <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
+<!--end::Toolbar-->
         <form action="#" method="get">
             @csrf
             <div class="row">

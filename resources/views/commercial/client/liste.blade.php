@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.commercial')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Commercial", "subTitle" => "Client Liste"])
+@section("nouveau")
+    <a href="/commercial-client" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="burval-container">
         <div><h2 class="heading">Client</h2></div>
         <br/>
@@ -21,8 +25,6 @@
             </div>
         @endif
 
-        <br/>
-        <a href="/commercial-client" class="btn btn-info btn-sm">Nouveau</a>
         <br>
         <br>
         <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">

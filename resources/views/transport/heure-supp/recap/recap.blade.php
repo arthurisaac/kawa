@@ -1,7 +1,8 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
-<div class="burval-container">
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Heures supplémentaires recap"])
+    <div class="burval-container">
     <div><h2 class="heading">Heures supplémentaires recap</h2></div>
     <br/>
     @if ($errors->any())

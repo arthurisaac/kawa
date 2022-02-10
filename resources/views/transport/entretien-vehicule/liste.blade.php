@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Liste Entretien Véhicule"])
+@section("nouveau")
+    <a href="/entretien-vehicule" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">Entretien véhicule</h2></div>
@@ -21,7 +25,6 @@
                 {{ session()->get('success') }}
             </div><br/>
         @endif
-        <a href="/entretien-vehicule" class="btn btn-sm btn-info">Nouveau</a>
         <br>
         <br>
         <div class="container">

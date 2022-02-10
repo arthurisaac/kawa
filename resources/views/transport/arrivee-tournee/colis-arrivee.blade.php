@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Colis Arrivée Tournée"])
     <style>
         .dataTables_filter, .dataTables_info { display: none; }
     </style>

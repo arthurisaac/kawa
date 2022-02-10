@@ -1,9 +1,11 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
-
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Véhicule Liste"])
+@section("nouveau")
+    <a href="/caisse-service-liste" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
 <div class="burval-container">
-    <div><h2 class="heading">Véhicule</h2></div>
     <br />
     @if(session()->get('success'))
         <div class="alert alert-success">

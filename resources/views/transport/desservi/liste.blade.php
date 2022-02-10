@@ -1,4 +1,4 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
     <style>

@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.commercial')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Commercial", "subTitle" => "Site Liste detaillée"])
+@section("nouveau")
+    <a href="/commercial-site" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="burval-container">
         <div><h2 class="heading">Site</h2></div>
         <br/>
@@ -20,8 +24,6 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <a href="/commercial-site" class="btn btn-info btn-sm">Nouveau</a>
         <div class="titre">
             <div class="row">
                 <div class="col">

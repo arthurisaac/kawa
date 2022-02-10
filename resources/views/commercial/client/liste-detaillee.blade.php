@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.commercial')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Commercial", "subTitle" => "Client Liste detaillée"])
+@section("nouveau")
+    <a href="/commercial-client" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <div class="burval-container">
         <div><h2 class="heading">Client</h2></div>
         <br/>

@@ -1,6 +1,11 @@
 @extends('bases.caisse')
 
 @section('main')
+    <!--begin::Toolbar-->
+    @extends('bases.toolbar', ["title" => "Caisse Centrale", "subTitle" => "Caisse centrale nouvelle entrée colis"])
+@section("nouveau")
+    <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <link rel="stylesheet" href="{{ asset('css/burval.css') }}">
     <!--begin::Toolbar-->
     <div class="toolbar" id="kt_toolbar">

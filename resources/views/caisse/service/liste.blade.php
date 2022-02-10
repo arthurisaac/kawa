@@ -1,6 +1,7 @@
 @extends('bases.caisse')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Caisse Centrale", "subTitle" => "Caisse centrale liste de service"])
     <div class="burval-container">
         <div><h2 class="heading">Service</h2></div>
         <br/>

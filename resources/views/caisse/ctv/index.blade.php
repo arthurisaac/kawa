@@ -1,6 +1,11 @@
 @extends('bases.caisse')
 
 @section('main')
+    <!--begin::Toolbar-->
+    @extends('bases.toolbar', ["subTitle" => "Caisse centrale modifier un ctv", "title" => "Caisse Centrale"])
+@section("nouveau")
+    <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
         <div><h2 class="heading">CTV</h2></div>

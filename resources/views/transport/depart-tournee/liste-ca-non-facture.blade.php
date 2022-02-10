@@ -1,6 +1,10 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Liste des opérations non facturées tournée"])
+@section("nouveau")
+    <a href="/depart-tournee" class="btn btn-sm btn-primary">Nouveau</a>
+@endsection
     <style>
         .titre {
             font-size: 30px;
