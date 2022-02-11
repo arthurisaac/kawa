@@ -85,9 +85,9 @@
         @endif
 
         <div class="row gy-5 g-xxl-8">
-            <div class="col-xl-3">
+            <div class="col-xxl-3">
                 <!--begin::List Widget 2-->
-                <div class="card card-xl-stretch mb-xl-8">
+                <div class="card card-xl-stretch mb-xxl-8">
                     <!--begin::Header-->
                     <div class="card-header border-0" style="background: rgb(148,148,152);
 background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%);">

@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Builder;
 
 class VehiculeController extends Controller
 {
@@ -31,10 +32,57 @@ class VehiculeController extends Controller
      *
      * @return Response
      */
-    public function liste()
+    public function liste(Request $request)
     {
-        $vehicules = Vehicule::all();
-        return view('transport/vehicule.liste', compact('vehicules'));
+        $centre_regional = $request->get("centre_regional");
+        $centre = $request->get("centre");
+        $type = $request->get("type");
+        $marque = $request->get("marque");
+
+        if (isset($centre_regional)){
+            $vehicules = Vehicule::where('centreRegional',$centre_regional)->get();
+        }elseif (isset($centre)){
+            $vehicules = Vehicule::where('centre', $centre)->get();
+        }elseif(isset($type)){
+            $vehicules = Vehicule::where('type', $type)->get();
+        }elseif(isset($marque)){
+            $vehicules = Vehicule::where('marque', $marque)->get();
+        }elseif (isset($centre) && isset($centre_regional)){
+            $vehicules = Vehicule::where('centre',$centre)
+                ->AndWhere('centreRegional', 'like',$centre_regional)
+                ->get();
+        }elseif (isset($centre) && isset($type)){
+            $vehicules = Vehicule::where('centre',$centre)
+                ->where('type',$type)
+                ->get();
+        }elseif (isset($centre) && isset($marque)){
+            $vehicules = Vehicule::where('centre',$centre)
+                ->where('marque',$marque)
+                ->get();
+        }elseif (isset($centre) && isset($centre_regional) && isset($type)){
+            $vehicules = Vehicule::where('centre',$centre)
+                ->where('centreRegional',$centre_regional)
+                ->where('type',$type)
+                ->get();
+        }elseif (isset($centre) && isset($centre_regional) && isset($type) && isset($marque) ){
+            $vehicules = Vehicule::where('centre',$centre)
+                ->where('centreRegional', $centre_regional)
+                ->AndWhere('type', 'like', $type)
+                ->AndWhere('marque',  $marque)
+                ->get();
+        }else{
+            $vehicules = Vehicule::all();
+        }
+        $centres = Centre::all();
+
+        $vls = DB::table('vehicules')->where('type', 'VL')->get();
+        $vbs = DB::table('vehicules')->where('type', 'VB')->get();
+        $motos = DB::table('vehicules')->where('type', 'moto')->get();
+
+        $centres_regionaux = Centre_regional::all();
+        $types = DB::table('vehicules')->select('type')->distinct('type')->get();
+        $marques = DB::table('vehicules')->select('marque')->distinct('marque')->get();
+        return view('transport/vehicule.liste', compact('vbs', 'vls', 'motos', 'vehicules', 'centres', 'centres_regionaux', 'marques', 'types'));
     }
 
     /**
