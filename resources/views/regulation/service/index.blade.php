@@ -1,4 +1,4 @@
-@extends('base')
+@extends('bases.regulation')
 
 @section('main')
     <div class="burval-container">

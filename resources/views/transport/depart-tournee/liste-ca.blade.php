@@ -58,9 +58,7 @@
         <!--end::Menu-->
     </div>
 @endsection
-@section("nouveau")
-    <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
-@endsection
+
 <!--end::Toolbar-->
 
 <!--begin::Post-->
@@ -86,7 +84,7 @@
             </div>
         @endif
 
-        <div class="row gy-5 g-xl-8">
+        <div class="row gy-5 g-xxl-8">
             <div class="col-xl-3">
                 <!--begin::List Widget 2-->
                 <div class="card card-xl-stretch mb-xl-8">
@@ -124,7 +122,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             </div>
                             <!--end::Title-->
                             <!--begin::Lable-->
-                            <span class="fw-bolder text-warning py-1 chiffreAffaire" id="chiffreAffaire"></span>
+                            <span class="fw-bolder text-danger py-1 chiffreAffaire" id="chiffreAffaire"></span>
                             <!--end::Lable-->
                         </div>
                         <div class="d-flex align-items-center bg-light-info rounded p-5 mb-7">
@@ -153,7 +151,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             </div>
                             <!--end::Title-->
                             <!--begin::Lable-->
-                            <span class="fw-bolder text-warning py-1">{{count($sites)}}</span>
+                            <span class="fw-bolder text-danger py-1">{{count($sites)}}</span>
                             <!--end::Lable-->
                         </div>
                     </div>
@@ -300,6 +298,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                         <div class="card-footer">
                             <a href="/ca-liste" class="btn btn-info btn-sm">Effacer</a>
                             <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                            <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
                         </div>
                     </div>
                     @csrf
