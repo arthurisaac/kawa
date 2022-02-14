@@ -65,8 +65,8 @@
         </div>
     @endif
 
-    <div class="row gy-5 g-xl-8">
-        <div class="col-xl-3">
+    <div class="row gy-5 g-xxl-8">
+        <div class="col-xxl-3">
             <!--begin::List Widget 2-->
             <div class="card card-xl-stretch mb-xxl-8">
                 <!--begin::Header-->
@@ -246,7 +246,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
     <br>
     <br>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col">
             <table class="table table-bordered table-hover" style="width: 100%" id="liste">
                 <thead>
                 <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);

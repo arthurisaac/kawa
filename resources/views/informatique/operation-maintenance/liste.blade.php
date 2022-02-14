@@ -1,8 +1,8 @@
-@extends('base')
+@extends('bases.informatique')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Informatique", "subTitle" => "Liste Opération maintenance"])
     <div class="burval-container">
-        <div><h2 class="heading">Opération maintenance</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -24,10 +24,11 @@
 
         <div class="row">
             <div class="col">
-                <table class="table table-bordered" style="width: 100%;" id="liste">
+                <table class="table table-bordered table-hover" style="width: 100%"  id="liste">
                     <thead>
-                    <tr>
-                        <td>ID</td>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
+                    <td>ID</td>
                         <td>Centre</td>
                         <td>Centre régional</td>
                         <td>Service</td>
