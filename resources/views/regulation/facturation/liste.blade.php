@@ -3,14 +3,6 @@
 @section('main')
     @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Facturation"])
     <div class="burval-container">
-        <div><h2 class="heading">Facturation</h2></div>
-        <br/>
-        <div class="titre"><span class="titre">Montant total facturé</span> : <span id="chiffreAffaire" class="text-danger">{{$regulations->sum("montant")}}</span></div>
-        <br/>
-        <a href="/regulation-facturation" class="btn btn-primary btn-sm">Nouvelle facture</a>
-        <br/>
-        <br/>
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
