@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.regulation')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Modification Régulation arrivée tournée"])
     <div class="burval-container">
         <div><h2 class="heading">Régulation arrivée tournée</h2></div>
         <br/>

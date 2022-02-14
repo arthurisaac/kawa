@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.regulation')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Facturation"])
     <div class="burval-container">
         <h2>Facturation</h2>
         <a href="/regulation-facturation-liste" class="btn btn-link btn-sm">Liste</a>

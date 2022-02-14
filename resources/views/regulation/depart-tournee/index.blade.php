@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.regulation')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Départ Tournée"])
     <div class="container-fluid">
         <br>
         <div><h2 class="heading">Régulation départ tournée</h2></div>
