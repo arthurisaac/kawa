@@ -1,6 +1,7 @@
-@extends('base')
+@extends('bases.rh')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "RH", "subTitle" => "Liste Personnel"])
     <div class="burval-container">
         <div><h2 class="heading">Liste personnel</h2></div>
         <br/>
@@ -28,7 +29,8 @@
             <div class="col">
                 <table class="table table-bordered" style="width: 100%;" id="liste">
                     <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <td>N°</td>
                         <td>Nom et prénom</td>
                         <td>Fonction</td>

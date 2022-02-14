@@ -18,6 +18,7 @@
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -115,7 +116,7 @@
                                  data-kt-swapper="true" data-kt-swapper-mode="prepend"
                                  data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                 <!--begin::Menu-->
-                                
+
                                 <!--end::Menu-->
                             </div>
                             <!--end::Menu wrapper-->
@@ -427,6 +428,10 @@
 
 </body>
 <!--end::Body-->
+
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 
 <script>var hostUrl = "assets/";</script>
 <!--begin::Javascript-->

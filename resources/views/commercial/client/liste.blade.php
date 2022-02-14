@@ -29,7 +29,8 @@
         <br>
         <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
             <thead>
-            <tr>
+            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <th scope="col">Client</th>
                 <th scope="col">Tel</th>
                 <th scope="col">Situation géographique</th>
