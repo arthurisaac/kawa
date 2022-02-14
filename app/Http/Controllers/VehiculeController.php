@@ -74,14 +74,23 @@ class VehiculeController extends Controller
             $vehicules = Vehicule::all();
         }
         $centres = Centre::all();
+        $vls = $vehicules->filter(function ($vl){
+            return ($vl->type != "MOTO") && ($vl->type != "VB") ;
+        })->count();
 
-        $vls = DB::table('vehicules')->where('type', 'VL')->get();
-        $vbs = DB::table('vehicules')->where('type', 'VB')->get();
-        $motos = DB::table('vehicules')->where('type', 'moto')->get();
+        $vbs = $vehicules->filter(function ($vb){
+            return ($vb->type != "VL") && ($vb->type != "MOTO") ;
+        })->count();
+
+        $motos = $vehicules->filter(function ($moto){
+            return ($moto->type != "VL") && ($moto->type != "VB") ;
+        })->count();
+
 
         $centres_regionaux = Centre_regional::all();
         $types = DB::table('vehicules')->select('type')->distinct('type')->get();
         $marques = DB::table('vehicules')->select('marque')->distinct('marque')->get();
+
         return view('transport/vehicule.liste', compact('vbs', 'vls', 'motos', 'vehicules', 'centres', 'centres_regionaux', 'marques', 'types'));
     }
 
