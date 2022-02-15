@@ -1,4 +1,4 @@
-@extends('bases.transport')
+@extends('base')
 
 @section('main')
     <div class="burval-container">
