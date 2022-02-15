@@ -1,9 +1,9 @@
-@extends('base')
+@extends('bases.achat')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Achat", "subTitle" => "Demande achat"])
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
-        <div><h2 class="heading">Demande achat</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -243,9 +243,10 @@
                         <br/>
                         <div class="row">
                             <div class="col-8">
-                                <table class="table table-bordered">
+                                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%">
                                     <thead>
-                                    <tr>
+                                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                                         <th>Fournisseurs</th>
                                         <th>Cotation technique</th>
                                         <th>Prix proposé</th>
@@ -254,7 +255,8 @@
                                     </thead>
                                     <tbody>
                                     @foreach($consultes as $consulte)
-                                        <tr>
+                                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                                             <td>
                                                 <select class="form-control" name="fournisseur[]">
                                                     <option
@@ -283,7 +285,8 @@
                                         </tr>
                                     @endforeach
                                     @for($i = 0; $i<5; $i++)
-                                        <tr>
+                                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                                             <td>
                                                 <select class="form-control" name="fournisseur_n[]">
                                                     <option></option>

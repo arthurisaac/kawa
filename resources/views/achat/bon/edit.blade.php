@@ -1,9 +1,9 @@
-@extends('base')
+@extends('bases.achat')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Achat", "subTitle" => "Bon de commande"])
     <script src="{{ asset('js/written-number.js') }}"></script>
     <div class="burval-container">
-        <div><h2 class="heading">Bon de commande</h2></div>
         <br/>
         <br/>
         @if ($errors->any())

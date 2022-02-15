@@ -1,8 +1,8 @@
-@extends('base')
+@extends('bases.achat')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Achat", "subTitle" => "Etat de suivi des commandes"])
     <div class="burval-container">
-        <div><h2 class="heading">Etat de suivi des commandes</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -25,9 +25,10 @@
         <div class="row">
             <div class="col">
                 <h5>Demande d'achat</h5>
-                <table class="table table-bordered" style="width: 100%;" id="listeDemande">
+                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listeDemande">
                     <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <td>QTE</td>
                         <td>PRIX UNIT</td>
                         <td>MONTANT</td>
@@ -40,9 +41,10 @@
             </div>
             <div class="col">
                 <h5>Bon de commande</h5>
-                <table class="table table-bordered" style="width: 100%;" id="listeBon">
+                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%;" id="listeBon">
                     <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <td>QTE</td>
                         <td>PRIX UNIT</td>
                         <td>MONTANT</td>
@@ -57,9 +59,10 @@
         <div class="row">
             <div class="col">
                 <h5>Bon de livraison</h5>
-                <table class="table table-bordered" style="width: 100%;" id="listeLivraison">
+                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listeLivraison">
                     <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <td>QTE</td>
                         <td>PRIX UNIT</td>
                         <td>MONTANT</td>
@@ -72,9 +75,10 @@
             </div>
             <div class="col">
                 <h5>PV de recette</h5>
-                <table class="table table-bordered" style="width: 100%;" id="listePV">
+                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listePV">
                     <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <td>QTE</td>
                         <td>PRIX UNIT</td>
                         <td>MONTANT</td>

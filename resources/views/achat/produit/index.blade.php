@@ -1,8 +1,8 @@
-@extends('base')
+@extends('bases.achat')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Achat", "subTitle" => "Produit"])
     <div class="burval-container">
-        <div><h2 class="heading">Produit</h2></div>
         <br/>
         <br/>
         @if ($errors->any())

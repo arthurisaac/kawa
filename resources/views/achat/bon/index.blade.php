@@ -1,9 +1,9 @@
-@extends('base')
+@extends('bases.achat')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Achat", "subTitle" => "Bon de commande"])
     <script src="{{ asset('js/written-number.js') }}"></script>
     <div class="burval-container">
-        <div><h2 class="heading">Bon de commande</h2></div>
         <br/>
         <br/>
         @if ($errors->any())
@@ -74,9 +74,10 @@
             </div>
 
             <br>
-            <table id="bonItem">
+            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="bonItem">
                 <thead>
-                <tr>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                     <th>Désignation</th>
                     <th>Quantitté</th>
                     <th>Prix unitaire</th>
