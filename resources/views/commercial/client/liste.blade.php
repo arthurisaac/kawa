@@ -6,7 +6,6 @@
     <a href="/commercial-client" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
     <div class="burval-container">
-        <div><h2 class="heading">Client</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
