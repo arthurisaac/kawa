@@ -1,8 +1,8 @@
-@extends('base')
+@extends('bases.carburant')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Carburant", "subTitle" => "Chargement carte carburant"])
     <div class="burval-container">
-        <div><h2 class="heading">Chargement carte carburant</h2></div>
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">

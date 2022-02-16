@@ -71,7 +71,7 @@ class CarburantChargementTicketController extends Controller
      */
     public function store(Request $request)
     {
-        $chargement = new \App\LogistiqueChargementCarte([
+        $chargement = new \App\Models\LogistiqueChargementCarte([
             'carte' => $request->get('carte'),
             'date' => $request->get('date'),
             'somme' => $request->get('somme'),

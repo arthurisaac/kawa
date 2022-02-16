@@ -1,8 +1,9 @@
-@extends('bases.transport')
+@extends('bases.carburant')
 
 @section('main')
+
 <div class="burval-container">
-    <div><h2 class="heading">Liste carburant comptant</h2></div>
+    @extends('bases.toolbar', ["title" => "Carburant", "subTitle" => "Liste Carburant comptant"])
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -15,9 +16,10 @@
     <br/>
     @endif
 
-    <table class="table table-bordered" id="liste">
+    <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="liste">
         <thead>
-        <tr>
+        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
             <th>Immatriculation</th>
             <th>Date</th>
             <th>Montant</th>

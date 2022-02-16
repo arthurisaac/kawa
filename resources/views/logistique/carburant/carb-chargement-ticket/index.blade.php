@@ -1,8 +1,8 @@
-@extends('base')
+@extends('bases.carburant')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Carburant", "subTitle" => "Carburant chargement ticket"])
 <div class="burval-container">
-    <div><h2 class="heading">Carb. chargement ticket</h2></div>
     <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,13 +14,11 @@
     </div>
     <br/>
     @endif
-
-    <div class="row">
-        <div class="col-9">
-            <h5>Carte carburant</h5><br />
-            <table class="table table-bordered" style="width: 100%;" id="listeCarte">
+    <br>
+            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listeCarte">
                 <thead>
-                <tr>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                     <td>Date</td>
                     <td>Numero Carte</td>
                     <td>Societe</td>
@@ -32,7 +30,7 @@
                 <tbody>
                 @foreach ($cartes as $carte)
                     <tr>
-                        <td>{{$carte->date}}</td>
+                        <td>{{$carte->dateAquisition}}</td>
                         <td>{{$carte->numeroCarte}}</td>
                         <td>{{$carte->societe}}</td>
                         <td>{{$carte->idVehicule}}</td>
@@ -62,15 +60,15 @@
                target="_self"
                class="btn btn-primary btn-sm">Nouveau</a>
         </div>
-    </div>
     <br />
     <br />
 
     <div class="row">
-        <div class="col-9">
+        <div class="col">
             <h5>Chargement</h5><br />
-            <table class="table table-bordered" id="liste">
-                <thead>
+            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="liste">
+                <thead class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <th>ID Carte</th>
                 <th>Date</th>
                 <th>Somme</th>
@@ -109,10 +107,11 @@
     <br />
 
     <div class="row">
-        <div class="col-9">
+        <div class="col">
             <h5>Transport</h5><br />
-            <table class="table table-bordered" id="listeTransport">
-                <thead>
+            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listeTransport">
+                <thead class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <th>N°Ticket</th>
                 <th>N°Carte carburant</th>
                 <th>Véhicule</th>
