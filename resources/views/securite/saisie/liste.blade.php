@@ -6,7 +6,6 @@
     <a href="/saisie" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
 <div class="burval-container">
-    <br/>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -15,7 +14,6 @@
             @endforeach
         </ul>
     </div>
-    <br/>
     @endif
 
     @if(session()->get('success'))
@@ -23,13 +21,12 @@
             {{ session()->get('success') }}
         </div>
     @endif
-
-
     <div class="row">
         <div class="col">
-            <table class="table table-bordered" style="width: 100%;" id="liste">
+            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="liste">
                 <thead>
-                    <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <th>Date</th>
                         <th>Type jour</th>
                         <th>Nom et prénoms</th>

@@ -2,43 +2,70 @@
 
 @section("main")
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Liste Arrivée Site |"])
-@section("nouveau")
-    <a href="/maincourante-arriveecentreliste" class="btn btn-sm btn-primary">Nouveau</a>
-@endsection
     <div class="container-fluid">
-        <br>
-        <br>
-        <div><h2 class="heading">Arrivée site</h2></div>
-        <br>
-        <a href="/maincourante" class="btn btn-sm btn-info">Nouveau</a>
-        <br>
-        <form action="#" method="get">
-            @csrf
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-sm-7">
+        <div class="row gy-5 g-xxl-12">
+            <div class="col-xxl-12">
+                <form method="get" action="#" class="card card-xxl-stretch">
+                    <div class="card-header border-0 py-5 bg-warning">
+                        <h3 class="card-title fw-bolder">Filtre de recherche</h3>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col-sm-7">
+                    <div class="card-body pt-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label for="debut" class="col-3">Date début</label>
+                                    <input type="date" name="debut" id="debut" class="form-control col "/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label for="fin" class="col-3">Date fin</label>
+                                    <input type="date" name="fin" id="fin" class="form-control col" />
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                     </div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary btn-sm">Rechercher</button>
-                </div>
-                <div class="col"></div>
+                                            <div class="card-footer">
+                                                <a href="/maincourante-arriveesiteliste" class="btn btn-info btn-sm">Effacer</a>
+                                                <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                                                <a href="/maincourante" class="btn btn-sm btn-primary">Nouveau</a>
+                                            </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+
+{{--        <form action="#" method="get">--}}
+{{--            @csrf--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-4">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="" class="col-sm-5">Date début</label>--}}
+{{--                        <input type="date" name="debut" class="form-control col-sm-7">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="" class="col-sm-5">Date fin</label>--}}
+{{--                        <input type="date" name="fin" class="form-control col-sm-7">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <button class="btn btn-primary btn-sm">Rechercher</button>--}}
+{{--                </div>--}}
+{{--                <div class="col"></div>--}}
+{{--            </div>--}}
+{{--        </form>--}}
+
+
         <br>
-        <table class="table table-bordered" id="liste" style="width: 100%">
+        <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" style="width: 100%">
             <thead>
-            <tr>
+            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <td>N°</td>
                 <td>Centre régional</td>
                 <td>Centre</td>

@@ -3,17 +3,14 @@
 @section("main")
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Liste Départ Centre |"])
 @section("nouveau")
-    <a href="/maincourante-departcentreliste" class="btn btn-sm btn-primary">Nouveau</a>
+    <a href="/maincourante" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
     <div class="container-fluid">
         <br>
-        <div><h2 class="heading">Départ centre</h2></div>
-        <br>
-        <a href="/maincourante" class="btn btn-sm btn-info">Nouveau</a>
-        <br>
-        <table class="table table-bordered" style="width: 100%;" id="listeDepartCentre">
-            <thead>
-            <tr>
+        <table  class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="listeDepartCentre">
+            <thead >
+            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <th>N°Tournée</th>
                 <th>Date</th>
                 <th>Heure</th>
