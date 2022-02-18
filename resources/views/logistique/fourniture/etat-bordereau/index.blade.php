@@ -1,9 +1,8 @@
-@extends('base')
+@extends('bases.logistique')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Logistique", "subTitle" => "Etat bordereau utilisé"])
     <div class="burval-container">
-        <div><h2 class="heading">Etat bordereau utilisé</h2></div>
-        <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -16,9 +15,10 @@
         @endif
 
         <br/>
-        <table id="table_client_information" class="table table-bordered table-hover" style="width: 100%;">
+        <table id="table_client_information" class="table table-striped gy-7 gs-7 pt-0" style="width: 100%;">
             <thead>
-            <tr>
+            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                 <td>Site</td>
                 <td>Nombre de bordereaux</td>
                 <td>Nombre de bordereaux utilisé</td>

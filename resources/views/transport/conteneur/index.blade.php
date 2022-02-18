@@ -1,9 +1,8 @@
-@extends('bases.informatique')
+@extends('bases.logistique')
 
 @section('main')
-    @extends('bases.toolbar', ["title" => "Informatique", "subTitle" => "Conteneur"])
+    @extends('bases.toolbar', ["title" => "Logistique", "subTitle" => "Conteneur"])
     <div class="burval-container">
-    <div><h2 class="heading">Conteneur</h2></div><br />
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
