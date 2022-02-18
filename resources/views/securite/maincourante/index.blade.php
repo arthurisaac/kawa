@@ -298,7 +298,7 @@
                             </div>
                             <div class="col">
 
-                                <br>
+                                <br><br>
                                 <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">Ajouter
                                 </button>
                                 <br>
@@ -381,6 +381,7 @@
                             <br/>
                         </div>
 
+                        <br/>
                         <br/>
                         <div class="form-group">
                             <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>

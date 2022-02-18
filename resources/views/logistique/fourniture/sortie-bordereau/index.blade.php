@@ -22,7 +22,7 @@
 
     <div class="row gy-5 g-xxl-12">
             <div class="col-xxl-12">
-                <form class="form-horizontal" method="post" action="{{ route('logistique-entree-bordereau.store') }}">
+                <form class="form-horizontal" method="post" action="{{ route('logistique-sortie-bordereau.store') }}">
                     <div class="card card-xxl-stretch">
                         <div class="card-header border-0 py-5 bg-warning">
                             <h3 class="card-title fw-bolder">Sortie bordereau</h3>
