@@ -24,71 +24,151 @@
                 <a href="/commercial-site-liste" class="btn btn-info btn-sm">Ouvrir la liste</a>
             </div>
         @endif
+        <div class="row gy-5 g-xxl-12">
+            <div class="col-xxl-12">
+                <form class="form-horizontal" method="post" action="{{ route('commercial-site.store') }}">
+                    <div class="card card-xxl-stretch">
+                        <div class="card-header border-0 py-5 bg-warning">
+                            <h3 class="card-title fw-bolder">Site</h3>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="client" class="col-sm-5">Client</label>
+                                        <select type="text" class="form-control col combobox" id="client" name="client" required>
+                                            <option></option>
+                                            @foreach ($clients as $client)
+                                                <option value="{{$client->id}}"> {{$client->client_nom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="site" class="col-sm-5">Site</label>
+                                        <input type="text" class="form-control col editbox" name="site" id="site" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="nom_contact" class="col-sm-5">Nom de contact site</label>
+                                        <input type="text" class="form-control col editbox" name="nom_contact" id="nom_contact" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="fonction_contact" class="col-sm-5">Fonction du contact</label>
+                                        <input type="text" class="form-control col editbox" name="fonction_contact" id="fonction_contact" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre" class="col-sm-5">Centre</label>
+                                        <select name="centre" id="centre" class="form-control col combobox">
+                                            <option>Choisir centre</option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre_regional" class="col-sm-5">Centre régional</label>
+                                        <select name="centreRegional" id="centre_regional" class="form-control col combobox">
+                                            <option>Choisir un centre régional</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="telephone" class="col-sm-5">Téléphone</label>
+                                        <input type="tel" class="form-control col editbox" name="telephone" id="telephone" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="numero_de_carte" class="col-sm-5">Numéro de carte</label>
+                                        <input type="text" class="form-control col" name="numero_de_carte" id="numero_de_carte" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <form method="post" action="{{ route('commercial-site.store') }}">
-            @csrf
+                    @csrf
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="client" class="col-sm-5">Client</label>
-                        <select name="client" id="client" class="Combobox col-sm-7" required>
-                            <option></option>
-                            @foreach ($clients as $client)
-                                <option value="{{$client->id}}"> {{$client->client_nom}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="site" class="col-sm-5">Site</label>
-                        <input id="site" type="text" name="site" class="editbox col-sm-7" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nom_contact" class="col-sm-5">Nom contact du site</label>
-                        <input id="nom_contact" type="text" name="nom_contact_site" class="editbox col-sm-7"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="fonction_contact" class="col-sm-5">Fonction du contact</label>
-                        <input id="fonction_contact" type="text" name="fonction_contact" class="editbox col-sm-7"/>
-                    </div>
-                </div>
+{{--        <form method="post" action="{{ route('commercial-site.store') }}">--}}
+{{--            @csrf--}}
 
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-sm-5">Centre</label>
-                        <select name="centre" id="centre" class="form-control col-sm-7" required>
-                            <option>Choisir centre</option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
-                            <option>Choisir centre régional</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="telephone" class="col-sm-5">Telephone</label>
-                        <input type="tel" id="telephone" name="telephone" class="editbox col-sm-7"/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="numero_de_carte" class="col-sm-5">Numéro de carte</label>
-                        <input id="numero_de_carte" name="no_carte" type="text" class="editbox col-sm-7"/>
-                    </div>
-                </div>
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="client" class="col-sm-5">Client</label>--}}
+{{--                        <select name="client" id="client" class="Combobox col-sm-7" required>--}}
+{{--                            <option></option>--}}
+{{--                            @foreach ($clients as $client)--}}
+{{--                                <option value="{{$client->id}}"> {{$client->client_nom}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="site" class="col-sm-5">Site</label>--}}
+{{--                        <input id="site" type="text" name="site" class="editbox col-sm-7" required/>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="nom_contact" class="col-sm-5">Nom contact du site</label>--}}
+{{--                        <input id="nom_contact" type="text" name="nom_contact_site" class="editbox col-sm-7"/>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="fonction_contact" class="col-sm-5">Fonction du contact</label>--}}
+{{--                        <input id="fonction_contact" type="text" name="fonction_contact" class="editbox col-sm-7"/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="col">
-                    <button type="submit" class="btn btn-primary button">Valider</button>
-                    <br/>
-                    <br/>
-                    <button type="reset" class="btn btn-danger button">Annuler</button>
-                </div>
+{{--                <div class="col">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="centre" class="col-sm-5">Centre</label>--}}
+{{--                        <select name="centre" id="centre" class="form-control col-sm-7" required>--}}
+{{--                            <option>Choisir centre</option>--}}
+{{--                            @foreach ($centres as $centre)--}}
+{{--                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="centre_regional" class="col-sm-5">Centre régional</label>--}}
+{{--                        <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>--}}
+{{--                            <option>Choisir centre régional</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="telephone" class="col-sm-5">Telephone</label>--}}
+{{--                        <input type="tel" id="telephone" name="telephone" class="editbox col-sm-7"/>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="numero_de_carte" class="col-sm-5">Numéro de carte</label>--}}
+{{--                        <input id="numero_de_carte" name="no_carte" type="text" class="editbox col-sm-7"/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-            </div>
-            <br>
-            <br>
+{{--                <div class="col">--}}
+{{--                    <button type="submit" class="btn btn-primary button">Valider</button>--}}
+{{--                    <br/>--}}
+{{--                    <br/>--}}
+{{--                    <button type="reset" class="btn btn-danger button">Annuler</button>--}}
+{{--                </div>--}}
+
+{{--            </div>--}}
+{{--            <br>--}}
+{{--            <br>--}}
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="transport-c-tab" data-toggle="tab" href="#transport-c" role="tab"
@@ -422,7 +502,13 @@
                     <input type="number" class="form-control col-sm-8" id="oo_total" name="oo_total" readonly/>
                 </div>
             </div>
+                    <div class="card-footer">
+                        <button type="reset" class="btn btn-danger btn-sm">Annuler</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                        <br>
+                    </div>
         </form>
+            </div>
     </div>
     <script>
         let centres = {!! json_encode($centres) !!};

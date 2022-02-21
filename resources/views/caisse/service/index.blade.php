@@ -4,9 +4,6 @@
     @extends('bases.toolbar', ["title" => "Caisse Centrale", "subTitle" => "Caisse centrale Nouveau service"])
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
     <div class="burval-container">
-        <div><h2 class="heading">Service</h2></div>
-        <br/>
-        <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -24,32 +21,72 @@
             </div>
         @endif
 
+        <div class="row gy-5 g-xxl-12">
+            <div class="col-xxl-12">
+                <form class="form-horizontal" method="post" action="{{ route('caisse-service.store') }}">
+                    <div class="card card-xxl-stretch">
+                        <div class="card-header border-0 py-5 bg-warning">
+                            <h3 class="card-title fw-bolder">Caisse Centrale Service</h3>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-5">Date</label>
+                                        <input type="date" class="form-control col" id="date" name="date" value="{{date('Y-m-d')}}" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre" class="col-sm-5">Centre</label>
+                                        <select name="centre" id="centre" class="form-control col combobox">
+                                            <option>Choisir centre</option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre_regional" class="col-sm-5">Centre régional</label>
+                                        <select name="centreRegional" id="centre_regional" class="form-control col combobox">
+                                            <option>Choisir un centre régional</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
 
-        <form method="post" action="{{ route('caisse-service.store') }}">
-            @csrf
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label class="col-sm-5">Date</label>
-                        <input type="date" name="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre" class="col-sm-5">Centre</label>
-                        <select name="centre" id="centre" class="form-control col-sm-7" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7"
-                                required></select>
-                    </div>
-                </div>
-            </div>
-            <br>
+                    @csrf
+
+{{--        <form method="post" action="{{ route('caisse-service.store') }}">--}}
+{{--            @csrf--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-4">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-sm-5">Date</label>--}}
+{{--                        <input type="date" name="date" class="form-control col-sm-7" value="{{date('Y-m-d')}}" required/>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="centre" class="col-sm-5">Centre</label>--}}
+{{--                        <select name="centre" id="centre" class="form-control col-sm-7" required>--}}
+{{--                            <option></option>--}}
+{{--                            @foreach ($centres as $centre)--}}
+{{--                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="centre_regional" class="col-sm-5">Centre régional</label>--}}
+{{--                        <select id="centre_regional" name="centreRegional" class="form-control col-sm-7"--}}
+{{--                                required></select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <br>--}}
             <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="charge-caisse-tab" data-toggle="tab" href="#charge-caisse" role="tab"
@@ -204,15 +241,14 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-4">
-                    <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                    <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
-                </div>
-            </div>
+                    <div class="card-footer">
+                        <button type="reset" class="btn btn-danger btn-sm">Annuler</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                        <br>
+                    </div>
         </form>
-
-
+            </div>
+        </div>
     </div>
     <script>
         function supprimerLigne(e) {
