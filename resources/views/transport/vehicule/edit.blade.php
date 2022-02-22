@@ -79,12 +79,6 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <br/>
-                                            <button class="btn btn-primary btn-sm btn-block" type="submit">Valider
-                                            </button>
-                                            <br/>
-                                            <button class="btn btn-danger btn-sm btn-block" type="reset">Annuler
-                                            </button>
                                         </div>
                                     </div>
                                     <div class="row">
