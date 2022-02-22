@@ -2,6 +2,7 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Véhicule"])
+
 @section("nouveau")
     <a href="/caisse-service-liste" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
