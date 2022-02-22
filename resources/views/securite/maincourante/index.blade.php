@@ -3,499 +3,451 @@
 @section('main')
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante Nouveau"])
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
-    <div class="burval-container">
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
-
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
-
-        <div class="row gy-5 g-xxl-12">
-            <div class="col-xxl-12">
-                <div class="card card-xxl-stretch">
-                    <div class="card-header border-0 py-5 bg-warning">
-                        <h3 class="card-title fw-bolder">Main Courante</h3>
-                    </div>
-                    <div class="card-body pt-5">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="date" class="col-4">Date</label>
-                                    <input type="text" name="date" id="date" value="{{$date}}" class="form-control col" readonly/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="no_tournee" class="col-4">N°Tournée</label>
-                                    <select class="form-control col" name="noTournee" id="noTournee">
-                                        <option></option>
-                                        @foreach($tournees as $tournee)
-                                            <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}
-                                                // {{$tournee->vehicules->code ?? ""}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-4">Véhicule</label>
-                                    <input class="form-control col" name="vehicule" id="vehicule" readonly/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-4">Chef de bord</label>
-                                    <input class="form-control col" name="chefDeBord" id="chefDeBord" readonly/>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-4">Agent garde</label>
-                                    <input class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-4">Chauffeur:</label>
-                                    <input class="form-control col" name="chauffeur" id="chauffeur" readonly/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="centre" class="col-4">Centre regional</label>
-                                    <input name="centre" id="centre" class="form-control col" readonly/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label for="centre_regional" class="col-4">Centre</label>
-                                    <input id="centre_regional" name="centre_regional" class="form-control col" readonly/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{--                        <div class="card-footer">--}}
-                    {{--                            <a href="/commercial-client-liste-detaillee" class="btn btn-info btn-sm">Effacer</a>--}}
-                    {{--                            <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>--}}
-                    {{--                            <a href="/commercial-client" class="btn btn-sm btn-primary">Nouveau</a>--}}
-                    {{--                        </div>--}}
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <br>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
-        </div>
+                <br/>
+            @endif
 
-{{--        <div class="container-fluid">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="date" class="col-sm-4">Date</label>--}}
-{{--                        <input type="text" name="date" id="date" value="{{$date}}" class="form-control col-sm-8"--}}
-{{--                               readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="no_tournee" class="col-sm-4">N°Tournée</label>--}}
-{{--                        <select class="form-control col-sm-8" name="noTournee" id="noTournee">--}}
-{{--                            <option></option>--}}
-{{--                            @foreach($tournees as $tournee)--}}
-{{--                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}--}}
-{{--                                    // {{$tournee->vehicules->code ?? ""}}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-sm-4">Véhicule</label>--}}
-{{--                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row">--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-sm-4">Chef de bord</label>--}}
-{{--                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-sm-4">Agent garde</label>--}}
-{{--                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-sm-4">Chauffeur:</label>--}}
-{{--                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row">--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="centre" class="col-sm-4">Centre regional</label>--}}
-{{--                        <input name="centre" id="centre" class="form-control col-sm-8" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="centre_regional" class="col-sm-4">Centre</label>--}}
-{{--                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col"></div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-        <br/>
-        <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="depart-centre-tab" data-toggle="tab" href="#depart-centre" role="tab"
-                   aria-controls="depart-centre" aria-selected="true">Départ Centre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="arrivee-site-tab" data-toggle="tab" href="#arrivee-site" role="tab"
-                   aria-controls="arrivee-site" aria-selected="false">Arrivée site</a>
-            </li>
-            <!--<li class="nav-item">
-                <a class="nav-link" id="depart-site-tab" data-toggle="tab" href="#depart-site" role="tab"
-                   aria-controls="depart-site" aria-selected="false">Départ site</a>
-            </li>-->
-            <li class="nav-item">
-                <a class="nav-link" id="arrivee-centre-tab" data-toggle="tab" href="#arrivee-centre" role="tab"
-                   aria-controls="arrivee-centre" aria-selected="false">Arrivée centre</a>
-            </li>
-            {{--<li class="nav-item">
-                <a class="nav-link" id="tournee-centre-tab" data-toggle="tab" href="#tournee-centre" role="tab"
-                   aria-controls="tournee-centre" aria-selected="false">Tournée centre</a>
-            </li>--}}
-        </ul>
-        <br/>
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="depart-centre" role="tabpanel"
-                 aria-labelledby="depart-centre-tab">
-                <div class="container-fluid">
-                    <form method="post" action="/maincourante-departcentre" id="departCentre">
-                        @csrf
-                        <input type="hidden" name="maincourante" value="departCentre"/>
-                        <input type="hidden" name="tournee" class="noTournee" />
-                        <br/>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                    <input type="time" name="dcHeureDepart" class="form-control col-sm-8"
-                                           value="{{date('H:i')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="km_depart" class="col-sm-4">Km départ</label>
-                                    <input type="number" name="dcKmDepart" class="form-control col-sm-8"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="km_depart" class="col-sm-4">Niveau carburant</label>
-                                    <select name="dcNiveauCarburant" class="form-control col-sm-8">
-                                        <option></option>
-                                        @foreach($optionNiveauCarburant as $option)
-                                            <option>{{$option->option}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="observation" class="col-sm-4">Observation:</label>
-                                    <textarea name="dcObservation" id="dcObservation"
-                                              class="form-control col-sm-8"></textarea>
-                                </div>
-
-                                <div class="form-group row">
-                                    <span class="col-4"></span>
-                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer
-                                    </button>
-                                </div>
-
-                            </div>
-                            <div class="col-8">
-
-                            </div>
-                        </div>
-                    </form>
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
                 </div>
-            </div>
-            <div class="tab-pane fade" id="arrivee-site" role="tabpanel" aria-labelledby="arrivee-site-tab">
-                <div class="container-fluid">
-                    <form method="post" action="/maincourante-arriveesite">
-                        @csrf
-                        <input type="hidden" name="maincourante" value="arriveeSite"/>
-                        <input type="hidden" name="tournee" class="noTournee" />
-                        <br/>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label class="col-sm-4">SITE</label>
-                                    <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
-                                        @foreach($sites as $site)
-                                            <option value="{{$site->id}}">{{$site->site}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="heure_depart" class="col-sm-4">Type opération</label>
-                                    <select name="asTypeOperation" class="form-control col-sm-8">
-                                        <option></option>
-                                        <option>Enlèvement</option>
-                                        <option>Dépot</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
-                                    <input type="date" name="asDateArrivee" class="form-control col-sm-8"
-                                           value="{{date('Y-m-d')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label id="km_depart" class="col-sm-4">Kilométrage arrivée</label>
-                                    <input type="number" name="asKm" id="kmDepart" class="form-control col-sm-8"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
-                                    <input type="time" name="asHeureArrivee" class="form-control col-sm-8"
-                                           value="{{date('H:i')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
-                                    <input type="time" name="asDebutOperation" id="asDebutOperation"
-                                           class="form-control col-sm-8" value="{{date('H:i')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
-                                    <input type="time" name="asFinOperation" id="asFinOperation"
-                                           class="form-control col-sm-8"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
-                                    <input type="number" name="asTempsOperation" id="asTempsOperation"
-                                           class="form-control col-sm-8" readonly/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
-                                    <input type="number" name="asNbColis" id="asNbColis" class="form-control col-sm-8" disabled/>
-                                </div>
+            @endif
 
-                            </div>
-                            <div class="col">
-
-                                <br><br>
-                                <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">Ajouter
-                                </button>
-                                <br>
-                                <br>
-                                <table class="table table-bordered" id="tableASColis">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 200px">Colis</th>
-                                        <th>N° Colis</th>
-                                        <th>N° Bordereau</th>
-                                        {{--<th>Montant annoncé</th>--}}
-                                        <th>Nombre de colis</th>
-                                        {{--<th>Nature colis</th>--}}
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <select name="asColis[]" class="form-control">
-                                                <option>Keep Safe</option>
-                                                <option>Sac juste</option>
-                                                <option>Pierres précieuses</option>
-                                                <option>Caisse</option>
-                                                <option>Conteneur</option>
-                                            </select>
-                                        </td>
-                                        <td><textarea name="asNumColis[]" class="form-control"></textarea></td>
-                                        <td><select name="asNumBordereau[]" class="form-control">
-                                                <option></option>
-                                                @foreach($optionBordereau as $option)
-                                                    <option>{{$option->numero}}</option>
-                                                @endforeach
-                                            </select></td>
-                                        {{--<td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>--}}
-                                        <td><input type="number" min="0" name="asNombreColis[]" class="form-control"/>
-                                        </td>
-                                        {{--<td><input type="text" name="asNatureColis[]" class="form-control"/></td>--}}
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+            <div class="row gy-5 g-xxl-12">
+                <div class="col-xxl-12">
+                    <div class="card card-xxl-stretch">
+                        <div class="card-header border-0 py-5 bg-gradient-kawa">
+                            <h3 class="card-title fw-bolder">Main Courante</h3>
                         </div>
-                        <br>
-                        <div>
-                            <div class="row">
-                                <div class="col" style="display: none;">
-                                    <div class="form-group row">
-                                        <label class="col-sm-6">Heure de départ</label>
-                                        <input type="time" name="asHeure" class="form-control col-sm-6"
-                                               value="{{date('H:i')}}"/>
-                                    </div>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                            </div>
+                        <div class="card-body pt-5">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-4">Date départ site</label>
-                                        <input type="datetime-local" class="form-control col-sm-8" name="asDepartSite"
-                                               value="{{date('Y-m-d\TH:i')}}">
+                                        <label for="date" class="col-4">Date</label>
+                                        <input type="text" name="date" id="date" value="{{$date}}"
+                                               class="form-control col" readonly/>
                                     </div>
+                                </div>
+                                <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-4">Prochaine destination</label>
-                                        <select class="form-control col-sm-8" name="asDestination"
-                                                id="prochaineDestination">
-                                            @foreach($sites as $site)
-                                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                        <label for="no_tournee" class="col-4">N°Tournée</label>
+                                        <select class="form-control col" name="noTournee" id="noTournee">
+                                            <option></option>
+                                            @foreach($tournees as $tournee)
+                                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}
+                                                    // {{$tournee->vehicules->code ?? ""}}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-4">Observation</label>
-                                        <textarea class="form-control col-sm-8" name="asObservation"></textarea>
+                                        <label class="col-4">Véhicule</label>
+                                        <input class="form-control col" name="vehicule" id="vehicule" readonly/>
                                     </div>
                                 </div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                            </div>
-                            <br/>
-                        </div>
-
-                        <br/>
-                        <br/>
-                        <div class="form-group">
-                            <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="depart-site" role="tabpanel" aria-labelledby="depart-site-tab">
-                <div class="container">
-                    <form method="post" action="{{ route('maincourante.store') }}" id="departSite" novalidate>
-                        @csrf
-
-                        <input type="hidden" name="tournee" class="noTournee" />
-                        <input type="hidden" name="maincourante" value="departSite"/>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group row">
-                                    <label class="col-sm-6">Heure de départ</label>
-                                    <input type="time" name="heureDepart" class="form-control col-sm-6"
-                                           value="{{date('H:i')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
-                                    <input type="number" name="kmDepart" id="kmDepart" class="form-control col-sm-6"/>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label class="col-4">Chef de bord</label>
+                                        <input class="form-control col" name="chefDeBord" id="chefDeBord" readonly/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-
-                        <div>
+                            <br>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-6">Date départ site</label>
-                                        <input type="date" class="form-control col-sm-6" name="departSite"
-                                               value="{{date('Y-m-d')}}">
+                                        <label class="col-4">Agent garde</label>
+                                        <input class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly/>
                                     </div>
+                                </div>
+                                <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-6">Prochaine destination</label>
-                                        <select class="form-control col-sm-6" name="destination"
-                                                id="prochaineDestination"></select>
+                                        <label class="col-4">Chauffeur:</label>
+                                        <input class="form-control col" name="chauffeur" id="chauffeur" readonly/>
                                     </div>
+                                </div>
+                                <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-sm-6">Observation</label>
-                                        <textarea class="form-control col-sm-6" name="observation"></textarea>
+                                        <label for="centre" class="col-4">Centre regional</label>
+                                        <input name="centre" id="centre" class="form-control col" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre_regional" class="col-4">Centre</label>
+                                        <input id="centre_regional" name="centre_regional" class="form-control col"
+                                               readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="depart-centre-tab" data-toggle="tab" href="#depart-centre" role="tab"
+                       aria-controls="depart-centre" aria-selected="true">Départ Centre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="arrivee-site-tab" data-toggle="tab" href="#arrivee-site" role="tab"
+                       aria-controls="arrivee-site" aria-selected="false">Arrivée site</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link" id="depart-site-tab" data-toggle="tab" href="#depart-site" role="tab"
+                       aria-controls="depart-site" aria-selected="false">Départ site</a>
+                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" id="arrivee-centre-tab" data-toggle="tab" href="#arrivee-centre" role="tab"
+                       aria-controls="arrivee-centre" aria-selected="false">Arrivée centre</a>
+                </li>
+                {{--<li class="nav-item">
+                    <a class="nav-link" id="tournee-centre-tab" data-toggle="tab" href="#tournee-centre" role="tab"
+                       aria-controls="tournee-centre" aria-selected="false">Tournée centre</a>
+                </li>--}}
+            </ul>
+            <br>
+            <div class="card card-xxl-stretch">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="depart-centre" role="tabpanel"
+                         aria-labelledby="depart-centre-tab">
+                        <div class="container-fluid">
+                            <form method="post" action="/maincourante-departcentre" id="departCentre">
+                                @csrf
+                                <input type="hidden" name="maincourante" value="departCentre"/>
+                                <input type="hidden" name="tournee" class="noTournee"/>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group row">
+                                            <label for="heure_depart" class="col-sm-4">Heure départ</label>
+                                            <input type="time" name="dcHeureDepart" class="form-control col-sm-8"
+                                                   value="{{date('H:i')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="km_depart" class="col-sm-4">Km départ</label>
+                                            <input type="number" name="dcKmDepart" class="form-control col-sm-8"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="km_depart" class="col-sm-4">Niveau carburant</label>
+                                            <select name="dcNiveauCarburant" class="form-control col-sm-8">
+                                                <option></option>
+                                                @foreach($optionNiveauCarburant as $option)
+                                                    <option>{{$option->option}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="observation" class="col-sm-4">Observation:</label>
+                                            <textarea name="dcObservation" id="dcObservation"
+                                                      class="form-control col-sm-8"></textarea>
+                                        </div>
+
+                                        <br>
+                                        <div class="form-group row">
+                                            <span class="col-4"></span>
+                                            <button class="btn btn-sm btn-primary" type="submit">Enregistrer
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-8">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="arrivee-site" role="tabpanel" aria-labelledby="arrivee-site-tab">
+                        <div class="container-fluid">
+                            <form method="post" action="/maincourante-arriveesite">
+                                @csrf
+                                <input type="hidden" name="maincourante" value="arriveeSite"/>
+                                <input type="hidden" name="tournee" class="noTournee"/>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4">SITE</label>
+                                            <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
+                                                @foreach($sites as $site)
+                                                    <option value="{{$site->id}}">{{$site->site}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="heure_depart" class="col-sm-4">Type opération</label>
+                                            <select name="asTypeOperation" class="form-control col-sm-8">
+                                                <option></option>
+                                                <option>Enlèvement</option>
+                                                <option>Dépot</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
+                                            <input type="date" name="asDateArrivee" class="form-control col-sm-8"
+                                                   value="{{date('Y-m-d')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label id="km_depart" class="col-sm-4">Kilométrage arrivée</label>
+                                            <input type="number" name="asKm" id="kmDepart"
+                                                   class="form-control col-sm-8"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
+                                            <input type="time" name="asHeureArrivee" class="form-control col-sm-8"
+                                                   value="{{date('H:i')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
+                                            <input type="time" name="asDebutOperation" id="asDebutOperation"
+                                                   class="form-control col-sm-8" value="{{date('H:i')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
+                                            <input type="time" name="asFinOperation" id="asFinOperation"
+                                                   class="form-control col-sm-8"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
+                                            <input type="number" name="asTempsOperation" id="asTempsOperation"
+                                                   class="form-control col-sm-8" readonly/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
+                                            <input type="number" name="asNbColis" id="asNbColis"
+                                                   class="form-control col-sm-8" disabled/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col">
+
+                                        <br><br>
+                                        <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">
+                                            Ajouter
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                                               id="tableASColis">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 200px">Colis</th>
+                                                <th>N° Colis</th>
+                                                <th>N° Bordereau</th>
+                                                {{--<th>Montant annoncé</th>--}}
+                                                <th>Nombre de colis</th>
+                                                {{--<th>Nature colis</th>--}}
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <select name="asColis[]" class="form-control">
+                                                        <option>Keep Safe</option>
+                                                        <option>Sac juste</option>
+                                                        <option>Pierres précieuses</option>
+                                                        <option>Caisse</option>
+                                                        <option>Conteneur</option>
+                                                    </select>
+                                                </td>
+                                                <td><textarea name="asNumColis[]" class="form-control"
+                                                              rows="1"></textarea></td>
+                                                <td><select name="asNumBordereau[]" class="form-control">
+                                                        <option></option>
+                                                        @foreach($optionBordereau as $option)
+                                                            <option>{{$option->numero}}</option>
+                                                        @endforeach
+                                                    </select></td>
+                                                {{--<td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>--}}
+                                                <td><input type="number" min="0" name="asNombreColis[]"
+                                                           class="form-control"/>
+                                                </td>
+                                                {{--<td><input type="text" name="asNatureColis[]" class="form-control"/></td>--}}
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <div class="row">
+                                        <div class="col" style="display: none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6">Heure de départ</label>
+                                                <input type="time" name="asHeure" class="form-control col-sm-6"
+                                                       value="{{date('H:i')}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col"></div>
                                     </div>
                                     <div class="row">
-                                        <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">Enregistrer
-                                        </button>
+                                        <div class="col">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4">Date départ site</label>
+                                                <input type="datetime-local" class="form-control col-sm-8"
+                                                       name="asDepartSite"
+                                                       value="{{date('Y-m-d\TH:i')}}">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4">Prochaine destination</label>
+                                                <select class="form-control col-sm-8" name="asDestination"
+                                                        id="prochaineDestination">
+                                                    @foreach($sites as $site)
+                                                        <option value="{{$site->id}}">{{$site->site}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4">Observation</label>
+                                                <textarea class="form-control col-sm-8" name="asObservation"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col"></div>
+                                    </div>
+                                    <br/>
+                                </div>
+
+                                <br/>
+                                <br/>
+                                <div class="form-group">
+                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="depart-site" role="tabpanel" aria-labelledby="depart-site-tab">
+                        <div class="container-fluid">
+                            <form method="post" action="{{ route('maincourante.store') }}" id="departSite" novalidate>
+                                @csrf
+
+                                <input type="hidden" name="tournee" class="noTournee"/>
+                                <input type="hidden" name="maincourante" value="departSite"/>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6">Heure de départ</label>
+                                            <input type="time" name="heureDepart" class="form-control col-sm-6"
+                                                   value="{{date('H:i')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
+                                            <input type="number" name="kmDepart" id="kmDepart"
+                                                   class="form-control col-sm-6"/>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col"></div>
+                                </div>
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6">Date départ site</label>
+                                                <input type="date" class="form-control col-sm-6" name="departSite"
+                                                       value="{{date('Y-m-d')}}">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6">Prochaine destination</label>
+                                                <select class="form-control col-sm-6" name="destination"
+                                                        id="prochaineDestination"></select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6">Observation</label>
+                                                <textarea class="form-control col-sm-6" name="observation"></textarea>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-primary btn-sm" type="button" id="dsSubmit">
+                                                        Enregistrer
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col"></div>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
+                        <div class="container-fluid">
+                            <br>
+                            <form method="post" action="/maincourante-arriveecentre" id="arriveeCentre">
+                                @csrf
+                                <input type="hidden" name="maincourante" value="arriveeCentre"/>
+                                <input type="hidden" name="tournee" class="noTournee"/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group row">
+                                            <label class="col-sm-5">Heure arrivée</label>
+                                            <input type="time" name="heureArrivee" class="form-control col-sm-7"
+                                                   value="{{date('H:i')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5">Km arrivé</label>
+                                            <input type="number" name="kmArrive" class="form-control col-sm-7"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5">Niveau carburant</label>
+                                            <select name="niveauCarburant" class="form-control col-sm-7">
+                                                <option></option>
+                                                @foreach($optionNiveauCarburant as $option)
+                                                    <option>{{$option->option}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group row" style="display: none;">
+                                            <label class="col-sm-5">Fin de tournée</label>
+                                            <select name="finTournee" class="form-control col-sm-7">
+                                                <option></option>
+                                                <option>fin</option>
+                                                <option>transite</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5">Date arrivée centre</label>
+                                            <input type="date" name="dateArrivee" class="form-control col-sm-7"
+                                                   value="{{date('Y-m-d')}}"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5">Observation</label>
+                                            <textarea name="observation" class="form-control col-sm-7"></textarea>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <span class="col-4"></span>
+                                            <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                                            </button>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="col"></div>
-                                <div class="col"></div>
-                            </div>
-                            <br/>
+                            </form>
                         </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
 
-                    <br/>
-                    <br/>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="arrivee-centre" role="tabpanel" aria-labelledby="arrivee-centre-tab">
-                <div class="container">
-                    <form method="post" action="/maincourante-arriveecentre" id="arriveeCentre">
-                        @csrf
-                        <input type="hidden" name="maincourante" value="arriveeCentre"/>
-                        <input type="hidden" name="tournee" class="noTournee" />
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Heure arrivée</label>
-                                    <input type="time" name="heureArrivee" class="form-control col-sm-7"
-                                           value="{{date('H:i')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Km arrivé</label>
-                                    <input type="number" name="kmArrive" class="form-control col-sm-7"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Niveau carburant</label>
-                                    <select name="niveauCarburant" class="form-control col-sm-7">
-                                        <option></option>
-                                        @foreach($optionNiveauCarburant as $option)
-                                            <option>{{$option->option}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group row" style="display: none;">
-                                    <label class="col-sm-5">Fin de tournée</label>
-                                    <select name="finTournee" class="form-control col-sm-7">
-                                        <option></option>
-                                        <option>fin</option>
-                                        <option>transite</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Date arrivée centre</label>
-                                    <input type="date" name="dateArrivee" class="form-control col-sm-7"
-                                           value="{{date('Y-m-d')}}"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Observation</label>
-                                    <textarea name="observation" class="form-control col-sm-7"></textarea>
-                                </div>
-                                <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-
     </div>
     <script src="js/jquery-ui.min.js"></script>
     <script>
@@ -590,7 +542,7 @@
                     '                                                <option>Conteneur</option>\n' +
                     '                                            </select>\n' +
                     '                                        </td>\n' +
-                    '                                        <td><textarea name="asNumColis[]" class="form-control"></textarea></td>\n' +
+                    '                                        <td><textarea name="asNumColis[]"  rows="1" class="form-control"></textarea></td>\n' +
                     '                                        <td><select name="asNumBordereau[]" class="form-control">\n' +
                     '                                                <option></option>\n' +
                     '                                                @foreach($optionBordereau as $option)\n' +
@@ -616,6 +568,7 @@
                 const finDate = new Date(`01/01/2021 ${this.value}`);
                 $("#asTempsOperation").val(diff_hours(debutDate, finDate));
             });
+
             function diff_hours(dt2, dt1) {
                 let diff = (dt2.getTime() - dt1.getTime()) / 1000;
                 //diff /= (60 * 60);         //For Hours
@@ -665,6 +618,7 @@
                 }
             })
         }
+
         $(document).ready(function () {
             $("#numeroSite").on("change", function () {
                 const numero = $(this).val();
@@ -679,6 +633,7 @@
                     }
                 })
             });
+
             function populateData(data) {
                 $.each(data, function (i, item) {
                     const tr = $('<tr>').append(
@@ -913,7 +868,7 @@
     </script>
     <script>
         $(document).on('DOMNodeInserted', function () {
-            $("input[name='asNombreColis[]']").on("change", function() {
+            $("input[name='asNombreColis[]']").on("change", function () {
                 let total = 0;
                 $.each($("input[name='asNombreColis[]']"), function (i) {
                     const nombre = $("input[name='asNombreColis[]']").get(i);
