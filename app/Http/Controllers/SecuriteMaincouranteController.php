@@ -65,6 +65,16 @@ class SecuriteMaincouranteController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+        $tournee = $request->get('tournee');
+        $vehicule = $request->get('vehicule');
+
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+        $toutesTournees = DepartTournee::all();
+        $vehicules = Vehicule::all();
+
         $tournees = DepartTournee::with('departCentre')
             ->with('arriveeCentre')
             ->get();
@@ -74,8 +84,40 @@ class SecuriteMaincouranteController extends Controller
                 ->whereBetween('date', [$debut, $fin])
                 ->get();
         }
+        if (isset($vehicule)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->where('idVehicule', $vehicule)
+                ->get();
+        }
+        if (isset($tournee)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->where('id', $tournee)
+                ->get();
+        }
+        if (isset($centre) && isset($centre_regional)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->where('centre', $centre)
+                ->where('centre_regional', $centre_regional)
+                ->get();
+        }
+        if (isset($centre_regional)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->where('centre_regional', $centre_regional)
+                ->get();
+        }
+        if (isset($centre)) {
+            $tournees = DepartTournee::with('departCentre')
+                ->with('arriveeCentre')
+                ->where('centre', $centre)
+                ->get();
+        }
 
-        return view('/securite.maincourante.synthese', compact('tournees', 'debut', 'fin'));
+        return view('/securite.maincourante.synthese', compact('tournees', 'debut', 'fin', 'tournee', 'tournees',
+            'centres', 'centres_regionaux', 'centre', 'centre_regional', 'vehicules', 'vehicule', 'toutesTournees'));
     }
 
     public function arriveeSiteListe(Request $request)

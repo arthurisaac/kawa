@@ -3,7 +3,7 @@
 @section('main')
     <!--begin::Toolbar-->
     @extends('bases.toolbar', ["title" => "Comptabilité", "subTitle" => "Chiffre d'affaire des tournées"])
-@section("filter")
+{{--@section("filter")
     <div class="me-4">
         <!--begin::Menu-->
         <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
@@ -57,7 +57,7 @@
         <!--end::Menu 1-->
         <!--end::Menu-->
     </div>
-@endsection
+@endsection--}}
 
 <!--end::Toolbar-->
 
@@ -89,9 +89,8 @@
                 <!--begin::List Widget 2-->
                 <div class="card card-xl-stretch mb-xxl-8">
                     <!--begin::Header-->
-                    <div class="card-header border-0" style="background: rgb(148,148,152);
-background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%);">
-                        <h3 class="card-title fw-bolder text-dark">Stats</h3>
+                    <div class="card-header border-0 bg-gradient-kawa">
+                        <h3 class="card-title fw-bolder text-dark">Résultats</h3>
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
@@ -161,9 +160,9 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
             </div>
             <div class="col-xl-9">
                 <form action="#" method="get">
-
+                    @csrf
                     <div class="card card-xl-stretch">
-                        <div class="card-header border-0 py-5 bg-warning">
+                        <div class="card-header border-0 py-5 bg-gradient-kawa">
                             <h3 class="card-title fw-bolder">Option de filtre</h3>
                         </div>
                         <div class="card-body pt-5">
@@ -301,18 +300,14 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             <a href="#" class="btn btn-sm btn-primary">Nouveau</a>
                         </div>
                     </div>
-                    @csrf
-
                 </form>
             </div>
         </div>
-        <br>
 
         <div class="card card-xl-stretch">
             <table id="table" class="table table-striped gy-7 gs-7 pt-0" style="width: 100%">
                 <thead>
-                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
-background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
                     <th scope="col">No</th>
                     <th scope="col">Centre regional</th>
                     <th scope="col">Centre</th>
