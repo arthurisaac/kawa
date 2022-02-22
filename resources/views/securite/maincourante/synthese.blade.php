@@ -2,31 +2,35 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Synthèse des Tournées"])
-    <div class="container-fluid">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
 
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <br>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br/>
+            @endif
+
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+
             <div class="row gy-5 g-xxl-8">
                 <div class="col-xxl-3">
                     <!--begin::List Widget 2-->
                     <div class="card card-xl-stretch mb-xxl-8">
                         <!--begin::Header-->
-                        <div class="card-header border-0" style="background: rgb(148,148,152);
-background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%);">
-                            <h3 class="card-title fw-bolder text-dark">Stats</h3>
+                        <div class="card-header border-0 bg-gradient-kawa">
+                            <h3 class="card-title fw-bolder text-dark">Résultats</h3>
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
@@ -51,12 +55,14 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                 <!--end::Icon-->
                                 <!--begin::Title-->
                                 <div class="flex-grow-1 me-2">
-                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Total tournée :</a>
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Total tournée
+                                        :</a>
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Lable-->
-                                <span class="fw-bolder text-danger py-1 totalVb" id="totalVb">{{count($tournees)}}</span>
+                                <span class="fw-bolder text-danger py-1 totalVb"
+                                      id="totalVb">{{count($tournees)}}</span>
                                 <!--end::Lable-->
                             </div>
 
@@ -80,7 +86,8 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                 <!--end::Icon-->
                                 <!--begin::Title-->
                                 <div class="flex-grow-1 me-2">
-                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Temps parcouru :</a>
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Temps parcouru
+                                        :</a>
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
@@ -108,7 +115,8 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                 <!--end::Icon-->
                                 <!--begin::Title-->
                                 <div class="flex-grow-1 me-2">
-                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Km parcouru :</a>
+                                    <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Km parcouru
+                                        :</a>
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
@@ -121,127 +129,201 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     </div>
                     <!--end::List Widget 2-->
                 </div>
-                <div class="col-xxl-9">
+                <div class="col-xl-9">
                     <form action="#" method="get">
+                        @csrf
                         <div class="card card-xxl-stretch">
-                            <div class="card-header border-0 py-5 bg-warning">
+                            <div class="card-header border-0 py-5 bg-gradient-kawa">
                                 <h3 class="card-title fw-bolder">Option de filtre</h3>
                             </div>
-                                <div class="card-body pt-5">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group row">
-                                                <label for="debut" class="col-3">Date début</label>
-                                                <input type="date" name="debut" id="debut" class="form-control col "/>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group row">
-                                                <label for="fin" class="col-3">Date fin</label>
-                                                <input type="date" name="fin" id="fin" class="form-control col" />
-                                            </div>
-                                        </div>
+                            <div class="card-body pt-5">
+                                <div class="row">
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span class="required">Date début</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <input type="date" class="form-control form-control-solid" placeholder=""
+                                               name="debut" id="debut">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span class="required">Date fin</span>
+                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                               title=""
+                                               data-bs-original-title="Specify a card holder's name"
+                                               aria-label="Specify a card holder's name"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <input type="date" class="form-control form-control-solid" placeholder=""
+                                               name="fin" id="fin">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                 </div>
-                        </div>
+                                <div class="row">
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label for="centre"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>Centre régional</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2" data-hide-search="true"
+                                                data-placeholder="{{$centre ?? 'Centre régional'}}"
+                                                data-select2-id="select2-data-10-7w10b" tabindex="-1"
+                                                aria-hidden="true">
+                                            <option data-select2-id="select2-data-12-ubbm">{{$centre}}</option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label for="centre_regional"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>Centre</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <select name="centre_regional" id="centre_regional"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2" data-hide-search="true"
+                                                data-placeholder="{{$centre_regional ?? 'Centre'}}"
+                                                data-select2-id="select2-data-10-7w9b" tabindex="-1" aria-hidden="true">
+                                            <option data-select2-id="select2-data-12-ubbm">{{$centre_regional}}</option>
+                                            @foreach ($centres_regionaux as $centre)
+                                                <option
+                                                    value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label for="tournee"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>N° Tournée</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <select name="tournee" id="tournee"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="{{$tournee ?? 'Numéro de tournée'}}"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
+                                            <option data-select2-id="select2-data-15-ubbm">{{$tournee}}</option>
+                                            @foreach ($toutesTournees as $tournee)
+                                                <option value="{{$tournee->id}}">{{ $tournee->numeroTournee }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label for="vehicule"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>Véhicule</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <select name="vehicule" id="vehicule"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="{{$vehicule ?? 'Véhicule'}}"
+                                                data-select2-id="select2-data-10-7w11b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
+                                            <option data-select2-id="select2-data-11-ubbm">{{$vehicule}}</option>
+                                            @foreach ($vehicules as $vehicule)
+                                                <option value="{{$vehicule->id}}">{{ $vehicule->immatriculation }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+
+                                </div>
+                            </div>
                             <div class="card-footer">
                                 <a href="/maincourante-synthese" class="btn btn-info btn-sm">Effacer</a>
                                 <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                             </div>
                         </div>
-                        @csrf
-
                     </form>
                 </div>
             </div>
 
-        <br/>
-        <div class="container-fluid">
-{{--            <form action="#" method="get">--}}
-{{--                @csrf--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col"></div>--}}
-{{--                    <div class="col"></div>--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group row">--}}
-{{--                            <label for="" class="col-4">Date début</label>--}}
-{{--                            <input type="date" name="debut" class="form-control col" value="{{$debut}}">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group row">--}}
-{{--                            <label for="" class="col-4">Date fin</label>--}}
-{{--                            <input type="date" name="fin" class="form-control col" value="{{$fin}}">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-1">--}}
-{{--                        <button class="btn btn-primary btn-sm">Rechercher</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-
-            <br>
-            <table  class="table table-striped gy-7 gs-7 pt-0" style="width: 100%"  id="listeMaincourante">
-                <thead>
-                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
-background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
-                    <td style="display: none;">ID</td>
-                    <td>Centre Régional</td>
-                    <td>Centre</td>
-                    <td>Date</td>
-                    <td>N°Tournée</td>
-                    <td>Véhicule</td>
-                    <td>Km départ</td>
-                    <td>Km arrivée</td>
-                    <td>Départ centre</td>
-                    <td>Arrivée centre</td>
-                    <td>Km parcouru</td>
-                    <td>Temps tournée</td>
-                    <td>Carburant départ</td>
-                    <td>Carburant arrivée</td>
-                    <td>Convoyeur</td>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($tournees as $tournee)
-                    <tr>
-                        <td style="display: none;">{{$tournee->id}}</td>
-                        <td>{{$tournee->centre_regional}}</td>
-                        <td>{{$tournee->centre}}</td>
-                        <td>{{$tournee->date}}</td>
-                        <td>{{$tournee->numeroTournee}}</td>
-                        <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->departCentre->kmDepart ?? "Pas de données"}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
-                        <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
-                        <td>{{$tournee->arriveeCentre->heureArrivee ?? "Donnée indisponible"}}</td>
-                        <td class="km">{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
-                        <td class="temps">
-                            <?php
-                            /*$date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
-                            $date2 = new DateTime($tournee->date);
-                            $interval = $date1->diff($date2);
-                            echo $interval->days;*/
-                            $date = $tournee->date ?? "2021-12-01";
-                            $depart = $tournee->departCentre->heureDepart ?? "00:00:00";
-                            $arrivee = $tournee->arriveeCentre->heureArrivee ?? "00:00:00";
-                            $start = date_create("$date $depart");
-                            $end = date_create("$date $arrivee");
-                            $diff=date_diff($end,$start);
-                            echo str_pad($diff->h, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->i, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->s, 2, '0', STR_PAD_LEFT);
-                            ?>
-                        </td>
-                        <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
-                        <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
-                        <td>{{$tournee->chauffeurs->nomPrenoms ?? ''}} // {{$tournee->chefDeBords->nomPrenoms ?? ''}} // {{$tournee->agentDeGardes->nomPrenoms ?? ''}}</td>
+            <div class="card card-xl-stretch" style="width: 100%; overflow-x: scroll;">
+                <table class="table table-striped gy-7 gs-7 pt-0" id="listeMaincourante">
+                    <thead>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
+                        <td style="display: none;">ID</td>
+                        <td>Centre</td>
+                        <td>Centre Régional</td>
+                        <td>Date</td>
+                        <td>N°Tournée</td>
+                        <td>Véhicule</td>
+                        <td>Km départ</td>
+                        <td>Km arrivée</td>
+                        <td>Départ centre</td>
+                        <td>Arrivée centre</td>
+                        <td>Km parcouru</td>
+                        <td>Temps tournée</td>
+                        <td>Carburant départ</td>
+                        <td>Carburant arrivée</td>
+                        <td>Convoyeur</td>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($tournees as $tournee)
+                        <tr>
+                            <td style="display: none;">{{$tournee->id}}</td>
+                            <td>{{$tournee->centre_regional}}</td>
+                            <td>{{$tournee->centre}}</td>
+                            <td>{{$tournee->date}}</td>
+                            <td>{{$tournee->numeroTournee}}</td>
+                            <td>{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}</td>
+                            <td>{{$tournee->departCentre->kmDepart ?? "Pas de données"}}</td>{{--<td>{{$tournee->departCentre ?? $tournee->departCentre[0]->kmDepart ?? ""}}</td>--}}
+                            <td>{{$tournee->arriveeCentre->kmArrive ?? "Donnée indisponible"}}</td>
+                            <td>{{$tournee->departCentre->heureDepart ?? ""}}</td>
+                            <td>{{$tournee->arriveeCentre->heureArrivee ?? "Donnée indisponible"}}</td>
+                            <td class="km">{{($tournee->arriveeCentre->kmArrive ?? 0) - ($tournee->departCentre->kmDepart ?? 0)}}</td>{{--<td>{{$tournee->departCentre[0]->kmDepart - $tournee->arriveeCentre[0]->kmArrive}}</td>--}}
+                            <td class="temps">
+                                <?php
+                                /*$date1 = new DateTime($tournee->arriveeCentre->dateArrivee ?? date('Y/m/d'));
+                                $date2 = new DateTime($tournee->date);
+                                $interval = $date1->diff($date2);
+                                echo $interval->days;*/
+                                $date = $tournee->date ?? "2021-12-01";
+                                $depart = $tournee->departCentre->heureDepart ?? "00:00:00";
+                                $arrivee = $tournee->arriveeCentre->heureArrivee ?? "00:00:00";
+                                $start = date_create("$date $depart");
+                                $end = date_create("$date $arrivee");
+                                $diff = date_diff($end, $start);
+                                echo str_pad($diff->h, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->i, 2, '0', STR_PAD_LEFT) . ":" . str_pad($diff->s, 2, '0', STR_PAD_LEFT);
+                                ?>
+                            </td>
+                            <td>{{$tournee->departCentre->niveauCarburant ?? ""}}</td>
+                            <td>{{$tournee->arriveeCentre->niveauCarburant ?? "Donnée indisponible"}}</td>
+                            <td>{{$tournee->chauffeurs->nomPrenoms ?? ''}}
+                                // {{$tournee->chefDeBords->nomPrenoms ?? ''}}
+                                // {{$tournee->agentDeGardes->nomPrenoms ?? ''}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-
     </div>
+
     <script>
         const pad = function (num) {
             return ("0" + num).slice(-2);
@@ -273,14 +355,14 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     const min = parseInt(currentDuration[1], 10);
                     const sec = parseInt(currentDuration[2], 10);
                     const currDurationSec = sec + (60 * min) + (60 * 60 * hrs);
-                    totalSeconds +=currDurationSec;
+                    totalSeconds += currDurationSec;
                 });
             });
             const hours = Math.floor(totalSeconds / 3600);
             totalSeconds %= 3600;
             const minutes = Math.floor(totalSeconds / 60);
             const seconds = totalSeconds % 60;
-            $("#tempsTotal").html(pad(hours)+":"+pad(minutes)+":"+pad(seconds));
+            $("#tempsTotal").html(pad(hours) + ":" + pad(minutes) + ":" + pad(seconds));
         }
 
         function calculerKmTotal() {
@@ -302,11 +384,11 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                 "language": {
                     "url": "French.json"
                 }
-            }).on( 'search.dt', function () {
+            }).on('search.dt', function () {
                 calculerTotal();
                 calculerTempsTotal();
                 calculerKmTotal()
-            } );
+            });
         });
     </script>
     <script>
@@ -332,6 +414,20 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     }
                 })
             }
+        }
+    </script>
+    <script>
+        let vehicules = {!! json_encode($vehicules) !!};
+        let tournees = {!! json_encode($tournees) !!};
+        const vehiculeInput = $("#vehicule");
+        if (vehiculeInput.val()) {
+            const vehicule = vehicules.find(s => s.id === parseInt(vehiculeInput.val() ?? 0));
+            if (vehicule) $("select[name='vehicule'] option[value=" + vehicule?.id + "]").attr('selected', 'selected');
+        }
+        const tourneeInput = $("#tournee");
+        if (tourneeInput.val()) {
+            const tournee = tournees.find(s => s.id === parseInt(tourneeInput.val() ?? 0));
+            if (tournee) $("select[name='tournee'] option[value=" + tournee?.id + "]").attr('selected', 'selected');
         }
     </script>
 @endsection

@@ -2,9 +2,6 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Départ tournée"])
-@section("nouveau")
-    <a href="/depart-tournee" class="btn btn-sm btn-primary">Nouveau</a>
-@endsection
     <div class="burval-container">
         <br/>
         @if ($errors->any())
@@ -23,120 +20,235 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+        <div class="row gy-5 g-xxl-12">
+            <div class="col-xxl-12">
+                <form class="form-horizontal" action="{{ route('depart-tournee.store') }}" method="post">
+                    @csrf
+                    <div class="card card-xxl-stretch">
+                        <div class="card-header border-0 py-5 bg-warning">
+                            <h3 class="card-title fw-bolder">Transport départ tournée</h3>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="numero_tournee" class="col-sm-5 pt-3">N°Tournée:</label>
+                                        <input type="text" class="form-control col" name="numeroTournee" id="numero_tournee" value="{{$num}}" readonly required/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-5  pt-3">Date fin</label>
+                                        <input type="date" class="form-control col" name="date" id="date" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="vehicule" class="col-sm-5  pt-3">Véhicule</label>
+                                        <select class="form-control col" name="idVehicule" id="vehicule">
+                                            <option></option>
+                                            @foreach($vehicules as $vehicule)
+                                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="kmDepart" class="col-sm-5  pt-3">Kilométrage départ</label>
+                                        <input type="number" min="0" class="form-control col" name="kmDepart" id="kmDepart" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="chauffeur" class="col-sm-5  pt-3">Chauffeur</label>
+                                        <select class="form-control col" name="chauffeur" id="chauffeur">
+                                            <option></option>
+                                            @foreach($chauffeurs as $chauffeur)
+                                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="agentDeGarde" class="col-sm-5  pt-3">Agent de garde</label>
+                                        <select class="form-control col" id="agentDeGarde" name="agentDeGarde">
+                                            <option></option>
+                                            @foreach($agents as $agent)
+                                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="chefDeBord" class="col-sm-5  pt-3">Chef de bord</label>
+                                        <select class="form-control col" id="chefDeBord" name="chefDeBord">
+                                            <option></option>
+                                            @foreach($chefBords as $chef)
+                                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="coutTournee" class="col-sm-5  pt-3">Coût tournée</label>
+                                        <input type="number" min="0" value="0" class="form-control col text-danger" name="coutTournee" id="coutTournee" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="heureDepart" class="col-sm-5  pt-3">Heure départ</label>
+                                        <input type="time" class="form-control col" name="heureDepart" id="heureDepart" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre" class="col-sm-5  pt-3">Centre régional</label>
+                                        <select class="form-control col" id="centre" name="centre">
+                                            <option></option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="centre_regional" class="col-sm-5  pt-3">Centre</label>
+                                        <select id="centre_regional" name="centre_regional" class="form-control col" required>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
 
-        <form method="post" action="{{ route('depart-tournee.store') }}">
-            @csrf
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>N°Tournée:</label>
-                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly
-                               required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" class="form-control" name="date" required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Véhicule</label>
-                        <select class="form-control" name="idVehicule" id="vehicule">
-                            <option></option>
-                            @foreach($vehicules as $vehicule)
-                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Kilométrage départ</label>
-                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Chauffeur</label>
-                        <select class="form-control" name="chauffeur" id="chauffeur">
-                            <option></option>
-                            @foreach($chauffeurs as $chauffeur)
-                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Agent de garde</label>
-                        <select class="form-control" name="agentDeGarde">
-                            <option></option>
-                            @foreach($agents as $agent)
-                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Chef de bord</label>
-                        <select class="form-control" name="chefDeBord">
-                            <option></option>
-                            @foreach($chefBords as $chef)
-                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Coût tournée</label>
-                        <input type="number" class="form-control text-danger" min="0" value="0" name="coutTournee"
-                               id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="centre">Centre Régional</label>
-                        <select name="centre" id="centre" class="form-control" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="centre_regional">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control" required>
-                            <option></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-            <br/>
+{{--        <form method="post" action="{{ route('depart-tournee.store') }}">--}}
+{{--            @csrf--}}
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>N°Tournée:</label>--}}
+{{--                        <input type="text" class="form-control" name="numeroTournee" value="{{$num}}" readonly--}}
+{{--                               required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Date</label>--}}
+{{--                        <input type="date" class="form-control" name="date" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Véhicule</label>--}}
+{{--                        <select class="form-control" name="idVehicule" id="vehicule">--}}
+{{--                            <option></option>--}}
+{{--                            @foreach($vehicules as $vehicule)--}}
+{{--                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Kilométrage départ</label>--}}
+{{--                        <input type="number" class="form-control" name="kmDepart" id="kmDepart" min="0" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Chauffeur</label>--}}
+{{--                        <select class="form-control" name="chauffeur" id="chauffeur">--}}
+{{--                            <option></option>--}}
+{{--                            @foreach($chauffeurs as $chauffeur)--}}
+{{--                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Agent de garde</label>--}}
+{{--                        <select class="form-control" name="agentDeGarde">--}}
+{{--                            <option></option>--}}
+{{--                            @foreach($agents as $agent)--}}
+{{--                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Chef de bord</label>--}}
+{{--                        <select class="form-control" name="chefDeBord">--}}
+{{--                            <option></option>--}}
+{{--                            @foreach($chefBords as $chef)--}}
+{{--                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Coût tournée</label>--}}
+{{--                        <input type="number" class="form-control text-danger" min="0" value="0" name="coutTournee"--}}
+{{--                               id="coutTournee" style="font-size: 20px; font-weight: bold;"/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Heure départ</label>--}}
+{{--                        <input type="time" class="form-control" name="heureDepart"/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="centre">Centre Régional</label>--}}
+{{--                        <select name="centre" id="centre" class="form-control" required>--}}
+{{--                            <option></option>--}}
+{{--                            @foreach ($centres as $centre)--}}
+{{--                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="centre_regional">Centre</label>--}}
+{{--                        <select id="centre_regional" name="centre_regional" class="form-control" required>--}}
+{{--                            <option></option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col"></div>--}}
+{{--            </div>--}}
+{{--            <br/>--}}
 
             <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
             <br>
             <br>
             <div >
-                <table id="data" class="table table-sm table-bordered">
+                <table id="data" class="table table-striped gy-7 gs-7 pt-0" style="width: 100%;">
                     <thead>
-                    <tr>
+
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                         <th>Site</th>
                         <th>Type opération</th>
                         <th>TDF</th>
@@ -199,8 +311,11 @@
                 </table>
             </div>
             <br>
-            <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
-            <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Fermer et ouvrir la liste</a>
+            <div class="card-footer">
+                <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                <a href="/depart-tournee-liste" class="btn btn-info btn-sm" style="margin-left: 20px">Fermer et ouvrir la liste</a>
+                <br>
+            </div>
         </form>
     </div>
     <script>

@@ -27,15 +27,23 @@
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
 											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z" fill="black"></path>
-													<path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z" fill="black"></path>
-													<path opacity="0.3" d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z" fill="black"></path>
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+													<path
+                                                        d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                                        fill="black"></path>
+													<path
+                                                        d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                                        fill="black"></path>
+													<path opacity="0.3"
+                                                          d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                                          fill="black"></path>
 												</svg>
 											</span>
                                             <!--end::Svg Icon-->
 										</span>
-										<span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Service</font></font></span>
+										<span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">Service</font></font></span>
 										<span class="menu-arrow"></span>
 									</span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -62,21 +70,28 @@
                 </div>
 
 
-
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 									<span class="menu-link">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
 											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z" fill="black"></path>
-													<path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z" fill="black"></path>
-													<path opacity="0.3" d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z" fill="black"></path>
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+													<path
+                                                        d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                                        fill="black"></path>
+													<path
+                                                        d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                                        fill="black"></path>
+													<path opacity="0.3"
+                                                          d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                                          fill="black"></path>
 												</svg>
 											</span>
                                             <!--end::Svg Icon-->
 										</span>
-										<span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Colis</font></font></span>
+										<span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">Colis</font></font></span>
 										<span class="menu-arrow"></span>
 									</span>
 
@@ -86,7 +101,8 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Entrée de colis</font></font></span>
+                                        <span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">Entrée de colis</font></font></span>
                                         <span class="menu-arrow"></span>
                                     </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -132,7 +148,8 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sortie de colis</font></font></span>
+                                        <span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">Sortie de colis</font></font></span>
                                         <span class="menu-arrow"></span>
                                     </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -179,15 +196,23 @@
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
 											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z" fill="black"></path>
-													<path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z" fill="black"></path>
-													<path opacity="0.3" d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z" fill="black"></path>
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+													<path
+                                                        d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                                        fill="black"></path>
+													<path
+                                                        d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                                        fill="black"></path>
+													<path opacity="0.3"
+                                                          d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                                          fill="black"></path>
 												</svg>
 											</span>
                                             <!--end::Svg Icon-->
 										</span>
-										<span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CTV</font></font></span>
+										<span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">CTV</font></font></span>
 										<span class="menu-arrow"></span>
 									</span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -218,7 +243,8 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vidéo de surveillance</font></font></span>
+                                        <span class="menu-title"><font style="vertical-align: inherit;"><font
+                                                    style="vertical-align: inherit;">Vidéo de surveillance</font></font></span>
                                         <span class="menu-arrow"></span>
                                     </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -244,16 +270,16 @@
                             </div>
                         </div>
                     </div>
-                        </div>
                 </div>
+            </div>
 
-                <div class="menu-item">
-        <div class="menu-content">
-            <div class="separator mx-1 my-4"></div>
+            <div class="menu-item">
+                <div class="menu-content">
+                    <div class="separator mx-1 my-4"></div>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    <!--end::Menu-->
+        <!--end::Menu-->
     </div>
     <!--end::Aside Menu-->
 
