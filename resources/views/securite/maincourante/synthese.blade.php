@@ -4,7 +4,6 @@
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Synthèse des Tournées"])
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
-        <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
             <br>
             @if ($errors->any())
@@ -141,7 +140,7 @@
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Date début</span>
+                                            <span>Date début</span>
                                         </label>
                                         <!--end::Label-->
                                         <input type="date" class="form-control form-control-solid" placeholder=""
@@ -151,11 +150,7 @@
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Date fin</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                               title=""
-                                               data-bs-original-title="Specify a card holder's name"
-                                               aria-label="Specify a card holder's name"></i>
+                                            <span>Date fin</span>
                                         </label>
                                         <!--end::Label-->
                                         <input type="date" class="form-control form-control-solid" placeholder=""
@@ -261,7 +256,7 @@
                 </div>
             </div>
 
-            <div class="card card-xl-stretch" style="width: 100%; overflow-x: scroll;">
+            <div class="card card-xl-stretch" style="width: 100%;">
                 <table class="table table-striped gy-7 gs-7 pt-0" id="listeMaincourante">
                     <thead>
                     <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">

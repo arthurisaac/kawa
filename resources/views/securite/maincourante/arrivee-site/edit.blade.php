@@ -1,382 +1,381 @@
 @extends('bases.securite')
 
 @section("main")
-    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Main Courante | Arrivée Site |"])
+    @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "MainCourante | Arrivée Site"])
 @section("nouveau")
-    <a href="/maincourante-arriveecentreliste" class="btn btn-sm btn-primary">Nouveau</a>
+    <a href="/maincourante-arriveesiteliste" class="btn btn-sm btn-primary">Liste arrivée site</a>
 @endsection
-    <div class="container-fluid">
-        <br>
-        <h2 class="heading">Arrivée site</h2>
-        <a href="/maincourante-arriveesiteliste">Liste arrivée site</a>
-        <br>
-        <br>
-        <br>
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-xxl">
+
         @if ($site->tournees)
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="date" class="col-sm-4">Date</label>
-                        <input type="text" name="date" id="date" value="{{$site->tournees->date ?? ''}}" class="form-control col-sm-8"
-                               readonly/>
+            <div class="card card-xl-stretch">
+                <div class="card-body pt-3">
+                    <div class="row">
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label for="date"
+                                   class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date</label>
+                            <input type="text" name="date" id="date" value="{{$site->tournees->date ?? ''}}"
+                                   class="form-control form-control-solid"
+                                   readonly/>
+                        </div>
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label for="no_tournee"
+                                   class="d-flex align-items-center fs-6 fw-bold form-label mb-2">N°Tournée</label>
+                            <input class="form-control form-control-solid" name="noTournee" id="noTournee"
+                                   value="{{$site->tournees->numeroTournee ?? ''}} || {{$site->tournees->vehicules->code ?? ""}}"
+                                   readonly/>
+                        </div>
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label
+                                class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Véhicule</label>
+                            <input class="form-control form-control-solid" name="vehicule" id="vehicule"
+                                   value="{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}"
+                                   readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                        <input class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$site->tournees->numeroTournee ?? ''}} || {{$site->tournees->vehicules->code ?? ""}}" readonly />
+                    <div class="row">
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chef de
+                                bord</label>
+                            <input class="form-control form-control-solid" name="chefDeBord" id="chefDeBord"
+                                   value="{{$site->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}"
+                                   readonly/>
+                        </div>
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Agent
+                                garde</label>
+                            <input class="form-control form-control-solid" name="agentDeGarde" id="agentDeGarde"
+                                   value="{{$site->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"
+                                   readonly/>
+                        </div>
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label
+                                class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chauffeur:</label>
+                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur"
+                                   value="{{$site->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}"
+                                   readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Véhicule</label>
-                        <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$site->tournees->vehicules->immatriculation ?? "Donnée indisponible"}}" readonly/>
-                        {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
-                            <option></option>
-                            @foreach($vehicules as $vehicule)
-                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                            @endforeach
-                        </select>--}}
+                    <div class="row">
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre
+                                régional</label>
+                            <input name="centre" id="centre" class="form-control col-sm-8"
+                                   value="{{$site->tournees->centre}}" readonly/>
+                        </div>
+                        <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
+                            <label for="centre_regional"
+                                   class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre</label>
+                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8"
+                                   value="{{$site->tournees->centre}}" readonly/>
+                        </div>
+                        <div class="col"></div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Chef de bord</label>
-                        <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$site->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
-                        {{--<select class="form-control col-sm-8" name="chefDeBord">
-                            <option></option>
-                            @foreach($chefBords as $chef)
-                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
-                            @endforeach
-                        </select>--}}
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Agent garde</label>
-                        <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$site->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>
-                        {{--<select class="form-control col-sm-8" name="agentDeGarde">
-                            <option></option>
-                            @foreach($agents as $agent)
-                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                            @endforeach
-                        </select>--}}
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Chauffeur:</label>
-                        <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$site->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
-                        {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
-                            <option></option>
-                        </select>--}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-sm-4">Centre régional</label>
-                        <input name="centre" id="centre" class="form-control col-sm-8" value="{{$site->tournees->centre}}" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-sm-4">Centre</label>
-                        <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$site->tournees->centre}}" readonly/>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-        </div>
         @else
             <div>Donnée tournées indisponible</div>
         @endif
+        <br>
         <div class="container-fluid">
             <form method="post" action="/maincourante-arriveesiteliste/{{$site->id}}" novalidate>
                 <input type="hidden" name="maincourante" value="arriveeSite"/>
                 @method('PATCH')
                 @csrf
 
-                <br/>
-                <div class="row">
-                    <div class="col-4">
-                        <div class="form-group row">
-                            <label class="col-sm-4">SITE</label>
-                            <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
-                                <option value="{{$site->site}}">{{$site->sites->site ?? "Site inexistant"}}</option>
-                                @foreach($sites as $s)
-                                    <option value="{{$s->id}}">{{$s->site}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <label for="heure_depart" class="col-sm-4">Type opération</label>
-                            <select name="asTypeOperation" class="form-control col-sm-8">
-                                <option>{{$site->operation}}</option>
-                                <option>Enlèvement</option>
-                                <option>Dépot</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
-                            <input type="date" name="asDateArrivee" value="{{$site->dateArrivee}}"
-                                   class="form-control col-sm-8"/>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
-                            <input type="time" name="asHeureArrivee" value="{{$site->heureArrivee}}"
-                                   class="form-control col-sm-8"/>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
-                            <input type="time" name="asDebutOperation" id="asDebutOperation"
-                                   class="form-control col-sm-8" value="{{$site->debutOperation}}"/>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
-                            <input type="time" name="asFinOperation" id="asFinOperation"
-                                   class="form-control col-sm-8" value="{{$site->finOperation}}"/>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
-                            <input type="number" name="asTempsOperation" id="asTempsOperation"
-                                   class="form-control col-sm-8" value="{{$site->tempsOperation}}" readonly/>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
-                            <input type="number" name="asNbColis" id="asNbColis" value="{{$site->ArriveeColis->sum('nombre_colis')}}"
-                                   class="form-control col-sm-8" disabled/>
-                        </div>
-
-                        <br>
-                        <div class="form-group row" style="display: none;">
-                            <label class="col-sm-6">Heure de départ</label>
-                            <input type="time" name="asHeure" class="form-control col-sm-6" value="{{date('H:i')}}"/>
-                        </div>
-                        <div class="form-group row">
-                            <label id="km_depart" class="col-sm-4">Kilométrage arrivée</label>
-                            <input type="number" name="asKm" value="{{$site->asKm}}" id="kmDepart" class="form-control col"/>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-4">Date départ site</label>
-                            <input type="" class="form-control col" name="asDepartSite" value="{{$site->asDepartSite}}">
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4">Prochaine destination</label>
-                            <select class="form-control col" name="asDestination" id="prochaineDestination">
-                                <option>{{$site->sitesDestinations->site ?? $site->asDestination}}</option>
-                                @foreach($sites as $s)
-                                    <option value="{{$s->id}}">{{$s->site}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4">Observation</label>
-                            <textarea class="form-control col" name="asObservation">{{$site->asObservation}}</textarea>
-                        </div>
-                    </div>
-                    <div class="col">
-
-                        <br>
-                        <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">Ajouter
-                        </button>
-                        <br>
-                        <br>
-                        <table class="table table-bordered" id="tableASColis">
-                            <thead>
-                            <tr>
-                                <th style="width: 250px;">Colis</th>
-                                <th>N° Colis</th>
-                                <th>N° Bordereau</th>
-                                {{--<th>Montant annoncé</th>--}}
-                                <th>Nombre de colis</th>
-                                {{--<th>Nature colis</th>--}}
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($arriveeColis as $colis)
-                                <tr>
-                                    <td>
-                                        <input type="hidden" name="colis_id[]" value="{{$colis->id}}">
-                                        <select name="asColis_edit[]" class="form-control">
-                                            <option>{{$colis->colis}}</option>
-                                            <option>Keep Safe</option>
-                                            <option>Sac juste</option>
-                                            <option>Pierres précieuses</option>
-                                            <option>Caisse</option>
-                                            <option>Conteneur</option>
-                                        </select>
-                                    </td>
-                                    <td><textarea name="asNumColis_edit[]" class="form-control">{{$colis->num_colis}}</textarea></td>
-                                    <td><select name="asNumBordereau_edit[]" class="form-control">
-                                            <option>{{$colis->bordereau}}</option>
-                                            @foreach($optionBordereau as $option)
-                                                <option>{{$option->numero}}</option>
-                                            @endforeach
-                                        </select></td>
-                                    {{--<td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}" class="form-control"/></td>--}}
-                                    <td><input type="number" min="0" name="asNombreColis_edit[]" value="{{$colis->nombre_colis}}" class="form-control"/></td>
-                                    {{--<td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}" class="form-control"/></td>--}}
-                                    <td><a class="btn btn-sm btn-danger" onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
-                                </tr>
-                            @endforeach
-                            {{--<tr>
-                                <td>
-                                    <select name="asColis[]" class="form-control">
-                                        <option>Keep Safe</option>
-                                        <option>Sac juste</option>
-                                        <option>Pierres précieuses</option>
-                                    </select>
-                                </td>
-                                <td><input type="number" name="asNumColis[]" class="form-control"/></td>
-                                <td><select name="asNumBordereau[]" class="form-control">
-                                        <option></option>
-                                        @foreach($optionBordereau as $option)
-                                            <option>{{$option->numero}}</option>
+                <div class="card card-xl-stretch">
+                    <div class="card-body pt-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">SITE</label>
+                                    <select type="text" name="asSite" id="asSite" class="form-control col-sm-8"
+                                            data-control="select2"
+                                            data-placeholder="Site"
+                                            data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true">
+                                        <option
+                                            value="{{$site->site}}">{{$site->sites->site ?? "Site inexistant"}}</option>
+                                        @foreach($sites as $s)
+                                            <option value="{{$s->id}}">{{$s->site}}</option>
                                         @endforeach
-                                    </select></td>
-                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
-                                <td><input type="text" name="asNombreColis[]" class="form-control"/></td>
-                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
-                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
-                            </tr>--}}
-                            </tbody>
-                        </table>
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Type opération</label>
+                                    <select name="asTypeOperation" class="form-control form-control-solid">
+                                        <option>{{$site->operation}}</option>
+                                        <option>Enlèvement</option>
+                                        <option>Dépot</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asDateArrivee"class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date arrivée sur site</label>
+                                    <input type="date" name="asDateArrivee" value="{{$site->dateArrivee}}"
+                                           class="form-control form-control-solid"/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Heure arrivée sur site</label>
+                                    <input type="time" name="asHeureArrivee" value="{{$site->heureArrivee}}"
+                                           class="form-control form-control-solid"/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asDebutOpération" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Heure début opération</label>
+                                    <input type="time" name="asDebutOperation" id="asDebutOperation"
+                                           class="form-control form-control-solid" value="{{$site->debutOperation}}"/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asFinOperation" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Heure fin opération</label>
+                                    <input type="time" name="asFinOperation" id="asFinOperation"
+                                           class="form-control form-control-solid" value="{{$site->finOperation}}"/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asTempsOperation" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Temps opération (mn)</label>
+                                    <input type="number" name="asTempsOperation" id="asTempsOperation"
+                                           class="form-control form-control-solid" value="{{$site->tempsOperation}}" readonly/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="asNbColis" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nombre de colis récupérés</label>
+                                    <input type="number" name="asNbColis" id="asNbColis"
+                                           value="{{$site->ArriveeColis->sum('nombre_colis')}}"
+                                           class="form-control form-control-solid" disabled/>
+                                </div>
+
+                                <br>
+                                {{--<div class="form-group row" style="display: none;">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Heure de départ</label>
+                                    <input type="time" name="asHeure" class="form-control form-control-solid"
+                                           value="{{date('H:i')}}"/>
+                                </div>--}}
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Kilométrage arrivée</label>
+                                    <input type="number" name="asKm" value="{{$site->asKm}}" id="kmDepart"
+                                           class="form-control form-control-solid"/>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date départ site</label>
+                                    <input type="" class="form-control form-control-solid" name="asDepartSite"
+                                           value="{{$site->asDepartSite}}">
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Prochaine destination</label>
+                                    <select class="form-control form-control-solid" name="asDestination" id="prochaineDestination">
+                                        <option>{{$site->sitesDestinations->site ?? $site->asDestination}}</option>
+                                        @foreach($sites as $s)
+                                            <option value="{{$s->id}}">{{$s->site}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Observation</label>
+                                    <textarea class="form-control form-control-solid"
+                                              name="asObservation">{{$site->asObservation}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <br>
+                                <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">Ajouter
+                                </button>
+                                <br>
+                                <br>
+                                <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4" id="tableASColis">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 250px;">Colis</th>
+                                        <th>N° Colis</th>
+                                        <th>N° Bordereau</th>
+                                        {{--<th>Montant annoncé</th>--}}
+                                        <th>Nombre de colis</th>
+                                        {{--<th>Nature colis</th>--}}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($arriveeColis as $colis)
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="colis_id[]" value="{{$colis->id}}">
+                                                <select name="asColis_edit[]" class="form-control">
+                                                    <option>{{$colis->colis}}</option>
+                                                    <option>Keep Safe</option>
+                                                    <option>Sac juste</option>
+                                                    <option>Pierres précieuses</option>
+                                                    <option>Caisse</option>
+                                                    <option>Conteneur</option>
+                                                </select>
+                                            </td>
+                                            <td><textarea name="asNumColis_edit[]" rows="1"
+                                                          class="form-control">{{$colis->num_colis}}</textarea></td>
+                                            <td><select name="asNumBordereau_edit[]" class="form-control">
+                                                    <option>{{$colis->bordereau}}</option>
+                                                    @foreach($optionBordereau as $option)
+                                                        <option>{{$option->numero}}</option>
+                                                    @endforeach
+                                                </select></td>
+                                            {{--<td><input type="number" name="asMontantAnnonce_edit[]" value="{{$colis->montant}}" class="form-control"/></td>--}}
+                                            <td><input type="number" min="0" name="asNombreColis_edit[]"
+                                                       value="{{$colis->nombre_colis}}" class="form-control"/></td>
+                                            {{--<td><input type="text" name="asNatureColis_edit[]" value="{{$colis->nature}}" class="form-control"/></td>--}}
+                                            <td><a class="btn btn-sm btn-danger"
+                                                   onclick="supprimerItem('{{$colis->id}}',this)"></a></td>
+                                        </tr>
+                                    @endforeach
+                                    {{--<tr>
+                                        <td>
+                                            <select name="asColis[]" class="form-control">
+                                                <option>Keep Safe</option>
+                                                <option>Sac juste</option>
+                                                <option>Pierres précieuses</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" name="asNumColis[]" class="form-control"/></td>
+                                        <td><select name="asNumBordereau[]" class="form-control">
+                                                <option></option>
+                                                @foreach($optionBordereau as $option)
+                                                    <option>{{$option->numero}}</option>
+                                                @endforeach
+                                            </select></td>
+                                        <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>
+                                        <td><input type="text" name="asNombreColis[]" class="form-control"/></td>
+                                        <td><input type="text" name="asNatureColis[]" class="form-control"/></td>
+                                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
+                                    </tr>--}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary" type="submit" id="asSubmit">Enregistrer</button>
                     </div>
                 </div>
-
                 <br/>
-                <div class="form-group">
-                    <button class="btn btn-sm btn-primary" type="submit" id="asSubmit">Enregistrer</button>
-                </div>
             </form>
         </div>
     </div>
+</div>
 
-
-    <script>
-        $(document).ready(function () {
-            $("#arriveeSiteColisButton").on("click", function () {
-                $("#tableASColis").append('<tr>\n' +
-                    '                                <td>\n' +
-                    '                                    <select name="asColis[]" class="form-control">\n' +
-                    '                                        <option>Keep Safe</option>\n' +
-                    '                                        <option>Sac juste</option>\n' +
-                    '                                        <option>Pierres précieuses</option>\n' +
-                    '                                        <option>Caisse</option>\n' +
-                    '                                        <option>Conteneur</option>\n' +
-                    '                                    </select>\n' +
-                    '                                </td>\n' +
-                    '                                <td><textarea name="asNumColis[]" class="form-control"></textarea></td>\n' +
-                    '                                <td><select name="asNumBordereau[]"\n' +
-                    '                                                class="form-control">\n' +
-                    '                                        <option>{{$colis->bordereau}}</option>\n' +
-                    '                                        @foreach($optionBordereau as $option)\n' +
-                    '                                            <option>{{$option->numero}}</option>\n' +
-                    '                                        @endforeach\n' +
-                    '                                    </select></td>\n' +
-                    //'                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
-                    '                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>\n' +
-                    //'                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
-                    '                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
-                    '                            </tr>')
-            });
+<script>
+    $(document).ready(function () {
+        $("#arriveeSiteColisButton").on("click", function () {
+            $("#tableASColis").append('<tr>\n' +
+                '                                <td>\n' +
+                '                                    <select name="asColis[]" class="form-control">\n' +
+                '                                        <option>Keep Safe</option>\n' +
+                '                                        <option>Sac juste</option>\n' +
+                '                                        <option>Pierres précieuses</option>\n' +
+                '                                        <option>Caisse</option>\n' +
+                '                                        <option>Conteneur</option>\n' +
+                '                                    </select>\n' +
+                '                                </td>\n' +
+                '                                <td><textarea name="asNumColis[]" class="form-control"></textarea></td>\n' +
+                '                                <td><select name="asNumBordereau[]"\n' +
+                '                                                class="form-control">\n' +
+                '                                        <option>{{$colis->bordereau}}</option>\n' +
+                '                                        @foreach($optionBordereau as $option)\n' +
+                '                                            <option>{{$option->numero}}</option>\n' +
+                '                                        @endforeach\n' +
+                '                                    </select></td>\n' +
+                //'                                <td><input type="number" name="asMontantAnnonce[]" class="form-control"/></td>\n' +
+                '                                <td><input type="text" name="asNombreColis[]" value="{{$colis->asNombreColis}}" class="form-control"/></td>\n' +
+                //'                                <td><input type="text" name="asNatureColis[]" class="form-control"/></td>\n' +
+                '                                <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
+                '                            </tr>')
         });
-    </script>
-    <script>
-        function supprimerLigne(e) {
-            const indexLigne = $(e).closest('tr').get(0).rowIndex;
-            document.getElementById("arriveeSiteColisButton").deleteRow(indexLigne);
-        }
-        function supprimerItem(id, e) {
-            if (confirm("Confirmer la suppression?")) {
-                const token = "<?php echo e(csrf_token()); ?>";
-                $.ajax({
-                    url: "/maincourante-arriveesiteitem/" + id,
-                    type: 'DELETE',
-                    dataType: "JSON",
-                    data: {
-                        "id": id,
-                        _token: token,
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        window.location.reload(true);
-                        supprimerLigne(e);
-                    },
-                    error: function (err) {
-                        console.error(err.responseJSON.message);
-                        alert(err.responseJSON.message ?? "Une erreur s'est produite");
-                    }
-                }).done(function () {
-                    // TODO hide loader
-                });
-            }
-        }
+    });
+</script>
+<script>
+    function supprimerLigne(e) {
+        const indexLigne = $(e).closest('tr').get(0).rowIndex;
+        document.getElementById("arriveeSiteColisButton").deleteRow(indexLigne);
+    }
 
-        $(document).ready(function () {
-            $('#listeArriveeSite').DataTable({
-                "language": {
-                    "url": "French.json"
+    function supprimerItem(id, e) {
+        if (confirm("Confirmer la suppression?")) {
+            const token = "<?php echo e(csrf_token()); ?>";
+            $.ajax({
+                url: "/maincourante-arriveesiteitem/" + id,
+                type: 'DELETE',
+                dataType: "JSON",
+                data: {
+                    "id": id,
+                    _token: token,
+                },
+                success: function (response) {
+                    console.log(response);
+                    window.location.reload(true);
+                    supprimerLigne(e);
+                },
+                error: function (err) {
+                    console.error(err.responseJSON.message);
+                    alert(err.responseJSON.message ?? "Une erreur s'est produite");
                 }
+            }).done(function () {
+                // TODO hide loader
             });
+        }
+    }
 
-            $("#asDebutOperation").on("change", function () {
-                const fin = $("#asFinOperation").val();
-                if (fin !== undefined) {
-                    console.log(fin);
-                }
-            });
-
-            $("#asFinOperation").on("change", function () {
-                const debut = $("#asDebutOperation").val();
-                console.log("debut :", debut);
-                console.log("fin :", this.value);
-                const debutDate = new Date(`01/01/2021 ${debut}`);
-                const finDate = new Date(`01/01/2021 ${this.value}`);
-                $("#asTempsOperation").val(diff_hours(debutDate, finDate));
-            });
-
-            function diff_hours(dt2, dt1) {
-                let diff = (dt2.getTime() - dt1.getTime()) / 1000;
-                //diff /= (60 * 60);         //For Hours
-                diff /= (60);         // For Minutes
-                return Math.abs(Math.round(diff));
+    $(document).ready(function () {
+        $('#listeArriveeSite').DataTable({
+            "language": {
+                "url": "French.json"
             }
+        });
 
+        $("#asDebutOperation").on("change", function () {
+            const fin = $("#asFinOperation").val();
+            if (fin !== undefined) {
+                console.log(fin);
+            }
         });
-    </script>
-    <script>
-        $(document).on('DOMNodeInserted', function () {
-            $("input[name='asNombreColis[]']").on("change", function() {
-                let total = 0;
-                $.each($("input[name='asNombreColis[]']"), function (i) {
-                    const nombre = $("input[name='asNombreColis[]']").get(i);
-                    total += parseInt(nombre.value ?? 0)
-                });
-                $.each($("input[name='asNombreColis_edit[]']"), function (i) {
-                    const nombre = $("input[name='asNombreColis_edit[]']").get(i);
-                    total += parseInt(nombre.value ?? 0)
-                });
-                $('#asNbColis').val(total);
-            });
-            $("input[name='asNombreColis_edit[]']").on("change", function() {
-                let total = 0;
-                $.each($("input[name='asNombreColis_edit[]']"), function (i) {
-                    const nombre = $("input[name='asNombreColis_edit[]']").get(i);
-                    total += parseInt(nombre.value ?? 0)
-                });
-                $.each($("input[name='asNombreColis[]']"), function (i) {
-                    const nombre = $("input[name='asNombreColis[]']").get(i);
-                    total += parseInt(nombre.value ?? 0)
-                });
-                $('#asNbColis').val(total);
-            });
+
+        $("#asFinOperation").on("change", function () {
+            const debut = $("#asDebutOperation").val();
+            console.log("debut :", debut);
+            console.log("fin :", this.value);
+            const debutDate = new Date(`01/01/2021 ${debut}`);
+            const finDate = new Date(`01/01/2021 ${this.value}`);
+            $("#asTempsOperation").val(diff_hours(debutDate, finDate));
         });
-    </script>
+
+        function diff_hours(dt2, dt1) {
+            let diff = (dt2.getTime() - dt1.getTime()) / 1000;
+            //diff /= (60 * 60);         //For Hours
+            diff /= (60);         // For Minutes
+            return Math.abs(Math.round(diff));
+        }
+
+    });
+</script>
+<script>
+    $(document).on('DOMNodeInserted', function () {
+        $("input[name='asNombreColis[]']").on("change", function () {
+            let total = 0;
+            $.each($("input[name='asNombreColis[]']"), function (i) {
+                const nombre = $("input[name='asNombreColis[]']").get(i);
+                total += parseInt(nombre.value ?? 0)
+            });
+            $.each($("input[name='asNombreColis_edit[]']"), function (i) {
+                const nombre = $("input[name='asNombreColis_edit[]']").get(i);
+                total += parseInt(nombre.value ?? 0)
+            });
+            $('#asNbColis').val(total);
+        });
+        $("input[name='asNombreColis_edit[]']").on("change", function () {
+            let total = 0;
+            $.each($("input[name='asNombreColis_edit[]']"), function (i) {
+                const nombre = $("input[name='asNombreColis_edit[]']").get(i);
+                total += parseInt(nombre.value ?? 0)
+            });
+            $.each($("input[name='asNombreColis[]']"), function (i) {
+                const nombre = $("input[name='asNombreColis[]']").get(i);
+                total += parseInt(nombre.value ?? 0)
+            });
+            $('#asNbColis').val(total);
+        });
+    });
+</script>
 @endsection

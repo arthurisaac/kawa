@@ -1,6 +1,7 @@
 @extends('bases.transport')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Véhicule"])
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
@@ -25,28 +26,28 @@
                 @csrf
                 @method('PATCH')
 
+                <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="vehicule-tab" data-toggle="tab" href="#vehicule"
+                           role="tab"
+                           aria-controls="depart-centre" aria-selected="true">Véhicules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="chauffeur-titulaire-tab" data-toggle="tab"
+                           href="#chauffeur-titulaire"
+                           role="tab"
+                           aria-controls="arrivee-site" aria-selected="false">Chauffeur titulaire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="chauffeur-suppleant-tab" data-toggle="tab"
+                           href="#chauffeur-suppleant"
+                           role="tab"
+                           aria-controls="depart-site" aria-selected="false">Chauffeur suppléant</a>
+                    </li>
+                </ul>
+                <br>
                 <div class="card card-xl-stretch">
                     <div class="card-body pt-5">
-                        <ul class="nav nav-tabs tabs-dark bg-dark" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="vehicule-tab" data-toggle="tab" href="#vehicule"
-                                   role="tab"
-                                   aria-controls="depart-centre" aria-selected="true">Véhicules</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="chauffeur-titulaire-tab" data-toggle="tab"
-                                   href="#chauffeur-titulaire"
-                                   role="tab"
-                                   aria-controls="arrivee-site" aria-selected="false">Chauffeur titulaire</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="chauffeur-suppleant-tab" data-toggle="tab"
-                                   href="#chauffeur-suppleant"
-                                   role="tab"
-                                   aria-controls="depart-site" aria-selected="false">Chauffeur suppléant</a>
-                            </li>
-                        </ul>
-                        <br>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="vehicule" role="tabpanel"
                                  aria-labelledby="vehicule-tab">

@@ -124,6 +124,11 @@ class SecuriteMaincouranteController extends Controller
     {
         $debut = $request->get("debut");
         $fin = $request->get("fin");
+        $centres = Centre::all();
+        $centres_regionaux = Centre_regional::all();
+        $centre = $request->get("centre");
+        $centre_regional = $request->get("centre_regional");
+
         $arriveeSites = ArriveeSite::all();
         if (isset($debut) && isset($fin)) {
             $arriveeSites = ArriveeSite::with("tournees")
@@ -131,7 +136,7 @@ class SecuriteMaincouranteController extends Controller
         }
 
         return view('/securite.maincourante.arrivee-site.liste',
-            compact('arriveeSites'));
+            compact('arriveeSites', 'centres', 'centres_regionaux', 'centre', 'centre_regional'));
     }
 
     public function departCentreListe()
