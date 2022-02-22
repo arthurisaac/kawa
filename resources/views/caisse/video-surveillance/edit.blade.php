@@ -1,9 +1,8 @@
 @extends('bases.caisse')
 
 @section('main')
+    @extends('bases.toolbar', ["title" => "Caisse Centrale", "subTitle" => "Vidéo surveillance"])
     <div class="burval-container">
-        <div><h2 class="heading">Vidéo surveillance</h2></div>
-        <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

@@ -20,69 +20,6 @@
                     <!--end::Description--></h1>
                 <!--end::Title-->
             </div>
-            <!--end::Page title-->
-            <!--begin::Actions-->
-            <div class="d-flex align-items-center py-1">
-                <!--begin::Wrapper-->
-                <div class="me-4">
-                    <!--begin::Menu-->
-                    <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                       data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none">
-												<path
-                                                    d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
-                                                    fill="black"/>
-											</svg>
-										</span>
-                        <!--end::Svg Icon-->Filtrer</a>
-                    <!--begin::Menu 1-->
-                    <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                         id="kt_menu_61484bf44d957">
-                        <!--begin::Header-->
-                        <div class="px-7 py-5">
-                            <div class="fs-5 text-dark fw-bolder">Options de filtre</div>
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Menu separator-->
-                        <div class="separator border-gray-200"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Form-->
-                        <div class="px-7 py-5">
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fw-bold">Client:</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <div>
-                                    <select id="client" class="form-select form-select-solid" data-kt-select2="true"
-                                            data-placeholder="Selectionner un client"
-                                            data-dropdown-parent="#kt_menu_61484bf44d957" data-allow-clear="true">
-                                        <option>{{$client}}</option>
-                                        @foreach ($clients_com as $client)
-                                            <option value="{{$client->id}}">{{ $client->client_nom }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                        </div>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Menu 1-->
-                    <!--end::Menu-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Button-->
-                <a href="/caisse-sortie-colis" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
-                   id="kt_toolbar_primary_button">Nouveau</a>
-                <!--end::Button-->
-            </div>
-            <!--end::Actions-->
         </div>
         <!--end::Container-->
     </div>
@@ -118,8 +55,8 @@
             </div>
         @endif
         <br>
-            <div class="row gy-5 g-xl-8">
-                <div class="col-xl-3">
+            <div class="row gy-5 g-xxl-8">
+                <div class="col-xxl-3">
                     <!--begin::List Widget 2-->
                     <div class="card card-xl-stretch mb-xl-8">
                         <!--begin::Header-->
@@ -150,11 +87,11 @@
                                 <!--begin::Title-->
                                 <div class="flex-grow-1 me-2">
                                     <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">TOTAL COLIS</a>
-                                    <span class="text-muted fw-bold d-block">{{$colis->sum("nbre_colis")}}</span>
+                                    <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Lable-->
-                                <span class="fw-bolder text-warning py-1 chiffreAffaire" id="chiffreAffaire"></span>
+                                <span class="fw-bolder text-danger py-1 chiffreAffaire" id="chiffreAffaire">{{$colis->sum("nbre_colis")}}</span>
                                 <!--end::Lable-->
                             </div>
                             <div class="d-flex align-items-center bg-light-info rounded p-5 mb-7">
@@ -182,7 +119,7 @@
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Lable-->
-                                <span class="fw-bolder text-warning py-1">{{$colis->sum("valeur")}}</span>
+                                <span class="fw-bolder text-danger py-1">{{$colis->sum("valeur")}}</span>
                                 <!--end::Lable-->
                             </div>
                         </div>
@@ -190,7 +127,7 @@
                     </div>
                     <!--end::List Widget 2-->
                 </div>
-                <div class="col-xl-9">
+                <div class="col-xxl-9">
                     <form action="#" method="get">
 
                         <div class="card card-xl-stretch">
@@ -244,6 +181,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
@@ -270,11 +208,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
 
                                     <div class="col"></div>
                                     <div class="col"></div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col"></div>
                                     <div class="col"></div>
@@ -287,6 +227,8 @@
                             <div class="card-footer">
                                 <a href="/caisse-sortie-colis-liste-detaillee" class="btn btn-info btn-sm">Effacer</a>
                                 <button class="btn btn-dark btn-sm" type="submit">Rechercher</button>
+                                <a href="/caisse-sortie-colis" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
+                                   id="kt_toolbar_primary_button">Nouveau</a>
                             </div>
                         </div>
                         @csrf
@@ -300,9 +242,10 @@
         <br/>
         <div class="row">
             <div class="col">
-                <table class="table table-bordered" style="width: 100%;" id="liste">
+                <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%;" id="liste">
                     <thead>
-                        <tr>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
                             <th>No</th>
                             <th>Date</th>
                             <th>Site</th>

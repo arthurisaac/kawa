@@ -118,179 +118,334 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+            <div class="row gy-5 g-xxl-12">
+                <div class="col-xxl-12">
+                    <form class="form-horizontal" action="{{ route('caisse-sortie-colis.store') }}" id="target" method="post">
+                        <div class="card card-xxl-stretch">
+                            <div class="card-header border-0 py-5 bg-warning">
+                                <h3 class="card-title fw-bolder">Caisse centrale Sortie de colis</h3>
+                            </div>
+                            <div class="card-body pt-5">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="date" class="col-sm-5">Date</label>
+                                            <input type="date" class="form-control col" id="date" name="date" value="{{date("Y-m-d")}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="heure" class="col-sm-5">Heure</label>
+                                            <input type="text" class="form-control col" name="heure" id="heure" value="{{date("H:i")}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="noTournee" class="col-sm-5">N°Tournée</label>
+                                            <select class="form-control col" name="noTournee" id="noTournee" required>
+                                                <option></option>
+                                                @foreach($tournees as $tournee)
+                                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="vehicule" class="col-sm-5">Véhicule</label>
+                                            <input type="text" class="form-control col" name="vehicule" id="vehicule" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="agentDeGarde" class="col-sm-5">Agent de garde</label>
+                                            <input type="text" class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="chefDeBord" class="col-sm-5">Chef de bord</label>
+                                            <input type="text" class="form-control col" name="chefDeBord" id="chefDeBord" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="chauffeur" class="col-sm-5">Chauffeur</label>
+                                            <input type="text" class="form-control col" name="chauffeur" id="chauffeur" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="centre" class="col-sm-5">Centre régional</label>
+                                            <input type="text" class="form-control col" name="centre" id="centre" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="centre_regional" class="col-sm-5">Centre</label>
+                                            <input type="text" class="form-control col" name="centre_regional" id="centre_regional" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label for="receveur" class="col-sm-5">Receveur</label>
+                                            <input type="text" class="form-control col" name="receveur" id="receveur" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @csrf
+                        <div class="container-fluid">
+                            <br>
+                            <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
+                            <br>
+                            <br>
+                            <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%;" id="table">
+                                <thead>
+                                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
+background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
+                                    <th>Colis</th>
+                                    <th>Devise</th>
+                                    <th>Valeur colis</th>
+                                    <th>Numéros scellé (Réference)</th>
+                                    <th>Nbre total colis</th>
+                                    <th>Site</th>
+                                    <th>Client</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><select name="colis[]" class="form-control">
+                                            <option></option>
+                                            <option>Sac jute</option>
+                                            <option>Keep safe</option>
+                                            <option>Caisse</option>
+                                            <option>Conteneur</option>
+                                        </select></td>
+                                    <td><select name="caisse_entree_devise[]" class="form-control">
+                                            @foreach($devises as $devise)
+                                                <option>{{$devise->devise}}</option>
+                                            @endforeach
+                                        </select></td>
+                                    <td><input type="text" name="caisse_entree_valeur_colis[]" value="0" class="form-control"></td>
+                                    <td><textarea name="scelle[]" class="form-control"></textarea></td>
+                                    <td><input type="number" name="nbre_colis[]" class="form-control"></td>
+                                    <td>
+                                        <select name="site[]" class="form-control">
+                                            <option></option>
+                                            @foreach($sites as $site)
+                                                <option value="{{$site->id}}">{{$site->site}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td><input type="text" name="client[]" class="form-control"></td>
+                                    <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td style="vertical-align: center;">TOTAL</td>
+                                    <td></td>
+                                    <td><input type="number" name="totalValeurColis" id="totalValeurColis" class="form-control"
+                                               readonly></td>
+                                    <td></td>
+                                    <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <br>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                                <br>
+                            </div>
+                        </div>
 
-        <form action="{{ route('caisse-sortie-colis.store') }}" method="post" id="target">
-            @csrf
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4">Date</label>
-                            <input type="date" name="date" id="date" value="{{date("Y-m-d")}}" class="form-control col-sm-8"/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure</label>
-                            <input type="text" name="heure" id="heure" value="{{date("H:i")}}"
-                                   class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                            <select class="form-control col-sm-8" name="noTournee" id="noTournee">
-                                <option></option>
-                                @foreach($tournees as $tournee)
-                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row" >
-                            <label class="col-sm-4">Véhicule</label>
-                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
-                            {{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">
-                                <option></option>
-                                @foreach($vehicules as $vehicule)
-                                    <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                                @endforeach
-                            </select>--}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chef de bord</label>
-                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
-                            {{--<select class="form-control col-sm-8" name="chefDeBord">
-                                <option></option>
-                                @foreach($chefBords as $chef)
-                                    <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
-                                @endforeach
-                            </select>--}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Agent garde</label>
-                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
-                            {{--<select class="form-control col-sm-8" name="agentDeGarde">
-                                <option></option>
-                                @foreach($agents as $agent)
-                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                                @endforeach
-                            </select>--}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chauffeur:</label>
-                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
-                            {{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">
-                                <option></option>
-                            </select>--}}
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre" class="col-sm-4">Centre regional</label>
-                            <input name="centre" id="centre" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre_regional" class="col-sm-4">Centre</label>
-                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4">Receveur</label>
-                            <input type="text" name="receveur" id="receveur" class="form-control col-sm-8"/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <br>
-                <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
-                <br>
-                <br>
-                <table class="table table-bordered" id="table">
-                    <thead>
-                    <tr>
-                        <th>Colis</th>
-                        <th>Devise</th>
-                        <th>Valeur</th>
-                        <th>Numéros scellé (Réference)</th>
-                        <th>Nbre colis</th>
-                        <th>Site</th>
-                        <th>Client</th>
-                        <th></th>
-                        {{--<th>Montant</th>--}}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><select name="colis[]" class="form-control">
-                                <option></option>
-                                <option>Sac jute</option>
-                                <option>Keep safe</option>
-                                <option>Caisse</option>
-                                <option>Conteneur</option>
-                            </select></td>
-                        <td><select name="devise[]" class="form-control">
-                                @foreach($devises as $devise)
-                                    <option>{{$devise->devise}}</option>
-                                @endforeach
-                            </select></td>
-                        <td><input type="number" name="valeur[]" class="form-control"></td>
-                        <td><textarea name="scelle[]" class="form-control"></textarea></td>
-                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>
-                        <td>
-                            <select name="site[]" class="form-control">
-                                <option></option>
-                                @foreach($sites as $site)
-                                    <option value="{{$site->id}}">{{$site->site}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td><input type="text" name="client[]" class="form-control"></td>
-                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
-                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td style="vertical-align: center;">TOTAL</td>
-                        <td></td>
-                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
-                                   readonly></td>
-                        <td></td>
-                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tfoot>
-                </table>
-                <br>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-            </div>
-        </form>
+                    </form>
+                </div></div>
+
+
+{{--        <form action="{{ route('caisse-sortie-colis.store') }}" method="post" id="target">--}}
+{{--            @csrf--}}
+{{--            <div class="container-fluid">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="date" class="col-sm-4">Date</label>--}}
+{{--                            <input type="date" name="date" id="date" value="{{date("Y-m-d")}}" class="form-control col-sm-8"/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="heure" class="col-sm-4">Heure</label>--}}
+{{--                            <input type="text" name="heure" id="heure" value="{{date("H:i")}}"--}}
+{{--                                   class="form-control col-sm-8" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>--}}
+{{--                            <select class="form-control col-sm-8" name="noTournee" id="noTournee">--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($tournees as $tournee)--}}
+{{--                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row" >--}}
+{{--                            <label class="col-sm-4">Véhicule</label>--}}
+{{--                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>--}}
+{{--                            --}}{{--<select class="form-control col-sm-8" name="vehicule" id="vehicule">--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($vehicules as $vehicule)--}}
+{{--                                    <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Chef de bord</label>--}}
+{{--                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>--}}
+{{--                            --}}{{--<select class="form-control col-sm-8" name="chefDeBord">--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($chefBords as $chef)--}}
+{{--                                    <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Agent garde</label>--}}
+{{--                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>--}}
+{{--                            --}}{{--<select class="form-control col-sm-8" name="agentDeGarde">--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($agents as $agent)--}}
+{{--                                    <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Chauffeur:</label>--}}
+{{--                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>--}}
+{{--                            --}}{{--<select class="form-control col-sm-8" name="chauffeur" id="chauffeur">--}}
+{{--                                <option></option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="centre" class="col-sm-4">Centre regional</label>--}}
+{{--                            <input name="centre" id="centre" class="form-control col-sm-8" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="centre_regional" class="col-sm-4">Centre</label>--}}
+{{--                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="date" class="col-sm-4">Receveur</label>--}}
+{{--                            <input type="text" name="receveur" id="receveur" class="form-control col-sm-8"/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="container-fluid">--}}
+{{--                <br>--}}
+{{--                <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>--}}
+{{--                <br>--}}
+{{--                <br>--}}
+{{--                <table class="table table-bordered" id="table">--}}
+{{--                    <thead>--}}
+{{--                    <tr>--}}
+{{--                        <th>Colis</th>--}}
+{{--                        <th>Devise</th>--}}
+{{--                        <th>Valeur</th>--}}
+{{--                        <th>Numéros scellé (Réference)</th>--}}
+{{--                        <th>Nbre colis</th>--}}
+{{--                        <th>Site</th>--}}
+{{--                        <th>Client</th>--}}
+{{--                        <th></th>--}}
+{{--                        --}}{{--<th>Montant</th>--}}
+{{--                    </tr>--}}
+{{--                    </thead>--}}
+{{--                    <tbody>--}}
+{{--                    <tr>--}}
+{{--                        <td><select name="colis[]" class="form-control">--}}
+{{--                                <option></option>--}}
+{{--                                <option>Sac jute</option>--}}
+{{--                                <option>Keep safe</option>--}}
+{{--                                <option>Caisse</option>--}}
+{{--                                <option>Conteneur</option>--}}
+{{--                            </select></td>--}}
+{{--                        <td><select name="devise[]" class="form-control">--}}
+{{--                                @foreach($devises as $devise)--}}
+{{--                                    <option>{{$devise->devise}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select></td>--}}
+{{--                        <td><input type="number" name="valeur[]" class="form-control"></td>--}}
+{{--                        <td><textarea name="scelle[]" class="form-control"></textarea></td>--}}
+{{--                        <td><input type="number" name="nbre_colis[]" class="form-control"></td>--}}
+{{--                        <td>--}}
+{{--                            <select name="site[]" class="form-control">--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($sites as $site)--}}
+{{--                                    <option value="{{$site->id}}">{{$site->site}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </td>--}}
+{{--                        <td><input type="text" name="client[]" class="form-control"></td>--}}
+{{--                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>--}}
+{{--                        --}}{{--<td><input type="text" name="montant[]" class="form-control"></td>--}}
+{{--                    </tr>--}}
+{{--                    </tbody>--}}
+{{--                    <tfoot>--}}
+{{--                    <tr>--}}
+{{--                        <td style="vertical-align: center;">TOTAL</td>--}}
+{{--                        <td></td>--}}
+{{--                        <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"--}}
+{{--                                   readonly></td>--}}
+{{--                        <td></td>--}}
+{{--                        <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>--}}
+{{--                        <td></td>--}}
+{{--                        <td></td>--}}
+{{--                        <td></td>--}}
+{{--                    </tr>--}}
+{{--                    </tfoot>--}}
+{{--                </table>--}}
+{{--                <br>--}}
+{{--                <button type="submit" class="btn btn-primary">Enregistrer</button>--}}
+{{--            </div>--}}
+{{--        </form>--}}
 
     </div>
 
