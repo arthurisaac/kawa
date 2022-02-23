@@ -39,29 +39,29 @@
                 <!--end::Svg Icon-->
             </span>
             <span class="menu-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Personnel</font></font></span>
-            <span class="menu-arrow"></span>
-        </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link" href="/personnel">
+                <span class="menu-arrow"></span>
+            </span>
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link" href="/personnel">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                                <span class="menu-title">Nouveau</span>
-                            </a>
-                        </div>
-                    </div>
+                        <span class="menu-title">Nouveau</span>
+                    </a>
+                </div>
+            </div>
 
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link" href="/personnel-liste-detaillee">
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link" href="/personnel-liste-detaillee">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                                <span class="menu-title">Liste</span>
-                            </a>
-                        </div>
-                    </div>
+                        <span class="menu-title">Liste</span>
+                    </a>
+                </div>
+            </div>
 
                     {{--<div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
