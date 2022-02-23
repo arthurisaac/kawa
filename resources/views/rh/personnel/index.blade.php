@@ -87,12 +87,12 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Matricule</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
                                             <input type="text" class="form-control col-sm-6" name="matricule"
                                                    value={{$nextId}} required/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
                                             <select class="form-control col-sm-6" name="centre" id="centre" required>
                                                 <option>Choisir centre</option>
                                                 @foreach ($centres as $centre)
@@ -101,29 +101,29 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre régional</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 text-black-50 mb-2">Centre régional</label>
                                             <select class="form-control col-sm-6" name="centreRegional"
                                                     id="centre_regional"
                                                     required></select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nom et prénoms</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et prénoms</label>
                                             <input type="text" name="nomPrenoms" class="form-control col-sm-6" required>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date de naissance</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date de naissance</label>
                                             <input type="date" name="dateNaissance" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date d’entrée dans la société</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date d’entrée dans la société</label>
                                             <input type="date" name="dateEntreeSociete" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date de sortie</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date de sortie</label>
                                             <input type="date" name="dateSortie" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Type de sortie</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type de sortie</label>
                                             <select name="typeSortie" class="form-control col-sm-6">
                                                 <option></option>
                                                 <option value="Fin contrat">Fin contrat</option>
@@ -136,15 +136,15 @@
                                     </div>
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Fontion</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fontion</label>
                                             <input type="text" name="fonction" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Service</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Service</label>
                                             <input type="text" name="service" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nature du contrat</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nature du contrat</label>
                                             <select name="natureContrat" class="form-control col-sm-6">
                                                 <option value="CDD">CDD</option>
                                                 <option value="CDI">CDI</option>
@@ -152,21 +152,21 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Numéro CNPS</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numéro CNPS</label>
                                             <input type="number" name="numeroCNPS" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Situation matrimoniale</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Situation matrimoniale</label>
                                             <input type="text" name="situationMatrimoniale"
                                                    class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nombre d'enfants</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre d'enfants</label>
                                             <input type="number" min="0" name="nombreEnfants"
                                                    class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Photo</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Photo</label>
                                             <input type="file" name="photo" id="photo"
                                                    class="form-control form-control-file col-sm-6">
                                         </div>
@@ -472,19 +472,19 @@
                                     <div class="col-5">
                                         <br/>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date du dernier départ en congé</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date du dernier départ en congé</label>
                                             <input type="date" name="dateDernierDepartConge" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date du prochain départ en congé</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date du prochain départ en congé</label>
                                             <input type="date" name="dateProchainDepartConge" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nombre de jours pris</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre de jours pris</label>
                                             <input type="number" min="0" name="nombreJourPris" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nombre de jours pris</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre de jours pris</label>
                                             <input type="number" min="0" name="nombreJourRestant" class="form-control col-sm-6">
                                         </div>
                                     </div>
@@ -533,27 +533,27 @@
                                     <div class="col-5">
                                         <br/>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Adresse géographique</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 text-black-50 mb-2">Adresse géographique</label>
                                             <input type="text" name="adresseGeographique" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Contact personnels</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Contact personnels</label>
                                             <input type="text" name="contactPersonnel" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nom du père</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 text-black-50 mb-2">Nom du père</label>
                                             <input type="text" name="nomPere" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nom de la mère</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom de la mère</label>
                                             <input type="text" name="nomMere" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Nom du conjoint</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom du conjoint</label>
                                             <input type="text" name="nomConjoint" class="form-control col-sm-6">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Personnes à contacter en cas d'urgence</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Personnes à contacter en cas d'urgence</label>
                                             <input type="text" name="personneContacter" class="form-control col-sm-6">
                                         </div>
                                     </div>
