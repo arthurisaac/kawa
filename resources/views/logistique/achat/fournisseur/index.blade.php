@@ -30,13 +30,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="societe" class="col-sm-5">Société</label>
+                                            <label for="societe" class="col-sm-5 pt-3">Société</label>
                                             <input type="text" class="form-control col" name="societe" id="societe" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="civilite" class="col-sm-5">Civilité</label>
+                                            <label for="civilite" class="col-sm-5 pt-3">Civilité</label>
                                             <select type="text" class="form-control col" id="civilite" name="civilite" required>
                                                 <option></option>
                                                 <option>M</option>
@@ -47,13 +47,13 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="nom" class="col-sm-5">Nom</label>
+                                            <label for="nom" class="col-sm-5 pt-3">Nom</label>
                                             <input type="text" class="form-control col" name="nom" id="nom" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="prenom" class="col-sm-5">Prénom(s)</label>
+                                            <label for="prenom" class="col-sm-5 pt-3">Prénom(s)</label>
                                             <input type="text" class="form-control col" name="prenom" id="prenom" required>
                                         </div>
                                     </div>
@@ -62,25 +62,25 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="adresse" class="col-sm-5">Adresse</label>
+                                            <label for="adresse" class="col-sm-5 pt-3">Adresse</label>
                                             <input type="text" class="form-control col" name="adresse" id="adresse" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="pays" class="col-sm-5">Pays</label>
+                                            <label for="pays" class="col-sm-5 pt-3">Pays</label>
                                             <input type="text" class="form-control col" name="pays" id="pays" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="telephone" class="col-sm-5">Téléphone</label>
+                                            <label for="telephone" class="col-sm-5 pt-3">Téléphone</label>
                                             <input type="tel" class="form-control col" name="telephone" id="telephone" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="mobile" class="col-sm-5">Mobile</label>
+                                            <label for="mobile" class="col-sm-5 pt-3">Mobile</label>
                                             <input type="tel" class="form-control col" name="mobile" id="mobile" required>
                                         </div>
                                     </div>
@@ -89,25 +89,25 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="fax" class="col-sm-5">Fax</label>
+                                            <label for="fax" class="col-sm-5 pt-3">Fax</label>
                                             <input type="tel" class="form-control col" name="fax" id="fax" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="email" class="col-sm-5">Email</label>
+                                            <label for="email" class="col-sm-5 pt-3">Email</label>
                                             <input type="email" class="form-control col" name="email" id="email" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="observation" class="col-sm-5">Observation</label>
+                                            <label for="observation" class="col-sm-5 pt-3">Observation</label>
                                             <textarea type="text" class="form-control col" name="observation" id="observation" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="domaine" class="col-sm-5">Domaine de compétence</label>
+                                            <label for="domaine" class="col-sm-5 pt-3">Domaine de compétence</label>
                                             <input type="text" class="form-control col" name="domaine" id="domaine" required>
                                         </div>
                                     </div>
@@ -116,13 +116,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="delaiLivraison" class="col-sm-5">Delai de livraison</label>
+                                            <label for="delaiLivraison" class="col-sm-5 pt-3">Delai de livraison</label>
                                             <input type="text" class="form-control col" name="delaiLivraison" id="delaiLivraison" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="conditionPaiement" class="col-sm-5">Condition de paiement</label>
+                                            <label for="conditionPaiement" class="col-sm-5 pt-3">Condition de paiement</label>
                                             <textarea type="text" class="form-control col" name="conditionPaiement" id="conditionPaiement" required></textarea>
                                         </div>
                                     </div>

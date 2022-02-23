@@ -36,6 +36,7 @@
                                      <input type="number" class="form-control" name="numeroFacture" placeholder="Numero de facture" required value="{{$nextId}}"/>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Client</label>
                                     <div class="col-lg-6">
@@ -47,24 +48,28 @@
                                         </select>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-6">
                                         <input type="number" class="form-control" name="periode" required />
                                     </div>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Montant</label>
                                     <div class="col-lg-6">
                                         <input type="number" class="form-control" name="montant" required />
                                     </div>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Date Dépôt</label>
                                     <div class="col-lg-6">
                                         <input type="date" class="form-control" name="dateDepot" required />
                                     </div>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Date échéance</label>
                                     <div class="col-lg-6">

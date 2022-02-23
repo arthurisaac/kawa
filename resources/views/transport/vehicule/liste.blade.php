@@ -113,7 +113,7 @@
                     </div>
                     <!--end::List Widget 2-->
                 </div>
-                <div class="col-xl-9">
+                <div class="col-xxl-9">
                     <form action="#" method="get">
 
                         <div class="card card-xl-stretch">
@@ -124,7 +124,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="centre_regional" class="col-5">Centre Régional</label>
+                                            <label for="centre_regional" class="col-5 pt-3">Centre Régional</label>
                                             <select name="centre_regional" id="centre_regional" class="form-select col">
                                                 <option></option>
                                                 @foreach ($centres_regionaux as $centre)
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="centre" class="col-5">Centre</label>
+                                            <label for="centre" class="col-5 pt-3">Centre</label>
                                             <select id="centre" name="centre" class="form-select col">
                                                 <option></option>
                                                 @foreach ($centres as $centre)
@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="type" class="col-5">Type</label>
+                                            <label for="type" class="col-5 pt-3">Type</label>
                                             <select id="type" name="type" class="form-select col">
                                                 <option></option>
                                                 @foreach ($types as $type)
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="marque" class="col-5">Marque</label>
+                                            <label for="marque" class="col-5 pt-3">Marque</label>
                                             <select id="marque" name="marque" class="form-select col">
                                                 <option></option>
                                                 @foreach ($marques as $marque)

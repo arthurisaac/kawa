@@ -4,7 +4,8 @@
 <head>
     <base href="">
     <title>KAWA</title>
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico"/>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <!--end::Fonts-->
@@ -13,20 +14,21 @@
     <link href="{{ asset("assets/css/style.bundle.css")}}" rel="stylesheet" type="text/css"/>
     <!--end::Global Stylesheets Bundle-->
 
-<<<<<<< HEAD
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
     <script src="assets/plugins/global/plugins.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <script src="{{ asset('js/jquery-1.12.4.min.js') }}"></script>
-=======
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
           type="text/css"/>
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <script src={{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 >>>>>>> 91db280b69b8deb4635161c5a39993ad5691bb82
+=======
+>>>>>>> 607bf659f48610823e2aed93b0091e0b6daf5a17
 
 
 </head>
@@ -66,10 +68,10 @@
                                      fill="none">
 									<path opacity="0.5"
                                           d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z"
-                                          fill="black"/>
+                                          fill="black"></path>
 									<path
                                         d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z"
-                                        fill="black"/>
+                                        fill="black"></path>
 								</svg>
 							</span>
                     <!--end::Svg Icon-->
@@ -96,10 +98,10 @@
                                              viewBox="0 0 24 24" fill="none">
 											<path
                                                 d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
-                                                fill="black"/>
+                                                fill="black"></path>
 											<path opacity="0.3"
                                                   d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
-                                                  fill="black"/>
+                                                  fill="black"></path>
 										</svg>
 									</span>
                             <!--end::Svg Icon-->
@@ -108,8 +110,8 @@
                     <!--end::Aside mobile toggle-->
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                        <a href="../../demo1/dist/index.html" class="d-lg-none">
-                            <img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-30px"/>
+                        <a href="/" class="d-lg-none">
+                            <img alt="Logo" src="{{ asset('/images/logonoir.png') }}" class="h-30px"/>
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -217,10 +219,10 @@
     <span class="svg-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 					<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)"
-                          fill="black"/>
+                          fill="black"></rect>
 					<path
                         d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
-                        fill="black"/>
+                        fill="black"></path>
 				</svg>
 			</span>
     <!--end::Svg Icon-->
@@ -237,6 +239,7 @@
 <script src="{{ asset('js/wwb15.min.js') }}"></script>
 <script src="{{ asset('js/jscookmenu.min.js') }}"></script>
 
+<<<<<<< HEAD
 <script>var hostUrl = "assets/";</script>
 <script>
     function removeSpaceValeurColis() {
@@ -359,6 +362,14 @@
     function calculerEcartConstate() {
         $("#ecartConstate").val(montantReconnu - montantAnnonce);
     }
+=======
+<script>const hostUrl = "assets/";</script>
+<script>
+    const loader = document.getElementById("preloader");
+    window.addEventListener("load", function () {
+        loader.style.display = "none";
+    })
+>>>>>>> 607bf659f48610823e2aed93b0091e0b6daf5a17
 </script>
 <!--begin::Javascript-->
 <!--begin::Global Javascript Bundle(used by all pages)-->
