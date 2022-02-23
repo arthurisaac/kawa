@@ -24,12 +24,7 @@
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <script src={{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}></script>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
->>>>>>> 91db280b69b8deb4635161c5a39993ad5691bb82
-=======
->>>>>>> 607bf659f48610823e2aed93b0091e0b6daf5a17
-
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
 
 </head>
 <!--end::Head-->
@@ -239,7 +234,6 @@
 <script src="{{ asset('js/wwb15.min.js') }}"></script>
 <script src="{{ asset('js/jscookmenu.min.js') }}"></script>
 
-<<<<<<< HEAD
 <script>var hostUrl = "assets/";</script>
 <script>
     function removeSpaceValeurColis() {
@@ -362,14 +356,13 @@
     function calculerEcartConstate() {
         $("#ecartConstate").val(montantReconnu - montantAnnonce);
     }
-=======
 <script>const hostUrl = "assets/";</script>
 <script>
     const loader = document.getElementById("preloader");
     window.addEventListener("load", function () {
         loader.style.display = "none";
     })
->>>>>>> 607bf659f48610823e2aed93b0091e0b6daf5a17
+
 </script>
 <!--begin::Javascript-->
 <!--begin::Global Javascript Bundle(used by all pages)-->
