@@ -76,7 +76,10 @@
                        aria-controls="gestion-affectation" aria-selected="false">Gestion des affectations</a>
                 </li>
             </ul>
-            <div class="tab-content">
+            <br>
+            <div class="card card-xl-stretch">
+                <div class="card-body pt-3">
+                    <div class="tab-content">
                 <div class="tab-pane fade show active" id="personnel" role="tabpanel" aria-labelledby="personnel-tab">
                     <div class="container">
                         <br>
@@ -713,6 +716,8 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
                 </div>
             </div>
 
