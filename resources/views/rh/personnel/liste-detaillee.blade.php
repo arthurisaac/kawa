@@ -258,7 +258,6 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
     <script>
