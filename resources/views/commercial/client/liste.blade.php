@@ -5,7 +5,8 @@
 @section("nouveau")
     <a href="/commercial-client" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
-    <div class="burval-container">
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-xxl">
         <br/>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -28,8 +29,7 @@
         <br>
         <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
             <thead>
-            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
-background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
+            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
                 <th scope="col">Client</th>
                 <th scope="col">Tel</th>
                 <th scope="col">Situation géographique</th>
@@ -159,54 +159,43 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
             </tbody>
         </table>--}}
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#table_client_informations').DataTable({
-                "language": {
-                    "url": "French.json"
-                }
-            });
-            /*$('#table_client_base_contrat').DataTable({
-                "language": {
-                    "url": "French.json"
-                }
-            });
-            $('#table_client_base_tarifaire').DataTable({
-                "language": {
-                    "url": "French.json"
-                }
-            });*/
-        });
-    </script>
-
-    <script>
-        function supprimer(id, e) {
-            if (confirm("Confirmer la suppression?")) {
-                const token = "{{ csrf_token() }}";
-                $.ajax({
-                    url: "commercial-client/" + id,
-                    type: 'DELETE',
-                    dataType: "JSON",
-                    data: {
-                        "id": id,
-                        _token: token,
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        alert("Suppression effectuée");
-                        const indexLigne = $(e).closest('tr').get(0).rowIndex;
-                        document.getElementById("table_client_informations").deleteRow(indexLigne);
-                    },
-                    error: function (xhr) {
-                        alert("Une erreur s'est produite");
-                    }
-                }).done(function () {
-                    // TODO hide loader
-                });
-
-
+</div>
+<script>
+    $(document).ready(function () {
+        $('#table_client_informations').DataTable({
+            "language": {
+                "url": "French.json"
             }
+        });
+    });
+
+    function supprimer(id, e) {
+        if (confirm("Confirmer la suppression?")) {
+            const token = "{{ csrf_token() }}";
+            $.ajax({
+                url: "commercial-client/" + id,
+                type: 'DELETE',
+                dataType: "JSON",
+                data: {
+                    "id": id,
+                    _token: token,
+                },
+                success: function (response) {
+                    console.log(response);
+                    alert("Suppression effectuée");
+                    const indexLigne = $(e).closest('tr').get(0).rowIndex;
+                    document.getElementById("table_client_informations").deleteRow(indexLigne);
+                },
+                error: function (xhr) {
+                    alert("Une erreur s'est produite");
+                }
+            }).done(function () {
+                // TODO hide loader
+            });
+
 
         }
-    </script>
+
+    }
+</script>
 @endsection
