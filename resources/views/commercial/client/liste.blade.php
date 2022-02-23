@@ -25,46 +25,44 @@
             </div>
         @endif
 
-        <br>
-        <br>
-        <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
-            <thead>
-            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
-                <th scope="col">Client</th>
-                <th scope="col">Tel</th>
-                <th scope="col">Situation géographique</th>
-                <th scope="col">Nom contact</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Mail</th>
-                <th scope="col">Secteur activité</th>
-                <th scope="col">Centre régional</th>
-                <td>Actions</td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($clients as $client)
-                <tr>
-                    <td>{{$client->client_nom}}</td>
-                    <td>{{$client->client_tel}}</td>
-                    <td>{{$client->client_situation_geographique}}</td>
-                    <td>{{$client->contact_nom}}</td>
-                    <td>{{$client->client_ville}}</td>
-                    <td>{{$client->contact_email}}</td>
-                    <td>{{$client->client_secteur_activite}}</td>
-                    <td>{{$client->centre_regional}}</td>
-                    <td>
-                        <div style="width: 110px;">
-                            <a href="{{ route('commercial-client.edit', $client->id)}}"
-                               class="btn btn-primary btn-sm"></a>
-                            <a class="btn btn-danger btn-sm" type="submit"
-                               onclick="supprimer({{$client->id}}, this)"></a>
-                        </div>
-                    </td>
+        <div class="card card-xl-stretch">
+            <table id="table_client_informations" class="table table-bordered table-hover" style="width: 100%">
+                <thead>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
+                    <th scope="col">Centre régional</th>
+                    <th scope="col">Centre</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Secteur activité</th>
+                    <th scope="col">Situation géographique</th>
+                    <th scope="col">Nom contact</th>
+                    <th scope="col">Mail</th>
+                    <td>Actions</td>
                 </tr>
-            @endforeach
-            </tbody>
+                </thead>
+                <tbody>
+                @foreach ($clients as $client)
+                    <tr>
+                        <td>{{$client->centre_regional}}</td>
+                        <td>{{$client->centre}}</td>
+                        <td>{{$client->client_nom}}</td>
+                        <td>{{$client->client_secteur_activite}}</td>
+                        <td>{{$client->client_situation_geographique}}</td>
+                        <td>{{$client->contact_nom}}</td>
+                        <td>{{$client->contact_email}}</td>
+                        <td>
+                            <div style="width: 110px;">
+                                <a href="{{ route('commercial-client.edit', $client->id)}}"
+                                   class="btn btn-primary btn-sm"></a>
+                                <a class="btn btn-danger btn-sm" type="submit"
+                                   onclick="supprimer({{$client->id}}, this)"></a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
 
-        </table>
+            </table>
+        </div>
 
         {{--<br/>
         <table id="table_client_base_tarifaire" class="table table-bordered table-hover">
