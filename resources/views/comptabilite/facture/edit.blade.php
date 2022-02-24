@@ -37,6 +37,7 @@
                                     <label class="col-sm-5">N° Facture</label>
                                     <input type="number" class="form-control col-sm-7" name="numeroFacture" required value="{{$facture->numeroFacture}}" />
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Client</label>
                                     <select class="form-control col-sm-7" name="client" required>
@@ -46,22 +47,27 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Periode</label>
                                     <input type="number" class="form-control col-sm-7" name="periode" value="{{$facture->periode}}" required />
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Montant</label>
                                     <input type="number" class="form-control col-sm-7" name="montant" value="{{$facture->montant}}" required />
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Date Dépôt</label>
                                     <input type="date" class="form-control col-sm-7" name="dateDepot" value="{{$facture->dateDepot}}" required />
                                 </div>
+                                <br>
                                 <div class="form-group row">
                                     <label class="col-sm-5">Date échéance</label>
                                     <input type="date" class="form-control col-sm-7" name="dateEcheance" value="{{$facture->dateEcheance}}" required />
                                 </div>
+                                <br>
                             </div>
                         </div>
                     </div>

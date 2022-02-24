@@ -68,6 +68,7 @@
 
                         </div>
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group row">
@@ -82,6 +83,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group row">
@@ -91,6 +93,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
                 <div class="card-footer">
                         <button class="btn btn-primary btn-sm" type="submit">Valider</button>

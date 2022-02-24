@@ -169,7 +169,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="centre" class="col-5">Centre Régional</label>
+                                        <label for="centre" class="col-5 pt-3">Centre Régional</label>
                                         <select name="centre" id="centre" class="form-select col">
                                             <option>{{$centre}}</option>
                                             @foreach ($centres as $centre)
@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="centre_regional" class="col-5">Centre</label>
+                                        <label for="centre_regional" class="col-5 pt-3">Centre</label>
                                         <select id="centre_regional" name="centre_regional" class="form-select col">
                                             <option>{{$centre_regional}}</option>
                                             @foreach ($centres_regionaux as $centre)
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="client" class="col-5">Clients</label>
+                                        <label for="client" class="col-5 pt-3">Clients</label>
                                         <select id="client" name="client" class="form-select col">
                                             <option>{{$client}}</option>
                                             @foreach ($clients as $clt)
@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="site" class="col-5">Site</label>
+                                        <label for="site" class="col-5 pt-3">Site</label>
                                         <select id="site" name="site" class="form-select col">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
@@ -213,22 +213,23 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="" class="col-5">Date début</label>
+                                        <label for="" class="col-5 pt-3">Date début</label>
                                         <input type="date" name="debut" class="form-control col" value="{{$debut}}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="" class="col-5">Date fin</label>
+                                        <label for="" class="col-5 pt-5">Date fin</label>
                                         <input type="date" name="fin" class="form-control col" value="{{$fin}}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="tdf" class="col-5">TDF</label>
+                                        <label for="tdf" class="col-5 pt-3">TDF</label>
                                         <select name="tdf" id="tdf" class="form-select col">
                                             <option>{{$tdf}}</option>
                                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
@@ -244,7 +245,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="caisse" class="col-5">Caisse</label>
+                                        <label for="caisse" class="col-5 pt-3">Caisse</label>
                                         <select name="caisse" id="caisse" class="form-select col">
                                             <option>{{$caisse}}</option>
                                             <option value="oo_mad">MAD</option>
@@ -255,10 +256,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="typeOP" class="col-5">Type OP</label>
+                                        <label for="typeOP" class="col-5 pt-3">Type OP</label>
                                         <select name="typeOP" id="typeOP" class="form-select col">
                                             <option>{{$typeOP}}</option>
                                             <option value="Enlèvement">Enlèvement</option>
@@ -272,7 +274,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label for="" class="col-5">Véhicule</label>
+                                        <label for="" class="col-5 pt-3">Véhicule</label>
                                         <select name="vehicule" id="vehicule" class="form-select col">
                                             <option>{{$vehicule}}</option>
                                             @foreach($vehicules as $vehicule)
@@ -285,6 +287,7 @@
                                 <div class="col"></div>
                                 <div class="col"></div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col"></div>
                                 <div class="col"></div>
