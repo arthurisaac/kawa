@@ -29,17 +29,13 @@
                         </div>
                         <div class="card-body pt-5">
                             <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label for="debut" class="col-sm-5">Date début</label>
-                                        <input type="date" class="form-control col" id="debut" name="debut" required>
-                                    </div>
+                                <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <input type="date" class="col-sm-6 form-control form-control" id="debut" name="debut" required>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label for="fin" class="col-sm-5">Date fin</label>
-                                        <input type="date" class="form-control col" name="fin" id="fin" required>
-                                    </div>
+                                <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <input type="date" class="col-sm-6 form-control form-control" name="fin" id="fin" required>
                                 </div>
                             </div>
                             <br>

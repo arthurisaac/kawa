@@ -34,21 +34,17 @@
                     <form class="form-horizontal" action="#" method="get">
                         <div class="card card-xxl-stretch">
                             <div class="card-header border-0 py-5 bg-warning">
-                                <h3 class="card-title fw-bolder">Caisse Centrale Liste entrée colis</h3>
+                                <h3 class="card-title fw-bolder">Caisse Centrale Entrée colis</h3>
                             </div>
                             <div class="card-body pt-5">
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="debut" class="col-sm-5">Date début</label>
-                                            <input type="date" class="form-control col" id="debut" name="debut" required>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <input type="date" class="col-6 form-control" id="debut" name="debut" required>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="fin" class="col-sm-5">Date fin</label>
-                                            <input type="date" class="form-control col" name="fin" id="fin" required>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <input type="date" class="col-6 form-control" name="fin" id="fin" required>
                                     </div>
                                 </div>
                                 <br>

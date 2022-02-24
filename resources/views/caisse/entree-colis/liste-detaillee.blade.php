@@ -38,7 +38,7 @@
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Header-->
                     <div class="card-header border-0">
-                        <h3 class="card-title fw-bolder text-dark">Stats</h3>
+                        <h3 class="card-title fw-bolder text-dark">Résultats</h3>
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
@@ -114,9 +114,18 @@
                         <div class="card-body  pt-5">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre" class="col-5">Centre Régional</label>
-                                        <select name="centre" id="centre" class="form-select col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">
+                                            Centre Régional
+                                        </label>
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Centre Régional"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$centre}}</option>
                                             @foreach ($centres as $centre)
                                                 <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
@@ -125,9 +134,15 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="client" class="col-5">Clients</label>
-                                        <select id="client" name="client" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Clients</label>
+                                        <select id="client" name="client"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Client"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option></option>
                                             @foreach ($clients_com as $client)
                                                 <option value="{{$client->id}}">{{ $client->client_nom }}</option>
@@ -136,9 +151,15 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="site" class="col-5">Site</label>
-                                        <select id="site" name="site" class="form-select col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
+                                        <select id="site" name="site"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Site"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
                                                 <option value="{{$site->id}}">{{ $site->site }}</option>
@@ -150,20 +171,20 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="" class="col-5">Date début</label>
-                                        <input type="date" name="debut" class="form-control col" value="{{$debut}}">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <input type="date" name="debut" id="debut" class="form-control col" value="{{$debut}}">
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="" class="col-5">Date fin</label>
-                                        <input type="date" name="fin" class="form-control col" value="{{$fin}}">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <input type="date" name="fin" id="fin" class="form-control col" value="{{$fin}}">
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="remettant" class="col-5">Remettant</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="remettant" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Remettant</label>
                                         <input type="text" id="remettant" name="remettant" class="form-control col" value="{{$remettant}}" />
                                     </div>
                                 </div>
@@ -171,8 +192,8 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="scelle" class="col-5">Numéro scellé</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numéro scellé</label>
                                         <input type="text" id="scelle" name="scelle" class="form-control col" value="{{$scelle}}" />
                                     </div>
                                 </div>

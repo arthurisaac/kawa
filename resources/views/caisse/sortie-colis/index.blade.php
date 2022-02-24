@@ -92,13 +92,6 @@
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
-            <!--begin::Row-->
-            {{--<div class="titre"><span class="titre">Chiffre d'affaire</span> : <span id="chiffreAffaire"
-                                                                                    class="text-danger chiffreAffaire"></span>
-                <span
-                    style="margin-left: 10px;">Nombre de passage : <span
-                        class="text-danger">{{count($sites)}}</span></span>
-            </div>--}}
             <br/>
 
             @if ($errors->any())
@@ -127,82 +120,80 @@
                             </div>
                             <div class="card-body pt-5">
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="date" class="col-sm-5">Date</label>
-                                            <input type="date" class="form-control col" id="date" name="date" value="{{date("Y-m-d")}}" required>
+                                        <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="date"
+                                                   class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"
+                                            >Date</label>
+                                            <input type="date" class="col-sm-6 form-control form-control" id="date" name="date" value="{{date("Y-m-d")}}" required>
                                         </div>
+
+                                        <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="heure"
+                                                   class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure
+                                            </label>
+                                            <input type="time" class="col-sm-6 form-control form-control" name="heure" id="heure" value="{{date("H:i")}}" readonly>
+                                        </div>
+
+                                        <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                                <label for="noTournee"
+                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Tournée
+                                                </label>
+                                                <select
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Centre"
+                                                    data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true"
+                                                    name="noTournee" id="noTournee" required>
+                                                    <option></option>
+                                                    @foreach($tournees as $tournee)
+                                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                                    @endforeach
+                                                </select>
+                                        </div>
+                                        <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="vehicule"
+                                                   class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
+                                            <input type="text" class="col-sm-6 form-control form-control" name="vehicule" id="vehicule" readonly>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                         <label for="agentDeGarde"
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Agent de garde</label>
+                                         <input type="text" class="col-sm-6 form-control form-control" name="agentDeGarde" id="agentDeGarde" readonly>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="heure" class="col-sm-5">Heure</label>
-                                            <input type="text" class="form-control col" name="heure" id="heure" value="{{date("H:i")}}" readonly>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="chefDeBord"
+                                                   class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chef de bord</label>
+                                            <input type="text" class="col-sm-6 form-control form-control" name="chefDeBord" id="chefDeBord" readonly>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="noTournee" class="col-sm-5">N°Tournée</label>
-                                            <select class="form-control col" name="noTournee" id="noTournee" required>
-                                                <option></option>
-                                                @foreach($tournees as $tournee)
-                                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="chauffeur"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chauffeur</label>
+                                        <input type="text" class="col-sm-6 form-control form-control" name="chauffeur" id="chauffeur" readonly>
+                                    </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="centre"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
+                                        <input type="text" class="col-sm-6 form-control form-control" name="centre" id="centre" required>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="vehicule" class="col-sm-5">Véhicule</label>
-                                            <input type="text" class="form-control col" name="vehicule" id="vehicule" readonly>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                            <input type="text" class="col-sm-6 form-control form-control" name="centre_regional" id="centre_regional" required>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="agentDeGarde" class="col-sm-5">Agent de garde</label>
-                                            <input type="text" class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="chefDeBord" class="col-sm-5">Chef de bord</label>
-                                            <input type="text" class="form-control col" name="chefDeBord" id="chefDeBord" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="chauffeur" class="col-sm-5">Chauffeur</label>
-                                            <input type="text" class="form-control col" name="chauffeur" id="chauffeur" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="centre" class="col-sm-5">Centre régional</label>
-                                            <input type="text" class="form-control col" name="centre" id="centre" required>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="centre_regional" class="col-sm-5">Centre</label>
-                                            <input type="text" class="form-control col" name="centre_regional" id="centre_regional" required>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="receveur" class="col-sm-5">Receveur</label>
-                                            <input type="text" class="form-control col" name="receveur" id="receveur" required>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                            <label for="receveur" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Receveur</label>
+                                            <input type="text" class="col-sm-6 form-control form-control" name="receveur" id="receveur" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         @csrf
-                        <div class="container-fluid">
+                        <div class="container-xl-fluid">
                             <br>
                             <button type="button" id="add" class="btn btn-sm btn-dark">Ajouter</button>
                             <br>
@@ -230,12 +221,12 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                             <option>Caisse</option>
                                             <option>Conteneur</option>
                                         </select></td>
-                                    <td><select name="caisse_entree_devise[]" class="form-control">
+                                    <td><select name="devise[]" class="form-control">
                                             @foreach($devises as $devise)
                                                 <option>{{$devise->devise}}</option>
                                             @endforeach
                                         </select></td>
-                                    <td><input type="text" name="caisse_entree_valeur_colis[]" value="0" class="form-control"></td>
+                                    <td><input type="number" name="valeur[]" value="0" class="form-control"></td>
                                     <td><textarea name="scelle[]" class="form-control"></textarea></td>
                                     <td><input type="number" name="nbre_colis[]" class="form-control"></td>
                                     <td>
@@ -247,14 +238,14 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                         </select>
                                     </td>
                                     <td><input type="text" name="client[]" class="form-control"></td>
-                                    <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
+                                    <td class="pt-10"><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <td style="vertical-align: center;">TOTAL</td>
                                     <td></td>
-                                    <td><input type="number" name="totalValeurColis" id="totalValeurColis" class="form-control"
+                                    <td><input type="number" name="totalValeurXOF" id="totalValeurXOF" class="form-control"
                                                readonly></td>
                                     <td></td>
                                     <td><input type="number" name="totalColis" id="totalColis" class="form-control" readonly></td>
@@ -269,8 +260,8 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                 <br>
                             </div>
                         </div>
-
                     </form>
+                </div>
                 </div></div>
 
 
@@ -551,7 +542,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     '                            </select>\n' +
                     '                        </td>\n' +
                     '                        <td><input type="text" name="client[]" class="form-control"></td>\n' +
-                    '                        <td><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
+                    '                        <td class="pt-10"><a class="btn btn-sm btn-danger" onclick="supprimer(this)"></a></td>\n' +
                     '                        {{--<td><input type="text" name="montant[]" class="form-control"></td>--}}\n' +
                     '                    </tr>');
             });
