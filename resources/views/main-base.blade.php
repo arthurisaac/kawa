@@ -234,7 +234,7 @@
 <script src="{{ asset('js/wwb15.min.js') }}"></script>
 <script src="{{ asset('js/jscookmenu.min.js') }}"></script>
 
-<script>var hostUrl = "assets/";</script>
+<script>const hostUrl = "assets/";</script>
 <script>
     function removeSpaceValeurColis() {
         $.each($("input[name='regulation_arrivee_valeur_colis[]']"), function (i) {
@@ -258,7 +258,6 @@
             $("input[name='valeur_colis_xof_sortie[]'").eq(i).val(removeSpace(nbre));
         });
     }
-
     function enableAllColisField() {
         let index = 0;
         const thisColisInput = this;
@@ -275,7 +274,6 @@
             $("select[name='regulation_arrivee_devise[]']").eq(i).prop('disabled', false);
         });
     }
-
     function separateNumber(e){
         try {
             let str = e.replace(/\s/g, '');
@@ -286,7 +284,6 @@
             return 0;
         }
     }
-
     function calculerBilletageAnnonce() {
         const ba_nb10000 = $("#ba_nb10000").val();
         const ba_nb5000 = $("#ba_nb5000").val();
@@ -356,8 +353,7 @@
     function calculerEcartConstate() {
         $("#ecartConstate").val(montantReconnu - montantAnnonce);
     }
-<script>const hostUrl = "assets/";</script>
-<script>
+
     const loader = document.getElementById("preloader");
     window.addEventListener("load", function () {
         loader.style.display = "none";
