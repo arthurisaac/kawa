@@ -138,91 +138,92 @@
                         </div>
                     </div>
                 </div>
-
                 <br>
+                <div class="card card-xl-stretch">
+                    <div class="card-body">
+                        <table id="data" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                               style="width: 100%;">
+                            <thead>
 
-                <br>
-                <div>
-                    <table id="data" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4" style="width: 100%;">
-                        <thead>
-
-                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient">
-                            <th>Site</th>
-                            <th>Type opération</th>
-                            <th>TDF</th>
-                            <th>Montant TDF</th>
-                            <th>Caisse</th>
-                            <th>Montant Caisse</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @for($i=0; $i<2; $i++)
-                            <tr>
-                                <td>
-                                    <select class="form-control" name="site[]" id="site{{$i}}">
-                                        <option></option>
-                                        @foreach ($sites as $site)
-                                            <option value="{{$site->id}}">{{$site->site}}
-                                                | {{$site->clients->client_nom ?? ''}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </td>
-                                <td>
-                                    <select class="form-control" name="type[]">
-                                        <option value="Enlèvement">Enlèvement</option>
-                                        <option value="Dépôt">Dépôt</option>
-                                        <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
-                                        <option value="Enlèvement / R">Enlèvement / R</option>
-                                        <option value="Dépôt / R">Dépôt / R</option>
-                                        <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="form-control" name="tdf[]" disabled>
-                                        <option></option>
-                                        <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                        <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                        <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                        <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                        <option value="oo_vb_intramuros">VB</option>
-                                        <option value="oo_vl_intramuros">VL</option>
-                                        <option value="oo_ass_appro">Assistance appro DAB</option>
-                                        <option value="oo_dnf">Dépôt non facturé</option>
-                                    </select>
-                                </td>
-                                <td><input type="number" class="form-control" name="montant_tdf[]" disabled/>
-                                </td>
-                                <td>
-                                    <select class="form-control" name="caisse[]" disabled>
-                                        <option></option>
-                                        <option value="oo_mad">MAD</option>
-                                        <option value="oo_collecte">Collecte</option>
-                                        <option value="oo_cctv">CCTV</option>
-                                        <option value="oo_collecte_caisse">Collecte Caisse</option>
-                                    </select>
-                                </td>
-                                <td><input type="number" class="form-control" name="montant_caisse[]" disabled/>
-                                </td>
-                                <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient">
+                                <th>Site</th>
+                                <th>Type opération</th>
+                                <th>TDF</th>
+                                <th>Montant TDF</th>
+                                <th>Caisse</th>
+                                <th>Montant Caisse</th>
+                                <th></th>
                             </tr>
-                        @endfor
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td><button type="button" class="btn btn-sm btn-primary" id="add">+</button></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <br>
-                <div class="card-footer">
-                    <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
-                    <a href="/depart-tournee-liste" class="btn btn-info btn-sm" style="margin-left: 20px">Fermer
-                        et ouvrir la liste</a>
-                    <br>
+                            </thead>
+                            <tbody>
+                            @for($i=0; $i<2; $i++)
+                                <tr>
+                                    <td>
+                                        <select class="form-control" name="site[]" id="site{{$i}}">
+                                            <option></option>
+                                            @foreach ($sites as $site)
+                                                <option value="{{$site->id}}">{{$site->site}}
+                                                    | {{$site->clients->client_nom ?? ''}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="type[]">
+                                            <option value="Enlèvement">Enlèvement</option>
+                                            <option value="Dépôt">Dépôt</option>
+                                            <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
+                                            <option value="Enlèvement / R">Enlèvement / R</option>
+                                            <option value="Dépôt / R">Dépôt / R</option>
+                                            <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="tdf[]" disabled>
+                                            <option></option>
+                                            <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                            <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                            <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                            <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                            <option value="oo_vb_intramuros">VB</option>
+                                            <option value="oo_vl_intramuros">VL</option>
+                                            <option value="oo_ass_appro">Assistance appro DAB</option>
+                                            <option value="oo_dnf">Dépôt non facturé</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" class="form-control" name="montant_tdf[]" disabled/>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="caisse[]" disabled>
+                                            <option></option>
+                                            <option value="oo_mad">MAD</option>
+                                            <option value="oo_collecte">Collecte</option>
+                                            <option value="oo_cctv">CCTV</option>
+                                            <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" class="form-control" name="montant_caisse[]" disabled/>
+                                    </td>
+                                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6"></td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                        <a href="/depart-tournee-liste" class="btn btn-info btn-sm" style="margin-left: 20px">Fermer
+                            et ouvrir la liste</a>
+                        <br>
+                    </div>
                 </div>
             </form>
 
