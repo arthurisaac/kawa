@@ -2,218 +2,255 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Arrivée Tournée"])
-@section("nouveau")
-    <a href="/arrivee-tournee" class="btn btn-sm btn-primary">Nouveau</a>
-@endsection
-    <div class="burval-container">
-        <h2>Arrivée tournée</h2>
-        <a href="/caisse-service-liste" class="btn btn-info btn-sm">Liste</a>
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
 
-        <form method="post" id="target" action="{{ route('arrivee-tournee.update', $tournee->id) }}">
-            @csrf
-            @method("PATCH")
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>N°Tournée</label>
-                        <input class="form-control" name="numeroTournee" value="{{$tournee->numeroTournee}}"
-                               id="numeroTournee" readonly required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="text" class="form-control" name="date" value="{{$tournee->date}}" id="date"
-                               readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Véhicule</label>
-                        <input type="text" class="form-control" name="vehicule"
-                               value="{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}" id="vehicule"
-                               readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Km départ</label>
-                        <input type="text" class="form-control" name="kmDepart" value="{{$tournee->kmDepart}}"
-                               id="kmDepart" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}"
-                               id="heureDepart" readonly/>
-                    </div>
-                </div>
-            </div>
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Convoyeur1</label>
-                        <input class="form-control" type="text" name="convoyeur1"
-                               value="{{$tournee->chauffeurs->nomPrenoms ?? ""}}" id="convoyeur1" readonly>
-                    </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Convoyeur 2</label>
-                        <input class="form-control" type="text" name="convoyeur2" id="convoyeur2"
-                               value="{{$tournee->chefDeBords->nomPrenoms ?? ""}}" readonly>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Convoyeur 3</label>
-                        <input class="form-control" type="text" name="convoyeur3" id="convoyeur3"
-                               value="{{$tournee->agentDeGardes->nomPrenoms ?? ""}}" readonly>
-                    </div>
-                </div>
-            </div>
-            <br/>
+                <br/>
+            @endif
 
-            <table class="table table-bordered" id="sitesListes">
-                <thead>
-                <tr>
-                    <th>Site</th>
-                    <th>Client</th>
-                    <th>Type opération</th>
-                    <th>Bordereau</th>
-                    <th>Colis</th>
-                    <th>Devise</th>
-                    <th>Valeur colis</th>
-                    <th>Numéro</th>
-                    <th>Nombre total colis</th>
-                    <td style="display: none;">Montant</td>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($sites as $site)
-                    <tr>
-                        <td>
-                            <input type="text" class="form-control" name="site[]" value="{{$site->sites->site ?? ""}}" readonly/>
-                            <input type="hidden" class="form-control" name="site_id[]" value="{{$site->id}}"/>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" value="{{$site->sites->clients->client_nom ?? ""}}" readonly/>
-                        </td>
-                        <td><select class="form-control" name="type[]">
-                                <option>{{$site->type}}</option>
-                                <option>Enlèvement</option>
-                                <option>Dépôt</option>
-                                <option>Enlèvement + Dépôt</option>
-                            </select></td>
-                        <td><textarea class="form-control" name="bordereau[]">{{$site->bordereau}}</textarea></td>
-                        <td><select name="colis[]" class="form-control">
-                                <option>{{$site->colis}}</option>
-                                <option>RAS</option>
-                                <option>Sac jute</option>
-                                <option>Keep safe</option>
-                                <option>Caisse</option>
-                                <option>Conteneur</option>
-                            </select></td>
-                        <td><select name="transport_arrivee_devise[]" class="form-control">
-                                <option>{{$site->transport_arrivee_devise}}</option>
-                                @foreach($devises as $devise)
-                                    <option>{{$devise->devise}}</option>
-                                @endforeach
-                            </select></td>
-                        <td><input type="text" name="transport_arrivee_valeur_colis[]" value="{{$site->transport_arrivee_valeur_colis ?? 0}}" class="form-control"></td>
-                        <td><textarea name="numero[]" class="form-control">{{$site->numero_arrivee}}</textarea></td>
-                        <td><input type="number" name="nbre_colis[]" value="{{$site->nbre_colis_arrivee ?? 0}}" class="form-control"></td>
-                        <td style="display: none;"><input type="text" class="form-control" min="0" name="montant[]" value="{{$site->montant}}"/></td>
-                    </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="6" style="vertical-align: center;">TOTAL</td>
-                    <td><input type="text" name="totalValeurColis" id="totalValeurColis" class="form-control"
-                               readonly></td>
-                    <td></td>
-                    <td><input type="text" name="totalColis" id="totalColis" class="form-control" readonly></td>
-                </tr>
-                </tfoot>
-            </table>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Km arrivée</label>
-                        <input type="text" class="form-control" name="kmArrivee" value="{{$tournee->kmArrivee}}" id="kmArrivee" />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Heure arrivée</label>
-                        <input type="time" class="form-control" name="heureArrivee" value="{{$tournee->heureArrivee}}" id="heureArrivee"/>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Vidange générale</label>
-                        <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
-                               readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Visite technique</label>
-                        <input type="number" class="form-control" name="visiteTechnique" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Vidange Courroie</label>
-                        <input type="number" class="form-control" name="vidangeCourroie" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Vidange Patente</label>
-                        <input type="number" class="form-control" name="patente" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Assurance fin</label>
-                        <input type="date" class="form-control" name="assuranceFin" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Assurance pont</label>
-                        <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
-                    </div>
-                </div>
-            </div>
-            <br>
+            <form method="post" id="target" action="{{ route('arrivee-tournee.update', $tournee->id) }}">
+                @csrf
+                @method("PATCH")
 
-            <button type="submit" class="btn btn-primary">Valider</button>
-            <a href="/arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir arrivée tourée</a>
-            <a href="/colis-arrivee-liste" class="btn btn-outline-info" style="margin-left: 20px">Ouvrir colis arrivée tourée</a>
-        </form>
+                <div class="card card-xxl-stretch">
+                    <div class="card-body pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>N°Tournée</label>
+                                    <input class="form-control" name="numeroTournee" value="{{$tournee->numeroTournee}}"
+                                           id="numeroTournee" readonly required/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="text" class="form-control" name="date" value="{{$tournee->date}}"
+                                           id="date"
+                                           readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Véhicule</label>
+                                    <input type="text" class="form-control" name="vehicule"
+                                           value="{{$tournee->vehicules->immatriculation ?? "Donnée indisponible"}}"
+                                           id="vehicule"
+                                           readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Km départ</label>
+                                    <input type="text" class="form-control" name="kmDepart"
+                                           value="{{$tournee->kmDepart}}"
+                                           id="kmDepart" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Heure départ</label>
+                                    <input type="time" class="form-control" name="heureDepart"
+                                           value="{{$tournee->heureDepart}}"
+                                           id="heureDepart" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Convoyeur1</label>
+                                    <input class="form-control" type="text" name="convoyeur1"
+                                           value="{{$tournee->chauffeurs->nomPrenoms ?? ""}}" id="convoyeur1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Convoyeur 2</label>
+                                    <input class="form-control" type="text" name="convoyeur2" id="convoyeur2"
+                                           value="{{$tournee->chefDeBords->nomPrenoms ?? ""}}" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Convoyeur 3</label>
+                                    <input class="form-control" type="text" name="convoyeur3" id="convoyeur3"
+                                           value="{{$tournee->agentDeGardes->nomPrenoms ?? ""}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="card card-xxl-stretch">
+                    <div class="card-body pt-5">
+                        <table class="table table-sm table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                               id="sitesListes">
+                            <thead>
+                            <tr>
+                                <th>Site</th>
+                                <th>Client</th>
+                                <th>Type opération</th>
+                                <th>Bordereau</th>
+                                <th>Colis</th>
+                                <th>Devise</th>
+                                <th>Valeur colis</th>
+                                <th>Numéro</th>
+                                <th>Nombre total colis</th>
+                                <td style="display: none;">Montant</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($sites as $site)
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" name="site[]"
+                                               value="{{$site->sites->site ?? ""}}" readonly/>
+                                        <input type="hidden" class="form-control" name="site_id[]"
+                                               value="{{$site->id}}"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                               value="{{$site->sites->clients->client_nom ?? ""}}" readonly/>
+                                    </td>
+                                    <td><select class="form-control" name="type[]">
+                                            <option>{{$site->type}}</option>
+                                            <option>Enlèvement</option>
+                                            <option>Dépôt</option>
+                                            <option>Enlèvement + Dépôt</option>
+                                        </select></td>
+                                    <td><textarea class="form-control"
+                                                  name="bordereau[]">{{$site->bordereau}}</textarea>
+                                    </td>
+                                    <td><select name="colis[]" class="form-control">
+                                            <option>{{$site->colis}}</option>
+                                            <option>RAS</option>
+                                            <option>Sac jute</option>
+                                            <option>Keep safe</option>
+                                            <option>Caisse</option>
+                                            <option>Conteneur</option>
+                                        </select></td>
+                                    <td><select name="transport_arrivee_devise[]" class="form-control">
+                                            <option>{{$site->transport_arrivee_devise}}</option>
+                                            @foreach($devises as $devise)
+                                                <option>{{$devise->devise}}</option>
+                                            @endforeach
+                                        </select></td>
+                                    <td><input type="text" name="transport_arrivee_valeur_colis[]"
+                                               value="{{$site->transport_arrivee_valeur_colis ?? 0}}"
+                                               class="form-control">
+                                    </td>
+                                    <td><textarea name="numero[]"
+                                                  class="form-control">{{$site->numero_arrivee}}</textarea>
+                                    </td>
+                                    <td><input type="number" name="nbre_colis[]"
+                                               value="{{$site->nbre_colis_arrivee ?? 0}}"
+                                               class="form-control"></td>
+                                    <td style="display: none;"><input type="text" class="form-control" min="0"
+                                                                      name="montant[]"
+                                                                      value="{{$site->montant}}"/></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" style="vertical-align: center;">TOTAL</td>
+                                <td><input type="text" name="totalValeurColis" id="totalValeurColis"
+                                           class="form-control"
+                                           readonly></td>
+                                <td></td>
+                                <td><input type="text" name="totalColis" id="totalColis" class="form-control" readonly>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div class="card card-xxl-stretch">
+                    <div class="card-body pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Km arrivée</label>
+                                    <input type="text" class="form-control" name="kmArrivee"
+                                           value="{{$tournee->kmArrivee}}"
+                                           id="kmArrivee"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Heure arrivée</label>
+                                    <input type="time" class="form-control" name="heureArrivee"
+                                           value="{{$tournee->heureArrivee}}" id="heureArrivee"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Vidange générale</label>
+                                    <input type="number" class="form-control" name="vidangeGenerale"
+                                           id="vidangeGenerale"
+                                           readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Visite technique</label>
+                                    <input type="number" class="form-control" name="visiteTechnique" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Vidange Courroie</label>
+                                    <input type="number" class="form-control" name="vidangeCourroie" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Vidange Patente</label>
+                                    <input type="number" class="form-control" name="patente" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Assurance fin</label>
+                                    <input type="date" class="form-control" name="assuranceFin" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Assurance pont</label>
+                                    <input type="number" class="form-control" name="assuranceHeurePont" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Valider</button>
+                <a href="/arrivee-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir arrivée
+                    tourée</a>
+                <a href="/colis-arrivee-liste" class="btn btn-outline-info" style="margin-left: 20px">Ouvrir colis
+                    arrivée tourée</a>
+            </form>
+        </div>
     </div>
 
     <script>
-        function separateNumbers(e){
+        function separateNumbers(e) {
             try {
                 let str = e.value?.replace(/\s/g, '');
                 const donnee = parseFloat(str);
