@@ -29,8 +29,7 @@
                 <div class="card card-xxl-stretch">
                     <div class="card-body pt-5">
                         <div class="row">
-                            <div class="col">
-                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="client"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Client</label>
                                     <select type="text" class="form-control col combobox" id="client" name="client"
@@ -41,32 +40,26 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="site"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
                                     <input type="text" class="form-control col editbox" name="site" id="site" required>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="nom_contact"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom
                                         de contact site</label>
                                     <input type="text" class="form-control col editbox" name="nom_contact"
                                            id="nom_contact" required>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+
+                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="fonction_contact"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction
                                         du contact</label>
                                     <input type="text" class="form-control col editbox" name="fonction_contact"
                                            id="fonction_contact" required>
                                 </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col">
