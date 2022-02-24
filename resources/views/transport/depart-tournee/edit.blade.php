@@ -1,218 +1,236 @@
-@extends('base')
+@extends('bases.transport')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">Départ tournée</h2></div>
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
+    @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Départ tournée"])
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
 
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br/>
+            @endif
 
-        <form method="post" action="{{ route('depart-tournee.update', $tournee->id) }}">
-            @csrf
-            @method('PATCH')
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>N°Tournée:</label>
-                        <input type="text" class="form-control text-danger" name="numeroTournee" value="{{$tournee->numeroTournee}}"
-                               style="font-size: 20px; font-weight: bold;" readonly/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" class="form-control" name="date" value="{{$tournee->date}}" required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Véhicule</label>
-                        <select class="form-control" name="idVehicule" id="vehicule">
-                            <option
-                                value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
-                            @foreach($vehicules as $vehicule)
-                                <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Kilométrage départ</label>
-                        <input type="number" class="form-control" name="kmDepart" value="{{$tournee->kmDepart}}"
-                               id="kmDepart" min="0"/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Chauffeur</label>
-                        <select class="form-control" name="chauffeur" id="chauffeur">
-                            <option
-                                value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
-                            @foreach($chauffeurs as $chauffeur)
-                                <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Agent de garde</label>
-                        <select class="form-control" name="agentDeGarde">
-                            <option
-                                value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
-                            @foreach($agents as $agent)
-                                <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Chef de bord</label>
-                        <select class="form-control" name="chefDeBord">
-                            <option
-                                value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
-                            @foreach($chefBords as $chef)
-                                <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Coût tournée</label>
-                        <input type="number" class="form-control form-control-lg" min="0" name="coutTournee"
-                               value="{{$tournee->coutTournee}}" id="coutTournee" style="font-size: 20px; font-weight: bold;"/>
-                    </div>
-                </div>
-                    </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Heure départ</label>
-                        <input type="time" class="form-control" name="heureDepart" value="{{$tournee->heureDepart}}"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="centre">Centre régional</label>
-                        <select name="centre" id="centre" class="form-control" required>
-                            <option>{{$tournee->centre}}</option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="centre_regional">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control" required>
-                            <option>{{$tournee->centre_regional}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-            <br/>
+            <form method="post" action="{{ route('depart-tournee.update', $tournee->id) }}">
+                @csrf
+                @method('PATCH')
 
+                <div class="card card-xxl-stretch">
+                    <div class="card-body pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>N°Tournée:</label>
+                                    <input type="text" class="form-control text-danger" name="numeroTournee"
+                                           value="{{$tournee->numeroTournee}}"
+                                           style="font-size: 20px; font-weight: bold;" readonly/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" class="form-control" name="date" value="{{$tournee->date}}"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Véhicule</label>
+                                    <select class="form-control" name="idVehicule" id="vehicule">
+                                        <option
+                                            value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
+                                        @foreach($vehicules as $vehicule)
+                                            <option value="{{$vehicule->id}}">{{$vehicule->immatriculation}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Kilométrage départ</label>
+                                    <input type="number" class="form-control" name="kmDepart"
+                                           value="{{$tournee->kmDepart}}"
+                                           id="kmDepart" min="0"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Chauffeur</label>
+                                    <select class="form-control" name="chauffeur" id="chauffeur">
+                                        <option
+                                            value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
+                                        @foreach($chauffeurs as $chauffeur)
+                                            <option value="{{$chauffeur->id}}">{{$chauffeur->nomPrenoms}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Agent de garde</label>
+                                    <select class="form-control" name="agentDeGarde">
+                                        <option
+                                            value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
+                                        @foreach($agents as $agent)
+                                            <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Chef de bord</label>
+                                    <select class="form-control" name="chefDeBord">
+                                        <option
+                                            value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
+                                        @foreach($chefBords as $chef)
+                                            <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Coût tournée</label>
+                                    <input type="number" class="form-control form-control-lg" min="0" name="coutTournee"
+                                           value="{{$tournee->coutTournee}}" id="coutTournee"
+                                           style="font-size: 20px; font-weight: bold;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Heure départ</label>
+                                    <input type="time" class="form-control" name="heureDepart"
+                                           value="{{$tournee->heureDepart}}"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="centre">Centre régional</label>
+                                    <select name="centre" id="centre" class="form-control" required>
+                                        <option>{{$tournee->centre}}</option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="centre_regional">Centre</label>
+                                    <select id="centre_regional" name="centre_regional" class="form-control" required>
+                                        <option>{{$tournee->centre_regional}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
 
-            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
-            <br>
-            <br>
-            <table id="data" style="width: 100%" class="table table-sm table-bordered">
-                <thead>
-                <tr>
-                    <td>Site</td>
-                    <th>Type opération</th>
-                    <th>TDF</th>
-                    <th>Montant TDF</th>
-                    <th>Caisse</th>
-                    <th>Montant Caisse</th>
-                    <td></td>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($sitesTournees as $site)
-                    <input type="hidden" name="site_id[]" value="{{$site->id}}">
+                <br>
+                <table id="data" style="width: 100%" class="table table-sm table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                    <thead>
                     <tr>
-                        <td>
-                            <select class="form-control" name="site[]" id="site{{$site->id}}">
-                                <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}} | {{$site->sites->clients->client_nom ?? ''}}</option>
-                                @foreach ($commercial_sites as $commercial)
-                                    <option value="{{$commercial->id}}">{{$commercial->site}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <select type="time" class="form-control" name="type[]">
-                                <option>{{$site->type}}</option>
-                                <option value="Enlèvement">Enlèvement</option>
+                        <td>Site</td>
+                        <th>Type opération</th>
+                        <th>TDF</th>
+                        <th>Montant TDF</th>
+                        <th>Caisse</th>
+                        <th>Montant Caisse</th>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($sitesTournees as $site)
+                        <input type="hidden" name="site_id[]" value="{{$site->id}}">
+                        <tr>
+                            <td>
+                                <select class="form-control" name="site[]" id="site{{$site->id}}">
+                                    <option value="{{$site->site}}">{{$site->sites->site ?? $site->site}}
+                                        | {{$site->sites->clients->client_nom ?? ''}}</option>
+                                    @foreach ($commercial_sites as $commercial)
+                                        <option value="{{$commercial->id}}">{{$commercial->site}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select type="time" class="form-control" name="type[]">
+                                    <option>{{$site->type}}</option>
+                                    <option value="Enlèvement">Enlèvement</option>
                                     <option value="Dépôt">Dépôt</option>
                                     <option value="Enlèvement + Dépôt">Enlèvement + Dépôt</option>
                                     <option value="Enlèvement / R">Enlèvement / R</option>
                                     <option value="Dépôt / R">Dépôt / R</option>
                                     <option value="Enlèvement + Dépôt / R">Enlèvement + Dépôt / R</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" name="tdf[]">
-                                <option value="{{$site->tdf ? $site->tdf . '_edit' : ''}}">{{$site->tdf}}</option>
-                                <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
-                                <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
-                                <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
-                                <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
-                                <option value="oo_vb_intramuros">VB</option>
-                                <option value="oo_vl_intramuros">VL</option>
-                                <option value="oo_ass_appro">Assistance appro DAB</option>
-                                <option value="oo_dnf">Dépôt non facturé</option>
-                            </select>
-                        </td>
-                        <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"  class="form-control"></td>
-                        <td>
-                            <select class="form-control" name="caisse[]">
-                                <option value="{{$site->caisse ? $site->caisse . '_edit' : ''}}">{{$site->caisse}}</option>
-                                <option value="oo_mad">MAD</option>
-                                <option value="oo_collecte">Collecte</option>
-                                <option value="oo_cctv">CCTV</option>
-                                <option value="oo_collecte_caisse">Collecte Caisse</option>
-                            </select>
-                        </td>
-                        <td><input type="number" name="montant_caisse[]" value="{{$site->sites["$site->caisse"] ?? 0}}" class="form-control"></td>
-                        <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="tdf[]">
+                                    <option value="{{$site->tdf ? $site->tdf . '_edit' : ''}}">{{$site->tdf}}</option>
+                                    <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
+                                    <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
+                                    <option value="oo_vl_extramuros_bitume">VL extramuros bitume</option>
+                                    <option value="oo_vl_extramuros_piste">VL extramuros piste</option>
+                                    <option value="oo_vb_intramuros">VB</option>
+                                    <option value="oo_vl_intramuros">VL</option>
+                                    <option value="oo_ass_appro">Assistance appro DAB</option>
+                                    <option value="oo_dnf">Dépôt non facturé</option>
+                                </select>
+                            </td>
+                            <td><input type="number" name="montant_tdf[]" value="{{$site->sites["$site->tdf"] ?? 0 }}"
+                                       class="form-control"></td>
+                            <td>
+                                <select class="form-control" name="caisse[]">
+                                    <option
+                                        value="{{$site->caisse ? $site->caisse . '_edit' : ''}}">{{$site->caisse}}</option>
+                                    <option value="oo_mad">MAD</option>
+                                    <option value="oo_collecte">Collecte</option>
+                                    <option value="oo_cctv">CCTV</option>
+                                    <option value="oo_collecte_caisse">Collecte Caisse</option>
+                                </select>
+                            </td>
+                            <td><input type="number" name="montant_caisse[]"
+                                       value="{{$site->sites["$site->caisse"] ?? 0}}" class="form-control"></td>
+                            <td><a class="btn btn-danger btn-sm" onclick="supprimer('{{$site->id}}',this)"></a></td>
+                        </tr>
+
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6"></td>
+                        <td><button type="button" class="btn btn-sm btn-primary" id="add">+</button></td>
                     </tr>
+                    </tfoot>
+                </table>
 
-                @endforeach
-                </tbody>
-            </table>
-
-            <div class="row">
-                <div class="col">
-                    <br/>
-                    <button class="btn btn-sm btn-primary">Enregistrer</button>
-                    <button class="btn btn-sm btn-danger" type="button" onclick="window.history.back()">Annuler</button>
-                    <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Ouvrir la liste</a>
+                <div class="row">
+                    <div class="col">
+                        <br/>
+                        <button class="btn btn-sm btn-primary">Enregistrer</button>
+                        <button class="btn btn-sm btn-danger" type="button" onclick="window.history.back()">Annuler
+                        </button>
+                        <a href="/depart-tournee-liste" class="btn btn-sm btn-info" style="margin-left: 20px">Ouvrir laliste</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -331,28 +349,28 @@
                 switch (tdfInput.value) {
                     case "oo_vb_extamuros_bitume_edit":
                         //tdf.eq(i).val("oo_vb_extamuros_bitume");
-                        $("select[name='tdf[]'] option[value=oo_vb_extamuros_bitume]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vb_extamuros_bitume]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_vb_extramuros_piste_edit":
-                        $("select[name='tdf[]'] option[value=oo_vb_extramuros_piste]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vb_extramuros_piste]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_vl_extramuros_bitume_edit":
-                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_bitume]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_bitume]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_vl_extramuros_piste_edit":
-                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_piste]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vl_extramuros_piste]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_vb_intramuros_edit":
-                        $("select[name='tdf[]'] option[value=oo_vb_intramuros]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vb_intramuros]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_vl_intramuros_edit":
-                        $("select[name='tdf[]'] option[value=oo_vl_intramuros]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_vl_intramuros]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_ass_appro_edit":
-                        $("select[name='tdf[]'] option[value=oo_ass_appro]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_ass_appro]").eq(i).attr('selected', 'selected');
                         break;
                     case "oo_dnf":
-                        $("select[name='tdf[]'] option[value=oo_dnf]").eq(i).attr('selected','selected');
+                        $("select[name='tdf[]'] option[value=oo_dnf]").eq(i).attr('selected', 'selected');
                         break;
                     default:
                         //tdf.eq(i).val("");
