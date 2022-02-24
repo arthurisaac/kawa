@@ -161,7 +161,7 @@
                                 aria-labelledby="bordereau-tab">
                                 <h6>Bordereau</h6>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-4">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label for="caisse_numtour" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numero de tournée</label>
                                             <select name="tournee" id="caisse_numtour"
@@ -182,7 +182,7 @@
                                             <input type="number" name="bordereau" class="col-sm-6 form-control form-control-sm"/>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-4">
                                         <div class="row" style="align-items: center;">
                                             <div class="col-4">
                                                 <h6>Convoyeur garde</h6>
@@ -206,7 +206,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-column mb-7 col-md-12-row fv-plugins-icon-container">
                                                     <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
                                                     <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
@@ -226,7 +226,7 @@
                                                 <hr class="burval-separator">
                                             </div>
                                             <div class="col">
-                                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et prénoms</label>
                                                     <select
                                                         class="form-select form-select-solid select2-hidden-accessible"
@@ -242,12 +242,12 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
                                                     <input type="text" name="regulatriceFonction" id="regulatriceFonction"
                                                         class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
-                                                <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="caisse_matre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
                                                     <input type="text" name="regulatriceMatricule" id="regulatriceMatricule" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
@@ -360,7 +360,6 @@
                             </div>
                             <div class="tab-pane fade show" id="billetage" role="tabpanel"
                                 aria-labelledby="billetage-tab">
-
                                 <div class="row">
                                     <div class="col">
                                         <button type="button" class="btn btn-primary btn-sm">Billetage annoncé</button>
@@ -528,21 +527,21 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label for="montantAnnonce" class="col-sm-5">Montant annoncé</label>
-                                            <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="form-control col-sm-7" readonly/>
+                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                            <label for="montantAnnonce" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant annoncé</label>
+                                            <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="col-sm-6 form-control form-control-sm" readonly/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="montantReconnu" class="col-sm-5">Montant reconnu</label>
-                                            <input type="number" name="montantReconnu" id="montantReconnu" class="form-control col-sm-7" value="0" readonly/>
+                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                            <label for="montantReconnu" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant reconnu</label>
+                                            <input type="number" name="montantReconnu" id="montantReconnu" class="col-sm-6 form-control form-control-sm" value="0" readonly/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="ecartConstate" class="col-sm-5">Ecart constaté</label>
-                                            <input type="number" name="ecartConstate" id="ecartConstate" class="form-control col-sm-7" value="0" readonly/>
+                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                            <label for="ecartConstate" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Ecart constaté</label>
+                                            <input type="number" name="ecartConstate" id="ecartConstate" class="col-sm-6 form-control form-control-sm" value="0" readonly/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="montantFinal" class="col-sm-5">Montant final</label>
-                                            <input type="number" name="montantFinal" id="montantFinal" class="form-control col-sm-7" value="0"/=
+                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
+                                            <label for="montantFinal" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant final</label>
+                                            <input type="number" name="montantFinal" id="montantFinal" class="col-sm-6 form-control form-control-sm" value="0"/=
                                         </div>
                                     </div>
                                     <div class="col"></div>
@@ -560,36 +559,36 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group row">
-                                                    <label for="caisse_bc" class="col-sm-5">Billets calculés</label>
+                                                    <label for="caisse_bc" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets calculés</label>
                                                     <label><input type="radio" value="oui" name="billetsCalcules"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsCalcules"> Non</label>
-                                                    <input type="number" name="billetsCalculesMontant" id="caisse_bc" class="form-control col-sm-4"/>
+                                                    <input type="number" name="billetsCalculesMontant" id="caisse_bc" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_bsav" class="col-sm-5">Billets sans valeurs</label>
+                                                    <label for="caisse_bsav" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets sans valeurs</label>
                                                     <label><input type="radio" value="oui" name="billetsSansValeurs"> Oui</label>
                                                     <label><input type="radio" value="oui" name="billetsSansValeurs"> Non</label>
-                                                    <input type="number" name="billetsSansValeursMontant" id="caisse_bsav" class="form-control col-sm-4"/>
+                                                    <input type="number" name="billetsSansValeursMontant" id="caisse_bsav" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_busa" class="col-sm-5">Billets usagés</label>
+                                                    <label for="caisse_busa" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets usagés</label>
                                                     <label><input type="radio" value="oui" name="billetsUsages"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsUsages"> Non</label>
-                                                    <input type="number" name="billetsUsagesMontant" id="caisse_busa" class="form-control col-sm-4"/>
+                                                    <input type="number" name="billetsUsagesMontant" id="caisse_busa" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_fau" class="col-sm-5">Faux billets</label>
+                                                    <label for="caisse_fau" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Faux billets</label>
                                                     <label><input type="radio" value="oui" name="fauxBillets"> Oui</label>
                                                     <label><input type="radio" value="non" name="fauxBillets"> Non</label>
-                                                    <input type="number" name="fauxBilletsMontant"  class="form-control col-sm-4"/>
+                                                    <input type="number" name="fauxBilletsMontant"  class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
 
 
                                                 <div class="form-group row">
-                                                    <label for="caisse_bide" class="col-sm-5">Billets déparaillés</label>
+                                                    <label for="caisse_bide" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets déparaillés</label>
                                                     <label><input type="radio" value="oui" name="billetsDeparailles"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsDeparailles"> Non</label>
-                                                    <input type="number" name="billetsDeparaillesMontant" id="caisse_bide" class="form-control col-sm-4"/>
+                                                    <input type="number" name="billetsDeparaillesMontant" id="caisse_bide" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                             </div>
                                         </div>
