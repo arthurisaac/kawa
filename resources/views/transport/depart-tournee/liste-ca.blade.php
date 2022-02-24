@@ -1,7 +1,6 @@
 @extends('bases.comptabilite')
 
 @section('main')
-    <!--begin::Toolbar-->
     @extends('bases.toolbar', ["title" => "Comptabilité", "subTitle" => "Chiffre d'affaire des tournées"])
 {{--@section("filter")
     <div class="me-4">
@@ -59,13 +58,8 @@
     </div>
 @endsection--}}
 
-<!--end::Toolbar-->
-
-<!--begin::Post-->
 <div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-        <br/>
 
         @if ($errors->any())
             <div class="alert alert-danger">

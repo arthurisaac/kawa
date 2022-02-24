@@ -18,7 +18,7 @@
                     <div class="card card-xl-stretch mb-xxl-8">
                         <!--begin::Header-->
                         <div class="card-header border-0 bg-gradient-kawa">
-                            <h3 class="card-title fw-bolder text-dark">Stats</h3>
+                            <h3 class="card-title fw-bolder text-dark">Résultats</h3>
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
@@ -122,58 +122,47 @@
                             </div>
                             <div class="card-body pt-5">
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="centre_regional" class="col-5 pt-3">Centre Régional</label>
-                                            <select name="centre_regional" id="centre_regional" class="form-select col">
-                                                <option></option>
-                                                @foreach ($centres_regionaux as $centre)
-                                                    <option
-                                                        value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="centre_regional"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre
+                                            Régional</label>
+                                        <select name="centre_regional" id="centre_regional" class="form-select col">
+                                            <option></option>
+                                            @foreach ($centres_regionaux as $centre)
+                                                <option
+                                                    value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="centre" class="col-5 pt-3">Centre</label>
-                                            <select id="centre" name="centre" class="form-select col">
-                                                <option></option>
-                                                @foreach ($centres as $centre)
-                                                    <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="centre"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                        <select id="centre" name="centre" class="form-select col">
+                                            <option></option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="type" class="col-5 pt-3">Type</label>
-                                            <select id="type" name="type" class="form-select col">
-                                                <option></option>
-                                                @foreach ($types as $type)
-                                                    <option value="{{$type->type}}">{{ $type->type }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="type"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type</label>
+                                        <select id="type" name="type" class="form-select col">
+                                            <option></option>
+                                            @foreach ($types as $type)
+                                                <option value="{{$type->type}}">{{ $type->type }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="marque" class="col-5 pt-3">Marque</label>
-                                            <select id="marque" name="marque" class="form-select col">
-                                                <option></option>
-                                                @foreach ($marques as $marque)
-                                                    <option value="{{$marque->marque}}">{{ $marque->marque }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"></div>
-                                    <div class="col"></div>
-                                    <div class="col"></div>
-                                    <div class="col text-right">
-
+                                    <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
+                                        <label for="marque"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Marque</label>
+                                        <select id="marque" name="marque" class="form-select col">
+                                            <option></option>
+                                            @foreach ($marques as $marque)
+                                                <option value="{{$marque->marque}}">{{ $marque->marque }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -190,54 +179,52 @@
             </div>
             <br>
             <div class="card card-xl-stretch">
-                <div class="card-body pt-2">
-                    <table class="table table-bordered table-hover" style="width: 100%" id="liste">
-                        <thead>
-                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
-                            <td>Immatriculation</td>
-                            <td>Marque</td>
-                            <td>Type</td>
-                            <td>Code</td>
-                            <td>N°Chassis</td>
-                            <td>DPMC</td>
-                            <td>Date acquisition</td>
-                            <td>centre</td>
-                            <td>Centre Régional</td>
-                            <td>Actions</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($vehicules as $vehicule)
-                            <tr>
-                                <td>{{strtoupper($vehicule->immatriculation)}}</td>
-                                <td>{{$vehicule->marque}}</td>
-                                <td>{{$vehicule->type}}</td>
-                                <td>{{$vehicule->code}}</td>
-                                <td>{{$vehicule->num_chassis}}</td>
-                                <td>{{date('d/m/Y', strtotime($vehicule->DPMC))}}</td>
-                                <td>{{date('d/m/Y', strtotime($vehicule->dateAcquisition))}}</td>
-                                <td>{{$vehicule->centre}}</td>
-                                <td>{{$vehicule->centreRegional}}</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ route('vehicule.edit',$vehicule->id)}}"
-                                               class="btn btn-primary btn-sm"></a>
-                                        </div>
-                                        <div class="col">
-                                            <form action="{{ route('vehicule.destroy', $vehicule->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" type="submit"></button>
-                                            </form>
-                                        </div>
+                <table class="table table-row-dashed table-striped table-row-gray-300 align-middle gs-0 gy-4" style="width: 100%" id="liste">
+                    <thead>
+                    <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient-kawa">
+                        <td>centre</td>
+                        <td>Centre Régional</td>
+                        <td>Immatriculation</td>
+                        <td>Marque</td>
+                        <td>Type</td>
+                        <td>Code</td>
+                        <td>N°Chassis</td>
+                        <td>DPMC</td>
+                        <td>Date acquisition</td>
+                        <td>Actions</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($vehicules as $vehicule)
+                        <tr>
+                            <td>{{$vehicule->centre}}</td>
+                            <td>{{$vehicule->centreRegional}}</td>
+                            <td>{{strtoupper($vehicule->immatriculation)}}</td>
+                            <td>{{$vehicule->marque}}</td>
+                            <td>{{$vehicule->type}}</td>
+                            <td>{{$vehicule->code}}</td>
+                            <td>{{$vehicule->num_chassis}}</td>
+                            <td>{{date('d/m/Y', strtotime($vehicule->DPMC))}}</td>
+                            <td>{{date('d/m/Y', strtotime($vehicule->dateAcquisition))}}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ route('vehicule.edit',$vehicule->id)}}"
+                                           class="btn btn-primary btn-sm"></a>
                                     </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                    <div class="col">
+                                        <form action="{{ route('vehicule.destroy', $vehicule->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit"></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

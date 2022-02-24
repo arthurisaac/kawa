@@ -4,11 +4,10 @@
     @extends('bases.toolbar', ["title" => "Transport", "subTitle" => "Véhicule"])
 
 @section("nouveau")
-    <a href="/caisse-service-liste" class="btn btn-sm btn-primary">Liste</a>
+    <a href="/vehicule-liste" class="btn btn-sm btn-primary">Liste</a>
 @endsection
 <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
 <div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -51,19 +50,19 @@
                 <div class="card-body pt-5">
                     <div class="tab-content">
                     <div class="tab-pane fade show active" id="vehicule" role="tabpanel" aria-labelledby="vehicule-tab">
-                        <div class="container">
+                        <div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group">
-                                        <label>Immatriculation</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Immatriculation</label>
                                         <input type="text" class="form-control" name="immatriculation" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Marque</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Marque</label>
                                         <input type="text" class="form-control" name="marque"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Type</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type</label>
                                         <select class="form-control" name="type" required>
                                             <option value="VL">VL</option>
                                             <option value="VL">VB</option>
@@ -71,24 +70,24 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group">
-                                        <label>Photo</label>
-                                        <input type="file" class="form-control-file" name="photo"/>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Photo</label>
+                                        <input type="file" class="form-control form-control-file" name="photo"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group">
-                                        <label>Code</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Code</label>
                                         <input type="text" class="form-control" name="code"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>DPMC</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">DPMC</label>
                                         <input type="date" class="form-control" name="DPMC"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Centre</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
                                         <select class="form-control" name="centre" id="centre" required>
                                             <option>Choisir centre</option>
                                             @foreach ($centres as $centre)
@@ -98,16 +97,16 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group">
-                                        <label>N°Chassis</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Chassis</label>
                                         <input type="text" class="form-control" name="num_chassis"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Date d'aquisition</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date d'aquisition</label>
                                         <input type="date" class="form-control" name="dateAcquisition" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Centre régional</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
                                         <select class="form-control" name="centreRegional" id="centre_regional"
                                                 required></select>
                                     </div>
@@ -119,15 +118,15 @@
                     </div>
                     <div class="tab-pane fade" id="chauffeur-titulaire" role="tabpanel"
                          aria-labelledby="chauffeur-titulaire-tab">
-                        <div class="container">
+                        <div>
                             <div class="row" style="align-items: center;">
                                 <div class="col-2">
                                     <h5>Chauffeur titulaire</h5>
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-md-3">Matricule</label>
-                                        <select class="editbox col-md-4" name="chauffeurTitulaire"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                        <select class="form-control col-md-4" name="chauffeurTitulaire"
                                                 id="chauffeurTitulaire">
                                             <option></option>
                                             @foreach($personnels as $personnel)
@@ -137,28 +136,28 @@
                                         </select>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-3">Nom </label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurTitulaireNomPrenoms"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Nom </label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurTitulaireNomPrenoms"
                                                id="chauffeurTitulaireNomPrenoms" readonly/>
                                     </div>
                                     {{--<div class="form-group row">
-                                        <label class="col-md-3">Prénom</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurTitulairePrenom"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Prénom</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurTitulairePrenom"
                                                id="chauffeurTitulairePrenom"/>
                                     </div>--}}
                                     <div class="form-group row">
-                                        <label class="col-md-3">Fonction</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurTitulaireFonction"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Fonction</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurTitulaireFonction"
                                                id="chauffeurTitulaireFonction" readonly/>
                                     </div>
                                     {{--<div class="form-group row">
-                                        <label class="col-md-3">Matricule</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurTitulaireMatricule"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurTitulaireMatricule"
                                                id="chauffeurTitulaireMatricule" readonly/>
                                     </div>--}}
                                     <div class="form-group row">
-                                        <label class="col-md-3">Date d'affection</label>
-                                        <input type="date" class="editbox col-md-4"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Date d'affection</label>
+                                        <input type="date" class="form-control col-md-4"
                                                name="chauffeurTitulaireDateAffection"
                                                id="chauffeurTitulaireDateAffection" readonly/>
                                     </div>
@@ -169,15 +168,15 @@
                     </div>
                     <div class="tab-pane fade" id="chauffeur-suppleant" role="tabpanel"
                          aria-labelledby="chauffeur-suppleant-tab">
-                        <div class="container">
+                        <div>
                             <div class="row" style="align-items: center;">
                                 <div class="col-2">
                                     <h5>Chauffeur Suppléant</h5>
                                 </div>
                                 <div class="col">
                                     <div class="form-group row">
-                                        <label class="col-md-3">Matricule</label>
-                                        <select class="editbox col-md-4" name="chauffeurSuppleant"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                        <select class="form-control col-md-4" name="chauffeurSuppleant"
                                                 id="chauffeurSuppleant">
                                             <option></option>
                                             @foreach($personnels as $personnel)
@@ -187,28 +186,28 @@
                                         </select>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-3">Nom</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurSuppleantNomPrenoms"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Nom</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurSuppleantNomPrenoms"
                                                id="chauffeurSuppleantNomPrenoms" readonly/>
                                     </div>
                                     {{--<div class="form-group row">
-                                        <label class="col-md-3">Prénom</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurSuppleantPrenom"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Prénom</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurSuppleantPrenom"
                                                id="chauffeurSuppleantPrenom" readonly/>
                                     </div>--}}
                                     <div class="form-group row">
-                                        <label class="col-md-3">Fonction</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurSuppleantFonction"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Fonction</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurSuppleantFonction"
                                                id="chauffeurSuppleantFonction" readonly/>
                                     </div>
                                     {{--<div class="form-group row">
-                                        <label class="col-md-3">Matricule</label>
-                                        <input type="text" class="editbox col-md-4" name="chauffeurSuppleantMatricule"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                        <input type="text" class="form-control col-md-4" name="chauffeurSuppleantMatricule"
                                                id="chauffeurSuppleantMatricule" readonly/>
                                     </div>--}}
                                     <div class="form-group row">
-                                        <label class="col-md-3">Date d'affection</label>
-                                        <input type="date" class="editbox col-md-4"
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Date d'affection</label>
+                                        <input type="date" class="form-control col-md-4"
                                                name="chauffeurSuppleantDateAffection"
                                                id="chauffeurSuppleantDateAffection" readonly/>
                                     </div>
