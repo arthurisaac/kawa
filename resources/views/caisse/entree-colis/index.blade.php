@@ -168,7 +168,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             </div>
                         </form>
                     </div>
-                </div></div>
+                </div>
 
 {{--                <div class="row gy-5 g-xxl-12">--}}
 {{--                    <div class="col-xxl-12">--}}
@@ -325,6 +325,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
 
 {{--        </form>--}}
 {{--            </div></div>--}}
+        </div>
     </div>
 
     <script>
