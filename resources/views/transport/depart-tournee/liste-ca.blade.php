@@ -164,11 +164,8 @@
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre"
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
-=======
                                                class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
                                             Régional</label>
                                         <select name="centre" id="centre" class="form-select col">
                                             <option>{{$centre}}</option>
@@ -179,11 +176,8 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre_regional"
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
-=======
                                                class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Centre</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
                                         <select id="centre_regional" name="centre_regional" class="form-select col">
                                             <option>{{$centre_regional}}</option>
                                             @foreach ($centres_regionaux as $centre)
@@ -194,11 +188,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="client"
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Clients</label>
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Clients</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
                                         <select id="client" name="client" class="form-select col">
                                             <option>{{$client}}</option>
                                             @foreach ($clients as $clt)
@@ -208,11 +198,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="site"
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Site</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
                                         <select id="site" name="site" class="form-select col">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
@@ -224,11 +210,7 @@
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for=""
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Date
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
                                             début</label>
                                         <input type="date" name="debut" class="form-control col" value="{{$debut}}">
                                     </div>
@@ -238,11 +220,8 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="tdf"
-<<<<<<< HEAD
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">TDF</label>
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">TDF</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
+=
                                         <select name="tdf" id="tdf" class="form-select col">
                                             <option>{{$tdf}}</option>
                                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
@@ -256,12 +235,7 @@
                                         </select>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="caisse"
-<<<<<<< HEAD
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Caisse</label>
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Caisse</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
+                                        <label for="caisse" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Caisse</label>
                                         <select name="caisse" id="caisse" class="form-select col">
                                             <option>{{$caisse}}</option>
                                             <option value="oo_mad">MAD</option>
@@ -273,12 +247,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="typeOP"
-<<<<<<< HEAD
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Type
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
+                                        <label for="typeOP" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type
+
                                             OP</label>
                                         <select name="typeOP" id="typeOP" class="form-select col">
                                             <option>{{$typeOP}}</option>
@@ -291,12 +261,7 @@
                                         </select>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for=""
-<<<<<<< HEAD
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
-=======
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Véhicule</label>
->>>>>>> 15aad36543ab8385b222c010135b3df50862b50a
+                                        <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
                                         <select name="vehicule" id="vehicule" class="form-select col">
                                             <option>{{$vehicule}}</option>
                                             @foreach($vehicules as $vehicule)
