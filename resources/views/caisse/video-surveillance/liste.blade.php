@@ -29,11 +29,11 @@
                             <div class="card-body pt-5">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
                                         <input type="date" class="col-sm-6 form-control form-control" id="debut" name="debut" required>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                         <input type="date" class="col-sm-6 form-control form-control" name="fin" id="fin" required>
                                     </div>
                                 </div>

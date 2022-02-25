@@ -29,13 +29,13 @@
                      <div class="col-2"></div>
                      <div class="col">
                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                              <input type="date" class="col-sm-6 form-control form-control editbox" name="date" required/>
                          </div>
                      </div>
                      <div class="col">
                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                              <select
                                  class="form-select form-select-solid select2-hidden-accessible"
                                  data-control="select2"
@@ -53,7 +53,7 @@
                      </div>
                      <div class="col">
                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
+                             <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
                              <select
                                  class="form-select form-select-solid select2-hidden-accessible"
                                  data-control="select2"
@@ -67,11 +67,11 @@
                  </div>
                     <div class="row">
                         <div class="col-2">
-                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" style="margin-top: 180px">Chargé de sécurité</label>
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" style="margin-top: 180px">Chargé de sécurité</label>
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label for="matriculeChargeDeSecurite" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                <label for="matriculeChargeDeSecurite" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                 <select type="text" name="matriculeChargeDeSecurite" id="matriculeChargeDeSecurite"
                                         class="form-select form-select-solid select2-hidden-accessible"
                                         data-control="select2"
@@ -87,7 +87,7 @@
                                 </select>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                 <input type="text" class="col-sm-6 form-control form-control editbox" name="nomChargeDeSecurite" id="nomChargeDeSecurite"/>
                             </div>
                             {{--<div class="form-group row">
@@ -95,7 +95,7 @@
                                 <input type="text" class="editbox col-md-4" name="prenomChargeDeSecurite" required/>
                             </div>--}}
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                 <input type="text" class="col-sm-6 form-control form-control editbox" name="fonctionChargeDeSecurite"
                                        id="fonctionChargeDeSecurite"/>
                             </div>
@@ -104,11 +104,11 @@
                                 <input type="text" class="editbox col-md-4" name="matriculeChargeDeSecurite"/>
                             </div>--}}
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                 <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_cs"/>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                 <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_cs"/>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Nom" id="eop11Nom"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -175,7 +175,7 @@
                                                     <input type="text" class="editbox col-md-4" name="eop11Prenom" id="eop11Prenom"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Fonction" id="eop11Fonction"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -183,11 +183,11 @@
                                                     <input type="text" class="editbox col-md-4" name="eop11Matricule"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop11" id="hps_eop11"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop11" id="hfs_eop11"/>
                                                 </div>
                                             </div>
@@ -200,7 +200,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="eop12Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="eop12Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <select type="text" name="eop12Matricule" id="eop12Matricule"
                                                             class="form-select form-select-solid select2-hidden-accessible"
                                                             data-control="select2"
@@ -216,7 +216,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop112Nom" id="eop112Nom"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -224,7 +224,7 @@
                                                     <input type="text" class="editbox col-md-4" name="eop12Prenom" id="eop12Prenom"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop12Fonction" id="eop12Fonction"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -232,11 +232,11 @@
                                                     <input type="text" class="editbox col-md-4" name="eop12Matricule"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop12" id="hps_eop12"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop12" id="hfs_eop12"/>
                                                 </div>
                                             </div>
@@ -256,7 +256,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="eop21Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                            <label for="eop21Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                             <select type="text" name="eop21Matricule" id="eop21Matricule"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -272,7 +272,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom</label>
                                             <input type="text" class="col-sm-6 form-control form-control editbox" name="eop21Nom" id="eop21Nom"/>
                                         </div>
                                         {{--<div class="form-group row">
@@ -280,7 +280,7 @@
                                             <input type="text" class="editbox col-md-4" name="eop21Prenom" id="eop21Prenom"/>
                                         </div>--}}
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                             <input type="text" class="col-sm-6 form-control form-control editbox" name="eop21Fonction" id="eop21Fonction"/>
                                         </div>
                                         {{--<div class="form-group row">
@@ -288,11 +288,11 @@
                                             <input type="text" class="editbox col-md-4" name="eop21Matricule"/>
                                         </div>--}}
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                             <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop21" id="hps_eop21"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                             <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop21" id="hfs_eop21"/>
                                         </div>
                                     </div>
@@ -312,7 +312,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group row">
-                                                    <label for="eop31Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="eop31Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <select type="text" name="eop31Matricule" id="eop31Matricule"
                                                             class="form-select form-select-solid select2-hidden-accessible"
                                                             data-control="select2"
@@ -328,7 +328,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Nom" id="eop31Nom"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -336,7 +336,7 @@
                                                     <input type="text" class="editbox col-md-4" name="eop31Prenom" id="eop31Prenom"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Fonction"
                                                            id="eop31Fonction"/>
                                                 </div>
@@ -345,11 +345,11 @@
                                                     <input type="text" class="editbox col-md-4" name="eop31Matricule"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop31" id="hps_eop31"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop31" id="hfs_eop31"/>
                                                 </div>
                                             </div>
@@ -362,7 +362,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group row">
-                                                    <label for="eop32Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="eop32Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <select type="text" name="eop32Matricule" id="eop32Matricule"
                                                             class="form-select form-select-solid select2-hidden-accessible"
                                                             data-control="select2"
@@ -378,7 +378,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Nom" id="eop32Nom"/>
                                                 </div>
                                                 {{--<div class="form-group row">
@@ -386,7 +386,7 @@
                                                     <input type="text" class="editbox col-md-4" name="eop32Prenom" id="eop32Prenom"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Fonction"
                                                            id="eop32Fonction"/>
                                                 </div>
@@ -395,11 +395,11 @@
                                                     <input type="text" class="editbox col-md-4" name="eop32Matricule"/>
                                                 </div>--}}
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop32" id="hps_eop32"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop32" id="hfs_eop32"/>
                                                 </div>
                                             </div>
@@ -418,7 +418,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group row">
-                                            <label for="eop22Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                            <label for="eop22Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                             <select type="text" name="eop22Matricule" id="eop22Matricule"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -434,7 +434,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom </label>
                                             <input type="text" class="col-sm-6 form-control form-control editbox" name="eop22Nom" id="eop22Nom"/>
                                         </div>
                                         {{--<div class="form-group row">
@@ -442,7 +442,7 @@
                                             <input type="text" class="editbox col-md-4" name="eop22Prenom" id="eop22Prenom"/>
                                         </div>--}}
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                             <input type="text" class="col-sm-6 form-control form-control editbox" name="eop22Fonction" id="eop22Fonction"/>
                                         </div>
                                         {{--<div class="form-group row">
@@ -450,11 +450,11 @@
                                             <input type="text" class="editbox col-md-4" name="eop22Matricule" id="eop22Matricule"/>
                                         </div>--}}
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                             <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop22" id="hps_eop22"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                                             <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop22" id="hfs_eop22"/>
                                         </div>
                                     </div>
