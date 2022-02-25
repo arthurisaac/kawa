@@ -19379,6 +19379,21 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+function removeSpace(str) {
+  return str.replace(/\s/g, '');
+}
+
+function removeSpaceValues(e) {
+  var _e$value;
+
+  return (_e$value = e.value) === null || _e$value === void 0 ? void 0 : _e$value.replace(/\s/g, '');
+}
+
+function separateNumber(e) {
+  var donnee = parseFloat(str);
+  return Number(donnee).toLocaleString();
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19431,8 +19446,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Ange\Documents\Project\kawa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Ange\Documents\Project\kawa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Ibrahim Evariste\Documents\kawa\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ibrahim Evariste\Documents\kawa\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

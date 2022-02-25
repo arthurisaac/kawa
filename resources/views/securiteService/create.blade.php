@@ -139,104 +139,107 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="equipe1" role="tabpanel" aria-labelledby="equipe-1-tab">
-                            <div class="container">
+                            <div class="container-fluid">
                                 <br />
                                 <h3>EQUIPE 1</h3>
 
-                                <div class="row" style="align-items: center;">
-                                    <div class="col-2">
-                                        <label>Opérateur radio n° 1</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-2">
+                                                <label>Opérateur radio n° 1</label>
+                                            </div>
+                                            <div class="col">
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label for="eop11Matricule" class="col-sm-3">Matricule</label>
+                                                    <select type="text" name="eop11Matricule" id="eop11Matricule"
+                                                            class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Matricule"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
+                                                        <option></option>
+                                                        @foreach($personnels as $personnel)
+                                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                                | {{$personnel->nomPrenoms}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Nom" id="eop11Nom"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Prénom</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop11Prenom" id="eop11Prenom"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Fonction" id="eop11Fonction"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Matricule</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop11Matricule"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop11" id="hps_eop11"/>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop11" id="hfs_eop11"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col">
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="eop11Matricule" class="col-sm-3">Matricule</label>
-                                            <select type="text" name="eop11Matricule" id="eop11Matricule"
-                                                    class="form-select form-select-solid select2-hidden-accessible"
-                                                    data-control="select2"
-                                                    data-placeholder="Matricule"
-                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
-                                                    data-kt-select2="true"
-                                                    aria-hidden="true">
-                                                <option></option>
-                                                @foreach($personnels as $personnel)
-                                                    <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                        | {{$personnel->nomPrenoms}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Nom" id="eop11Nom"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Prénom</label>
-                                            <input type="text" class="editbox col-md-4" name="eop11Prenom" id="eop11Prenom"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop11Fonction" id="eop11Fonction"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Matricule</label>
-                                            <input type="text" class="editbox col-md-4" name="eop11Matricule"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop11" id="hps_eop11"/>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop11" id="hfs_eop11"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-
-                                <div class="row" style="align-items: center;">
-                                    <hr>
-                                    <div class="col-2">
-                                        <label>Opérateur radio n° 2</label>
-                                    </div>
-                                    <div class="col">
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="eop12Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
-                                            <select type="text" name="eop12Matricule" id="eop12Matricule"
-                                                    class="form-select form-select-solid select2-hidden-accessible"
-                                                    data-control="select2"
-                                                    data-placeholder="Matricule"
-                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
-                                                    data-kt-select2="true"
-                                                    aria-hidden="true">
-                                                <option></option>
-                                                @foreach($personnels as $personnel)
-                                                    <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                        | {{$personnel->nomPrenoms}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop112Nom" id="eop112Nom"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Prénom</label>
-                                            <input type="text" class="editbox col-md-4" name="eop12Prenom" id="eop12Prenom"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop12Fonction" id="eop12Fonction"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Matricule</label>
-                                            <input type="text" class="editbox col-md-4" name="eop12Matricule"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop12" id="hps_eop12"/>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop12" id="hfs_eop12"/>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-2">
+                                                <label>Opérateur radio n° 2</label>
+                                            </div>
+                                            <div class="col">
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label for="eop12Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <select type="text" name="eop12Matricule" id="eop12Matricule"
+                                                            class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Matricule"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
+                                                        <option></option>
+                                                        @foreach($personnels as $personnel)
+                                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                                | {{$personnel->nomPrenoms}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop112Nom" id="eop112Nom"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Prénom</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop12Prenom" id="eop12Prenom"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop12Fonction" id="eop12Fonction"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Matricule</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop12Matricule"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop12" id="hps_eop12"/>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop12" id="hfs_eop12"/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -301,105 +304,108 @@
                             <div class="container">
                                 <br />
                                 <h3>EQUIPE 3</h3>
-                                <div class="row" style="align-items: center;">
-                                    <div class="col-2">
-                                        <label>Opérateur radio n° 1</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-2">
+                                                <label>Opérateur radio n° 1</label>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group row">
+                                                    <label for="eop31Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <select type="text" name="eop31Matricule" id="eop31Matricule"
+                                                            class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Matricule"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
+                                                        <option></option>
+                                                        @foreach($personnels as $personnel)
+                                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                                | {{$personnel->nomPrenoms}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Nom" id="eop31Nom"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Prénom</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop31Prenom" id="eop31Prenom"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Fonction"
+                                                           id="eop31Fonction"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Matricule</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop31Matricule"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop31" id="hps_eop31"/>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop31" id="hfs_eop31"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label for="eop31Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
-                                            <select type="text" name="eop31Matricule" id="eop31Matricule"
-                                                    class="form-select form-select-solid select2-hidden-accessible"
-                                                    data-control="select2"
-                                                    data-placeholder="Matricule"
-                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
-                                                    data-kt-select2="true"
-                                                    aria-hidden="true">
-                                                <option></option>
-                                                @foreach($personnels as $personnel)
-                                                    <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                        | {{$personnel->nomPrenoms}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Nom" id="eop31Nom"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Prénom</label>
-                                            <input type="text" class="editbox col-md-4" name="eop31Prenom" id="eop31Prenom"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop31Fonction"
-                                                   id="eop31Fonction"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Matricule</label>
-                                            <input type="text" class="editbox col-md-4" name="eop31Matricule"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop31" id="hps_eop31"/>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop31" id="hfs_eop31"/>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-2">
+                                                <label>Opérateur radio n° 2</label>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group row">
+                                                    <label for="eop32Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <select type="text" name="eop32Matricule" id="eop32Matricule"
+                                                            class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Matricule"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
+                                                        <option></option>
+                                                        @foreach($personnels as $personnel)
+                                                            <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                                | {{$personnel->nomPrenoms}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Nom" id="eop32Nom"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Prénom</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop32Prenom" id="eop32Prenom"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Fonction"
+                                                           id="eop32Fonction"/>
+                                                </div>
+                                                {{--<div class="form-group row">
+                                                    <label class="col-md-3">Matricule</label>
+                                                    <input type="text" class="editbox col-md-4" name="eop32Matricule"/>
+                                                </div>--}}
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop32" id="hps_eop32"/>
+                                                </div>
+                                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                                                    <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop32" id="hfs_eop32"/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br/>
-                                <hr>
-                                <div class="row" style="align-items: center;">
-                                    <div class="col-2">
-                                        <label>Opérateur radio n° 2</label>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <label for="eop32Matricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
-                                            <select type="text" name="eop32Matricule" id="eop32Matricule"
-                                                    class="form-select form-select-solid select2-hidden-accessible"
-                                                    data-control="select2"
-                                                    data-placeholder="Matricule"
-                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
-                                                    data-kt-select2="true"
-                                                    aria-hidden="true">
-                                                <option></option>
-                                                @foreach($personnels as $personnel)
-                                                    <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                                        | {{$personnel->nomPrenoms}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom </label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Nom" id="eop32Nom"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Prénom</label>
-                                            <input type="text" class="editbox col-md-4" name="eop32Prenom" id="eop32Prenom"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
-                                            <input type="text" class="col-sm-6 form-control form-control editbox" name="eop32Fonction"
-                                                   id="eop32Fonction"/>
-                                        </div>
-                                        {{--<div class="form-group row">
-                                            <label class="col-md-3">Matricule</label>
-                                            <input type="text" class="editbox col-md-4" name="eop32Matricule"/>
-                                        </div>--}}
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hps_eop32" id="hps_eop32"/>
-                                        </div>
-                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
-                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="hfs_eop32" id="hfs_eop32"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="equipe4" role="tabpanel" aria-labelledby="equipe-4-tab">
