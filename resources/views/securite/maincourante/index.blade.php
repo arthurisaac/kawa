@@ -33,16 +33,23 @@
                         <div class="card-body pt-5">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="date" class="col-4">Date</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
                                         <input type="text" name="date" id="date" value="{{$date}}"
                                                class="form-control col" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="no_tournee" class="col-4">N°Tournée</label>
-                                        <select class="form-control col" name="noTournee" id="noTournee">
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="no_tournee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Tournée</label>
+                                        <select
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="N° Tournée"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="noTournee" id="noTournee">
                                             <option></option>
                                             @foreach($tournees as $tournee)
                                                 <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}
@@ -52,14 +59,14 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-4">Véhicule</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
                                         <input class="form-control col" name="vehicule" id="vehicule" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-4">Chef de bord</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chef de bord</label>
                                         <input class="form-control col" name="chefDeBord" id="chefDeBord" readonly/>
                                     </div>
                                 </div>
@@ -67,26 +74,26 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-4">Agent garde</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Agent garde</label>
                                         <input class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-4">Chauffeur:</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chauffeur:</label>
                                         <input class="form-control col" name="chauffeur" id="chauffeur" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre" class="col-4">Centre regional</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre regional</label>
                                         <input name="centre" id="centre" class="form-control col" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre_regional" class="col-4">Centre</label>
+                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
                                         <input id="centre_regional" name="centre_regional" class="form-control col"
                                                readonly/>
                                     </div>
@@ -131,33 +138,39 @@
                                 <input type="hidden" name="tournee" class="noTournee"/>
                                 <br/>
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group row">
-                                            <label for="heure_depart" class="col-sm-4">Heure départ</label>
-                                            <input type="time" name="dcHeureDepart" class="form-control col-sm-8"
+                                    <div class="col-6">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ</label>
+                                            <input type="time" name="dcHeureDepart" class="form-control col editbox"
                                                    value="{{date('H:i')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="km_depart" class="col-sm-4">Km départ</label>
-                                            <input type="number" name="dcKmDepart" class="form-control col-sm-8"/>
+                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km départ</label>
+                                            <input type="number" name="dcKmDepart" class="form-control col editbox"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="km_depart" class="col-sm-4">Niveau carburant</label>
-                                            <select name="dcNiveauCarburant" class="form-control col-sm-8">
+                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau carburant</label>
+                                            <select name="dcNiveauCarburant"
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Niveau carburant"
+                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true">
                                                 <option></option>
                                                 @foreach($optionNiveauCarburant as $option)
                                                     <option>{{$option->option}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="observation" class="col-sm-4">Observation:</label>
+                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="observation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation:</label>
                                             <textarea name="dcObservation" id="dcObservation"
-                                                      class="form-control col-sm-8"></textarea>
+                                                      class="form-control col editbox"></textarea>
                                         </div>
 
                                         <br>
-                                        <div class="form-group row">
+                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <span class="col-4"></span>
                                             <button class="btn btn-sm btn-primary" type="submit">Enregistrer
                                             </button>
@@ -179,64 +192,76 @@
                                 <input type="hidden" name="tournee" class="noTournee"/>
                                 <br/>
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">SITE</label>
-                                            <select type="text" name="asSite" id="asSite" class="form-control col-sm-8">
+                                    <div class="col-3">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">SITE</label>
+                                            <select type="text" name="asSite" id="asSite"
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Site"
+                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true">
                                                 @foreach($sites as $site)
                                                     <option value="{{$site->id}}">{{$site->site}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="heure_depart" class="col-sm-4">Type opération</label>
-                                            <select name="asTypeOperation" class="form-control col-sm-8">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type opération</label>
+                                            <select name="asTypeOperation"
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Type opération"
+                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true">
                                                 <option></option>
                                                 <option>Enlèvement</option>
                                                 <option>Dépot</option>
                                             </select>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asDateArrivee" class="col-sm-4">Date arrivée sur site</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date arrivée sur site</label>
                                             <input type="date" name="asDateArrivee" class="form-control col-sm-8"
                                                    value="{{date('Y-m-d')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label id="km_depart" class="col-sm-4">Kilométrage arrivée</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Kilométrage arrivée</label>
                                             <input type="number" name="asKm" id="kmDepart"
                                                    class="form-control col-sm-8"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asDateArrivee" class="col-sm-4">Heure arrivée sur site</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée sur site</label>
                                             <input type="time" name="asHeureArrivee" class="form-control col-sm-8"
                                                    value="{{date('H:i')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asDebutOpération" class="col-sm-4">Heure début opération</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asDebutOpération" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure début opération</label>
                                             <input type="time" name="asDebutOperation" id="asDebutOperation"
                                                    class="form-control col-sm-8" value="{{date('H:i')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asFinOperation" class="col-sm-4">Heure fin opération</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asFinOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure fin opération</label>
                                             <input type="time" name="asFinOperation" id="asFinOperation"
                                                    class="form-control col-sm-8"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asTempsOperation" class="col-sm-4">Temps opération (mn)</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asTempsOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Temps opération (mn)</label>
                                             <input type="number" name="asTempsOperation" id="asTempsOperation"
                                                    class="form-control col-sm-8" readonly/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="asNbColis" class="col-sm-4">Nombre de colis récupérés</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label for="asNbColis" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre de colis récupérés</label>
                                             <input type="number" name="asNbColis" id="asNbColis"
                                                    class="form-control col-sm-8" disabled/>
                                         </div>
-
+                                    </div>
+                                    <div class="col-1">
+                                        <span style="border-left: 1px solid #000; display: inline-block; height: 100vh; margin: 0 20px;"></span>
                                     </div>
                                     <div class="col">
-
-                                        <br><br>
-                                        <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark">
+                                        <button type="button" id="arriveeSiteColisButton" class="btn btn-sm btn-dark mt-9" style="float: right">
                                             Ajouter
                                         </button>
                                         <br>
@@ -256,7 +281,12 @@
                                             <tbody>
                                             <tr>
                                                 <td>
-                                                    <select name="asColis[]" class="form-control">
+                                                    <select name="asColis[]" class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Colis"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
                                                         <option>Keep Safe</option>
                                                         <option>Sac juste</option>
                                                         <option>Pierres précieuses</option>
@@ -266,7 +296,12 @@
                                                 </td>
                                                 <td><textarea name="asNumColis[]" class="form-control"
                                                               rows="1"></textarea></td>
-                                                <td><select name="asNumBordereau[]" class="form-control">
+                                                <td><select name="asNumBordereau[]" class="form-select form-select-solid select2-hidden-accessible"
+                                                            data-control="select2"
+                                                            data-placeholder="Numéro bordereau"
+                                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                            data-kt-select2="true"
+                                                            aria-hidden="true">
                                                         <option></option>
                                                         @foreach($optionBordereau as $option)
                                                             <option>{{$option->numero}}</option>
@@ -286,8 +321,8 @@
                                 <div>
                                     <div class="row">
                                         <div class="col" style="display: none;">
-                                            <div class="form-group row">
-                                                <label class="col-sm-6">Heure de départ</label>
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de départ</label>
                                                 <input type="time" name="asHeure" class="form-control col-sm-6"
                                                        value="{{date('H:i')}}"/>
                                             </div>
@@ -296,24 +331,30 @@
                                         <div class="col"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Date départ site</label>
+                                        <div class="col-3">
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date départ site</label>
                                                 <input type="datetime-local" class="form-control col-sm-8"
                                                        name="asDepartSite"
                                                        value="{{date('Y-m-d\TH:i')}}">
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Prochaine destination</label>
-                                                <select class="form-control col-sm-8" name="asDestination"
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochaine destination</label>
+                                                <select class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Prochaine destination"
+                                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true"
+                                                        name="asDestination"
                                                         id="prochaineDestination">
                                                     @foreach($sites as $site)
                                                         <option value="{{$site->id}}">{{$site->site}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Observation</label>
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
                                                 <textarea class="form-control col-sm-8" name="asObservation"></textarea>
                                             </div>
                                         </div>
@@ -325,8 +366,7 @@
 
                                 <br/>
                                 <br/>
-                                <div class="form-group">
-                                    <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">                                 <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
                                 </div>
                             </form>
                         </div>
@@ -340,13 +380,13 @@
                                 <input type="hidden" name="maincourante" value="departSite"/>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-6">Heure de départ</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de départ</label>
                                             <input type="time" name="heureDepart" class="form-control col-sm-6"
                                                    value="{{date('H:i')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label id="km_depart" class="col-sm-6">Kilométrage de depart</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Kilométrage de depart</label>
                                             <input type="number" name="kmDepart" id="kmDepart"
                                                    class="form-control col-sm-6"/>
                                         </div>
@@ -358,18 +398,23 @@
                                 <div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="form-group row">
-                                                <label class="col-sm-6">Date départ site</label>
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date départ site</label>
                                                 <input type="date" class="form-control col-sm-6" name="departSite"
                                                        value="{{date('Y-m-d')}}">
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6">Prochaine destination</label>
-                                                <select class="form-control col-sm-6" name="destination"
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochaine destination</label>
+                                                <select class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Prochaine destination"
+                                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true" name="destination"
                                                         id="prochaineDestination"></select>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6">Observation</label>
+                                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
                                                 <textarea class="form-control col-sm-6" name="observation"></textarea>
                                             </div>
                                             <div class="row">
@@ -397,43 +442,55 @@
                                 <input type="hidden" name="tournee" class="noTournee"/>
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="form-group row">
-                                            <label class="col-sm-5">Heure arrivée</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée</label>
                                             <input type="time" name="heureArrivee" class="form-control col-sm-7"
                                                    value="{{date('H:i')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5">Km arrivé</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km arrivé</label>
                                             <input type="number" name="kmArrive" class="form-control col-sm-7"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5">Niveau carburant</label>
-                                            <select name="niveauCarburant" class="form-control col-sm-7">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau carburant</label>
+                                            <select name="niveauCarburant"
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Niveau carburant"
+                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true">
                                                 <option></option>
                                                 @foreach($optionNiveauCarburant as $option)
                                                     <option>{{$option->option}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group row" style="display: none;">
-                                            <label class="col-sm-5">Fin de tournée</label>
-                                            <select name="finTournee" class="form-control col-sm-7">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container" style="display: none;">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fin de tournée</label>
+                                            <select name="finTournee"
+                                                    class="form-select form-select-solid select2-hidden-accessible"
+                                                    data-control="select2"
+                                                    data-placeholder="Fin de tournée"
+                                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                    data-kt-select2="true"
+                                                    aria-hidden="true">
                                                 <option></option>
                                                 <option>fin</option>
                                                 <option>transite</option>
                                             </select>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5">Date arrivée centre</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date arrivée centre</label>
                                             <input type="date" name="dateArrivee" class="form-control col-sm-7"
                                                    value="{{date('Y-m-d')}}"/>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5">Observation</label>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
                                             <textarea name="observation" class="form-control col-sm-7"></textarea>
                                         </div>
                                         <br>
-                                        <div class="form-group row">
+                                        <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
                                             <span class="col-4"></span>
                                             <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
                                             </button>

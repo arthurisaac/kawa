@@ -2,11 +2,9 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Matériel | Nouveau matériel"])
-@section("nouveau")
-    <a href="/materiel" class="btn btn-sm btn-primary">Nouveau</a>
-@endsection
     <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
-    <div class="burval-container">
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -26,38 +24,49 @@
 
         <form method="post" action="{{ route('materiel.store') }}">
             @csrf
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label class="col-sm-4">Tournée N°</label>
-                        <select class="form-control col-sm-8" name="noTournee" id="noTournee" required>
-                            <option></option>
-                            @foreach($tournees as $tournee)
-                                <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                            @endforeach
-                        </select>
-                        {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
+            <div class="card card-xxl-stretch">
+                <div class="card-body pt-5">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Tournée N°</label>
+                                <select  class="form-select form-select-solid select2-hidden-accessible"
+                                         data-control="select2"
+                                         data-placeholder="N° Tournée"
+                                         data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                         data-kt-select2="true"
+                                         aria-hidden="true"
+                                         name="noTournee"
+                                         id="noTournee"
+                                         required>
+                                    <option></option>
+                                    @foreach($tournees as $tournee)
+                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                    @endforeach
+                                </select>
+                                {{--<input type="text" class="form-control col-sm-8" name="noTournee" required>--}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-4">Date</label>
-                        <input type="date" class="form-control col-8" name="date" value="{{date('Y-m-d')}}">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-4" for="centre">Centre</label>
-                        <input name="centre" id="centre" class="form-control col-8" required />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label  class="col-4" for="centre_regional">Centre Régional</label>
-                        <input id="centre_regional" name="centre_regional" class="form-control col-8" required/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                <input type="date" class="col-sm-6 form-control form-control" name="date" value="{{date('Y-m-d')}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" for="centre">Centre</label>
+                                <input name="centre" id="centre" class="col-sm-6 form-control form-control" readonly required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label  class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" for="centre_regional">Centre Régional</label>
+                                <input id="centre_regional" name="centre_regional" class="col-sm-6 form-control form-control" readonly required/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,571 +88,665 @@
                 </li>--}}
             </ul>
             <br>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="equipages" role="tabpanel"
-                     aria-labelledby="equipages-tab">
-                    <!-- INFORMATIONS GENERALE -->
-                    <p>INFORMATIONS GENERALES</p>
-                    <hr class="title-separator"/>
-                    <br/>
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col">
-                            <p class="text-center">Equipage</p>
-                            <hr/>
+            <div class="card card-xxl-stretch">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="equipages" role="tabpanel"
+                             aria-labelledby="equipages-tab">
+                            <!-- INFORMATIONS GENERALE -->
+                            <p>INFORMATIONS GENERALES</p>
+                            <hr class="title-separator"/>
+                            <br/>
                             <div class="row">
+                                <div class="col-2"></div>
                                 <div class="col">
+                                    <p class="text-center">Equipage</p>
+                                    <hr/>
                                     <div class="row">
-                                        <div class="col-2"><label></label></div>
                                         <div class="col">
-                                            <div class="form-group row">
-                                                <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <input type="text" name="cbMatricule" id="cbMatricule"
-                                                        class="form-control col-sm-8" />
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <input type="text" name="cbMatricule" id="cbMatricule"
+                                                               class="form-control col-sm-8" />
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <input type="text" class="form-control col-sm-8" name="cbNom" id="cbNom">
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <input type="text" class="form-control col-sm-8" name="cbFonction" id="cbFonction">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="cbNom" id="cbNom">
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <input type="text" name="ccMatricule" id="ccMatricule"
+                                                               class="form-control col-sm-8" />
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <input type="text" class="form-control col-sm-8" name="ccNom" id="ccNom">
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <input type="text" class="form-control col-sm-8" name="ccFonction" id="ccFonction">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="cbFonction" id="cbFonction">
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <input type="text" name="cgMatricule" id="cgMatricule"
+                                                               class="form-control col-sm-8"/>
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <input type="text" class="form-control col-sm-8" name="cgNom" id="cgNom">
+                                                    </div>
+                                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <input type="text" class="form-control col-sm-8" name="cgFonction" id="cgFonction">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"><label>Véhicule</label></div>
+                                                <div class="col" style="display: none;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                                               id="exampleRadios1"
+                                                               value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            VB N°
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                                               id="exampleRadios1"
+                                                               value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            VL N°
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4" style="display: none;">
+                                                    <div class="form-group row">
+                                                        <input type="text" class="form-control" name="vehiculeVB">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <input type="text" class="form-control" name="vehiculeVL">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group row">
+                                                        <input type="text" class="form-control" id="vehicule">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+
+
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
+                            <br/>
+                        </div>
+                        <div class="tab-pane fade show" id="remettant" role="tabpanel"
+                             aria-labelledby="remettant-tab">
+
+                            <!-- REMETTANTS -->
+                            <p>REMETTANTS</p>
+                            <hr class="title-separator"/>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-3">
                                     <div class="row">
-                                        <div class="col-2"><label></label></div>
+                                        <div class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"><label>Opération</label></div>
                                         <div class="col">
-                                            <div class="form-group row">
-                                                <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <input type="text" name="ccMatricule" id="ccMatricule"
-                                                        class="form-control col-sm-8" />
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="ccNom" id="ccNom">
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="ccFonction" id="ccFonction">
-                                            </div>
+                                            <select
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Opération"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true"
+                                                name="operateurRadio">
+                                                <option value="opérateur radio 1">Opérateur radio 1</option>
+                                                <option value="opérateur radio 2">Opérateur radio 2</option>
+                                                <option value="responsable sécurité">Responsable de sécurité</option>
+                                                <option value="responsable sécurité">Chef de sécurité</option>
+                                            </select>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col-2"><label></label></div>
-                                        <div class="col">
-                                            <div class="form-group row">
-                                                <label for="cbMatricule" class="col-sm-4">Matricule</label>
-                                                <input type="text" name="cgMatricule" id="cgMatricule"
-                                                        class="form-control col-sm-8"/>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Nom</label>
-                                                <input type="text" class="form-control col-sm-8" name="cgNom" id="cgNom">
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4">Fonction</label>
-                                                <input type="text" class="form-control col-sm-8" name="cgFonction" id="cgFonction">
-                                            </div>
-                                        </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label for="operateurRadio" class="col-sm-4">Matricule</label>
+                                        <select type="text" name="operateurRadioMatricule" id="operateurRadioMatricule"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Matricule"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
+                                            <option></option>
+                                            @foreach($personnels as $personnel)
+                                                <option value="{{$personnel->id}}">{{$personnel->matricule}}
+                                                    | {{$personnel->nomPrenoms}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Nom</label>
+                                        <input type="text" class="col-sm-6 form-control form-control-sm" name="operateurRadioNom">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Fonction</label>
+                                        <input type="text" class="col-sm-6 form-control form-control-sm" name="operateurRadioFonction">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Heure de prise de service</label>
+                                        <input type="time" class="col-sm-6 form-control form-control-sm" name="operateurRadioHeurePrise">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Heure de fin de service</label>
+                                        <input type="time" class="col-sm-6 form-control form-control-sm" name="operateurRadioHeureFin">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
+                            <br/>
+                            <br/>
                             <div class="row">
-                                <div class="col-4"><label>Véhicule</label></div>
-                                <div class="col-4" style="display: none;">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                               id="exampleRadios1"
-                                               value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                            VB N°
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                               id="exampleRadios1"
-                                               value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                            VL N°
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-4" style="display: none;">
-                                    <div class="form-group row">
-                                        <input type="text" class="form-control" name="vehiculeVB">
-                                    </div>
-                                    <div class="form-group row">
-                                        <input type="text" class="form-control" name="vehiculeVL">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <input type="text" class="form-control" id="vehicule">
-                                    </div>
+                                <div class="col-10">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <td>INTITULE</td>
+                                            <td>OUI</td>
+                                            <td>NON</td>
+                                            <td>QUANTITE</td>
+                                            <td>HEURE DE REMISE</td>
+                                            <td>CONVOYEUR</td>
+                                            <td>HEURE DE RETOUR</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Pièce de véhicule</td>
+                                            <td><input type="radio" name="remettantPieceVehicule" value="1"></td>
+                                            <td><input type="radio" name="remettantPieceVehicule" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantPieceVehiculeRemise" class="form-control col editbox">
+                                            </td>
+                                            <td><select name="remettantPieceVehiculeConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Pièce de véhicule"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantPieceVehiculeRetour" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Clés véhicule</td>
+                                            <td><input type="radio" name="remettantCleVehicule" value="1"></td>
+                                            <td><input type="radio" name="remettantCleVehicule" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantCleVehiculeQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantCleVehiculeRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantCleVehiculeConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Clés véhicule"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantCleVehiculeRetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Téléphone</td>
+                                            <td><input type="radio" name="remettantTelephone" value="1"></td>
+                                            <td><input type="radio" name="remettantTelephone" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantTelephoneQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantTelephoneRemise" class="form-control col editbox">
+                                            </td>
+                                            <td><select name="remettantTelephoneConvoyeur"
+                                                        name="remettantCleVehiculeConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Téléphone"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantTelephoneRetour" class="form-control col editbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Radio portative</td>
+                                            <td><input type="radio" name="remettantRadio" value="1"></td>
+                                            <td><input type="radio" name="remettantRadio" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantRadioQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="remettantRadioRemise" class="form-control col editbox">
+                                            </td>
+                                            <td><select name="remettantRadioConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Radio portative"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantRadioRetour" class="form-control col editbox"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>G. P. B</td>
+                                            <td><input type="radio" name="remettantGBP" value="1"></td>
+                                            <td><input type="radio" name="remettantGBP" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantGBPQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="beneficiaireGBPRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantGBPConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="G. P. B"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantGBPRetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P. A</td>
+                                            <td><input type="radio" name="remettantPA" value="1"></td>
+                                            <td><input type="radio" name="remettantPA" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantPAQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="remettantPARemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantPAConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="P. A"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantPARetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>F. P</td>
+                                            <td><input type="radio" name="remettantFP" value="1"></td>
+                                            <td><input type="radio" name="remettantFP" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantFPQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="beneficiaireFPRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantFPConvoyeur"  class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="F. P"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantFPRetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P. M</td>
+                                            <td><input type="radio" name="remettantPM" value="1"></td>
+                                            <td><input type="radio" name="remettantPM" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantPMQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="remettantPMRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantPMConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="F. M"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantPMRetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Minutions</td>
+                                            <td><input type="radio" name="remettantMunition" value="1"></td>
+                                            <td><input type="radio" name="remettantMunition" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantMunitionQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantMunitionRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantMunitionConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Munitions"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantMunitionRetour" class="form-control col editbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Minutions PA</td>
+                                            <td><input type="radio" name="remettantMunitionPA" value="1"></td>
+                                            <td><input type="radio" name="remettantMunitionPA" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantMunitionPAQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantMunitionPARemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantMunitionPAConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Munitions PA"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantMunitionPARetour" class="form-control col editbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Minutions FM</td>
+                                            <td><input type="radio" name="remettantMunitionFM" value="1"></td>
+                                            <td><input type="radio" name="remettantMunitionFM" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantMunitionFMQuantite"
+                                                       class="form-control col editbox"
+                                                ></td>
+                                            <td><input type="time" name="remettantMunitionFMRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantMunitionFMConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Munitions FM"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantMunitionFMRetour" class="form-control col editbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Minutions FP</td>
+                                            <td><input type="radio" name="remettantMunitionFP" value="1"></td>
+                                            <td><input type="radio" name="remettantMunitionFP" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantMunitionFPQuantite" class="form-control col editbox"></td>
+                                            <td><input type="time" name="remettantMunitionFPRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantMunitionFPConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="Munitions FP"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantMunitionFPRetour" class="form-control col editbox">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TAG Convoyeur CC12</td>
+                                            <td><input type="radio" name="remettantTAG" value="1"></td>
+                                            <td><input type="radio" name="remettantTAG" value="0"></td>
+                                            <td><input type="number" min="0" name="remettantTAGQuantite" class="form-control col editbox">
+                                            </td>
+                                            <td><input type="time" name="remettantTAGRemise" class="form-control col editbox"></td>
+                                            <td><select name="remettantTAGConvoyeur"
+                                                        class="form-select form-select-solid select2-hidden-accessible"
+                                                        data-control="select2"
+                                                        data-placeholder="TAG Convoyeur CC12"
+                                                        data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                        data-kt-select2="true"
+                                                        aria-hidden="true">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="time" name="remettantTAGRetour" class="form-control col editbox"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-3"></div>
-                    </div>
-                    <br/>
-                </div>
-                <div class="tab-pane fade show" id="remettant" role="tabpanel"
-                     aria-labelledby="remettant-tab">
+                        <div class="tab-pane fade show" id="beneficiaire" role="tabpanel"
+                             aria-labelledby="beneficiaire-tab">
+                            <!-- BENEFICIAIRES -->
+                            <p>BENEFICIAIRES</p>
+                            <hr class="title-separator"/>
+                            <br/>
 
-                    <!-- REMETTANTS -->
-                    <p>REMETTANTS</p>
-                    <hr class="title-separator"/>
-                    <br/>
-
-                    <div class="row">
-                        <div class="col-3">
+                            <p>MATERIEL</p>
                             <div class="row">
-                                <div class="col-4"><label>Opération</label></div>
-                                <div class="col">
-                                    <select class="form-control" name="operateurRadio">
-                                        <option value="opérateur radio 1">Opérateur radio 1</option>
-                                        <option value="opérateur radio 2">Opérateur radio 2</option>
-                                        <option value="responsable sécurité">Responsable de sécurité</option>
-                                        <option value="responsable sécurité">Chef de sécurité</option>
-                                    </select>
+                                <div class="col-8">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <td>CONVOYEUR</td>
+                                            <td>OUI</td>
+                                            <td>NON</td>
+                                            <td>INTITULE</td>
+                                            <td>QUANTITE</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><select name="beneficiairePieceVehiculeConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiairePieceVehicule" value="1"></td>
+                                            <td><input type="radio" name="beneficiairePieceVehicule" value="0"></td>
+                                            <td>Pièce de véhicule</td>
+                                            <td><input type="number" min="0" name="beneficiairePieceVehiculeQuantite"
+                                                       class="form-control"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireCleVehiculeConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireCleVehicule" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireCleVehicule" value="0"></td>
+                                            <td>Clés véhicule</td>
+                                            <td><input type="number" min="0" name="beneficiaireCleVehiculeQuantite"
+                                                       class="form-control"></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireTelephoneConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireTelephone" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireTelephone" value="0"></td>
+                                            <td>Téléphone</td>
+                                            <td><input type="number" min="0" name="beneficiaireTelephoneQuantite"
+                                                       class="form-control"
+                                                ></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireRadioConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireRadio" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireRadio" value="0"></td>
+                                            <td>Radio portative</td>
+                                            <td><input type="number" min="0" name="beneficiaireRadioQuantite"
+                                                       class="form-control">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireGBPConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireGBP" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireGBP" value="0"></td>
+                                            <td>G. P. B</td>
+                                            <td><input type="number" min="0" name="beneficiaireGBPQuantite"
+                                                       class="form-control">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiairePAConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiairePA" value="1"></td>
+                                            <td><input type="radio" name="beneficiairePA" value="0"></td>
+                                            <td>P. A</td>
+                                            <td><input type="number" min="0" name="beneficiairePAQuantite" class="form-control">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireFPConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireFP" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireFP" value="0"></td>
+                                            <td>F. P</td>
+                                            <td><input type="number" min="0" name="beneficiaireFPQuantite" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiairePMConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiairePM" value="1"></td>
+                                            <td><input type="radio" name="beneficiairePM" value="0"></td>
+                                            <td>P. M</td>
+                                            <td><input type="number" min="0" name="beneficiairePMQuantite" class="form-control">
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireMunitionConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireMunition" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireMunition" value="0"></td>
+                                            <td>Minutions</td>
+                                            <td><input type="number" min="0" name="beneficiaireMunitionQuantite"
+                                                       class="form-control"
+                                                ></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select name="beneficiaireTAGConvoyeur" class="form-control">
+                                                    <option value="CB">CB</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CG">CG</option>
+                                                    <option value="CB + CC + CG">CB + CC + CG</option>
+                                                </select></td>
+                                            <td><input type="radio" name="beneficiaireTAG" value="1"></td>
+                                            <td><input type="radio" name="beneficiaireTAG" value="0"></td>
+                                            <td>TAG Convoyeur CC12</td>
+                                            <td><input type="number" min="0" name="beneficiaireTAGHeureRetour"
+                                                       class="form-control"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <label for="operateurRadio" class="col-sm-4">Matricule</label>
-                                <select type="text" name="operateurRadioMatricule" id="operateurRadioMatricule"
-                                        class="form-control col-sm-8">
-                                    <option></option>
-                                    @foreach($personnels as $personnel)
-                                        <option value="{{$personnel->id}}">{{$personnel->matricule}}
-                                            | {{$personnel->nomPrenoms}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4">Nom</label>
-                                <input type="text" class="form-control col-sm-8" name="operateurRadioNom">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4">Fonction</label>
-                                <input type="text" class="form-control col-sm-8" name="operateurRadioFonction">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4">Heure de prise de service</label>
-                                <input type="time" class="form-control col-sm-8" name="operateurRadioHeurePrise">
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4">Heure de fin de service</label>
-                                <input type="time" class="form-control col-sm-8" name="operateurRadioHeureFin">
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-8">
-                            <table class="table table-borderless">
-                                <thead>
-                                <tr>
-                                    <td>INTITULE</td>
-                                    <td>OUI</td>
-                                    <td>NON</td>
-                                    <td>QUANTITE</td>
-                                    <td>HEURE DE REMISE</td>
-                                    <td>CONVOYEUR</td>
-                                    <td>HEURE DE RETOUR</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Pièce de véhicule</td>
-                                    <td><input type="radio" name="remettantPieceVehicule" value="1"></td>
-                                    <td><input type="radio" name="remettantPieceVehicule" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantPieceVehiculeQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantPieceVehiculeRemise" class="form-control">
-                                    </td>
-                                    <td><select name="remettantPieceVehiculeConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantPieceVehiculeRetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Clés véhicule</td>
-                                    <td><input type="radio" name="remettantCleVehicule" value="1"></td>
-                                    <td><input type="radio" name="remettantCleVehicule" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantCleVehiculeQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantCleVehiculeRemise" class="form-control"></td>
-                                    <td><select name="remettantCleVehiculeConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantCleVehiculeRetour" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td>Téléphone</td>
-                                    <td><input type="radio" name="remettantTelephone" value="1"></td>
-                                    <td><input type="radio" name="remettantTelephone" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantTelephoneQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantTelephoneRemise" class="form-control">
-                                    </td>
-                                    <td><select name="remettantTelephoneConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantTelephoneRetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Radio portative</td>
-                                    <td><input type="radio" name="remettantRadio" value="1"></td>
-                                    <td><input type="radio" name="remettantRadio" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantRadioQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="remettantRadioRemise" class="form-control">
-                                    </td>
-                                    <td><select name="remettantRadioConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantRadioRetour" class="form-control"></td>
-
-                                </tr>
-                                <tr>
-                                    <td>G. P. B</td>
-                                    <td><input type="radio" name="remettantGBP" value="1"></td>
-                                    <td><input type="radio" name="remettantGBP" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantGBPQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="beneficiaireGBPRemise" class="form-control"></td>
-                                    <td><select name="remettantGBPConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantGBPRetour" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td>P. A</td>
-                                    <td><input type="radio" name="remettantPA" value="1"></td>
-                                    <td><input type="radio" name="remettantPA" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantPAQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="remettantPARemise" class="form-control"></td>
-                                    <td><select name="remettantPAConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantPARetour" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td>F. P</td>
-                                    <td><input type="radio" name="remettantFP" value="1"></td>
-                                    <td><input type="radio" name="remettantFP" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantFPQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="beneficiaireFPRemise" class="form-control"></td>
-                                    <td><select name="remettantFPConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantFPRetour" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td>P. M</td>
-                                    <td><input type="radio" name="remettantPM" value="1"></td>
-                                    <td><input type="radio" name="remettantPM" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantPMQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="remettantPMRemise" class="form-control"></td>
-                                    <td><select name="remettantPMConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantPMRetour" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td>Minutions</td>
-                                    <td><input type="radio" name="remettantMunition" value="1"></td>
-                                    <td><input type="radio" name="remettantMunition" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantMunitionRemise" class="form-control"></td>
-                                    <td><select name="remettantMunitionConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantMunitionRetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Minutions PA</td>
-                                    <td><input type="radio" name="remettantMunitionPA" value="1"></td>
-                                    <td><input type="radio" name="remettantMunitionPA" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionPAQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantMunitionPARemise" class="form-control"></td>
-                                    <td><select name="remettantMunitionPAConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantMunitionPARetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Minutions FM</td>
-                                    <td><input type="radio" name="remettantMunitionFM" value="1"></td>
-                                    <td><input type="radio" name="remettantMunitionFM" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionFMQuantite"
-                                               class="form-control"
-                                        ></td>
-                                    <td><input type="time" name="remettantMunitionFMRemise" class="form-control"></td>
-                                    <td><select name="remettantMunitionFMConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantMunitionFMRetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Minutions FP</td>
-                                    <td><input type="radio" name="remettantMunitionFP" value="1"></td>
-                                    <td><input type="radio" name="remettantMunitionFP" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantMunitionFPQuantite" class="form-control"></td>
-                                    <td><input type="time" name="remettantMunitionFPRemise" class="form-control"></td>
-                                    <td><select name="remettantMunitionFPConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantMunitionFPRetour" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>TAG Convoyeur CC12</td>
-                                    <td><input type="radio" name="remettantTAG" value="1"></td>
-                                    <td><input type="radio" name="remettantTAG" value="0"></td>
-                                    <td><input type="number" min="0" name="remettantTAGQuantite" class="form-control">
-                                    </td>
-                                    <td><input type="time" name="remettantTAGRemise" class="form-control"></td>
-                                    <td><select name="remettantTAGConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="time" name="remettantTAGRetour" class="form-control"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="tab-pane fade show" id="beneficiaire" role="tabpanel"
-                     aria-labelledby="beneficiaire-tab">
-                    <!-- BENEFICIAIRES -->
-                    <p>BENEFICIAIRES</p>
-                    <hr class="title-separator"/>
-                    <br/>
-
-                    <p>MATERIEL</p>
-                    <div class="row">
-                        <div class="col-8">
-                            <table class="table table-borderless">
-                                <thead>
-                                <tr>
-                                    <td>CONVOYEUR</td>
-                                    <td>OUI</td>
-                                    <td>NON</td>
-                                    <td>INTITULE</td>
-                                    <td>QUANTITE</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><select name="beneficiairePieceVehiculeConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiairePieceVehicule" value="1"></td>
-                                    <td><input type="radio" name="beneficiairePieceVehicule" value="0"></td>
-                                    <td>Pièce de véhicule</td>
-                                    <td><input type="number" min="0" name="beneficiairePieceVehiculeQuantite"
-                                               class="form-control"></td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireCleVehiculeConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireCleVehicule" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireCleVehicule" value="0"></td>
-                                    <td>Clés véhicule</td>
-                                    <td><input type="number" min="0" name="beneficiaireCleVehiculeQuantite"
-                                               class="form-control"></td>
-
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireTelephoneConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireTelephone" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireTelephone" value="0"></td>
-                                    <td>Téléphone</td>
-                                    <td><input type="number" min="0" name="beneficiaireTelephoneQuantite"
-                                               class="form-control"
-                                        ></td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireRadioConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireRadio" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireRadio" value="0"></td>
-                                    <td>Radio portative</td>
-                                    <td><input type="number" min="0" name="beneficiaireRadioQuantite"
-                                               class="form-control">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireGBPConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireGBP" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireGBP" value="0"></td>
-                                    <td>G. P. B</td>
-                                    <td><input type="number" min="0" name="beneficiaireGBPQuantite"
-                                               class="form-control">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiairePAConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiairePA" value="1"></td>
-                                    <td><input type="radio" name="beneficiairePA" value="0"></td>
-                                    <td>P. A</td>
-                                    <td><input type="number" min="0" name="beneficiairePAQuantite" class="form-control">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireFPConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireFP" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireFP" value="0"></td>
-                                    <td>F. P</td>
-                                    <td><input type="number" min="0" name="beneficiaireFPQuantite" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiairePMConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiairePM" value="1"></td>
-                                    <td><input type="radio" name="beneficiairePM" value="0"></td>
-                                    <td>P. M</td>
-                                    <td><input type="number" min="0" name="beneficiairePMQuantite" class="form-control">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireMunitionConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireMunition" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireMunition" value="0"></td>
-                                    <td>Minutions</td>
-                                    <td><input type="number" min="0" name="beneficiaireMunitionQuantite"
-                                               class="form-control"
-                                        ></td>
-
-                                </tr>
-                                <tr>
-                                    <td><select name="beneficiaireTAGConvoyeur" class="form-control">
-                                            <option value="CB">CB</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CG">CG</option>
-                                            <option value="CB + CC + CG">CB + CC + CG</option>
-                                        </select></td>
-                                    <td><input type="radio" name="beneficiaireTAG" value="1"></td>
-                                    <td><input type="radio" name="beneficiaireTAG" value="0"></td>
-                                    <td>TAG Convoyeur CC12</td>
-                                    <td><input type="number" min="0" name="beneficiaireTAGHeureRetour"
-                                               class="form-control"></td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group">
+
+            <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Valider</button>
                 <button class="btn btn-danger" type="reset">Annuler</button>
             </div>

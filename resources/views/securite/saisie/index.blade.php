@@ -2,7 +2,9 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Saisie | Liste Saisie"])
-<div class="burval-container">
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -29,21 +31,27 @@
                         <div class="card-body pt-5">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-5">Date de tournée</label>
-                                        <input type="date" class="form-control col" name="date" required>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date de tournée</label>
+                                        <input type="date" class="col-sm-6 form-control form-control editbox" name="date" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-5">Type de date</label>
-                                        <input type="text" class="form-control col" name="typeDate" required>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type de date</label>
+                                        <input type="text" class="col-sm-6 form-control form-control editbox" name="typeDate" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label class="col-sm-5">Nom et prénoms</label>
-                                        <select class="form-control col" name="idPersonnel" required>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et prénoms</label>
+                                        <select class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Nom et prénoms"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true"
+                                                name="idPersonnel" required>
                                             <option></option>
                                             @foreach($personnels as $personnel)
                                                 <option value="{{$personnel->id}}">{{$personnel->nomPrenoms}}</option>
@@ -52,63 +60,59 @@
                                     </div>
                             </div>
                             </div>
-                                <br>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure arrivée</label>
-                                            <input type="time" class="form-control col" name="heureArrivee" required>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureArrivee" required>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure arrivée 1</label>
-                                            <input type="time" class="form-control col" name="heureArrivee1">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée 1</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureArrivee1">
                                         </div>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure arrivée 2</label>
-                                            <input type="time" class="form-control col" name="heureArrivee2">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée 2</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureArrivee2">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure arrivée 3</label>
-                                            <input type="time" class="form-control col" name="heureArrivee3">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée 3</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureArrivee3">
                                         </div>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure départ</label>
-                                            <input type="time" class="form-control col" name="heureDepart" required>
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureDepart" required>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure départ 1</label>
-                                            <input type="time" class="form-control col" name="heureDepart1">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ 1</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureDepart1">
                                         </div>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure départ 2</label>
-                                            <input type="time" class="form-control col" name="heureDepart2">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ 2</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox" name="heureDepart2">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4">Heure départ 3</label>
-                                            <input type="time" class="form-control col"  name="heureDepart3">
+                                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ 3</label>
+                                            <input type="time" class="col-sm-6 form-control form-control editbox"  name="heureDepart3">
                                         </div>
                                     </div>
                                 </div>

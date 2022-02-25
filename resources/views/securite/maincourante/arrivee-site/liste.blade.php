@@ -84,68 +84,67 @@
                     </div>
                     <!--end::List Widget 2-->
                 </div>
-                <div class="col-xl-9">
+                <div class="col-xxl-9">
                     <form method="get" action="#" class="card card-xxl-stretch">
                         <div class="card-header border-0 py-5 bg-gradient-kawa">
                             <h3 class="card-title fw-bolder">Filtre de recherche</h3>
                         </div>
                         <div class="card-body pt-5">
                             <div class="row">
-                                <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                                    <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date
-                                        début</label>
-                                    <input type="date" name="debut" id="debut"
-                                           class="form-control  form-control-solid"/>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date début</label>
+                                        <input type="date" name="debut" id="debut" class="form-control col editbox"/>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                                    <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date
-                                        fin</label>
-                                    <input type="date" name="fin" id="fin" class="form-control  form-control-solid"/>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date
+                                            fin</label>
+                                        <input type="date" name="fin" id="fin" class="form-control col editbox"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>Centre régional</span>
+                                        </label>
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2" data-hide-search="true"
+                                                data-placeholder="{{$centre ?? 'Centre régional'}}"
+                                                data-select2-id="select2-data-10-7w10b" tabindex="-1"
+                                                aria-hidden="true">
+                                            <option data-select2-id="select2-data-12-ubbm">{{$centre}}</option>
+                                            @foreach ($centres as $centre)
+                                                <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label for="centre_regional"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                                            <span>Centre</span>
+                                        </label>
+                                        <select name="centre_regional" id="centre_regional"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2" data-hide-search="true"
+                                                data-placeholder="{{$centre_regional ?? 'Centre'}}"
+                                                data-select2-id="select2-data-10-7w9b" tabindex="-1" aria-hidden="true">
+                                            <option data-select2-id="select2-data-12-ubbm">{{$centre_regional}}</option>
+                                            @foreach ($centres_regionaux as $centre)
+                                                <option
+                                                    value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label for="centre"
-                                           class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
-                                        <span>Centre régional</span>
-                                    </label>
-                                    <!--end::Label-->
-                                    <select name="centre" id="centre"
-                                            class="form-select form-select-solid select2-hidden-accessible"
-                                            data-control="select2" data-hide-search="true"
-                                            data-placeholder="{{$centre ?? 'Centre régional'}}"
-                                            data-select2-id="select2-data-10-7w10b" tabindex="-1"
-                                            aria-hidden="true">
-                                        <option data-select2-id="select2-data-12-ubbm">{{$centre}}</option>
-                                        @foreach ($centres as $centre)
-                                            <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                </div>
-                                <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label for="centre_regional"
-                                           class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
-                                        <span>Centre</span>
-                                    </label>
-                                    <!--end::Label-->
-                                    <select name="centre_regional" id="centre_regional"
-                                            class="form-select form-select-solid select2-hidden-accessible"
-                                            data-control="select2" data-hide-search="true"
-                                            data-placeholder="{{$centre_regional ?? 'Centre'}}"
-                                            data-select2-id="select2-data-10-7w9b" tabindex="-1" aria-hidden="true">
-                                        <option data-select2-id="select2-data-12-ubbm">{{$centre_regional}}</option>
-                                        @foreach ($centres_regionaux as $centre)
-                                            <option
-                                                value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <br>
                         </div>
                         <div class="card-footer">
                             <a href="/maincourante-arriveesiteliste" class="btn btn-info btn-sm">Effacer</a>
@@ -207,6 +206,7 @@
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 

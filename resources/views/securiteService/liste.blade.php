@@ -129,23 +129,23 @@
                         </div>
                         <div class="card-body pt-5">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group row">
-                                        <label for="debut" class="col-3">Date début</label>
-                                        <input type="date" name="debut" id="debut" class="form-control col "/>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <input type="date" name="debut" id="debut"  class="col-sm-6 form-control form-control-sm"/>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group row">
-                                        <label for="fin" class="col-3">Date fin</label>
-                                        <input type="date" name="fin" id="fin" class="form-control col" />
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <input type="date" name="fin" id="fin"  class="col-sm-6 form-control form-control-sm"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="/maincourante-synthese" class="btn btn-info btn-sm">Effacer</a>
+                        <a href="/securite-service-liste" class="btn btn-info btn-sm">Effacer</a>
                         <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
                         <a href="/securite-service" class="btn btn-primary btn-sm">Nouveau</a>
                     </div>

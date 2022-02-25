@@ -2,10 +2,13 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Sécurité", "subTitle" => "Saisie | Liste Saisie"])
+    <link rel="stylesheet" href="{{ asset('css/tabstyles.css') }}">
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
 @section("nouveau")
     <a href="/saisie" class="btn btn-sm btn-primary">Nouveau</a>
 @endsection
-<div class="burval-container">
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
