@@ -1,5 +1,5 @@
 <div id="preloader" style="background: #FFFFFF url('/images/loading.gif') no-repeat center center;
-    background-size: 15%;
+    background-size: 10%;
     height: 100vh;
     width: 100%;
     position: fixed;

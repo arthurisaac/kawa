@@ -88,7 +88,7 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2" style="background-color: #f8fafb">
+                        <div class="card-body pt-2" style="background-color: f8fafb">
                             <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-warning me-5">
@@ -111,11 +111,12 @@
                                 <div class="flex-grow-1 me-2">
                                     <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Chiffre
                                         d'affaire</a>
+                                    <h1 class="text-danger chiffreAffaire" id="chiffreAffaire"></h1>
+
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Lable-->
-                                <span class="fw-bolder text-danger py-1 chiffreAffaire" id="chiffreAffaire"></span>
                                 <!--end::Lable-->
                             </div>
                             <div class="d-flex align-items-center bg-light-info rounded p-5 mb-7">
@@ -140,11 +141,11 @@
                                 <div class="flex-grow-1 me-2">
                                     <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nombre de
                                         passage</a>
+                                <h1 class="fw-bolder text-danger py-1">{{count($sites)}}</h1>
                                     <span class="text-muted fw-bold d-block"></span>
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Lable-->
-                                <span class="fw-bolder text-danger py-1">{{count($sites)}}</span>
                                 <!--end::Lable-->
                             </div>
                         </div>
@@ -159,11 +160,11 @@
                             <div class="card-header border-0 py-5 bg-gradient-kawa">
                                 <h3 class="card-title fw-bolder">Option de filtre</h3>
                             </div>
-                            <div class="card-body pt-5" style="background-color: #f8fafb">
+                            <div class="card-body border-2 pt-5" style="background-color: #f8fafb">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre
+                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre
                                             Régional</label>
                                         <select name="centre" id="centre" class="form-select col">
                                             <option>{{$centre}}</option>
@@ -174,7 +175,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre_regional"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Centre</label>
                                         <select id="centre_regional" name="centre_regional" class="form-select col">
                                             <option>{{$centre_regional}}</option>
                                             @foreach ($centres_regionaux as $centre)
@@ -185,7 +186,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="client"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Clients</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Clients</label>
                                         <select id="client" name="client" class="form-select col">
                                             <option>{{$client}}</option>
                                             @foreach ($clients as $clt)
@@ -195,7 +196,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="site"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Site</label>
                                         <select id="site" name="site" class="form-select col">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
@@ -207,7 +208,7 @@
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for=""
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Date
                                             début</label>
                                         <input type="date" name="debut" class="form-control col" value="{{$debut}}">
                                     </div>
@@ -217,7 +218,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="tdf"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">TDF</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">TDF</label>
                                         <select name="tdf" id="tdf" class="form-select col">
                                             <option>{{$tdf}}</option>
                                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
@@ -232,7 +233,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="caisse"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Caisse</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Caisse</label>
                                         <select name="caisse" id="caisse" class="form-select col">
                                             <option>{{$caisse}}</option>
                                             <option value="oo_mad">MAD</option>
@@ -245,7 +246,7 @@
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="typeOP"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Type
                                             OP</label>
                                         <select name="typeOP" id="typeOP" class="form-select col">
                                             <option>{{$typeOP}}</option>
@@ -259,7 +260,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for=""
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Véhicule</label>
                                         <select name="vehicule" id="vehicule" class="form-select col">
                                             <option>{{$vehicule}}</option>
                                             @foreach($vehicules as $vehicule)
