@@ -88,7 +88,7 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2" style="background-color: #DCDCDC">
+                        <div class="card-body pt-2" style="background-color: #f8fafb">
                             <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-warning me-5">
@@ -159,7 +159,7 @@
                             <div class="card-header border-0 py-5 bg-gradient-kawa">
                                 <h3 class="card-title fw-bolder">Option de filtre</h3>
                             </div>
-                            <div class="card-body pt-5" style="background-color: #DCDCDC">
+                            <div class="card-body pt-5" style="background-color: #f8fafb">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre"
