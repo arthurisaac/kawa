@@ -124,7 +124,7 @@
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre_regional"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
                                             Régional</label>
                                         <select name="centre_regional" id="centre_regional" class="form-select col">
                                             <option></option>
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                         <select id="centre" name="centre" class="form-select col">
                                             <option></option>
                                             @foreach ($centres as $centre)
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="type"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type</label>
                                         <select id="type" name="type" class="form-select col">
                                             <option></option>
                                             @foreach ($types as $type)
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="marque"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Marque</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Marque</label>
                                         <select id="marque" name="marque" class="form-select col">
                                             <option></option>
                                             @foreach ($marques as $marque)

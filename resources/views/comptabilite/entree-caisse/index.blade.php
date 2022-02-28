@@ -40,65 +40,116 @@
                 <div class="card card-xl-stretch">
                     <div class="card-body bg-card-kawa">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <label class="col-sm-5" for="mouvement">Mouvement</label>
-                                    <select id="mouvement" name="mouvement" class="form-control col-sm-7" required>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="mouvement">Mouvement</label>
+                                    <select id="mouvement" name="mouvement"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Mouvement"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
                                         <option>Entrée</option>
                                         <option>Sortie</option>
                                     </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5" for="centre">Centre régional</label>
-                                    <select name="centre" id="centre" class="form-control col-sm-7" required>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre">Centre régional</label>
+                                    <select name="centre" id="centre"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre Régional"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
                                         <option></option>
                                         @foreach ($centres as $centre)
                                             <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5" for="centre_regional">Centre</label>
-                                    <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre_regional">Centre</label>
+                                    <select id="centre_regional" name="centre_regional"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
                                         <option></option>
                                     </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Date</label>
-                                    <input type="date" class="form-control col-sm-7" name="date" value="{{date('Y-m-d')}}" required />
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
+                                    <input type="date" class="form-control col editbox" name="date" value="{{date('Y-m-d')}}" required />
                                 </div>
-                                <div class="form-group row">
-                                    <label for="somme" class="col-sm-5">Somme</label>
-                                    <input type="number" min="0" value="0" class="form-control col-sm-7" name="somme" id="somme" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="somme" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Somme</label>
+                                    <input type="number" min="0" value="0" class="form-control col editbox" name="somme" id="somme" required />
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Motif</label>
-                                    <textarea class="form-control col-sm-7" name="motif" required ></textarea>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Motif</label>
+                                    <textarea class="form-control col editbox" name="motif" required ></textarea>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Déposant / Receveur</label>
-                                    <input class="form-control col-sm-7" name="deposant" required />
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Déposant / Receveur</label>
+                                    <input class="form-control col editbox" name="deposant" required />
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5">Service</label>
-                                    <input class="form-control col-sm-7" name="service" required />
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Service</label>
+                                    <input class="form-control col editbox" name="service" required />
                                 </div>
-                                <div class="form-group row">
-                                    <label for="justification" class="col-sm-5">Justification</label>
-                                    <select class="form-control col-sm-7" name="justification" id="justification" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="justification" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Justification</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Justification"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="justification" id="justification" disabled>
                                         <option>Justifié</option>
                                         <option>Non justifié</option>
                                     </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="montant_justifie" class="col-sm-5">Montant justifié</label>
-                                    <input type="number" class="form-control col-sm-7" name="montant_justifie" id="montant_justifie" disabled  />
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="montant_justifie" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant justifié</label>
+                                    <input type="number" class="form-control col editbox" name="montant_justifie" id="montant_justifie" disabled  />
                                 </div>
-                                <div class="form-group row">
-                                    <label for="montant_non_justifie" class="col-sm-5">Montant non justifié</label>
-                                    <input type="number" value="0" class="form-control col-sm-7" name="montant_non_justifie" id="montant_non_justifie" disabled />
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="montant_non_justifie" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant non justifié</label>
+                                    <input type="number" value="0" class="form-control col editbox" name="montant_non_justifie" id="montant_non_justifie" disabled />
                                 </div>
-
                             </div>
                         </div>
                     </div>

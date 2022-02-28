@@ -44,7 +44,14 @@
                         <div class="col-6">
                             <div class="form-group row">
                                 <label class="col-sm-5" for="mouvement">Mouvement</label>
-                                <select id="mouvement" name="mouvement" class="form-control col-sm-7" required>
+                                <select id="mouvement" name="mouvement"
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Mouvement"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        required>
                                     <option>{{$entreeCaisse->mouvement}}</option>
                                     <option>Entrée</option>
                                     <option>Sortie</option>
@@ -52,7 +59,14 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5" for="centre">Centre régional</label>
-                                <select name="centre" id="centre" class="form-control col-sm-7" required>
+                                <select name="centre" id="centre"
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Centre Régional"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        required>
                                     <option>{{$entreeCaisse->centre}}</option>
                                     @foreach ($centres as $centre)
                                         <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -61,7 +75,14 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-5" for="centre_regional">Centre</label>
-                                <select id="centre_regional" name="centre_regional" class="form-control col-sm-7" required>
+                                <select id="centre_regional" name="centre_regional"
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Centre"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        required>
                                     <option>{{$entreeCaisse->centre_regional}}</option>
                                 </select>
                             </div>

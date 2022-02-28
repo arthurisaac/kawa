@@ -27,54 +27,59 @@
                 @csrf
 
                 <div class="card card-xl-stretch">
+                    <div class="card-header bg-gradient-kawa">
+                        <h3 class="card-title fw-bolder text-white">Nouvelle facture</h3>
+                    </div>
                     <div class="card-body bg-card-kawa">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">N° Facture</label>
-                                    <div class="col-lg-6">
-                                     <input type="number" class="form-control" name="numeroFacture" placeholder="Numero de facture" required value="{{$nextId}}"/>
-                                    </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N° Facture</label>
+                                     <input type="number" class="form-control col editbox" name="numeroFacture" placeholder="Numero de facture" required value="{{$nextId}}"/>
                                 </div>
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Client</label>
-                                    <div class="col-lg-6">
-                                        <select class="col form-select" name="client" data-kt-select2="true" data-allow-clear="true" data-placeholder="Selectionner" required>
-                                            <option></option>
-                                            @foreach($clients as $client)
-                                                <option value="{{$client->id}}">{{$client->client_nom}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Client</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Client"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="client" required>
+                                        <option></option>
+                                        @foreach($clients as $client)
+                                            <option value="{{$client->id}}">{{$client->client_nom}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Periode</label>
-                                    <div class="col-lg-6">
-                                        <input type="number" class="form-control" name="periode" required />
-                                    </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Periode</label>
+                                    <input type="number" class="form-control col editbox" name="periode" required />
                                 </div>
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Montant</label>
-                                    <div class="col-lg-6">
-                                        <input type="number" class="form-control" name="montant" required />
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
+                                    <input type="number" class="form-control col editbox" name="montant" required />
                                 </div>
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Date Dépôt</label>
-                                    <div class="col-lg-6">
-                                        <input type="date" class="form-control" name="dateDepot" required />
-                                    </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date Dépôt</label>
+                                    <input type="date" class="form-control col editbox" name="dateDepot" required />
                                 </div>
-                                <br>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Date échéance</label>
-                                    <div class="col-lg-6">
-                                        <input type="date" class="form-control" name="dateEcheance" required />
-                                    </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date échéance</label>
+                                    <input type="date" class="form-control col editbox" name="dateEcheance" required />
                                 </div>
                             </div>
                         </div>

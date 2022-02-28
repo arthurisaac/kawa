@@ -55,17 +55,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Immatriculation</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Immatriculation</label>
                                                 <input type="text" class="form-control" name="immatriculation"
                                                        value="{{$vehicule->immatriculation}}" required/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Marque</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Marque</label>
                                                 <input type="text" class="form-control" name="marque"
                                                        value="{{$vehicule->marque}}"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type</label>
                                                 <select class="form-control" name="type" required>
                                                     <option>{{$vehicule->type}}</option>
                                                     <option value="VL">VL</option>
@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Photo</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Photo</label>
                                                 <input type="file" class="form-control form-control-file" name="photo"/>
                                             </div>
                                         </div>
@@ -85,17 +85,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Code</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Code</label>
                                                 <input type="text" class="form-control" name="code"
                                                        value="{{$vehicule->code}}"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">DPMC</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">DPMC</label>
                                                 <input type="date" class="form-control" name="DPMC"
                                                        value="{{$vehicule->DPMC}}"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                                 <select class="form-control" name="centre" id="centre" required>
                                                     <option>{{$vehicule->centre}}</option>
                                                     @foreach ($centres as $centre)
@@ -106,17 +106,17 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Chassis</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Chassis</label>
                                                 <input type="text" class="form-control" name="num_chassis"
                                                        value="{{$vehicule->num_chassis}}"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date d'aquisition</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date d'aquisition</label>
                                                 <input type="date" class="form-control" name="dateAcquisition"
                                                        value="{{$vehicule->dateAcquisition}}" required/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
                                                 <select class="form-control" name="centreRegional" id="centre_regional"
                                                         required>
                                                     <option>{{$vehicule->centreRegional}}</option>
@@ -136,7 +136,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Matricule</label>
                                                 <select class="form-control col-md-4" name="chauffeurTitulaire"
                                                         id="chauffeurTitulaire">
                                                     <option
@@ -148,7 +148,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Nom</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Nom</label>
                                                 <input type="text" class="form-control col-md-4"
                                                        name="chauffeurTitulaireNomPrenoms"
                                                        id="chauffeurTitulaireNomPrenoms"
@@ -156,12 +156,12 @@
                                                        readonly/>
                                             </div>
                                             {{--<div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Prénom</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Prénom</label>
                                                 <input type="text" class="form-control col-md-4" name="chauffeurTitulairePrenom"
                                                        id="chauffeurTitulairePrenom"/>
                                             </div>--}}
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Fonction</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Fonction</label>
                                                 <input type="text" class="form-control col-md-4"
                                                        name="chauffeurTitulaireFonction"
                                                        id="chauffeurTitulaireFonction"
@@ -169,12 +169,12 @@
                                                        readonly/>
                                             </div>
                                             {{--<div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Matricule</label>
                                                 <input type="text" class="form-control col-md-4" name="chauffeurTitulaireMatricule"
                                                        id="chauffeurTitulaireMatricule" readonly/>
                                             </div>--}}
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Date d'affection</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Date d'affection</label>
                                                 <input type="date" class="form-control col-md-4"
                                                        name="chauffeurTitulaireDateAffection"
                                                        id="chauffeurTitulaireDateAffection" readonly
@@ -194,7 +194,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" >Matricule</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" >Matricule</label>
                                                 <select class="form-control form-select col-md-4" name="chauffeurSuppleant"
                                                         id="chauffeurSuppleant">
                                                     <option
@@ -206,7 +206,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom</label>
                                                 <input type="text" class="form-control col-md-4"
                                                        name="chauffeurSuppleantNomPrenoms"
                                                        id="chauffeurSuppleantNomPrenoms"
@@ -214,12 +214,12 @@
                                                        readonly/>
                                             </div>
                                             {{--<div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Prénom</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Prénom</label>
                                                 <input type="text" class="form-control col-md-4" name="chauffeurSuppleantPrenom"
                                                        id="chauffeurSuppleantPrenom" readonly/>
                                             </div>--}}
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" >Fonction</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" >Fonction</label>
                                                 <input type="text" class="form-control col-md-4"
                                                        name="chauffeurSuppleantFonction"
                                                        id="chauffeurSuppleantFonction"
@@ -227,12 +227,12 @@
                                                        readonly/>
                                             </div>
                                             {{--<div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" class="col-md-3">Matricule</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" class="col-md-3">Matricule</label>
                                                 <input type="text" class="form-control col-md-4" name="chauffeurSuppleantMatricule"
                                                        id="chauffeurSuppleantMatricule" readonly/>
                                             </div>--}}
                                             <div class="form-group row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" >Date d'affection</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" >Date d'affection</label>
                                                 <input type="date" class="form-control col-md-4"
                                                        name="chauffeurSuppleantDateAffection"
                                                        id="chauffeurSuppleantDateAffection"
