@@ -355,7 +355,7 @@
                                             <div class="vertical_separator" style="height: 6rem"></div>
                                             <div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="bt_petit_materiel_securipack" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Sécuripack</label>
+                                                    <label for="bt_petit_materiel_securipack" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Sécuripack</label>
                                                     <select name="base_petit_materiel_securipack" id="bt_petit_materiel_securipack"
                                                             class="form-control col-sm-7">
                                                         <option></option>
@@ -366,7 +366,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="bt_petit_materiel_sacjute" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Sac jute</label>
+                                                    <label for="bt_petit_materiel_sacjute" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Sac jute</label>
                                                     <select name="base_petit_materiel_sacjute" id="bt_petit_materiel_sacjute"
                                                             class="form-control col-sm-7">
                                                         <option></option>
@@ -377,7 +377,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="bt_petit_materiel_scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Scellé</label>
+                                                    <label for="bt_petit_materiel_scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Scellé</label>
                                                     <input type="text" name="base_petit_materiel_scelle" id="bt_petit_materiel_scelle"
                                                            class="form-control col-sm-7">
                                                 </div>
@@ -504,15 +504,15 @@
                                             </label>
                                         </div>
                                         {{--<div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_gestion_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Gestion ATM</label>
+                                            <label for="bt_gestion_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Gestion ATM</label>
                                             <input type="text" name="base_gestion_atm" id="bt_gestion_atm" class="form-control col-sm-7">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_maintenance_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Maintenance ATM</label>
+                                            <label for="bt_maintenance_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Maintenance ATM</label>
                                             <input type="text" name="base_maintenance_atm" id="bt_maintenance_atm" class="form-control col-sm-7">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_consommable_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Consommable ATM</label>
+                                            <label for="bt_consommable_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Consommable ATM</label>
                                             <input type="text" name="base_consommable_atm" id="bt_consommable_atm" class="form-control col-sm-7">
                                         </div>--}}
                                         <!--<input type="hidden" name="id_client"id="id_client">-->

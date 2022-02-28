@@ -28,12 +28,12 @@
 
         <div class="row">
             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                 <input type="date" class="form-control col-md-8" value="{{date('Y-m-d')}}" required/>
             </div>
             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                 <label
-                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2 required">Véhicule</label>
+                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2 required">Véhicule</label>
                 <select name="vehicule" id="vehicule"
                         class="form-select select2-hidden-accessible"
                         data-control="select2"
@@ -48,12 +48,12 @@
                 </select>
             </div>
             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                 <input type="text" class="form-control form-control-sm col-md-8" name="centre" id="centre"
                        required readonly/>
             </div>
             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre
+                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
                     régional</label>
                 <input type="text" class="form-control form-control-sm col-md-8" name="centreRegional"
                        id="centreRegional"
@@ -110,7 +110,7 @@
                                 <div class="col-4">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km
                                             actuel</label>
                                         <input type="number" class="form-control form-control-sm col-md-8"
                                                name="kmActuel"
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                             km</label>
                                         <input type="number" class="form-control form-control-sm col-md-8"
                                                name="prochainKm"
@@ -341,7 +341,7 @@
                                 <div class="col-4">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km
                                             actuel</label>
                                         <input type="number" class="form-control form-control-sm col-md-8"
                                                name="kmActuel"
@@ -349,7 +349,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                             km</label>
                                         <input type="number" class="form-control form-control-sm col-md-8"
                                                name="prochainKm"
@@ -378,7 +378,7 @@
                                     <div class="col-4">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km
                                                 actuel</label>
                                             <input type="number" class="form-control form-control-sm col-md-8"
                                                    name="kmActuel"
@@ -386,7 +386,7 @@
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                                 km</label>
                                             <input type="number" class="form-control form-control-sm col-md-8"
                                                    name="prochainKm"
@@ -468,21 +468,21 @@
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
                                                 de renouvellement</label>
                                             <input type="date" class="form-control form-control-sm col-md-8"
                                                    name="dateRenouvellement"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                                 renouvellement</label>
                                             <input type="date" class="form-control form-control-sm col-md-8"
                                                    name="prochainRenouvellement"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant</label>
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
                                             <input type="number" min="0" class="form-control form-control-sm col-md-8"
                                                    name="montant"/>
                                         </div>
@@ -507,21 +507,21 @@
                                     <div class="col-5">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
                                                 de renouvellement</label>
                                             <input type="date" class="form-control form-control-sm col-md-8"
                                                    name="dateRenouvellement"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                                 renouvellement</label>
                                             <input type="date" class="form-control form-control-sm col-md-8"
                                                    name="prochainRenouvellement"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label
-                                                class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant</label>
+                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
                                             <input type="number" min="0" class="form-control form-control-sm col-md-8"
                                                    name="montant"/>
                                         </div>
@@ -549,21 +549,21 @@
                                 <div class="col-4">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
                                             de renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="dateRenouvellement"/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                             renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="prochainRenouvellement"/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant</label>
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
                                         <input type="number" min="0" class="form-control form-control-sm col-md-8"
                                                name="montant"/>
                                     </div>
@@ -586,21 +586,21 @@
                                 <div class="col-4">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
                                             de renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="dateRenouvellement"/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                             renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="prochainRenouvellement"/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant</label>
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
                                         <input type="number" min="0" class="form-control form-control-sm col-md-8"
                                                name="montant"/>
                                     </div>
@@ -624,21 +624,21 @@
                                     <input type="hidden" name="date" value="{{date('Y-m-d')}}" required/>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date
                                             de renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="dateRenouvellement" required/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochain
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochain
                                             renouvellement</label>
                                         <input type="date" class="form-control form-control-sm col-md-8"
                                                name="prochainRenouvellement" required/>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant</label>
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant</label>
                                         <input type="number" min="0" class="form-control form-control-sm col-md-8"
                                                name="montant" required/>
                                     </div>

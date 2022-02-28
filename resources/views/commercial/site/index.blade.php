@@ -237,19 +237,19 @@
                                             <input type="text" class="col-sm-6 form-control form-control-sm"
                                                    name="oo_gestion_gab"/>
                                             {{--<div class="row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau I</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Niveau I</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_gestion_gab_prix1"
                                                        placeholder="Prix" min="0">
                                             </div>
                                             <div class="row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau II</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Niveau II</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_gestion_gab_prix2"
                                                        placeholder="Prix" min="0">
                                             </div>
                                             <div class="row">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau II</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Niveau II</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_gestion_gab_prix3"
                                                        placeholder="Prix" min="0">
@@ -450,7 +450,7 @@
                                     </div>
                                     <br>
                                     {{--<div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="cb_tdf_vb" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Sécuripacks</label>
+                                        <label for="cb_tdf_vb" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Sécuripacks</label>
                                         <select class="col-sm-6 form-control form-control-sm" name="oo_securipack">
                                             <option></option>
                                             <option value="Extra grand">Extra grand</option>
@@ -462,7 +462,7 @@
                                                name="oo_securipack_prix">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="cb_tdf_vb" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Sac jute</label>
+                                        <label for="cb_tdf_vb" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Sac jute</label>
                                         <select class="col-sm-6 form-control form-control-sm" name="oo_sac_juste">
                                             <option></option>
                                             <option value="Extra grand">Extra grand</option>

@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="no_tournee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Tournée</label>
+                                        <label for="no_tournee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée</label>
                                         <select
                                             class="form-select form-select-solid select2-hidden-accessible"
                                             data-control="select2"
@@ -60,13 +60,13 @@
                                 </div>
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
                                         <input class="form-control col" name="vehicule" id="vehicule" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chef de bord</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
                                         <input class="form-control col" name="chefDeBord" id="chefDeBord" readonly/>
                                     </div>
                                 </div>
@@ -75,25 +75,25 @@
                             <div class="row">
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Agent garde</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent garde</label>
                                         <input class="form-control col" name="agentDeGarde" id="agentDeGarde" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chauffeur:</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur:</label>
                                         <input class="form-control col" name="chauffeur" id="chauffeur" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre regional</label>
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre regional</label>
                                         <input name="centre" id="centre" class="form-control col" readonly/>
                                     </div>
                                 </div>
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                         <input id="centre_regional" name="centre_regional" class="form-control col"
                                                readonly/>
                                     </div>
@@ -140,16 +140,16 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure départ</label>
+                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure départ</label>
                                             <input type="time" name="dcHeureDepart" class="form-control col editbox"
                                                    value="{{date('H:i')}}"/>
                                         </div>
                                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km départ</label>
+                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km départ</label>
                                             <input type="number" name="dcKmDepart" class="form-control col editbox"/>
                                         </div>
                                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau carburant</label>
+                                            <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Niveau carburant</label>
                                             <select name="dcNiveauCarburant"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -164,7 +164,7 @@
                                             </select>
                                         </div>
                                          <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="observation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation:</label>
+                                            <label for="observation" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Observation:</label>
                                             <textarea name="dcObservation" id="dcObservation"
                                                       class="form-control col editbox"></textarea>
                                         </div>
@@ -194,7 +194,7 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">SITE</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">SITE</label>
                                             <select type="text" name="asSite" id="asSite"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -208,7 +208,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Type opération</label>
+                                            <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type opération</label>
                                             <select name="asTypeOperation"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -222,37 +222,37 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date arrivée sur site</label>
+                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date arrivée sur site</label>
                                             <input type="date" name="asDateArrivee" class="form-control col-sm-8"
                                                    value="{{date('Y-m-d')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Kilométrage arrivée</label>
+                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Kilométrage arrivée</label>
                                             <input type="number" name="asKm" id="kmDepart"
                                                    class="form-control col-sm-8"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée sur site</label>
+                                            <label for="asDateArrivee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure arrivée sur site</label>
                                             <input type="time" name="asHeureArrivee" class="form-control col-sm-8"
                                                    value="{{date('H:i')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asDebutOpération" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure début opération</label>
+                                            <label for="asDebutOpération" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure début opération</label>
                                             <input type="time" name="asDebutOperation" id="asDebutOperation"
                                                    class="form-control col-sm-8" value="{{date('H:i')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asFinOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure fin opération</label>
+                                            <label for="asFinOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure fin opération</label>
                                             <input type="time" name="asFinOperation" id="asFinOperation"
                                                    class="form-control col-sm-8"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asTempsOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Temps opération (mn)</label>
+                                            <label for="asTempsOperation" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Temps opération (mn)</label>
                                             <input type="number" name="asTempsOperation" id="asTempsOperation"
                                                    class="form-control col-sm-8" readonly/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="asNbColis" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre de colis récupérés</label>
+                                            <label for="asNbColis" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nombre de colis récupérés</label>
                                             <input type="number" name="asNbColis" id="asNbColis"
                                                    class="form-control col-sm-8" disabled/>
                                         </div>
@@ -322,7 +322,7 @@
                                     <div class="row">
                                         <div class="col" style="display: none;">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de départ</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de départ</label>
                                                 <input type="time" name="asHeure" class="form-control col-sm-6"
                                                        value="{{date('H:i')}}"/>
                                             </div>
@@ -333,13 +333,13 @@
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date départ site</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date départ site</label>
                                                 <input type="datetime-local" class="form-control col-sm-8"
                                                        name="asDepartSite"
                                                        value="{{date('Y-m-d\TH:i')}}">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochaine destination</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochaine destination</label>
                                                 <select class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
                                                         data-placeholder="Prochaine destination"
@@ -354,7 +354,7 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Observation</label>
                                                 <textarea class="form-control col-sm-8" name="asObservation"></textarea>
                                             </div>
                                         </div>
@@ -381,12 +381,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de départ</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de départ</label>
                                             <input type="time" name="heureDepart" class="form-control col-sm-6"
                                                    value="{{date('H:i')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Kilométrage de depart</label>
+                                            <label id="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Kilométrage de depart</label>
                                             <input type="number" name="kmDepart" id="kmDepart"
                                                    class="form-control col-sm-6"/>
                                         </div>
@@ -399,12 +399,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date départ site</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date départ site</label>
                                                 <input type="date" class="form-control col-sm-6" name="departSite"
                                                        value="{{date('Y-m-d')}}">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Prochaine destination</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Prochaine destination</label>
                                                 <select class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
                                                         data-placeholder="Prochaine destination"
@@ -414,7 +414,7 @@
                                                         id="prochaineDestination"></select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Observation</label>
                                                 <textarea class="form-control col-sm-6" name="observation"></textarea>
                                             </div>
                                             <div class="row">
@@ -443,16 +443,16 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure arrivée</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure arrivée</label>
                                             <input type="time" name="heureArrivee" class="form-control col-sm-7"
                                                    value="{{date('H:i')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km arrivé</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km arrivé</label>
                                             <input type="number" name="kmArrive" class="form-control col-sm-7"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Niveau carburant</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Niveau carburant</label>
                                             <select name="niveauCarburant"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -467,7 +467,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container" style="display: none;">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fin de tournée</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fin de tournée</label>
                                             <select name="finTournee"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -481,12 +481,12 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date arrivée centre</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date arrivée centre</label>
                                             <input type="date" name="dateArrivee" class="form-control col-sm-7"
                                                    value="{{date('Y-m-d')}}"/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Observation</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Observation</label>
                                             <textarea name="observation" class="form-control col-sm-7"></textarea>
                                         </div>
                                         <br>

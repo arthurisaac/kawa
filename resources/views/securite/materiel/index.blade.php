@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Tournée N°</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Tournée N°</label>
                                 <select  class="form-select form-select-solid select2-hidden-accessible"
                                          data-control="select2"
                                          data-placeholder="N° Tournée"
@@ -51,19 +51,19 @@
                     <div class="row">
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                 <input type="date" class="col-sm-6 form-control form-control" name="date" value="{{date('Y-m-d')}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" for="centre">Centre</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre">Centre</label>
                                 <input name="centre" id="centre" class="col-sm-6 form-control form-control" readonly required />
                             </div>
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                <label  class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2" for="centre_regional">Centre Régional</label>
+                                <label  class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre_regional">Centre Régional</label>
                                 <input id="centre_regional" name="centre_regional" class="col-sm-6 form-control form-control" readonly required/>
                             </div>
                         </div>
@@ -107,16 +107,16 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                         <input type="text" name="cbMatricule" id="cbMatricule"
                                                                class="form-control col-sm-8" />
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom</label>
                                                         <input type="text" class="form-control col-sm-8" name="cbNom" id="cbNom">
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                         <input type="text" class="form-control col-sm-8" name="cbFonction" id="cbFonction">
                                                     </div>
                                                 </div>
@@ -126,16 +126,16 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                         <input type="text" name="ccMatricule" id="ccMatricule"
                                                                class="form-control col-sm-8" />
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom</label>
                                                         <input type="text" class="form-control col-sm-8" name="ccNom" id="ccNom">
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                         <input type="text" class="form-control col-sm-8" name="ccFonction" id="ccFonction">
                                                     </div>
                                                 </div>
@@ -146,22 +146,22 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                        <label for="cbMatricule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                         <input type="text" name="cgMatricule" id="cgMatricule"
                                                                class="form-control col-sm-8"/>
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom</label>
                                                         <input type="text" class="form-control col-sm-8" name="cgNom" id="cgNom">
                                                     </div>
                                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                         <input type="text" class="form-control col-sm-8" name="cgFonction" id="cgFonction">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"><label>Véhicule</label></div>
+                                                <div class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"><label>Véhicule</label></div>
                                                 <div class="col" style="display: none;">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="exampleRadios"
@@ -218,7 +218,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <div class="row">
-                                        <div class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"><label>Opération</label></div>
+                                        <div class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"><label>Opération</label></div>
                                         <div class="col">
                                             <select
                                                 class="form-select form-select-solid select2-hidden-accessible"
@@ -254,19 +254,19 @@
                                         </select>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Nom</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"-4">Nom</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm" name="operateurRadioNom">
                                     </div>
                                     <div class="form-group row">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Fonction</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"-4">Fonction</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm" name="operateurRadioFonction">
                                     </div>
                                     <div class="form-group row">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Heure de prise de service</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"-4">Heure de prise de service</label>
                                         <input type="time" class="col-sm-6 form-control form-control-sm" name="operateurRadioHeurePrise">
                                     </div>
                                     <div class="form-group row">
-                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"-4">Heure de fin de service</label>
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"-4">Heure de fin de service</label>
                                         <input type="time" class="col-sm-6 form-control form-control-sm" name="operateurRadioHeureFin">
                                     </div>
                                 </div>

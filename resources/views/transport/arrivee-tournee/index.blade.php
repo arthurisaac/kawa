@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Tournée</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée</label>
                                 <select class="form-control" name="numeroTournee" id="numeroTournee">
                                     <option>Selectionnez tournée</option>
                                     @foreach($departTournees as $departTournee)
@@ -40,26 +40,26 @@
                         <div class="col">
                             <div class="form-group">
                                 <label
-                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                 <input type="text" class="form-control" name="date" id="date" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
                                 <input type="text" class="form-control" name="vehicule" id="vehicule" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km
                                     départ</label>
                                 <input type="text" class="form-control" name="kmDepart" id="kmDepart" readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure
                                     départ</label>
                                 <input type="time" class="form-control" name="heureDepart" id="heureDepart" readonly/>
                             </div>
@@ -68,20 +68,20 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Convoyeur1</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Convoyeur1</label>
                                 <input class="form-control" type="text" name="convoyeur1" id="convoyeur1" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Convoyeur
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Convoyeur
                                     2</label>
                                 <input class="form-control" type="text" name="convoyeur2" id="convoyeur2" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Convoyeur
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Convoyeur
                                     3</label>
                                 <input class="form-control" type="text" name="convoyeur3" id="convoyeur3" readonly>
                             </div>
@@ -118,14 +118,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Km
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Km
                                     arrivée</label>
                                 <input type="number" class="form-control" name="kmArrivee" id="kmArrivee"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure
                                     arrivée</label>
                                 <input type="time" class="form-control" name="heureArrivee" id="heureArrivee"/>
                             </div>
@@ -137,7 +137,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vidange
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vidange
                                     générale</label>
                                 <input type="number" class="form-control" name="vidangeGenerale" id="vidangeGenerale"
                                        readonly/>
@@ -146,7 +146,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Visite
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Visite
                                     technique</label>
                                 <input type="date" class="form-control" name="visiteTechnique" id="visiteTechnique"
                                        readonly/>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vidange
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vidange
                                     Courroie</label>
                                 <input type="number" class="form-control" name="vidangeCourroie" id="vidangeCourroie"
                                        readonly/>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vidange
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vidange
                                     Patente</label>
                                 <input type="text" class="form-control" name="vidangePatente" id="patente" readonly/>
                                 <input type="hidden" name="vidangePatenteID" id="vidangePatenteID"/>
@@ -172,7 +172,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Assurance
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Assurance
                                     fin</label>
                                 <input type="date" class="form-control" name="assuranceFin" id="assuranceFin" readonly/>
                                 <input type="hidden" name="assuranceFinID" id="assuranceFinID"/>
@@ -180,7 +180,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vidange
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vidange
                                     pont</label>
                                 <input type="number" class="form-control" name="assuranceHeurePont" id="vidangePont" readonly/>
                                 <input type="hidden" name="vidangePontID" id="vidangePontID"/>
