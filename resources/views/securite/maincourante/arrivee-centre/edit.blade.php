@@ -24,7 +24,7 @@
         @endif
         <br>
         <div class="card card-xl-stretch">
-            <div class="card-body pt-3">
+            <div class="card-body bg-card-kawa 3">
                 <div class="row">
                     <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
                         <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date</label>
@@ -88,7 +88,7 @@
             @method("PATCH")
 
             <div class="card card-xl-stretch">
-                <div class="card-body pt-3">
+                <div class="card-body bg-card-kawa 3">
                     <input type="hidden" name="maincourante" value="arriveeCentre"/>
                     <div class="row">
                         <div class="col-4">

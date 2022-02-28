@@ -27,7 +27,7 @@
                 @method('PATCH')
 
                 <div class="card card-xxl-stretch">
-                    <div class="card-body pt-5">
+                    <div class="card-body bg-card-kawa 5">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">

@@ -105,25 +105,25 @@
                             <div class="card-header border-0 py-5 bg-warning">
                                 <h3 class="card-title fw-bolder">Caisse centrale Sortie de colis</h3>
                             </div>
-                            <div class="card-body pt-5">
+                            <div class="card-body bg-card-kawa 5">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="date"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2"
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"
                                         >Date</label>
                                         <input type="date" class="col-sm-6 form-control form-control" id="date" name="date" value="{{$colis->date ?? ''}}"  required>
                                     </div>
 
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="heure"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure
                                         </label>
                                         <input type="time" class="col-sm-6 form-control form-control" name="heure" id="heure" value="{{$colis->heure}}" readonly>
                                     </div>
 
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="noTournee"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N°Tournée
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée
                                         </label>
                                         <select
                                             class="form-select form-select-solid select2-hidden-accessible"
@@ -141,39 +141,39 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="vehicule"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Véhicule</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
                                         <input type="text" class="col-sm-6 form-control form-control" value="{{$colis->tournees->vehicules->immatriculation?? "Donnée indisponible"}}" name="vehicule" id="vehicule" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="agentDeGarde"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Agent de garde</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent de garde</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="agentDeGarde" id="agentDeGarde" value="{{$colis->tournees->agentDeGarde->nomPrenoms ?? "Données indisponible"}}" readonly>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="chefDeBord"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chef de bord</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="chefDeBord" id="chefDeBord" value="{{$colis->tournees->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="chauffeur"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Chauffeur</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="chauffeur" id="chauffeur" value="{{$colis->tournees->chauffeurs->nomPrenoms ?? "Données indisponible"}}"  readonly>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="centre"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="centre" id="centre" value="{{$colis->tournees->centre ?? ''}}" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="centre_regional" id="centre_regional" value="{{$colis->tournees->centre ?? ''}}" required>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="receveur" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Receveur</label>
+                                        <label for="receveur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Receveur</label>
                                         <input type="text" class="col-sm-6 form-control form-control" name="receveur" id="receveur" value="{{$colis->receveur}}" required>
                                     </div>
                                 </div>

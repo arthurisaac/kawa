@@ -22,7 +22,7 @@
                 @method("PATCH")
 
                 <div class="card card-xxl-stretch">
-                    <div class="card-body pt-5">
+                    <div class="card-body bg-card-kawa 5">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -93,7 +93,7 @@
 
                 <br>
                 <div class="card card-xxl-stretch">
-                    <div class="card-body pt-5">
+                    <div class="card-body bg-card-kawa 5">
                         <table class="table table-sm table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
                                id="sitesListes">
                             <thead>
@@ -178,7 +178,7 @@
                 </div>
                 <br>
                 <div class="card card-xxl-stretch">
-                    <div class="card-body pt-5">
+                    <div class="card-body bg-card-kawa 5">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">

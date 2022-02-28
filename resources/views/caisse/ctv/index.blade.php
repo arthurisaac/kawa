@@ -31,10 +31,10 @@
             @csrf
 
             <div class="card card-xxl-stretch">
-                <div class="card-body pt-5">
+                <div class="card-body bg-card-kawa 5">
                     <div class="row">
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre regional</label>
+                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre regional</label>
                                 <select name="centre" id="centre"
                                     class="form-select form-select-solid select2-hidden-accessible combobox"
                                     data-control="select2"
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                 <select id="centre_regional" name="centre_regional"
                                     class="form-select form-select-solid select2-hidden-accessible combobox"
                                     data-control="select2"
@@ -61,17 +61,17 @@
                                 </select>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                 <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control col editbox" />
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                <label for="heurePrise" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                <label for="heurePrise" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                 <input type="time" id="heurePrise" name="heurePrise" class="form-control col editbox" />
                             </div>
                     </div>
                     <div class="row">
                         <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                            <label for="heureFin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de fin de service</label>
+                            <label for="heureFin" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de fin de service</label>
                             <input type="time" name="heureFinBox" id="heureFinBox" class="form-control col editbox"/>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     </ul>
                     <br>
                    <div class="card card-xxl-stretch">
-                       <div class="card-body pt-0">
+                       <div class="card-body bg-card-kawa 0">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="operatrice" role="tabpanel"
                                 aria-labelledby="operatrice-tab">
@@ -163,7 +163,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="caisse_numtour" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numero de tournée</label>
+                                            <label for="caisse_numtour" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numero de tournée</label>
                                             <select name="tournee" id="caisse_numtour"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -178,7 +178,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numero de bordereau</label>
+                                            <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numero de bordereau</label>
                                             <input type="number" name="bordereau" class="col-sm-6 form-control form-control-sm"/>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et prenoms</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom et prenoms</label>
                                                     <select type="text" name="convoyeurGarde" id="convoyeurGarde"
                                                             class="form-select form-select-solid select2-hidden-accessible"
                                                             data-control="select2"
@@ -207,11 +207,11 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" name="convoyeurGardeFonction" id="convoyeurGardeFonction" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <input type="text" name="convoyeurGardeMatricule" id="convoyeurGardeMatricule" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                             </div>
@@ -227,7 +227,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et prénoms</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom et prénoms</label>
                                                     <select
                                                         class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
@@ -243,12 +243,12 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" name="regulatriceFonction" id="regulatriceFonction"
                                                         class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="caisse_matre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="caisse_matre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <input type="text" name="regulatriceMatricule" id="regulatriceMatricule" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                             </div>
@@ -264,7 +264,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Securipack</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Securipack</label>
                                                 <select
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -281,7 +281,7 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Sac jute</label>
+                                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Sac jute</label>
                                                 <select class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
                                                         data-placeholder="Securipack"
@@ -299,13 +299,13 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="nombreColis"  class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nombre</label>
+                                                <label for="nombreColis"  class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nombre</label>
                                                 <input type="number" name="nombreColis" id="nombreColis" class="col-sm-6 form-control form-control-sm"/>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="numeroScelleColis" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numero de scellé</label>
+                                                <label for="numeroScelleColis" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numero de scellé</label>
                                                 <textarea name="numeroScelleColis" id="numeroScelleColis" class="col-sm-6 form-control form-control-sm"></textarea>
                                             </div>
                                         </div>
@@ -316,7 +316,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Client</label>
+                                                <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Client</label>
                                                 <select class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
                                                         data-placeholder="Client"
@@ -331,7 +331,7 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
+                                                <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
                                                 <select class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
                                                         data-placeholder="Site"
@@ -345,11 +345,11 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="expediteur" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Expediteur</label>
+                                                <label for="expediteur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Expediteur</label>
                                                 <input type="text" class="col-sm-6 form-control form-control-sm" id="expediteur" name="expediteur"  />
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="caisse_desti" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Destinataire</label>
+                                                <label for="caisse_desti" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Destinataire</label>
                                                 <input type="text" class="col-sm-6 form-control form-control-sm" id="destinataire" name="destinataire"  />
                                             </div>
                                         </div>
@@ -528,19 +528,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="montantAnnonce" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant annoncé</label>
+                                            <label for="montantAnnonce" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant annoncé</label>
                                             <input type="number" name="montantAnnonce" id="montantAnnonce" value="0" class="col-sm-6 form-control form-control-sm" readonly/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="montantReconnu" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant reconnu</label>
+                                            <label for="montantReconnu" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant reconnu</label>
                                             <input type="number" name="montantReconnu" id="montantReconnu" class="col-sm-6 form-control form-control-sm" value="0" readonly/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="ecartConstate" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Ecart constaté</label>
+                                            <label for="ecartConstate" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Ecart constaté</label>
                                             <input type="number" name="ecartConstate" id="ecartConstate" class="col-sm-6 form-control form-control-sm" value="0" readonly/>
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                            <label for="montantFinal" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Montant final</label>
+                                            <label for="montantFinal" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Montant final</label>
                                             <input type="number" name="montantFinal" id="montantFinal" class="col-sm-6 form-control form-control-sm" value="0"/=
                                         </div>
                                     </div>
@@ -559,25 +559,25 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group row">
-                                                    <label for="caisse_bc" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets calculés</label>
+                                                    <label for="caisse_bc" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Billets calculés</label>
                                                     <label><input type="radio" value="oui" name="billetsCalcules"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsCalcules"> Non</label>
                                                     <input type="number" name="billetsCalculesMontant" id="caisse_bc" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_bsav" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets sans valeurs</label>
+                                                    <label for="caisse_bsav" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Billets sans valeurs</label>
                                                     <label><input type="radio" value="oui" name="billetsSansValeurs"> Oui</label>
                                                     <label><input type="radio" value="oui" name="billetsSansValeurs"> Non</label>
                                                     <input type="number" name="billetsSansValeursMontant" id="caisse_bsav" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_busa" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets usagés</label>
+                                                    <label for="caisse_busa" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Billets usagés</label>
                                                     <label><input type="radio" value="oui" name="billetsUsages"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsUsages"> Non</label>
                                                     <input type="number" name="billetsUsagesMontant" id="caisse_busa" class="col-sm-6 form-control form-control-sm"/>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="caisse_fau" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Faux billets</label>
+                                                    <label for="caisse_fau" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Faux billets</label>
                                                     <label><input type="radio" value="oui" name="fauxBillets"> Oui</label>
                                                     <label><input type="radio" value="non" name="fauxBillets"> Non</label>
                                                     <input type="number" name="fauxBilletsMontant"  class="col-sm-6 form-control form-control-sm"/>
@@ -585,7 +585,7 @@
 
 
                                                 <div class="form-group row">
-                                                    <label for="caisse_bide" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Billets déparaillés</label>
+                                                    <label for="caisse_bide" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Billets déparaillés</label>
                                                     <label><input type="radio" value="oui" name="billetsDeparailles"> Oui</label>
                                                     <label><input type="radio" value="non" name="billetsDeparailles"> Non</label>
                                                     <input type="number" name="billetsDeparaillesMontant" id="caisse_bide" class="col-sm-6 form-control form-control-sm"/>

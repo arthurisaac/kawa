@@ -38,7 +38,7 @@
             @csrf
 
             <div class="card card-xl-stretch">
-                <div class="card-body">
+                <div class="card-body bg-card-kawa">
                     <div class="row">
                         <div class="col">
                             <div class="form-group row">

@@ -42,7 +42,7 @@
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
-                    <div class="card-body pt-2">
+                    <div class="card-body bg-card-kawa 2">
                         <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                             <!--begin::Icon-->
                             <span class="svg-icon svg-icon-warning me-5">
@@ -116,7 +116,7 @@
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="centre"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">
                                             Centre Régional
                                         </label>
                                         <select name="centre" id="centre"
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Clients</label>
+                                        <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Clients</label>
                                         <select id="client" name="client"
                                                 class="form-select form-select-solid select2-hidden-accessible"
                                                 data-control="select2"
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
+                                        <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
                                         <select id="site" name="site"
                                                 class="form-select form-select-solid select2-hidden-accessible"
                                                 data-control="select2"
@@ -172,19 +172,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
                                         <input type="date" name="debut" id="debut" class="form-control col" value="{{$debut}}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                         <input type="date" name="fin" id="fin" class="form-control col" value="{{$fin}}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="remettant" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Remettant</label>
+                                        <label for="remettant" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Remettant</label>
                                         <input type="text" id="remettant" name="remettant" class="form-control col" value="{{$remettant}}" />
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numéro scellé</label>
+                                        <label for="scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numéro scellé</label>
                                         <input type="text" id="scelle" name="scelle" class="form-control col" value="{{$scelle}}" />
                                     </div>
                                 </div>

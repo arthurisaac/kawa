@@ -25,7 +25,7 @@
         <form method="post" action="{{ route('materiel.store') }}">
             @csrf
             <div class="card card-xxl-stretch">
-                <div class="card-body pt-5">
+                <div class="card-body bg-card-kawa pt-5">
                     <div class="row">
                         <div class="col">
                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
@@ -89,7 +89,7 @@
             </ul>
             <br>
             <div class="card card-xxl-stretch">
-                <div class="card-body">
+                <div class="card-body bg-card-kawa">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="equipages" role="tabpanel"
                              aria-labelledby="equipages-tab">

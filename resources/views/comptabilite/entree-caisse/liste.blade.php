@@ -39,7 +39,7 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2">
+                        <div class="card-body bg-card-kawa pt-2">
                             <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-warning me-5">
@@ -108,7 +108,7 @@
                             <div class="card-header border-0 py-5">
                                 <h3 class="card-title fw-bolder">Option de filtre</h3>
                             </div>
-                            <div class="card-body pt-5">
+                            <div class="card-body bg-card-kawa pt-5">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">

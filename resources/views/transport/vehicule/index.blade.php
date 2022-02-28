@@ -47,7 +47,7 @@
             </ul>
             <br/>
             <div class="card card-xl-stretch">
-                <div class="card-body pt-5">
+                <div class="card-body bg-card-kawa 5">
                     <div class="tab-content">
                     <div class="tab-pane fade show active" id="vehicule" role="tabpanel" aria-labelledby="vehicule-tab">
                         <div>

@@ -25,56 +25,75 @@
         @endif
 
         <div class="card card-xl-stretch">
-            <div class="card-body pt-3">
+            <div class="card-header border-0 py-5 bg-gradient-kawa">
+                <h3 class="card-title fw-bolder">Main Courante Modification</h3>
+            </div>
+            <div class="card-body bg-card-kawa pt-3">
                 <div class="row">
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date</label>
-                        <input type="text" name="date" id="date" value="{{$centre->tournees->date ?? ''}}"
-                               class="form-control form-control-solid col"
-                               readonly/>
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                            <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Date</label>
+                            <input type="text" name="date" id="date" value="{{$centre->tournees->date ?? ''}}"
+                                   class="form-control form-control-solid col"
+                                   readonly/>
+                        </div>
                     </div>
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label for="no_tournee"
-                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">N°Tournée</label>
-                        <input class="form-control form-control-solid col" name="noTournee" id="noTournee"
-                               value="{{$centre->tournees->numeroTournee ?? ''}} // {{$centre->tournees->vehicules->code ?? ""}}"
-                               readonly/>
+
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                            <label for="no_tournee" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">N°Tournée</label>
+                                <input class="form-control form-control-solid col" name="noTournee" id="noTournee" value="{{$centre->tournees->numeroTournee ?? ''}} // {{$centre->tournees->vehicules->code ?? ""}}" readonly/>
+                        </div>
                     </div>
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Véhicule</label>
-                        <input class="form-control form-control-solid col" name="vehicule" id="vehicule"
-                               value="{{$centre->tournees->vehicules->immatriculation ?? ""}}" readonly/>
+
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Véhicule</label>
+                            <input class="form-control form-control-solid col" name="vehicule" id="vehicule"
+                                   value="{{$centre->tournees->vehicules->immatriculation ?? ""}}" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-8 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chef de bord</label>
+                            <input class="form-control form-control-solid col" name="chefDeBord" id="chefDeBord"
+                                   value="{{$centre->tournees->chefDeBords->nomPrenoms ?? ""}}" readonly/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-8 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Agent garde</label>
+                            <input class="form-control form-control-solid col" name="agentDeGarde" id="agentDeGarde"
+                                   value="{{$centre->tournees->agentDeGarde->nomPrenoms ?? ""}}" readonly/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-8 fv-row fv-plugins-icon-container">
+                            <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chauffeur:</label>
+                            <input class="form-control form-control-solid col" name="chauffeur" id="chauffeur"
+                                   value="{{$centre->tournees->chauffeurs->nomPrenoms ?? ""}}" readonly/>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chef de bord</label>
-                        <input class="form-control form-control-solid col" name="chefDeBord" id="chefDeBord"
-                               value="{{$centre->tournees->chefDeBords->nomPrenoms ?? ""}}" readonly/>
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-8 fv-row fv-plugins-icon-container">
+                            <label for="centre" class="d-flex align-items-center fs-6 text-dark fw-bold form-label mb-2">Centre
+                                régional</label>
+                            <input name="centre" id="centre" class="form-control form-control-solid col-sm-8"
+                                   value="{{$centre->tournees->centre}}" readonly/>
+                        </div>
                     </div>
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Agent garde</label>
-                        <input class="form-control form-control-solid col" name="agentDeGarde" id="agentDeGarde"
-                               value="{{$centre->tournees->agentDeGarde->nomPrenoms ?? ""}}" readonly/>
-                    </div>
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Chauffeur:</label>
-                        <input class="form-control form-control-solid col" name="chauffeur" id="chauffeur"
-                               value="{{$centre->tournees->chauffeurs->nomPrenoms ?? ""}}" readonly/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre
-                            régional</label>
-                        <input name="centre" id="centre" class="form-control form-control-solid col-sm-8"
-                               value="{{$centre->tournees->centre}}" readonly/>
-                    </div>
-                    <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre</label>
-                        <input id="centre_regional" name="centre_regional"
-                               class="form-control form-control-solid col-sm-8"
-                               value="{{$centre->tournees->centre}}" readonly/>
+                    <div class="col">
+                        <div class="d-flex flex-column mb-7 col-md-8 fv-row fv-plugins-icon-container">
+                            <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre</label>
+                            <input id="centre_regional" name="centre_regional"
+                                   class="form-control form-control-solid col-sm-8"
+                                   value="{{$centre->tournees->centre}}" readonly/>
+                        </div>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -89,23 +108,23 @@
             @method('PATCH')
 
             <div class="card card-xl-stretch">
-                <div class="card-body pt-3">
+                <div class="card-body bg-card-kawa 3">
                     <input type="hidden" name="maincourante" value="departCentre"/>
                     <br/>
                     <div class="row">
                         <div class="col-4">
-                            <div class="form-group row">
-                                <label for="heure_depart" class="col-sm-4">Heure départ</label>
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="heure_depart" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Heure départ</label>
                                 <input type="time" name="heureDepart" value="{{$centre->heureDepart}}"
                                        class="form-control col-sm-8"/>
                             </div>
-                            <div class="form-group row">
-                                <label for="km_depart" class="col-sm-4">Km départ</label>
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Km départ</label>
                                 <input type="number" name="kmDepart" value="{{$centre->kmDepart}}"
                                        class="form-control col-sm-8"/>
                             </div>
-                            <div class="form-group row">
-                                <label for="km_depart" class="col-sm-4">Niveau carburant</label>
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="km_depart" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Niveau carburant</label>
                                 <select name="niveauCarburant" class="form-control col-sm-8">
                                     <option>{{$centre->niveauCarburant}}</option>
                                     @foreach($optionNiveauCarburant as $option)
@@ -113,8 +132,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group row">
-                                <label for="observation" class="col-sm-4">Observation:</label>
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="observation" class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Observation:</label>
                                 <textarea name="observation" id="dcObservation"
                                           class="form-control col-sm-8">{{$centre->observation}}</textarea>
                             </div>

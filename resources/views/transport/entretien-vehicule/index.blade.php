@@ -98,7 +98,7 @@
         </ul>
         <br>
         <div class="card card-xl-stretch">
-            <div class="card-body pt-3 py-0">
+            <div class="card-body bg-card-kawa 3 py-0">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="vidange-generale" role="tabpanel"
                          aria-labelledby="vidange-generale-tab">

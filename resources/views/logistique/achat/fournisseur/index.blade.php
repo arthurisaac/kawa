@@ -26,7 +26,7 @@
                             <div class="card-header border-0 py-5 bg-warning">
                                 <h3 class="card-title fw-bolder">Fournisseur</h3>
                             </div>
-                            <div class="card-body pt-5">
+                            <div class="card-body bg-card-kawa 5">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">

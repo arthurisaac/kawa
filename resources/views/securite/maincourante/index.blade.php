@@ -30,11 +30,11 @@
                         <div class="card-header border-0 py-5 bg-gradient-kawa">
                             <h3 class="card-title fw-bolder">Main Courante</h3>
                         </div>
-                        <div class="card-body pt-5">
+                        <div class="card-body bg-card-kawa 5">
                             <div class="row">
                                 <div class="col">
                                      <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                        <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                        <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                         <input type="text" name="date" id="date" value="{{$date}}"
                                                class="form-control col" readonly/>
                                     </div>

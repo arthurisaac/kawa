@@ -10,7 +10,10 @@
 
         @if ($site->tournees)
             <div class="card card-xl-stretch">
-                <div class="card-body pt-3">
+                <div class="card-header border-0 py-5 bg-gradient-kawa">
+                    <h3 class="card-title fw-bolder">Main Courante Arrivée Site Modification</h3>
+                </div>
+                <div class="card-body bg-card-kawa pt-3">
                     <div class="row">
                         <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
                             <label for="date"
@@ -85,7 +88,7 @@
                 @csrf
 
                 <div class="card card-xl-stretch">
-                    <div class="card-body pt-3">
+                    <div class="card-body bg-card-kawa 3">
                         <div class="row">
                             <div class="col-4">
                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">

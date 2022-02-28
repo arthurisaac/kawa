@@ -163,11 +163,14 @@
                             <div class="card-body bg-card-kawa pt-5">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="centre"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
-                                               class="d-flex align-items-center fs-6 fw-bold form-label mb-2">Centre
-                                            Régional</label>
-                                        <select name="centre" id="centre" class="form-select col">
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre Régional</label>
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Centre Régional"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$centre}}</option>
                                             @foreach ($centres as $centre)
                                                 <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
@@ -175,10 +178,14 @@
                                         </select>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
-                                        <label for="centre_regional"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
-                                               class="d-flex align-items-center fs-6 fw-bold form-label  mb-2">Centre</label>
-                                        <select id="centre_regional" name="centre_regional" class="form-select col">
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                        <select id="centre_regional" name="centre_regional"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Centre"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$centre_regional}}</option>
                                             @foreach ($centres_regionaux as $centre)
                                                 <option
@@ -189,7 +196,13 @@
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="client"
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Clients</label>
-                                        <select id="client" name="client" class="form-select col">
+                                        <select id="client" name="client"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Clients"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$client}}</option>
                                             @foreach ($clients as $clt)
                                                 <option value="{{$clt->id}}">{{ $clt->client_nom }}</option>
@@ -199,7 +212,13 @@
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="site"
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
-                                        <select id="site" name="site" class="form-select col">
+                                        <select id="site" name="site"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Site"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
                                                 <option value="{{$site->id}}">{{ $site->site }}</option>
@@ -222,7 +241,13 @@
                                         <label for="tdf"
                                                class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">TDF</label>
 =
-                                        <select name="tdf" id="tdf" class="form-select col">
+                                        <select name="tdf" id="tdf"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="TDF"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$tdf}}</option>
                                             <option value="oo_vb_extamuros_bitume">VB extramuros bitume</option>
                                             <option value="oo_vb_extramuros_piste">VB extramuros piste</option>
@@ -236,7 +261,13 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="caisse" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Caisse</label>
-                                        <select name="caisse" id="caisse" class="form-select col">
+                                        <select name="caisse" id="caisse"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Caisse"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$caisse}}</option>
                                             <option value="oo_mad">MAD</option>
                                             <option value="oo_collecte">Collecte</option>
@@ -250,7 +281,13 @@
                                         <label for="typeOP" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type
 
                                             OP</label>
-                                        <select name="typeOP" id="typeOP" class="form-select col">
+                                        <select name="typeOP" id="typeOP"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Type OP"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$typeOP}}</option>
                                             <option value="Enlèvement">Enlèvement</option>
                                             <option value="Dépôt">Dépôt</option>
@@ -262,7 +299,13 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                         <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
-                                        <select name="vehicule" id="vehicule" class="form-select col">
+                                        <select name="vehicule" id="vehicule"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Véhicule"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$vehicule}}</option>
                                             @foreach($vehicules as $vehicule)
                                                 <option

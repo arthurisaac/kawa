@@ -36,14 +36,14 @@
                             <div class="card-header border-0 py-5 bg-warning">
                                 <h3 class="card-title fw-bolder">Caisse Centrale Entrée colis</h3>
                             </div>
-                            <div class="card-body pt-5">
+                            <div class="card-body bg-card-kawa pt-5">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                        <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
                                         <input type="date" class="col-6 form-control" id="debut" name="debut" required>
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
-                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                        <label for="fin" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                         <input type="date" class="col-6 form-control" name="fin" id="fin" required>
                                     </div>
                                 </div>

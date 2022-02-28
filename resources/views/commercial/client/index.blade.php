@@ -50,7 +50,7 @@
             </ul>
             <br>
             <div class="card card-xl-stretch" style="width: 100%;">
-                <div class="card-body">
+                <div class="card-body bg-card-kawa">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="info-c" role="tabpanel" aria-labelledby="info-c-tab">
                             <div class="container">

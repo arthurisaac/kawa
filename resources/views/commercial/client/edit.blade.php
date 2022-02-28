@@ -47,7 +47,7 @@
                 </ul>
                 <br>
                 <div class="card card-xl-stretch" style="width: 100%;">
-                    <div class="card-body">
+                    <div class="card-body bg-card-kawa">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="info-c" role="tabpanel" aria-labelledby="info-c-tab">
                                 <div class="container">
@@ -61,7 +61,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_nom" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom du client</label>
+                                                <label for="client_nom" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom du client</label>
                                                 <input type="text" name="client_nom" id="client_nom"
                                                        class="form-control col-sm-7" required/>
                                                 <div>
@@ -69,46 +69,46 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_situation_geographique" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Situation
+                                                <label for="client_situation_geographique" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Situation
                                                     géographique</label>
                                                 <input type="text" name="client_situation_geographique"
                                                        id="client_situation_geographique"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_tel" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">TEL/FAX</label>
+                                                <label for="client_tel" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">TEL/FAX</label>
                                                 <input type="text" name="client_tel" id="client_tel"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_regime" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Régime impot</label>
+                                                <label for="client_regime" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Régime impot</label>
                                                 <input type="text" name="client_regime_impot" id="client_regime_impot"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_boite_postale" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Boîte postale</label>
+                                                <label for="client_boite_postale" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Boîte postale</label>
                                                 <input type="text" name="client_boite_postale" id="client_boite_postale"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_ville" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Ville</label>
+                                                <label for="client_ville" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Ville</label>
                                                 <input type="text" name="client_ville" id="client_ville"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_rc" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">RC</label>
+                                                <label for="client_rc" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">RC</label>
                                                 <input type="text" name="client_rc" id="client_rc"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_ncc" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">NCC</label>
+                                                <label for="client_ncc" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">NCC</label>
                                                 <input type="text" name="client_ncc" id="client_ncc"
                                                        class="form-control col-sm-7"/>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="client_secteur_activite" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Secteur
+                                                <label for="client_secteur_activite" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Secteur
                                                     d'activité</label>
                                                 <select name="client_secteur_activite" id="client_secteur_activite"
                                                         class="form-control col-sm-7">
@@ -119,7 +119,7 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre Régional</label>
+                                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre Régional</label>
                                                 <select name="centre" id="centre" class="form-control col" required>
                                                     <option>{{$client->centre}}</option>
                                                     @foreach ($centres as $centre)
@@ -129,7 +129,7 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                                 <select id="centre_regional" name="centre_regional" class="form-control col"
                                                         required>
                                                     <option>{{$client->centre_regional}}</option>
@@ -165,17 +165,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_nom" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom contact</label>
+                                                <label for="contact_nom" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom contact</label>
                                                 <input type="text" name="contact_nom" id="contact_nom"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_email" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Email</label>
+                                                <label for="contact_email" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Email</label>
                                                 <input type="email" name="contact_email" id="contact_email"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_portefeuille" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Porte feuille
+                                                <label for="contact_portefeuille" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Porte feuille
                                                     client</label>
                                                 <input type="text" name="contact_portefeuille" id="contact_portefeuille"
                                                        class="form-control col-sm-7">
@@ -183,17 +183,17 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_fonction" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                <label for="contact_fonction" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                 <input type="text" name="contact_fonction" id="contact_fonction"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_portable" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Tel portable</label>
+                                                <label for="contact_portable" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Tel portable</label>
                                                 <input type="tel" name="contact_portable" id="contact_portable"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contact_secteur_activite" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Secteur
+                                                <label for="contact_secteur_activite" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Secteur
                                                     d'activité</label>
                                                 <input type="text" name="contact_secteur_activite"
                                                        id="contact_secteur_activite"
@@ -214,17 +214,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contrat_numero" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">N° Contrat</label>
+                                                <label for="contrat_numero" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N° Contrat</label>
                                                 <input type="text" name="contrat_numero" id="contrat_numero"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contrat_date_effet" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date effet</label>
+                                                <label for="contrat_date_effet" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date effet</label>
                                                 <input type="date" name="contrat_date_effet" id="contrat_date_effet"
                                                        class="form-control col-sm-7">
                                             </div>
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="contrat_duree" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Durée</label>
+                                                <label for="contrat_duree" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Durée</label>
                                                 <input type="number" name="contrat_duree" id="contrat_duree"
                                                        class="form-control col-sm-7">
                                             </div>
@@ -463,7 +463,7 @@
                                             </div>--}}
 
                                             <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                <label for="bt_comptage_montant_forfaitaire" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Comptage + tri
+                                                <label for="bt_comptage_montant_forfaitaire" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Comptage + tri
                                                     / montant forfaitaire</label>
                                                 <input type="text" name="base_comptage_montant_forfaitaire"
                                                        value="{{$client->base_comptage_montant_forfaitaire}}"
@@ -493,15 +493,15 @@
                                                 </label>
                                             </div>
                                         {{--<div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_gestion_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Gestion ATM</label>
+                                            <label for="bt_gestion_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Gestion ATM</label>
                                             <input type="text" name="base_gestion_atm" id="bt_gestion_atm" class="form-control col-sm-7">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_maintenance_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Maintenance ATM</label>
+                                            <label for="bt_maintenance_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Maintenance ATM</label>
                                             <input type="text" name="base_maintenance_atm" id="bt_maintenance_atm" class="form-control col-sm-7">
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="bt_consommable_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Consommable ATM</label>
+                                            <label for="bt_consommable_atm" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Consommable ATM</label>
                                             <input type="text" name="base_consommable_atm" id="bt_consommable_atm" class="form-control col-sm-7">
                                         </div>--}}
                                         <!--<input type="hidden" name="id_client"id="id_client">-->

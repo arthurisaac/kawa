@@ -24,15 +24,15 @@
             @endif
             <form method="post" action="{{ route('caisse-service.store')}}" class="form-horizontal">
                 <div class="card card-xxl-stretch">
-                    <div class="card-body pt-5">
+                    <div class="card-body bg-card-kawa 5">
                         <div class="row">
                             <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
-                                <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date</label>
+                                <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                 <input type="date" class="col-sm-6 form-control form-control" name="debut" id="debut">
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
                                 <label for="centre"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                 <select type="text" class="form-select form-select-solid select2-hidden-accessible"
                                         data-control="select2"
                                         data-placeholder="Centre"
@@ -49,7 +49,7 @@
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-4 fv-row fv-plugins-icon-container">
                                 <label for="centre_regional"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre régional</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
                                 <select type="text" class="form-select form-select-solid select2-hidden-accessible"
                                         data-control="select2"
                                         data-placeholder="Centre régional"
@@ -77,7 +77,7 @@
                         </ul>
                         <br>
                         <div class="card card-xxl-stretch">
-                            <div class="card-body pt-0">
+                            <div class="card-body bg-card-kawa pt-0">
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="charge-caisse" role="tabpanel"
                                         aria-labelledby="charge-caisse-tab">
@@ -85,7 +85,7 @@
                                             <div class="col">
                                                 <h6>Chargé de caisse</h6>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="chargeCaisse" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="chargeCaisse" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <select type="text" name="chargeCaisse" id="chargeCaisse"
                                                         class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
@@ -103,7 +103,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="nomChargeCaisse"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et Prenom(s)</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom et Prenom(s)</label>
                                                     <input type="text" class="col-sm-6 form-control form-control-sm"
                                                            name="nomChargeCaisse"
                                                            id="nomChargeCaisse">
@@ -111,7 +111,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="fonctionChargeCaisse"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control-sm"
                                                            name="fonctionChargeCaisse"
                                                            id="fonctionChargeCaisse">
@@ -119,7 +119,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="chargeCaisseHPS"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control-sm"
                                                            name="chargeCaisseHPS"
                                                            id="chargeCaisseHPS">
@@ -127,7 +127,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="chargeCaisseHFS"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control-sm"
                                                            name="chargeCaisseHFS"
                                                            id="chargeCaisseHFS">
@@ -160,7 +160,7 @@
                                             <div class="col">
                                                 <h6>Chargée de caisse adjointe</h6>
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                                    <label for="chargeCaisseAdjoint" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Matricule</label>
+                                                    <label for="chargeCaisseAdjoint" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Matricule</label>
                                                     <select type="text" name="chargeCaisseAdjoint" id="chargeCaisseAdjoint"
                                                         class="form-select form-select-solid select2-hidden-accessible"
                                                         data-control="select2"
@@ -178,7 +178,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="nomChargeCaisseAdjoint"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom et Prenom(s)</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom et Prenom(s)</label>
                                                     <input type="text" class="col-sm-6 form-control form-control-sm"
                                                            name="nomChargeCaisseAdjoint"
                                                            id="nomChargeCaisseAdjoint">
@@ -186,7 +186,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="fonctionChargeCaisseAdjoint"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction</label>
                                                     <input type="text" class="col-sm-6 form-control form-control-sm"
                                                            name="fonctionChargeCaisseAdjoint"
                                                            id="fonctionChargeCaisseAdjoint">
@@ -194,7 +194,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="chargeCaisseAdjointHPS"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control-sm"
                                                            name="chargeCaisseAdjointHPS"
                                                            id="chargeCaisseAdjointHPS">
@@ -202,7 +202,7 @@
 
                                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                     <label for="chargeCaisseAdjointHFS"
-                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Heure de prise de service</label>
+                                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure de prise de service</label>
                                                     <input type="time" class="col-sm-6 form-control form-control-sm"
                                                            name="chargeCaisseAdjointHFS"
                                                            id="chargeCaisseAdjointHFS">

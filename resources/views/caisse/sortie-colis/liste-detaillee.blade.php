@@ -65,7 +65,7 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2">
+                        <div class="card-body bg-card-kawa 2">
                             <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-warning me-5">
@@ -138,7 +138,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre Régional</label>
+                                            <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre Régional</label>
                                             <select name="centre" id="centre"
                                                     class="form-select form-select-solid select2-hidden-accessible"
                                                     data-control="select2"
@@ -209,26 +209,26 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date début</label>
+                                            <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
                                             <input type="date" name="debut"
                                                    class="col-sm-6 form-control" value="{{$debut}}">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Date fin</label>
+                                            <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                             <input type="date" name="fin" class="col-sm-6 form-control" value="{{$fin}}">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="receveur" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Receveur</label>
+                                            <label for="receveur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Receveur</label>
                                             <input type="text" id="receveur" name="receveur" class="col-sm-6 form-control" value="{{$receveur}}" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
-                                            <label for="scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numéro scellé</label>
+                                            <label for="scelle" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numéro scellé</label>
                                             <input type="text" id="scelle" name="scelle" class="col-sm-6 form-control" value="{{$scelle}}" />
                                         </div>
                                     </div>

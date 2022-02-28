@@ -21,11 +21,11 @@
                 @csrf
 
                 <div class="card card-xxl-stretch">
-                    <div class="card-body">
+                    <div class="card-body bg-card-kawa">
                         <div class="row">
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="client"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Client</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Client</label>
                                 <select name="client" id="client" class="form-control col-sm-7" required>
                                     <option value="{{$site->clients->id}}">{{$site->clients->client_nom}}</option>
                                     @foreach ($clients as $client)
@@ -35,14 +35,14 @@
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="site"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Site</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
                                 <input id="site" type="text" name="site" class="form-control col-sm-7"
                                        value="{{$site->site}}"
                                        required/>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="nom_contact"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Nom
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom
                                     contact du site</label>
                                 <input id="nom_contact" type="text" name="nom_contact_site"
                                        value="{{$site->nom_contact_site}}"
@@ -50,7 +50,7 @@
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="fonction_contact"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Fonction
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction
                                     du contact</label>
                                 <input id="fonction_contact" type="text" name="fonction_contact"
                                        value="{{$site->fonction_contact}}" class="form-control col-sm-7"/>
@@ -60,7 +60,7 @@
                         <div class="row">
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="centre"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
                                 <select name="centre" id="centre" class="form-control col-sm-7" required>
                                     <option>{{$site->centre}}</option>
                                     @foreach ($centres as $centre)
@@ -70,7 +70,7 @@
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="centre_regional"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Centre
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
                                     régional</label>
                                 <select id="centre_regional" name="centre_regional" class="form-control col-sm-7"
                                         required>
@@ -79,13 +79,13 @@
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="telephone"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Telephone</label>
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Telephone</label>
                                 <input type="tel" id="telephone" name="telephone" value="{{$site->telephone}}"
                                        class="form-control col-sm-7"/>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="numero_de_carte"
-                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Numéro
+                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numéro
                                     de carte</label>
                                 <input id="numero_de_carte" name="no_carte" type="text" value="{{$site->no_carte}}"
                                        class="form-control col-sm-7"/>
@@ -119,7 +119,7 @@
                 </ul>
                 <br>
                 <div class="card card-xxl-stretch">
-                    <div class="card-body">
+                    <div class="card-body bg-card-kawa pt-3">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="transport-c" role="tabpanel"
                                  aria-labelledby="transport-c-tab">
@@ -127,7 +127,7 @@
                                     <h6>Transport</h6>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VB
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VB
                                             extramuros bitume</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vb_extamuros_bitume"
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VB
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VB
                                             extramuros piste</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vb_extramuros_piste"
@@ -145,7 +145,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VL
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VL
                                             extramuros bitume</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vl_extramuros_bitume"
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VL
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VL
                                             extramuros piste</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vl_extramuros_piste"
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VB
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VB
                                             (INTRAMUROS)</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vb_intramuros"
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">VL
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">VL
                                             (INTRAMUROS)</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vl_intramuros"
@@ -178,14 +178,14 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="oo_ass_appro"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Assistance
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Assistance
                                             appro dab</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_ass_appro" value="{{$site->oo_ass_appro}}" id="oo_ass_appro">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="oo_dnf"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Dépôt
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Dépôt
                                             non facturé</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_dnf" id="oo_dnf" value="{{$site->oo_dnf}}">
@@ -197,7 +197,7 @@
                                     <h6>ATM</h6>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Borne
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Borne
                                             chèque</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_borne_cheque"
@@ -205,7 +205,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Borne
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Borne
                                             des opérations</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_borne_operation"
@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Gestion
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Gestion
                                             des GAB</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm"
                                                name="oo_gestion_gab" value="{{$site->oo_gestion_gab}}">
@@ -221,7 +221,7 @@
 
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Maintenance
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Maintenance
                                             N2\N3</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_maintenance_n2"
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vente\location
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vente\location
                                             ATM</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vente_location"
@@ -239,7 +239,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vente
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vente
                                             consommables</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vente_consommables"
@@ -248,7 +248,7 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Vente
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Vente
                                             pièces détachées</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_vente_pieces_detachees"
@@ -262,48 +262,48 @@
                                     <h6>CAISSIERES</h6>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Garde
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Garde
                                             de fond</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm"
                                                name="oo_garde_fond" value="{{$site->oo_garde_fond}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Opération
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Opération
                                             comptage BCEAO</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm"
                                                name="oo_comptage" value="{{$site->oo_comptage}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label
-                                            class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Opération
+                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Opération
                                             dispatching</label>
                                         <input type="text" class="col-sm-6 form-control form-control-sm"
                                                name="oo_dispatching" value="{{$site->oo_dispatching}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">MAD</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">MAD</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm" name="oo_mad"
                                                value="{{$site->oo_mad}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Collecte</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Collecte</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_collecte"
                                                value="{{$site->oo_collecte}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">CCTV</label>
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">CCTV</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_cctv"
                                                value="{{$site->oo_cctv}}">
                                     </div>
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                         <label for="cb_tdf_vb"
-                                               class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Collecte
+                                               class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Collecte
                                             caisse</label>
                                         <input type="number" class="col-sm-6 form-control form-control-sm"
                                                name="oo_collecte_caisse"
@@ -320,7 +320,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Extra
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Extra
                                                     grand</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
@@ -332,7 +332,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Grand</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Grand</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_securipack_grand"
@@ -343,7 +343,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Moyen</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Moyen</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_securipack_moyen"
@@ -354,7 +354,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Petit</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Petit</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_securipack_petit"
@@ -369,7 +369,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Extra
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Extra
                                                     grand</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
@@ -381,7 +381,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Grand</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Grand</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_sacjuste_grand" value="{{$site->oo_sacjuste_grand}}">
@@ -391,7 +391,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Moyen</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Moyen</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_sacjuste_moyen" value="{{$site->oo_sacjuste_moyen}}">
@@ -401,7 +401,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label
-                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Petit</label>
+                                                    class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Petit</label>
                                                 <input type="number" min="0"
                                                        class="col-sm-6 form-control form-control-sm"
                                                        name="oo_sacjuste_petit" value="{{$site->oo_sacjuste_petit}}">
@@ -439,7 +439,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label for="cb_tdf_vb"
-                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Extra
+                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Extra
                                                     Grand</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_scelle_extra_grand"
@@ -450,7 +450,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label for="cb_tdf_vb"
-                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Grand</label>
+                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Grand</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_scelle_grand" value="{{$site->oo_scelle_grand}}">
                                             </div>
@@ -459,7 +459,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label for="cb_tdf_vb"
-                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Moyen</label>
+                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Moyen</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_scelle_moyen" value="{{$site->oo_scelle_moyen}}">
                                             </div>
@@ -468,7 +468,7 @@
                                             <div
                                                 class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                                 <label for="cb_tdf_vb"
-                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-black-50 mb-2">Petit</label>
+                                                       class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Petit</label>
                                                 <input type="number" class="col-sm-6 form-control form-control-sm"
                                                        name="oo_scelle_petit" value="{{$site->oo_scelle_petit}}">
                                             </div>

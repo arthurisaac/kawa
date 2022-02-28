@@ -14,7 +14,7 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2">
+                        <div class="card-body bg-card-kawa 2">
                             <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-warning me-5">
@@ -89,7 +89,7 @@
                         <div class="card-header border-0 py-5 bg-gradient-kawa">
                             <h3 class="card-title fw-bolder">Filtre de recherche</h3>
                         </div>
-                        <div class="card-body pt-5">
+                        <div class="card-body bg-card-kawa 5">
                             <div class="row">
                                 <div class="col">
                                     <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">

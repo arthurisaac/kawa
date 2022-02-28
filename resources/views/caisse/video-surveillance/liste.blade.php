@@ -26,7 +26,7 @@
                             <div class="card-header border-0 py-5 bg-warning">
                                 <h3 class="card-title fw-bolder">Caisse Centrale CTV Video</h3>
                             </div>
-                            <div class="card-body pt-5">
+                            <div class="card-body bg-card-kawa 5">
                                 <div class="row">
                                     <div class="d-flex flex-column mb-7 col-md-6 fv-row fv-plugins-icon-container">
                                         <label for="debut" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
