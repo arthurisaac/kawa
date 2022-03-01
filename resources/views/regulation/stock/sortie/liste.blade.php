@@ -1,9 +1,9 @@
 @extends('bases.regulation')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">Sortie stock</h2></div>
-        <br/>
+    @extends('bases.toolbar', ["title" => "Régulation", "subTitle" => "Sortie stock liste"])
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -20,34 +20,41 @@
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <br>
-        <a href="/regulation-stock-sortie" class="btn btn-info btn-sm">Nouveau</a>
-        <br>
-        <br>
-        <form action="#" method="get">
-            @csrf
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-sm-7">
+        <div class="row">
+            <div class="col">
+                <form action="#" method="get">
+                    @csrf
+                    <div class="card card-xl-stretch">
+                        <div class="card-header border-0 py-5 bg-gradient-kawa">
+                            <div class="card-title fw-bolder">
+                                Filtre de recherche service
+                            </div>
+                        </div>
+                        <div class="card-body bg-card-kawa pt-2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
+                                        <input type="date" name="debut" class="form-control col-sm-7">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
+                                        <input type="date" name="fin" class="form-control col-sm-7">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col-sm-7">
+                    <div class="card-footer">
+                        <a href="/regulation-stock-sortie-liste" class="btn btn-danger btn-sm">Effacer</a>
+                        <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                        <a href="/regulation-stock-sortie" class="btn btn-info btn-sm">Nouveau</a>
                     </div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary btn-sm">Rechercher</button>
-                </div>
-                <div class="col"></div>
+                </form>
             </div>
-        </form>
+        </div>
         <table class="table table-bordered" id="liste">
             <thead>
             <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);

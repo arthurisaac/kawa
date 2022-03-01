@@ -20,7 +20,6 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-
             <form method="post" action="{{ route('regulation-service.store') }}">
             @csrf
                <div class="card card-xl-stretch">
@@ -196,8 +195,7 @@
                     </div>
                 </div>
         </form>
-
-
+        </div>
     </div>
     <script>
         let centres =  {!! json_encode($centres) !!};

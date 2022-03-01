@@ -1,10 +1,10 @@
 @extends('bases.regulation')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">Entrée stock</h2></div>
-        <br/>
-        @if ($errors->any())
+    @extends('bases.toolbar', ["title" => "Régulation", "subTitle" => "Confirmation reception"])
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -14,123 +14,167 @@
             </div>
             <br/>
         @endif
-
-        @if(session()->get('success'))
+            @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <form method="post" action="{{ route('regulation-stock-entree.store') }}">
+            <form class="form-horizontal"  action="{{ route('regulation-stock-entree.store') }}" method="post">
             @csrf
-            <div class="row">
-
-                <div class="col-6">
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Centre Régional</label>
-                        <select name="centre" id="centre" class="form-control col-8" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-4">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
-                            <option></option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="date_appro" class="col-4">Date</label>
-                        <input type="date" id="date_appro" name="date_appro" value="{{date('Y-m-d')}}"
-                               class="form-control col-8" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label for="libelle" class="col-4">Libellé</label>
-                        <select id="libelle" name="libelle" class="form-control col-8" required>
-                            <option>bordereau de transport</option>
-                            <option>bordereau de collecte</option>
-                            <option>cahier de maintenance</option>
-                            <option>cahier d’appro</option>
-                            <option>securipack extra</option>
-                            <option>securipack grand</option>
-                            <option>securipack moyen</option>
-                            <option>securipack petit</option>
-                            <option>pochette</option>
-                            <option>scellé DAB</option>
-                            <option>scellé caisse</option>
-                            <option>coiffe 10000</option>
-                            <option>coiffe 5000</option>
-                            <option>coiffe 2000</option>
-                            <option>coiffe 1000</option>
-                            <option>coiffe 500</option>
-                            <option>sac jute grand</option>
-                            <option>sac jute moyen</option>
-                            <option>TAG bleu</option>
-                            <option>TAG vert</option>
-                            <option>TAG jaune</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label for="fournisseur" class="col-4">Fournisseur</label>
-                        <select id="fournisseur" name="fournisseur" class="form-control col-8" required>
-                            <option></option>
-                            <option>VECTIS</option>
-                            <option>SOSIV</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Numero</label>
-                        <input type="text" name="numero" id="numero" value="{{$numero}}" class="form-control col-8  " required />
-                    </div>
+            <div class="card card-xxl-stretch">
+                <div class="card-body bg-card-kawa pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="date_appro" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
+                                    <input type="date" id="date_appro" name="date_appro" value="{{date('Y-m-d')}}" class="form-control col editbox" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="numero" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numero</label>
+                                    <input type="text" id="numero" name="numero" value="{{$numero}}" class="form-control col editbox" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Centre régional"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="centre" name="centre">
+                                        <option></option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">Centre
+                                                de {{ $centre->centre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                    <select id="centre_regional" name="centre_regional"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="libelle" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Libellé</label>
+                                <select class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Libellé"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="libelle" id="libelle">
+                                    <option></option>
+                                    <option>bordereau de transport</option>
+                                    <option>bordereau de collecte</option>
+                                    <option>cahier de maintenance</option>
+                                    <option>cahier d’appro</option>
+                                    <option>securipack extra</option>
+                                    <option>securipack grand</option>
+                                    <option>securipack moyen</option>
+                                    <option>securipack petit</option>
+                                    <option>pochette</option>
+                                    <option>scellé DAB</option>
+                                    <option>scellé caisse</option>
+                                    <option>coiffe 10000</option>
+                                    <option>coiffe 5000</option>
+                                    <option>coiffe 2000</option>
+                                    <option>coiffe 1000</option>
+                                    <option>coiffe 500</option>
+                                    <option>sac jute grand</option>
+                                    <option>sac jute moyen</option>
+                                    <option>TAG bleu</option>
+                                    <option>TAG vert</option>
+                                    <option>TAG jaune</option>
+                                </select>
+                            </div>
+                        </div>
+                            <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="fournisseur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fournisseur</label>
+                                <select
+                                    class="form-select form-select-solid select2-hidden-accessible"
+                                    data-control="select2"
+                                    data-placeholder="Fournisseur"
+                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                    data-kt-select2="true"
+                                    aria-hidden="true"
+                                    id="fournisseur" name="fournisseur">
+                                    <option></option>
+                                    <option>VECTIS</option>
+                                    <option>SOSIV</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
                 </div>
             </div>
-            <br/>
+            <br>
+            <div class="card card-xl-stretch">
+                <div class="card-body bg-card-kawa">
+                    <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+                    <table id="table" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                           style="width: 100%;">
+                        <thead>
 
-            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
-            <br>
-            <br>
-            <table class="table table-bordered" style="width: 100%" id="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Qté attendue</th>
-                    <th>Qté livrée</th>
-                    <th>N° début</th>
-                    <th>N° Fin</th>
-                    <th>Reste</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><input type="date" class="form-control" name="date[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="qte_attendu[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="qte_livree[]"/></td>
-                    <td><input type="text" class="form-control" name="no_debut[]"/></td>
-                    <td><input type="text" class="form-control" name="no_fin[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="reste[]"/></td>
-                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td></td>
-                    <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tfoot>
-            </table>
-
-            <br>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient">
+                            <th>Date</th>
+                            <th>Qté attendue</th>
+                            <th>Qté livrée</th>
+                            <th>N° début</th>
+                            <th>N° Fin</th>
+                            <th>Reste</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date" class="form-control" name="date[]"/></td>
+                                <td><input type="number" min="0" class="form-control" name="qte_attendu[]"/></td>
+                                <td><input type="number" min="0" class="form-control" name="qte_livree[]"/></td>
+                                <td><input type="text" class="form-control" name="no_debut[]"/></td>
+                                <td><input type="text" class="form-control" name="no_fin[]"/></td>
+                                <td><input type="number" min="0" class="form-control" name="reste[]"/></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td><input type="text" class="form-control" name="totalLivree" id="totalLivree"/></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                    <br>
+                </div>
+            </div>
         </form>
+        </div>
     </div>
     <script>
         function qteLivreeReste() {

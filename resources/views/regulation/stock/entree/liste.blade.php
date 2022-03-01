@@ -1,28 +1,31 @@
 @extends('bases.regulation')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">Entrée stock</h2></div>
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
-
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
-
-        <br>
+    @extends('bases.toolbar', ["title" => "Régulation", "subTitle" => "Entrée stock liste"])
+    @section('nouveau')
         <a href="/regulation-stock-entree" class="btn btn-info btn-sm">Nouveau</a>
+    @endsection
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br/>
+            @endif
+
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+
+            <br>
+
         <br>
         <br>
         <table class="table table-bordered" id="liste">

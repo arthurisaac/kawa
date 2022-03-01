@@ -2,9 +2,11 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Etat de Stock"])
-    <div class="burval-container">
-        <div><h2 class="heading">ETAT DE STOCK</h2></div>
-        <br/>
+    @section('nouveau')
+        <a href="/regulation-stock-entree" class="btn btn-info btn-sm">Nouveau</a>
+    @endsection
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -22,10 +24,6 @@
             </div>
         @endif
 
-        <br>
-        <a href="/regulation-stock-entree" class="btn btn-info btn-sm">Nouveau</a>
-        <br>
-        <br>
         <table class="table table-bordered" id="liste">
             <thead>
             <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
@@ -50,6 +48,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
             </tbody>
         </table>
     </div>
+</div>
 
     <script>
         function supprimer(id, e) {
