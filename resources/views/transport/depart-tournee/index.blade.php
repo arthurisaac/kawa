@@ -25,25 +25,32 @@
             <form class="form-horizontal" action="{{ route('depart-tournee.store') }}" method="post">
                 @csrf
                 <div class="card card-xxl-stretch">
-                    <div class="card-body bg-card-kawa 5">
+                    <div class="card-body bg-card-kawa pt-5">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="numero_tournee" class="col-sm-5 pt-3">N°Tournée:</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="numero_tournee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée:</label>
                                     <input type="text" class="form-control col" name="numeroTournee"
                                            id="numero_tournee" value="{{$num}}" readonly required/>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="date" class="col-sm-5  pt-3">Date fin</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                     <input type="date" class="form-control col" name="date" id="date" required>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="vehicule" class="col-sm-5  pt-3">Véhicule</label>
-                                    <select class="form-control col" name="idVehicule" id="vehicule">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="vehicule" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Véhicule"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="idVehicule" id="vehicule">
                                         <option></option>
                                         @foreach($vehicules as $vehicule)
                                             <option
@@ -53,8 +60,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="kmDepart" class="col-sm-5  pt-3">Kilométrage départ</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="kmDepart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Kilométrage départ</label>
                                     <input type="number" min="0" class="form-control col" name="kmDepart"
                                            id="kmDepart" required>
                                 </div>
@@ -63,9 +70,15 @@
                         <br>
                         <div class="row">
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="chauffeur" class="col-sm-5  pt-3">Chauffeur</label>
-                                    <select class="form-control col" name="chauffeur" id="chauffeur">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="chauffeur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur</label>
+                                    <select class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Chauffeur"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="chauffeur" id="chauffeur">
                                         <option></option>
                                         @foreach($chauffeurs as $chauffeur)
                                             <option
@@ -75,9 +88,16 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="agentDeGarde" class="col-sm-5  pt-3">Agent de garde</label>
-                                    <select class="form-control col" id="agentDeGarde" name="agentDeGarde">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="agentDeGarde" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent de garde</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Agent de garde"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="agentDeGarde" name="agentDeGarde">
                                         <option></option>
                                         @foreach($agents as $agent)
                                             <option value="{{$agent->id}}">{{$agent->nomPrenoms}}</option>
@@ -86,9 +106,16 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="chefDeBord" class="col-sm-5  pt-3">Chef de bord</label>
-                                    <select class="form-control col" id="chefDeBord" name="chefDeBord">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="chefDeBord" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Chef de bord"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="chefDeBord" name="chefDeBord">
                                         <option></option>
                                         @foreach($chefBords as $chef)
                                             <option value="{{$chef->id}}">{{$chef->nomPrenoms}}</option>
@@ -97,8 +124,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="coutTournee" class="col-sm-5  pt-3">Coût tournée</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="coutTournee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Coût tournée</label>
                                     <input type="number" min="0" value="0" class="form-control col text-danger"
                                            name="coutTournee" id="coutTournee" required>
                                 </div>
@@ -107,16 +134,23 @@
                         <br>
                         <div class="row">
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="heureDepart" class="col-sm-5  pt-3">Heure départ</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="heureDepart" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2"">Heure départ</label>
                                     <input type="time" class="form-control col" name="heureDepart"
                                            id="heureDepart" required>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="centre" class="col-sm-5  pt-3">Centre régional</label>
-                                    <select class="form-control col" id="centre" name="centre">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Centre régional"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="centre" name="centre">
                                         <option></option>
                                         @foreach ($centres as $centre)
                                             <option value="{{$centre->centre}}">Centre
@@ -126,9 +160,15 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group row">
-                                    <label for="centre_regional" class="col-sm-5  pt-3">Centre</label>
-                                    <select id="centre_regional" name="centre_regional" class="form-control col"
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                    <select id="centre_regional" name="centre_regional"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
                                             required>
                                         <option></option>
                                     </select>
@@ -140,7 +180,7 @@
                 </div>
                 <br>
                 <div class="card card-xl-stretch">
-                    <div class="card-body">
+                    <div class="card-body bg-card-kawa">
                         <table id="data" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
                                style="width: 100%;">
                             <thead>

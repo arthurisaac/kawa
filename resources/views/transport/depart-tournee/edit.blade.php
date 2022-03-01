@@ -30,24 +30,31 @@
                     <div class="card-body bg-card-kawa 5">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
-                                    <label>N°Tournée:</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée:</label>
                                     <input type="text" class="form-control text-danger" name="numeroTournee"
                                            value="{{$tournee->numeroTournee}}"
                                            style="font-size: 20px; font-weight: bold;" readonly/>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Date</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
                                     <input type="date" class="form-control" name="date" value="{{$tournee->date}}"
                                            required/>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Véhicule</label>
-                                    <select class="form-control" name="idVehicule" id="vehicule">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Véhicule"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="idVehicule" id="vehicule">
                                         <option
                                             value="{{$tournee->idVehicule}}">{{$tournee->vehicules->immatriculation ?? 'Vehicule inexistant' . $tournee->idVehicule}}</option>
                                         @foreach($vehicules as $vehicule)
@@ -57,8 +64,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Kilométrage départ</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Kilométrage départ</label>
                                     <input type="number" class="form-control" name="kmDepart"
                                            value="{{$tournee->kmDepart}}"
                                            id="kmDepart" min="0"/>
@@ -67,9 +74,16 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Chauffeur</label>
-                                    <select class="form-control" name="chauffeur" id="chauffeur">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Chauffeur"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="chauffeur" id="chauffeur">
                                         <option
                                             value="{{$tournee->chauffeur}}">{{$tournee->chauffeurs->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chauffeur}}</option>
                                         @foreach($chauffeurs as $chauffeur)
@@ -79,9 +93,16 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Agent de garde</label>
-                                    <select class="form-control" name="agentDeGarde">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent de garde</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Agent de garde"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="agentDeGarde">
                                         <option
                                             value="{{$tournee->agentDeGarde}}">{{$tournee->agentDeGardes->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->agentDeGarde}}</option>
                                         @foreach($agents as $agent)
@@ -91,9 +112,16 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Chef de bord</label>
-                                    <select class="form-control" name="chefDeBord">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Chef de bord"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        name="chefDeBord">
                                         <option
                                             value="{{$tournee->chefDeBord}}">{{$tournee->chefDeBords->nomPrenoms ?? 'Utilisateur inexistant ' . $tournee->chefDeBord}}</option>
                                         @foreach($chefBords as $chef)
@@ -103,8 +131,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Coût tournée</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Coût tournée</label>
                                     <input type="number" class="form-control form-control-lg" min="0" name="coutTournee"
                                            value="{{$tournee->coutTournee}}" id="coutTournee"
                                            style="font-size: 20px; font-weight: bold;"/>
@@ -113,16 +141,23 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
-                                    <label>Heure départ</label>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure départ</label>
                                     <input type="time" class="form-control" name="heureDepart"
                                            value="{{$tournee->heureDepart}}"/>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label for="centre">Centre régional</label>
-                                    <select name="centre" id="centre" class="form-control" required>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre">Centre régional</label>
+                                    <select name="centre" id="centre"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre régional"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
                                         <option>{{$tournee->centre}}</option>
                                         @foreach ($centres as $centre)
                                             <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -131,9 +166,16 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label for="centre_regional">Centre</label>
-                                    <select id="centre_regional" name="centre_regional" class="form-control" required>
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2" for="centre_regional">Centre</label>
+                                    <select id="centre_regional" name="centre_regional"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
                                         <option>{{$tournee->centre_regional}}</option>
                                     </select>
                                 </div>
