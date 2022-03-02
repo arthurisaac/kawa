@@ -2,99 +2,167 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Modification Départ Tournée"])
-    <div class="burval-container">
-        <div><h2 class="heading">Régulation départ tournée</h2></div>
-        <br/>
-        <br/>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br/>
+            @endif
 
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
 
-
-        <form action="{{ route('regulation-depart-tournee.update', $tournee->id) }}" id="target" method="post">
+            <form action="{{ route('regulation-depart-tournee.update', $tournee->id) }}" id="target" method="post">
             @csrf
             @method("PATCH")
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="date" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure" id="heure" value="{{$tournee->heure}}" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="form-group row">
-                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                            <input type="text" class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$tournee->numeroTournee}}" readonly>
-                        </div>
+            <div class="card card-xl-stretch bg-gradient-kawa">
+                <div class="card-header border-0 py-5">
+                    <div class="card-title fw-bolder">
+                        Modification départ tournée
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Véhicule</label>
-                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$tournee->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>
+                <div class="card-body bg-card-kawa pt-2">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date départ</label>
+                                <input type="date" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="heure" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure départ</label>
+                                <input type="time" name="heure" id="heure" value="{{$tournee->heure}}"
+                                       class="form-control col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="noTournee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée</label>
+                                <input id="noTournee" name="noTournee" value="{{$tournee->numeroTournee}}" class="form-control col-sm-8">
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chauffeur:</label>
-                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$tournee->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
+                                <input class="form-control col-sm-8" value="{{$tournee->vehicules->immatriculation?? "Donnée indisponible"}}" name="vehicule" id="vehicule" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur</label>
+                                <input class="form-control col-sm-8" value="{{$tournee->chauffeurs->nomPrenoms ?? "Données indisponible"}}" name="chauffeur" id="chauffeur" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent garde</label>
+                                <input class="form-control col-sm-8" value="{{$tournee->agentDeGarde->nomPrenoms ?? "Données indisponible"}}" name="agentDeGarde" id="agentDeGarde" readonly/>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Agent garde</label>
-                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$tournee->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
+                                <input class="form-control col-sm-8" value="{{$tournee->chefDeBords->nomPrenoms ?? "Données indisponible"}}" name="chefDeBord" id="chefDeBord" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                <input name="centre" id="centre"  value="{{$tournee->centre}}" class="form-control col-sm-8" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                <input id="centre_regional" name="centre_regional"  value="{{$tournee->centre}}" class="form-control col-sm-8" readonly/>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chef de bord</label>
-                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$tournee->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre" class="col-sm-4">Centre régional</label>
-                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre_regional" class="col-sm-4">Centre</label>
-                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
                 </div>
             </div>
+
+{{--            <div class="container-fluid">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="date" class="col-sm-4">Date départ</label>--}}
+{{--                            <input type="date" name="date" id="date" value="{{$tournee->date}}" class="form-control col-sm-8" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="heure" class="col-sm-4">Heure départ</label>--}}
+{{--                            <input type="text" name="heure" id="heure" value="{{$tournee->heure}}" class="form-control col-sm-8" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-3">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>--}}
+{{--                            <input type="text" class="form-control col-sm-8" name="noTournee" id="noTournee" value="{{$tournee->numeroTournee}}" readonly>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Véhicule</label>--}}
+{{--                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" value="{{$tournee->vehicules->immatriculation?? "Donnée indisponible"}}" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Chauffeur:</label>--}}
+{{--                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" value="{{$tournee->chauffeurs->nomPrenoms ?? "Données indisponible"}}" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Agent garde</label>--}}
+{{--                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" value="{{$tournee->agentDeGarde->nomPrenoms ?? "Données indisponible"}}"  readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-sm-4">Chef de bord</label>--}}
+{{--                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" value="{{$tournee->chefDeBords->nomPrenoms ?? "Données indisponible"}}" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="centre" class="col-sm-4">Centre régional</label>--}}
+{{--                            <input name="centre" id="centre" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="centre_regional" class="col-sm-4">Centre</label>--}}
+{{--                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" value="{{$tournee->centre}}" readonly/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                    <div class="col"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="container-fluid">
                 <br>
                 <br>
@@ -158,7 +226,7 @@
                 <a href="/regulation-depart-tournee-liste" class="btn btn-info" style="margin-left: 20px">Ouvrir la liste</a>
             </div>
         </form>
-
+        </div>
     </div>
     <script>
         function separateNumbers(e){

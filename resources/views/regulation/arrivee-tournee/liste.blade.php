@@ -2,55 +2,56 @@
 
 @section("main")
     @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Liste Régulation arrivée tournée"])
-    <div class="container-fluid">
-        <br>
-        <br>
-        <div><h2 class="heading">Régulation arrivée tournée</h2></div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <br/>
-        @endif
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br/>
+            @endif
 
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
-
-        <br>
-        <a href="/regulation-arrivee-tournee" class="btn btn-info btn-sm">Nouveau</a>
-        <br>
-        <br>
-        <form action="#" method="get">
-            @csrf
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date début</label>
-                        <input type="date" name="debut" class="form-control col-sm-7">
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+            <div class="col">
+            <form action="#" method="get">
+                @csrf
+                <div class="card card-xl-stretch ">
+                    <div class="card-header border-0 py-5 bg-gradient-kawa">
+                        <h3 class="card-title fw-bolder">Option de filtre</h3>
+                    </div>
+                    <div class="card-body bg-card-kawa pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
+                                    <input type="date" name="debut" class="form-control col">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
+                                    <input type="date" name="fin" class="form-control col">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                            <button class="btn btn-primary btn-sm">Rechercher</button>
+                            <a href="/regulation-arrivee-tournee" class="btn btn-info btn-sm">Nouveau</a>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5">Date fin</label>
-                        <input type="date" name="fin" class="form-control col-sm-7">
-                    </div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary btn-sm">Rechercher</button>
-                </div>
-                <div class="col"></div>
-            </div>
-        </form>
-        <table class="table table-bordered" style="width: 100%;" id="liste">
+            </form>
+        </div>
+
+            <table class="table table-bordered" style="width: 100%;" id="liste">
             <thead>
             <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient" style="background: rgb(148,148,152);
 background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%)!important;">
@@ -97,6 +98,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
             @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 
 

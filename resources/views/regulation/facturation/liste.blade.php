@@ -27,7 +27,7 @@
                     <!--begin::Header-->
                     <div class="card-header border-0" style="background: rgb(148,148,152);
 background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba(220,211,172,1) 38%, rgba(255,216,1,1) 100%);">
-                        <h3 class="card-title fw-bolder text-dark">Stats</h3>
+                        <h3 class="card-title fw-bolder text-dark">Résultats</h3>
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
@@ -128,12 +128,18 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                         <div class="card-header border-0 py-5 bg-warning">
                             <h3 class="card-title fw-bolder">Option de filtre</h3>
                         </div>
-                        <div class="card-body bg-card-kawa 5">
+                        <div class="card-body bg-card-kawa pt-5">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre" class="col-5">Centre Régional</label>
-                                        <select name="centre" id="centre" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre Régional</label>
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Centre régional"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$centre}}</option>
                                             @foreach ($centres as $centre)
                                                 <option value="{{$centre->centre}}">{{ $centre->centre }}</option>
@@ -142,9 +148,15 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre_regional" class="col-5">Centre</label>
-                                        <select id="centre_regional" name="centre_regional" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                        <select id="centre_regional" name="centre_regional"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Centre"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$centre_regional}}</option>
                                             @foreach ($centres_regionaux as $centre)
                                                 <option value="{{$centre->centre_regional}}">{{ $centre->centre_regional }}</option>
@@ -153,9 +165,15 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="client" class="col-5">Clients</label>
-                                        <select id="client" name="client" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Clients</label>
+                                        <select id="client" name="client"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Client"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$client}}</option>
                                             @foreach ($clients as $client)
                                                 <option value="{{$client->id}}">{{ $client->client_nom }}</option>
@@ -164,9 +182,15 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="site" class="col-5">Site</label>
-                                        <select id="site" name="site" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="site" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
+                                        <select id="site" name="site"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-control="select2"
+                                                data-placeholder="Site"
+                                                data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>{{$site}}</option>
                                             @foreach ($sites_com as $site)
                                                 <option value="{{$site->id}}">{{ $site->site }}</option>
@@ -178,21 +202,28 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="" class="col-5">Date début</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date début</label>
                                         <input type="date" name="debut" class="form-control col" value="{{$debut}}">
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="" class="col-5">Date fin</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date fin</label>
                                         <input type="date" name="fin" class="form-control col" value="{{$fin}}">
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="libelle" class="col-5">Libelle</label>
-                                        <select class="form-control col" name="libelle" id="libelle">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="libelle" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Libelle</label>
+                                        <select
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Libellé"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="libelle" id="libelle">
                                             <option>{{$libelle}}</option>
                                             <option>Securipack grand</option>
                                             <option>Securipack moyen</option>

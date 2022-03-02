@@ -2,11 +2,11 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Regulation", "subTitle" => "Facturation"])
-    <div class="burval-container">
-        <h2>Facturation</h2>
-        <a href="/regulation-facturation-liste" class="btn btn-link btn-sm">Liste</a>
-        <br/>
-        <br/>
+    @section('nouveau')
+        <a href="/regulation-facturation-liste" class="btn btn-info btn-sm">Liste</a>
+    @endsection
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -23,136 +23,173 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+            <form class="form-horizontal"  action="{{ route('regulation-facturation.store') }}" method="post">
+                @csrf
+                <div class="card card-xxl-stretch">
+                    <div class="card-body bg-card-kawa pt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Centre régional"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="centre" name="centre">
+                                        <option></option>
+                                        @foreach ($centres as $centre)
+                                            <option value="{{$centre->centre}}">Centre
+                                                de {{ $centre->centre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                    <select id="centre_regional" name="centre_regional"
+                                            class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="Centre"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            required>
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="date_appro" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date</label>
+                                    <input type="date" id="date_appro" name="date_appro" value="{{date('Y-m-d')}}" class="form-control col editbox" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="numero" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numero</label>
+                                    <input type="text" id="numero" name="numero" value="{{$numero}}" class="form-control col editbox" >
+                                </div>
+                            </div>
 
-        <form method="post" action="{{ route('regulation-facturation.store') }}">
-            @csrf
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Centre Régional</label>
-                        <select name="centre" id="centre" class="form-control col-8" required>
-                            <option></option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-4">Centre</label>
-                        <select id="centre_regional" name="centre_regional" class="form-control col-8" required>
-                            <option></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="date" class="col-4">Date</label>
-                        <input type="date" id="date" name="date" value="{{date('Y-m-d')}}"
-                               class="form-control col-8" required/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre" class="col-4">Numero</label>
-                        <input type="text" name="numero" id="numero" value="{{$numero}}" class="form-control col-8  "
-                               required/>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="client" class="col-4">Client</label>
-                        <select id="client" name="client" class="form-control col-8" required>
-                            <option></option>
-                            @foreach($clients as $client)
-                                <option value="{{$client->id}}">{{$client->client_nom}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                        <div class="form-group row">
-                            <label for="type" class="col-4">Type facture</label>
-                            <select id="type" name="type" class="form-control col-8" required>
-                                <option>Facture</option>
-                                <option>Proforma</option>
-                            </select>
                         </div>
-                </div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="centre_regional" class="col-4">Site</label>
-                        <select id="site" name="site" class="form-control col-8" required>
-                            @foreach($sites as $site)
-                                <option value="{{$site->id}}">{{$site->site}}</option>
-                            @endforeach
-                        </select>
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="client" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Clients</label>
+                                    <select class="form-select form-select-solid select2-hidden-accessible"
+                                            data-control="select2"
+                                            data-placeholder="client"
+                                            data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="client" id="client">
+                                        <option></option>
+                                        @foreach($clients as $client)
+                                            <option value="{{$client->id}}">{{$client->client_nom}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="type " class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type de facture</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Type facture"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="type " name="type ">
+                                        <option></option>
+                                        <option>Facture</option>
+                                        <option>Proforma</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                    <label for="site " class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
+                                    <select
+                                        class="form-select form-select-solid select2-hidden-accessible"
+                                        data-control="select2"
+                                        data-placeholder="Site"
+                                        data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                        data-kt-select2="true"
+                                        aria-hidden="true"
+                                        id="site " name="site ">
+                                        <option></option>
+                                        @foreach($sites as $site)
+                                            <option value="{{$site->id}}">{{$site->site}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
-            <br/>
+                <br>
+                <div class="card card-xl-stretch">
+                    <div class="card-body bg-card-kawa">
+                        <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
+                        <table id="table" class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                               style="width: 100%;">
+                            <thead>
 
-            <button type="button" class="btn btn-sm btn-primary" id="add">+</button>
-            <br>
-            <br>
-            <table class="table table-bordered" style="width: 100%" id="table">
-                <thead>
-                <tr>
-                    <th>Libellé</th>
-                    <th>Qté</th>
-                    <th>Pu</th>
-                    <th>Référence</th>
-                    <th>N° début</th>
-                    <th>N° fin</th>
-                    <th>Montant</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><select type="text" class="form-control" name="libelle[]">
-                            <option>Securipack grand</option>
-                            <option>Securipack moyen</option>
-                            <option>Securipack petit</option>
-                            <option>Sacs jutes grand</option>
-                            <option>Sacs jutes moyen</option>
-                            <option>Sacs jutes petit</option>
-                            <option>Scellé</option>
-                        </select></td>
-                    <td><input type="number" min="0" class="form-control" name="qte[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="pu[]"/></td>
-                    <td><input type="text" class="form-control" name="reference[]"/></td>
-                    <td><input type="text" class="form-control" name="debut[]"/></td>
-                    <td><input type="text" class="form-control" name="fin[]"/></td>
-                    <td><input type="number" min="0" class="form-control" name="montant[]"/></td>
-                    <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="6">Total</td>
-                    <td><input type="number" min="0" class="form-control" name="montantTotal" id="montantTotal"/></td>
-                </tr>
-                </tfoot>
-            </table>
-
-            <br>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </form>
+                            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200 bg-gradient">
+                                <th>Libellé</th>
+                                <th>Qté</th>
+                                <th>Pu</th>
+                                <th>Référence</th>
+                                <th>N° début</th>
+                                <th>N° fin</th>
+                                <th>Montant</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><select type="text" class="form-control" name="libelle[]">
+                                        <option>Securipack grand</option>
+                                        <option>Securipack moyen</option>
+                                        <option>Securipack petit</option>
+                                        <option>Sacs jutes grand</option>
+                                        <option>Sacs jutes moyen</option>
+                                        <option>Sacs jutes petit</option>
+                                        <option>Scellé</option>
+                                    </select></td>
+                                <td><input type="number" min="0" class="form-control" name="qte[]"/></td>
+                                <td><input type="number" min="0" class="form-control" name="pu[]"/></td>
+                                <td><input type="text" class="form-control" name="reference[]"/></td>
+                                <td><input type="text" class="form-control" name="debut[]"/></td>
+                                <td><input type="text" class="form-control" name="fin[]"/></td>
+                                <td><input type="number" min="0" class="form-control" name="montant[]"/></td>
+                                <td><a class="btn btn-danger btn-sm" onclick="supprimer(this)"></a></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6">Total</td>
+                                <td><input type="number" min="0" class="form-control" name="montantTotal" id="montantTotal"/></td>
+                            </tr>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm" type="submit">Enregistrer</button>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
     <script>
         $(document).ready(function () {
             $("#add").on("click", function () {

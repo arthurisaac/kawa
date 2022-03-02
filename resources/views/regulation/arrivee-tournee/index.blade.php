@@ -29,87 +29,96 @@
             @csrf
 
             <input type="hidden" name="idDepart" id="idDepart">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4">Date départ</label>
-                            <input type="text" name="date_depart" id="date_depart" class="form-control col-sm-8"
-                                   readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure départ</label>
-                            <input type="text" name="heure_depart" id="heure_depart" class="form-control col-sm-8"
-                                   readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="heure" class="col-sm-4">Heure d'arrivée</label>
-                            <input type="time" name="heure_arrivee_regulation" id="heure_arrivee_regulation"
-                                   class="form-control col-sm-8"/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="form-group row">
-                            <label for="no_tournee" class="col-sm-4">N°Tournée</label>
-                            <select class="form-control col-sm-8" name="noTournee" id="noTournee">
-                                <option></option>
-                                @foreach($tournees as $tournee)
-                                    <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+            <div class="card card-xl-stretch bg-gradient-kawa">
+                <div class="card-header border-0 py-5">
+                    <div class="card-title fw-bolder">
+                        Régulation arrivée tournée
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Véhicule</label>
-                            <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
+                <div class="card-body bg-card-kawa pt-2">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="date" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date départ</label>
+                                <input type="date" name="date_depart" id="date" value="{{$date}}" class="form-control col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="heure" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure départ</label>
+                                <input type="text" name="heure_depart" id="heure" value="{{$heure}}"
+                                       class="form-control col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="heure" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Heure arrivée</label>
+                                <input type="text" name="heure_arrivee_regulation" id="heure" value="{{$heure}}"
+                                       class="form-control col-sm-8"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="no_tournee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">N°Tournée</label>
+                                <select
+                                    class="form-select form-select-solid select2-hidden-accessible"
+                                    data-control="select2"
+                                    data-placeholder="N° Tournée"
+                                    data-select2-id="select2-data-10-7w18b" tabindex="-1"
+                                    data-kt-select2="true"
+                                    aria-hidden="true"
+                                    name="noTournee" id="noTournee">
+                                    <option></option>
+                                    @foreach($tournees as $tournee)
+                                        <option value="{{$tournee->id}}">{{$tournee->numeroTournee}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chauffeur</label>
-                            <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Véhicule</label>
+                                <input class="form-control col-sm-8" name="vehicule" id="vehicule" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chauffeur</label>
+                                <input class="form-control col-sm-8" name="chauffeur" id="chauffeur" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Agent garde</label>
+                                <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Agent garde</label>
-                            <input class="form-control col-sm-8" name="agentDeGarde" id="agentDeGarde" readonly/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Chef de bord</label>
+                                <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                <input name="centre" id="centre" class="form-control col-sm-8" readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4">Chef de bord</label>
-                            <input class="form-control col-sm-8" name="chefDeBord" id="chefDeBord" readonly/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre" class="col-sm-4">Centre</label>
-                            <input name="centre" id="centre" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="centre_regional" class="col-sm-4">Centre régional</label>
-                            <input id="centre_regional" name="centre_regional" class="form-control col-sm-8" readonly/>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
                 </div>
             </div>
+
             <div class="container-fluid">
                 <br>
                 <br>
