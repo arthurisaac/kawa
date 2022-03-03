@@ -26,18 +26,25 @@
                         <div class="card-header border-0 py-5 bg-warning">
                             <h3 class="card-title fw-bolder">Nouveau conteneur</h3>
                         </div>
-                        <div class="card-body bg-card-kawa 5">
+                        <div class="card-body bg-card-kawa pt-5">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="conteneur" class="col-sm-5">Conteneur</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="conteneur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Conteneur</label>
                                         <input type="text" class="form-control col" id="conteneur" name="conteneur" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="typeConteneur" class="col-sm-5">Type de conteneur</label>
-                                        <select class="form-control col" name="typeConteneur" id="typeConteneur" required>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="typeConteneur" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Type de conteneur</label>
+                                        <select
+                                            class="form-select form-select-solid select2-hidden-accessible combobox"
+                                            data-control="select2"
+                                            data-placeholder="Type de conteneur"
+                                            data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="typeConteneur" id="typeConteneur" required>
                                             <option></option>
                                             <option value="BANK">BANK</option>
                                             <option value="MULTISHOP">MULTISHOP</option>
@@ -46,14 +53,14 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dateMiseVie" class="col-sm-5">Date de mise en vie</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dateMiseVie" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date de mise en vie</label>
                                         <input type="date" class="form-control col" name="dateMiseVie" id="dateMiseVie" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dureeVie" class="col-sm-5">Durée de vie</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dureeVie" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Durée de vie</label>
                                         <input type="number" class="form-control col" name="dureeVie" id="dureeVie" required>
                                     </div>
                                 </div>
@@ -61,9 +68,16 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="etat" class="col-sm-5">Etat</label>
-                                        <select class="form-control col" name="etat" id="etat" required>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="etat" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Etat</label>
+                                        <select
+                                            class="form-select form-select-solid select2-hidden-accessible combobox"
+                                            data-control="select2"
+                                            data-placeholder="Etat"
+                                            data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                            data-kt-select2="true"
+                                            aria-hidden="true"
+                                            name="etat" id="etat" required>
                                             <option value=""></option>
                                             <option value="EN VIE">EN VIE</option>
                                             <option value="DEGRADER">DEGRADER</option>
@@ -71,20 +85,20 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dateDegradation" class="col-sm-5">Date dégradation</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dateDegradation" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date dégradation</label>
                                         <input type="date" class="form-control col" name="dateDegradation" id="dateDegradation" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="cause" class="col-sm-5">Cause</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="cause" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Cause</label>
                                         <input type="text" class="form-control col" name="cause" id="cause" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="remplacePar" class="col-sm-5">Remplacé par</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="remplacePar" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Remplacé par</label>
                                         <input type="text" class="form-control col" name="remplacePar" id="remplacePar" required>
                                     </div>
                                 </div>
@@ -92,27 +106,33 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="remplaceLe" class="col-sm-5">Remplacé le</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="remplaceLe" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Remplacé le</label>
                                         <input type="date" class="form-control col" name="remplaceLe" id="remplaceLe" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dateMaintenanceEffectuee" class="col-sm-5">Date maintenance eff</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dateMaintenanceEffectuee" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date maintenance eff</label>
                                         <input type="date" class="form-control col" name="dateMaintenanceEffectuee" id="dateMaintenanceEffectuee" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dateImputation" class="col-sm-5">Date imputation</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dateImputation" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date imputation</label>
                                         <input type="text" class="form-control col" name="dateImputation" id="dateImputation" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre" class="col-sm-5">Centre</label>
-                                        <select name="centre" id="centre" class="form-control col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                        <select name="centre" id="centre"
+                                                class="form-select form-select-solid select2-hidden-accessible combobox"
+                                                data-control="select2"
+                                                data-placeholder="Centre"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true">
                                             <option>Choisir centre</option>
                                             @foreach ($centres as $centre)
                                                 <option value="{{$centre->centre}}">{{$centre->centre}}</option>
@@ -124,20 +144,26 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="centre_regional" class="col-sm-5">Centre régional</label>
-                                        <select name="centreRegional" id="centre_regional" class="form-control col"></select>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                        <select name="centreRegional" id="centre_regional"
+                                                class="form-select form-select-solid select2-hidden-accessible combobox"
+                                                data-control="select2"
+                                                data-placeholder="Centre régional"
+                                                data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                                data-kt-select2="true"
+                                                aria-hidden="true"></select>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="dateRenouvellement" class="col-sm-5">Date renouvellement</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="dateRenouvellement" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Date renouvellement</label>
                                         <input type="date" class="form-control col" name="dateRenouvellement" id="dateRenouvellement" required>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group row">
-                                        <label for="imputationRaport" class="col-sm-5">Imputation rapport</label>
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label for="imputationRaport" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Imputation rapport</label>
                                         <input type="text" class="form-control col" name="imputationRaport" id="imputationRaport" required>
                                     </div>
                                 </div>

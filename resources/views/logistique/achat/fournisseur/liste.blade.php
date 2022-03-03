@@ -2,8 +2,9 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Logistique", "subTitle" => "Fournisseur"])
-    <div class="burval-container">
-        @if ($errors->any())
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -14,13 +15,13 @@
             <br/>
         @endif
 
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
 
-        <div class="row">
+            <div class="row">
             <div class="col">
                 <table class="table table-striped gy-7 gs-7 pt-0" style="width: 100%" id="liste">
                     <thead>
@@ -73,6 +74,7 @@ background: linear-gradient(0deg, rgba(148,148,152,0.34217436974789917) 0%, rgba
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     </div>
     <script>
