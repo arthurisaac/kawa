@@ -1,11 +1,9 @@
 @extends('bases.informatique')
 
 @section('main')
-    <div class="burval-container">
-        <div><h2 class="heading">Mission</h2></div>
-        <br/>
-        <br/>
-        @if ($errors->any())
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -16,79 +14,113 @@
             <br/>
         @endif
 
-        @if(session()->get('success'))
+                @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
         @endif
-
-        <form class="form-horizontal" method="post" action="{{ route('informatique-mission.update', $mission->id) }}">
-            @method('PATCH')
+                <form class="form-horizontal" method="post" action="{{ route('informatique-mission.update', $mission->id) }}">
             @csrf
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-md-5">Centre</label>
-                        <select class="form-control col-md-7" name="centre" id="centre" required>
-                            <option>{{$mission->centre}}</option>
-                            @foreach ($centres as $centre)
-                                <option value="{{$centre->centre}}">{{$centre->centre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Centre régional</label>
-                        <select class="form-control col-md-7" name="centreRegional" id="centre_regional"
-                                required>
-                            <option>{{$mission->centreRegional}}</option>
-                        </select>
+            @method('PATCH')
+            <div class="card card-xl-stretch">
+                <div class="card-header border-0 py-5 bg-warning">
+                    <h3 class="card-title fw-bolder">Mission</h3>
+                </div>
+                <div class="card-body bg-card-kawa pt-2">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
+                                <select
+                                    class="form-select form-select-solid select2-hidden-accessible combobox"
+                                    data-control="select2"
+                                    data-placeholder="Centre"
+                                    data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                    data-kt-select2="true"
+                                    aria-hidden="true"
+                                    name="centre" id="centre" required>
+                                    <option>{{$mission->centre}}</option>
+                                    @foreach ($centres as $centre)
+                                        <option value="{{$centre->centre}}">{{$centre->centre}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre régional</label>
+                                <select
+                                    class="form-select form-select-solid select2-hidden-accessible combobox"
+                                    data-control="select2"
+                                    data-placeholder="Centre régional"
+                                    data-select2-id="select2-data-10-7w15b" tabindex="-1"
+                                    data-kt-select2="true"
+                                    aria-hidden="true"
+                                    name="centreRegional" id="centre_regional"
+                                    required>
+                                    <option>{{$mission->centreRegional}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Service</label>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="col-sm-5">Du</label>
+                                        <input type="date" value="{{$mission->debut}}" class="form-control col-sm" name="debut" id="debut" required/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                        <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Au</label>
+                                        <input type="date" value="{{$mission->fin}}" class="form-control col-sm" name="fin" id="fin" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Service</label>
+                                <input type="text" value="{{$mission->service}}" class="form-control col-md-7" name="service" required/>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <label class="col-md-4">Service</label>
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <label class="col-sm-5">Du</label>
-                                <input type="date" class="form-control col-sm-7" name="debut" id="debut" value="{{$mission->debut}}" required/>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nbre de jours</label>
+                                <input type="number" value="{{$mission->nombreDeJours}}" class="form-control col-md-7" name="nombreDeJours" id="nombreDeJours" readonly required/>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <label class="col-sm-5">Au</label>
-                                <input type="date" class="form-control col-sm-7" name="fin" id="fin" value="{{$mission->fin}}" required/>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Objet de la mission</label>
+                                <input type="text" value="{{$mission->objetMission}}" class="form-control col-md-7" name="objetMission" required/>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Service</label>
-                        <input type="text" class="form-control col-md-7" name="service" value="{{$mission->service}}" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Nbre de jours</label>
-                        <input type="number" class="form-control col-md-7" name="nombreDeJours" id="nombreDeJours" value="{{$mission->nombreDeJours}}" readonly required/>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Objet de la mission</label>
-                        <input type="text" class="form-control col-md-7" name="objetMission" value="{{$mission->objetMission}}" required/>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Intervention effectuée</label>
-                        <textarea class="form-control col-md-7" name="interventionEffectuee" required>{{$mission->interventionEffectuee}}</textarea>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-5">Rapport sur la mission</label>
-                        <textarea class="form-control col-md-7" name="rapportMission" required>{{$mission->rapportMission}}</textarea>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Intervention effectuée</label>
+                                <textarea class="form-control col-md-7" name="interventionEffectuee" required>{{$mission->interventionEffectuee}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
+                                <label class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Rapport sur la mission</label>
+                                <textarea class="form-control col-md-7" name="rapportMission" required>{{$mission->rapportMission}}</textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col"></div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary btn-sm" type="submit">Valider</button>
-                    <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
-                </div>
+            <div class="card-footer">
+                <button class="btn btn-primary btn-sm" type="submit">Valider</button>
+                <button class="btn btn-danger btn-sm" type="reset">Annuler</button>
             </div>
         </form>
-    </div>
+            </div>
+        </div>
     <script>
         let centres =  {!! json_encode($centres) !!};
         let centres_regionaux = {!! json_encode($centres_regionaux) !!};

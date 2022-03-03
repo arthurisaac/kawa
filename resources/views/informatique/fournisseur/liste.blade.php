@@ -2,9 +2,8 @@
 
 @section('main')
     @extends('bases.toolbar', ["title" => "Informatique", "subTitle" => "Liste Fournisseur"])
-    <div class="burval-container">
-        <br/>
-        <br/>
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
