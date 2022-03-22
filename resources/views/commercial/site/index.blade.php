@@ -32,8 +32,7 @@
                                 <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="client"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Client</label>
-                                    <select type="text" class="form-control col combobox" id="client" name="client"
-                                            required>
+                                    <select type="text" class="form-control col combobox" id="client" name="client" required>
                                         <option></option>
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}"> {{$client->client_nom}}</option>
@@ -43,14 +42,13 @@
                                 <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="site"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
-                                    <input type="text" class="form-control col editbox" name="site" id="site" required>
+                                    <input type="text" class="form-control col editbox" name="site" id="site">
                                 </div>
                                 <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                     <label for="nom_contact"
-                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom
-                                        de contact site</label>
+                                           class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom de contact site</label>
                                     <input type="text" class="form-control col editbox" name="nom_contact"
-                                           id="nom_contact" required>
+                                           id="nom_contact">
                                 </div>
 
                                 <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
@@ -58,7 +56,7 @@
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Fonction
                                         du contact</label>
                                     <input type="text" class="form-control col editbox" name="fonction_contact"
-                                           id="fonction_contact" required>
+                                           id="fonction_contact">
                                 </div>
                         </div>
                         <div class="row">
@@ -98,8 +96,7 @@
                                 <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                     <label for="telephone"
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Téléphone</label>
-                                    <input type="tel" class="form-control col editbox" name="telephone" id="telephone"
-                                           required>
+                                    <input type="tel" class="form-control col editbox" name="telephone" id="telephone">
                                 </div>
                             </div>
                             <div class="col">
@@ -108,7 +105,7 @@
                                            class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Numéro
                                         de carte</label>
                                     <input type="text" class="form-control col" name="numero_de_carte"
-                                           id="numero_de_carte" required>
+                                           id="numero_de_carte">
                                 </div>
                             </div>
                         </div>

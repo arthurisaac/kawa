@@ -65,7 +65,7 @@
                                     <div class="col">
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label for="client_nom" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Nom du client</label>
-                                            <input type="text" name="client_nom" id="client_nom" class="form-control col-sm-7" required/>
+                                            <input type="text" name="client_nom" id="client_nom" class="form-control col-sm-7"/>
                                             <div>
                                                 <ul id="list-clients"></ul>
                                             </div>
@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label for="centre" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre Régional</label>
-                                            <select name="centre" id="centre" class="form-control col" required>
+                                            <select name="centre" id="centre" class="form-control col">
                                                 <option></option>
                                                 @foreach ($centres as $centre)
                                                     <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -123,7 +123,7 @@
                                         </div>
                                         <div class="d-flex flex-column mb-7 col-md-12 fv-row fv-plugins-icon-container">
                                             <label for="centre_regional" class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
-                                            <select id="centre_regional" name="centre_regional" class="form-control col" required>
+                                            <select id="centre_regional" name="centre_regional" class="form-control col">
                                                 <option></option>
                                             </select>
                                         </div>

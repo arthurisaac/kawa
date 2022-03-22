@@ -37,8 +37,7 @@
                                 <label for="site"
                                        class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Site</label>
                                 <input id="site" type="text" name="site" class="form-control col-sm-7"
-                                       value="{{$site->site}}"
-                                       required/>
+                                       value="{{$site->site}}"/>
                             </div>
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="nom_contact"
@@ -61,7 +60,7 @@
                             <div class="d-flex flex-column mb-7 col-md-3 fv-row fv-plugins-icon-container">
                                 <label for="centre"
                                        class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre</label>
-                                <select name="centre" id="centre" class="form-control col-sm-7" required>
+                                <select name="centre" id="centre" class="form-control col-sm-7">
                                     <option>{{$site->centre}}</option>
                                     @foreach ($centres as $centre)
                                         <option value="{{$centre->centre}}">Centre de {{ $centre->centre }}</option>
@@ -72,8 +71,7 @@
                                 <label for="centre_regional"
                                        class="d-flex align-items-center fs-6 fw-bold form-label text-dark mb-2">Centre
                                     régional</label>
-                                <select id="centre_regional" name="centre_regional" class="form-control col-sm-7"
-                                        required>
+                                <select id="centre_regional" name="centre_regional" class="form-control col-sm-7">
                                     <option>{{$site->centre_regional}}</option>
                                 </select>
                             </div>
